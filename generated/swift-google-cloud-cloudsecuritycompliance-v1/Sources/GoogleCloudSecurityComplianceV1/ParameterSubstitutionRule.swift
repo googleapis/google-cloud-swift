@@ -94,9 +94,9 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.substitutionType {
       switch choice {
       case .placeholderSubstitutionRule(let value):
-        try container.encode(value, forKey: .placeholderSubstitutionRule)
+        try container.encodeIfPresent(value, forKey: .placeholderSubstitutionRule)
       case .attributeSubstitutionRule(let value):
-        try container.encode(value, forKey: .attributeSubstitutionRule)
+        try container.encodeIfPresent(value, forKey: .attributeSubstitutionRule)
       }
     }
     for (key, value) in self._unknownFields.json {

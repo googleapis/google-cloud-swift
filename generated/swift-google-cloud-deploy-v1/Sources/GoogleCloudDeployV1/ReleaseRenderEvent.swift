@@ -110,8 +110,12 @@ public struct ReleaseRenderEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.message, forKey: .message)
     try container.encode(self.pipelineUid, forKey: .pipelineUid)
     try container.encode(self.release, forKey: .release)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.releaseRenderState, forKey: .releaseRenderState)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.releaseRenderState != Release.RenderState() {
+      try container.encode(self.releaseRenderState, forKey: .releaseRenderState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

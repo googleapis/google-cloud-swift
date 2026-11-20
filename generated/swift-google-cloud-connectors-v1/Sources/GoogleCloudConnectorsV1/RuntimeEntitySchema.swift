@@ -198,7 +198,9 @@ public struct RuntimeEntitySchema: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.field, forKey: .field)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.dataType, forKey: .dataType)
+      if self.dataType != DataType() {
+        try container.encode(self.dataType, forKey: .dataType)
+      }
       try container.encode(self.key, forKey: .key)
       try container.encode(self.readonly, forKey: .readonly)
       try container.encode(self.nullable, forKey: .nullable)

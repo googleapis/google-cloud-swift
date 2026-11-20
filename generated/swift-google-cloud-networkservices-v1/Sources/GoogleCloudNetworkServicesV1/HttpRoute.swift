@@ -307,17 +307,17 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.matchType {
         switch choice {
         case .exactMatch(let value):
-          try container.encode(value, forKey: .exactMatch)
+          try container.encodeIfPresent(value, forKey: .exactMatch)
         case .regexMatch(let value):
-          try container.encode(value, forKey: .regexMatch)
+          try container.encodeIfPresent(value, forKey: .regexMatch)
         case .prefixMatch(let value):
-          try container.encode(value, forKey: .prefixMatch)
+          try container.encodeIfPresent(value, forKey: .prefixMatch)
         case .presentMatch(let value):
-          try container.encode(value, forKey: .presentMatch)
+          try container.encodeIfPresent(value, forKey: .presentMatch)
         case .suffixMatch(let value):
-          try container.encode(value, forKey: .suffixMatch)
+          try container.encodeIfPresent(value, forKey: .suffixMatch)
         case .rangeMatch(let value):
-          try container.encode(value, forKey: .rangeMatch)
+          try container.encodeIfPresent(value, forKey: .rangeMatch)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -543,11 +543,11 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.matchType {
         switch choice {
         case .exactMatch(let value):
-          try container.encode(value, forKey: .exactMatch)
+          try container.encodeIfPresent(value, forKey: .exactMatch)
         case .regexMatch(let value):
-          try container.encode(value, forKey: .regexMatch)
+          try container.encodeIfPresent(value, forKey: .regexMatch)
         case .presentMatch(let value):
-          try container.encode(value, forKey: .presentMatch)
+          try container.encodeIfPresent(value, forKey: .presentMatch)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -710,11 +710,11 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.pathMatch {
         switch choice {
         case .fullPathMatch(let value):
-          try container.encode(value, forKey: .fullPathMatch)
+          try container.encodeIfPresent(value, forKey: .fullPathMatch)
         case .prefixMatch(let value):
-          try container.encode(value, forKey: .prefixMatch)
+          try container.encodeIfPresent(value, forKey: .prefixMatch)
         case .regexMatch(let value):
-          try container.encode(value, forKey: .regexMatch)
+          try container.encodeIfPresent(value, forKey: .regexMatch)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1012,7 +1012,9 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.hostRedirect, forKey: .hostRedirect)
       try container.encode(self.pathRedirect, forKey: .pathRedirect)
       try container.encode(self.prefixRewrite, forKey: .prefixRewrite)
-      try container.encode(self.responseCode, forKey: .responseCode)
+      if self.responseCode != HttpRoute.Redirect.ResponseCode() {
+        try container.encode(self.responseCode, forKey: .responseCode)
+      }
       try container.encode(self.httpsRedirect, forKey: .httpsRedirect)
       try container.encode(self.stripQuery, forKey: .stripQuery)
       try container.encode(self.portRedirect, forKey: .portRedirect)
@@ -2197,9 +2199,9 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.httpBody {
         switch choice {
         case .stringBody(let value):
-          try container.encode(value, forKey: .stringBody)
+          try container.encodeIfPresent(value, forKey: .stringBody)
         case .bytesBody(let value):
-          try container.encode(value, forKey: .bytesBody)
+          try container.encodeIfPresent(value, forKey: .bytesBody)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -148,17 +148,17 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.result {
       switch choice {
       case .numericalStatsResult(let value):
-        try container.encode(value, forKey: .numericalStatsResult)
+        try container.encodeIfPresent(value, forKey: .numericalStatsResult)
       case .categoricalStatsResult(let value):
-        try container.encode(value, forKey: .categoricalStatsResult)
+        try container.encodeIfPresent(value, forKey: .categoricalStatsResult)
       case .kAnonymityResult(let value):
-        try container.encode(value, forKey: .kAnonymityResult)
+        try container.encodeIfPresent(value, forKey: .kAnonymityResult)
       case .lDiversityResult(let value):
-        try container.encode(value, forKey: .lDiversityResult)
+        try container.encodeIfPresent(value, forKey: .lDiversityResult)
       case .kMapEstimationResult(let value):
-        try container.encode(value, forKey: .kMapEstimationResult)
+        try container.encodeIfPresent(value, forKey: .kMapEstimationResult)
       case .deltaPresenceEstimationResult(let value):
-        try container.encode(value, forKey: .deltaPresenceEstimationResult)
+        try container.encodeIfPresent(value, forKey: .deltaPresenceEstimationResult)
       }
     }
     for (key, value) in self._unknownFields.json {

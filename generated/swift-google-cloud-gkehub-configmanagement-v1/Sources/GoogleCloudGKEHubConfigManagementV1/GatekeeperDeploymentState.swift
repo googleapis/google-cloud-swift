@@ -80,9 +80,13 @@ public struct GatekeeperDeploymentState: Codable, Equatable, GoogleWKT._AnyPacka
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(
-      self.gatekeeperControllerManagerState, forKey: .gatekeeperControllerManagerState)
-    try container.encode(self.gatekeeperAudit, forKey: .gatekeeperAudit)
+    if self.gatekeeperControllerManagerState != DeploymentState() {
+      try container.encode(
+        self.gatekeeperControllerManagerState, forKey: .gatekeeperControllerManagerState)
+    }
+    if self.gatekeeperAudit != DeploymentState() {
+      try container.encode(self.gatekeeperAudit, forKey: .gatekeeperAudit)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

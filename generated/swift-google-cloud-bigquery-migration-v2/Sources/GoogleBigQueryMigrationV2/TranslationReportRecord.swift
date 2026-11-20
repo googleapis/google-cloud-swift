@@ -105,7 +105,9 @@ public struct TranslationReportRecord: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != TranslationReportRecord.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.scriptLine, forKey: .scriptLine)
     try container.encode(self.scriptColumn, forKey: .scriptColumn)
     try container.encode(self.category, forKey: .category)

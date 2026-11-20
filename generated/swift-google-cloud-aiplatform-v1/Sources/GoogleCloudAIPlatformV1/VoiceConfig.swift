@@ -95,9 +95,9 @@
       if let choice = self.voiceConfig {
         switch choice {
         case .prebuiltVoiceConfig(let value):
-          try container.encode(value, forKey: .prebuiltVoiceConfig)
+          try container.encodeIfPresent(value, forKey: .prebuiltVoiceConfig)
         case .replicatedVoiceConfig(let value):
-          try container.encode(value, forKey: .replicatedVoiceConfig)
+          try container.encodeIfPresent(value, forKey: .replicatedVoiceConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

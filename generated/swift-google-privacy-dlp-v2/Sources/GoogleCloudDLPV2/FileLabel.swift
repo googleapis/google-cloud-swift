@@ -94,9 +94,9 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .sensitivityLabel(let value):
-        try container.encode(value, forKey: .sensitivityLabel)
+        try container.encodeIfPresent(value, forKey: .sensitivityLabel)
       case .googleDriveLabel(let value):
-        try container.encode(value, forKey: .googleDriveLabel)
+        try container.encodeIfPresent(value, forKey: .googleDriveLabel)
       }
     }
     for (key, value) in self._unknownFields.json {

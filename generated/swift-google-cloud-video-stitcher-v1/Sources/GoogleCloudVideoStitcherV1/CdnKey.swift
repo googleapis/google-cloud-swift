@@ -117,11 +117,11 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.cdnKeyConfig {
       switch choice {
       case .googleCdnKey(let value):
-        try container.encode(value, forKey: .googleCdnKey)
+        try container.encodeIfPresent(value, forKey: .googleCdnKey)
       case .akamaiCdnKey(let value):
-        try container.encode(value, forKey: .akamaiCdnKey)
+        try container.encodeIfPresent(value, forKey: .akamaiCdnKey)
       case .mediaCdnKey(let value):
-        try container.encode(value, forKey: .mediaCdnKey)
+        try container.encodeIfPresent(value, forKey: .mediaCdnKey)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -109,11 +109,11 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .git(let value):
-        try container.encode(value, forKey: .git)
+        try container.encodeIfPresent(value, forKey: .git)
       case .googleCloudStorage(let value):
-        try container.encode(value, forKey: .googleCloudStorage)
+        try container.encodeIfPresent(value, forKey: .googleCloudStorage)
       case .googleCloudBuildRepo(let value):
-        try container.encode(value, forKey: .googleCloudBuildRepo)
+        try container.encodeIfPresent(value, forKey: .googleCloudBuildRepo)
       }
     }
     for (key, value) in self._unknownFields.json {

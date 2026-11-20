@@ -137,7 +137,9 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.includeFields, forKey: .includeFields)
     try container.encodeIfPresent(self.excludeFields, forKey: .excludeFields)
     try container.encode(self.catalogPublishingEnabled, forKey: .catalogPublishingEnabled)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != DataProfileSpec.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

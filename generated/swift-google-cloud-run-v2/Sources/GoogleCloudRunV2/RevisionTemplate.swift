@@ -293,11 +293,16 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.containers, forKey: .containers)
     try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
-    try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    if self.executionEnvironment != ExecutionEnvironment() {
+      try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    }
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
     try container.encode(self.maxInstanceRequestConcurrency, forKey: .maxInstanceRequestConcurrency)
     try container.encodeIfPresent(self.serviceMesh, forKey: .serviceMesh)
-    try container.encode(self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    if self.encryptionKeyRevocationAction != EncryptionKeyRevocationAction() {
+      try container.encode(
+        self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    }
     try container.encodeIfPresent(
       self.encryptionKeyShutdownDuration, forKey: .encryptionKeyShutdownDuration)
     try container.encode(self.sessionAffinity, forKey: .sessionAffinity)

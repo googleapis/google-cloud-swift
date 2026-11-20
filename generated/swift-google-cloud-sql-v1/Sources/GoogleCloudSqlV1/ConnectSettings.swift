@@ -213,11 +213,17 @@
       try container.encodeIfPresent(self.serverCaCert, forKey: .serverCaCert)
       try container.encode(self.ipAddresses, forKey: .ipAddresses)
       try container.encode(self.region, forKey: .region)
-      try container.encode(self.databaseVersion, forKey: .databaseVersion)
-      try container.encode(self.backendType, forKey: .backendType)
+      if self.databaseVersion != SqlDatabaseVersion() {
+        try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      }
+      if self.backendType != SqlBackendType() {
+        try container.encode(self.backendType, forKey: .backendType)
+      }
       try container.encode(self.pscEnabled, forKey: .pscEnabled)
       try container.encode(self.dnsName, forKey: .dnsName)
-      try container.encode(self.serverCaMode, forKey: .serverCaMode)
+      if self.serverCaMode != ConnectSettings.CaMode() {
+        try container.encode(self.serverCaMode, forKey: .serverCaMode)
+      }
       try container.encode(
         self.customSubjectAlternativeNames, forKey: .customSubjectAlternativeNames)
       try container.encode(self.dnsNames, forKey: .dnsNames)

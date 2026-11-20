@@ -139,8 +139,12 @@ public struct SharedTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.latestRevisionId, forKey: .latestRevisionId)
-    try container.encode(self.templateCategory, forKey: .templateCategory)
-    try container.encode(self.type, forKey: .type)
+    if self.templateCategory != TemplateCategory() {
+      try container.encode(self.templateCategory, forKey: .templateCategory)
+    }
+    if self.type != TemplateType() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

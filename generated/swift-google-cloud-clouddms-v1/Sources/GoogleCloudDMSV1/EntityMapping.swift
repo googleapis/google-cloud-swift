@@ -112,8 +112,12 @@ public struct EntityMapping: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sourceEntity, forKey: .sourceEntity)
     try container.encode(self.draftEntity, forKey: .draftEntity)
-    try container.encode(self.sourceType, forKey: .sourceType)
-    try container.encode(self.draftType, forKey: .draftType)
+    if self.sourceType != DatabaseEntityType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
+    if self.draftType != DatabaseEntityType() {
+      try container.encode(self.draftType, forKey: .draftType)
+    }
     try container.encode(self.mappingLog, forKey: .mappingLog)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

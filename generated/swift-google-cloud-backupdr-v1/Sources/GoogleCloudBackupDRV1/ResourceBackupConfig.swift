@@ -167,7 +167,9 @@ public struct ResourceBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.targetResource, forKey: .targetResource)
     try container.encode(self.targetResourceDisplayName, forKey: .targetResourceDisplayName)
-    try container.encode(self.targetResourceType, forKey: .targetResourceType)
+    if self.targetResourceType != ResourceBackupConfig.ResourceType() {
+      try container.encode(self.targetResourceType, forKey: .targetResourceType)
+    }
     try container.encode(self.targetResourceLabels, forKey: .targetResourceLabels)
     try container.encode(self.backupConfigsDetails, forKey: .backupConfigsDetails)
     try container.encode(self.backupConfigured, forKey: .backupConfigured)

@@ -169,15 +169,33 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.symlink, forKey: .symlink)
-    try container.encode(self.mode, forKey: .mode)
-    try container.encode(self.gid, forKey: .gid)
-    try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.acl, forKey: .acl)
-    try container.encode(self.storageClass, forKey: .storageClass)
-    try container.encode(self.temporaryHold, forKey: .temporaryHold)
-    try container.encode(self.kmsKey, forKey: .kmsKey)
-    try container.encode(self.timeCreated, forKey: .timeCreated)
+    if self.symlink != MetadataOptions.Symlink() {
+      try container.encode(self.symlink, forKey: .symlink)
+    }
+    if self.mode != MetadataOptions.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
+    if self.gid != MetadataOptions.GID() {
+      try container.encode(self.gid, forKey: .gid)
+    }
+    if self.uid != MetadataOptions.UID() {
+      try container.encode(self.uid, forKey: .uid)
+    }
+    if self.acl != MetadataOptions.Acl() {
+      try container.encode(self.acl, forKey: .acl)
+    }
+    if self.storageClass != MetadataOptions.StorageClass() {
+      try container.encode(self.storageClass, forKey: .storageClass)
+    }
+    if self.temporaryHold != MetadataOptions.TemporaryHold() {
+      try container.encode(self.temporaryHold, forKey: .temporaryHold)
+    }
+    if self.kmsKey != MetadataOptions.KmsKey() {
+      try container.encode(self.kmsKey, forKey: .kmsKey)
+    }
+    if self.timeCreated != MetadataOptions.TimeCreated() {
+      try container.encode(self.timeCreated, forKey: .timeCreated)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

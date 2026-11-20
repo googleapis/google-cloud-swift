@@ -149,7 +149,9 @@ public struct Metric: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lastSeen, forKey: .lastSeen)
     try container.encodeIfPresent(self.sumMeasure, forKey: .sumMeasure)
     try container.encode(self.totalEvents, forKey: .totalEvents)
-    try container.encode(self.metricName, forKey: .metricName)
+    if self.metricName != Metric.MetricName() {
+      try container.encode(self.metricName, forKey: .metricName)
+    }
     try container.encode(self.dimensions, forKey: .dimensions)
     try container.encode(self.exportWindow, forKey: .exportWindow)
     try container.encode(self.displayName, forKey: .displayName)
@@ -224,7 +226,9 @@ public struct Metric: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.value, forKey: .value)
-      try container.encode(self.aggregateFunction, forKey: .aggregateFunction)
+      if self.aggregateFunction != Metric.AggregateFunction() {
+        try container.encode(self.aggregateFunction, forKey: .aggregateFunction)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

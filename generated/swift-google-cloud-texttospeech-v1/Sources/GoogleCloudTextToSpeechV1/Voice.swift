@@ -98,7 +98,9 @@ public struct Voice: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.languageCodes, forKey: .languageCodes)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.ssmlGender, forKey: .ssmlGender)
+    if self.ssmlGender != SsmlVoiceGender() {
+      try container.encode(self.ssmlGender, forKey: .ssmlGender)
+    }
     try container.encode(self.naturalSampleRateHertz, forKey: .naturalSampleRateHertz)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

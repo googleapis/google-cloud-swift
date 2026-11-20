@@ -129,7 +129,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.userPrincipal, forKey: .userPrincipal)
       try container.encode(self.userProfile, forKey: .userProfile)
-      try container.encode(self.licenseAssignmentState, forKey: .licenseAssignmentState)
+      if self.licenseAssignmentState != UserLicense.LicenseAssignmentState() {
+        try container.encode(self.licenseAssignmentState, forKey: .licenseAssignmentState)
+      }
       try container.encode(self.licenseConfig, forKey: .licenseConfig)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

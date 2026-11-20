@@ -182,7 +182,9 @@ public struct SecretVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.destroyTime, forKey: .destroyTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != SecretVersion.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.replicationStatus, forKey: .replicationStatus)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(

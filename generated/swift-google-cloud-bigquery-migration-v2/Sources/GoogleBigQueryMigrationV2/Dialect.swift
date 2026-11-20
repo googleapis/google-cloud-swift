@@ -191,39 +191,39 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dialectValue {
       switch choice {
       case .bigqueryDialect(let value):
-        try container.encode(value, forKey: .bigqueryDialect)
+        try container.encodeIfPresent(value, forKey: .bigqueryDialect)
       case .hiveqlDialect(let value):
-        try container.encode(value, forKey: .hiveqlDialect)
+        try container.encodeIfPresent(value, forKey: .hiveqlDialect)
       case .redshiftDialect(let value):
-        try container.encode(value, forKey: .redshiftDialect)
+        try container.encodeIfPresent(value, forKey: .redshiftDialect)
       case .teradataDialect(let value):
-        try container.encode(value, forKey: .teradataDialect)
+        try container.encodeIfPresent(value, forKey: .teradataDialect)
       case .oracleDialect(let value):
-        try container.encode(value, forKey: .oracleDialect)
+        try container.encodeIfPresent(value, forKey: .oracleDialect)
       case .sparksqlDialect(let value):
-        try container.encode(value, forKey: .sparksqlDialect)
+        try container.encodeIfPresent(value, forKey: .sparksqlDialect)
       case .snowflakeDialect(let value):
-        try container.encode(value, forKey: .snowflakeDialect)
+        try container.encodeIfPresent(value, forKey: .snowflakeDialect)
       case .netezzaDialect(let value):
-        try container.encode(value, forKey: .netezzaDialect)
+        try container.encodeIfPresent(value, forKey: .netezzaDialect)
       case .azureSynapseDialect(let value):
-        try container.encode(value, forKey: .azureSynapseDialect)
+        try container.encodeIfPresent(value, forKey: .azureSynapseDialect)
       case .verticaDialect(let value):
-        try container.encode(value, forKey: .verticaDialect)
+        try container.encodeIfPresent(value, forKey: .verticaDialect)
       case .sqlServerDialect(let value):
-        try container.encode(value, forKey: .sqlServerDialect)
+        try container.encodeIfPresent(value, forKey: .sqlServerDialect)
       case .postgresqlDialect(let value):
-        try container.encode(value, forKey: .postgresqlDialect)
+        try container.encodeIfPresent(value, forKey: .postgresqlDialect)
       case .prestoDialect(let value):
-        try container.encode(value, forKey: .prestoDialect)
+        try container.encodeIfPresent(value, forKey: .prestoDialect)
       case .mysqlDialect(let value):
-        try container.encode(value, forKey: .mysqlDialect)
+        try container.encodeIfPresent(value, forKey: .mysqlDialect)
       case .db2Dialect(let value):
-        try container.encode(value, forKey: .db2Dialect)
+        try container.encodeIfPresent(value, forKey: .db2Dialect)
       case .sqliteDialect(let value):
-        try container.encode(value, forKey: .sqliteDialect)
+        try container.encodeIfPresent(value, forKey: .sqliteDialect)
       case .greenplumDialect(let value):
-        try container.encode(value, forKey: .greenplumDialect)
+        try container.encodeIfPresent(value, forKey: .greenplumDialect)
       }
     }
     for (key, value) in self._unknownFields.json {

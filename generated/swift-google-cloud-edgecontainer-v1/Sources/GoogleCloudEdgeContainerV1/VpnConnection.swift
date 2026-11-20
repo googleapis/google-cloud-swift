@@ -172,7 +172,9 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.natGatewayIp, forKey: .natGatewayIp)
-    try container.encode(self.bgpRoutingMode, forKey: .bgpRoutingMode)
+    if self.bgpRoutingMode != VpnConnection.BgpRoutingMode() {
+      try container.encode(self.bgpRoutingMode, forKey: .bgpRoutingMode)
+    }
     try container.encode(self.cluster, forKey: .cluster)
     try container.encode(self.vpc, forKey: .vpc)
     try container.encodeIfPresent(self.vpcProject, forKey: .vpcProject)
@@ -359,7 +361,9 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != VpnConnection.Details.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.error, forKey: .error)
       try container.encodeIfPresent(self.cloudRouter, forKey: .cloudRouter)
       try container.encode(self.cloudVpns, forKey: .cloudVpns)

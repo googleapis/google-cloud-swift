@@ -115,9 +115,9 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
     if let choice = self.approvalPayload {
       switch choice {
       case .quorumReply(let value):
-        try container.encode(value, forKey: .quorumReply)
+        try container.encodeIfPresent(value, forKey: .quorumReply)
       case .requiredActionQuorumReply(let value):
-        try container.encode(value, forKey: .requiredActionQuorumReply)
+        try container.encodeIfPresent(value, forKey: .requiredActionQuorumReply)
       }
     }
     for (key, value) in self._unknownFields.json {

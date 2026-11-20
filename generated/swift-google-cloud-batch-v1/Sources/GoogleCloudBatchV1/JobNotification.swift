@@ -169,9 +169,15 @@ public struct JobNotification: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
-      try container.encode(self.newJobState, forKey: .newJobState)
-      try container.encode(self.newTaskState, forKey: .newTaskState)
+      if self.type != JobNotification.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
+      if self.newJobState != JobStatus.State() {
+        try container.encode(self.newJobState, forKey: .newJobState)
+      }
+      if self.newTaskState != TaskStatus.State() {
+        try container.encode(self.newTaskState, forKey: .newTaskState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -98,9 +98,13 @@ public struct AllowPolicyExplanation: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.allowAccessState, forKey: .allowAccessState)
+    if self.allowAccessState != AllowAccessState() {
+      try container.encode(self.allowAccessState, forKey: .allowAccessState)
+    }
     try container.encode(self.explainedPolicies, forKey: .explainedPolicies)
-    try container.encode(self.relevance, forKey: .relevance)
+    if self.relevance != HeuristicRelevance() {
+      try container.encode(self.relevance, forKey: .relevance)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

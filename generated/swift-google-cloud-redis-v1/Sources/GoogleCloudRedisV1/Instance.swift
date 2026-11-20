@@ -451,24 +451,34 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.port, forKey: .port)
     try container.encode(self.currentLocationId, forKey: .currentLocationId)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.statusMessage, forKey: .statusMessage)
     try container.encode(self.redisConfigs, forKey: .redisConfigs)
-    try container.encode(self.tier, forKey: .tier)
+    if self.tier != Instance.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
     try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
     try container.encode(self.authorizedNetwork, forKey: .authorizedNetwork)
     try container.encode(self.persistenceIamIdentity, forKey: .persistenceIamIdentity)
-    try container.encode(self.connectMode, forKey: .connectMode)
+    if self.connectMode != Instance.ConnectMode() {
+      try container.encode(self.connectMode, forKey: .connectMode)
+    }
     try container.encode(self.authEnabled, forKey: .authEnabled)
     try container.encode(self.serverCaCerts, forKey: .serverCaCerts)
-    try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    if self.transitEncryptionMode != Instance.TransitEncryptionMode() {
+      try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    }
     try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
     try container.encodeIfPresent(self.maintenanceSchedule, forKey: .maintenanceSchedule)
     try container.encode(self.replicaCount, forKey: .replicaCount)
     try container.encode(self.nodes, forKey: .nodes)
     try container.encode(self.readEndpoint, forKey: .readEndpoint)
     try container.encode(self.readEndpointPort, forKey: .readEndpointPort)
-    try container.encode(self.readReplicasMode, forKey: .readReplicasMode)
+    if self.readReplicasMode != Instance.ReadReplicasMode() {
+      try container.encode(self.readReplicasMode, forKey: .readReplicasMode)
+    }
     try container.encode(self.customerManagedKey, forKey: .customerManagedKey)
     try container.encodeIfPresent(self.persistenceConfig, forKey: .persistenceConfig)
     try container.encode(self.suspensionReasons, forKey: .suspensionReasons)

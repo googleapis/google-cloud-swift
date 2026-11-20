@@ -106,9 +106,9 @@
       if let choice = self.format {
         switch choice {
         case .keyValues(let value):
-          try container.encode(value, forKey: .keyValues)
+          try container.encodeIfPresent(value, forKey: .keyValues)
         case .protoStruct(let value):
-          try container.encode(value, forKey: .protoStruct)
+          try container.encodeIfPresent(value, forKey: .protoStruct)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -255,7 +255,7 @@
           if let choice = self.data {
             switch choice {
             case .value(let value):
-              try container.encode(value, forKey: .value)
+              try container.encodeIfPresent(value, forKey: .value)
             }
           }
           for (key, value) in self._unknownFields.json {

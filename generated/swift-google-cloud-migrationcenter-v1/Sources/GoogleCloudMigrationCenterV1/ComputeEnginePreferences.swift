@@ -79,7 +79,9 @@ public struct ComputeEnginePreferences: Codable, Equatable, GoogleWKT._AnyPackab
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.machinePreferences, forKey: .machinePreferences)
-    try container.encode(self.licenseType, forKey: .licenseType)
+    if self.licenseType != LicenseType() {
+      try container.encode(self.licenseType, forKey: .licenseType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -118,9 +118,13 @@ public struct LintResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.level, forKey: .level)
+    if self.level != LintResult.Level() {
+      try container.encode(self.level, forKey: .level)
+    }
     try container.encode(self.validationUnitName, forKey: .validationUnitName)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != LintResult.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.fieldName, forKey: .fieldName)
     try container.encode(self.locationOffset, forKey: .locationOffset)
     try container.encode(self.debugMessage, forKey: .debugMessage)

@@ -254,15 +254,17 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.responseCount, forKey: .responseCount)
     try container.encodeIfPresent(self.firstAttempt, forKey: .firstAttempt)
     try container.encodeIfPresent(self.lastAttempt, forKey: .lastAttempt)
-    try container.encode(self.view, forKey: .view)
+    if self.view != Task.View() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encodeIfPresent(self.retryConfig, forKey: .retryConfig)
 
     if let choice = self.messageType {
       switch choice {
       case .appEngineHttpRequest(let value):
-        try container.encode(value, forKey: .appEngineHttpRequest)
+        try container.encodeIfPresent(value, forKey: .appEngineHttpRequest)
       case .httpRequest(let value):
-        try container.encode(value, forKey: .httpRequest)
+        try container.encodeIfPresent(value, forKey: .httpRequest)
       }
     }
     for (key, value) in self._unknownFields.json {

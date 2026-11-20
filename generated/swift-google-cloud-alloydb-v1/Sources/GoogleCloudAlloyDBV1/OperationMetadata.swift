@@ -163,9 +163,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.requestSpecific {
       switch choice {
       case .batchCreateInstancesMetadata(let value):
-        try container.encode(value, forKey: .batchCreateInstancesMetadata)
+        try container.encodeIfPresent(value, forKey: .batchCreateInstancesMetadata)
       case .upgradeClusterStatus(let value):
-        try container.encode(value, forKey: .upgradeClusterStatus)
+        try container.encodeIfPresent(value, forKey: .upgradeClusterStatus)
       }
     }
     for (key, value) in self._unknownFields.json {

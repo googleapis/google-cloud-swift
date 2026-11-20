@@ -99,9 +99,9 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.status {
       switch choice {
       case .okay(let value):
-        try container.encode(value, forKey: .okay)
+        try container.encodeIfPresent(value, forKey: .okay)
       case .fail(let value):
-        try container.encode(value, forKey: .fail)
+        try container.encodeIfPresent(value, forKey: .fail)
       }
     }
     for (key, value) in self._unknownFields.json {

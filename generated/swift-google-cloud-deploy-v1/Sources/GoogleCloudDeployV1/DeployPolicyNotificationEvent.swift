@@ -99,7 +99,9 @@ public struct DeployPolicyNotificationEvent: Codable, Equatable, GoogleWKT._AnyP
     try container.encode(self.message, forKey: .message)
     try container.encode(self.deployPolicy, forKey: .deployPolicy)
     try container.encode(self.deployPolicyUid, forKey: .deployPolicyUid)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

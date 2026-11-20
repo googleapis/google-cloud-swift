@@ -133,15 +133,17 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.mergeOption, forKey: .mergeOption)
+      if self.mergeOption != ImportEntityTypesRequest.MergeOption() {
+        try container.encode(self.mergeOption, forKey: .mergeOption)
+      }
       try container.encode(self.targetEntityType, forKey: .targetEntityType)
 
       if let choice = self.entityTypes {
         switch choice {
         case .entityTypesUri(let value):
-          try container.encode(value, forKey: .entityTypesUri)
+          try container.encodeIfPresent(value, forKey: .entityTypesUri)
         case .entityTypesContent(let value):
-          try container.encode(value, forKey: .entityTypesContent)
+          try container.encodeIfPresent(value, forKey: .entityTypesContent)
         }
       }
       for (key, value) in self._unknownFields.json {

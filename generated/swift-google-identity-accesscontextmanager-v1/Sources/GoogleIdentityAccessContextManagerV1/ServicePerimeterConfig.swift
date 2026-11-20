@@ -318,9 +318,9 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.kind {
         switch choice {
         case .method(let value):
-          try container.encode(value, forKey: .method)
+          try container.encodeIfPresent(value, forKey: .method)
         case .permission(let value):
-          try container.encode(value, forKey: .permission)
+          try container.encodeIfPresent(value, forKey: .permission)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -545,9 +545,9 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.source {
         switch choice {
         case .accessLevel(let value):
-          try container.encode(value, forKey: .accessLevel)
+          try container.encodeIfPresent(value, forKey: .accessLevel)
         case .resource(let value):
-          try container.encode(value, forKey: .resource)
+          try container.encodeIfPresent(value, forKey: .resource)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -696,7 +696,9 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sources, forKey: .sources)
       try container.encode(self.identities, forKey: .identities)
-      try container.encode(self.identityType, forKey: .identityType)
+      if self.identityType != ServicePerimeterConfig.IdentityType() {
+        try container.encode(self.identityType, forKey: .identityType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1029,7 +1031,9 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.identities, forKey: .identities)
-      try container.encode(self.identityType, forKey: .identityType)
+      if self.identityType != ServicePerimeterConfig.IdentityType() {
+        try container.encode(self.identityType, forKey: .identityType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

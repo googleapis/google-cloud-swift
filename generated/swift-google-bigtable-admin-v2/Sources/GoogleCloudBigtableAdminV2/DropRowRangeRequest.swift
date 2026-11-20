@@ -107,9 +107,9 @@ public struct DropRowRangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .rowKeyPrefix(let value):
-        try container.encode(value, forKey: .rowKeyPrefix)
+        try container.encodeIfPresent(value, forKey: .rowKeyPrefix)
       case .deleteAllDataFromTable(let value):
-        try container.encode(value, forKey: .deleteAllDataFromTable)
+        try container.encodeIfPresent(value, forKey: .deleteAllDataFromTable)
       }
     }
     for (key, value) in self._unknownFields.json {

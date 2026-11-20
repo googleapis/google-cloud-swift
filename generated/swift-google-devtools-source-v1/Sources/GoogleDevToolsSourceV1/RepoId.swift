@@ -91,9 +91,9 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.id {
       switch choice {
       case .projectRepoId(let value):
-        try container.encode(value, forKey: .projectRepoId)
+        try container.encodeIfPresent(value, forKey: .projectRepoId)
       case .uid(let value):
-        try container.encode(value, forKey: .uid)
+        try container.encodeIfPresent(value, forKey: .uid)
       }
     }
     for (key, value) in self._unknownFields.json {

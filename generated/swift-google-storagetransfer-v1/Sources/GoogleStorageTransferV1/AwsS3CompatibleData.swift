@@ -130,7 +130,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dataProvider {
       switch choice {
       case .s3Metadata(let value):
-        try container.encode(value, forKey: .s3Metadata)
+        try container.encodeIfPresent(value, forKey: .s3Metadata)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -201,12 +201,18 @@ public struct Hub: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.uniqueId, forKey: .uniqueId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudNetworkConnectivityV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.routingVpcs, forKey: .routingVpcs)
     try container.encode(self.routeTables, forKey: .routeTables)
     try container.encodeIfPresent(self.spokeSummary, forKey: .spokeSummary)
-    try container.encode(self.policyMode, forKey: .policyMode)
-    try container.encode(self.presetTopology, forKey: .presetTopology)
+    if self.policyMode != PolicyMode() {
+      try container.encode(self.policyMode, forKey: .policyMode)
+    }
+    if self.presetTopology != PresetTopology() {
+      try container.encode(self.presetTopology, forKey: .presetTopology)
+    }
     try container.encodeIfPresent(self.exportPsc, forKey: .exportPsc)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

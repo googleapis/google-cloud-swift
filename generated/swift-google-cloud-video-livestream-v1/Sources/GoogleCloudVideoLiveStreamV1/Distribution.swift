@@ -130,15 +130,17 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.key, forKey: .key)
     try container.encode(self.distributionStream, forKey: .distributionStream)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Distribution.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
 
     if let choice = self.endpoint {
       switch choice {
       case .srtPush(let value):
-        try container.encode(value, forKey: .srtPush)
+        try container.encodeIfPresent(value, forKey: .srtPush)
       case .rtmpPush(let value):
-        try container.encode(value, forKey: .rtmpPush)
+        try container.encodeIfPresent(value, forKey: .rtmpPush)
       }
     }
     for (key, value) in self._unknownFields.json {

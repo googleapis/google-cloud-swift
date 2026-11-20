@@ -111,9 +111,9 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.frequency {
       switch choice {
       case .cadence(let value):
-        try container.encode(value, forKey: .cadence)
+        try container.encodeIfPresent(value, forKey: .cadence)
       case .disabled(let value):
-        try container.encode(value, forKey: .disabled)
+        try container.encodeIfPresent(value, forKey: .disabled)
       }
     }
     for (key, value) in self._unknownFields.json {

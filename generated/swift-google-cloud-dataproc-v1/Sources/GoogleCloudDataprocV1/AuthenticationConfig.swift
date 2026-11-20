@@ -76,8 +76,10 @@ public struct AuthenticationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(
-      self.userWorkloadAuthenticationType, forKey: .userWorkloadAuthenticationType)
+    if self.userWorkloadAuthenticationType != AuthenticationConfig.AuthenticationType() {
+      try container.encode(
+        self.userWorkloadAuthenticationType, forKey: .userWorkloadAuthenticationType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

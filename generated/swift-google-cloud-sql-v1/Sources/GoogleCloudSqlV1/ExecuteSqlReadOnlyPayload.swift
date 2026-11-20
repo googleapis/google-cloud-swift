@@ -133,9 +133,9 @@
       if let choice = self.userPassword {
         switch choice {
         case .passwordSecretVersion(let value):
-          try container.encode(value, forKey: .passwordSecretVersion)
+          try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
         case .autoIamAuthn(let value):
-          try container.encode(value, forKey: .autoIamAuthn)
+          try container.encodeIfPresent(value, forKey: .autoIamAuthn)
         }
       }
       for (key, value) in self._unknownFields.json {

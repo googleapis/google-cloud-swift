@@ -221,7 +221,9 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MigrationTask.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.processingError, forKey: .processingError)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
@@ -235,11 +237,11 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.taskDetails {
       switch choice {
       case .assessmentTaskDetails(let value):
-        try container.encode(value, forKey: .assessmentTaskDetails)
+        try container.encodeIfPresent(value, forKey: .assessmentTaskDetails)
       case .translationConfigDetails(let value):
-        try container.encode(value, forKey: .translationConfigDetails)
+        try container.encodeIfPresent(value, forKey: .translationConfigDetails)
       case .translationDetails(let value):
-        try container.encode(value, forKey: .translationDetails)
+        try container.encodeIfPresent(value, forKey: .translationDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -118,7 +118,9 @@ public struct GoogleCloudStorageEventDrivenSettings: Codable, Equatable, GoogleW
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucketUri, forKey: .bucketUri)
     try container.encode(self.pubsubSubscription, forKey: .pubsubSubscription)
-    try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    if self.sourceDeletionOption != SourceDeletionOptionV2() {
+      try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    }
     try container.encode(self.chronicleServiceAccount, forKey: .chronicleServiceAccount)
     try container.encode(self.maxLookbackDays, forKey: .maxLookbackDays)
     try container.encode(self.includePrefixes, forKey: .includePrefixes)

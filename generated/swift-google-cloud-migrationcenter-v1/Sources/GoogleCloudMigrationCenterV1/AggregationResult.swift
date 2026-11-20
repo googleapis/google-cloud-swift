@@ -111,13 +111,13 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .count(let value):
-        try container.encode(value, forKey: .count)
+        try container.encodeIfPresent(value, forKey: .count)
       case .sum(let value):
-        try container.encode(value, forKey: .sum)
+        try container.encodeIfPresent(value, forKey: .sum)
       case .histogram(let value):
-        try container.encode(value, forKey: .histogram)
+        try container.encodeIfPresent(value, forKey: .histogram)
       case .frequency(let value):
-        try container.encode(value, forKey: .frequency)
+        try container.encodeIfPresent(value, forKey: .frequency)
       }
     }
     for (key, value) in self._unknownFields.json {

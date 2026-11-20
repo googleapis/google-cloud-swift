@@ -105,8 +105,12 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.trigger, forKey: .trigger)
+    if self.state != BackfillJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.trigger != BackfillJob.Trigger() {
+      try container.encode(self.trigger, forKey: .trigger)
+    }
     try container.encodeIfPresent(self.lastStartTime, forKey: .lastStartTime)
     try container.encodeIfPresent(self.lastEndTime, forKey: .lastEndTime)
     try container.encode(self.errors, forKey: .errors)

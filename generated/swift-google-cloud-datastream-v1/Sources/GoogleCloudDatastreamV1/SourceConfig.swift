@@ -171,27 +171,27 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceStreamConfig {
       switch choice {
       case .oracleSourceConfig(let value):
-        try container.encode(value, forKey: .oracleSourceConfig)
+        try container.encodeIfPresent(value, forKey: .oracleSourceConfig)
       case .mysqlSourceConfig(let value):
-        try container.encode(value, forKey: .mysqlSourceConfig)
+        try container.encodeIfPresent(value, forKey: .mysqlSourceConfig)
       case .postgresqlSourceConfig(let value):
-        try container.encode(value, forKey: .postgresqlSourceConfig)
+        try container.encodeIfPresent(value, forKey: .postgresqlSourceConfig)
       case .sqlServerSourceConfig(let value):
-        try container.encode(value, forKey: .sqlServerSourceConfig)
+        try container.encodeIfPresent(value, forKey: .sqlServerSourceConfig)
       case .salesforceSourceConfig(let value):
-        try container.encode(value, forKey: .salesforceSourceConfig)
+        try container.encodeIfPresent(value, forKey: .salesforceSourceConfig)
       case .mongodbSourceConfig(let value):
-        try container.encode(value, forKey: .mongodbSourceConfig)
+        try container.encodeIfPresent(value, forKey: .mongodbSourceConfig)
       case .spannerSourceConfig(let value):
-        try container.encode(value, forKey: .spannerSourceConfig)
+        try container.encodeIfPresent(value, forKey: .spannerSourceConfig)
       case .dataverseSourceConfig(let value):
-        try container.encode(value, forKey: .dataverseSourceConfig)
+        try container.encodeIfPresent(value, forKey: .dataverseSourceConfig)
       case .salesforceMarketingCloudSourceConfig(let value):
-        try container.encode(value, forKey: .salesforceMarketingCloudSourceConfig)
+        try container.encodeIfPresent(value, forKey: .salesforceMarketingCloudSourceConfig)
       case .serviceNowSourceConfig(let value):
-        try container.encode(value, forKey: .serviceNowSourceConfig)
+        try container.encodeIfPresent(value, forKey: .serviceNowSourceConfig)
       case .workdaySourceConfig(let value):
-        try container.encode(value, forKey: .workdaySourceConfig)
+        try container.encodeIfPresent(value, forKey: .workdaySourceConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

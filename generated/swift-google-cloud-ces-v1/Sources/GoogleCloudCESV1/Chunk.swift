@@ -135,25 +135,25 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .text(let value):
-        try container.encode(value, forKey: .text)
+        try container.encodeIfPresent(value, forKey: .text)
       case .transcript(let value):
-        try container.encode(value, forKey: .transcript)
+        try container.encodeIfPresent(value, forKey: .transcript)
       case .blob(let value):
-        try container.encode(value, forKey: .blob)
+        try container.encodeIfPresent(value, forKey: .blob)
       case .payload(let value):
-        try container.encode(value, forKey: .payload)
+        try container.encodeIfPresent(value, forKey: .payload)
       case .image(let value):
-        try container.encode(value, forKey: .image)
+        try container.encodeIfPresent(value, forKey: .image)
       case .toolCall(let value):
-        try container.encode(value, forKey: .toolCall)
+        try container.encodeIfPresent(value, forKey: .toolCall)
       case .toolResponse(let value):
-        try container.encode(value, forKey: .toolResponse)
+        try container.encodeIfPresent(value, forKey: .toolResponse)
       case .agentTransfer(let value):
-        try container.encode(value, forKey: .agentTransfer)
+        try container.encodeIfPresent(value, forKey: .agentTransfer)
       case .updatedVariables(let value):
-        try container.encode(value, forKey: .updatedVariables)
+        try container.encodeIfPresent(value, forKey: .updatedVariables)
       case .defaultVariables(let value):
-        try container.encode(value, forKey: .defaultVariables)
+        try container.encodeIfPresent(value, forKey: .defaultVariables)
       }
     }
     for (key, value) in self._unknownFields.json {

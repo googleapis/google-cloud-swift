@@ -123,20 +123,22 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.aggregationMetric, forKey: .aggregationMetric)
+      if self.aggregationMetric != GoogleCloudAIPlatformV1.Metric.AggregationMetric() {
+        try container.encode(self.aggregationMetric, forKey: .aggregationMetric)
+      }
 
       if let choice = self.aggregationResult {
         switch choice {
         case .pointwiseMetricResult(let value):
-          try container.encode(value, forKey: .pointwiseMetricResult)
+          try container.encodeIfPresent(value, forKey: .pointwiseMetricResult)
         case .pairwiseMetricResult(let value):
-          try container.encode(value, forKey: .pairwiseMetricResult)
+          try container.encodeIfPresent(value, forKey: .pairwiseMetricResult)
         case .exactMatchMetricValue(let value):
-          try container.encode(value, forKey: .exactMatchMetricValue)
+          try container.encodeIfPresent(value, forKey: .exactMatchMetricValue)
         case .bleuMetricValue(let value):
-          try container.encode(value, forKey: .bleuMetricValue)
+          try container.encodeIfPresent(value, forKey: .bleuMetricValue)
         case .rougeMetricValue(let value):
-          try container.encode(value, forKey: .rougeMetricValue)
+          try container.encodeIfPresent(value, forKey: .rougeMetricValue)
         }
       }
       for (key, value) in self._unknownFields.json {

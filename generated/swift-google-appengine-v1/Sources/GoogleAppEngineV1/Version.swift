@@ -476,7 +476,9 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.appEngineApis, forKey: .appEngineApis)
     try container.encode(self.betaSettings, forKey: .betaSettings)
     try container.encode(self.env, forKey: .env)
-    try container.encode(self.servingStatus, forKey: .servingStatus)
+    if self.servingStatus != GoogleAppEngineV1.ServingStatus() {
+      try container.encode(self.servingStatus, forKey: .servingStatus)
+    }
     try container.encode(self.createdBy, forKey: .createdBy)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.diskUsageBytes, forKey: .diskUsageBytes)
@@ -503,11 +505,11 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.scaling {
       switch choice {
       case .automaticScaling(let value):
-        try container.encode(value, forKey: .automaticScaling)
+        try container.encodeIfPresent(value, forKey: .automaticScaling)
       case .basicScaling(let value):
-        try container.encode(value, forKey: .basicScaling)
+        try container.encodeIfPresent(value, forKey: .basicScaling)
       case .manualScaling(let value):
-        try container.encode(value, forKey: .manualScaling)
+        try container.encodeIfPresent(value, forKey: .manualScaling)
       }
     }
     for (key, value) in self._unknownFields.json {

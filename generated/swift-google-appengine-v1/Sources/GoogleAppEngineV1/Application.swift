@@ -219,13 +219,17 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.locationId, forKey: .locationId)
     try container.encode(self.codeBucket, forKey: .codeBucket)
     try container.encodeIfPresent(self.defaultCookieExpiration, forKey: .defaultCookieExpiration)
-    try container.encode(self.servingStatus, forKey: .servingStatus)
+    if self.servingStatus != Application.ServingStatus() {
+      try container.encode(self.servingStatus, forKey: .servingStatus)
+    }
     try container.encode(self.defaultHostname, forKey: .defaultHostname)
     try container.encode(self.defaultBucket, forKey: .defaultBucket)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encodeIfPresent(self.iap, forKey: .iap)
     try container.encode(self.gcrDomain, forKey: .gcrDomain)
-    try container.encode(self.databaseType, forKey: .databaseType)
+    if self.databaseType != Application.DatabaseType() {
+      try container.encode(self.databaseType, forKey: .databaseType)
+    }
     try container.encodeIfPresent(self.featureSettings, forKey: .featureSettings)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

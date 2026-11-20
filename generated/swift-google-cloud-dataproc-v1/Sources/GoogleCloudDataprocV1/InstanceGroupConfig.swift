@@ -242,7 +242,9 @@ public struct InstanceGroupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.machineTypeUri, forKey: .machineTypeUri)
     try container.encodeIfPresent(self.diskConfig, forKey: .diskConfig)
     try container.encode(self.isPreemptible, forKey: .isPreemptible)
-    try container.encode(self.preemptibility, forKey: .preemptibility)
+    if self.preemptibility != InstanceGroupConfig.Preemptibility() {
+      try container.encode(self.preemptibility, forKey: .preemptibility)
+    }
     try container.encodeIfPresent(self.managedGroupConfig, forKey: .managedGroupConfig)
     try container.encode(self.accelerators, forKey: .accelerators)
     try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)

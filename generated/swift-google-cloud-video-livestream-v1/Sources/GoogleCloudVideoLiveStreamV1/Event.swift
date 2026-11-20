@@ -201,25 +201,27 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.executeNow, forKey: .executeNow)
     try container.encodeIfPresent(self.executionTime, forKey: .executionTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Event.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
 
     if let choice = self.task {
       switch choice {
       case .inputSwitch(let value):
-        try container.encode(value, forKey: .inputSwitch)
+        try container.encodeIfPresent(value, forKey: .inputSwitch)
       case .adBreak(let value):
-        try container.encode(value, forKey: .adBreak)
+        try container.encodeIfPresent(value, forKey: .adBreak)
       case .returnToProgram(let value):
-        try container.encode(value, forKey: .returnToProgram)
+        try container.encodeIfPresent(value, forKey: .returnToProgram)
       case .slate(let value):
-        try container.encode(value, forKey: .slate)
+        try container.encodeIfPresent(value, forKey: .slate)
       case .mute(let value):
-        try container.encode(value, forKey: .mute)
+        try container.encodeIfPresent(value, forKey: .mute)
       case .unmute(let value):
-        try container.encode(value, forKey: .unmute)
+        try container.encodeIfPresent(value, forKey: .unmute)
       case .updateEncryptions(let value):
-        try container.encode(value, forKey: .updateEncryptions)
+        try container.encodeIfPresent(value, forKey: .updateEncryptions)
       }
     }
     for (key, value) in self._unknownFields.json {

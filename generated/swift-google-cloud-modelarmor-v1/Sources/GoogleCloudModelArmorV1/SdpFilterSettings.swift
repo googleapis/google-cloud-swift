@@ -92,9 +92,9 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sdpConfiguration {
       switch choice {
       case .basicConfig(let value):
-        try container.encode(value, forKey: .basicConfig)
+        try container.encodeIfPresent(value, forKey: .basicConfig)
       case .advancedConfig(let value):
-        try container.encode(value, forKey: .advancedConfig)
+        try container.encodeIfPresent(value, forKey: .advancedConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

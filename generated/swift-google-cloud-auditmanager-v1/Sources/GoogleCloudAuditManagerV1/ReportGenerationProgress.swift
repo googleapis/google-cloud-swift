@@ -132,7 +132,9 @@ public struct ReportGenerationProgress: Codable, Equatable, GoogleWKT._AnyPackab
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != OperationState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.failureReason, forKey: .failureReason)
     try container.encode(self.evaluationPercentComplete, forKey: .evaluationPercentComplete)
     try container.encode(

@@ -100,9 +100,9 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .datastoreKey(let value):
-        try container.encode(value, forKey: .datastoreKey)
+        try container.encodeIfPresent(value, forKey: .datastoreKey)
       case .bigQueryKey(let value):
-        try container.encode(value, forKey: .bigQueryKey)
+        try container.encodeIfPresent(value, forKey: .bigQueryKey)
       }
     }
     for (key, value) in self._unknownFields.json {

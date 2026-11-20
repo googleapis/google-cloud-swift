@@ -115,7 +115,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.backupScheduleOneof {
       switch choice {
       case .standardSchedule(let value):
-        try container.encode(value, forKey: .standardSchedule)
+        try container.encodeIfPresent(value, forKey: .standardSchedule)
       }
     }
     for (key, value) in self._unknownFields.json {

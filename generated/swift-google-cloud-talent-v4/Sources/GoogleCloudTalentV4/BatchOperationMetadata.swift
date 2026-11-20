@@ -134,7 +134,9 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BatchOperationMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDescription, forKey: .stateDescription)
     try container.encode(self.successCount, forKey: .successCount)
     try container.encode(self.failureCount, forKey: .failureCount)

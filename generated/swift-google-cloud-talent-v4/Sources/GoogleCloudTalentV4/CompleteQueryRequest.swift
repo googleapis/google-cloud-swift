@@ -148,8 +148,12 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.languageCodes, forKey: .languageCodes)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.company, forKey: .company)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.type, forKey: .type)
+    if self.scope != CompleteQueryRequest.CompletionScope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
+    if self.type != CompleteQueryRequest.CompletionType() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

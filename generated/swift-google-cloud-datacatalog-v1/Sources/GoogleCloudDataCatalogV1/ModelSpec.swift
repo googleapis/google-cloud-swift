@@ -88,7 +88,7 @@ public struct ModelSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.systemSpec {
       switch choice {
       case .vertexModelSpec(let value):
-        try container.encode(value, forKey: .vertexModelSpec)
+        try container.encodeIfPresent(value, forKey: .vertexModelSpec)
       }
     }
     for (key, value) in self._unknownFields.json {

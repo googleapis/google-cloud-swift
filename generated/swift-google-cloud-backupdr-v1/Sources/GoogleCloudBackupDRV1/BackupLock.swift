@@ -104,9 +104,9 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.clientLockInfo {
       switch choice {
       case .backupApplianceLockInfo(let value):
-        try container.encode(value, forKey: .backupApplianceLockInfo)
+        try container.encodeIfPresent(value, forKey: .backupApplianceLockInfo)
       case .serviceLockInfo(let value):
-        try container.encode(value, forKey: .serviceLockInfo)
+        try container.encodeIfPresent(value, forKey: .serviceLockInfo)
       }
     }
     for (key, value) in self._unknownFields.json {

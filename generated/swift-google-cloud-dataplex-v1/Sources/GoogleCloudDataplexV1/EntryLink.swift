@@ -210,7 +210,9 @@ public struct EntryLink: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.path, forKey: .path)
-      try container.encode(self.type, forKey: .type)
+      if self.type != EntryLink.EntryReference.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

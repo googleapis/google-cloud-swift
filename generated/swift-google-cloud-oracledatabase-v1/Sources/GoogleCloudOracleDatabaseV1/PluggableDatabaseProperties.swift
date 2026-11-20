@@ -188,11 +188,15 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.ocid, forKey: .ocid)
     try container.encode(self.isRestricted, forKey: .isRestricted)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
-    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    if self.lifecycleState != PluggableDatabaseProperties.PluggableDatabaseLifecycleState() {
+      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    }
     try container.encode(self.pdbName, forKey: .pdbName)
     try container.encode(self.pdbNodeLevelDetails, forKey: .pdbNodeLevelDetails)
     try container.encodeIfPresent(self.databaseManagementConfig, forKey: .databaseManagementConfig)
-    try container.encode(self.operationsInsightsState, forKey: .operationsInsightsState)
+    if self.operationsInsightsState != PluggableDatabaseProperties.OperationsInsightsState() {
+      try container.encode(self.operationsInsightsState, forKey: .operationsInsightsState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

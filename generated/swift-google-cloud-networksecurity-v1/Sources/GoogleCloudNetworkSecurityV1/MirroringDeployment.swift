@@ -159,7 +159,9 @@ public struct MirroringDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.forwardingRule, forKey: .forwardingRule)
     try container.encode(self.mirroringDeploymentGroup, forKey: .mirroringDeploymentGroup)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MirroringDeployment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.description, forKey: .description)
     for (key, value) in self._unknownFields.json {

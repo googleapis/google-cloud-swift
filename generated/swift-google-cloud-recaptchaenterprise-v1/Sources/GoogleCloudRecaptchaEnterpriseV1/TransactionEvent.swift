@@ -99,7 +99,9 @@ public struct TransactionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != TransactionEvent.TransactionEventType() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     try container.encode(self.reason, forKey: .reason)
     try container.encode(self.value, forKey: .value)
     try container.encodeIfPresent(self.eventTime, forKey: .eventTime)

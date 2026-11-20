@@ -111,8 +111,12 @@ public struct RunningService: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serviceName, forKey: .serviceName)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.startMode, forKey: .startMode)
+    if self.state != RunningService.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.startMode != RunningService.StartMode() {
+      try container.encode(self.startMode, forKey: .startMode)
+    }
     try container.encode(self.exePath, forKey: .exePath)
     try container.encode(self.cmdline, forKey: .cmdline)
     try container.encode(self.pid, forKey: .pid)

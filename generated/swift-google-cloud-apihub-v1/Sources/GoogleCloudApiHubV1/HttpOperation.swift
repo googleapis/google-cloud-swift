@@ -86,7 +86,9 @@ public struct HttpOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.path, forKey: .path)
-    try container.encode(self.method, forKey: .method)
+    if self.method != HttpOperation.Method() {
+      try container.encode(self.method, forKey: .method)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

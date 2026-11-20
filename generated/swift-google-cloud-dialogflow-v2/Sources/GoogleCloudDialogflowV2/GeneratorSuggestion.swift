@@ -113,11 +113,11 @@
       if let choice = self.suggestion {
         switch choice {
         case .freeFormSuggestion(let value):
-          try container.encode(value, forKey: .freeFormSuggestion)
+          try container.encodeIfPresent(value, forKey: .freeFormSuggestion)
         case .summarySuggestion(let value):
-          try container.encode(value, forKey: .summarySuggestion)
+          try container.encodeIfPresent(value, forKey: .summarySuggestion)
         case .agentCoachingSuggestion(let value):
-          try container.encode(value, forKey: .agentCoachingSuggestion)
+          try container.encodeIfPresent(value, forKey: .agentCoachingSuggestion)
         }
       }
       for (key, value) in self._unknownFields.json {

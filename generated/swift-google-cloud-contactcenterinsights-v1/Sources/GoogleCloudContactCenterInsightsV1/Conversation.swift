@@ -279,7 +279,9 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.qualityMetadata, forKey: .qualityMetadata)
     try container.encode(self.metadataJson, forKey: .metadataJson)
     try container.encodeIfPresent(self.transcript, forKey: .transcript)
-    try container.encode(self.medium, forKey: .medium)
+    if self.medium != Conversation.Medium() {
+      try container.encode(self.medium, forKey: .medium)
+    }
     try container.encodeIfPresent(self.duration, forKey: .duration)
     try container.encode(self.turnCount, forKey: .turnCount)
     try container.encodeIfPresent(self.latestAnalysis, forKey: .latestAnalysis)
@@ -291,16 +293,16 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.metadata {
       switch choice {
       case .callMetadata(let value):
-        try container.encode(value, forKey: .callMetadata)
+        try container.encodeIfPresent(value, forKey: .callMetadata)
       }
     }
 
     if let choice = self.expiration {
       switch choice {
       case .expireTime(let value):
-        try container.encode(value, forKey: .expireTime)
+        try container.encodeIfPresent(value, forKey: .expireTime)
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -655,7 +657,9 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.team, forKey: .team)
         try container.encode(self.teams, forKey: .teams)
         try container.encode(self.dispositionCode, forKey: .dispositionCode)
-        try container.encode(self.agentType, forKey: .agentType)
+        if self.agentType != ConversationParticipant.Role() {
+          try container.encode(self.agentType, forKey: .agentType)
+        }
         try container.encode(self.location, forKey: .location)
         try container.encode(self.deploymentId, forKey: .deploymentId)
         try container.encode(self.deploymentDisplayName, forKey: .deploymentDisplayName)

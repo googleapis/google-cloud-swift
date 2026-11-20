@@ -159,7 +159,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.notifyConfig {
       switch choice {
       case .streamingConfig(let value):
-        try container.encode(value, forKey: .streamingConfig)
+        try container.encodeIfPresent(value, forKey: .streamingConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

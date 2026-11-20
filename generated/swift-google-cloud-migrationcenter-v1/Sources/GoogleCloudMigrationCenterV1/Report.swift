@@ -126,8 +126,12 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.type != Report.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.state != Report.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.summary, forKey: .summary)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

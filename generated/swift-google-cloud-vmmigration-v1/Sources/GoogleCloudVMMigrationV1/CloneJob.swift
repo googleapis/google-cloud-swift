@@ -158,7 +158,9 @@ public struct CloneJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CloneJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.steps, forKey: .steps)
@@ -166,9 +168,9 @@ public struct CloneJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.targetVmDetails {
       switch choice {
       case .computeEngineTargetDetails(let value):
-        try container.encode(value, forKey: .computeEngineTargetDetails)
+        try container.encodeIfPresent(value, forKey: .computeEngineTargetDetails)
       case .computeEngineDisksTargetDetails(let value):
-        try container.encode(value, forKey: .computeEngineDisksTargetDetails)
+        try container.encodeIfPresent(value, forKey: .computeEngineDisksTargetDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

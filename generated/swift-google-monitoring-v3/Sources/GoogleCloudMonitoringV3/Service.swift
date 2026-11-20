@@ -199,25 +199,25 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.identifier {
       switch choice {
       case .custom(let value):
-        try container.encode(value, forKey: .custom)
+        try container.encodeIfPresent(value, forKey: .custom)
       case .appEngine(let value):
-        try container.encode(value, forKey: .appEngine)
+        try container.encodeIfPresent(value, forKey: .appEngine)
       case .cloudEndpoints(let value):
-        try container.encode(value, forKey: .cloudEndpoints)
+        try container.encodeIfPresent(value, forKey: .cloudEndpoints)
       case .clusterIstio(let value):
-        try container.encode(value, forKey: .clusterIstio)
+        try container.encodeIfPresent(value, forKey: .clusterIstio)
       case .meshIstio(let value):
-        try container.encode(value, forKey: .meshIstio)
+        try container.encodeIfPresent(value, forKey: .meshIstio)
       case .istioCanonicalService(let value):
-        try container.encode(value, forKey: .istioCanonicalService)
+        try container.encodeIfPresent(value, forKey: .istioCanonicalService)
       case .cloudRun(let value):
-        try container.encode(value, forKey: .cloudRun)
+        try container.encodeIfPresent(value, forKey: .cloudRun)
       case .gkeNamespace(let value):
-        try container.encode(value, forKey: .gkeNamespace)
+        try container.encodeIfPresent(value, forKey: .gkeNamespace)
       case .gkeWorkload(let value):
-        try container.encode(value, forKey: .gkeWorkload)
+        try container.encodeIfPresent(value, forKey: .gkeWorkload)
       case .gkeService(let value):
-        try container.encode(value, forKey: .gkeService)
+        try container.encodeIfPresent(value, forKey: .gkeService)
       }
     }
     for (key, value) in self._unknownFields.json {

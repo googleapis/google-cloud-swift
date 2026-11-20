@@ -156,9 +156,9 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.executionEnvironment {
       switch choice {
       case .defaultPool(let value):
-        try container.encode(value, forKey: .defaultPool)
+        try container.encodeIfPresent(value, forKey: .defaultPool)
       case .privatePool(let value):
-        try container.encode(value, forKey: .privatePool)
+        try container.encodeIfPresent(value, forKey: .privatePool)
       }
     }
     for (key, value) in self._unknownFields.json {

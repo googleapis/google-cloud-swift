@@ -231,7 +231,9 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.firewallPolicyEvaluation, forKey: .firewallPolicyEvaluation)
     try container.encodeIfPresent(self.transactionData, forKey: .transactionData)
     try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
-    try container.encode(self.fraudPrevention, forKey: .fraudPrevention)
+    if self.fraudPrevention != Event.FraudPrevention() {
+      try container.encode(self.fraudPrevention, forKey: .fraudPrevention)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

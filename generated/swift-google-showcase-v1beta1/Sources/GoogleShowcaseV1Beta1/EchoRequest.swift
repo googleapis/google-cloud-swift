@@ -129,7 +129,9 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != GoogleShowcaseV1Beta1.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.header, forKey: .header)
     try container.encode(self.otherHeader, forKey: .otherHeader)
     try container.encode(self.requestId, forKey: .requestId)
@@ -138,9 +140,9 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.response {
       switch choice {
       case .content(let value):
-        try container.encode(value, forKey: .content)
+        try container.encodeIfPresent(value, forKey: .content)
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       }
     }
     for (key, value) in self._unknownFields.json {

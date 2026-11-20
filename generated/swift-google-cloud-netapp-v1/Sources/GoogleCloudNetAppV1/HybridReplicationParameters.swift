@@ -169,8 +169,12 @@ public struct HybridReplicationParameters: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.clusterLocation, forKey: .clusterLocation)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.replicationSchedule, forKey: .replicationSchedule)
-    try container.encode(self.hybridReplicationType, forKey: .hybridReplicationType)
+    if self.replicationSchedule != HybridReplicationSchedule() {
+      try container.encode(self.replicationSchedule, forKey: .replicationSchedule)
+    }
+    if self.hybridReplicationType != HybridReplicationParameters.VolumeHybridReplicationType() {
+      try container.encode(self.hybridReplicationType, forKey: .hybridReplicationType)
+    }
     try container.encode(self.largeVolumeConstituentCount, forKey: .largeVolumeConstituentCount)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

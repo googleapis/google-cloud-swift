@@ -121,7 +121,9 @@ public struct ListRulesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.customRulesBucket, forKey: .customRulesBucket)
-    try container.encode(self.evaluationType, forKey: .evaluationType)
+    if self.evaluationType != Evaluation.EvaluationType() {
+      try container.encode(self.evaluationType, forKey: .evaluationType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

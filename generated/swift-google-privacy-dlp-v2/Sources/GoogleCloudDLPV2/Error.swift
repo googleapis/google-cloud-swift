@@ -89,7 +89,9 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.details, forKey: .details)
     try container.encode(self.timestamps, forKey: .timestamps)
-    try container.encode(self.extraInfo, forKey: .extraInfo)
+    if self.extraInfo != Error.ErrorExtraInfo() {
+      try container.encode(self.extraInfo, forKey: .extraInfo)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

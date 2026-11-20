@@ -358,7 +358,9 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.personalAddress, forKey: .personalAddress)
     try container.encodeIfPresent(self.attribute, forKey: .attribute)
     try container.encodeIfPresent(self.firstSeenTime, forKey: .firstSeenTime)
-    try container.encode(self.accountType, forKey: .accountType)
+    if self.accountType != User.AccountType() {
+      try container.encode(self.accountType, forKey: .accountType)
+    }
     try container.encode(self.groupid, forKey: .groupid)
     try container.encode(self.groupIdentifiers, forKey: .groupIdentifiers)
     try container.encode(self.windowsSid, forKey: .windowsSid)
@@ -379,10 +381,14 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.accountLockoutTime, forKey: .accountLockoutTime)
     try container.encodeIfPresent(
       self.lastBadPasswordAttemptTime, forKey: .lastBadPasswordAttemptTime)
-    try container.encode(self.userAuthenticationStatus, forKey: .userAuthenticationStatus)
+    if self.userAuthenticationStatus != Authentication.AuthenticationStatus() {
+      try container.encode(self.userAuthenticationStatus, forKey: .userAuthenticationStatus)
+    }
     try container.encode(self.roleName, forKey: .roleName)
     try container.encode(self.roleDescription, forKey: .roleDescription)
-    try container.encode(self.userRole, forKey: .userRole)
+    if self.userRole != User.Role() {
+      try container.encode(self.userRole, forKey: .userRole)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

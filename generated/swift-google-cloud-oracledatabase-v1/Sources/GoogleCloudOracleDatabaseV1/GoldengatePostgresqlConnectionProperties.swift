@@ -212,8 +212,14 @@ public struct GoldengatePostgresqlConnectionProperties: Codable, Equatable, Goog
     try container.encode(self.port, forKey: .port)
     try container.encode(self.username, forKey: .username)
     try container.encode(self.additionalAttributes, forKey: .additionalAttributes)
-    try container.encode(self.securityProtocol, forKey: .securityProtocol)
-    try container.encode(self.sslMode, forKey: .sslMode)
+    if self.securityProtocol
+      != GoldengatePostgresqlConnectionProperties.PostgresqlSecurityProtocol()
+    {
+      try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    }
+    if self.sslMode != GoldengatePostgresqlConnectionProperties.PostgresqlSslMode() {
+      try container.encode(self.sslMode, forKey: .sslMode)
+    }
     try container.encode(self.sslCaFile, forKey: .sslCaFile)
     try container.encode(self.sslCrlFile, forKey: .sslCrlFile)
     try container.encode(self.sslCertFile, forKey: .sslCertFile)
@@ -223,9 +229,9 @@ public struct GoldengatePostgresqlConnectionProperties: Codable, Equatable, Goog
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

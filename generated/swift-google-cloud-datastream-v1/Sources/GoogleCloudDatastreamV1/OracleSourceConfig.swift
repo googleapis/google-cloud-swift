@@ -159,18 +159,18 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.largeObjectsHandling {
       switch choice {
       case .dropLargeObjects(let value):
-        try container.encode(value, forKey: .dropLargeObjects)
+        try container.encodeIfPresent(value, forKey: .dropLargeObjects)
       case .streamLargeObjects(let value):
-        try container.encode(value, forKey: .streamLargeObjects)
+        try container.encodeIfPresent(value, forKey: .streamLargeObjects)
       }
     }
 
     if let choice = self.cdcMethod {
       switch choice {
       case .logMiner(let value):
-        try container.encode(value, forKey: .logMiner)
+        try container.encodeIfPresent(value, forKey: .logMiner)
       case .binaryLogParser(let value):
-        try container.encode(value, forKey: .binaryLogParser)
+        try container.encodeIfPresent(value, forKey: .binaryLogParser)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -463,9 +463,9 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.logFileAccess {
         switch choice {
         case .oracleAsmLogFileAccess(let value):
-          try container.encode(value, forKey: .oracleAsmLogFileAccess)
+          try container.encodeIfPresent(value, forKey: .oracleAsmLogFileAccess)
         case .logFileDirectories(let value):
-          try container.encode(value, forKey: .logFileDirectories)
+          try container.encodeIfPresent(value, forKey: .logFileDirectories)
         }
       }
       for (key, value) in self._unknownFields.json {

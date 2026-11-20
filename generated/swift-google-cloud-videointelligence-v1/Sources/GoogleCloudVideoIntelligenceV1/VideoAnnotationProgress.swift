@@ -112,7 +112,9 @@ public struct VideoAnnotationProgress: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.progressPercent, forKey: .progressPercent)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.feature, forKey: .feature)
+    if self.feature != Feature() {
+      try container.encode(self.feature, forKey: .feature)
+    }
     try container.encodeIfPresent(self.segment, forKey: .segment)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

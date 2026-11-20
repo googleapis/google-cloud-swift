@@ -101,11 +101,11 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.result {
       switch choice {
       case .datasetResult(let value):
-        try container.encode(value, forKey: .datasetResult)
+        try container.encodeIfPresent(value, forKey: .datasetResult)
       case .tableResult(let value):
-        try container.encode(value, forKey: .tableResult)
+        try container.encodeIfPresent(value, forKey: .tableResult)
       case .dataProductResult(let value):
-        try container.encode(value, forKey: .dataProductResult)
+        try container.encodeIfPresent(value, forKey: .dataProductResult)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -613,7 +613,9 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       try container.encodeIfPresent(self.leftSchemaPaths, forKey: .leftSchemaPaths)
       try container.encodeIfPresent(self.rightSchemaPaths, forKey: .rightSchemaPaths)
       try container.encode(self.sources, forKey: .sources)
-      try container.encode(self.type, forKey: .type)
+      if self.type != DataDocumentationResult.SchemaRelationship.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

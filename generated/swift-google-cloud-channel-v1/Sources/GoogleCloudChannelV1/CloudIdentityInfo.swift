@@ -129,7 +129,9 @@ public struct CloudIdentityInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.customerType, forKey: .customerType)
+    if self.customerType != CloudIdentityInfo.CustomerType() {
+      try container.encode(self.customerType, forKey: .customerType)
+    }
     try container.encode(self.primaryDomain, forKey: .primaryDomain)
     try container.encode(self.isDomainVerified, forKey: .isDomainVerified)
     try container.encode(self.alternateEmail, forKey: .alternateEmail)

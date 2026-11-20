@@ -168,7 +168,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.vpcResource {
         switch choice {
         case .subnetwork(let value):
-          try container.encode(value, forKey: .subnetwork)
+          try container.encodeIfPresent(value, forKey: .subnetwork)
         }
       }
       for (key, value) in self._unknownFields.json {

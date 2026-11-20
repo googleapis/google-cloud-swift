@@ -95,7 +95,7 @@ public struct UploadSourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .service(let value):
-        try container.encode(value, forKey: .service)
+        try container.encodeIfPresent(value, forKey: .service)
       }
     }
     for (key, value) in self._unknownFields.json {

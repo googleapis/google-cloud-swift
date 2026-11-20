@@ -152,7 +152,9 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fileName, forKey: .fileName)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Manifest.ManifestType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.muxStreams, forKey: .muxStreams)
     try container.encode(self.maxSegmentCount, forKey: .maxSegmentCount)
     try container.encodeIfPresent(self.segmentKeepDuration, forKey: .segmentKeepDuration)

@@ -103,9 +103,9 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authentication {
       switch choice {
       case .oauthPasswordGrantAuth(let value):
-        try container.encode(value, forKey: .oauthPasswordGrantAuth)
+        try container.encodeIfPresent(value, forKey: .oauthPasswordGrantAuth)
       case .oauthJwtCredentials(let value):
-        try container.encode(value, forKey: .oauthJwtCredentials)
+        try container.encodeIfPresent(value, forKey: .oauthJwtCredentials)
       }
     }
     for (key, value) in self._unknownFields.json {

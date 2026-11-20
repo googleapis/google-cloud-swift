@@ -161,14 +161,16 @@ public struct VectorSearch: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.topK, forKey: .topK)
     try container.encodeIfPresent(self.outputFields, forKey: .outputFields)
     try container.encodeIfPresent(self.searchHint, forKey: .searchHint)
-    try container.encode(self.distanceMetric, forKey: .distanceMetric)
+    if self.distanceMetric != DistanceMetric() {
+      try container.encode(self.distanceMetric, forKey: .distanceMetric)
+    }
 
     if let choice = self.vectorType {
       switch choice {
       case .vector(let value):
-        try container.encode(value, forKey: .vector)
+        try container.encodeIfPresent(value, forKey: .vector)
       case .sparseVector(let value):
-        try container.encode(value, forKey: .sparseVector)
+        try container.encodeIfPresent(value, forKey: .sparseVector)
       }
     }
     for (key, value) in self._unknownFields.json {

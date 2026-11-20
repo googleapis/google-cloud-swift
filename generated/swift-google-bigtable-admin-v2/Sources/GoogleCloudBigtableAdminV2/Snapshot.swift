@@ -131,7 +131,9 @@ public struct Snapshot: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.dataSizeBytes, forKey: .dataSizeBytes)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Snapshot.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.description, forKey: .description)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -152,7 +152,9 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.tier, forKey: .tier)
+    if self.tier != CaPool.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
     try container.encodeIfPresent(self.issuancePolicy, forKey: .issuancePolicy)
     try container.encodeIfPresent(self.publishingOptions, forKey: .publishingOptions)
     try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
@@ -270,7 +272,9 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.publishCaCert, forKey: .publishCaCert)
       try container.encode(self.publishCrl, forKey: .publishCrl)
-      try container.encode(self.encodingFormat, forKey: .encodingFormat)
+      if self.encodingFormat != CaPool.PublishingOptions.EncodingFormat() {
+        try container.encode(self.encodingFormat, forKey: .encodingFormat)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -721,9 +725,9 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.keyType {
           switch choice {
           case .rsa(let value):
-            try container.encode(value, forKey: .rsa)
+            try container.encodeIfPresent(value, forKey: .rsa)
           case .ellipticCurve(let value):
-            try container.encode(value, forKey: .ellipticCurve)
+            try container.encodeIfPresent(value, forKey: .ellipticCurve)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -893,7 +897,11 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.signatureAlgorithm, forKey: .signatureAlgorithm)
+          if self.signatureAlgorithm
+            != CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm()
+          {
+            try container.encode(self.signatureAlgorithm, forKey: .signatureAlgorithm)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

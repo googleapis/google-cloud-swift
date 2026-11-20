@@ -120,7 +120,9 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.userManaged, forKey: .userManaged)
     try container.encode(self.fields, forKey: .fields)
     try container.encode(self.partitionFields, forKey: .partitionFields)
-    try container.encode(self.partitionStyle, forKey: .partitionStyle)
+    if self.partitionStyle != GoogleCloudDataplexV1.Schema.PartitionStyle() {
+      try container.encode(self.partitionStyle, forKey: .partitionStyle)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -221,8 +223,12 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.type, forKey: .type)
-      try container.encode(self.mode, forKey: .mode)
+      if self.type != GoogleCloudDataplexV1.Schema.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
+      if self.mode != GoogleCloudDataplexV1.Schema.Mode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       try container.encode(self.fields, forKey: .fields)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -319,7 +325,9 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.type, forKey: .type)
+      if self.type != GoogleCloudDataplexV1.Schema.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

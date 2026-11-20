@@ -247,7 +247,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.resources, forKey: .resources)
-    try container.encode(self.complianceRegime, forKey: .complianceRegime)
+    if self.complianceRegime != Workload.ComplianceRegime() {
+      try container.encode(self.complianceRegime, forKey: .complianceRegime)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.billingAccount, forKey: .billingAccount)
     try container.encode(self.etag, forKey: .etag)
@@ -255,12 +257,16 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.provisionedResourcesParent, forKey: .provisionedResourcesParent)
     try container.encodeIfPresent(self.kmsSettings, forKey: .kmsSettings)
     try container.encode(self.resourceSettings, forKey: .resourceSettings)
-    try container.encode(self.kajEnrollmentState, forKey: .kajEnrollmentState)
+    if self.kajEnrollmentState != Workload.KajEnrollmentState() {
+      try container.encode(self.kajEnrollmentState, forKey: .kajEnrollmentState)
+    }
     try container.encode(self.enableSovereignControls, forKey: .enableSovereignControls)
     try container.encodeIfPresent(self.saaEnrollmentResponse, forKey: .saaEnrollmentResponse)
     try container.encode(
       self.compliantButDisallowedServices, forKey: .compliantButDisallowedServices)
-    try container.encode(self.partner, forKey: .partner)
+    if self.partner != Workload.Partner() {
+      try container.encode(self.partner, forKey: .partner)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -331,7 +337,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resourceId, forKey: .resourceId)
-      try container.encode(self.resourceType, forKey: .resourceType)
+      if self.resourceType != Workload.ResourceInfo.ResourceType() {
+        try container.encode(self.resourceType, forKey: .resourceType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -675,7 +683,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resourceId, forKey: .resourceId)
-      try container.encode(self.resourceType, forKey: .resourceType)
+      if self.resourceType != Workload.ResourceInfo.ResourceType() {
+        try container.encode(self.resourceType, forKey: .resourceType)
+      }
       try container.encode(self.displayName, forKey: .displayName)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -97,7 +97,9 @@ public struct ScheduleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.frequency, forKey: .frequency)
+    if self.frequency != ScheduleConfig.Frequency() {
+      try container.encode(self.frequency, forKey: .frequency)
+    }
     try container.encode(self.timeZone, forKey: .timeZone)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

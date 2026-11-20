@@ -104,7 +104,9 @@ public struct EntityDdl: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.ddlType, forKey: .ddlType)
     try container.encode(self.entity, forKey: .entity)
     try container.encode(self.ddl, forKey: .ddl)
-    try container.encode(self.entityType, forKey: .entityType)
+    if self.entityType != DatabaseEntityType() {
+      try container.encode(self.entityType, forKey: .entityType)
+    }
     try container.encode(self.issueId, forKey: .issueId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

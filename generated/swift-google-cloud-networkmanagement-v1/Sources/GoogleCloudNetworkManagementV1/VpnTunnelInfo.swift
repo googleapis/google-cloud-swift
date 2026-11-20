@@ -154,7 +154,9 @@ public struct VpnTunnelInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sourceGatewayIp, forKey: .sourceGatewayIp)
     try container.encode(self.networkUri, forKey: .networkUri)
     try container.encode(self.region, forKey: .region)
-    try container.encode(self.routingType, forKey: .routingType)
+    if self.routingType != VpnTunnelInfo.RoutingType() {
+      try container.encode(self.routingType, forKey: .routingType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

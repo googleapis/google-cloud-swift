@@ -97,7 +97,7 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .selfManagedSource(let value):
-        try container.encode(value, forKey: .selfManagedSource)
+        try container.encodeIfPresent(value, forKey: .selfManagedSource)
       }
     }
     for (key, value) in self._unknownFields.json {

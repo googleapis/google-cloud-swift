@@ -93,9 +93,9 @@ public struct VectorField: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.vectorTypeConfig {
       switch choice {
       case .denseVector(let value):
-        try container.encode(value, forKey: .denseVector)
+        try container.encodeIfPresent(value, forKey: .denseVector)
       case .sparseVector(let value):
-        try container.encode(value, forKey: .sparseVector)
+        try container.encodeIfPresent(value, forKey: .sparseVector)
       }
     }
     for (key, value) in self._unknownFields.json {

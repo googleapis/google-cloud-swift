@@ -97,7 +97,9 @@ public struct DeprovisionDeploymentGroupRequest: Codable, Equatable, GoogleWKT._
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.force, forKey: .force)
-    try container.encode(self.deletePolicy, forKey: .deletePolicy)
+    if self.deletePolicy != DeleteDeploymentRequest.DeletePolicy() {
+      try container.encode(self.deletePolicy, forKey: .deletePolicy)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

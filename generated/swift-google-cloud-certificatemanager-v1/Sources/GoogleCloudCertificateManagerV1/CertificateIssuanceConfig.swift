@@ -161,7 +161,9 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
       self.certificateAuthorityConfig, forKey: .certificateAuthorityConfig)
     try container.encodeIfPresent(self.lifetime, forKey: .lifetime)
     try container.encode(self.rotationWindowPercentage, forKey: .rotationWindowPercentage)
-    try container.encode(self.keyAlgorithm, forKey: .keyAlgorithm)
+    if self.keyAlgorithm != CertificateIssuanceConfig.KeyAlgorithm() {
+      try container.encode(self.keyAlgorithm, forKey: .keyAlgorithm)
+    }
     try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -241,7 +243,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
       if let choice = self.kind {
         switch choice {
         case .certificateAuthorityServiceConfig(let value):
-          try container.encode(value, forKey: .certificateAuthorityServiceConfig)
+          try container.encodeIfPresent(value, forKey: .certificateAuthorityServiceConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

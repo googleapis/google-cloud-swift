@@ -296,10 +296,16 @@ public struct Network: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parentSessionId, forKey: .parentSessionId)
     try container.encode(self.applicationProtocolVersion, forKey: .applicationProtocolVersion)
     try container.encode(self.communityId, forKey: .communityId)
-    try container.encode(self.direction, forKey: .direction)
-    try container.encode(self.ipProtocol, forKey: .ipProtocol)
+    if self.direction != Network.Direction() {
+      try container.encode(self.direction, forKey: .direction)
+    }
+    if self.ipProtocol != Network.IpProtocol() {
+      try container.encode(self.ipProtocol, forKey: .ipProtocol)
+    }
     try container.encode(self.ipv6, forKey: .ipv6)
-    try container.encode(self.applicationProtocol, forKey: .applicationProtocol)
+    if self.applicationProtocol != Network.ApplicationProtocol() {
+      try container.encode(self.applicationProtocol, forKey: .applicationProtocol)
+    }
     try container.encodeIfPresent(self.ftp, forKey: .ftp)
     try container.encodeIfPresent(self.email, forKey: .email)
     try container.encodeIfPresent(self.dns, forKey: .dns)
@@ -314,7 +320,9 @@ public struct Network: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.ipSubnetRange, forKey: .ipSubnetRange)
     try container.encode(self.isProxy, forKey: .isProxy)
     try container.encodeIfPresent(self.proxyInfo, forKey: .proxyInfo)
-    try container.encode(self.connectionState, forKey: .connectionState)
+    if self.connectionState != Network.ConnectionState() {
+      try container.encode(self.connectionState, forKey: .connectionState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

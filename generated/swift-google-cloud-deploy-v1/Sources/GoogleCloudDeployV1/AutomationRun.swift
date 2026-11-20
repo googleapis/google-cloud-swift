@@ -233,7 +233,9 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encodeIfPresent(self.automationSnapshot, forKey: .automationSnapshot)
     try container.encode(self.targetId, forKey: .targetId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AutomationRun.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDescription, forKey: .stateDescription)
     try container.encodeIfPresent(self.policyViolation, forKey: .policyViolation)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
@@ -244,13 +246,13 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.operation {
       switch choice {
       case .promoteReleaseOperation(let value):
-        try container.encode(value, forKey: .promoteReleaseOperation)
+        try container.encodeIfPresent(value, forKey: .promoteReleaseOperation)
       case .advanceRolloutOperation(let value):
-        try container.encode(value, forKey: .advanceRolloutOperation)
+        try container.encodeIfPresent(value, forKey: .advanceRolloutOperation)
       case .repairRolloutOperation(let value):
-        try container.encode(value, forKey: .repairRolloutOperation)
+        try container.encodeIfPresent(value, forKey: .repairRolloutOperation)
       case .timedPromoteReleaseOperation(let value):
-        try container.encode(value, forKey: .timedPromoteReleaseOperation)
+        try container.encodeIfPresent(value, forKey: .timedPromoteReleaseOperation)
       }
     }
     for (key, value) in self._unknownFields.json {

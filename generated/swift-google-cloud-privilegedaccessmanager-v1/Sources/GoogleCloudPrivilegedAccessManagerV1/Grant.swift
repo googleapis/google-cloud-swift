@@ -172,7 +172,9 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.requester, forKey: .requester)
     try container.encodeIfPresent(self.requestedDuration, forKey: .requestedDuration)
     try container.encodeIfPresent(self.justification, forKey: .justification)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Grant.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.timeline, forKey: .timeline)
     try container.encodeIfPresent(self.privilegedAccess, forKey: .privilegedAccess)
     try container.encodeIfPresent(self.auditTrail, forKey: .auditTrail)
@@ -391,27 +393,27 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.event {
           switch choice {
           case .requested(let value):
-            try container.encode(value, forKey: .requested)
+            try container.encodeIfPresent(value, forKey: .requested)
           case .approved(let value):
-            try container.encode(value, forKey: .approved)
+            try container.encodeIfPresent(value, forKey: .approved)
           case .denied(let value):
-            try container.encode(value, forKey: .denied)
+            try container.encodeIfPresent(value, forKey: .denied)
           case .revoked(let value):
-            try container.encode(value, forKey: .revoked)
+            try container.encodeIfPresent(value, forKey: .revoked)
           case .scheduled(let value):
-            try container.encode(value, forKey: .scheduled)
+            try container.encodeIfPresent(value, forKey: .scheduled)
           case .activated(let value):
-            try container.encode(value, forKey: .activated)
+            try container.encodeIfPresent(value, forKey: .activated)
           case .activationFailed(let value):
-            try container.encode(value, forKey: .activationFailed)
+            try container.encodeIfPresent(value, forKey: .activationFailed)
           case .expired(let value):
-            try container.encode(value, forKey: .expired)
+            try container.encodeIfPresent(value, forKey: .expired)
           case .ended(let value):
-            try container.encode(value, forKey: .ended)
+            try container.encodeIfPresent(value, forKey: .ended)
           case .externallyModified(let value):
-            try container.encode(value, forKey: .externallyModified)
+            try container.encodeIfPresent(value, forKey: .externallyModified)
           case .withdrawn(let value):
-            try container.encode(value, forKey: .withdrawn)
+            try container.encodeIfPresent(value, forKey: .withdrawn)
           }
         }
         for (key, value) in self._unknownFields.json {

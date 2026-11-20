@@ -177,8 +177,12 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.alignmentPeriod, forKey: .alignmentPeriod)
-    try container.encode(self.perSeriesAligner, forKey: .perSeriesAligner)
-    try container.encode(self.crossSeriesReducer, forKey: .crossSeriesReducer)
+    if self.perSeriesAligner != Aggregation.Aligner() {
+      try container.encode(self.perSeriesAligner, forKey: .perSeriesAligner)
+    }
+    if self.crossSeriesReducer != Aggregation.Reducer() {
+      try container.encode(self.crossSeriesReducer, forKey: .crossSeriesReducer)
+    }
     try container.encode(self.groupByFields, forKey: .groupByFields)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

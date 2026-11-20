@@ -134,13 +134,13 @@ public struct AssessmentReport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.adcResourceUri {
       switch choice {
       case .adcApplicationUri(let value):
-        try container.encode(value, forKey: .adcApplicationUri)
+        try container.encodeIfPresent(value, forKey: .adcApplicationUri)
       case .adcApplicationTemplateUri(let value):
-        try container.encode(value, forKey: .adcApplicationTemplateUri)
+        try container.encodeIfPresent(value, forKey: .adcApplicationTemplateUri)
       case .adcCatalogTemplateUri(let value):
-        try container.encode(value, forKey: .adcCatalogTemplateUri)
+        try container.encodeIfPresent(value, forKey: .adcCatalogTemplateUri)
       case .adcSpaceUri(let value):
-        try container.encode(value, forKey: .adcSpaceUri)
+        try container.encodeIfPresent(value, forKey: .adcSpaceUri)
       }
     }
     for (key, value) in self._unknownFields.json {

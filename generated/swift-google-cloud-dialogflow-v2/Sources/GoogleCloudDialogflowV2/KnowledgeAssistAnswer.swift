@@ -484,13 +484,13 @@
         if let choice = self.source {
           switch choice {
           case .faqSource(let value):
-            try container.encode(value, forKey: .faqSource)
+            try container.encodeIfPresent(value, forKey: .faqSource)
           case .generativeSource(let value):
-            try container.encode(value, forKey: .generativeSource)
+            try container.encodeIfPresent(value, forKey: .generativeSource)
           case .playbookSource(let value):
-            try container.encode(value, forKey: .playbookSource)
+            try container.encodeIfPresent(value, forKey: .playbookSource)
           case .eventSource(let value):
-            try container.encode(value, forKey: .eventSource)
+            try container.encodeIfPresent(value, forKey: .eventSource)
           }
         }
         for (key, value) in self._unknownFields.json {

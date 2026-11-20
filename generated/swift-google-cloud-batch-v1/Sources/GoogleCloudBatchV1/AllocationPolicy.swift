@@ -392,9 +392,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.dataSource {
         switch choice {
         case .image(let value):
-          try container.encode(value, forKey: .image)
+          try container.encodeIfPresent(value, forKey: .image)
         case .snapshot(let value):
-          try container.encode(value, forKey: .snapshot)
+          try container.encodeIfPresent(value, forKey: .snapshot)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -532,9 +532,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.attached {
         switch choice {
         case .newDisk(let value):
-          try container.encode(value, forKey: .newDisk)
+          try container.encodeIfPresent(value, forKey: .newDisk)
         case .existingDisk(let value):
-          try container.encode(value, forKey: .existingDisk)
+          try container.encodeIfPresent(value, forKey: .existingDisk)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -810,7 +810,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.machineType, forKey: .machineType)
       try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
-      try container.encode(self.provisioningModel, forKey: .provisioningModel)
+      if self.provisioningModel != AllocationPolicy.ProvisioningModel() {
+        try container.encode(self.provisioningModel, forKey: .provisioningModel)
+      }
       try container.encode(self.accelerators, forKey: .accelerators)
       try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
       try container.encode(self.disks, forKey: .disks)
@@ -974,9 +976,9 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.policyTemplate {
         switch choice {
         case .policy(let value):
-          try container.encode(value, forKey: .policy)
+          try container.encodeIfPresent(value, forKey: .policy)
         case .instanceTemplate(let value):
-          try container.encode(value, forKey: .instanceTemplate)
+          try container.encodeIfPresent(value, forKey: .instanceTemplate)
         }
       }
       for (key, value) in self._unknownFields.json {

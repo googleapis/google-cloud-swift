@@ -273,9 +273,9 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.modelSource {
         switch choice {
         case .conversationProfile(let value):
-          try container.encode(value, forKey: .conversationProfile)
+          try container.encodeIfPresent(value, forKey: .conversationProfile)
         case .summarizationModel(let value):
-          try container.encode(value, forKey: .summarizationModel)
+          try container.encodeIfPresent(value, forKey: .summarizationModel)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -504,7 +504,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.scorecardSource {
         switch choice {
         case .scorecardList(let value):
-          try container.encode(value, forKey: .scorecardList)
+          try container.encodeIfPresent(value, forKey: .scorecardList)
         }
       }
       for (key, value) in self._unknownFields.json {

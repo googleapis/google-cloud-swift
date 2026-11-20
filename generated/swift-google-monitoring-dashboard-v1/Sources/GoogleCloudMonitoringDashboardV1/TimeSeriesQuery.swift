@@ -137,13 +137,13 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .timeSeriesFilter(let value):
-        try container.encode(value, forKey: .timeSeriesFilter)
+        try container.encodeIfPresent(value, forKey: .timeSeriesFilter)
       case .timeSeriesFilterRatio(let value):
-        try container.encode(value, forKey: .timeSeriesFilterRatio)
+        try container.encodeIfPresent(value, forKey: .timeSeriesFilterRatio)
       case .timeSeriesQueryLanguage(let value):
-        try container.encode(value, forKey: .timeSeriesQueryLanguage)
+        try container.encodeIfPresent(value, forKey: .timeSeriesQueryLanguage)
       case .prometheusQuery(let value):
-        try container.encode(value, forKey: .prometheusQuery)
+        try container.encodeIfPresent(value, forKey: .prometheusQuery)
       }
     }
     for (key, value) in self._unknownFields.json {

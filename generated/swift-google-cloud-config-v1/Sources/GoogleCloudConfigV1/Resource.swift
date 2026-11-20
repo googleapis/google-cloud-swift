@@ -111,8 +111,12 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.terraformInfo, forKey: .terraformInfo)
     try container.encode(self.caiAssets, forKey: .caiAssets)
-    try container.encode(self.intent, forKey: .intent)
-    try container.encode(self.state, forKey: .state)
+    if self.intent != Resource.Intent() {
+      try container.encode(self.intent, forKey: .intent)
+    }
+    if self.state != Resource.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

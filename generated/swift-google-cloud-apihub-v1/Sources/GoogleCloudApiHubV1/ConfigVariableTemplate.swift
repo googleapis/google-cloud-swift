@@ -127,7 +127,9 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.valueType, forKey: .valueType)
+    if self.valueType != ConfigVariableTemplate.ValueType() {
+      try container.encode(self.valueType, forKey: .valueType)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.validationRegex, forKey: .validationRegex)
     try container.encode(self.`required`, forKey: .`required`)

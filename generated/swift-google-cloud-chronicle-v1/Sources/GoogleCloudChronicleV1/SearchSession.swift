@@ -117,7 +117,9 @@ public struct SearchSession: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.query, forKey: .query)
     try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
-    try container.encode(self.dialect, forKey: .dialect)
+    if self.dialect != QueryDialect() {
+      try container.encode(self.dialect, forKey: .dialect)
+    }
     try container.encodeIfPresent(self.draftDataAccessScope, forKey: .draftDataAccessScope)
     try container.encodeIfPresent(self.metadata, forKey: .metadata)
     for (key, value) in self._unknownFields.json {

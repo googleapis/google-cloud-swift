@@ -133,8 +133,12 @@ public struct ImportIaCError: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.file, forKey: .file)
     try container.encodeIfPresent(self.range, forKey: .range)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.type != ImportIaCError.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.errorCode != ImportIaCError.ErrorCode() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -84,7 +84,9 @@ public struct DiscoveryOtherCloudGenerationCadence: Codable, Equatable, GoogleWK
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
+    if self.refreshFrequency != DataProfileUpdateFrequency() {
+      try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
+    }
     try container.encodeIfPresent(
       self.inspectTemplateModifiedCadence, forKey: .inspectTemplateModifiedCadence)
     for (key, value) in self._unknownFields.json {

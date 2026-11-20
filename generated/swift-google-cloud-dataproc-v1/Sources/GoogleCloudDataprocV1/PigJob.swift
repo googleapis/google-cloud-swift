@@ -146,9 +146,9 @@ public struct PigJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.queries {
       switch choice {
       case .queryFileUri(let value):
-        try container.encode(value, forKey: .queryFileUri)
+        try container.encodeIfPresent(value, forKey: .queryFileUri)
       case .queryList(let value):
-        try container.encode(value, forKey: .queryList)
+        try container.encodeIfPresent(value, forKey: .queryList)
       }
     }
     for (key, value) in self._unknownFields.json {

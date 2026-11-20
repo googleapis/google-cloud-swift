@@ -186,8 +186,12 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.backupConfigSource, forKey: .backupConfigSource)
     try container.encode(self.backupConfigSourceDisplayName, forKey: .backupConfigSourceDisplayName)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.type != BackupConfigDetails.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.state != BackupConfigDetails.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.pitrSettings, forKey: .pitrSettings)
     try container.encodeIfPresent(
       self.latestSuccessfulBackupTime, forKey: .latestSuccessfulBackupTime)
@@ -198,9 +202,9 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.planSpecificConfig {
       switch choice {
       case .backupDrPlanConfig(let value):
-        try container.encode(value, forKey: .backupDrPlanConfig)
+        try container.encodeIfPresent(value, forKey: .backupDrPlanConfig)
       case .backupDrTemplateConfig(let value):
-        try container.encode(value, forKey: .backupDrTemplateConfig)
+        try container.encodeIfPresent(value, forKey: .backupDrTemplateConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

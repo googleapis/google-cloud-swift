@@ -110,12 +110,14 @@ public struct CreateWorkspaceMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.target, forKey: .target)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CreateWorkspaceMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.request {
       switch choice {
       case .createWorkspaceRequest(let value):
-        try container.encode(value, forKey: .createWorkspaceRequest)
+        try container.encodeIfPresent(value, forKey: .createWorkspaceRequest)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -117,7 +117,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Backup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.serviceRevision, forKey: .serviceRevision)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.restoringServices, forKey: .restoringServices)

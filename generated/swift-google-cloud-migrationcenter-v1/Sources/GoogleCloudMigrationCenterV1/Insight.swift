@@ -93,9 +93,9 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.insight {
       switch choice {
       case .migrationInsight(let value):
-        try container.encode(value, forKey: .migrationInsight)
+        try container.encodeIfPresent(value, forKey: .migrationInsight)
       case .genericInsight(let value):
-        try container.encode(value, forKey: .genericInsight)
+        try container.encodeIfPresent(value, forKey: .genericInsight)
       }
     }
     for (key, value) in self._unknownFields.json {

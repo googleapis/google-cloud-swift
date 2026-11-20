@@ -87,7 +87,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.option {
       switch choice {
       case .slurm(let value):
-        try container.encode(value, forKey: .slurm)
+        try container.encodeIfPresent(value, forKey: .slurm)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -221,7 +221,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.mechanism {
         switch choice {
         case .manual(let value):
-          try container.encode(value, forKey: .manual)
+          try container.encodeIfPresent(value, forKey: .manual)
         }
       }
       for (key, value) in self._unknownFields.json {

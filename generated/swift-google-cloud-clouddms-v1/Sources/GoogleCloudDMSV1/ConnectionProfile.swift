@@ -181,23 +181,27 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ConnectionProfile.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.error, forKey: .error)
-    try container.encode(self.provider, forKey: .provider)
+    if self.provider != DatabaseProvider() {
+      try container.encode(self.provider, forKey: .provider)
+    }
 
     if let choice = self.connectionProfile {
       switch choice {
       case .mysql(let value):
-        try container.encode(value, forKey: .mysql)
+        try container.encodeIfPresent(value, forKey: .mysql)
       case .postgresql(let value):
-        try container.encode(value, forKey: .postgresql)
+        try container.encodeIfPresent(value, forKey: .postgresql)
       case .oracle(let value):
-        try container.encode(value, forKey: .oracle)
+        try container.encodeIfPresent(value, forKey: .oracle)
       case .cloudsql(let value):
-        try container.encode(value, forKey: .cloudsql)
+        try container.encodeIfPresent(value, forKey: .cloudsql)
       case .alloydb(let value):
-        try container.encode(value, forKey: .alloydb)
+        try container.encodeIfPresent(value, forKey: .alloydb)
       }
     }
     for (key, value) in self._unknownFields.json {

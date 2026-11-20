@@ -184,20 +184,20 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.targetEnvironment {
       switch choice {
       case .computeInstanceTargetEnvironment(let value):
-        try container.encode(value, forKey: .computeInstanceTargetEnvironment)
+        try container.encodeIfPresent(value, forKey: .computeInstanceTargetEnvironment)
       case .diskTargetEnvironment(let value):
-        try container.encode(value, forKey: .diskTargetEnvironment)
+        try container.encodeIfPresent(value, forKey: .diskTargetEnvironment)
       case .regionDiskTargetEnvironment(let value):
-        try container.encode(value, forKey: .regionDiskTargetEnvironment)
+        try container.encodeIfPresent(value, forKey: .regionDiskTargetEnvironment)
       }
     }
 
     if let choice = self.instanceProperties {
       switch choice {
       case .computeInstanceRestoreProperties(let value):
-        try container.encode(value, forKey: .computeInstanceRestoreProperties)
+        try container.encodeIfPresent(value, forKey: .computeInstanceRestoreProperties)
       case .diskRestoreProperties(let value):
-        try container.encode(value, forKey: .diskRestoreProperties)
+        try container.encodeIfPresent(value, forKey: .diskRestoreProperties)
       }
     }
     for (key, value) in self._unknownFields.json {

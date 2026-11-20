@@ -286,10 +286,16 @@
       try container.encode(self.displayName, forKey: .displayName)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-      try container.encode(self.dataStoreType, forKey: .dataStoreType)
+      if self.dataStoreType != WidgetConfig.DataStoreType() {
+        try container.encode(self.dataStoreType, forKey: .dataStoreType)
+      }
       try container.encode(self.configId, forKey: .configId)
-      try container.encode(self.solutionType, forKey: .solutionType)
-      try container.encode(self.industryVertical, forKey: .industryVertical)
+      if self.solutionType != SolutionType() {
+        try container.encode(self.solutionType, forKey: .solutionType)
+      }
+      if self.industryVertical != IndustryVertical() {
+        try container.encode(self.industryVertical, forKey: .industryVertical)
+      }
       try container.encode(self.llmEnabled, forKey: .llmEnabled)
       try container.encode(self.enableResultScore, forKey: .enableResultScore)
       try container.encode(self.minimumDataTermAccepted, forKey: .minimumDataTermAccepted)
@@ -845,7 +851,9 @@
         try container.encode(self.id, forKey: .id)
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.entityName, forKey: .entityName)
-        try container.encode(self.dataStoreConfigType, forKey: .dataStoreConfigType)
+        if self.dataStoreConfigType != WidgetConfig.DataStoreComponent.DataStoreConfigType() {
+          try container.encode(self.dataStoreConfigType, forKey: .dataStoreConfigType)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1073,7 +1081,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.authState, forKey: .authState)
+        if self.authState != WidgetConfig.ConnectorAuthState.AuthState() {
+          try container.encode(self.authState, forKey: .authState)
+        }
         try container.encode(self.authorizationUri, forKey: .authorizationUri)
         try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
         for (key, value) in self._unknownFields.json {
@@ -1892,9 +1902,13 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.interactionType, forKey: .interactionType)
+        if self.interactionType != WidgetConfig.UiSettings.InteractionType() {
+          try container.encode(self.interactionType, forKey: .interactionType)
+        }
         try container.encodeIfPresent(self.generativeAnswerConfig, forKey: .generativeAnswerConfig)
-        try container.encode(self.resultDescriptionType, forKey: .resultDescriptionType)
+        if self.resultDescriptionType != WidgetConfig.ResultDisplayType() {
+          try container.encode(self.resultDescriptionType, forKey: .resultDescriptionType)
+        }
         try container.encode(self.enableAutocomplete, forKey: .enableAutocomplete)
         try container.encode(self.enableSafeSearch, forKey: .enableSafeSearch)
         try container.encode(self.enableQualityFeedback, forKey: .enableQualityFeedback)
@@ -2080,7 +2094,9 @@
             self.ignoreNonAnswerSeekingQuery, forKey: .ignoreNonAnswerSeekingQuery)
           try container.encode(self.ignoreAdversarialQuery, forKey: .ignoreAdversarialQuery)
           try container.encode(self.ignoreLowRelevantContent, forKey: .ignoreLowRelevantContent)
-          try container.encode(self.imageSource, forKey: .imageSource)
+          if self.imageSource != WidgetConfig.UiSettings.GenerativeAnswerConfig.ImageSource() {
+            try container.encode(self.imageSource, forKey: .imageSource)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -3346,7 +3362,7 @@
         if let choice = self.storageMethod {
           switch choice {
           case .url(let value):
-            try container.encode(value, forKey: .url)
+            try container.encodeIfPresent(value, forKey: .url)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -3728,7 +3744,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.webGroundingType, forKey: .webGroundingType)
+        if self.webGroundingType != WidgetConfig.AssistantSettings.WebGroundingType() {
+          try container.encode(self.webGroundingType, forKey: .webGroundingType)
+        }
         try container.encode(
           self.defaultWebGroundingToggleOff, forKey: .defaultWebGroundingToggleOff)
         try container.encode(self.disableLocationContext, forKey: .disableLocationContext)
@@ -3955,8 +3973,12 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.customerType, forKey: .customerType)
-        try container.encode(self.complianceLevel, forKey: .complianceLevel)
+        if self.customerType != WidgetConfig.CustomerProvidedConfig.CustomerType() {
+          try container.encode(self.customerType, forKey: .customerType)
+        }
+        if self.complianceLevel != WidgetConfig.CustomerProvidedConfig.ComplianceLevel() {
+          try container.encode(self.complianceLevel, forKey: .complianceLevel)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -4329,7 +4351,9 @@
         try container.encode(self.description, forKey: .description)
         try container.encodeIfPresent(self.parameterSchema, forKey: .parameterSchema)
         try container.encodeIfPresent(self.outputSchema, forKey: .outputSchema)
-        try container.encode(self.type, forKey: .type)
+        if self.type != WidgetConfig.Node.Type_() {
+          try container.encode(self.type, forKey: .type)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

@@ -182,7 +182,9 @@ public struct LogBucket: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.retentionDays, forKey: .retentionDays)
     try container.encode(self.locked, forKey: .locked)
-    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    if self.lifecycleState != LifecycleState() {
+      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    }
     try container.encode(self.analyticsEnabled, forKey: .analyticsEnabled)
     try container.encode(self.restrictedFields, forKey: .restrictedFields)
     try container.encode(self.indexConfigs, forKey: .indexConfigs)

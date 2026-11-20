@@ -367,7 +367,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.solutionType, forKey: .solutionType)
+      if self.solutionType != SolutionType() {
+        try container.encode(self.solutionType, forKey: .solutionType)
+      }
       try container.encode(self.modelId, forKey: .modelId)
       try container.encode(self.diversityLevel, forKey: .diversityLevel)
       try container.encode(self.rankingExpression, forKey: .rankingExpression)
@@ -387,9 +389,9 @@
       if let choice = self.verticalConfig {
         switch choice {
         case .mediaConfig(let value):
-          try container.encode(value, forKey: .mediaConfig)
+          try container.encodeIfPresent(value, forKey: .mediaConfig)
         case .genericConfig(let value):
-          try container.encode(value, forKey: .genericConfig)
+          try container.encodeIfPresent(value, forKey: .genericConfig)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -544,9 +546,9 @@
         if let choice = self.demoteContentWatched {
           switch choice {
           case .contentWatchedPercentageThreshold(let value):
-            try container.encode(value, forKey: .contentWatchedPercentageThreshold)
+            try container.encodeIfPresent(value, forKey: .contentWatchedPercentageThreshold)
           case .contentWatchedSecondsThreshold(let value):
-            try container.encode(value, forKey: .contentWatchedSecondsThreshold)
+            try container.encodeIfPresent(value, forKey: .contentWatchedSecondsThreshold)
           }
         }
         for (key, value) in self._unknownFields.json {

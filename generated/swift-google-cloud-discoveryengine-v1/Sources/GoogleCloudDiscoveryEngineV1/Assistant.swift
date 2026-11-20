@@ -174,7 +174,9 @@
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
       try container.encodeIfPresent(self.generationConfig, forKey: .generationConfig)
-      try container.encode(self.webGroundingType, forKey: .webGroundingType)
+      if self.webGroundingType != Assistant.WebGroundingType() {
+        try container.encode(self.webGroundingType, forKey: .webGroundingType)
+      }
       try container.encode(self.defaultWebGroundingToggleOff, forKey: .defaultWebGroundingToggleOff)
       try container.encode(self.enabledTools, forKey: .enabledTools)
       try container.encodeIfPresent(self.customerPolicy, forKey: .customerPolicy)
@@ -708,7 +710,9 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.phrase, forKey: .phrase)
-          try container.encode(self.matchType, forKey: .matchType)
+          if self.matchType != Assistant.CustomerPolicy.BannedPhrase.BannedPhraseMatchType() {
+            try container.encode(self.matchType, forKey: .matchType)
+          }
           try container.encode(self.ignoreDiacritics, forKey: .ignoreDiacritics)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -944,7 +948,9 @@
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.userPromptTemplate, forKey: .userPromptTemplate)
           try container.encode(self.responseTemplate, forKey: .responseTemplate)
-          try container.encode(self.failureMode, forKey: .failureMode)
+          if self.failureMode != Assistant.CustomerPolicy.ModelArmorConfig.FailureMode() {
+            try container.encode(self.failureMode, forKey: .failureMode)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

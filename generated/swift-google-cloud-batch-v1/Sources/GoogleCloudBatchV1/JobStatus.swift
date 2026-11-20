@@ -95,7 +95,9 @@ public struct JobStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != JobStatus.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.statusEvents, forKey: .statusEvents)
     try container.encode(self.taskGroups, forKey: .taskGroups)
     try container.encodeIfPresent(self.runDuration, forKey: .runDuration)
@@ -182,7 +184,9 @@ public struct JobStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.machineType, forKey: .machineType)
-      try container.encode(self.provisioningModel, forKey: .provisioningModel)
+      if self.provisioningModel != AllocationPolicy.ProvisioningModel() {
+        try container.encode(self.provisioningModel, forKey: .provisioningModel)
+      }
       try container.encode(self.taskPack, forKey: .taskPack)
       try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
       for (key, value) in self._unknownFields.json {

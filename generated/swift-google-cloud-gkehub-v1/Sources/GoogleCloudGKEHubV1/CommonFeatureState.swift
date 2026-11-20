@@ -96,7 +96,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.featureState {
       switch choice {
       case .rbacrolebindingactuation(let value):
-        try container.encode(value, forKey: .rbacrolebindingactuation)
+        try container.encodeIfPresent(value, forKey: .rbacrolebindingactuation)
       }
     }
     for (key, value) in self._unknownFields.json {

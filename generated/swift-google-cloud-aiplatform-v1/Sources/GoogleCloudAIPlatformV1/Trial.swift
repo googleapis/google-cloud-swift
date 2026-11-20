@@ -189,7 +189,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.id, forKey: .id)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Trial.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.parameters, forKey: .parameters)
       try container.encodeIfPresent(self.finalMeasurement, forKey: .finalMeasurement)
       try container.encode(self.measurements, forKey: .measurements)

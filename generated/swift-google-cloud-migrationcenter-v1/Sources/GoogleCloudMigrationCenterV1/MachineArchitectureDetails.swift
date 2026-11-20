@@ -135,8 +135,12 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.cpuThreadCount, forKey: .cpuThreadCount)
     try container.encode(self.cpuSocketCount, forKey: .cpuSocketCount)
     try container.encodeIfPresent(self.bios, forKey: .bios)
-    try container.encode(self.firmwareType, forKey: .firmwareType)
-    try container.encode(self.hyperthreading, forKey: .hyperthreading)
+    if self.firmwareType != MachineArchitectureDetails.FirmwareType() {
+      try container.encode(self.firmwareType, forKey: .firmwareType)
+    }
+    if self.hyperthreading != MachineArchitectureDetails.CpuHyperThreading() {
+      try container.encode(self.hyperthreading, forKey: .hyperthreading)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

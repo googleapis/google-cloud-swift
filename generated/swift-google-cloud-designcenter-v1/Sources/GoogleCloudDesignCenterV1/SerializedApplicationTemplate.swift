@@ -215,12 +215,16 @@ public struct SerializedApplicationTemplate: Codable, Equatable, GoogleWKT._AnyP
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.applicationParameters, forKey: .applicationParameters)
-    try container.encode(self.iacFormat, forKey: .iacFormat)
+    if self.iacFormat != ApplicationTemplate.IACFormat() {
+      try container.encode(self.iacFormat, forKey: .iacFormat)
+    }
     try container.encode(self.components, forKey: .components)
     try container.encodeIfPresent(
       self.apphubApplicationParameters, forKey: .apphubApplicationParameters)
     try container.encode(self.hasGlobalResource, forKey: .hasGlobalResource)
-    try container.encode(self.compositionType, forKey: .compositionType)
+    if self.compositionType != ApplicationCompositionType() {
+      try container.encode(self.compositionType, forKey: .compositionType)
+    }
     try container.encode(self.rootInputVariables, forKey: .rootInputVariables)
     try container.encode(self.rootOutputVariables, forKey: .rootOutputVariables)
     try container.encodeIfPresent(self.saasRuntimeContext, forKey: .saasRuntimeContext)

@@ -234,7 +234,9 @@ public struct AuthzExtension: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+    if self.loadBalancingScheme != LoadBalancingScheme() {
+      try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+    }
     try container.encode(self.authority, forKey: .authority)
     try container.encode(self.service, forKey: .service)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
@@ -242,7 +244,9 @@ public struct AuthzExtension: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.metadata, forKey: .metadata)
     try container.encode(self.forwardHeaders, forKey: .forwardHeaders)
     try container.encode(self.forwardAttributes, forKey: .forwardAttributes)
-    try container.encode(self.wireFormat, forKey: .wireFormat)
+    if self.wireFormat != WireFormat() {
+      try container.encode(self.wireFormat, forKey: .wireFormat)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

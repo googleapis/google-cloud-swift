@@ -105,7 +105,9 @@ public struct StorageSource: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.bucket, forKey: .bucket)
     try container.encode(self.object, forKey: .object)
     try container.encode(self.generation, forKey: .generation)
-    try container.encode(self.sourceFetcher, forKey: .sourceFetcher)
+    if self.sourceFetcher != StorageSource.SourceFetcher() {
+      try container.encode(self.sourceFetcher, forKey: .sourceFetcher)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

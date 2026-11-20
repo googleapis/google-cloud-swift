@@ -157,7 +157,9 @@ public struct LocationFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.regionCode, forKey: .regionCode)
     try container.encodeIfPresent(self.latLng, forKey: .latLng)
     try container.encode(self.distanceInMiles, forKey: .distanceInMiles)
-    try container.encode(self.telecommutePreference, forKey: .telecommutePreference)
+    if self.telecommutePreference != LocationFilter.TelecommutePreference() {
+      try container.encode(self.telecommutePreference, forKey: .telecommutePreference)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -227,7 +227,9 @@
       try container.encode(self.maxFailedTrialCount, forKey: .maxFailedTrialCount)
       try container.encodeIfPresent(self.trialJobSpec, forKey: .trialJobSpec)
       try container.encode(self.trials, forKey: .trials)
-      try container.encode(self.state, forKey: .state)
+      if self.state != JobState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)

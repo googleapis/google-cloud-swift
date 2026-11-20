@@ -159,7 +159,9 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.controlPlaneTopic, forKey: .controlPlaneTopic)
     try container.encode(self.controlPlaneSubscription, forKey: .controlPlaneSubscription)
     try container.encode(self.runtimeEndpoint, forKey: .runtimeEndpoint)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RuntimeConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.schemaGcsBucket, forKey: .schemaGcsBucket)
     try container.encode(self.serviceDirectory, forKey: .serviceDirectory)
     try container.encode(self.name, forKey: .name)

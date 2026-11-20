@@ -109,9 +109,9 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.credentials {
       switch choice {
       case .userCredentials(let value):
-        try container.encode(value, forKey: .userCredentials)
+        try container.encodeIfPresent(value, forKey: .userCredentials)
       case .oauth2ClientCredentials(let value):
-        try container.encode(value, forKey: .oauth2ClientCredentials)
+        try container.encodeIfPresent(value, forKey: .oauth2ClientCredentials)
       }
     }
     for (key, value) in self._unknownFields.json {

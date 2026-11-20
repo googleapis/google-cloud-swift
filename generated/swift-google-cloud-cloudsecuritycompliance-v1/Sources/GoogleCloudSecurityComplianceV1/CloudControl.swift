@@ -211,7 +211,9 @@ public struct CloudControl: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.supportedEnforcementModes, forKey: .supportedEnforcementModes)
     try container.encode(self.parameterSpec, forKey: .parameterSpec)
     try container.encode(self.rules, forKey: .rules)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.findingCategory, forKey: .findingCategory)
     try container.encode(self.supportedCloudProviders, forKey: .supportedCloudProviders)
     try container.encode(self.relatedFrameworks, forKey: .relatedFrameworks)

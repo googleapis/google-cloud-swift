@@ -140,24 +140,26 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.counters, forKey: .counters)
-    try container.encode(self.transferType, forKey: .transferType)
+    if self.transferType != TransferType() {
+      try container.encode(self.transferType, forKey: .transferType)
+    }
     try container.encode(self.errorSummaries, forKey: .errorSummaries)
 
     if let choice = self.source {
       switch choice {
       case .sourceLustrePath(let value):
-        try container.encode(value, forKey: .sourceLustrePath)
+        try container.encodeIfPresent(value, forKey: .sourceLustrePath)
       case .sourceGcsPath(let value):
-        try container.encode(value, forKey: .sourceGcsPath)
+        try container.encodeIfPresent(value, forKey: .sourceGcsPath)
       }
     }
 
     if let choice = self.destination {
       switch choice {
       case .destinationGcsPath(let value):
-        try container.encode(value, forKey: .destinationGcsPath)
+        try container.encodeIfPresent(value, forKey: .destinationGcsPath)
       case .destinationLustrePath(let value):
-        try container.encode(value, forKey: .destinationLustrePath)
+        try container.encodeIfPresent(value, forKey: .destinationLustrePath)
       }
     }
     for (key, value) in self._unknownFields.json {

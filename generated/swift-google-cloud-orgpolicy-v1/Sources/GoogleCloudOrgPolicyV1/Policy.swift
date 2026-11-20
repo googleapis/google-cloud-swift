@@ -166,11 +166,11 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.policyType {
       switch choice {
       case .listPolicy(let value):
-        try container.encode(value, forKey: .listPolicy)
+        try container.encodeIfPresent(value, forKey: .listPolicy)
       case .booleanPolicy(let value):
-        try container.encode(value, forKey: .booleanPolicy)
+        try container.encodeIfPresent(value, forKey: .booleanPolicy)
       case .restoreDefault(let value):
-        try container.encode(value, forKey: .restoreDefault)
+        try container.encodeIfPresent(value, forKey: .restoreDefault)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -387,7 +387,9 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allowedValues, forKey: .allowedValues)
       try container.encode(self.deniedValues, forKey: .deniedValues)
-      try container.encode(self.allValues, forKey: .allValues)
+      if self.allValues != Policy.ListPolicy.AllValues() {
+        try container.encode(self.allValues, forKey: .allValues)
+      }
       try container.encode(self.suggestedValue, forKey: .suggestedValue)
       try container.encode(self.inheritFromParent, forKey: .inheritFromParent)
       for (key, value) in self._unknownFields.json {

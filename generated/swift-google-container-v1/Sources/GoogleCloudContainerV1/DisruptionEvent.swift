@@ -102,7 +102,9 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.disruptionType, forKey: .disruptionType)
+    if self.disruptionType != DisruptionEvent.DisruptionType() {
+      try container.encode(self.disruptionType, forKey: .disruptionType)
+    }
     try container.encode(self.pdbBlockedNode, forKey: .pdbBlockedNode)
     try container.encode(self.pdbBlockedPod, forKey: .pdbBlockedPod)
     try container.encodeIfPresent(self.pdbViolationTimeout, forKey: .pdbViolationTimeout)

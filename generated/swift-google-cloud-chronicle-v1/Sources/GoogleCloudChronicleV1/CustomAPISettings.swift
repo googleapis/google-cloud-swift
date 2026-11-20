@@ -140,15 +140,15 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authentication {
       switch choice {
       case .noAuth(let value):
-        try container.encode(value, forKey: .noAuth)
+        try container.encodeIfPresent(value, forKey: .noAuth)
       case .basicAuth(let value):
-        try container.encode(value, forKey: .basicAuth)
+        try container.encodeIfPresent(value, forKey: .basicAuth)
       case .oauthClientCredentials(let value):
-        try container.encode(value, forKey: .oauthClientCredentials)
+        try container.encodeIfPresent(value, forKey: .oauthClientCredentials)
       case .headerAuth(let value):
-        try container.encode(value, forKey: .headerAuth)
+        try container.encodeIfPresent(value, forKey: .headerAuth)
       case .queryAuth(let value):
-        try container.encode(value, forKey: .queryAuth)
+        try container.encodeIfPresent(value, forKey: .queryAuth)
       }
     }
     for (key, value) in self._unknownFields.json {

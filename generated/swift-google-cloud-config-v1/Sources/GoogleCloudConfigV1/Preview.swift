@@ -272,13 +272,19 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Preview.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.deployment, forKey: .deployment)
-    try container.encode(self.previewMode, forKey: .previewMode)
+    if self.previewMode != Preview.PreviewMode() {
+      try container.encode(self.previewMode, forKey: .previewMode)
+    }
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encodeIfPresent(self.artifactsGcsBucket, forKey: .artifactsGcsBucket)
     try container.encodeIfPresent(self.workerPool, forKey: .workerPool)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.errorCode != Preview.ErrorCode() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     try container.encodeIfPresent(self.errorStatus, forKey: .errorStatus)
     try container.encode(self.build, forKey: .build)
     try container.encode(self.tfErrors, forKey: .tfErrors)
@@ -293,7 +299,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.blueprint {
       switch choice {
       case .terraformBlueprint(let value):
-        try container.encode(value, forKey: .terraformBlueprint)
+        try container.encodeIfPresent(value, forKey: .terraformBlueprint)
       }
     }
     for (key, value) in self._unknownFields.json {

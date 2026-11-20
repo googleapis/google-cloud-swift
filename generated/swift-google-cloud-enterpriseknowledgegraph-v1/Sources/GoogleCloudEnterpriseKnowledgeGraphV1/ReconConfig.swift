@@ -109,9 +109,9 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.clusteringConfig {
       switch choice {
       case .connectedComponentsConfig(let value):
-        try container.encode(value, forKey: .connectedComponentsConfig)
+        try container.encodeIfPresent(value, forKey: .connectedComponentsConfig)
       case .affinityClusteringConfig(let value):
-        try container.encode(value, forKey: .affinityClusteringConfig)
+        try container.encodeIfPresent(value, forKey: .affinityClusteringConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

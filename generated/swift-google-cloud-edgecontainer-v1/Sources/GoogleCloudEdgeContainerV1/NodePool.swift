@@ -253,9 +253,13 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kmsKey, forKey: .kmsKey)
       try container.encode(self.kmsKeyActiveVersion, forKey: .kmsKeyActiveVersion)
-      try container.encode(self.kmsKeyState, forKey: .kmsKeyState)
+      if self.kmsKeyState != KmsKeyState() {
+        try container.encode(self.kmsKeyState, forKey: .kmsKeyState)
+      }
       try container.encodeIfPresent(self.kmsStatus, forKey: .kmsStatus)
-      try container.encode(self.resourceState, forKey: .resourceState)
+      if self.resourceState != ResourceState() {
+        try container.encode(self.resourceState, forKey: .resourceState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

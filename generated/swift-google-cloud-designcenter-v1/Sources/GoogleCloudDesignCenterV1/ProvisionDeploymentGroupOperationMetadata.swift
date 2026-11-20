@@ -84,7 +84,11 @@ public struct ProvisionDeploymentGroupOperationMetadata: Codable, Equatable, Goo
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.deploymentStep, forKey: .deploymentStep)
+    if self.deploymentStep
+      != GoogleCloudDesignCenterV1.ProvisionDeploymentGroupOperationMetadata.DeploymentStep()
+    {
+      try container.encode(self.deploymentStep, forKey: .deploymentStep)
+    }
     try container.encode(self.deploymentUnitProgress, forKey: .deploymentUnitProgress)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

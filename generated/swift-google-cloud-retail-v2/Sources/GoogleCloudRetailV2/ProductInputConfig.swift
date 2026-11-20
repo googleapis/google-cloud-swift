@@ -99,11 +99,11 @@ public struct ProductInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .productInlineSource(let value):
-        try container.encode(value, forKey: .productInlineSource)
+        try container.encodeIfPresent(value, forKey: .productInlineSource)
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       case .bigQuerySource(let value):
-        try container.encode(value, forKey: .bigQuerySource)
+        try container.encodeIfPresent(value, forKey: .bigQuerySource)
       }
     }
     for (key, value) in self._unknownFields.json {

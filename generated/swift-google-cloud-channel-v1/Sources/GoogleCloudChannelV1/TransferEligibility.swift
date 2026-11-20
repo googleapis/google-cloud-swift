@@ -89,7 +89,9 @@ public struct TransferEligibility: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.isEligible, forKey: .isEligible)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.ineligibilityReason, forKey: .ineligibilityReason)
+    if self.ineligibilityReason != TransferEligibility.Reason() {
+      try container.encode(self.ineligibilityReason, forKey: .ineligibilityReason)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

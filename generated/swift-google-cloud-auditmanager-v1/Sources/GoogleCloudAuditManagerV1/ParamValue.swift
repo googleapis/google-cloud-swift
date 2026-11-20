@@ -107,15 +107,15 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .stringListValue(let value):
-        try container.encode(value, forKey: .stringListValue)
+        try container.encodeIfPresent(value, forKey: .stringListValue)
       case .numberValue(let value):
-        try container.encode(value, forKey: .numberValue)
+        try container.encodeIfPresent(value, forKey: .numberValue)
       case .oneofValue(let value):
-        try container.encode(value, forKey: .oneofValue)
+        try container.encodeIfPresent(value, forKey: .oneofValue)
       }
     }
     for (key, value) in self._unknownFields.json {

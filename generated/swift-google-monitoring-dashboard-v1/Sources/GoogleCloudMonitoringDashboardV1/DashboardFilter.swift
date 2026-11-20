@@ -111,12 +111,14 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.labelKey, forKey: .labelKey)
     try container.encode(self.templateVariable, forKey: .templateVariable)
-    try container.encode(self.filterType, forKey: .filterType)
+    if self.filterType != DashboardFilter.FilterType() {
+      try container.encode(self.filterType, forKey: .filterType)
+    }
 
     if let choice = self.defaultValue {
       switch choice {
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       }
     }
     for (key, value) in self._unknownFields.json {

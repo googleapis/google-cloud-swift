@@ -95,9 +95,9 @@
       if let choice = self.flow {
         switch choice {
         case .flowUri(let value):
-          try container.encode(value, forKey: .flowUri)
+          try container.encodeIfPresent(value, forKey: .flowUri)
         case .flowContent(let value):
-          try container.encode(value, forKey: .flowContent)
+          try container.encodeIfPresent(value, forKey: .flowContent)
         }
       }
       for (key, value) in self._unknownFields.json {

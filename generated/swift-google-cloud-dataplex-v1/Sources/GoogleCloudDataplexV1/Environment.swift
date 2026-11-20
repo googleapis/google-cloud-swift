@@ -163,7 +163,9 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudDataplexV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.infrastructureSpec, forKey: .infrastructureSpec)
     try container.encodeIfPresent(self.sessionSpec, forKey: .sessionSpec)
     try container.encodeIfPresent(self.sessionStatus, forKey: .sessionStatus)
@@ -265,14 +267,14 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.resources {
         switch choice {
         case .compute(let value):
-          try container.encode(value, forKey: .compute)
+          try container.encodeIfPresent(value, forKey: .compute)
         }
       }
 
       if let choice = self.runtime {
         switch choice {
         case .osImage(let value):
-          try container.encode(value, forKey: .osImage)
+          try container.encodeIfPresent(value, forKey: .osImage)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -93,7 +93,9 @@ public struct DisplayVariableToggle: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.variable, forKey: .variable)
     try container.encode(self.variableValues, forKey: .variableValues)
-    try container.encode(self.variableType, forKey: .variableType)
+    if self.variableType != DisplayVariableToggle.ToggleVariableType() {
+      try container.encode(self.variableType, forKey: .variableType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

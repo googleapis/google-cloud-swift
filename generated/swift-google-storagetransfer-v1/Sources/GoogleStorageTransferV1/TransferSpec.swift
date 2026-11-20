@@ -226,35 +226,35 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dataSink {
       switch choice {
       case .gcsDataSink(let value):
-        try container.encode(value, forKey: .gcsDataSink)
+        try container.encodeIfPresent(value, forKey: .gcsDataSink)
       case .posixDataSink(let value):
-        try container.encode(value, forKey: .posixDataSink)
+        try container.encodeIfPresent(value, forKey: .posixDataSink)
       }
     }
 
     if let choice = self.dataSource {
       switch choice {
       case .gcsDataSource(let value):
-        try container.encode(value, forKey: .gcsDataSource)
+        try container.encodeIfPresent(value, forKey: .gcsDataSource)
       case .awsS3DataSource(let value):
-        try container.encode(value, forKey: .awsS3DataSource)
+        try container.encodeIfPresent(value, forKey: .awsS3DataSource)
       case .httpDataSource(let value):
-        try container.encode(value, forKey: .httpDataSource)
+        try container.encodeIfPresent(value, forKey: .httpDataSource)
       case .posixDataSource(let value):
-        try container.encode(value, forKey: .posixDataSource)
+        try container.encodeIfPresent(value, forKey: .posixDataSource)
       case .azureBlobStorageDataSource(let value):
-        try container.encode(value, forKey: .azureBlobStorageDataSource)
+        try container.encodeIfPresent(value, forKey: .azureBlobStorageDataSource)
       case .awsS3CompatibleDataSource(let value):
-        try container.encode(value, forKey: .awsS3CompatibleDataSource)
+        try container.encodeIfPresent(value, forKey: .awsS3CompatibleDataSource)
       case .hdfsDataSource(let value):
-        try container.encode(value, forKey: .hdfsDataSource)
+        try container.encodeIfPresent(value, forKey: .hdfsDataSource)
       }
     }
 
     if let choice = self.intermediateDataLocation {
       switch choice {
       case .gcsIntermediateDataLocation(let value):
-        try container.encode(value, forKey: .gcsIntermediateDataLocation)
+        try container.encodeIfPresent(value, forKey: .gcsIntermediateDataLocation)
       }
     }
     for (key, value) in self._unknownFields.json {

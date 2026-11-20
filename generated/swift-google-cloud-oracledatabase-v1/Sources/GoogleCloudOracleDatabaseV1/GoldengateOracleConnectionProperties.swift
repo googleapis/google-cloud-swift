@@ -161,18 +161,22 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleWK
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.technologyType, forKey: .technologyType)
     try container.encode(self.username, forKey: .username)
-    try container.encode(self.authenticationMode, forKey: .authenticationMode)
+    if self.authenticationMode != GoldengateOracleConnectionProperties.OracleAuthenticationMode() {
+      try container.encode(self.authenticationMode, forKey: .authenticationMode)
+    }
     try container.encode(self.connectionString, forKey: .connectionString)
-    try container.encode(self.sessionMode, forKey: .sessionMode)
+    if self.sessionMode != GoldengateOracleConnectionProperties.SessionMode() {
+      try container.encode(self.sessionMode, forKey: .sessionMode)
+    }
     try container.encode(self.gcpOracleDatabaseId, forKey: .gcpOracleDatabaseId)
     try container.encode(self.walletFile, forKey: .walletFile)
 
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

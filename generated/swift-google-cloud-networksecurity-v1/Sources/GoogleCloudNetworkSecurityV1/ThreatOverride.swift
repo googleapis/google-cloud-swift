@@ -87,8 +87,12 @@ public struct ThreatOverride: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.threatId, forKey: .threatId)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.action, forKey: .action)
+    if self.type != ThreatType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.action != ThreatAction() {
+      try container.encode(self.action, forKey: .action)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

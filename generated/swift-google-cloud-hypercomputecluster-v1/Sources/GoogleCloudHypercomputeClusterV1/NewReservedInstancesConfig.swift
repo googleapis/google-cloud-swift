@@ -90,7 +90,7 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.source {
       switch choice {
       case .reservation(let value):
-        try container.encode(value, forKey: .reservation)
+        try container.encodeIfPresent(value, forKey: .reservation)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -128,7 +128,9 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.commuteMethod, forKey: .commuteMethod)
+    if self.commuteMethod != CommuteMethod() {
+      try container.encode(self.commuteMethod, forKey: .commuteMethod)
+    }
     try container.encodeIfPresent(self.startCoordinates, forKey: .startCoordinates)
     try container.encodeIfPresent(self.travelDuration, forKey: .travelDuration)
     try container.encode(self.allowImpreciseAddresses, forKey: .allowImpreciseAddresses)
@@ -136,9 +138,9 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.trafficOption {
       switch choice {
       case .roadTraffic(let value):
-        try container.encode(value, forKey: .roadTraffic)
+        try container.encodeIfPresent(value, forKey: .roadTraffic)
       case .departureTime(let value):
-        try container.encode(value, forKey: .departureTime)
+        try container.encodeIfPresent(value, forKey: .departureTime)
       }
     }
     for (key, value) in self._unknownFields.json {

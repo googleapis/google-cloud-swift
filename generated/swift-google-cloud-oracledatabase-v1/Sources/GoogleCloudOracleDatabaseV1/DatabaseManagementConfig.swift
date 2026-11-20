@@ -83,8 +83,12 @@ public struct DatabaseManagementConfig: Codable, Equatable, GoogleWKT._AnyPackab
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.managementState, forKey: .managementState)
-    try container.encode(self.managementType, forKey: .managementType)
+    if self.managementState != DatabaseManagementConfig.ManagementState() {
+      try container.encode(self.managementState, forKey: .managementState)
+    }
+    if self.managementType != DatabaseManagementConfig.ManagementType() {
+      try container.encode(self.managementType, forKey: .managementType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

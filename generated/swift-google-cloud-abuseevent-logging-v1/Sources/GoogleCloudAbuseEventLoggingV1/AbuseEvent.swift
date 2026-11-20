@@ -152,25 +152,29 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.detectionType, forKey: .detectionType)
+    if self.detectionType != AbuseEvent.DetectionType() {
+      try container.encode(self.detectionType, forKey: .detectionType)
+    }
     try container.encode(self.reason, forKey: .reason)
-    try container.encode(self.action, forKey: .action)
+    if self.action != AbuseEvent.ActionType() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encode(self.remediationLink, forKey: .remediationLink)
 
     if let choice = self.eventType {
       switch choice {
       case .cryptoMiningEvent(let value):
-        try container.encode(value, forKey: .cryptoMiningEvent)
+        try container.encodeIfPresent(value, forKey: .cryptoMiningEvent)
       case .leakedCredentialEvent(let value):
-        try container.encode(value, forKey: .leakedCredentialEvent)
+        try container.encodeIfPresent(value, forKey: .leakedCredentialEvent)
       case .harmfulContentEvent(let value):
-        try container.encode(value, forKey: .harmfulContentEvent)
+        try container.encodeIfPresent(value, forKey: .harmfulContentEvent)
       case .reinstatementEvent(let value):
-        try container.encode(value, forKey: .reinstatementEvent)
+        try container.encodeIfPresent(value, forKey: .reinstatementEvent)
       case .decisionEscalationEvent(let value):
-        try container.encode(value, forKey: .decisionEscalationEvent)
+        try container.encodeIfPresent(value, forKey: .decisionEscalationEvent)
       case .intrusionAttemptEvent(let value):
-        try container.encode(value, forKey: .intrusionAttemptEvent)
+        try container.encodeIfPresent(value, forKey: .intrusionAttemptEvent)
       }
     }
     for (key, value) in self._unknownFields.json {

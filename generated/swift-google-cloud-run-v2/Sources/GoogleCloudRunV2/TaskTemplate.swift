@@ -177,7 +177,9 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.volumes, forKey: .volumes)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    if self.executionEnvironment != ExecutionEnvironment() {
+      try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    }
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
     try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
@@ -188,7 +190,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.retries {
       switch choice {
       case .maxRetries(let value):
-        try container.encode(value, forKey: .maxRetries)
+        try container.encodeIfPresent(value, forKey: .maxRetries)
       }
     }
     for (key, value) in self._unknownFields.json {

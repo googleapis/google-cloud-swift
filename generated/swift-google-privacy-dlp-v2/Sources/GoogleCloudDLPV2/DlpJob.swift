@@ -166,8 +166,12 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.type != DlpJobType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.state != DlpJob.JobState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -179,9 +183,9 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.details {
       switch choice {
       case .riskDetails(let value):
-        try container.encode(value, forKey: .riskDetails)
+        try container.encodeIfPresent(value, forKey: .riskDetails)
       case .inspectDetails(let value):
-        try container.encode(value, forKey: .inspectDetails)
+        try container.encodeIfPresent(value, forKey: .inspectDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

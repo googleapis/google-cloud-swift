@@ -102,11 +102,11 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.category {
       switch choice {
       case .locationCategory(let value):
-        try container.encode(value, forKey: .locationCategory)
+        try container.encodeIfPresent(value, forKey: .locationCategory)
       case .industryCategory(let value):
-        try container.encode(value, forKey: .industryCategory)
+        try container.encodeIfPresent(value, forKey: .industryCategory)
       case .typeCategory(let value):
-        try container.encode(value, forKey: .typeCategory)
+        try container.encodeIfPresent(value, forKey: .typeCategory)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -174,7 +174,9 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.resourceValue, forKey: .resourceValue)
+    if self.resourceValue != GoogleCloudSecurityCenterV2.ResourceValue() {
+      try container.encode(self.resourceValue, forKey: .resourceValue)
+    }
     try container.encode(self.tagValues, forKey: .tagValues)
     try container.encode(self.resourceType, forKey: .resourceType)
     try container.encode(self.scope, forKey: .scope)
@@ -182,7 +184,9 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    if self.cloudProvider != CloudProvider() {
+      try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    }
     try container.encodeIfPresent(
       self.sensitiveDataProtectionMapping, forKey: .sensitiveDataProtectionMapping)
     for (key, value) in self._unknownFields.json {
@@ -260,8 +264,12 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.highSensitivityMapping, forKey: .highSensitivityMapping)
-      try container.encode(self.mediumSensitivityMapping, forKey: .mediumSensitivityMapping)
+      if self.highSensitivityMapping != GoogleCloudSecurityCenterV2.ResourceValue() {
+        try container.encode(self.highSensitivityMapping, forKey: .highSensitivityMapping)
+      }
+      if self.mediumSensitivityMapping != GoogleCloudSecurityCenterV2.ResourceValue() {
+        try container.encode(self.mediumSensitivityMapping, forKey: .mediumSensitivityMapping)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

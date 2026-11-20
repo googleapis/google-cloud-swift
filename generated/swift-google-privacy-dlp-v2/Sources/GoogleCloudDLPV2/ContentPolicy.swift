@@ -247,7 +247,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.action {
         switch choice {
         case .returnVerdict(let value):
-          try container.encode(value, forKey: .returnVerdict)
+          try container.encodeIfPresent(value, forKey: .returnVerdict)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -423,7 +423,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.condition {
           switch choice {
           case .infoTypeCondition(let value):
-            try container.encode(value, forKey: .infoTypeCondition)
+            try container.encodeIfPresent(value, forKey: .infoTypeCondition)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -520,9 +520,9 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           if let choice = self.infoTypeCondition {
             switch choice {
             case .infoTypes(let value):
-              try container.encode(value, forKey: .infoTypes)
+              try container.encodeIfPresent(value, forKey: .infoTypes)
             case .anyInfoType(let value):
-              try container.encode(value, forKey: .anyInfoType)
+              try container.encodeIfPresent(value, forKey: .anyInfoType)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -765,7 +765,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.destination {
         switch choice {
         case .logToBigQuery(let value):
-          try container.encode(value, forKey: .logToBigQuery)
+          try container.encodeIfPresent(value, forKey: .logToBigQuery)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -190,7 +190,9 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.mode, forKey: .mode)
     try container.encode(self.defaultValue, forKey: .defaultValue)
     try container.encode(self.ordinalPosition, forKey: .ordinalPosition)
-    try container.encode(self.highestIndexingType, forKey: .highestIndexingType)
+    if self.highestIndexingType != ColumnSchema.IndexingType() {
+      try container.encode(self.highestIndexingType, forKey: .highestIndexingType)
+    }
     try container.encode(self.subcolumns, forKey: .subcolumns)
     try container.encodeIfPresent(self.rangeElementType, forKey: .rangeElementType)
     try container.encode(self.gcRule, forKey: .gcRule)
@@ -198,7 +200,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.systemSpec {
       switch choice {
       case .lookerColumnSpec(let value):
-        try container.encode(value, forKey: .lookerColumnSpec)
+        try container.encodeIfPresent(value, forKey: .lookerColumnSpec)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -261,7 +263,9 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != ColumnSchema.LookerColumnSpec.LookerColumnType() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

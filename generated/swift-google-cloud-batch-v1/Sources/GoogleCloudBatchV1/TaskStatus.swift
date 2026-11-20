@@ -77,7 +77,9 @@ public struct TaskStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != TaskStatus.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.statusEvents, forKey: .statusEvents)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

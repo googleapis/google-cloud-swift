@@ -174,11 +174,17 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.type != AppGateway.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.state != AppGateway.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.allocatedConnections, forKey: .allocatedConnections)
-    try container.encode(self.hostType, forKey: .hostType)
+    if self.hostType != AppGateway.HostType() {
+      try container.encode(self.hostType, forKey: .hostType)
+    }
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
     for (key, value) in self._unknownFields.json {

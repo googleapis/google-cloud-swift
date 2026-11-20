@@ -173,16 +173,16 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.reportFormat {
       switch choice {
       case .csvOptions(let value):
-        try container.encode(value, forKey: .csvOptions)
+        try container.encodeIfPresent(value, forKey: .csvOptions)
       case .parquetOptions(let value):
-        try container.encode(value, forKey: .parquetOptions)
+        try container.encodeIfPresent(value, forKey: .parquetOptions)
       }
     }
 
     if let choice = self.reportKind {
       switch choice {
       case .objectMetadataReportOptions(let value):
-        try container.encode(value, forKey: .objectMetadataReportOptions)
+        try container.encodeIfPresent(value, forKey: .objectMetadataReportOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

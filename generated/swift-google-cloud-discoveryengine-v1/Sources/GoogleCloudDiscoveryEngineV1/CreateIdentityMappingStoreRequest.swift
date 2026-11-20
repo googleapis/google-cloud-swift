@@ -129,9 +129,9 @@
       if let choice = self.cmekOptions {
         switch choice {
         case .cmekConfigName(let value):
-          try container.encode(value, forKey: .cmekConfigName)
+          try container.encodeIfPresent(value, forKey: .cmekConfigName)
         case .disableCmek(let value):
-          try container.encode(value, forKey: .disableCmek)
+          try container.encodeIfPresent(value, forKey: .disableCmek)
         }
       }
       for (key, value) in self._unknownFields.json {

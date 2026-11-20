@@ -138,7 +138,9 @@ public struct DvrSession: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DvrSession.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.dvrManifests, forKey: .dvrManifests)
     try container.encode(self.dvrWindows, forKey: .dvrWindows)
@@ -312,7 +314,7 @@ public struct DvrSession: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.kind {
         switch choice {
         case .timeInterval(let value):
-          try container.encode(value, forKey: .timeInterval)
+          try container.encodeIfPresent(value, forKey: .timeInterval)
         }
       }
       for (key, value) in self._unknownFields.json {

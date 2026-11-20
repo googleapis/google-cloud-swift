@@ -169,7 +169,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.partition {
       switch choice {
       case .partitionDate(let value):
-        try container.encode(value, forKey: .partitionDate)
+        try container.encodeIfPresent(value, forKey: .partitionDate)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -97,7 +97,9 @@ public struct AccessStateDiff: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.baseline, forKey: .baseline)
     try container.encodeIfPresent(self.simulated, forKey: .simulated)
-    try container.encode(self.accessChange, forKey: .accessChange)
+    if self.accessChange != AccessStateDiff.AccessChangeType() {
+      try container.encode(self.accessChange, forKey: .accessChange)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -177,11 +177,11 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.alphabet {
       switch choice {
       case .commonAlphabet(let value):
-        try container.encode(value, forKey: .commonAlphabet)
+        try container.encodeIfPresent(value, forKey: .commonAlphabet)
       case .customAlphabet(let value):
-        try container.encode(value, forKey: .customAlphabet)
+        try container.encodeIfPresent(value, forKey: .customAlphabet)
       case .radix(let value):
-        try container.encode(value, forKey: .radix)
+        try container.encodeIfPresent(value, forKey: .radix)
       }
     }
     for (key, value) in self._unknownFields.json {

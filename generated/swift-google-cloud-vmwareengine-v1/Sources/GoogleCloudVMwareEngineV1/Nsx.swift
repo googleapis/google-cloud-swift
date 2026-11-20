@@ -95,7 +95,9 @@ public struct Nsx: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.internalIp, forKey: .internalIp)
     try container.encode(self.version, forKey: .version)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Nsx.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.fqdn, forKey: .fqdn)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

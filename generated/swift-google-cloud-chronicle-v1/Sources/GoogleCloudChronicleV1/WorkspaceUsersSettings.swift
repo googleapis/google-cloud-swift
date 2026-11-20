@@ -89,7 +89,9 @@ public struct WorkspaceUsersSettings: Codable, Equatable, GoogleWKT._AnyPackable
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.workspaceCustomerId, forKey: .workspaceCustomerId)
-    try container.encode(self.projectionType, forKey: .projectionType)
+    if self.projectionType != WorkspaceUsersSettings.ProjectionType() {
+      try container.encode(self.projectionType, forKey: .projectionType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

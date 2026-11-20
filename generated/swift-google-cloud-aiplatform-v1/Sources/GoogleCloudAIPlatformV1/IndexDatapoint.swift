@@ -426,16 +426,18 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.namespace, forKey: .namespace)
-        try container.encode(self.op, forKey: .op)
+        if self.op != IndexDatapoint.NumericRestriction.Operator() {
+          try container.encode(self.op, forKey: .op)
+        }
 
         if let choice = self.value {
           switch choice {
           case .valueInt(let value):
-            try container.encode(value, forKey: .valueInt)
+            try container.encodeIfPresent(value, forKey: .valueInt)
           case .valueFloat(let value):
-            try container.encode(value, forKey: .valueFloat)
+            try container.encodeIfPresent(value, forKey: .valueFloat)
           case .valueDouble(let value):
-            try container.encode(value, forKey: .valueDouble)
+            try container.encodeIfPresent(value, forKey: .valueDouble)
           }
         }
         for (key, value) in self._unknownFields.json {

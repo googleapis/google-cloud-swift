@@ -111,7 +111,9 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.cpeUri, forKey: .cpeUri)
-    try container.encode(self.architecture, forKey: .architecture)
+    if self.architecture != Architecture() {
+      try container.encode(self.architecture, forKey: .architecture)
+    }
     try container.encodeIfPresent(self.latestVersion, forKey: .latestVersion)
     try container.encode(self.maintainer, forKey: .maintainer)
     try container.encode(self.url, forKey: .url)

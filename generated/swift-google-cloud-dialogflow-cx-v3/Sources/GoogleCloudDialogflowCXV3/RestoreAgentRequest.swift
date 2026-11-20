@@ -120,16 +120,18 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.restoreOption, forKey: .restoreOption)
+      if self.restoreOption != RestoreAgentRequest.RestoreOption() {
+        try container.encode(self.restoreOption, forKey: .restoreOption)
+      }
 
       if let choice = self.agent {
         switch choice {
         case .agentUri(let value):
-          try container.encode(value, forKey: .agentUri)
+          try container.encodeIfPresent(value, forKey: .agentUri)
         case .agentContent(let value):
-          try container.encode(value, forKey: .agentContent)
+          try container.encodeIfPresent(value, forKey: .agentContent)
         case .gitSource(let value):
-          try container.encode(value, forKey: .gitSource)
+          try container.encodeIfPresent(value, forKey: .gitSource)
         }
       }
       for (key, value) in self._unknownFields.json {

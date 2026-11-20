@@ -149,7 +149,7 @@ public struct DetectLanguageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .content(let value):
-        try container.encode(value, forKey: .content)
+        try container.encodeIfPresent(value, forKey: .content)
       }
     }
     for (key, value) in self._unknownFields.json {

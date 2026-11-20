@@ -150,7 +150,9 @@ public struct BatchTranslateDocumentMetadata: Codable, Equatable, GoogleWKT._Any
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BatchTranslateDocumentMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.totalPages, forKey: .totalPages)
     try container.encode(self.translatedPages, forKey: .translatedPages)
     try container.encode(self.failedPages, forKey: .failedPages)

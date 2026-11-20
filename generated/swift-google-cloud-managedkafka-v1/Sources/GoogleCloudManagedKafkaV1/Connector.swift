@@ -117,12 +117,14 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.configs, forKey: .configs)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Connector.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.restartPolicy {
       switch choice {
       case .taskRestartPolicy(let value):
-        try container.encode(value, forKey: .taskRestartPolicy)
+        try container.encodeIfPresent(value, forKey: .taskRestartPolicy)
       }
     }
     for (key, value) in self._unknownFields.json {

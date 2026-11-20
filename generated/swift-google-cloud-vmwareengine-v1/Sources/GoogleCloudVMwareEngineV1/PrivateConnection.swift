@@ -202,15 +202,23 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PrivateConnection.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.vmwareEngineNetwork, forKey: .vmwareEngineNetwork)
     try container.encode(self.vmwareEngineNetworkCanonical, forKey: .vmwareEngineNetworkCanonical)
-    try container.encode(self.type, forKey: .type)
+    if self.type != PrivateConnection.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.peeringId, forKey: .peeringId)
-    try container.encode(self.routingMode, forKey: .routingMode)
+    if self.routingMode != PrivateConnection.RoutingMode() {
+      try container.encode(self.routingMode, forKey: .routingMode)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.serviceNetwork, forKey: .serviceNetwork)
-    try container.encode(self.peeringState, forKey: .peeringState)
+    if self.peeringState != PrivateConnection.PeeringState() {
+      try container.encode(self.peeringState, forKey: .peeringState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

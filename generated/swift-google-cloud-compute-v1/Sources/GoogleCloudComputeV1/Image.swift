@@ -430,7 +430,7 @@
       try container.encodeIfPresent(self.imageEncryptionKey, forKey: .imageEncryptionKey)
       try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }

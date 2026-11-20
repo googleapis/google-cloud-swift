@@ -100,7 +100,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.severity, forKey: .severity)
+      if self.severity != ValidationError.Severity() {
+        try container.encode(self.severity, forKey: .severity)
+      }
       try container.encode(self.entries, forKey: .entries)
       try container.encode(self.errorMessage, forKey: .errorMessage)
       for (key, value) in self._unknownFields.json {

@@ -120,7 +120,9 @@ public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encodeIfPresent(self.enrollment, forKey: .enrollment)
     try container.encode(self.enrolled, forKey: .enrolled)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.enrollmentState, forKey: .enrollmentState)
+    if self.enrollmentState != ResourceEnrollmentStatus.ResourceEnrollmentState() {
+      try container.encode(self.enrollmentState, forKey: .enrollmentState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

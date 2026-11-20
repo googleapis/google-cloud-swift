@@ -160,9 +160,9 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.objectConfiguration {
         switch choice {
         case .prefixList(let value):
-          try container.encode(value, forKey: .prefixList)
+          try container.encodeIfPresent(value, forKey: .prefixList)
         case .manifest(let value):
-          try container.encode(value, forKey: .manifest)
+          try container.encodeIfPresent(value, forKey: .manifest)
         }
       }
       for (key, value) in self._unknownFields.json {

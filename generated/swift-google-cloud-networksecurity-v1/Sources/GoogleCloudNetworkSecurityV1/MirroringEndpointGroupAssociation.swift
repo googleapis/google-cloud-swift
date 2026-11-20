@@ -183,7 +183,9 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleWKT._
     try container.encode(self.mirroringEndpointGroup, forKey: .mirroringEndpointGroup)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.locationsDetails, forKey: .locationsDetails)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MirroringEndpointGroupAssociation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.locations, forKey: .locations)
     for (key, value) in self._unknownFields.json {
@@ -256,7 +258,9 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleWKT._
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.location, forKey: .location)
-      try container.encode(self.state, forKey: .state)
+      if self.state != MirroringEndpointGroupAssociation.LocationDetails.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

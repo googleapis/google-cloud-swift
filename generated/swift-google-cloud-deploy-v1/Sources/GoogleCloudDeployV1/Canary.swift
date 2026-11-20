@@ -103,9 +103,9 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.mode {
       switch choice {
       case .canaryDeployment(let value):
-        try container.encode(value, forKey: .canaryDeployment)
+        try container.encodeIfPresent(value, forKey: .canaryDeployment)
       case .customCanaryDeployment(let value):
-        try container.encode(value, forKey: .customCanaryDeployment)
+        try container.encodeIfPresent(value, forKey: .customCanaryDeployment)
       }
     }
     for (key, value) in self._unknownFields.json {

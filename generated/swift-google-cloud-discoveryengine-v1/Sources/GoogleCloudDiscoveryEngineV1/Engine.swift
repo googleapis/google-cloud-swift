@@ -412,39 +412,49 @@
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.dataStoreIds, forKey: .dataStoreIds)
-      try container.encode(self.solutionType, forKey: .solutionType)
-      try container.encode(self.industryVertical, forKey: .industryVertical)
+      if self.solutionType != SolutionType() {
+        try container.encode(self.solutionType, forKey: .solutionType)
+      }
+      if self.industryVertical != IndustryVertical() {
+        try container.encode(self.industryVertical, forKey: .industryVertical)
+      }
       try container.encodeIfPresent(self.commonConfig, forKey: .commonConfig)
       try container.encodeIfPresent(self.knowledgeGraphConfig, forKey: .knowledgeGraphConfig)
-      try container.encode(self.appType, forKey: .appType)
+      if self.appType != Engine.AppType() {
+        try container.encode(self.appType, forKey: .appType)
+      }
       try container.encode(self.disableAnalytics, forKey: .disableAnalytics)
       try container.encodeIfPresent(self.sessionConfig, forKey: .sessionConfig)
       try container.encode(self.features, forKey: .features)
       try container.encodeIfPresent(self.cmekConfig, forKey: .cmekConfig)
-      try container.encode(self.configurableBillingApproach, forKey: .configurableBillingApproach)
+      if self.configurableBillingApproach != Engine.ConfigurableBillingApproach() {
+        try container.encode(self.configurableBillingApproach, forKey: .configurableBillingApproach)
+      }
       try container.encode(self.modelConfigs, forKey: .modelConfigs)
       try container.encodeIfPresent(self.observabilityConfig, forKey: .observabilityConfig)
       try container.encode(self.connectorTenantInfo, forKey: .connectorTenantInfo)
       try container.encodeIfPresent(self.agentGatewaySetting, forKey: .agentGatewaySetting)
-      try container.encode(self.marketplaceAgentVisibility, forKey: .marketplaceAgentVisibility)
+      if self.marketplaceAgentVisibility != Engine.MarketplaceAgentVisibility() {
+        try container.encode(self.marketplaceAgentVisibility, forKey: .marketplaceAgentVisibility)
+      }
       try container.encode(self.procurementContactEmails, forKey: .procurementContactEmails)
       try container.encode(self.associatedAgentRegistry, forKey: .associatedAgentRegistry)
 
       if let choice = self.engineConfig {
         switch choice {
         case .chatEngineConfig(let value):
-          try container.encode(value, forKey: .chatEngineConfig)
+          try container.encodeIfPresent(value, forKey: .chatEngineConfig)
         case .searchEngineConfig(let value):
-          try container.encode(value, forKey: .searchEngineConfig)
+          try container.encodeIfPresent(value, forKey: .searchEngineConfig)
         case .mediaRecommendationEngineConfig(let value):
-          try container.encode(value, forKey: .mediaRecommendationEngineConfig)
+          try container.encodeIfPresent(value, forKey: .mediaRecommendationEngineConfig)
         }
       }
 
       if let choice = self.engineMetadata {
         switch choice {
         case .chatEngineMetadata(let value):
-          try container.encode(value, forKey: .chatEngineMetadata)
+          try container.encodeIfPresent(value, forKey: .chatEngineMetadata)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -540,8 +550,12 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.searchTier, forKey: .searchTier)
-        try container.encode(self.requiredSubscriptionTier, forKey: .requiredSubscriptionTier)
+        if self.searchTier != SearchTier() {
+          try container.encode(self.searchTier, forKey: .searchTier)
+        }
+        if self.requiredSubscriptionTier != SubscriptionTier() {
+          try container.encode(self.requiredSubscriptionTier, forKey: .requiredSubscriptionTier)
+        }
         try container.encode(self.searchAddOns, forKey: .searchAddOns)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -704,7 +718,9 @@
         try container.encode(self.optimizationObjective, forKey: .optimizationObjective)
         try container.encodeIfPresent(
           self.optimizationObjectiveConfig, forKey: .optimizationObjectiveConfig)
-        try container.encode(self.trainingState, forKey: .trainingState)
+        if self.trainingState != Engine.MediaRecommendationEngineConfig.TrainingState() {
+          try container.encode(self.trainingState, forKey: .trainingState)
+        }
         try container.encodeIfPresent(self.engineFeaturesConfig, forKey: .engineFeaturesConfig)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -884,9 +900,9 @@
           if let choice = self.typeDedicatedConfig {
             switch choice {
             case .recommendedForYouConfig(let value):
-              try container.encode(value, forKey: .recommendedForYouConfig)
+              try container.encodeIfPresent(value, forKey: .recommendedForYouConfig)
             case .mostPopularConfig(let value):
-              try container.encode(value, forKey: .mostPopularConfig)
+              try container.encodeIfPresent(value, forKey: .mostPopularConfig)
             }
           }
           for (key, value) in self._unknownFields.json {

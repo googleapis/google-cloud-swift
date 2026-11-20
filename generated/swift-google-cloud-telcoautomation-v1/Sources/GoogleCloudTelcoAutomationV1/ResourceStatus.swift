@@ -131,8 +131,12 @@ public struct ResourceStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.group, forKey: .group)
     try container.encode(self.version, forKey: .version)
     try container.encode(self.kind, forKey: .kind)
-    try container.encode(self.resourceType, forKey: .resourceType)
-    try container.encode(self.status, forKey: .status)
+    if self.resourceType != ResourceType() {
+      try container.encode(self.resourceType, forKey: .resourceType)
+    }
+    if self.status != GoogleCloudTelcoAutomationV1.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.nfDeployStatus, forKey: .nfDeployStatus)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

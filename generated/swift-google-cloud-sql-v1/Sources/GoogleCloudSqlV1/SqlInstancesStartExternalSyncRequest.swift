@@ -165,17 +165,23 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.project, forKey: .project)
-      try container.encode(self.syncMode, forKey: .syncMode)
+      if self.syncMode != SqlInstancesVerifyExternalSyncSettingsRequest.ExternalSyncMode() {
+        try container.encode(self.syncMode, forKey: .syncMode)
+      }
       try container.encode(self.skipVerification, forKey: .skipVerification)
-      try container.encode(self.syncParallelLevel, forKey: .syncParallelLevel)
-      try container.encode(self.migrationType, forKey: .migrationType)
+      if self.syncParallelLevel != ExternalSyncParallelLevel() {
+        try container.encode(self.syncParallelLevel, forKey: .syncParallelLevel)
+      }
+      if self.migrationType != SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType() {
+        try container.encode(self.migrationType, forKey: .migrationType)
+      }
       try container.encode(self.replicaOverwriteEnabled, forKey: .replicaOverwriteEnabled)
       try container.encode(self.location, forKey: .location)
 
       if let choice = self.syncConfig {
         switch choice {
         case .mysqlSyncConfig(let value):
-          try container.encode(value, forKey: .mysqlSyncConfig)
+          try container.encodeIfPresent(value, forKey: .mysqlSyncConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

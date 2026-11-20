@@ -99,9 +99,9 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.values {
       switch choice {
       case .value(let value):
-        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(value, forKey: .value)
       case .valueSource(let value):
-        try container.encode(value, forKey: .valueSource)
+        try container.encodeIfPresent(value, forKey: .valueSource)
       }
     }
     for (key, value) in self._unknownFields.json {

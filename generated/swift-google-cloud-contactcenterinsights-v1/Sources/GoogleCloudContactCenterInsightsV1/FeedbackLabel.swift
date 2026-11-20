@@ -128,9 +128,9 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.labelType {
       switch choice {
       case .label(let value):
-        try container.encode(value, forKey: .label)
+        try container.encodeIfPresent(value, forKey: .label)
       case .qaAnswerLabel(let value):
-        try container.encode(value, forKey: .qaAnswerLabel)
+        try container.encodeIfPresent(value, forKey: .qaAnswerLabel)
       }
     }
     for (key, value) in self._unknownFields.json {

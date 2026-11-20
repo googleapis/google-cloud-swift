@@ -101,11 +101,15 @@ public struct AmazonSQSSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.region, forKey: .region)
+    if self.region != S3Region() {
+      try container.encode(self.region, forKey: .region)
+    }
     try container.encode(self.queue, forKey: .queue)
     try container.encode(self.accountNumber, forKey: .accountNumber)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
-    try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    if self.sourceDeletionOption != SourceDeletionOption() {
+      try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

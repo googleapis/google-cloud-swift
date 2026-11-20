@@ -120,7 +120,9 @@ public struct ConfigChange: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.element, forKey: .element)
     try container.encode(self.oldValue, forKey: .oldValue)
     try container.encode(self.newValue, forKey: .newValue)
-    try container.encode(self.changeType, forKey: .changeType)
+    if self.changeType != ChangeType() {
+      try container.encode(self.changeType, forKey: .changeType)
+    }
     try container.encode(self.advices, forKey: .advices)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -156,7 +156,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .computeInstance(let value):
-        try container.encode(value, forKey: .computeInstance)
+        try container.encodeIfPresent(value, forKey: .computeInstance)
       }
     }
     for (key, value) in self._unknownFields.json {

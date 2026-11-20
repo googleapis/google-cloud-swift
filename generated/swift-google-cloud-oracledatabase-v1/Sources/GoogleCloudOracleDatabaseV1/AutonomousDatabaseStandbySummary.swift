@@ -108,7 +108,9 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.lagTimeDuration, forKey: .lagTimeDuration)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudOracleDatabaseV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.dataGuardRoleChangedTime, forKey: .dataGuardRoleChangedTime)
     try container.encodeIfPresent(
       self.disasterRecoveryRoleChangedTime, forKey: .disasterRecoveryRoleChangedTime)

@@ -102,7 +102,9 @@ public struct AclPolicyRevisionStatus: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.aclPolicyRevision, forKey: .aclPolicyRevision)
     try container.encode(self.aclPolicyRevisionNumber, forKey: .aclPolicyRevisionNumber)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AclPolicyRevisionStatus.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errorMessage, forKey: .errorMessage)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

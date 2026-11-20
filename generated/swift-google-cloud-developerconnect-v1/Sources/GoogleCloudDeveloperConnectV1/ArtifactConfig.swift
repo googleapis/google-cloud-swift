@@ -121,14 +121,14 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.artifactStorage {
       switch choice {
       case .googleArtifactRegistry(let value):
-        try container.encode(value, forKey: .googleArtifactRegistry)
+        try container.encodeIfPresent(value, forKey: .googleArtifactRegistry)
       }
     }
 
     if let choice = self.artifactMetadataStorage {
       switch choice {
       case .googleArtifactAnalysis(let value):
-        try container.encode(value, forKey: .googleArtifactAnalysis)
+        try container.encodeIfPresent(value, forKey: .googleArtifactAnalysis)
       }
     }
     for (key, value) in self._unknownFields.json {

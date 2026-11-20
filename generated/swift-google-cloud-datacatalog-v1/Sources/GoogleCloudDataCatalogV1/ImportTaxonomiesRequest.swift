@@ -105,9 +105,9 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.source {
       switch choice {
       case .inlineSource(let value):
-        try container.encode(value, forKey: .inlineSource)
+        try container.encodeIfPresent(value, forKey: .inlineSource)
       case .crossRegionalSource(let value):
-        try container.encode(value, forKey: .crossRegionalSource)
+        try container.encodeIfPresent(value, forKey: .crossRegionalSource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -226,24 +226,30 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.inputUri, forKey: .inputUri)
     try container.encode(self.outputUri, forKey: .outputUri)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Job.ProcessingState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.ttlAfterCompletionDays, forKey: .ttlAfterCompletionDays)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.error, forKey: .error)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != Job.ProcessingMode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encode(self.batchModePriority, forKey: .batchModePriority)
-    try container.encode(self.optimization, forKey: .optimization)
+    if self.optimization != Job.OptimizationStrategy() {
+      try container.encode(self.optimization, forKey: .optimization)
+    }
     try container.encode(self.fillContentGaps, forKey: .fillContentGaps)
 
     if let choice = self.jobConfig {
       switch choice {
       case .templateId(let value):
-        try container.encode(value, forKey: .templateId)
+        try container.encodeIfPresent(value, forKey: .templateId)
       case .config(let value):
-        try container.encode(value, forKey: .config)
+        try container.encodeIfPresent(value, forKey: .config)
       }
     }
     for (key, value) in self._unknownFields.json {

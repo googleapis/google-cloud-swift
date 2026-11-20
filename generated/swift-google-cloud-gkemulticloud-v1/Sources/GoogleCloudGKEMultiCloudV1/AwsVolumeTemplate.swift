@@ -118,7 +118,9 @@ public struct AwsVolumeTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sizeGib, forKey: .sizeGib)
-    try container.encode(self.volumeType, forKey: .volumeType)
+    if self.volumeType != AwsVolumeTemplate.VolumeType() {
+      try container.encode(self.volumeType, forKey: .volumeType)
+    }
     try container.encode(self.iops, forKey: .iops)
     try container.encode(self.throughput, forKey: .throughput)
     try container.encode(self.kmsKeyArn, forKey: .kmsKeyArn)

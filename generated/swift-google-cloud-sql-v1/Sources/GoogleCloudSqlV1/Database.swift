@@ -162,7 +162,7 @@
       if let choice = self.databaseDetails {
         switch choice {
         case .sqlserverDatabaseDetails(let value):
-          try container.encode(value, forKey: .sqlserverDatabaseDetails)
+          try container.encodeIfPresent(value, forKey: .sqlserverDatabaseDetails)
         }
       }
       for (key, value) in self._unknownFields.json {

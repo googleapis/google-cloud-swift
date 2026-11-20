@@ -114,7 +114,9 @@ public struct AmazonS3V2Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.s3Uri, forKey: .s3Uri)
-    try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    if self.sourceDeletionOption != SourceDeletionOptionV2() {
+      try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    }
     try container.encode(self.maxLookbackDays, forKey: .maxLookbackDays)
     try container.encode(self.chronicleServiceAccount, forKey: .chronicleServiceAccount)
     try container.encode(self.includePrefixes, forKey: .includePrefixes)

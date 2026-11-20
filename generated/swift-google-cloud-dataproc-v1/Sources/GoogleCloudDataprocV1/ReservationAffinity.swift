@@ -87,7 +87,9 @@ public struct ReservationAffinity: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.consumeReservationType, forKey: .consumeReservationType)
+    if self.consumeReservationType != ReservationAffinity.Type_() {
+      try container.encode(self.consumeReservationType, forKey: .consumeReservationType)
+    }
     try container.encode(self.key, forKey: .key)
     try container.encode(self.values, forKey: .values)
     for (key, value) in self._unknownFields.json {

@@ -134,12 +134,16 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.feedbackType, forKey: .feedbackType)
+      if self.feedbackType != Feedback.FeedbackType() {
+        try container.encode(self.feedbackType, forKey: .feedbackType)
+      }
       try container.encode(self.reasons, forKey: .reasons)
       try container.encode(self.comment, forKey: .comment)
       try container.encodeIfPresent(self.conversationInfo, forKey: .conversationInfo)
       try container.encode(self.llmModelVersion, forKey: .llmModelVersion)
-      try container.encode(self.feedbackSource, forKey: .feedbackSource)
+      if self.feedbackSource != Feedback.FeedbackSource() {
+        try container.encode(self.feedbackSource, forKey: .feedbackSource)
+      }
       try container.encode(self.componentVersion, forKey: .componentVersion)
       try container.encode(self.dataTermsAccepted, forKey: .dataTermsAccepted)
       for (key, value) in self._unknownFields.json {

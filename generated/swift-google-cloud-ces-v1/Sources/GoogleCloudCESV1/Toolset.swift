@@ -177,17 +177,19 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.executionType, forKey: .executionType)
+    if self.executionType != ExecutionType() {
+      try container.encode(self.executionType, forKey: .executionType)
+    }
     try container.encodeIfPresent(self.toolFakeConfig, forKey: .toolFakeConfig)
 
     if let choice = self.toolsetType {
       switch choice {
       case .mcpToolset(let value):
-        try container.encode(value, forKey: .mcpToolset)
+        try container.encodeIfPresent(value, forKey: .mcpToolset)
       case .openApiToolset(let value):
-        try container.encode(value, forKey: .openApiToolset)
+        try container.encodeIfPresent(value, forKey: .openApiToolset)
       case .connectorToolset(let value):
-        try container.encode(value, forKey: .connectorToolset)
+        try container.encodeIfPresent(value, forKey: .connectorToolset)
       }
     }
     for (key, value) in self._unknownFields.json {

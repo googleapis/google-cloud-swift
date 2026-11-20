@@ -101,11 +101,11 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .hotwordRule(let value):
-        try container.encode(value, forKey: .hotwordRule)
+        try container.encodeIfPresent(value, forKey: .hotwordRule)
       case .exclusionRule(let value):
-        try container.encode(value, forKey: .exclusionRule)
+        try container.encodeIfPresent(value, forKey: .exclusionRule)
       case .adjustmentRule(let value):
-        try container.encode(value, forKey: .adjustmentRule)
+        try container.encodeIfPresent(value, forKey: .adjustmentRule)
       }
     }
     for (key, value) in self._unknownFields.json {

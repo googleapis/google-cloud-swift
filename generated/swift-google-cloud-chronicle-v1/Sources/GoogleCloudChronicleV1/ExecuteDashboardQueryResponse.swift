@@ -250,25 +250,25 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       if let choice = self.value {
         switch choice {
         case .nullVal(let value):
-          try container.encode(value, forKey: .nullVal)
+          try container.encodeIfPresent(value, forKey: .nullVal)
         case .boolVal(let value):
-          try container.encode(value, forKey: .boolVal)
+          try container.encodeIfPresent(value, forKey: .boolVal)
         case .bytesVal(let value):
-          try container.encode(value, forKey: .bytesVal)
+          try container.encodeIfPresent(value, forKey: .bytesVal)
         case .doubleVal(let value):
-          try container.encode(value, forKey: .doubleVal)
+          try container.encodeIfPresent(value, forKey: .doubleVal)
         case .int64Val(let value):
-          try container.encode(value, forKey: .int64Val)
+          try container.encodeIfPresent(value, forKey: .int64Val)
         case .uint64Val(let value):
-          try container.encode(value, forKey: .uint64Val)
+          try container.encodeIfPresent(value, forKey: .uint64Val)
         case .stringVal(let value):
-          try container.encode(value, forKey: .stringVal)
+          try container.encodeIfPresent(value, forKey: .stringVal)
         case .timestampVal(let value):
-          try container.encode(value, forKey: .timestampVal)
+          try container.encodeIfPresent(value, forKey: .timestampVal)
         case .dateVal(let value):
-          try container.encode(value, forKey: .dateVal)
+          try container.encodeIfPresent(value, forKey: .dateVal)
         case .protoVal(let value):
-          try container.encode(value, forKey: .protoVal)
+          try container.encodeIfPresent(value, forKey: .protoVal)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -495,9 +495,9 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       if let choice = self.type {
         switch choice {
         case .value(let value):
-          try container.encode(value, forKey: .value)
+          try container.encodeIfPresent(value, forKey: .value)
         case .list(let value):
-          try container.encode(value, forKey: .list)
+          try container.encodeIfPresent(value, forKey: .list)
         }
       }
       for (key, value) in self._unknownFields.json {

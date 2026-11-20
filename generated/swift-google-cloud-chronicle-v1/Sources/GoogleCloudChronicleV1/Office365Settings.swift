@@ -104,7 +104,9 @@ public struct Office365Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.tenantId, forKey: .tenantId)
-    try container.encode(self.contentType, forKey: .contentType)
+    if self.contentType != Office365Settings.ContentType() {
+      try container.encode(self.contentType, forKey: .contentType)
+    }
     try container.encode(self.hostname, forKey: .hostname)
     try container.encode(self.authEndpoint, forKey: .authEndpoint)
     for (key, value) in self._unknownFields.json {

@@ -165,7 +165,9 @@ public struct InfoTypeDescription: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.categories, forKey: .categories)
     try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
     try container.encode(self.specificInfoTypes, forKey: .specificInfoTypes)
-    try container.encode(self.launchStatus, forKey: .launchStatus)
+    if self.launchStatus != InfoTypeDescription.InfoTypeLaunchStatus() {
+      try container.encode(self.launchStatus, forKey: .launchStatus)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

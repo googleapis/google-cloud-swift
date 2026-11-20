@@ -121,9 +121,9 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.toolIdentifier {
       switch choice {
       case .tool(let value):
-        try container.encode(value, forKey: .tool)
+        try container.encodeIfPresent(value, forKey: .tool)
       case .toolsetTool(let value):
-        try container.encode(value, forKey: .toolsetTool)
+        try container.encodeIfPresent(value, forKey: .toolsetTool)
       }
     }
     for (key, value) in self._unknownFields.json {

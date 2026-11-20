@@ -202,9 +202,9 @@
       if let choice = self.data {
         switch choice {
         case .structData(let value):
-          try container.encode(value, forKey: .structData)
+          try container.encodeIfPresent(value, forKey: .structData)
         case .jsonData(let value):
-          try container.encode(value, forKey: .jsonData)
+          try container.encodeIfPresent(value, forKey: .jsonData)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -316,9 +316,9 @@
         if let choice = self.content {
           switch choice {
           case .rawBytes(let value):
-            try container.encode(value, forKey: .rawBytes)
+            try container.encodeIfPresent(value, forKey: .rawBytes)
           case .uri(let value):
-            try container.encode(value, forKey: .uri)
+            try container.encodeIfPresent(value, forKey: .uri)
           }
         }
         for (key, value) in self._unknownFields.json {

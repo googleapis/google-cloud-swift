@@ -261,7 +261,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.certificateConfig {
           switch choice {
           case .gcpSecretManagerCertificateConfig(let value):
-            try container.encode(value, forKey: .gcpSecretManagerCertificateConfig)
+            try container.encodeIfPresent(value, forKey: .gcpSecretManagerCertificateConfig)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -638,7 +638,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.certificate {
           switch choice {
           case .gcpSecretManagerSecretUri(let value):
-            try container.encode(value, forKey: .gcpSecretManagerSecretUri)
+            try container.encodeIfPresent(value, forKey: .gcpSecretManagerSecretUri)
           }
         }
         for (key, value) in self._unknownFields.json {

@@ -155,12 +155,16 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Source.SourceType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.priority, forKey: .priority)
     try container.encode(self.managed, forKey: .managed)
     try container.encode(self.pendingFrameCount, forKey: .pendingFrameCount)
     try container.encode(self.errorFrameCount, forKey: .errorFrameCount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Source.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

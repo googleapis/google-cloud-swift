@@ -118,14 +118,16 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.diskName, forKey: .diskName)
-    try container.encode(self.diskType, forKey: .diskType)
+    if self.diskType != ComputeEngineDiskType() {
+      try container.encode(self.diskType, forKey: .diskType)
+    }
     try container.encode(self.deviceName, forKey: .deviceName)
     try container.encodeIfPresent(self.encryption, forKey: .encryption)
 
     if let choice = self.source {
       switch choice {
       case .image(let value):
-        try container.encode(value, forKey: .image)
+        try container.encodeIfPresent(value, forKey: .image)
       }
     }
     for (key, value) in self._unknownFields.json {

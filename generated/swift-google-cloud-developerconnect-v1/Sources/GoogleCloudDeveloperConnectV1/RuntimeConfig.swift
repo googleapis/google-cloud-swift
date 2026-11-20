@@ -136,23 +136,25 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.uri, forKey: .uri)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RuntimeConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.runtime {
       switch choice {
       case .gkeWorkload(let value):
-        try container.encode(value, forKey: .gkeWorkload)
+        try container.encodeIfPresent(value, forKey: .gkeWorkload)
       case .googleCloudRun(let value):
-        try container.encode(value, forKey: .googleCloudRun)
+        try container.encodeIfPresent(value, forKey: .googleCloudRun)
       }
     }
 
     if let choice = self.derivedFrom {
       switch choice {
       case .appHubWorkload(let value):
-        try container.encode(value, forKey: .appHubWorkload)
+        try container.encodeIfPresent(value, forKey: .appHubWorkload)
       case .appHubService(let value):
-        try container.encode(value, forKey: .appHubService)
+        try container.encodeIfPresent(value, forKey: .appHubService)
       }
     }
     for (key, value) in self._unknownFields.json {

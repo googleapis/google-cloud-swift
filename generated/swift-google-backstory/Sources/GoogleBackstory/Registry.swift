@@ -111,7 +111,9 @@ public struct Registry: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.registryKey, forKey: .registryKey)
     try container.encode(self.registryValueName, forKey: .registryValueName)
     try container.encode(self.registryValueData, forKey: .registryValueData)
-    try container.encode(self.registryValueType, forKey: .registryValueType)
+    if self.registryValueType != Registry.Type_() {
+      try container.encode(self.registryValueType, forKey: .registryValueType)
+    }
     try container.encode(self.registryValueBinaryData, forKey: .registryValueBinaryData)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

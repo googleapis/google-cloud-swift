@@ -72,7 +72,9 @@ public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.patchMode, forKey: .patchMode)
+    if self.patchMode != GkeAutoUpgradeConfig.PatchMode() {
+      try container.encode(self.patchMode, forKey: .patchMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

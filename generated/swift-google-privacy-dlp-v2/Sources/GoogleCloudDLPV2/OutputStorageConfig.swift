@@ -107,14 +107,16 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.outputSchema, forKey: .outputSchema)
+    if self.outputSchema != OutputStorageConfig.OutputSchema() {
+      try container.encode(self.outputSchema, forKey: .outputSchema)
+    }
 
     if let choice = self.type {
       switch choice {
       case .table(let value):
-        try container.encode(value, forKey: .table)
+        try container.encodeIfPresent(value, forKey: .table)
       case .storagePath(let value):
-        try container.encode(value, forKey: .storagePath)
+        try container.encodeIfPresent(value, forKey: .storagePath)
       }
     }
     for (key, value) in self._unknownFields.json {

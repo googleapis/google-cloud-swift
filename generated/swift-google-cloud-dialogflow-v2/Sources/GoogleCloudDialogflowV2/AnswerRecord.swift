@@ -142,7 +142,7 @@
       if let choice = self.record {
         switch choice {
         case .agentAssistantRecord(let value):
-          try container.encode(value, forKey: .agentAssistantRecord)
+          try container.encodeIfPresent(value, forKey: .agentAssistantRecord)
         }
       }
       for (key, value) in self._unknownFields.json {

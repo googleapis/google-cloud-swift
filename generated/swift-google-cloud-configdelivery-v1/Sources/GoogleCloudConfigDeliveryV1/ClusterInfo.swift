@@ -123,7 +123,9 @@ public struct ClusterInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.desired, forKey: .desired)
     try container.encodeIfPresent(self.initial, forKey: .initial)
     try container.encodeIfPresent(self.current, forKey: .current)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ClusterInfo.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.messages, forKey: .messages)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)

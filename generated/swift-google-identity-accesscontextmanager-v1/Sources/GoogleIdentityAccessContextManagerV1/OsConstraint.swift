@@ -95,7 +95,9 @@ public struct OsConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.osType, forKey: .osType)
+    if self.osType != GoogleIdentityAccessContextManagerType.OsType() {
+      try container.encode(self.osType, forKey: .osType)
+    }
     try container.encode(self.minimumVersion, forKey: .minimumVersion)
     try container.encode(self.requireVerifiedChromeOs, forKey: .requireVerifiedChromeOs)
     for (key, value) in self._unknownFields.json {

@@ -139,7 +139,9 @@ public struct ListCryptoKeysRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.versionView, forKey: .versionView)
+    if self.versionView != CryptoKeyVersion.CryptoKeyVersionView() {
+      try container.encode(self.versionView, forKey: .versionView)
+    }
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.orderBy, forKey: .orderBy)
     for (key, value) in self._unknownFields.json {

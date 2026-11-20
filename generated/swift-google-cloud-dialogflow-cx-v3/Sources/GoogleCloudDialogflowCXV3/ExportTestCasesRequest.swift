@@ -123,13 +123,15 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.dataFormat, forKey: .dataFormat)
+      if self.dataFormat != ExportTestCasesRequest.DataFormat() {
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+      }
       try container.encode(self.filter, forKey: .filter)
 
       if let choice = self.destination {
         switch choice {
         case .gcsUri(let value):
-          try container.encode(value, forKey: .gcsUri)
+          try container.encodeIfPresent(value, forKey: .gcsUri)
         }
       }
       for (key, value) in self._unknownFields.json {

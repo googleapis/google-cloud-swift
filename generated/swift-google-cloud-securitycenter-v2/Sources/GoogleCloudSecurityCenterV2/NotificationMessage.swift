@@ -112,7 +112,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.event {
       switch choice {
       case .finding(let value):
-        try container.encode(value, forKey: .finding)
+        try container.encodeIfPresent(value, forKey: .finding)
       }
     }
     for (key, value) in self._unknownFields.json {

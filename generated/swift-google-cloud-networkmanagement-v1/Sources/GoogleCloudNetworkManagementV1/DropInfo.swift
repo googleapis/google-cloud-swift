@@ -123,7 +123,9 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.cause, forKey: .cause)
+    if self.cause != DropInfo.Cause() {
+      try container.encode(self.cause, forKey: .cause)
+    }
     try container.encode(self.resourceUri, forKey: .resourceUri)
     try container.encode(self.sourceIp, forKey: .sourceIp)
     try container.encode(self.destinationIp, forKey: .destinationIp)

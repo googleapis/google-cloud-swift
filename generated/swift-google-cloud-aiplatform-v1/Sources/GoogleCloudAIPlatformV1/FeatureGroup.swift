@@ -153,7 +153,7 @@
       if let choice = self.source {
         switch choice {
         case .bigQuery(let value):
-          try container.encode(value, forKey: .bigQuery)
+          try container.encodeIfPresent(value, forKey: .bigQuery)
         }
       }
       for (key, value) in self._unknownFields.json {

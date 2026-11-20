@@ -391,11 +391,11 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           if let choice = self.fieldInfo {
             switch choice {
             case .stringProfile(let value):
-              try container.encode(value, forKey: .stringProfile)
+              try container.encodeIfPresent(value, forKey: .stringProfile)
             case .integerProfile(let value):
-              try container.encode(value, forKey: .integerProfile)
+              try container.encodeIfPresent(value, forKey: .integerProfile)
             case .doubleProfile(let value):
-              try container.encode(value, forKey: .doubleProfile)
+              try container.encodeIfPresent(value, forKey: .doubleProfile)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -1076,7 +1076,12 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.state, forKey: .state)
+        if self.state
+          != GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult
+          .State()
+        {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encode(self.message, forKey: .message)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

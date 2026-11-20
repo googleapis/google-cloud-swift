@@ -118,7 +118,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.activity {
       switch choice {
       case .received(let value):
-        try container.encode(value, forKey: .received)
+        try container.encodeIfPresent(value, forKey: .received)
       }
     }
     for (key, value) in self._unknownFields.json {

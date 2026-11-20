@@ -119,13 +119,13 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.step {
       switch choice {
       case .initializing(let value):
-        try container.encode(value, forKey: .initializing)
+        try container.encodeIfPresent(value, forKey: .initializing)
       case .loadingSourceFiles(let value):
-        try container.encode(value, forKey: .loadingSourceFiles)
+        try container.encodeIfPresent(value, forKey: .loadingSourceFiles)
       case .adaptingOs(let value):
-        try container.encode(value, forKey: .adaptingOs)
+        try container.encodeIfPresent(value, forKey: .adaptingOs)
       case .creatingImage(let value):
-        try container.encode(value, forKey: .creatingImage)
+        try container.encodeIfPresent(value, forKey: .creatingImage)
       }
     }
     for (key, value) in self._unknownFields.json {

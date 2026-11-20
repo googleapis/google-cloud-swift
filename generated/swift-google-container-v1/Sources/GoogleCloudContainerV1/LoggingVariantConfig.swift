@@ -71,7 +71,9 @@ public struct LoggingVariantConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.variant, forKey: .variant)
+    if self.variant != LoggingVariantConfig.Variant() {
+      try container.encode(self.variant, forKey: .variant)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

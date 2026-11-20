@@ -112,15 +112,15 @@ public struct ApiAuthentication: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authConfig {
       switch choice {
       case .apiKeyConfig(let value):
-        try container.encode(value, forKey: .apiKeyConfig)
+        try container.encodeIfPresent(value, forKey: .apiKeyConfig)
       case .oauthConfig(let value):
-        try container.encode(value, forKey: .oauthConfig)
+        try container.encodeIfPresent(value, forKey: .oauthConfig)
       case .serviceAgentIdTokenAuthConfig(let value):
-        try container.encode(value, forKey: .serviceAgentIdTokenAuthConfig)
+        try container.encodeIfPresent(value, forKey: .serviceAgentIdTokenAuthConfig)
       case .serviceAccountAuthConfig(let value):
-        try container.encode(value, forKey: .serviceAccountAuthConfig)
+        try container.encodeIfPresent(value, forKey: .serviceAccountAuthConfig)
       case .bearerTokenConfig(let value):
-        try container.encode(value, forKey: .bearerTokenConfig)
+        try container.encodeIfPresent(value, forKey: .bearerTokenConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -248,9 +248,9 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.target {
         switch choice {
         case .infoType(let value):
-          try container.encode(value, forKey: .infoType)
+          try container.encodeIfPresent(value, forKey: .infoType)
         case .redactAllText(let value):
-          try container.encode(value, forKey: .redactAllText)
+          try container.encodeIfPresent(value, forKey: .redactAllText)
         }
       }
       for (key, value) in self._unknownFields.json {

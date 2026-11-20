@@ -164,7 +164,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.methodMetadata {
       switch choice {
       case .createVersionMetadata(let value):
-        try container.encode(value, forKey: .createVersionMetadata)
+        try container.encodeIfPresent(value, forKey: .createVersionMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -87,7 +87,9 @@ public struct VirusDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vendor, forKey: .vendor)
     try container.encode(self.names, forKey: .names)
-    try container.encode(self.threatType, forKey: .threatType)
+    if self.threatType != VirusDetail.ThreatType() {
+      try container.encode(self.threatType, forKey: .threatType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

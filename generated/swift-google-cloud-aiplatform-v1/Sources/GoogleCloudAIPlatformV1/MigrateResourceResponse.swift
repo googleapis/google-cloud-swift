@@ -100,9 +100,9 @@
       if let choice = self.migratedResource {
         switch choice {
         case .dataset(let value):
-          try container.encode(value, forKey: .dataset)
+          try container.encodeIfPresent(value, forKey: .dataset)
         case .model(let value):
-          try container.encode(value, forKey: .model)
+          try container.encodeIfPresent(value, forKey: .model)
         }
       }
       for (key, value) in self._unknownFields.json {

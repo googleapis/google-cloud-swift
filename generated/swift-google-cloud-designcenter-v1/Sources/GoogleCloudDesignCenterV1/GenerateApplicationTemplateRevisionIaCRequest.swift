@@ -90,7 +90,9 @@ public struct GenerateApplicationTemplateRevisionIaCRequest: Codable, Equatable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.iacFormat, forKey: .iacFormat)
+    if self.iacFormat != GenerateApplicationTemplateRevisionIaCRequest.IACFormat() {
+      try container.encode(self.iacFormat, forKey: .iacFormat)
+    }
     try container.encodeIfPresent(self.artifactLocation, forKey: .artifactLocation)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

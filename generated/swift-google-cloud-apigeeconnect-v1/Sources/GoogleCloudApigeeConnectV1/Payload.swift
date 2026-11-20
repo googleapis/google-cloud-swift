@@ -95,11 +95,11 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .httpRequest(let value):
-        try container.encode(value, forKey: .httpRequest)
+        try container.encodeIfPresent(value, forKey: .httpRequest)
       case .streamInfo(let value):
-        try container.encode(value, forKey: .streamInfo)
+        try container.encodeIfPresent(value, forKey: .streamInfo)
       case .action(let value):
-        try container.encode(value, forKey: .action)
+        try container.encodeIfPresent(value, forKey: .action)
       }
     }
     for (key, value) in self._unknownFields.json {

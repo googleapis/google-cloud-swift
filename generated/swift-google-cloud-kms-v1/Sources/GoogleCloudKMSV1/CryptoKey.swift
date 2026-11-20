@@ -276,7 +276,9 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.primary, forKey: .primary)
-    try container.encode(self.purpose, forKey: .purpose)
+    if self.purpose != CryptoKey.CryptoKeyPurpose() {
+      try container.encode(self.purpose, forKey: .purpose)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.nextRotationTime, forKey: .nextRotationTime)
     try container.encodeIfPresent(self.versionTemplate, forKey: .versionTemplate)
@@ -290,7 +292,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rotationSchedule {
       switch choice {
       case .rotationPeriod(let value):
-        try container.encode(value, forKey: .rotationPeriod)
+        try container.encodeIfPresent(value, forKey: .rotationPeriod)
       }
     }
     for (key, value) in self._unknownFields.json {

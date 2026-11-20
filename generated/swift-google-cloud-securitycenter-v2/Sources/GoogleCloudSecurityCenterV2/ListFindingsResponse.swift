@@ -314,7 +314,9 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.name, forKey: .name)
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.type, forKey: .type)
-        try container.encode(self.cloudProvider, forKey: .cloudProvider)
+        if self.cloudProvider != CloudProvider() {
+          try container.encode(self.cloudProvider, forKey: .cloudProvider)
+        }
         try container.encode(self.service, forKey: .service)
         try container.encode(self.location, forKey: .location)
         try container.encodeIfPresent(self.resourcePath, forKey: .resourcePath)
@@ -323,11 +325,11 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.cloudProviderMetadata {
           switch choice {
           case .gcpMetadata(let value):
-            try container.encode(value, forKey: .gcpMetadata)
+            try container.encodeIfPresent(value, forKey: .gcpMetadata)
           case .awsMetadata(let value):
-            try container.encode(value, forKey: .awsMetadata)
+            try container.encodeIfPresent(value, forKey: .awsMetadata)
           case .azureMetadata(let value):
-            try container.encode(value, forKey: .azureMetadata)
+            try container.encodeIfPresent(value, forKey: .azureMetadata)
           }
         }
         for (key, value) in self._unknownFields.json {

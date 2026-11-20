@@ -122,11 +122,11 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.response {
       switch choice {
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       case .queryResult(let value):
-        try container.encode(value, forKey: .queryResult)
+        try container.encodeIfPresent(value, forKey: .queryResult)
       case .outputConfig(let value):
-        try container.encode(value, forKey: .outputConfig)
+        try container.encodeIfPresent(value, forKey: .outputConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

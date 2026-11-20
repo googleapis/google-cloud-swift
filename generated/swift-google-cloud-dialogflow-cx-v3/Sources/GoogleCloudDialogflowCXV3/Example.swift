@@ -165,7 +165,9 @@
       try container.encode(self.tokenCount, forKey: .tokenCount)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-      try container.encode(self.conversationState, forKey: .conversationState)
+      if self.conversationState != OutputState() {
+        try container.encode(self.conversationState, forKey: .conversationState)
+      }
       try container.encode(self.languageCode, forKey: .languageCode)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

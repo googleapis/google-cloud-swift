@@ -166,7 +166,9 @@ public struct Framework: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Framework.FrameworkType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.cloudControlDetails, forKey: .cloudControlDetails)
     try container.encode(self.category, forKey: .category)
     try container.encode(self.supportedCloudProviders, forKey: .supportedCloudProviders)

@@ -89,7 +89,9 @@ public struct ImportApplicationTemplateIaCResponse: Codable, Equatable, GoogleWK
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.applicationTemplate, forKey: .applicationTemplate)
     try container.encode(self.errors, forKey: .errors)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImportApplicationTemplateIaCResponse.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

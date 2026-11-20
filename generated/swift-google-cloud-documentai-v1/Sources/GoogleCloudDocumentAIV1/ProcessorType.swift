@@ -128,7 +128,9 @@ public struct ProcessorType: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.category, forKey: .category)
     try container.encode(self.availableLocations, forKey: .availableLocations)
     try container.encode(self.allowCreation, forKey: .allowCreation)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encode(self.sampleDocumentUris, forKey: .sampleDocumentUris)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

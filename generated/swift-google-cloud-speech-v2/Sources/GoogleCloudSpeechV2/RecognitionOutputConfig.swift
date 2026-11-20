@@ -102,9 +102,9 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.output {
       switch choice {
       case .gcsOutputConfig(let value):
-        try container.encode(value, forKey: .gcsOutputConfig)
+        try container.encodeIfPresent(value, forKey: .gcsOutputConfig)
       case .inlineResponseConfig(let value):
-        try container.encode(value, forKey: .inlineResponseConfig)
+        try container.encodeIfPresent(value, forKey: .inlineResponseConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

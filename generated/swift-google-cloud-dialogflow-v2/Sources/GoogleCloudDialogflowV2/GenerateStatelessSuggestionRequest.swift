@@ -156,9 +156,9 @@
       if let choice = self.generatorResource {
         switch choice {
         case .generator(let value):
-          try container.encode(value, forKey: .generator)
+          try container.encodeIfPresent(value, forKey: .generator)
         case .generatorName(let value):
-          try container.encode(value, forKey: .generatorName)
+          try container.encodeIfPresent(value, forKey: .generatorName)
         }
       }
       for (key, value) in self._unknownFields.json {

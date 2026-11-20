@@ -176,8 +176,12 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.privateConfig, forKey: .privateConfig)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.stateNote, forKey: .stateNote)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.stateNote != Instance.StateNote() {
+      try container.encode(self.stateNote, forKey: .stateNote)
+    }
     try container.encode(self.kmsKey, forKey: .kmsKey)
     try container.encodeIfPresent(self.hostConfig, forKey: .hostConfig)
     try container.encodeIfPresent(

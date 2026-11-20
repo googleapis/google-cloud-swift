@@ -288,9 +288,15 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.routeType, forKey: .routeType)
-    try container.encode(self.nextHopType, forKey: .nextHopType)
-    try container.encode(self.routeScope, forKey: .routeScope)
+    if self.routeType != RouteInfo.RouteType() {
+      try container.encode(self.routeType, forKey: .routeType)
+    }
+    if self.nextHopType != RouteInfo.NextHopType() {
+      try container.encode(self.nextHopType, forKey: .nextHopType)
+    }
+    if self.routeScope != RouteInfo.RouteScope() {
+      try container.encode(self.routeScope, forKey: .routeScope)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.region, forKey: .region)

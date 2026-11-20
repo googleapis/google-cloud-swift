@@ -199,33 +199,33 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .bytesType(let value):
-        try container.encode(value, forKey: .bytesType)
+        try container.encodeIfPresent(value, forKey: .bytesType)
       case .stringType(let value):
-        try container.encode(value, forKey: .stringType)
+        try container.encodeIfPresent(value, forKey: .stringType)
       case .int64Type(let value):
-        try container.encode(value, forKey: .int64Type)
+        try container.encodeIfPresent(value, forKey: .int64Type)
       case .float32Type(let value):
-        try container.encode(value, forKey: .float32Type)
+        try container.encodeIfPresent(value, forKey: .float32Type)
       case .float64Type(let value):
-        try container.encode(value, forKey: .float64Type)
+        try container.encodeIfPresent(value, forKey: .float64Type)
       case .boolType(let value):
-        try container.encode(value, forKey: .boolType)
+        try container.encodeIfPresent(value, forKey: .boolType)
       case .timestampType(let value):
-        try container.encode(value, forKey: .timestampType)
+        try container.encodeIfPresent(value, forKey: .timestampType)
       case .dateType(let value):
-        try container.encode(value, forKey: .dateType)
+        try container.encodeIfPresent(value, forKey: .dateType)
       case .aggregateType(let value):
-        try container.encode(value, forKey: .aggregateType)
+        try container.encodeIfPresent(value, forKey: .aggregateType)
       case .structType(let value):
-        try container.encode(value, forKey: .structType)
+        try container.encodeIfPresent(value, forKey: .structType)
       case .arrayType(let value):
-        try container.encode(value, forKey: .arrayType)
+        try container.encodeIfPresent(value, forKey: .arrayType)
       case .mapType(let value):
-        try container.encode(value, forKey: .mapType)
+        try container.encodeIfPresent(value, forKey: .mapType)
       case .protoType(let value):
-        try container.encode(value, forKey: .protoType)
+        try container.encodeIfPresent(value, forKey: .protoType)
       case .enumType(let value):
-        try container.encode(value, forKey: .enumType)
+        try container.encodeIfPresent(value, forKey: .enumType)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -361,7 +361,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.encoding {
           switch choice {
           case .raw(let value):
-            try container.encode(value, forKey: .raw)
+            try container.encodeIfPresent(value, forKey: .raw)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -633,9 +633,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.encoding {
           switch choice {
           case .utf8Raw(let value):
-            try container.encode(value, forKey: .utf8Raw)
+            try container.encodeIfPresent(value, forKey: .utf8Raw)
           case .utf8Bytes(let value):
-            try container.encode(value, forKey: .utf8Bytes)
+            try container.encodeIfPresent(value, forKey: .utf8Bytes)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -984,9 +984,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.encoding {
           switch choice {
           case .bigEndianBytes(let value):
-            try container.encode(value, forKey: .bigEndianBytes)
+            try container.encodeIfPresent(value, forKey: .bigEndianBytes)
           case .orderedCodeBytes(let value):
-            try container.encode(value, forKey: .orderedCodeBytes)
+            try container.encodeIfPresent(value, forKey: .orderedCodeBytes)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1555,7 +1555,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.encoding {
           switch choice {
           case .unixMicrosInt64(let value):
-            try container.encode(value, forKey: .unixMicrosInt64)
+            try container.encodeIfPresent(value, forKey: .unixMicrosInt64)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1934,11 +1934,11 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.encoding {
           switch choice {
           case .singleton(let value):
-            try container.encode(value, forKey: .singleton)
+            try container.encodeIfPresent(value, forKey: .singleton)
           case .delimitedBytes(let value):
-            try container.encode(value, forKey: .delimitedBytes)
+            try container.encodeIfPresent(value, forKey: .delimitedBytes)
           case .orderedCodeBytes(let value):
-            try container.encode(value, forKey: .orderedCodeBytes)
+            try container.encodeIfPresent(value, forKey: .orderedCodeBytes)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -2750,13 +2750,13 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.aggregator {
         switch choice {
         case .sum(let value):
-          try container.encode(value, forKey: .sum)
+          try container.encodeIfPresent(value, forKey: .sum)
         case .hllppUniqueCount(let value):
-          try container.encode(value, forKey: .hllppUniqueCount)
+          try container.encodeIfPresent(value, forKey: .hllppUniqueCount)
         case .max(let value):
-          try container.encode(value, forKey: .max)
+          try container.encodeIfPresent(value, forKey: .max)
         case .min(let value):
-          try container.encode(value, forKey: .min)
+          try container.encodeIfPresent(value, forKey: .min)
         }
       }
       for (key, value) in self._unknownFields.json {

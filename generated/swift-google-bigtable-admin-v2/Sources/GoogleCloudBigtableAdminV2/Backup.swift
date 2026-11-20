@@ -183,9 +183,13 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.sizeBytes, forKey: .sizeBytes)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Backup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.encryptionInfo, forKey: .encryptionInfo)
-    try container.encode(self.backupType, forKey: .backupType)
+    if self.backupType != Backup.BackupType() {
+      try container.encode(self.backupType, forKey: .backupType)
+    }
     try container.encodeIfPresent(self.hotToStandardTime, forKey: .hotToStandardTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -96,7 +96,9 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPa
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.rescheduleType, forKey: .rescheduleType)
+    if self.rescheduleType != RescheduleMaintenanceRequest.RescheduleType() {
+      try container.encode(self.rescheduleType, forKey: .rescheduleType)
+    }
     try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

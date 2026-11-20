@@ -105,7 +105,9 @@ public struct GenerateUploadUrlRequest: Codable, Equatable, GoogleWKT._AnyPackab
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
-    try container.encode(self.environment, forKey: .environment)
+    if self.environment != Environment() {
+      try container.encode(self.environment, forKey: .environment)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

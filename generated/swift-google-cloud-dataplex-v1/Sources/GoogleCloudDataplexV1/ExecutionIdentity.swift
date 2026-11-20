@@ -101,11 +101,11 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.identity {
       switch choice {
       case .dataplexServiceAgent(let value):
-        try container.encode(value, forKey: .dataplexServiceAgent)
+        try container.encodeIfPresent(value, forKey: .dataplexServiceAgent)
       case .userCredential(let value):
-        try container.encode(value, forKey: .userCredential)
+        try container.encodeIfPresent(value, forKey: .userCredential)
       case .serviceAccount(let value):
-        try container.encode(value, forKey: .serviceAccount)
+        try container.encodeIfPresent(value, forKey: .serviceAccount)
       }
     }
     for (key, value) in self._unknownFields.json {

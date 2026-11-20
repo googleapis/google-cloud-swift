@@ -282,7 +282,7 @@
       try container.encode(self.aliasIpv6Ranges, forKey: .aliasIpv6Ranges)
       try container.encodeIfPresent(self.enableVpcScopedDns, forKey: .enableVpcScopedDns)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

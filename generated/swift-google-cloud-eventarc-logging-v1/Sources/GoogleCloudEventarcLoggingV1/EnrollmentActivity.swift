@@ -118,7 +118,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.activity {
       switch choice {
       case .matched(let value):
-        try container.encode(value, forKey: .matched)
+        try container.encodeIfPresent(value, forKey: .matched)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -95,9 +95,9 @@
       if let choice = self.instance {
         switch choice {
         case .jsonInstance(let value):
-          try container.encode(value, forKey: .jsonInstance)
+          try container.encodeIfPresent(value, forKey: .jsonInstance)
         case .contentMapInstance(let value):
-          try container.encode(value, forKey: .contentMapInstance)
+          try container.encodeIfPresent(value, forKey: .contentMapInstance)
         }
       }
       for (key, value) in self._unknownFields.json {

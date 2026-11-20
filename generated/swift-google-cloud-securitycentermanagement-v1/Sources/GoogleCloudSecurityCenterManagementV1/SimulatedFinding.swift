@@ -168,11 +168,17 @@ public struct SimulatedFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.resourceName, forKey: .resourceName)
     try container.encode(self.category, forKey: .category)
-    try container.encode(self.state, forKey: .state)
+    if self.state != SimulatedFinding.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.sourceProperties, forKey: .sourceProperties)
     try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
-    try container.encode(self.severity, forKey: .severity)
-    try container.encode(self.findingClass, forKey: .findingClass)
+    if self.severity != SimulatedFinding.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
+    if self.findingClass != SimulatedFinding.FindingClass() {
+      try container.encode(self.findingClass, forKey: .findingClass)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

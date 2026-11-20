@@ -85,7 +85,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.parsedQuote {
       switch choice {
       case .dateTime(let value):
-        try container.encode(value, forKey: .dateTime)
+        try container.encodeIfPresent(value, forKey: .dateTime)
       }
     }
     for (key, value) in self._unknownFields.json {

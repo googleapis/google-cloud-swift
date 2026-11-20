@@ -116,9 +116,9 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.option {
       switch choice {
       case .autoclass(let value):
-        try container.encode(value, forKey: .autoclass)
+        try container.encodeIfPresent(value, forKey: .autoclass)
       case .storageClass(let value):
-        try container.encode(value, forKey: .storageClass)
+        try container.encodeIfPresent(value, forKey: .storageClass)
       }
     }
     for (key, value) in self._unknownFields.json {

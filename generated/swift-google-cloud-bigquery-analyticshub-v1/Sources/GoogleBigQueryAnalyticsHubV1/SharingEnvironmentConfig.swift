@@ -94,9 +94,9 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.environment {
       switch choice {
       case .defaultExchangeConfig(let value):
-        try container.encode(value, forKey: .defaultExchangeConfig)
+        try container.encodeIfPresent(value, forKey: .defaultExchangeConfig)
       case .dcrExchangeConfig(let value):
-        try container.encode(value, forKey: .dcrExchangeConfig)
+        try container.encodeIfPresent(value, forKey: .dcrExchangeConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

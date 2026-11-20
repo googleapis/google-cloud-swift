@@ -96,11 +96,11 @@ public struct ImageContainmentType: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .encloses(let value):
-        try container.encode(value, forKey: .encloses)
+        try container.encodeIfPresent(value, forKey: .encloses)
       case .fullyInside(let value):
-        try container.encode(value, forKey: .fullyInside)
+        try container.encodeIfPresent(value, forKey: .fullyInside)
       case .overlaps(let value):
-        try container.encode(value, forKey: .overlaps)
+        try container.encodeIfPresent(value, forKey: .overlaps)
       }
     }
     for (key, value) in self._unknownFields.json {

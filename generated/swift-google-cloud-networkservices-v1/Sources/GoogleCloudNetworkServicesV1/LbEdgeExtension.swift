@@ -151,7 +151,9 @@ public struct LbEdgeExtension: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.forwardingRules, forKey: .forwardingRules)
     try container.encode(self.extensionChains, forKey: .extensionChains)
-    try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+    if self.loadBalancingScheme != LoadBalancingScheme() {
+      try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

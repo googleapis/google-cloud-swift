@@ -95,9 +95,9 @@ public struct CharsToIgnore: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.characters {
       switch choice {
       case .charactersToSkip(let value):
-        try container.encode(value, forKey: .charactersToSkip)
+        try container.encodeIfPresent(value, forKey: .charactersToSkip)
       case .commonCharactersToIgnore(let value):
-        try container.encode(value, forKey: .commonCharactersToIgnore)
+        try container.encodeIfPresent(value, forKey: .commonCharactersToIgnore)
       }
     }
     for (key, value) in self._unknownFields.json {

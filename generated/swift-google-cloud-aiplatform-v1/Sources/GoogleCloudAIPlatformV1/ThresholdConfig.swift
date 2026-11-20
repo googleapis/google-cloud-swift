@@ -85,7 +85,7 @@
       if let choice = self.threshold {
         switch choice {
         case .value(let value):
-          try container.encode(value, forKey: .value)
+          try container.encodeIfPresent(value, forKey: .value)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -80,7 +80,9 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.eligibilityCriteria, forKey: .eligibilityCriteria)
+    if self.eligibilityCriteria != ServiceConfig.EligibilityCriteria() {
+      try container.encode(self.eligibilityCriteria, forKey: .eligibilityCriteria)
+    }
     try container.encodeIfPresent(self.supportEndTime, forKey: .supportEndTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

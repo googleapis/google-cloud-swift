@@ -130,21 +130,21 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
     if let choice = self.dataObject {
       switch choice {
       case .oracleRdbms(let value):
-        try container.encode(value, forKey: .oracleRdbms)
+        try container.encodeIfPresent(value, forKey: .oracleRdbms)
       case .mysqlRdbms(let value):
-        try container.encode(value, forKey: .mysqlRdbms)
+        try container.encodeIfPresent(value, forKey: .mysqlRdbms)
       case .postgresqlRdbms(let value):
-        try container.encode(value, forKey: .postgresqlRdbms)
+        try container.encodeIfPresent(value, forKey: .postgresqlRdbms)
       case .sqlServerRdbms(let value):
-        try container.encode(value, forKey: .sqlServerRdbms)
+        try container.encodeIfPresent(value, forKey: .sqlServerRdbms)
       case .salesforceOrg(let value):
-        try container.encode(value, forKey: .salesforceOrg)
+        try container.encodeIfPresent(value, forKey: .salesforceOrg)
       case .mongodbCluster(let value):
-        try container.encode(value, forKey: .mongodbCluster)
+        try container.encodeIfPresent(value, forKey: .mongodbCluster)
       case .spannerDatabase(let value):
-        try container.encode(value, forKey: .spannerDatabase)
+        try container.encodeIfPresent(value, forKey: .spannerDatabase)
       case .sourceCatalog(let value):
-        try container.encode(value, forKey: .sourceCatalog)
+        try container.encodeIfPresent(value, forKey: .sourceCatalog)
       }
     }
     for (key, value) in self._unknownFields.json {

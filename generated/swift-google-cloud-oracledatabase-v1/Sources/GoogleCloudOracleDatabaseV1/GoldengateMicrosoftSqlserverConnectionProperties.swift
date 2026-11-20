@@ -182,7 +182,11 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
     try container.encode(self.port, forKey: .port)
     try container.encode(self.username, forKey: .username)
     try container.encode(self.additionalAttributes, forKey: .additionalAttributes)
-    try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    if self.securityProtocol
+      != GoldengateMicrosoftSqlserverConnectionProperties.MicrosoftSqlserverSecurityProtocol()
+    {
+      try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    }
     try container.encode(self.sslCaFile, forKey: .sslCaFile)
     try container.encode(
       self.serverCertificateValidationRequired, forKey: .serverCertificateValidationRequired)
@@ -190,9 +194,9 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

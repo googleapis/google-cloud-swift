@@ -552,7 +552,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.structureType, forKey: .structureType)
+        if self.structureType != Chunk.StructureType() {
+          try container.encode(self.structureType, forKey: .structureType)
+        }
         try container.encode(self.content, forKey: .content)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -142,17 +142,17 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .doubleValue(let value):
-        try container.encode(value, forKey: .doubleValue)
+        try container.encodeIfPresent(value, forKey: .doubleValue)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .timestampValue(let value):
-        try container.encode(value, forKey: .timestampValue)
+        try container.encodeIfPresent(value, forKey: .timestampValue)
       case .enumValue(let value):
-        try container.encode(value, forKey: .enumValue)
+        try container.encodeIfPresent(value, forKey: .enumValue)
       case .richtextValue(let value):
-        try container.encode(value, forKey: .richtextValue)
+        try container.encodeIfPresent(value, forKey: .richtextValue)
       }
     }
     for (key, value) in self._unknownFields.json {

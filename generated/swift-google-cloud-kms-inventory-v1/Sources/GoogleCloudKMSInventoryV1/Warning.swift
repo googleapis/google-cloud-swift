@@ -77,7 +77,9 @@ public struct Warning: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.warningCode, forKey: .warningCode)
+    if self.warningCode != Warning.WarningCode() {
+      try container.encode(self.warningCode, forKey: .warningCode)
+    }
     try container.encode(self.displayMessage, forKey: .displayMessage)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

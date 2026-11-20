@@ -107,9 +107,9 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.productAttribute {
       switch choice {
       case .productAttributeValue(let value):
-        try container.encode(value, forKey: .productAttributeValue)
+        try container.encodeIfPresent(value, forKey: .productAttributeValue)
       case .productAttributeInterval(let value):
-        try container.encode(value, forKey: .productAttributeInterval)
+        try container.encodeIfPresent(value, forKey: .productAttributeInterval)
       }
     }
     for (key, value) in self._unknownFields.json {

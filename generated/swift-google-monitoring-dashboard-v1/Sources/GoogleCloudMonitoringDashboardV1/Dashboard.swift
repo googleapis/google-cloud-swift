@@ -154,13 +154,13 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.layout {
       switch choice {
       case .gridLayout(let value):
-        try container.encode(value, forKey: .gridLayout)
+        try container.encodeIfPresent(value, forKey: .gridLayout)
       case .mosaicLayout(let value):
-        try container.encode(value, forKey: .mosaicLayout)
+        try container.encodeIfPresent(value, forKey: .mosaicLayout)
       case .rowLayout(let value):
-        try container.encode(value, forKey: .rowLayout)
+        try container.encodeIfPresent(value, forKey: .rowLayout)
       case .columnLayout(let value):
-        try container.encode(value, forKey: .columnLayout)
+        try container.encodeIfPresent(value, forKey: .columnLayout)
       }
     }
     for (key, value) in self._unknownFields.json {

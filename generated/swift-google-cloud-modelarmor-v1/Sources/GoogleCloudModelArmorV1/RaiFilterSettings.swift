@@ -143,8 +143,12 @@ public struct RaiFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.filterType, forKey: .filterType)
-      try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+      if self.filterType != RaiFilterType() {
+        try container.encode(self.filterType, forKey: .filterType)
+      }
+      if self.confidenceLevel != DetectionConfidenceLevel() {
+        try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

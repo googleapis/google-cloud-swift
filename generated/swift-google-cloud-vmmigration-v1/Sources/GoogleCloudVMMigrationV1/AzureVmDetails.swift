@@ -177,7 +177,9 @@ public struct AzureVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vmId, forKey: .vmId)
-    try container.encode(self.powerState, forKey: .powerState)
+    if self.powerState != AzureVmDetails.PowerState() {
+      try container.encode(self.powerState, forKey: .powerState)
+    }
     try container.encode(self.vmSize, forKey: .vmSize)
     try container.encode(self.cpuCount, forKey: .cpuCount)
     try container.encode(self.memoryMb, forKey: .memoryMb)
@@ -186,10 +188,14 @@ public struct AzureVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.osDisk, forKey: .osDisk)
     try container.encode(self.disks, forKey: .disks)
     try container.encodeIfPresent(self.osDescription, forKey: .osDescription)
-    try container.encode(self.bootOption, forKey: .bootOption)
+    if self.bootOption != AzureVmDetails.BootOption() {
+      try container.encode(self.bootOption, forKey: .bootOption)
+    }
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.computerName, forKey: .computerName)
-    try container.encode(self.architecture, forKey: .architecture)
+    if self.architecture != AzureVmDetails.VmArchitecture() {
+      try container.encode(self.architecture, forKey: .architecture)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -88,7 +88,7 @@
       if let choice = self.modelConfig {
         switch choice {
         case .vertexPredictionEndpoint(let value):
-          try container.encode(value, forKey: .vertexPredictionEndpoint)
+          try container.encodeIfPresent(value, forKey: .vertexPredictionEndpoint)
         }
       }
       for (key, value) in self._unknownFields.json {

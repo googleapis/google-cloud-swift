@@ -132,7 +132,9 @@ public struct Role: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.title, forKey: .title)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.includedPermissions, forKey: .includedPermissions)
-    try container.encode(self.stage, forKey: .stage)
+    if self.stage != Role.RoleLaunchStage() {
+      try container.encode(self.stage, forKey: .stage)
+    }
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.deleted, forKey: .deleted)
     for (key, value) in self._unknownFields.json {

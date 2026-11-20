@@ -101,8 +101,12 @@ public struct SaasCondition: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.status, forKey: .status)
-    try container.encode(self.type, forKey: .type)
+    if self.status != SaasCondition.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
+    if self.type != SaasCondition.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.lastTransitionTime, forKey: .lastTransitionTime)
     try container.encode(self.message, forKey: .message)
     try container.encode(self.reason, forKey: .reason)

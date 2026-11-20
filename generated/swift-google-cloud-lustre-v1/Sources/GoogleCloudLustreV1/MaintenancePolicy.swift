@@ -151,7 +151,9 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.dayOfWeek, forKey: .dayOfWeek)
+      if self.dayOfWeek != GoogleType.DayOfWeek() {
+        try container.encode(self.dayOfWeek, forKey: .dayOfWeek)
+      }
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

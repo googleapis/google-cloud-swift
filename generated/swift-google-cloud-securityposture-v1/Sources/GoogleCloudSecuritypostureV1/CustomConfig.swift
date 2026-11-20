@@ -119,7 +119,9 @@ public struct CustomConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.predicate, forKey: .predicate)
     try container.encodeIfPresent(self.customOutput, forKey: .customOutput)
     try container.encodeIfPresent(self.resourceSelector, forKey: .resourceSelector)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != CustomConfig.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.recommendation, forKey: .recommendation)
     for (key, value) in self._unknownFields.json {

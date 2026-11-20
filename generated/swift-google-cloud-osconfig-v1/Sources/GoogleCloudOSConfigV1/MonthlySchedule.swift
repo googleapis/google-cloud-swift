@@ -93,9 +93,9 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dayOfMonth {
       switch choice {
       case .weekDayOfMonth(let value):
-        try container.encode(value, forKey: .weekDayOfMonth)
+        try container.encodeIfPresent(value, forKey: .weekDayOfMonth)
       case .monthDay(let value):
-        try container.encode(value, forKey: .monthDay)
+        try container.encodeIfPresent(value, forKey: .monthDay)
       }
     }
     for (key, value) in self._unknownFields.json {

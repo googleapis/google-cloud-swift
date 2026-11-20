@@ -90,7 +90,9 @@ public struct ErrorSummary: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.errorCode != GoogleRpc.Code() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     try container.encode(self.errorCount, forKey: .errorCount)
     try container.encode(self.errorLogEntries, forKey: .errorLogEntries)
     for (key, value) in self._unknownFields.json {

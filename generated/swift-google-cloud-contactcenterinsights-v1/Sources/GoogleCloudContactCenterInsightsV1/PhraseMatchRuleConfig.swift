@@ -87,7 +87,7 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.config {
       switch choice {
       case .exactMatchConfig(let value):
-        try container.encode(value, forKey: .exactMatchConfig)
+        try container.encodeIfPresent(value, forKey: .exactMatchConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

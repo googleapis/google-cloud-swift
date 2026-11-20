@@ -86,7 +86,7 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.hashFunction {
       switch choice {
       case .uuidFromBytes(let value):
-        try container.encode(value, forKey: .uuidFromBytes)
+        try container.encodeIfPresent(value, forKey: .uuidFromBytes)
       }
     }
     for (key, value) in self._unknownFields.json {

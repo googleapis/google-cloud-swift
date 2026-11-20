@@ -94,9 +94,9 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       case .bigqueryDestination(let value):
-        try container.encode(value, forKey: .bigqueryDestination)
+        try container.encodeIfPresent(value, forKey: .bigqueryDestination)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -298,7 +298,9 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataset, forKey: .dataset)
       try container.encode(self.tablePrefix, forKey: .tablePrefix)
-      try container.encode(self.partitionKey, forKey: .partitionKey)
+      if self.partitionKey != IamPolicyAnalysisOutputConfig.BigQueryDestination.PartitionKey() {
+        try container.encode(self.partitionKey, forKey: .partitionKey)
+      }
       try container.encode(self.writeDisposition, forKey: .writeDisposition)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

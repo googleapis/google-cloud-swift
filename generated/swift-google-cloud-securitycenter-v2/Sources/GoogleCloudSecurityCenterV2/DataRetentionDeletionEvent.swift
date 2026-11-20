@@ -113,7 +113,9 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleWKT._AnyPack
     try container.encodeIfPresent(self.eventDetectionTime, forKey: .eventDetectionTime)
     try container.encode(self.dataObjectCount, forKey: .dataObjectCount)
     try container.encodeIfPresent(self.maxRetentionAllowed, forKey: .maxRetentionAllowed)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != DataRetentionDeletionEvent.EventType() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

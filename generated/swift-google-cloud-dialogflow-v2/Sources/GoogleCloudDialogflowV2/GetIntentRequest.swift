@@ -96,7 +96,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.languageCode, forKey: .languageCode)
-      try container.encode(self.intentView, forKey: .intentView)
+      if self.intentView != IntentView() {
+        try container.encode(self.intentView, forKey: .intentView)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

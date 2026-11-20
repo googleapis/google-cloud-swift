@@ -182,16 +182,16 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.teeAttestation {
       switch choice {
       case .tdCcel(let value):
-        try container.encode(value, forKey: .tdCcel)
+        try container.encodeIfPresent(value, forKey: .tdCcel)
       case .sevSnpAttestation(let value):
-        try container.encode(value, forKey: .sevSnpAttestation)
+        try container.encodeIfPresent(value, forKey: .sevSnpAttestation)
       }
     }
 
     if let choice = self.deviceAttestation {
       switch choice {
       case .nvidiaAttestation(let value):
-        try container.encode(value, forKey: .nvidiaAttestation)
+        try container.encodeIfPresent(value, forKey: .nvidiaAttestation)
       }
     }
     for (key, value) in self._unknownFields.json {

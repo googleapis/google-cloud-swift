@@ -92,9 +92,9 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.strategy {
       switch choice {
       case .allAtOnce(let value):
-        try container.encode(value, forKey: .allAtOnce)
+        try container.encodeIfPresent(value, forKey: .allAtOnce)
       case .rolling(let value):
-        try container.encode(value, forKey: .rolling)
+        try container.encodeIfPresent(value, forKey: .rolling)
       }
     }
     for (key, value) in self._unknownFields.json {

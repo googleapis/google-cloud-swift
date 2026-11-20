@@ -88,7 +88,7 @@ public struct MatchingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.condition {
       switch choice {
       case .labelCondition(let value):
-        try container.encode(value, forKey: .labelCondition)
+        try container.encodeIfPresent(value, forKey: .labelCondition)
       }
     }
     for (key, value) in self._unknownFields.json {

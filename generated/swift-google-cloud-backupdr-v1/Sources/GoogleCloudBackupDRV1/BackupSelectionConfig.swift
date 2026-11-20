@@ -85,7 +85,7 @@ public struct BackupSelectionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .dataSource(let value):
-        try container.encode(value, forKey: .dataSource)
+        try container.encodeIfPresent(value, forKey: .dataSource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -146,15 +146,17 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.rolloutId, forKey: .rolloutId)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.createdBy, forKey: .createdBy)
-    try container.encode(self.status, forKey: .status)
+    if self.status != Rollout.RolloutStatus() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.serviceName, forKey: .serviceName)
 
     if let choice = self.strategy {
       switch choice {
       case .trafficPercentStrategy(let value):
-        try container.encode(value, forKey: .trafficPercentStrategy)
+        try container.encodeIfPresent(value, forKey: .trafficPercentStrategy)
       case .deleteServiceStrategy(let value):
-        try container.encode(value, forKey: .deleteServiceStrategy)
+        try container.encodeIfPresent(value, forKey: .deleteServiceStrategy)
       }
     }
     for (key, value) in self._unknownFields.json {

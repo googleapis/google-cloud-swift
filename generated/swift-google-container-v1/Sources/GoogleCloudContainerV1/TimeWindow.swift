@@ -101,7 +101,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.options {
       switch choice {
       case .maintenanceExclusionOptions(let value):
-        try container.encode(value, forKey: .maintenanceExclusionOptions)
+        try container.encodeIfPresent(value, forKey: .maintenanceExclusionOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

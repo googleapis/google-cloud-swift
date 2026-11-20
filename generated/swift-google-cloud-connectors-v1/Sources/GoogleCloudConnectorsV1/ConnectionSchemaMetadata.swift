@@ -119,7 +119,9 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.refreshTime, forKey: .refreshTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ConnectionSchemaMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

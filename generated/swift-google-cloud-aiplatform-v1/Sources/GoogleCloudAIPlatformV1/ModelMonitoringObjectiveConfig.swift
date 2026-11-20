@@ -228,11 +228,11 @@
         if let choice = self.dataSource {
           switch choice {
           case .dataset(let value):
-            try container.encode(value, forKey: .dataset)
+            try container.encodeIfPresent(value, forKey: .dataset)
           case .gcsSource(let value):
-            try container.encode(value, forKey: .gcsSource)
+            try container.encodeIfPresent(value, forKey: .gcsSource)
           case .bigquerySource(let value):
-            try container.encode(value, forKey: .bigquerySource)
+            try container.encodeIfPresent(value, forKey: .bigquerySource)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -663,14 +663,19 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.predictionFormat, forKey: .predictionFormat)
+          if self.predictionFormat
+            != ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline
+            .PredictionFormat()
+          {
+            try container.encode(self.predictionFormat, forKey: .predictionFormat)
+          }
 
           if let choice = self.destination {
             switch choice {
             case .gcs(let value):
-              try container.encode(value, forKey: .gcs)
+              try container.encodeIfPresent(value, forKey: .gcs)
             case .bigquery(let value):
-              try container.encode(value, forKey: .bigquery)
+              try container.encodeIfPresent(value, forKey: .bigquery)
             }
           }
           for (key, value) in self._unknownFields.json {

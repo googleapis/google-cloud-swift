@@ -314,7 +314,9 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.resource, forKey: .resource)
     try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
     try container.encodeIfPresent(self.receiveTimestamp, forKey: .receiveTimestamp)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != GoogleCloudLoggingType.LogSeverity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.insertId, forKey: .insertId)
     try container.encodeIfPresent(self.httpRequest, forKey: .httpRequest)
     try container.encode(self.labels, forKey: .labels)
@@ -328,11 +330,11 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.payload {
       switch choice {
       case .protoPayload(let value):
-        try container.encode(value, forKey: .protoPayload)
+        try container.encodeIfPresent(value, forKey: .protoPayload)
       case .textPayload(let value):
-        try container.encode(value, forKey: .textPayload)
+        try container.encodeIfPresent(value, forKey: .textPayload)
       case .jsonPayload(let value):
-        try container.encode(value, forKey: .jsonPayload)
+        try container.encodeIfPresent(value, forKey: .jsonPayload)
       }
     }
     for (key, value) in self._unknownFields.json {

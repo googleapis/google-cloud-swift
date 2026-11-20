@@ -98,7 +98,9 @@ public struct AutomationEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.message, forKey: .message)
     try container.encode(self.automation, forKey: .automation)
     try container.encode(self.pipelineUid, forKey: .pipelineUid)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

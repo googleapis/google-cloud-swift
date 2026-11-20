@@ -95,9 +95,9 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.oneofConfig {
       switch choice {
       case .standardManagementConfig(let value):
-        try container.encode(value, forKey: .standardManagementConfig)
+        try container.encodeIfPresent(value, forKey: .standardManagementConfig)
       case .fullManagementConfig(let value):
-        try container.encode(value, forKey: .fullManagementConfig)
+        try container.encodeIfPresent(value, forKey: .fullManagementConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

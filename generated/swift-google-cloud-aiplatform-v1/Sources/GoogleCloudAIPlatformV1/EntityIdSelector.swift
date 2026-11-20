@@ -97,7 +97,7 @@
       if let choice = self.entityIdsSource {
         switch choice {
         case .csvSource(let value):
-          try container.encode(value, forKey: .csvSource)
+          try container.encodeIfPresent(value, forKey: .csvSource)
         }
       }
       for (key, value) in self._unknownFields.json {

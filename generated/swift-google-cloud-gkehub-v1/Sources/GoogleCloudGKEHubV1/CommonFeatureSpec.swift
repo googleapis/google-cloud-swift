@@ -87,7 +87,7 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.featureSpec {
       switch choice {
       case .multiclusteringress(let value):
-        try container.encode(value, forKey: .multiclusteringress)
+        try container.encodeIfPresent(value, forKey: .multiclusteringress)
       }
     }
     for (key, value) in self._unknownFields.json {

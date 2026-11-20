@@ -88,7 +88,9 @@ public struct ImportEntriesMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImportEntriesMetadata.ImportState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errors, forKey: .errors)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

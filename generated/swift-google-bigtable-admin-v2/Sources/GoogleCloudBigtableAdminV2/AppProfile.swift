@@ -171,20 +171,20 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.routingPolicy {
       switch choice {
       case .multiClusterRoutingUseAny(let value):
-        try container.encode(value, forKey: .multiClusterRoutingUseAny)
+        try container.encodeIfPresent(value, forKey: .multiClusterRoutingUseAny)
       case .singleClusterRouting(let value):
-        try container.encode(value, forKey: .singleClusterRouting)
+        try container.encodeIfPresent(value, forKey: .singleClusterRouting)
       }
     }
 
     if let choice = self.isolation {
       switch choice {
       case .priority(let value):
-        try container.encode(value, forKey: .priority)
+        try container.encodeIfPresent(value, forKey: .priority)
       case .standardIsolation(let value):
-        try container.encode(value, forKey: .standardIsolation)
+        try container.encodeIfPresent(value, forKey: .standardIsolation)
       case .dataBoostIsolationReadOnly(let value):
-        try container.encode(value, forKey: .dataBoostIsolationReadOnly)
+        try container.encodeIfPresent(value, forKey: .dataBoostIsolationReadOnly)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -283,7 +283,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.affinity {
         switch choice {
         case .rowAffinity(let value):
-          try container.encode(value, forKey: .rowAffinity)
+          try container.encodeIfPresent(value, forKey: .rowAffinity)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -561,7 +561,9 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.priority, forKey: .priority)
+      if self.priority != AppProfile.Priority() {
+        try container.encode(self.priority, forKey: .priority)
+      }
       try container.encodeIfPresent(self.memoryConfig, forKey: .memoryConfig)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -187,7 +187,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Experiment.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.definition, forKey: .definition)
       try container.encodeIfPresent(self.rolloutConfig, forKey: .rolloutConfig)
       try container.encodeIfPresent(self.rolloutState, forKey: .rolloutState)
@@ -287,7 +289,7 @@
         if let choice = self.variants {
           switch choice {
           case .versionVariants(let value):
-            try container.encode(value, forKey: .versionVariants)
+            try container.encodeIfPresent(value, forKey: .versionVariants)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -605,16 +607,20 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.type, forKey: .type)
-          try container.encode(self.countType, forKey: .countType)
+          if self.type != Experiment.Result.MetricType() {
+            try container.encode(self.type, forKey: .type)
+          }
+          if self.countType != Experiment.Result.CountType() {
+            try container.encode(self.countType, forKey: .countType)
+          }
           try container.encodeIfPresent(self.confidenceInterval, forKey: .confidenceInterval)
 
           if let choice = self.value {
             switch choice {
             case .ratio(let value):
-              try container.encode(value, forKey: .ratio)
+              try container.encodeIfPresent(value, forKey: .ratio)
             case .count(let value):
-              try container.encode(value, forKey: .count)
+              try container.encodeIfPresent(value, forKey: .count)
             }
           }
           for (key, value) in self._unknownFields.json {

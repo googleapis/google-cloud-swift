@@ -183,9 +183,9 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.idType {
         switch choice {
         case .id(let value):
-          try container.encode(value, forKey: .id)
+          try container.encodeIfPresent(value, forKey: .id)
         case .name(let value):
-          try container.encode(value, forKey: .name)
+          try container.encodeIfPresent(value, forKey: .name)
         }
       }
       for (key, value) in self._unknownFields.json {

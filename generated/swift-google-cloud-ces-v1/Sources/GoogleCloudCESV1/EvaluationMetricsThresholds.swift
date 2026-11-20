@@ -121,11 +121,22 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(
       self.goldenEvaluationMetricsThresholds, forKey: .goldenEvaluationMetricsThresholds)
-    try container.encode(self.hallucinationMetricBehavior, forKey: .hallucinationMetricBehavior)
-    try container.encode(
-      self.goldenHallucinationMetricBehavior, forKey: .goldenHallucinationMetricBehavior)
-    try container.encode(
-      self.scenarioHallucinationMetricBehavior, forKey: .scenarioHallucinationMetricBehavior)
+    if self.hallucinationMetricBehavior != EvaluationMetricsThresholds.HallucinationMetricBehavior()
+    {
+      try container.encode(self.hallucinationMetricBehavior, forKey: .hallucinationMetricBehavior)
+    }
+    if self.goldenHallucinationMetricBehavior
+      != EvaluationMetricsThresholds.HallucinationMetricBehavior()
+    {
+      try container.encode(
+        self.goldenHallucinationMetricBehavior, forKey: .goldenHallucinationMetricBehavior)
+    }
+    if self.scenarioHallucinationMetricBehavior
+      != EvaluationMetricsThresholds.HallucinationMetricBehavior()
+    {
+      try container.encode(
+        self.scenarioHallucinationMetricBehavior, forKey: .scenarioHallucinationMetricBehavior)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -296,7 +307,12 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         try container.encodeIfPresent(
           self.overallToolInvocationCorrectnessThreshold,
           forKey: .overallToolInvocationCorrectnessThreshold)
-        try container.encode(self.semanticSimilarityChannel, forKey: .semanticSimilarityChannel)
+        if self.semanticSimilarityChannel
+          != EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds
+          .TurnLevelMetricsThresholds.SemanticSimilarityChannel()
+        {
+          try container.encode(self.semanticSimilarityChannel, forKey: .semanticSimilarityChannel)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -607,7 +623,11 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.extraToolCallBehavior, forKey: .extraToolCallBehavior)
+      if self.extraToolCallBehavior
+        != EvaluationMetricsThresholds.ToolMatchingSettings.ExtraToolCallBehavior()
+      {
+        try container.encode(self.extraToolCallBehavior, forKey: .extraToolCallBehavior)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -245,19 +245,27 @@ public struct DbSystemProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.shape, forKey: .shape)
     try container.encode(self.computeCount, forKey: .computeCount)
     try container.encode(self.initialDataStorageSizeGb, forKey: .initialDataStorageSizeGb)
-    try container.encode(self.databaseEdition, forKey: .databaseEdition)
-    try container.encode(self.licenseModel, forKey: .licenseModel)
+    if self.databaseEdition != DbSystemProperties.DbSystemDatabaseEdition() {
+      try container.encode(self.databaseEdition, forKey: .databaseEdition)
+    }
+    if self.licenseModel != DbSystemProperties.LicenseModel() {
+      try container.encode(self.licenseModel, forKey: .licenseModel)
+    }
     try container.encode(self.sshPublicKeys, forKey: .sshPublicKeys)
     try container.encode(self.hostnamePrefix, forKey: .hostnamePrefix)
     try container.encode(self.hostname, forKey: .hostname)
     try container.encode(self.privateIp, forKey: .privateIp)
     try container.encodeIfPresent(self.dataCollectionOptions, forKey: .dataCollectionOptions)
     try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
-    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    if self.lifecycleState != DbSystemProperties.DbSystemLifecycleState() {
+      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    }
     try container.encodeIfPresent(self.dbHome, forKey: .dbHome)
     try container.encode(self.ocid, forKey: .ocid)
     try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
-    try container.encode(self.computeModel, forKey: .computeModel)
+    if self.computeModel != DbSystemProperties.ComputeModel() {
+      try container.encode(self.computeModel, forKey: .computeModel)
+    }
     try container.encode(self.dataStorageSizeGb, forKey: .dataStorageSizeGb)
     try container.encode(self.recoStorageSizeGb, forKey: .recoStorageSizeGb)
     try container.encode(self.domain, forKey: .domain)

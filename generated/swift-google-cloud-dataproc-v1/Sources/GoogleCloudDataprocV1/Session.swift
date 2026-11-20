@@ -218,7 +218,9 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uuid, forKey: .uuid)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.runtimeInfo, forKey: .runtimeInfo)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Session.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encode(self.creator, forKey: .creator)
@@ -232,9 +234,9 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sessionConfig {
       switch choice {
       case .jupyterSession(let value):
-        try container.encode(value, forKey: .jupyterSession)
+        try container.encodeIfPresent(value, forKey: .jupyterSession)
       case .sparkConnectSession(let value):
-        try container.encode(value, forKey: .sparkConnectSession)
+        try container.encodeIfPresent(value, forKey: .sparkConnectSession)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -311,7 +313,9 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Session.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.stateMessage, forKey: .stateMessage)
       try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
       for (key, value) in self._unknownFields.json {

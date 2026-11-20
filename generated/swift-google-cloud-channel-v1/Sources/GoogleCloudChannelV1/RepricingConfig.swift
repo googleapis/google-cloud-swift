@@ -137,15 +137,17 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.effectiveInvoiceMonth, forKey: .effectiveInvoiceMonth)
     try container.encodeIfPresent(self.adjustment, forKey: .adjustment)
-    try container.encode(self.rebillingBasis, forKey: .rebillingBasis)
+    if self.rebillingBasis != RebillingBasis() {
+      try container.encode(self.rebillingBasis, forKey: .rebillingBasis)
+    }
     try container.encode(self.conditionalOverrides, forKey: .conditionalOverrides)
 
     if let choice = self.granularity {
       switch choice {
       case .entitlementGranularity(let value):
-        try container.encode(value, forKey: .entitlementGranularity)
+        try container.encodeIfPresent(value, forKey: .entitlementGranularity)
       case .channelPartnerGranularity(let value):
-        try container.encode(value, forKey: .channelPartnerGranularity)
+        try container.encodeIfPresent(value, forKey: .channelPartnerGranularity)
       }
     }
     for (key, value) in self._unknownFields.json {

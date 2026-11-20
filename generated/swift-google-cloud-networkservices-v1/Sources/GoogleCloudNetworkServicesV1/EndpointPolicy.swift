@@ -182,7 +182,9 @@ public struct EndpointPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.type, forKey: .type)
+    if self.type != EndpointPolicy.EndpointPolicyType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.authorizationPolicy, forKey: .authorizationPolicy)
     try container.encodeIfPresent(self.endpointMatcher, forKey: .endpointMatcher)
     try container.encodeIfPresent(self.trafficPortSelector, forKey: .trafficPortSelector)

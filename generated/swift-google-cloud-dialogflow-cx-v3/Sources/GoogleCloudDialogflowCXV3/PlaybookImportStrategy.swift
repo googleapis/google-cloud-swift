@@ -102,9 +102,16 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.mainPlaybookImportStrategy, forKey: .mainPlaybookImportStrategy)
-      try container.encode(self.nestedResourceImportStrategy, forKey: .nestedResourceImportStrategy)
-      try container.encode(self.toolImportStrategy, forKey: .toolImportStrategy)
+      if self.mainPlaybookImportStrategy != ImportStrategy() {
+        try container.encode(self.mainPlaybookImportStrategy, forKey: .mainPlaybookImportStrategy)
+      }
+      if self.nestedResourceImportStrategy != ImportStrategy() {
+        try container.encode(
+          self.nestedResourceImportStrategy, forKey: .nestedResourceImportStrategy)
+      }
+      if self.toolImportStrategy != ImportStrategy() {
+        try container.encode(self.toolImportStrategy, forKey: .toolImportStrategy)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

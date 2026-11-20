@@ -215,9 +215,9 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.image {
       switch choice {
       case .vmImage(let value):
-        try container.encode(value, forKey: .vmImage)
+        try container.encodeIfPresent(value, forKey: .vmImage)
       case .containerImage(let value):
-        try container.encode(value, forKey: .containerImage)
+        try container.encodeIfPresent(value, forKey: .containerImage)
       }
     }
     for (key, value) in self._unknownFields.json {

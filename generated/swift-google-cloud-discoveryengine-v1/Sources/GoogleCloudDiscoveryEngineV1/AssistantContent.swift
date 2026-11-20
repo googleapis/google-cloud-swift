@@ -130,15 +130,15 @@
       if let choice = self.data {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .inlineData(let value):
-          try container.encode(value, forKey: .inlineData)
+          try container.encodeIfPresent(value, forKey: .inlineData)
         case .file(let value):
-          try container.encode(value, forKey: .file)
+          try container.encodeIfPresent(value, forKey: .file)
         case .executableCode(let value):
-          try container.encode(value, forKey: .executableCode)
+          try container.encodeIfPresent(value, forKey: .executableCode)
         case .codeExecutionResult(let value):
-          try container.encode(value, forKey: .codeExecutionResult)
+          try container.encodeIfPresent(value, forKey: .codeExecutionResult)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -468,7 +468,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.outcome, forKey: .outcome)
+        if self.outcome != AssistantContent.CodeExecutionResult.Outcome() {
+          try container.encode(self.outcome, forKey: .outcome)
+        }
         try container.encode(self.output, forKey: .output)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

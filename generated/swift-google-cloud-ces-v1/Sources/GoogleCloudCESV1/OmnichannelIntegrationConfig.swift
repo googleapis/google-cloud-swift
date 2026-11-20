@@ -170,7 +170,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       if let choice = self.channelConfig {
         switch choice {
         case .whatsappConfig(let value):
-          try container.encode(value, forKey: .whatsappConfig)
+          try container.encodeIfPresent(value, forKey: .whatsappConfig)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -410,7 +410,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       if let choice = self.subscriberConfig {
         switch choice {
         case .cesAppConfig(let value):
-          try container.encode(value, forKey: .cesAppConfig)
+          try container.encodeIfPresent(value, forKey: .cesAppConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -90,9 +90,9 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.deploymentStrategy {
       switch choice {
       case .standard(let value):
-        try container.encode(value, forKey: .standard)
+        try container.encodeIfPresent(value, forKey: .standard)
       case .canary(let value):
-        try container.encode(value, forKey: .canary)
+        try container.encodeIfPresent(value, forKey: .canary)
       }
     }
     for (key, value) in self._unknownFields.json {

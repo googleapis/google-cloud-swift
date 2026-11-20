@@ -88,9 +88,13 @@ public struct ReauthSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.method, forKey: .method)
+    if self.method != ReauthSettings.Method() {
+      try container.encode(self.method, forKey: .method)
+    }
     try container.encodeIfPresent(self.maxAge, forKey: .maxAge)
-    try container.encode(self.policyType, forKey: .policyType)
+    if self.policyType != ReauthSettings.PolicyType() {
+      try container.encode(self.policyType, forKey: .policyType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

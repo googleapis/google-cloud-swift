@@ -172,7 +172,9 @@ public struct BackendAuthenticationConfig: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.clientCertificate, forKey: .clientCertificate)
     try container.encode(self.trustConfig, forKey: .trustConfig)
-    try container.encode(self.wellKnownRoots, forKey: .wellKnownRoots)
+    if self.wellKnownRoots != BackendAuthenticationConfig.WellKnownRoots() {
+      try container.encode(self.wellKnownRoots, forKey: .wellKnownRoots)
+    }
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

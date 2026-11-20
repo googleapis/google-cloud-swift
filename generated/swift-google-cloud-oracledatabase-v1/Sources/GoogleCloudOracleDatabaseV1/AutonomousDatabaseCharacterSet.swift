@@ -93,7 +93,9 @@ public struct AutonomousDatabaseCharacterSet: Codable, Equatable, GoogleWKT._Any
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.characterSetType, forKey: .characterSetType)
+    if self.characterSetType != AutonomousDatabaseCharacterSet.CharacterSetType() {
+      try container.encode(self.characterSetType, forKey: .characterSetType)
+    }
     try container.encode(self.characterSet, forKey: .characterSet)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

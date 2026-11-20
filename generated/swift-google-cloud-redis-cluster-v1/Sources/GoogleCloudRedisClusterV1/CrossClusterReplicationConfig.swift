@@ -117,7 +117,9 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.clusterRole, forKey: .clusterRole)
+    if self.clusterRole != CrossClusterReplicationConfig.ClusterRole() {
+      try container.encode(self.clusterRole, forKey: .clusterRole)
+    }
     try container.encodeIfPresent(self.primaryCluster, forKey: .primaryCluster)
     try container.encode(self.secondaryClusters, forKey: .secondaryClusters)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

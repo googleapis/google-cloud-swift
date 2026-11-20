@@ -95,7 +95,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.migrationTarget {
       switch choice {
       case .computeEngineTarget(let value):
-        try container.encode(value, forKey: .computeEngineTarget)
+        try container.encodeIfPresent(value, forKey: .computeEngineTarget)
       }
     }
     for (key, value) in self._unknownFields.json {

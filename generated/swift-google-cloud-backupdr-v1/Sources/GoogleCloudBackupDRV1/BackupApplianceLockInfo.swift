@@ -125,11 +125,11 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.lockSource {
       switch choice {
       case .jobName(let value):
-        try container.encode(value, forKey: .jobName)
+        try container.encodeIfPresent(value, forKey: .jobName)
       case .backupImage(let value):
-        try container.encode(value, forKey: .backupImage)
+        try container.encodeIfPresent(value, forKey: .backupImage)
       case .slaId(let value):
-        try container.encode(value, forKey: .slaId)
+        try container.encodeIfPresent(value, forKey: .slaId)
       }
     }
     for (key, value) in self._unknownFields.json {

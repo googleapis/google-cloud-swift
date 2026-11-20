@@ -194,7 +194,9 @@ public struct InstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.privateNetwork, forKey: .privateNetwork)
     try container.encode(self.userNote, forKey: .userNote)
     try container.encode(self.accountNetworksEnabled, forKey: .accountNetworksEnabled)
-    try container.encode(self.networkConfig, forKey: .networkConfig)
+    if self.networkConfig != InstanceConfig.NetworkConfig() {
+      try container.encode(self.networkConfig, forKey: .networkConfig)
+    }
     try container.encode(self.networkTemplate, forKey: .networkTemplate)
     try container.encode(self.logicalInterfaces, forKey: .logicalInterfaces)
     try container.encode(self.sshKeyNames, forKey: .sshKeyNames)

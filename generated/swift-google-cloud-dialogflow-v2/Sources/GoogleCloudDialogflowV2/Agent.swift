@@ -209,10 +209,16 @@
       try container.encode(self.description, forKey: .description)
       try container.encode(self.avatarUri, forKey: .avatarUri)
       try container.encode(self.enableLogging, forKey: .enableLogging)
-      try container.encode(self.matchMode, forKey: .matchMode)
+      if self.matchMode != Agent.MatchMode() {
+        try container.encode(self.matchMode, forKey: .matchMode)
+      }
       try container.encode(self.classificationThreshold, forKey: .classificationThreshold)
-      try container.encode(self.apiVersion, forKey: .apiVersion)
-      try container.encode(self.tier, forKey: .tier)
+      if self.apiVersion != Agent.ApiVersion() {
+        try container.encode(self.apiVersion, forKey: .apiVersion)
+      }
+      if self.tier != Agent.Tier() {
+        try container.encode(self.tier, forKey: .tier)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

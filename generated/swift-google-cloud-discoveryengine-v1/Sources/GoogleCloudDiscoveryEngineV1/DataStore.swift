@@ -343,10 +343,14 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.industryVertical, forKey: .industryVertical)
+      if self.industryVertical != IndustryVertical() {
+        try container.encode(self.industryVertical, forKey: .industryVertical)
+      }
       try container.encode(self.solutionTypes, forKey: .solutionTypes)
       try container.encode(self.defaultSchemaId, forKey: .defaultSchemaId)
-      try container.encode(self.contentConfig, forKey: .contentConfig)
+      if self.contentConfig != DataStore.ContentConfig() {
+        try container.encode(self.contentConfig, forKey: .contentConfig)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(
         self.advancedSiteSearchConfig, forKey: .advancedSiteSearchConfig)
@@ -366,7 +370,9 @@
       try container.encode(self.identityMappingStore, forKey: .identityMappingStore)
       try container.encode(self.isInfobotFaqDataStore, forKey: .isInfobotFaqDataStore)
       try container.encodeIfPresent(self.federatedSearchConfig, forKey: .federatedSearchConfig)
-      try container.encode(self.configurableBillingApproach, forKey: .configurableBillingApproach)
+      if self.configurableBillingApproach != DataStore.ConfigurableBillingApproach() {
+        try container.encode(self.configurableBillingApproach, forKey: .configurableBillingApproach)
+      }
       try container.encodeIfPresent(
         self.configurableBillingApproachUpdateTime, forKey: .configurableBillingApproachUpdateTime)
       try container.encodeIfPresent(self.dataProtectionPolicy, forKey: .dataProtectionPolicy)
@@ -669,11 +675,11 @@
         if let choice = self.dataSourceConfig {
           switch choice {
           case .alloyDbConfig(let value):
-            try container.encode(value, forKey: .alloyDbConfig)
+            try container.encodeIfPresent(value, forKey: .alloyDbConfig)
           case .thirdPartyOauthConfig(let value):
-            try container.encode(value, forKey: .thirdPartyOauthConfig)
+            try container.encodeIfPresent(value, forKey: .thirdPartyOauthConfig)
           case .notebooklmConfig(let value):
-            try container.encode(value, forKey: .notebooklmConfig)
+            try container.encodeIfPresent(value, forKey: .notebooklmConfig)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -871,7 +877,11 @@
             try container.encode(self.database, forKey: .database)
             try container.encode(self.user, forKey: .user)
             try container.encode(self.password, forKey: .password)
-            try container.encode(self.authMode, forKey: .authMode)
+            if self.authMode
+              != DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig.AuthMode()
+            {
+              try container.encode(self.authMode, forKey: .authMode)
+            }
             try container.encode(self.enablePsvs, forKey: .enablePsvs)
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))

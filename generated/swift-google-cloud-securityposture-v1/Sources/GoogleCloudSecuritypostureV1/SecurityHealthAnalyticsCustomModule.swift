@@ -103,7 +103,9 @@ public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleWKT
     try container.encode(self.id, forKey: .id)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.config, forKey: .config)
-    try container.encode(self.moduleEnablementState, forKey: .moduleEnablementState)
+    if self.moduleEnablementState != EnablementState() {
+      try container.encode(self.moduleEnablementState, forKey: .moduleEnablementState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

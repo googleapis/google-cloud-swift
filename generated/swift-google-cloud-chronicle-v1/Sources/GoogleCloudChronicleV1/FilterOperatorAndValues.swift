@@ -78,7 +78,9 @@ public struct FilterOperatorAndValues: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.filterOperator, forKey: .filterOperator)
+    if self.filterOperator != FilterOperator() {
+      try container.encode(self.filterOperator, forKey: .filterOperator)
+    }
     try container.encode(self.fieldValues, forKey: .fieldValues)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

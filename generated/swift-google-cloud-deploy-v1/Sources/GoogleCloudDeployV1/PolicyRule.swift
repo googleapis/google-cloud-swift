@@ -86,7 +86,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rule {
       switch choice {
       case .rolloutRestriction(let value):
-        try container.encode(value, forKey: .rolloutRestriction)
+        try container.encodeIfPresent(value, forKey: .rolloutRestriction)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -88,7 +88,9 @@ public struct IamBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.action, forKey: .action)
+    if self.action != IamBinding.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encode(self.role, forKey: .role)
     try container.encode(self.member, forKey: .member)
     for (key, value) in self._unknownFields.json {

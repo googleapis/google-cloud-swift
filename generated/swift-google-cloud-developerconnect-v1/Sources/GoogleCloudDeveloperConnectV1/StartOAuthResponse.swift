@@ -141,7 +141,7 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.id {
       switch choice {
       case .systemProviderId(let value):
-        try container.encode(value, forKey: .systemProviderId)
+        try container.encodeIfPresent(value, forKey: .systemProviderId)
       }
     }
     for (key, value) in self._unknownFields.json {

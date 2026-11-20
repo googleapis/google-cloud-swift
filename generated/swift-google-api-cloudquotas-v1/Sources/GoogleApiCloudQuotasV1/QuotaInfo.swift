@@ -213,7 +213,9 @@ public struct QuotaInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.service, forKey: .service)
     try container.encode(self.isPrecise, forKey: .isPrecise)
     try container.encode(self.refreshInterval, forKey: .refreshInterval)
-    try container.encode(self.containerType, forKey: .containerType)
+    if self.containerType != QuotaInfo.ContainerType() {
+      try container.encode(self.containerType, forKey: .containerType)
+    }
     try container.encode(self.dimensions, forKey: .dimensions)
     try container.encode(self.metricDisplayName, forKey: .metricDisplayName)
     try container.encode(self.quotaDisplayName, forKey: .quotaDisplayName)

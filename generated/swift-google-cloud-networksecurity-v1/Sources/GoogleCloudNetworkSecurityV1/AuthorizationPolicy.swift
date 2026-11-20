@@ -131,7 +131,9 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.action, forKey: .action)
+    if self.action != AuthorizationPolicy.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encode(self.rules, forKey: .rules)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -487,7 +489,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           if let choice = self.type {
             switch choice {
             case .regexMatch(let value):
-              try container.encode(value, forKey: .regexMatch)
+              try container.encodeIfPresent(value, forKey: .regexMatch)
             }
           }
           for (key, value) in self._unknownFields.json {

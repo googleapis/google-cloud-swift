@@ -136,11 +136,11 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.filter {
       switch choice {
       case .childrenOfGroup(let value):
-        try container.encode(value, forKey: .childrenOfGroup)
+        try container.encodeIfPresent(value, forKey: .childrenOfGroup)
       case .ancestorsOfGroup(let value):
-        try container.encode(value, forKey: .ancestorsOfGroup)
+        try container.encodeIfPresent(value, forKey: .ancestorsOfGroup)
       case .descendantsOfGroup(let value):
-        try container.encode(value, forKey: .descendantsOfGroup)
+        try container.encodeIfPresent(value, forKey: .descendantsOfGroup)
       }
     }
     for (key, value) in self._unknownFields.json {

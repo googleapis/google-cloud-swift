@@ -178,9 +178,9 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.mongodbConnectionFormat {
       switch choice {
       case .srvConnectionFormat(let value):
-        try container.encode(value, forKey: .srvConnectionFormat)
+        try container.encodeIfPresent(value, forKey: .srvConnectionFormat)
       case .standardConnectionFormat(let value):
-        try container.encode(value, forKey: .standardConnectionFormat)
+        try container.encodeIfPresent(value, forKey: .standardConnectionFormat)
       }
     }
     for (key, value) in self._unknownFields.json {

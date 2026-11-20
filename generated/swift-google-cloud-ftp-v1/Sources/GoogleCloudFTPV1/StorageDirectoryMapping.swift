@@ -114,7 +114,9 @@ public struct StorageDirectoryMapping: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.bucket, forKey: .bucket)
     try container.encode(self.bucketPrefix, forKey: .bucketPrefix)
     try container.encode(self.directory, forKey: .directory)
-    try container.encode(self.permission, forKey: .permission)
+    if self.permission != StorageDirectoryMapping.Permission() {
+      try container.encode(self.permission, forKey: .permission)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

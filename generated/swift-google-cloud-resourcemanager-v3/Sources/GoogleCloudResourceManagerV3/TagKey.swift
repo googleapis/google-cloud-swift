@@ -174,7 +174,9 @@ public struct TagKey: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.purpose, forKey: .purpose)
+    if self.purpose != Purpose() {
+      try container.encode(self.purpose, forKey: .purpose)
+    }
     try container.encode(self.purposeData, forKey: .purposeData)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

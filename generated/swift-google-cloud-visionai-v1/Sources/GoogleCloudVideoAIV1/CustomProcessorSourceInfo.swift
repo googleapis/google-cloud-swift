@@ -121,16 +121,18 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.sourceType, forKey: .sourceType)
+    if self.sourceType != CustomProcessorSourceInfo.SourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
     try container.encode(self.additionalInfo, forKey: .additionalInfo)
     try container.encodeIfPresent(self.modelSchema, forKey: .modelSchema)
 
     if let choice = self.artifactPath {
       switch choice {
       case .vertexModel(let value):
-        try container.encode(value, forKey: .vertexModel)
+        try container.encodeIfPresent(value, forKey: .vertexModel)
       case .productRecognizerArtifact(let value):
-        try container.encode(value, forKey: .productRecognizerArtifact)
+        try container.encodeIfPresent(value, forKey: .productRecognizerArtifact)
       }
     }
     for (key, value) in self._unknownFields.json {

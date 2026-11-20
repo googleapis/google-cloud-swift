@@ -87,7 +87,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.pattern {
       switch choice {
       case .vertexDatasetRegexes(let value):
-        try container.encode(value, forKey: .vertexDatasetRegexes)
+        try container.encodeIfPresent(value, forKey: .vertexDatasetRegexes)
       }
     }
     for (key, value) in self._unknownFields.json {

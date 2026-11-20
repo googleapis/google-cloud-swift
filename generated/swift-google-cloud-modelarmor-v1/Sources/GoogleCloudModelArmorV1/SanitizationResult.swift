@@ -105,9 +105,13 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.filterMatchState, forKey: .filterMatchState)
+    if self.filterMatchState != FilterMatchState() {
+      try container.encode(self.filterMatchState, forKey: .filterMatchState)
+    }
     try container.encode(self.filterResults, forKey: .filterResults)
-    try container.encode(self.invocationResult, forKey: .invocationResult)
+    if self.invocationResult != InvocationResult() {
+      try container.encode(self.invocationResult, forKey: .invocationResult)
+    }
     try container.encodeIfPresent(self.sanitizationMetadata, forKey: .sanitizationMetadata)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

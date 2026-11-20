@@ -95,7 +95,9 @@ public struct RoleGrant: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.principal, forKey: .principal)
+    if self.principal != RoleGrant.Principal() {
+      try container.encode(self.principal, forKey: .principal)
+    }
     try container.encode(self.roles, forKey: .roles)
     try container.encodeIfPresent(self.resource, forKey: .resource)
     try container.encode(self.helperTextTemplate, forKey: .helperTextTemplate)
@@ -166,7 +168,9 @@ public struct RoleGrant: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != RoleGrant.Resource.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.pathTemplate, forKey: .pathTemplate)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

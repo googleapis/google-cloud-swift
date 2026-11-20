@@ -84,7 +84,9 @@ public struct ShipmentTypeIncompatibility: Codable, Equatable, GoogleWKT._AnyPac
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.types, forKey: .types)
-    try container.encode(self.incompatibilityMode, forKey: .incompatibilityMode)
+    if self.incompatibilityMode != ShipmentTypeIncompatibility.IncompatibilityMode() {
+      try container.encode(self.incompatibilityMode, forKey: .incompatibilityMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

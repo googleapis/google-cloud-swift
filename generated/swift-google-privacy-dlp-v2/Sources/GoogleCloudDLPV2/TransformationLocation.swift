@@ -99,14 +99,16 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.containerType, forKey: .containerType)
+    if self.containerType != TransformationContainerType() {
+      try container.encode(self.containerType, forKey: .containerType)
+    }
 
     if let choice = self.locationType {
       switch choice {
       case .findingId(let value):
-        try container.encode(value, forKey: .findingId)
+        try container.encodeIfPresent(value, forKey: .findingId)
       case .recordTransformation(let value):
-        try container.encode(value, forKey: .recordTransformation)
+        try container.encodeIfPresent(value, forKey: .recordTransformation)
       }
     }
     for (key, value) in self._unknownFields.json {

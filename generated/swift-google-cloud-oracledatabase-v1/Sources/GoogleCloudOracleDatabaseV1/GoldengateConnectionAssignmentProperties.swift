@@ -114,7 +114,9 @@ public struct GoldengateConnectionAssignmentProperties: Codable, Equatable, Goog
     try container.encode(self.goldengateConnection, forKey: .goldengateConnection)
     try container.encode(self.goldengateDeployment, forKey: .goldengateDeployment)
     try container.encode(self.alias, forKey: .alias)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoldengateConnectionAssignmentProperties.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

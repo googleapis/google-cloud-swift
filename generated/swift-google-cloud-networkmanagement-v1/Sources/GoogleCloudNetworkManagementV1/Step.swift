@@ -364,90 +364,92 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Step.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.causesDrop, forKey: .causesDrop)
     try container.encode(self.projectId, forKey: .projectId)
 
     if let choice = self.stepInfo {
       switch choice {
       case .instance(let value):
-        try container.encode(value, forKey: .instance)
+        try container.encodeIfPresent(value, forKey: .instance)
       case .firewall(let value):
-        try container.encode(value, forKey: .firewall)
+        try container.encodeIfPresent(value, forKey: .firewall)
       case .route(let value):
-        try container.encode(value, forKey: .route)
+        try container.encodeIfPresent(value, forKey: .route)
       case .endpoint(let value):
-        try container.encode(value, forKey: .endpoint)
+        try container.encodeIfPresent(value, forKey: .endpoint)
       case .googleService(let value):
-        try container.encode(value, forKey: .googleService)
+        try container.encodeIfPresent(value, forKey: .googleService)
       case .forwardingRule(let value):
-        try container.encode(value, forKey: .forwardingRule)
+        try container.encodeIfPresent(value, forKey: .forwardingRule)
       case .hybridSubnet(let value):
-        try container.encode(value, forKey: .hybridSubnet)
+        try container.encodeIfPresent(value, forKey: .hybridSubnet)
       case .vpnGateway(let value):
-        try container.encode(value, forKey: .vpnGateway)
+        try container.encodeIfPresent(value, forKey: .vpnGateway)
       case .vpnTunnel(let value):
-        try container.encode(value, forKey: .vpnTunnel)
+        try container.encodeIfPresent(value, forKey: .vpnTunnel)
       case .interconnectAttachment(let value):
-        try container.encode(value, forKey: .interconnectAttachment)
+        try container.encodeIfPresent(value, forKey: .interconnectAttachment)
       case .vpcConnector(let value):
-        try container.encode(value, forKey: .vpcConnector)
+        try container.encodeIfPresent(value, forKey: .vpcConnector)
       case .directVpcEgressConnection(let value):
-        try container.encode(value, forKey: .directVpcEgressConnection)
+        try container.encodeIfPresent(value, forKey: .directVpcEgressConnection)
       case .serverlessExternalConnection(let value):
-        try container.encode(value, forKey: .serverlessExternalConnection)
+        try container.encodeIfPresent(value, forKey: .serverlessExternalConnection)
       case .deliver(let value):
-        try container.encode(value, forKey: .deliver)
+        try container.encodeIfPresent(value, forKey: .deliver)
       case .forward(let value):
-        try container.encode(value, forKey: .forward)
+        try container.encodeIfPresent(value, forKey: .forward)
       case .abort(let value):
-        try container.encode(value, forKey: .abort)
+        try container.encodeIfPresent(value, forKey: .abort)
       case .drop(let value):
-        try container.encode(value, forKey: .drop)
+        try container.encodeIfPresent(value, forKey: .drop)
       case .loadBalancer(let value):
-        try container.encode(value, forKey: .loadBalancer)
+        try container.encodeIfPresent(value, forKey: .loadBalancer)
       case .network(let value):
-        try container.encode(value, forKey: .network)
+        try container.encodeIfPresent(value, forKey: .network)
       case .gkeMaster(let value):
-        try container.encode(value, forKey: .gkeMaster)
+        try container.encodeIfPresent(value, forKey: .gkeMaster)
       case .gkePod(let value):
-        try container.encode(value, forKey: .gkePod)
+        try container.encodeIfPresent(value, forKey: .gkePod)
       case .ipMasqueradingSkipped(let value):
-        try container.encode(value, forKey: .ipMasqueradingSkipped)
+        try container.encodeIfPresent(value, forKey: .ipMasqueradingSkipped)
       case .gkeNetworkPolicy(let value):
-        try container.encode(value, forKey: .gkeNetworkPolicy)
+        try container.encodeIfPresent(value, forKey: .gkeNetworkPolicy)
       case .gkeNetworkPolicySkipped(let value):
-        try container.encode(value, forKey: .gkeNetworkPolicySkipped)
+        try container.encodeIfPresent(value, forKey: .gkeNetworkPolicySkipped)
       case .cloudSqlInstance(let value):
-        try container.encode(value, forKey: .cloudSqlInstance)
+        try container.encodeIfPresent(value, forKey: .cloudSqlInstance)
       case .redisInstance(let value):
-        try container.encode(value, forKey: .redisInstance)
+        try container.encodeIfPresent(value, forKey: .redisInstance)
       case .redisCluster(let value):
-        try container.encode(value, forKey: .redisCluster)
+        try container.encodeIfPresent(value, forKey: .redisCluster)
       case .cloudFunction(let value):
-        try container.encode(value, forKey: .cloudFunction)
+        try container.encodeIfPresent(value, forKey: .cloudFunction)
       case .appEngineVersion(let value):
-        try container.encode(value, forKey: .appEngineVersion)
+        try container.encodeIfPresent(value, forKey: .appEngineVersion)
       case .cloudRunRevision(let value):
-        try container.encode(value, forKey: .cloudRunRevision)
+        try container.encodeIfPresent(value, forKey: .cloudRunRevision)
       case .cloudRunJob(let value):
-        try container.encode(value, forKey: .cloudRunJob)
+        try container.encodeIfPresent(value, forKey: .cloudRunJob)
       case .nat(let value):
-        try container.encode(value, forKey: .nat)
+        try container.encodeIfPresent(value, forKey: .nat)
       case .proxyConnection(let value):
-        try container.encode(value, forKey: .proxyConnection)
+        try container.encodeIfPresent(value, forKey: .proxyConnection)
       case .loadBalancerBackendInfo(let value):
-        try container.encode(value, forKey: .loadBalancerBackendInfo)
+        try container.encodeIfPresent(value, forKey: .loadBalancerBackendInfo)
       case .storageBucket(let value):
-        try container.encode(value, forKey: .storageBucket)
+        try container.encodeIfPresent(value, forKey: .storageBucket)
       case .serverlessNeg(let value):
-        try container.encode(value, forKey: .serverlessNeg)
+        try container.encodeIfPresent(value, forKey: .serverlessNeg)
       case .ngfwPacketInspection(let value):
-        try container.encode(value, forKey: .ngfwPacketInspection)
+        try container.encodeIfPresent(value, forKey: .ngfwPacketInspection)
       case .dmsPrivateConnection(let value):
-        try container.encode(value, forKey: .dmsPrivateConnection)
+        try container.encodeIfPresent(value, forKey: .dmsPrivateConnection)
       case .datastreamPrivateConnection(let value):
-        try container.encode(value, forKey: .datastreamPrivateConnection)
+        try container.encodeIfPresent(value, forKey: .datastreamPrivateConnection)
       }
     }
     for (key, value) in self._unknownFields.json {

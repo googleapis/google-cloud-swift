@@ -148,7 +148,9 @@ public struct NotificationChannelDescriptor: Codable, Equatable, GoogleWKT._AnyP
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.supportedTiers, forKey: .supportedTiers)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

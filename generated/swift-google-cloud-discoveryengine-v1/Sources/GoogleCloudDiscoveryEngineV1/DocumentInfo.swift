@@ -162,11 +162,11 @@
       if let choice = self.documentDescriptor {
         switch choice {
         case .id(let value):
-          try container.encode(value, forKey: .id)
+          try container.encodeIfPresent(value, forKey: .id)
         case .name(let value):
-          try container.encode(value, forKey: .name)
+          try container.encodeIfPresent(value, forKey: .name)
         case .uri(let value):
-          try container.encode(value, forKey: .uri)
+          try container.encodeIfPresent(value, forKey: .uri)
         }
       }
       for (key, value) in self._unknownFields.json {

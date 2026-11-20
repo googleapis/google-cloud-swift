@@ -110,8 +110,12 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleWKT
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osPolicyAssignment, forKey: .osPolicyAssignment)
-    try container.encode(self.apiMethod, forKey: .apiMethod)
-    try container.encode(self.rolloutState, forKey: .rolloutState)
+    if self.apiMethod != OSPolicyAssignmentOperationMetadata.APIMethod() {
+      try container.encode(self.apiMethod, forKey: .apiMethod)
+    }
+    if self.rolloutState != OSPolicyAssignmentOperationMetadata.RolloutState() {
+      try container.encode(self.rolloutState, forKey: .rolloutState)
+    }
     try container.encodeIfPresent(self.rolloutStartTime, forKey: .rolloutStartTime)
     try container.encodeIfPresent(self.rolloutUpdateTime, forKey: .rolloutUpdateTime)
     for (key, value) in self._unknownFields.json {

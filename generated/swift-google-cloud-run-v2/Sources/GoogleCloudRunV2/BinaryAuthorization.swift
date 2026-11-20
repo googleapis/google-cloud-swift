@@ -103,9 +103,9 @@ public struct BinaryAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.binauthzMethod {
       switch choice {
       case .useDefault(let value):
-        try container.encode(value, forKey: .useDefault)
+        try container.encodeIfPresent(value, forKey: .useDefault)
       case .policy(let value):
-        try container.encode(value, forKey: .policy)
+        try container.encodeIfPresent(value, forKey: .policy)
       }
     }
     for (key, value) in self._unknownFields.json {

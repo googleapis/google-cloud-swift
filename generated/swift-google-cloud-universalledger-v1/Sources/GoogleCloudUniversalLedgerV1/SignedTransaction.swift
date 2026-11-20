@@ -145,7 +145,9 @@ public struct SignedTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serializedClientTransaction, forKey: .serializedClientTransaction)
     try container.encode(self.senderSignature, forKey: .senderSignature)
-    try container.encode(self.senderSigningKeySlot, forKey: .senderSigningKeySlot)
+    if self.senderSigningKeySlot != KeySlot() {
+      try container.encode(self.senderSigningKeySlot, forKey: .senderSigningKeySlot)
+    }
     try container.encode(self.otherSignatures, forKey: .otherSignatures)
     try container.encode(self.otherSigningKeySlots, forKey: .otherSigningKeySlots)
     for (key, value) in self._unknownFields.json {

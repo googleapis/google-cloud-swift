@@ -456,7 +456,9 @@ public struct ServingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.replacementControlIds, forKey: .replacementControlIds)
     try container.encode(self.ignoreControlIds, forKey: .ignoreControlIds)
     try container.encode(self.diversityLevel, forKey: .diversityLevel)
-    try container.encode(self.diversityType, forKey: .diversityType)
+    if self.diversityType != ServingConfig.DiversityType() {
+      try container.encode(self.diversityType, forKey: .diversityType)
+    }
     try container.encode(self.enableCategoryFilterLevel, forKey: .enableCategoryFilterLevel)
     try container.encode(self.ignoreRecsDenylist, forKey: .ignoreRecsDenylist)
     try container.encodeIfPresent(self.personalizationSpec, forKey: .personalizationSpec)

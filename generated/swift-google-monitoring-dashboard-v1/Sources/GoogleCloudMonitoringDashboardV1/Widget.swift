@@ -174,31 +174,31 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.content {
       switch choice {
       case .xyChart(let value):
-        try container.encode(value, forKey: .xyChart)
+        try container.encodeIfPresent(value, forKey: .xyChart)
       case .scorecard(let value):
-        try container.encode(value, forKey: .scorecard)
+        try container.encodeIfPresent(value, forKey: .scorecard)
       case .text(let value):
-        try container.encode(value, forKey: .text)
+        try container.encodeIfPresent(value, forKey: .text)
       case .blank(let value):
-        try container.encode(value, forKey: .blank)
+        try container.encodeIfPresent(value, forKey: .blank)
       case .alertChart(let value):
-        try container.encode(value, forKey: .alertChart)
+        try container.encodeIfPresent(value, forKey: .alertChart)
       case .timeSeriesTable(let value):
-        try container.encode(value, forKey: .timeSeriesTable)
+        try container.encodeIfPresent(value, forKey: .timeSeriesTable)
       case .collapsibleGroup(let value):
-        try container.encode(value, forKey: .collapsibleGroup)
+        try container.encodeIfPresent(value, forKey: .collapsibleGroup)
       case .logsPanel(let value):
-        try container.encode(value, forKey: .logsPanel)
+        try container.encodeIfPresent(value, forKey: .logsPanel)
       case .incidentList(let value):
-        try container.encode(value, forKey: .incidentList)
+        try container.encodeIfPresent(value, forKey: .incidentList)
       case .pieChart(let value):
-        try container.encode(value, forKey: .pieChart)
+        try container.encodeIfPresent(value, forKey: .pieChart)
       case .errorReportingPanel(let value):
-        try container.encode(value, forKey: .errorReportingPanel)
+        try container.encodeIfPresent(value, forKey: .errorReportingPanel)
       case .sectionHeader(let value):
-        try container.encode(value, forKey: .sectionHeader)
+        try container.encodeIfPresent(value, forKey: .sectionHeader)
       case .singleViewGroup(let value):
-        try container.encode(value, forKey: .singleViewGroup)
+        try container.encodeIfPresent(value, forKey: .singleViewGroup)
       }
     }
     for (key, value) in self._unknownFields.json {

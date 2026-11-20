@@ -94,9 +94,9 @@
       if let choice = self.details {
         switch choice {
         case .containerDetail(let value):
-          try container.encode(value, forKey: .containerDetail)
+          try container.encodeIfPresent(value, forKey: .containerDetail)
         case .customJobDetail(let value):
-          try container.encode(value, forKey: .customJobDetail)
+          try container.encodeIfPresent(value, forKey: .customJobDetail)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -93,9 +93,9 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.replication {
       switch choice {
       case .automatic(let value):
-        try container.encode(value, forKey: .automatic)
+        try container.encodeIfPresent(value, forKey: .automatic)
       case .userManaged(let value):
-        try container.encode(value, forKey: .userManaged)
+        try container.encodeIfPresent(value, forKey: .userManaged)
       }
     }
     for (key, value) in self._unknownFields.json {

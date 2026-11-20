@@ -342,59 +342,59 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .operational(let value):
-        try container.encode(value, forKey: .operational)
+        try container.encodeIfPresent(value, forKey: .operational)
       case .transferPlatformOperatorTransaction(let value):
-        try container.encode(value, forKey: .transferPlatformOperatorTransaction)
+        try container.encodeIfPresent(value, forKey: .transferPlatformOperatorTransaction)
       case .createCurrencyOperatorTransaction(let value):
-        try container.encode(value, forKey: .createCurrencyOperatorTransaction)
+        try container.encodeIfPresent(value, forKey: .createCurrencyOperatorTransaction)
       case .transferCurrencyOperatorTransaction(let value):
-        try container.encode(value, forKey: .transferCurrencyOperatorTransaction)
+        try container.encodeIfPresent(value, forKey: .transferCurrencyOperatorTransaction)
       case .createClearinghouseTransaction(let value):
-        try container.encode(value, forKey: .createClearinghouseTransaction)
+        try container.encodeIfPresent(value, forKey: .createClearinghouseTransaction)
       case .createAccountManagerTransaction(let value):
-        try container.encode(value, forKey: .createAccountManagerTransaction)
+        try container.encodeIfPresent(value, forKey: .createAccountManagerTransaction)
       case .createTokenManagerTransaction(let value):
-        try container.encode(value, forKey: .createTokenManagerTransaction)
+        try container.encodeIfPresent(value, forKey: .createTokenManagerTransaction)
       case .increaseTokenIssuanceLimitTransaction(let value):
-        try container.encode(value, forKey: .increaseTokenIssuanceLimitTransaction)
+        try container.encodeIfPresent(value, forKey: .increaseTokenIssuanceLimitTransaction)
       case .decreaseTokenIssuanceLimitTransaction(let value):
-        try container.encode(value, forKey: .decreaseTokenIssuanceLimitTransaction)
+        try container.encodeIfPresent(value, forKey: .decreaseTokenIssuanceLimitTransaction)
       case .settlementRequestTransaction(let value):
-        try container.encode(value, forKey: .settlementRequestTransaction)
+        try container.encodeIfPresent(value, forKey: .settlementRequestTransaction)
       case .mintTransaction(let value):
-        try container.encode(value, forKey: .mintTransaction)
+        try container.encodeIfPresent(value, forKey: .mintTransaction)
       case .burnTransaction(let value):
-        try container.encode(value, forKey: .burnTransaction)
+        try container.encodeIfPresent(value, forKey: .burnTransaction)
       case .createAccountTransaction(let value):
-        try container.encode(value, forKey: .createAccountTransaction)
+        try container.encodeIfPresent(value, forKey: .createAccountTransaction)
       case .deactivateAccountTransaction(let value):
-        try container.encode(value, forKey: .deactivateAccountTransaction)
+        try container.encodeIfPresent(value, forKey: .deactivateAccountTransaction)
       case .activateAccountTransaction(let value):
-        try container.encode(value, forKey: .activateAccountTransaction)
+        try container.encodeIfPresent(value, forKey: .activateAccountTransaction)
       case .addRolesTransaction(let value):
-        try container.encode(value, forKey: .addRolesTransaction)
+        try container.encodeIfPresent(value, forKey: .addRolesTransaction)
       case .removeRolesTransaction(let value):
-        try container.encode(value, forKey: .removeRolesTransaction)
+        try container.encodeIfPresent(value, forKey: .removeRolesTransaction)
       case .changeAccountManagerTransaction(let value):
-        try container.encode(value, forKey: .changeAccountManagerTransaction)
+        try container.encodeIfPresent(value, forKey: .changeAccountManagerTransaction)
       case .transferTransaction(let value):
-        try container.encode(value, forKey: .transferTransaction)
+        try container.encodeIfPresent(value, forKey: .transferTransaction)
       case .createContractTransaction(let value):
-        try container.encode(value, forKey: .createContractTransaction)
+        try container.encodeIfPresent(value, forKey: .createContractTransaction)
       case .grantContractPermissionsTransaction(let value):
-        try container.encode(value, forKey: .grantContractPermissionsTransaction)
+        try container.encodeIfPresent(value, forKey: .grantContractPermissionsTransaction)
       case .invokeContractMethodTransaction(let value):
-        try container.encode(value, forKey: .invokeContractMethodTransaction)
+        try container.encodeIfPresent(value, forKey: .invokeContractMethodTransaction)
       case .createContractTokenManagerTransaction(let value):
-        try container.encode(value, forKey: .createContractTokenManagerTransaction)
+        try container.encodeIfPresent(value, forKey: .createContractTokenManagerTransaction)
       case .transferContractTokenManagerTransaction(let value):
-        try container.encode(value, forKey: .transferContractTokenManagerTransaction)
+        try container.encodeIfPresent(value, forKey: .transferContractTokenManagerTransaction)
       case .removeSigningPublicKeyTransaction(let value):
-        try container.encode(value, forKey: .removeSigningPublicKeyTransaction)
+        try container.encodeIfPresent(value, forKey: .removeSigningPublicKeyTransaction)
       case .replaceSigningPublicKeyTransaction(let value):
-        try container.encode(value, forKey: .replaceSigningPublicKeyTransaction)
+        try container.encodeIfPresent(value, forKey: .replaceSigningPublicKeyTransaction)
       case .chain(let value):
-        try container.encode(value, forKey: .chain)
+        try container.encodeIfPresent(value, forKey: .chain)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -101,7 +101,9 @@ public struct PricePhase: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.periodType, forKey: .periodType)
+    if self.periodType != PeriodType() {
+      try container.encode(self.periodType, forKey: .periodType)
+    }
     try container.encode(self.firstPeriod, forKey: .firstPeriod)
     try container.encode(self.lastPeriod, forKey: .lastPeriod)
     try container.encodeIfPresent(self.price, forKey: .price)

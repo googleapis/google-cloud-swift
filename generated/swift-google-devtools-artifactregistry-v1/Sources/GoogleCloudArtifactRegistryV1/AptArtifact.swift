@@ -114,7 +114,9 @@ public struct AptArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.packageName, forKey: .packageName)
-    try container.encode(self.packageType, forKey: .packageType)
+    if self.packageType != AptArtifact.PackageType() {
+      try container.encode(self.packageType, forKey: .packageType)
+    }
     try container.encode(self.architecture, forKey: .architecture)
     try container.encode(self.component, forKey: .component)
     try container.encode(self.controlFile, forKey: .controlFile)

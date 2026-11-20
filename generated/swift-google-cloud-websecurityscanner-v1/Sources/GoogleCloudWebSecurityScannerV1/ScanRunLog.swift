@@ -127,8 +127,12 @@ public struct ScanRunLog: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.summary, forKey: .summary)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.executionState, forKey: .executionState)
-    try container.encode(self.resultState, forKey: .resultState)
+    if self.executionState != ScanRun.ExecutionState() {
+      try container.encode(self.executionState, forKey: .executionState)
+    }
+    if self.resultState != ScanRun.ResultState() {
+      try container.encode(self.resultState, forKey: .resultState)
+    }
     try container.encode(self.urlsCrawledCount, forKey: .urlsCrawledCount)
     try container.encode(self.urlsTestedCount, forKey: .urlsTestedCount)
     try container.encode(self.hasFindings, forKey: .hasFindings)

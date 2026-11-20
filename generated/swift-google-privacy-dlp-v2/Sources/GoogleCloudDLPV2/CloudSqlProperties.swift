@@ -129,14 +129,16 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.connectionName, forKey: .connectionName)
     try container.encode(self.maxConnections, forKey: .maxConnections)
-    try container.encode(self.databaseEngine, forKey: .databaseEngine)
+    if self.databaseEngine != CloudSqlProperties.DatabaseEngine() {
+      try container.encode(self.databaseEngine, forKey: .databaseEngine)
+    }
 
     if let choice = self.credential {
       switch choice {
       case .usernamePassword(let value):
-        try container.encode(value, forKey: .usernamePassword)
+        try container.encodeIfPresent(value, forKey: .usernamePassword)
       case .cloudSqlIam(let value):
-        try container.encode(value, forKey: .cloudSqlIam)
+        try container.encodeIfPresent(value, forKey: .cloudSqlIam)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -124,13 +124,13 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.configuration {
       switch choice {
       case .query(let value):
-        try container.encode(value, forKey: .query)
+        try container.encodeIfPresent(value, forKey: .query)
       case .load(let value):
-        try container.encode(value, forKey: .load)
+        try container.encodeIfPresent(value, forKey: .load)
       case .extract(let value):
-        try container.encode(value, forKey: .extract)
+        try container.encodeIfPresent(value, forKey: .extract)
       case .tableCopy(let value):
-        try container.encode(value, forKey: .tableCopy)
+        try container.encodeIfPresent(value, forKey: .tableCopy)
       }
     }
     for (key, value) in self._unknownFields.json {

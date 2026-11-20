@@ -313,7 +313,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Instance.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.enableStackdriverLogging, forKey: .enableStackdriverLogging)
     try container.encode(self.enableStackdriverMonitoring, forKey: .enableStackdriverMonitoring)
     try container.encode(self.privateInstance, forKey: .privateInstance)
@@ -322,7 +324,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.options, forKey: .options)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.serviceEndpoint, forKey: .serviceEndpoint)
     try container.encode(self.zone, forKey: .zone)

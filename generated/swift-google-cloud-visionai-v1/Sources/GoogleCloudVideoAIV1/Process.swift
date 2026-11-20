@@ -149,7 +149,9 @@ public struct Process: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.analysis, forKey: .analysis)
     try container.encode(self.attributeOverrides, forKey: .attributeOverrides)
     try container.encodeIfPresent(self.runStatus, forKey: .runStatus)
-    try container.encode(self.runMode, forKey: .runMode)
+    if self.runMode != RunMode() {
+      try container.encode(self.runMode, forKey: .runMode)
+    }
     try container.encode(self.eventId, forKey: .eventId)
     try container.encode(self.batchId, forKey: .batchId)
     try container.encode(self.retryCount, forKey: .retryCount)

@@ -159,8 +159,12 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.endpointForwardingRule, forKey: .endpointForwardingRule)
     try container.encode(self.endpointIp, forKey: .endpointIp)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.severity, forKey: .severity)
-    try container.encode(self.state, forKey: .state)
+    if self.severity != Endpoint.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
+    if self.state != Endpoint.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.trafficLogs, forKey: .trafficLogs)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

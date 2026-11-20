@@ -241,15 +241,21 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.clientId, forKey: .clientId)
     try container.encode(self.scopes, forKey: .scopes)
-    try container.encode(self.transferType, forKey: .transferType)
+    if self.transferType != TransferType() {
+      try container.encode(self.transferType, forKey: .transferType)
+    }
     try container.encode(self.supportsMultipleTransfers, forKey: .supportsMultipleTransfers)
     try container.encode(self.updateDeadlineSeconds, forKey: .updateDeadlineSeconds)
     try container.encode(self.defaultSchedule, forKey: .defaultSchedule)
     try container.encode(self.supportsCustomSchedule, forKey: .supportsCustomSchedule)
     try container.encode(self.parameters, forKey: .parameters)
     try container.encode(self.helpUrl, forKey: .helpUrl)
-    try container.encode(self.authorizationType, forKey: .authorizationType)
-    try container.encode(self.dataRefreshType, forKey: .dataRefreshType)
+    if self.authorizationType != DataSource.AuthorizationType() {
+      try container.encode(self.authorizationType, forKey: .authorizationType)
+    }
+    if self.dataRefreshType != DataSource.DataRefreshType() {
+      try container.encode(self.dataRefreshType, forKey: .dataRefreshType)
+    }
     try container.encode(self.defaultDataRefreshWindowDays, forKey: .defaultDataRefreshWindowDays)
     try container.encode(self.manualRunsDisabled, forKey: .manualRunsDisabled)
     try container.encodeIfPresent(self.minimumScheduleInterval, forKey: .minimumScheduleInterval)

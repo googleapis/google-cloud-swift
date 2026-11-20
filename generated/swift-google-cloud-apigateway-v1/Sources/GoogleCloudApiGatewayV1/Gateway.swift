@@ -163,10 +163,16 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.apiConfig, forKey: .apiConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Gateway.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.defaultHostname, forKey: .defaultHostname)
-    try container.encode(self.streamingMode, forKey: .streamingMode)
-    try container.encode(self.effectiveStreamingMode, forKey: .effectiveStreamingMode)
+    if self.streamingMode != Gateway.StreamingMode() {
+      try container.encode(self.streamingMode, forKey: .streamingMode)
+    }
+    if self.effectiveStreamingMode != Gateway.EffectiveStreamingMode() {
+      try container.encode(self.effectiveStreamingMode, forKey: .effectiveStreamingMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

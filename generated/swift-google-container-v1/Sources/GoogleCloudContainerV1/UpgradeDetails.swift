@@ -125,12 +125,16 @@ public struct UpgradeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UpgradeDetails.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.initialVersion, forKey: .initialVersion)
     try container.encode(self.targetVersion, forKey: .targetVersion)
-    try container.encode(self.startType, forKey: .startType)
+    if self.startType != UpgradeDetails.StartType() {
+      try container.encode(self.startType, forKey: .startType)
+    }
     try container.encode(self.initialEmulatedVersion, forKey: .initialEmulatedVersion)
     try container.encode(self.targetEmulatedVersion, forKey: .targetEmulatedVersion)
     for (key, value) in self._unknownFields.json {

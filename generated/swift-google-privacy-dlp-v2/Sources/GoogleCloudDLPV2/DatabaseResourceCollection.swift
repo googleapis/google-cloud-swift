@@ -89,7 +89,7 @@ public struct DatabaseResourceCollection: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.pattern {
       switch choice {
       case .includeRegexes(let value):
-        try container.encode(value, forKey: .includeRegexes)
+        try container.encodeIfPresent(value, forKey: .includeRegexes)
       }
     }
     for (key, value) in self._unknownFields.json {

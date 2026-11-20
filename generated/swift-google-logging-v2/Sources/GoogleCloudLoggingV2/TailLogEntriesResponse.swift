@@ -155,7 +155,9 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.reason, forKey: .reason)
+      if self.reason != TailLogEntriesResponse.SuppressionInfo.Reason() {
+        try container.encode(self.reason, forKey: .reason)
+      }
       try container.encode(self.suppressedCount, forKey: .suppressedCount)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

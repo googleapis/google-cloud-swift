@@ -83,7 +83,9 @@ public struct ManifestOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.includeRenditions, forKey: .includeRenditions)
-    try container.encode(self.bitrateOrder, forKey: .bitrateOrder)
+    if self.bitrateOrder != ManifestOptions.OrderPolicy() {
+      try container.encode(self.bitrateOrder, forKey: .bitrateOrder)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

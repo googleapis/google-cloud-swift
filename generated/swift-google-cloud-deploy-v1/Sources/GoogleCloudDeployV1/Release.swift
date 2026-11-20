@@ -287,7 +287,9 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.deliveryPipelineSnapshot, forKey: .deliveryPipelineSnapshot)
     try container.encode(self.targetSnapshots, forKey: .targetSnapshots)
     try container.encode(self.customTargetTypeSnapshots, forKey: .customTargetTypeSnapshots)
-    try container.encode(self.renderState, forKey: .renderState)
+    if self.renderState != Release.RenderState() {
+      try container.encode(self.renderState, forKey: .renderState)
+    }
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.skaffoldVersion, forKey: .skaffoldVersion)
     try container.encode(self.targetArtifacts, forKey: .targetArtifacts)
@@ -391,9 +393,13 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.renderingBuild, forKey: .renderingBuild)
-      try container.encode(self.renderingState, forKey: .renderingState)
+      if self.renderingState != Release.TargetRender.TargetRenderState() {
+        try container.encode(self.renderingState, forKey: .renderingState)
+      }
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
-      try container.encode(self.failureCause, forKey: .failureCause)
+      if self.failureCause != Release.TargetRender.FailureCause() {
+        try container.encode(self.failureCause, forKey: .failureCause)
+      }
       try container.encode(self.failureMessage, forKey: .failureMessage)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -874,7 +880,9 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.status, forKey: .status)
-      try container.encode(self.skaffoldSupportState, forKey: .skaffoldSupportState)
+      if self.skaffoldSupportState != SkaffoldSupportState() {
+        try container.encode(self.skaffoldSupportState, forKey: .skaffoldSupportState)
+      }
       try container.encodeIfPresent(self.maintenanceModeTime, forKey: .maintenanceModeTime)
       try container.encodeIfPresent(self.supportExpirationTime, forKey: .supportExpirationTime)
       for (key, value) in self._unknownFields.json {

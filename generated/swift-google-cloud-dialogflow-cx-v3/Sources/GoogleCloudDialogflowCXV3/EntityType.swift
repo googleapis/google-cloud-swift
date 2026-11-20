@@ -176,8 +176,12 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.autoExpansionMode, forKey: .autoExpansionMode)
+      if self.kind != EntityType.Kind() {
+        try container.encode(self.kind, forKey: .kind)
+      }
+      if self.autoExpansionMode != EntityType.AutoExpansionMode() {
+        try container.encode(self.autoExpansionMode, forKey: .autoExpansionMode)
+      }
       try container.encode(self.entities, forKey: .entities)
       try container.encode(self.excludedPhrases, forKey: .excludedPhrases)
       try container.encode(self.enableFuzzyExtraction, forKey: .enableFuzzyExtraction)

@@ -167,7 +167,9 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encodeIfPresent(self.firstSeenTime, forKey: .firstSeenTime)
     try container.encodeIfPresent(self.lastSeenTime, forKey: .lastSeenTime)
     try container.encode(self.count, forKey: .count)
-    try container.encode(self.classification, forKey: .classification)
+    if self.classification != DiscoveredApiOperation.Classification() {
+      try container.encode(self.classification, forKey: .classification)
+    }
     try container.encode(self.matchResults, forKey: .matchResults)
     try container.encodeIfPresent(self.sourceMetadata, forKey: .sourceMetadata)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -176,7 +178,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.operation {
       switch choice {
       case .httpOperation(let value):
-        try container.encode(value, forKey: .httpOperation)
+        try container.encodeIfPresent(value, forKey: .httpOperation)
       }
     }
     for (key, value) in self._unknownFields.json {

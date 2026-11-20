@@ -110,17 +110,17 @@ public struct ApiHubResource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resource {
       switch choice {
       case .api(let value):
-        try container.encode(value, forKey: .api)
+        try container.encodeIfPresent(value, forKey: .api)
       case .operation(let value):
-        try container.encode(value, forKey: .operation)
+        try container.encodeIfPresent(value, forKey: .operation)
       case .deployment(let value):
-        try container.encode(value, forKey: .deployment)
+        try container.encodeIfPresent(value, forKey: .deployment)
       case .spec(let value):
-        try container.encode(value, forKey: .spec)
+        try container.encodeIfPresent(value, forKey: .spec)
       case .definition(let value):
-        try container.encode(value, forKey: .definition)
+        try container.encodeIfPresent(value, forKey: .definition)
       case .version(let value):
-        try container.encode(value, forKey: .version)
+        try container.encodeIfPresent(value, forKey: .version)
       }
     }
     for (key, value) in self._unknownFields.json {

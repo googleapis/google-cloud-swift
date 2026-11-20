@@ -293,7 +293,9 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != SingleTenantHsmInstanceProposal.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.failureReason, forKey: .failureReason)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encodeIfPresent(self.purgeTime, forKey: .purgeTime)
@@ -301,39 +303,39 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     if let choice = self.approvalParameters {
       switch choice {
       case .quorumParameters(let value):
-        try container.encode(value, forKey: .quorumParameters)
+        try container.encodeIfPresent(value, forKey: .quorumParameters)
       case .requiredActionQuorumParameters(let value):
-        try container.encode(value, forKey: .requiredActionQuorumParameters)
+        try container.encodeIfPresent(value, forKey: .requiredActionQuorumParameters)
       }
     }
 
     if let choice = self.expiration {
       switch choice {
       case .expireTime(let value):
-        try container.encode(value, forKey: .expireTime)
+        try container.encodeIfPresent(value, forKey: .expireTime)
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       }
     }
 
     if let choice = self.operation {
       switch choice {
       case .registerTwoFactorAuthKeys(let value):
-        try container.encode(value, forKey: .registerTwoFactorAuthKeys)
+        try container.encodeIfPresent(value, forKey: .registerTwoFactorAuthKeys)
       case .disableSingleTenantHsmInstance(let value):
-        try container.encode(value, forKey: .disableSingleTenantHsmInstance)
+        try container.encodeIfPresent(value, forKey: .disableSingleTenantHsmInstance)
       case .enableSingleTenantHsmInstance(let value):
-        try container.encode(value, forKey: .enableSingleTenantHsmInstance)
+        try container.encodeIfPresent(value, forKey: .enableSingleTenantHsmInstance)
       case .deleteSingleTenantHsmInstance(let value):
-        try container.encode(value, forKey: .deleteSingleTenantHsmInstance)
+        try container.encodeIfPresent(value, forKey: .deleteSingleTenantHsmInstance)
       case .addQuorumMember(let value):
-        try container.encode(value, forKey: .addQuorumMember)
+        try container.encodeIfPresent(value, forKey: .addQuorumMember)
       case .removeQuorumMember(let value):
-        try container.encode(value, forKey: .removeQuorumMember)
+        try container.encodeIfPresent(value, forKey: .removeQuorumMember)
       case .refreshSingleTenantHsmInstance(let value):
-        try container.encode(value, forKey: .refreshSingleTenantHsmInstance)
+        try container.encodeIfPresent(value, forKey: .refreshSingleTenantHsmInstance)
       case .upgradeKeyTrust(let value):
-        try container.encode(value, forKey: .upgradeKeyTrust)
+        try container.encodeIfPresent(value, forKey: .upgradeKeyTrust)
       }
     }
     for (key, value) in self._unknownFields.json {

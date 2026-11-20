@@ -225,33 +225,37 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.partialFailureMessage, forKey: .partialFailureMessage)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DataScanJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.message, forKey: .message)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DataScanType() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.spec {
       switch choice {
       case .dataQualitySpec(let value):
-        try container.encode(value, forKey: .dataQualitySpec)
+        try container.encodeIfPresent(value, forKey: .dataQualitySpec)
       case .dataProfileSpec(let value):
-        try container.encode(value, forKey: .dataProfileSpec)
+        try container.encodeIfPresent(value, forKey: .dataProfileSpec)
       case .dataDiscoverySpec(let value):
-        try container.encode(value, forKey: .dataDiscoverySpec)
+        try container.encodeIfPresent(value, forKey: .dataDiscoverySpec)
       case .dataDocumentationSpec(let value):
-        try container.encode(value, forKey: .dataDocumentationSpec)
+        try container.encodeIfPresent(value, forKey: .dataDocumentationSpec)
       }
     }
 
     if let choice = self.result {
       switch choice {
       case .dataQualityResult(let value):
-        try container.encode(value, forKey: .dataQualityResult)
+        try container.encodeIfPresent(value, forKey: .dataQualityResult)
       case .dataProfileResult(let value):
-        try container.encode(value, forKey: .dataProfileResult)
+        try container.encodeIfPresent(value, forKey: .dataProfileResult)
       case .dataDiscoveryResult(let value):
-        try container.encode(value, forKey: .dataDiscoveryResult)
+        try container.encodeIfPresent(value, forKey: .dataDiscoveryResult)
       case .dataDocumentationResult(let value):
-        try container.encode(value, forKey: .dataDocumentationResult)
+        try container.encodeIfPresent(value, forKey: .dataDocumentationResult)
       }
     }
     for (key, value) in self._unknownFields.json {

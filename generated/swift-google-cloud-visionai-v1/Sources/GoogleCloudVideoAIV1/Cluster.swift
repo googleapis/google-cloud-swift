@@ -134,7 +134,9 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.annotations, forKey: .annotations)
     try container.encode(self.dataplaneServiceEndpoint, forKey: .dataplaneServiceEndpoint)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Cluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.pscTarget, forKey: .pscTarget)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

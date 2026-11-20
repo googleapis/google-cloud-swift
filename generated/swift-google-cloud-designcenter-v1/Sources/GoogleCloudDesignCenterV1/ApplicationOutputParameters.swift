@@ -88,7 +88,7 @@ public struct ApplicationOutputParameters: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.parameters {
       switch choice {
       case .helmApplicationOutputParameters(let value):
-        try container.encode(value, forKey: .helmApplicationOutputParameters)
+        try container.encodeIfPresent(value, forKey: .helmApplicationOutputParameters)
       }
     }
     for (key, value) in self._unknownFields.json {

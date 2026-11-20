@@ -117,15 +117,17 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Phase.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.skipMessage, forKey: .skipMessage)
 
     if let choice = self.jobs {
       switch choice {
       case .deploymentJobs(let value):
-        try container.encode(value, forKey: .deploymentJobs)
+        try container.encodeIfPresent(value, forKey: .deploymentJobs)
       case .childRolloutJobs(let value):
-        try container.encode(value, forKey: .childRolloutJobs)
+        try container.encodeIfPresent(value, forKey: .childRolloutJobs)
       }
     }
     for (key, value) in self._unknownFields.json {

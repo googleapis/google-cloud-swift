@@ -256,9 +256,9 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.result {
         switch choice {
         case .compilationResult(let value):
-          try container.encode(value, forKey: .compilationResult)
+          try container.encodeIfPresent(value, forKey: .compilationResult)
         case .errorStatus(let value):
-          try container.encode(value, forKey: .errorStatus)
+          try container.encodeIfPresent(value, forKey: .errorStatus)
         }
       }
       for (key, value) in self._unknownFields.json {

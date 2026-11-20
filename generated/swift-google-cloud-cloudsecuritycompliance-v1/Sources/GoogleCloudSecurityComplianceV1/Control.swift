@@ -195,9 +195,13 @@ public struct Control: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.family, forKey: .family)
+    if self.family != Control.Family() {
+      try container.encode(self.family, forKey: .family)
+    }
     try container.encodeIfPresent(self.controlFamily, forKey: .controlFamily)
-    try container.encode(self.responsibilityType, forKey: .responsibilityType)
+    if self.responsibilityType != RegulatoryControlResponsibilityType() {
+      try container.encode(self.responsibilityType, forKey: .responsibilityType)
+    }
     try container.encode(
       self.googleResponsibilityDescription, forKey: .googleResponsibilityDescription)
     try container.encode(

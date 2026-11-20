@@ -97,9 +97,9 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.encryptionSetting {
       switch choice {
       case .serverVerification(let value):
-        try container.encode(value, forKey: .serverVerification)
+        try container.encodeIfPresent(value, forKey: .serverVerification)
       case .serverAndClientVerification(let value):
-        try container.encode(value, forKey: .serverAndClientVerification)
+        try container.encodeIfPresent(value, forKey: .serverAndClientVerification)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -106,14 +106,14 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.ranker {
       switch choice {
       case .rrf(let value):
-        try container.encode(value, forKey: .rrf)
+        try container.encodeIfPresent(value, forKey: .rrf)
       }
     }
 
     if let choice = self.reranker {
       switch choice {
       case .vertexRanker(let value):
-        try container.encode(value, forKey: .vertexRanker)
+        try container.encodeIfPresent(value, forKey: .vertexRanker)
       }
     }
     for (key, value) in self._unknownFields.json {

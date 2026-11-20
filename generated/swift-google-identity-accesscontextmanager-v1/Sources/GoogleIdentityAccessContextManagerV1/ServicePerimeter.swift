@@ -166,7 +166,9 @@ public struct ServicePerimeter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.perimeterType, forKey: .perimeterType)
+    if self.perimeterType != ServicePerimeter.PerimeterType() {
+      try container.encode(self.perimeterType, forKey: .perimeterType)
+    }
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encodeIfPresent(self.spec, forKey: .spec)
     try container.encode(self.useExplicitDryRunSpec, forKey: .useExplicitDryRunSpec)

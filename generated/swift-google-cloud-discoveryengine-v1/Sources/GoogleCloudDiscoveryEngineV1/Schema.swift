@@ -112,9 +112,9 @@
       if let choice = self.schema {
         switch choice {
         case .structSchema(let value):
-          try container.encode(value, forKey: .structSchema)
+          try container.encodeIfPresent(value, forKey: .structSchema)
         case .jsonSchema(let value):
-          try container.encode(value, forKey: .jsonSchema)
+          try container.encodeIfPresent(value, forKey: .jsonSchema)
         }
       }
       for (key, value) in self._unknownFields.json {

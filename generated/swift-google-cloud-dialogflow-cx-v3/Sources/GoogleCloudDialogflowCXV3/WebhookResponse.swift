@@ -128,9 +128,9 @@
       if let choice = self.transition {
         switch choice {
         case .targetPage(let value):
-          try container.encode(value, forKey: .targetPage)
+          try container.encodeIfPresent(value, forKey: .targetPage)
         case .targetFlow(let value):
-          try container.encode(value, forKey: .targetFlow)
+          try container.encodeIfPresent(value, forKey: .targetFlow)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -202,7 +202,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.messages, forKey: .messages)
-        try container.encode(self.mergeBehavior, forKey: .mergeBehavior)
+        if self.mergeBehavior != WebhookResponse.FulfillmentResponse.MergeBehavior() {
+          try container.encode(self.mergeBehavior, forKey: .mergeBehavior)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

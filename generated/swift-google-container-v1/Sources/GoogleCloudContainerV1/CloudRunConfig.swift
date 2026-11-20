@@ -80,7 +80,9 @@ public struct CloudRunConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.disabled, forKey: .disabled)
-    try container.encode(self.loadBalancerType, forKey: .loadBalancerType)
+    if self.loadBalancerType != CloudRunConfig.LoadBalancerType() {
+      try container.encode(self.loadBalancerType, forKey: .loadBalancerType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

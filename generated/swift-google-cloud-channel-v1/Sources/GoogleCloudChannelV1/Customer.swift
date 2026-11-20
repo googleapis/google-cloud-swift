@@ -201,7 +201,9 @@ public struct Customer: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.cloudIdentityInfo, forKey: .cloudIdentityInfo)
     try container.encode(self.channelPartnerId, forKey: .channelPartnerId)
     try container.encode(self.correlationId, forKey: .correlationId)
-    try container.encode(self.customerAttestationState, forKey: .customerAttestationState)
+    if self.customerAttestationState != Customer.CustomerAttestationState() {
+      try container.encode(self.customerAttestationState, forKey: .customerAttestationState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

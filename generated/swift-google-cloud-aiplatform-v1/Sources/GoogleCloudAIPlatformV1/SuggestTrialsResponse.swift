@@ -95,7 +95,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trials, forKey: .trials)
-      try container.encode(self.studyState, forKey: .studyState)
+      if self.studyState != Study.State() {
+        try container.encode(self.studyState, forKey: .studyState)
+      }
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       for (key, value) in self._unknownFields.json {

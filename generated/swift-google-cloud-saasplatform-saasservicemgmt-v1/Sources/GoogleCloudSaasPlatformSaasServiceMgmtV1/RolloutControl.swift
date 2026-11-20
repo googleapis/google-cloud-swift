@@ -96,12 +96,14 @@ public struct RolloutControl: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.action, forKey: .action)
+    if self.action != RolloutAction() {
+      try container.encode(self.action, forKey: .action)
+    }
 
     if let choice = self.actionParams {
       switch choice {
       case .runParams(let value):
-        try container.encode(value, forKey: .runParams)
+        try container.encodeIfPresent(value, forKey: .runParams)
       }
     }
     for (key, value) in self._unknownFields.json {

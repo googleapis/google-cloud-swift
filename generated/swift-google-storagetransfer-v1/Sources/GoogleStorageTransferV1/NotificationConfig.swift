@@ -125,7 +125,9 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
     try container.encode(self.eventTypes, forKey: .eventTypes)
-    try container.encode(self.payloadFormat, forKey: .payloadFormat)
+    if self.payloadFormat != NotificationConfig.PayloadFormat() {
+      try container.encode(self.payloadFormat, forKey: .payloadFormat)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

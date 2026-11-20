@@ -155,11 +155,15 @@ public struct Interconnect: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.interconnectType, forKey: .interconnectType)
+    if self.interconnectType != Interconnect.InterconnectType() {
+      try container.encode(self.interconnectType, forKey: .interconnectType)
+    }
     try container.encode(self.uuid, forKey: .uuid)
     try container.encode(self.deviceCloudResourceName, forKey: .deviceCloudResourceName)
     try container.encode(self.physicalPorts, forKey: .physicalPorts)
-    try container.encode(self.remotePeeringNetworkType, forKey: .remotePeeringNetworkType)
+    if self.remotePeeringNetworkType != RemotePeeringNetworkType() {
+      try container.encode(self.remotePeeringNetworkType, forKey: .remotePeeringNetworkType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

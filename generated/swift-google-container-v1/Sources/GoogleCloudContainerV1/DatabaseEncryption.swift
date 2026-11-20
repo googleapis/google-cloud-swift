@@ -108,7 +108,9 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.keyName, forKey: .keyName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DatabaseEncryption.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.currentState, forKey: .currentState)
     try container.encode(self.decryptionKeys, forKey: .decryptionKeys)
     try container.encode(self.lastOperationErrors, forKey: .lastOperationErrors)

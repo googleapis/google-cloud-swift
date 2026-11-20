@@ -110,7 +110,7 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .backup(let value):
-        try container.encode(value, forKey: .backup)
+        try container.encodeIfPresent(value, forKey: .backup)
       }
     }
     for (key, value) in self._unknownFields.json {

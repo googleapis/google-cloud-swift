@@ -106,11 +106,11 @@ public struct SqlServerSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.encryptionSetting {
       switch choice {
       case .encryptionNotEnforced(let value):
-        try container.encode(value, forKey: .encryptionNotEnforced)
+        try container.encodeIfPresent(value, forKey: .encryptionNotEnforced)
       case .basicEncryption(let value):
-        try container.encode(value, forKey: .basicEncryption)
+        try container.encodeIfPresent(value, forKey: .basicEncryption)
       case .encryptionAndServerValidation(let value):
-        try container.encode(value, forKey: .encryptionAndServerValidation)
+        try container.encodeIfPresent(value, forKey: .encryptionAndServerValidation)
       }
     }
     for (key, value) in self._unknownFields.json {

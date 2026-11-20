@@ -300,9 +300,13 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.justification, forKey: .justification)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.author, forKey: .author)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ChangeRequest.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.resource, forKey: .resource)
-    try container.encode(self.changeType, forKey: .changeType)
+    if self.changeType != ChangeRequest.ChangeType() {
+      try container.encode(self.changeType, forKey: .changeType)
+    }
     try container.encode(self.rejectionComment, forKey: .rejectionComment)
     try container.encode(self.approver, forKey: .approver)
     try container.encode(self.etag, forKey: .etag)
@@ -310,35 +314,35 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.changePayload {
       switch choice {
       case .createEntry(let value):
-        try container.encode(value, forKey: .createEntry)
+        try container.encodeIfPresent(value, forKey: .createEntry)
       case .updateEntry(let value):
-        try container.encode(value, forKey: .updateEntry)
+        try container.encodeIfPresent(value, forKey: .updateEntry)
       case .deleteEntry(let value):
-        try container.encode(value, forKey: .deleteEntry)
+        try container.encodeIfPresent(value, forKey: .deleteEntry)
       case .createEntryLink(let value):
-        try container.encode(value, forKey: .createEntryLink)
+        try container.encodeIfPresent(value, forKey: .createEntryLink)
       case .deleteEntryLink(let value):
-        try container.encode(value, forKey: .deleteEntryLink)
+        try container.encodeIfPresent(value, forKey: .deleteEntryLink)
       case .createGlossary(let value):
-        try container.encode(value, forKey: .createGlossary)
+        try container.encodeIfPresent(value, forKey: .createGlossary)
       case .updateGlossary(let value):
-        try container.encode(value, forKey: .updateGlossary)
+        try container.encodeIfPresent(value, forKey: .updateGlossary)
       case .deleteGlossary(let value):
-        try container.encode(value, forKey: .deleteGlossary)
+        try container.encodeIfPresent(value, forKey: .deleteGlossary)
       case .createGlossaryCategory(let value):
-        try container.encode(value, forKey: .createGlossaryCategory)
+        try container.encodeIfPresent(value, forKey: .createGlossaryCategory)
       case .updateGlossaryCategory(let value):
-        try container.encode(value, forKey: .updateGlossaryCategory)
+        try container.encodeIfPresent(value, forKey: .updateGlossaryCategory)
       case .deleteGlossaryCategory(let value):
-        try container.encode(value, forKey: .deleteGlossaryCategory)
+        try container.encodeIfPresent(value, forKey: .deleteGlossaryCategory)
       case .createGlossaryTerm(let value):
-        try container.encode(value, forKey: .createGlossaryTerm)
+        try container.encodeIfPresent(value, forKey: .createGlossaryTerm)
       case .updateGlossaryTerm(let value):
-        try container.encode(value, forKey: .updateGlossaryTerm)
+        try container.encodeIfPresent(value, forKey: .updateGlossaryTerm)
       case .deleteGlossaryTerm(let value):
-        try container.encode(value, forKey: .deleteGlossaryTerm)
+        try container.encodeIfPresent(value, forKey: .deleteGlossaryTerm)
       case .dataProductAccessRequest(let value):
-        try container.encode(value, forKey: .dataProductAccessRequest)
+        try container.encodeIfPresent(value, forKey: .dataProductAccessRequest)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -123,13 +123,13 @@
       if let choice = self.delta {
         switch choice {
         case .nullValue(let value):
-          try container.encode(value, forKey: .nullValue)
+          try container.encodeIfPresent(value, forKey: .nullValue)
         case .numberValue(let value):
-          try container.encode(value, forKey: .numberValue)
+          try container.encodeIfPresent(value, forKey: .numberValue)
         case .stringValue(let value):
-          try container.encode(value, forKey: .stringValue)
+          try container.encodeIfPresent(value, forKey: .stringValue)
         case .boolValue(let value):
-          try container.encode(value, forKey: .boolValue)
+          try container.encodeIfPresent(value, forKey: .boolValue)
         }
       }
       for (key, value) in self._unknownFields.json {

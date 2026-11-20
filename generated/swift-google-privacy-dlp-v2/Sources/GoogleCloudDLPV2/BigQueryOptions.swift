@@ -144,7 +144,9 @@ public struct BigQueryOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.identifyingFields, forKey: .identifyingFields)
     try container.encode(self.rowsLimit, forKey: .rowsLimit)
     try container.encode(self.rowsLimitPercent, forKey: .rowsLimitPercent)
-    try container.encode(self.sampleMethod, forKey: .sampleMethod)
+    if self.sampleMethod != BigQueryOptions.SampleMethod() {
+      try container.encode(self.sampleMethod, forKey: .sampleMethod)
+    }
     try container.encode(self.excludedFields, forKey: .excludedFields)
     try container.encode(self.includedFields, forKey: .includedFields)
     for (key, value) in self._unknownFields.json {

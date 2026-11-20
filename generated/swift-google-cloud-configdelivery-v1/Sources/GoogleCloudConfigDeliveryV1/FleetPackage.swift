@@ -174,8 +174,12 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.rolloutStrategy, forKey: .rolloutStrategy)
     try container.encodeIfPresent(self.variantSelector, forKey: .variantSelector)
     try container.encodeIfPresent(self.info, forKey: .info)
-    try container.encode(self.deletionPropagationPolicy, forKey: .deletionPropagationPolicy)
-    try container.encode(self.state, forKey: .state)
+    if self.deletionPropagationPolicy != DeletionPropagationPolicy() {
+      try container.encode(self.deletionPropagationPolicy, forKey: .deletionPropagationPolicy)
+    }
+    if self.state != FleetPackage.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -259,9 +263,9 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.source {
         switch choice {
         case .resourceBundle(let value):
-          try container.encode(value, forKey: .resourceBundle)
+          try container.encodeIfPresent(value, forKey: .resourceBundle)
         case .cloudBuildRepository(let value):
-          try container.encode(value, forKey: .cloudBuildRepository)
+          try container.encodeIfPresent(value, forKey: .cloudBuildRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -506,7 +510,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.variants {
         switch choice {
         case .variantsPattern(let value):
-          try container.encode(value, forKey: .variantsPattern)
+          try container.encodeIfPresent(value, forKey: .variantsPattern)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -612,7 +616,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.target {
         switch choice {
         case .fleet(let value):
-          try container.encode(value, forKey: .fleet)
+          try container.encodeIfPresent(value, forKey: .fleet)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -719,7 +723,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.strategy {
         switch choice {
         case .variantNameTemplate(let value):
-          try container.encode(value, forKey: .variantNameTemplate)
+          try container.encodeIfPresent(value, forKey: .variantNameTemplate)
         }
       }
       for (key, value) in self._unknownFields.json {

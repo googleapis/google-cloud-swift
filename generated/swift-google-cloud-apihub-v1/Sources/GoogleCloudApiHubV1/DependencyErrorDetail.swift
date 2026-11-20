@@ -75,7 +75,9 @@ public struct DependencyErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.error, forKey: .error)
+    if self.error != DependencyErrorDetail.Error() {
+      try container.encode(self.error, forKey: .error)
+    }
     try container.encodeIfPresent(self.errorTime, forKey: .errorTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

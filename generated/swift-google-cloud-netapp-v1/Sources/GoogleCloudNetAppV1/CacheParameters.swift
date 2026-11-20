@@ -156,7 +156,9 @@ public struct CacheParameters: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.peerIpAddresses, forKey: .peerIpAddresses)
     try container.encodeIfPresent(self.enableGlobalFileLock, forKey: .enableGlobalFileLock)
     try container.encodeIfPresent(self.cacheConfig, forKey: .cacheConfig)
-    try container.encode(self.cacheState, forKey: .cacheState)
+    if self.cacheState != CacheParameters.CacheState() {
+      try container.encode(self.cacheState, forKey: .cacheState)
+    }
     try container.encode(self.command, forKey: .command)
     try container.encodeIfPresent(self.peeringCommandExpiryTime, forKey: .peeringCommandExpiryTime)
     try container.encode(self.passphrase, forKey: .passphrase)

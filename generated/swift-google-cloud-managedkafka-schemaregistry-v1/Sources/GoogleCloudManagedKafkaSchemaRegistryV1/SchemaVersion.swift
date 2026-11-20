@@ -113,7 +113,9 @@ public struct SchemaVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.subject, forKey: .subject)
     try container.encode(self.versionId, forKey: .versionId)
     try container.encode(self.schemaId, forKey: .schemaId)
-    try container.encode(self.schemaType, forKey: .schemaType)
+    if self.schemaType != Schema.SchemaType() {
+      try container.encode(self.schemaType, forKey: .schemaType)
+    }
     try container.encode(self.schemaPayload, forKey: .schemaPayload)
     try container.encode(self.references, forKey: .references)
     for (key, value) in self._unknownFields.json {

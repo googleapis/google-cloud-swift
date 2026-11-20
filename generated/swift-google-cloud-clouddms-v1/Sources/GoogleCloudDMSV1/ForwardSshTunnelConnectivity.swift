@@ -116,9 +116,9 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.authenticationMethod {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .privateKey(let value):
-        try container.encode(value, forKey: .privateKey)
+        try container.encodeIfPresent(value, forKey: .privateKey)
       }
     }
     for (key, value) in self._unknownFields.json {

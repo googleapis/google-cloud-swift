@@ -97,9 +97,9 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.placement {
       switch choice {
       case .managedCluster(let value):
-        try container.encode(value, forKey: .managedCluster)
+        try container.encodeIfPresent(value, forKey: .managedCluster)
       case .clusterSelector(let value):
-        try container.encode(value, forKey: .clusterSelector)
+        try container.encodeIfPresent(value, forKey: .clusterSelector)
       }
     }
     for (key, value) in self._unknownFields.json {

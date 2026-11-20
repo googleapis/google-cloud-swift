@@ -102,7 +102,9 @@ public struct GoldengateDeploymentLock: Codable, Equatable, GoogleWKT._AnyPackab
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoldengateDeploymentLock.LockType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.compartmentId, forKey: .compartmentId)
     try container.encode(self.relatedResourceId, forKey: .relatedResourceId)
     try container.encode(self.message, forKey: .message)

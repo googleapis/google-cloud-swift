@@ -127,11 +127,11 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.predicate {
       switch choice {
       case .provenance(let value):
-        try container.encode(value, forKey: .provenance)
+        try container.encodeIfPresent(value, forKey: .provenance)
       case .slsaProvenance(let value):
-        try container.encode(value, forKey: .slsaProvenance)
+        try container.encodeIfPresent(value, forKey: .slsaProvenance)
       case .slsaProvenanceZeroTwo(let value):
-        try container.encode(value, forKey: .slsaProvenanceZeroTwo)
+        try container.encodeIfPresent(value, forKey: .slsaProvenanceZeroTwo)
       }
     }
     for (key, value) in self._unknownFields.json {

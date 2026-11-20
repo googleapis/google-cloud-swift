@@ -133,7 +133,9 @@ public struct NodePoolAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.minNodeCount, forKey: .minNodeCount)
     try container.encode(self.maxNodeCount, forKey: .maxNodeCount)
     try container.encode(self.autoprovisioned, forKey: .autoprovisioned)
-    try container.encode(self.locationPolicy, forKey: .locationPolicy)
+    if self.locationPolicy != NodePoolAutoscaling.LocationPolicy() {
+      try container.encode(self.locationPolicy, forKey: .locationPolicy)
+    }
     try container.encode(self.totalMinNodeCount, forKey: .totalMinNodeCount)
     try container.encode(self.totalMaxNodeCount, forKey: .totalMaxNodeCount)
     for (key, value) in self._unknownFields.json {

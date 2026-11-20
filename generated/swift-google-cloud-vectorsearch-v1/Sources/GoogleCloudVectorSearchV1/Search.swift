@@ -97,11 +97,11 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.searchType {
       switch choice {
       case .vectorSearch(let value):
-        try container.encode(value, forKey: .vectorSearch)
+        try container.encodeIfPresent(value, forKey: .vectorSearch)
       case .semanticSearch(let value):
-        try container.encode(value, forKey: .semanticSearch)
+        try container.encodeIfPresent(value, forKey: .semanticSearch)
       case .textSearch(let value):
-        try container.encode(value, forKey: .textSearch)
+        try container.encodeIfPresent(value, forKey: .textSearch)
       }
     }
     for (key, value) in self._unknownFields.json {

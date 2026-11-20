@@ -130,7 +130,9 @@
       try container.encode(self.description, forKey: .description)
       try container.encode(self.versionNumber, forKey: .versionNumber)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
-      try container.encode(self.status, forKey: .status)
+      if self.status != Version.VersionStatus() {
+        try container.encode(self.status, forKey: .status)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

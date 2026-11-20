@@ -96,7 +96,9 @@ public struct UpgradeAvailableEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.version, forKey: .version)
-    try container.encode(self.resourceType, forKey: .resourceType)
+    if self.resourceType != UpgradeResourceType() {
+      try container.encode(self.resourceType, forKey: .resourceType)
+    }
     try container.encodeIfPresent(self.releaseChannel, forKey: .releaseChannel)
     try container.encode(self.resource, forKey: .resource)
     for (key, value) in self._unknownFields.json {

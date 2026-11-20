@@ -138,9 +138,13 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.containerImage, forKey: .containerImage)
     try container.encode(self.framework, forKey: .framework)
     try container.encode(self.version, forKey: .version)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UpgradeHistoryEntry.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.action, forKey: .action)
+    if self.action != UpgradeHistoryEntry.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encode(self.targetVersion, forKey: .targetVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

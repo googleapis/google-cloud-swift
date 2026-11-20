@@ -88,7 +88,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

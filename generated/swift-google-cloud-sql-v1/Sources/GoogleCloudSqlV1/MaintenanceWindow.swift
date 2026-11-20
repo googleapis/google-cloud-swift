@@ -97,7 +97,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.hour, forKey: .hour)
       try container.encodeIfPresent(self.day, forKey: .day)
-      try container.encode(self.updateTrack, forKey: .updateTrack)
+      if self.updateTrack != SqlUpdateTrack() {
+        try container.encode(self.updateTrack, forKey: .updateTrack)
+      }
       try container.encode(self.kind, forKey: .kind)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

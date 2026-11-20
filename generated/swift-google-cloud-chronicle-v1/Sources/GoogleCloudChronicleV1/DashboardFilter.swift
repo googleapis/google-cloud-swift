@@ -153,7 +153,9 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.dataSource, forKey: .dataSource)
+    if self.dataSource != GoogleCloudChronicleV1.DataSource() {
+      try container.encode(self.dataSource, forKey: .dataSource)
+    }
     try container.encode(self.fieldPath, forKey: .fieldPath)
     try container.encode(self.filterOperatorAndFieldValues, forKey: .filterOperatorAndFieldValues)
     try container.encode(self.displayName, forKey: .displayName)

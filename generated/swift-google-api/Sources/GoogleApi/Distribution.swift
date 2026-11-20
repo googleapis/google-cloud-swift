@@ -354,11 +354,11 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.options {
         switch choice {
         case .linearBuckets(let value):
-          try container.encode(value, forKey: .linearBuckets)
+          try container.encodeIfPresent(value, forKey: .linearBuckets)
         case .exponentialBuckets(let value):
-          try container.encode(value, forKey: .exponentialBuckets)
+          try container.encodeIfPresent(value, forKey: .exponentialBuckets)
         case .explicitBuckets(let value):
-          try container.encode(value, forKey: .explicitBuckets)
+          try container.encodeIfPresent(value, forKey: .explicitBuckets)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -119,17 +119,17 @@
       if let choice = self.message {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .payload(let value):
-          try container.encode(value, forKey: .payload)
+          try container.encodeIfPresent(value, forKey: .payload)
         case .liveAgentHandoff(let value):
-          try container.encode(value, forKey: .liveAgentHandoff)
+          try container.encodeIfPresent(value, forKey: .liveAgentHandoff)
         case .endInteraction(let value):
-          try container.encode(value, forKey: .endInteraction)
+          try container.encodeIfPresent(value, forKey: .endInteraction)
         case .mixedAudio(let value):
-          try container.encode(value, forKey: .mixedAudio)
+          try container.encodeIfPresent(value, forKey: .mixedAudio)
         case .telephonyTransferCall(let value):
-          try container.encode(value, forKey: .telephonyTransferCall)
+          try container.encodeIfPresent(value, forKey: .telephonyTransferCall)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -526,9 +526,9 @@
           if let choice = self.content {
             switch choice {
             case .audio(let value):
-              try container.encode(value, forKey: .audio)
+              try container.encodeIfPresent(value, forKey: .audio)
             case .uri(let value):
-              try container.encode(value, forKey: .uri)
+              try container.encodeIfPresent(value, forKey: .uri)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -665,9 +665,9 @@
         if let choice = self.endpoint {
           switch choice {
           case .phoneNumber(let value):
-            try container.encode(value, forKey: .phoneNumber)
+            try container.encodeIfPresent(value, forKey: .phoneNumber)
           case .sipUri(let value):
-            try container.encode(value, forKey: .sipUri)
+            try container.encodeIfPresent(value, forKey: .sipUri)
           }
         }
         for (key, value) in self._unknownFields.json {

@@ -104,9 +104,9 @@
       if let choice = self.source {
         switch choice {
         case .gcsUri(let value):
-          try container.encode(value, forKey: .gcsUri)
+          try container.encodeIfPresent(value, forKey: .gcsUri)
         case .content(let value):
-          try container.encode(value, forKey: .content)
+          try container.encodeIfPresent(value, forKey: .content)
         }
       }
       for (key, value) in self._unknownFields.json {

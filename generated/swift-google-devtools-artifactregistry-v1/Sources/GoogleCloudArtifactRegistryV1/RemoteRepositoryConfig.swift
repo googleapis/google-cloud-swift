@@ -158,19 +158,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.remoteSource {
       switch choice {
       case .dockerRepository(let value):
-        try container.encode(value, forKey: .dockerRepository)
+        try container.encodeIfPresent(value, forKey: .dockerRepository)
       case .mavenRepository(let value):
-        try container.encode(value, forKey: .mavenRepository)
+        try container.encodeIfPresent(value, forKey: .mavenRepository)
       case .npmRepository(let value):
-        try container.encode(value, forKey: .npmRepository)
+        try container.encodeIfPresent(value, forKey: .npmRepository)
       case .pythonRepository(let value):
-        try container.encode(value, forKey: .pythonRepository)
+        try container.encodeIfPresent(value, forKey: .pythonRepository)
       case .aptRepository(let value):
-        try container.encode(value, forKey: .aptRepository)
+        try container.encodeIfPresent(value, forKey: .aptRepository)
       case .yumRepository(let value):
-        try container.encode(value, forKey: .yumRepository)
+        try container.encodeIfPresent(value, forKey: .yumRepository)
       case .commonRepository(let value):
-        try container.encode(value, forKey: .commonRepository)
+        try container.encodeIfPresent(value, forKey: .commonRepository)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -249,7 +249,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.credentials {
         switch choice {
         case .usernamePasswordCredentials(let value):
-          try container.encode(value, forKey: .usernamePasswordCredentials)
+          try container.encodeIfPresent(value, forKey: .usernamePasswordCredentials)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -457,9 +457,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.upstream {
         switch choice {
         case .publicRepository(let value):
-          try container.encode(value, forKey: .publicRepository)
+          try container.encodeIfPresent(value, forKey: .publicRepository)
         case .customRepository(let value):
-          try container.encode(value, forKey: .customRepository)
+          try container.encodeIfPresent(value, forKey: .customRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -769,9 +769,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.upstream {
         switch choice {
         case .publicRepository(let value):
-          try container.encode(value, forKey: .publicRepository)
+          try container.encodeIfPresent(value, forKey: .publicRepository)
         case .customRepository(let value):
-          try container.encode(value, forKey: .customRepository)
+          try container.encodeIfPresent(value, forKey: .customRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1081,9 +1081,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.upstream {
         switch choice {
         case .publicRepository(let value):
-          try container.encode(value, forKey: .publicRepository)
+          try container.encodeIfPresent(value, forKey: .publicRepository)
         case .customRepository(let value):
-          try container.encode(value, forKey: .customRepository)
+          try container.encodeIfPresent(value, forKey: .customRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1392,9 +1392,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.upstream {
         switch choice {
         case .publicRepository(let value):
-          try container.encode(value, forKey: .publicRepository)
+          try container.encodeIfPresent(value, forKey: .publicRepository)
         case .customRepository(let value):
-          try container.encode(value, forKey: .customRepository)
+          try container.encodeIfPresent(value, forKey: .customRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1703,9 +1703,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.upstream {
         switch choice {
         case .publicRepository(let value):
-          try container.encode(value, forKey: .publicRepository)
+          try container.encodeIfPresent(value, forKey: .publicRepository)
         case .customRepository(let value):
-          try container.encode(value, forKey: .customRepository)
+          try container.encodeIfPresent(value, forKey: .customRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1779,7 +1779,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.repositoryBase, forKey: .repositoryBase)
+        if self.repositoryBase
+          != RemoteRepositoryConfig.AptRepository.PublicRepository.RepositoryBase()
+        {
+          try container.encode(self.repositoryBase, forKey: .repositoryBase)
+        }
         try container.encode(self.repositoryPath, forKey: .repositoryPath)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -2124,9 +2128,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.upstream {
         switch choice {
         case .publicRepository(let value):
-          try container.encode(value, forKey: .publicRepository)
+          try container.encodeIfPresent(value, forKey: .publicRepository)
         case .customRepository(let value):
-          try container.encode(value, forKey: .customRepository)
+          try container.encodeIfPresent(value, forKey: .customRepository)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -2200,7 +2204,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.repositoryBase, forKey: .repositoryBase)
+        if self.repositoryBase
+          != RemoteRepositoryConfig.YumRepository.PublicRepository.RepositoryBase()
+        {
+          try container.encode(self.repositoryBase, forKey: .repositoryBase)
+        }
         try container.encode(self.repositoryPath, forKey: .repositoryPath)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

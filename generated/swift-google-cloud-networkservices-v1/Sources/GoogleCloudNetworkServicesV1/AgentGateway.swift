@@ -198,9 +198,9 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.deploymentMode {
       switch choice {
       case .googleManaged(let value):
-        try container.encode(value, forKey: .googleManaged)
+        try container.encodeIfPresent(value, forKey: .googleManaged)
       case .selfManaged(let value):
-        try container.encode(value, forKey: .selfManaged)
+        try container.encodeIfPresent(value, forKey: .selfManaged)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -264,7 +264,9 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.governedAccessPath, forKey: .governedAccessPath)
+      if self.governedAccessPath != AgentGateway.GoogleManaged.GovernedAccessPath() {
+        try container.encode(self.governedAccessPath, forKey: .governedAccessPath)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

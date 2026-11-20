@@ -148,9 +148,9 @@
       if let choice = self.instance {
         switch choice {
         case .entityId(let value):
-          try container.encode(value, forKey: .entityId)
+          try container.encodeIfPresent(value, forKey: .entityId)
         case .embedding(let value):
-          try container.encode(value, forKey: .embedding)
+          try container.encodeIfPresent(value, forKey: .embedding)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -448,11 +448,11 @@
         if let choice = self.value {
           switch choice {
           case .valueInt(let value):
-            try container.encode(value, forKey: .valueInt)
+            try container.encodeIfPresent(value, forKey: .valueInt)
           case .valueFloat(let value):
-            try container.encode(value, forKey: .valueFloat)
+            try container.encodeIfPresent(value, forKey: .valueFloat)
           case .valueDouble(let value):
-            try container.encode(value, forKey: .valueDouble)
+            try container.encodeIfPresent(value, forKey: .valueDouble)
           }
         }
         for (key, value) in self._unknownFields.json {

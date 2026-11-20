@@ -112,9 +112,9 @@
       if let choice = self.gradientNoiseSigma {
         switch choice {
         case .noiseSigma(let value):
-          try container.encode(value, forKey: .noiseSigma)
+          try container.encodeIfPresent(value, forKey: .noiseSigma)
         case .featureNoiseSigma(let value):
-          try container.encode(value, forKey: .featureNoiseSigma)
+          try container.encodeIfPresent(value, forKey: .featureNoiseSigma)
         }
       }
       for (key, value) in self._unknownFields.json {

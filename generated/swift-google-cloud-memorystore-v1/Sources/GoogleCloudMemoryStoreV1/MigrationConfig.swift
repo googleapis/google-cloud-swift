@@ -101,13 +101,15 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MigrationConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.forceFinishMigration, forKey: .forceFinishMigration)
 
     if let choice = self.source {
       switch choice {
       case .selfManagedSource(let value):
-        try container.encode(value, forKey: .selfManagedSource)
+        try container.encodeIfPresent(value, forKey: .selfManagedSource)
       }
     }
     for (key, value) in self._unknownFields.json {

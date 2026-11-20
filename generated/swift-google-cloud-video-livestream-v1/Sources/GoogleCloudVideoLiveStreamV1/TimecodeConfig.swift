@@ -102,14 +102,16 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.source, forKey: .source)
+    if self.source != TimecodeConfig.TimecodeSource() {
+      try container.encode(self.source, forKey: .source)
+    }
 
     if let choice = self.timeOffset {
       switch choice {
       case .utcOffset(let value):
-        try container.encode(value, forKey: .utcOffset)
+        try container.encodeIfPresent(value, forKey: .utcOffset)
       case .timeZone(let value):
-        try container.encode(value, forKey: .timeZone)
+        try container.encodeIfPresent(value, forKey: .timeZone)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -118,9 +118,9 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.mode {
       switch choice {
       case .standardReadRemoteWrites(let value):
-        try container.encode(value, forKey: .standardReadRemoteWrites)
+        try container.encodeIfPresent(value, forKey: .standardReadRemoteWrites)
       case .dataBoostReadLocalWrites(let value):
-        try container.encode(value, forKey: .dataBoostReadLocalWrites)
+        try container.encodeIfPresent(value, forKey: .dataBoostReadLocalWrites)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -128,9 +128,9 @@
       if let choice = self.response {
         switch choice {
         case .recognitionResult(let value):
-          try container.encode(value, forKey: .recognitionResult)
+          try container.encodeIfPresent(value, forKey: .recognitionResult)
         case .detectIntentResponse(let value):
-          try container.encode(value, forKey: .detectIntentResponse)
+          try container.encodeIfPresent(value, forKey: .detectIntentResponse)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -87,7 +87,9 @@ public struct TransferMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.messageTime, forKey: .messageTime)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != TransferMessage.MessageSeverity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.messageText, forKey: .messageText)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

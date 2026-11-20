@@ -116,7 +116,7 @@
       if let choice = self.dataSource {
         switch choice {
         case .vertexRagStore(let value):
-          try container.encode(value, forKey: .vertexRagStore)
+          try container.encodeIfPresent(value, forKey: .vertexRagStore)
         }
       }
       for (key, value) in self._unknownFields.json {

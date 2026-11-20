@@ -94,7 +94,7 @@ public struct PreRestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.preRestoreAction {
       switch choice {
       case .cloudRunJob(let value):
-        try container.encode(value, forKey: .cloudRunJob)
+        try container.encodeIfPresent(value, forKey: .cloudRunJob)
       }
     }
     for (key, value) in self._unknownFields.json {

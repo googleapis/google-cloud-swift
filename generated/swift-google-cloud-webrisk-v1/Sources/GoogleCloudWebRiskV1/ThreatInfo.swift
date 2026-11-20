@@ -84,7 +84,9 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.abuseType, forKey: .abuseType)
+    if self.abuseType != ThreatInfo.AbuseType() {
+      try container.encode(self.abuseType, forKey: .abuseType)
+    }
     try container.encodeIfPresent(self.threatConfidence, forKey: .threatConfidence)
     try container.encodeIfPresent(self.threatJustification, forKey: .threatJustification)
     for (key, value) in self._unknownFields.json {
@@ -166,9 +168,9 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.value {
         switch choice {
         case .score(let value):
-          try container.encode(value, forKey: .score)
+          try container.encodeIfPresent(value, forKey: .score)
         case .level(let value):
-          try container.encode(value, forKey: .level)
+          try container.encodeIfPresent(value, forKey: .level)
         }
       }
       for (key, value) in self._unknownFields.json {

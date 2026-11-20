@@ -442,7 +442,9 @@
       try container.encode(self.generateExplanation, forKey: .generateExplanation)
       try container.encodeIfPresent(self.explanationSpec, forKey: .explanationSpec)
       try container.encodeIfPresent(self.outputInfo, forKey: .outputInfo)
-      try container.encode(self.state, forKey: .state)
+      if self.state != JobState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.partialFailures, forKey: .partialFailures)
       try container.encodeIfPresent(self.resourcesConsumed, forKey: .resourcesConsumed)
@@ -565,11 +567,11 @@
         if let choice = self.source {
           switch choice {
           case .gcsSource(let value):
-            try container.encode(value, forKey: .gcsSource)
+            try container.encodeIfPresent(value, forKey: .gcsSource)
           case .bigquerySource(let value):
-            try container.encode(value, forKey: .bigquerySource)
+            try container.encodeIfPresent(value, forKey: .bigquerySource)
           case .vertexMultimodalDatasetSource(let value):
-            try container.encode(value, forKey: .vertexMultimodalDatasetSource)
+            try container.encodeIfPresent(value, forKey: .vertexMultimodalDatasetSource)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -923,11 +925,11 @@
         if let choice = self.destination {
           switch choice {
           case .gcsDestination(let value):
-            try container.encode(value, forKey: .gcsDestination)
+            try container.encodeIfPresent(value, forKey: .gcsDestination)
           case .bigqueryDestination(let value):
-            try container.encode(value, forKey: .bigqueryDestination)
+            try container.encodeIfPresent(value, forKey: .bigqueryDestination)
           case .vertexMultimodalDatasetDestination(let value):
-            try container.encode(value, forKey: .vertexMultimodalDatasetDestination)
+            try container.encodeIfPresent(value, forKey: .vertexMultimodalDatasetDestination)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1120,11 +1122,11 @@
         if let choice = self.outputLocation {
           switch choice {
           case .gcsOutputDirectory(let value):
-            try container.encode(value, forKey: .gcsOutputDirectory)
+            try container.encodeIfPresent(value, forKey: .gcsOutputDirectory)
           case .bigqueryOutputDataset(let value):
-            try container.encode(value, forKey: .bigqueryOutputDataset)
+            try container.encodeIfPresent(value, forKey: .bigqueryOutputDataset)
           case .vertexMultimodalDatasetName(let value):
-            try container.encode(value, forKey: .vertexMultimodalDatasetName)
+            try container.encodeIfPresent(value, forKey: .vertexMultimodalDatasetName)
           }
         }
         for (key, value) in self._unknownFields.json {

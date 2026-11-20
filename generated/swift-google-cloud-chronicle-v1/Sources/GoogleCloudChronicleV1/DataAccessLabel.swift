@@ -149,7 +149,7 @@ public struct DataAccessLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.definition {
       switch choice {
       case .udmQuery(let value):
-        try container.encode(value, forKey: .udmQuery)
+        try container.encodeIfPresent(value, forKey: .udmQuery)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -79,7 +79,9 @@ public struct Xxe: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.payloadValue, forKey: .payloadValue)
-    try container.encode(self.payloadLocation, forKey: .payloadLocation)
+    if self.payloadLocation != Xxe.Location() {
+      try container.encode(self.payloadLocation, forKey: .payloadLocation)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

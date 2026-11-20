@@ -204,13 +204,13 @@
       if let choice = self.specification {
         switch choice {
         case .extensionSpec(let value):
-          try container.encode(value, forKey: .extensionSpec)
+          try container.encodeIfPresent(value, forKey: .extensionSpec)
         case .functionSpec(let value):
-          try container.encode(value, forKey: .functionSpec)
+          try container.encodeIfPresent(value, forKey: .functionSpec)
         case .connectorSpec(let value):
-          try container.encode(value, forKey: .connectorSpec)
+          try container.encodeIfPresent(value, forKey: .connectorSpec)
         case .openApiSpec(let value):
-          try container.encode(value, forKey: .openApiSpec)
+          try container.encodeIfPresent(value, forKey: .openApiSpec)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -379,7 +379,9 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.inputSchema, forKey: .inputSchema)
         try container.encodeIfPresent(self.outputSchema, forKey: .outputSchema)
-        try container.encode(self.methodType, forKey: .methodType)
+        if self.methodType != Tool.MethodType() {
+          try container.encode(self.methodType, forKey: .methodType)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -499,7 +501,7 @@
         if let choice = self.schema {
           switch choice {
           case .textSchema(let value):
-            try container.encode(value, forKey: .textSchema)
+            try container.encodeIfPresent(value, forKey: .textSchema)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -702,9 +704,9 @@
           if let choice = self.actionSpec {
             switch choice {
             case .connectionActionId(let value):
-              try container.encode(value, forKey: .connectionActionId)
+              try container.encodeIfPresent(value, forKey: .connectionActionId)
             case .entityOperation(let value):
-              try container.encode(value, forKey: .entityOperation)
+              try container.encodeIfPresent(value, forKey: .entityOperation)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -776,7 +778,9 @@
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.entityId, forKey: .entityId)
-            try container.encode(self.operation, forKey: .operation)
+            if self.operation != Tool.ConnectorTool.Action.EntityOperation.OperationType() {
+              try container.encode(self.operation, forKey: .operation)
+            }
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))
             }
@@ -1087,13 +1091,13 @@
         if let choice = self.authConfig {
           switch choice {
           case .apiKeyConfig(let value):
-            try container.encode(value, forKey: .apiKeyConfig)
+            try container.encodeIfPresent(value, forKey: .apiKeyConfig)
           case .oauthConfig(let value):
-            try container.encode(value, forKey: .oauthConfig)
+            try container.encodeIfPresent(value, forKey: .oauthConfig)
           case .serviceAgentAuthConfig(let value):
-            try container.encode(value, forKey: .serviceAgentAuthConfig)
+            try container.encodeIfPresent(value, forKey: .serviceAgentAuthConfig)
           case .bearerTokenConfig(let value):
-            try container.encode(value, forKey: .bearerTokenConfig)
+            try container.encodeIfPresent(value, forKey: .bearerTokenConfig)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1190,7 +1194,9 @@
           try container.encode(self.keyName, forKey: .keyName)
           try container.encode(self.apiKey, forKey: .apiKey)
           try container.encode(self.secretVersionForApiKey, forKey: .secretVersionForApiKey)
-          try container.encode(self.requestLocation, forKey: .requestLocation)
+          if self.requestLocation != Tool.Authentication.RequestLocation() {
+            try container.encode(self.requestLocation, forKey: .requestLocation)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -1322,7 +1328,9 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.oauthGrantType, forKey: .oauthGrantType)
+          if self.oauthGrantType != Tool.Authentication.OAuthConfig.OauthGrantType() {
+            try container.encode(self.oauthGrantType, forKey: .oauthGrantType)
+          }
           try container.encode(self.clientId, forKey: .clientId)
           try container.encode(self.clientSecret, forKey: .clientSecret)
           try container.encode(
@@ -1529,7 +1537,10 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.serviceAgentAuth, forKey: .serviceAgentAuth)
+          if self.serviceAgentAuth != Tool.Authentication.ServiceAgentAuthConfig.ServiceAgentAuth()
+          {
+            try container.encode(self.serviceAgentAuth, forKey: .serviceAgentAuth)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

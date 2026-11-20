@@ -144,19 +144,19 @@
       if let choice = self.suggestionResponse {
         switch choice {
         case .error(let value):
-          try container.encode(value, forKey: .error)
+          try container.encodeIfPresent(value, forKey: .error)
         case .suggestArticlesResponse(let value):
-          try container.encode(value, forKey: .suggestArticlesResponse)
+          try container.encodeIfPresent(value, forKey: .suggestArticlesResponse)
         case .suggestKnowledgeAssistResponse(let value):
-          try container.encode(value, forKey: .suggestKnowledgeAssistResponse)
+          try container.encodeIfPresent(value, forKey: .suggestKnowledgeAssistResponse)
         case .suggestFaqAnswersResponse(let value):
-          try container.encode(value, forKey: .suggestFaqAnswersResponse)
+          try container.encodeIfPresent(value, forKey: .suggestFaqAnswersResponse)
         case .suggestSmartRepliesResponse(let value):
-          try container.encode(value, forKey: .suggestSmartRepliesResponse)
+          try container.encodeIfPresent(value, forKey: .suggestSmartRepliesResponse)
         case .generateSuggestionsResponse(let value):
-          try container.encode(value, forKey: .generateSuggestionsResponse)
+          try container.encodeIfPresent(value, forKey: .generateSuggestionsResponse)
         case .generateCompanionSuggestionsResponse(let value):
-          try container.encode(value, forKey: .generateCompanionSuggestionsResponse)
+          try container.encodeIfPresent(value, forKey: .generateCompanionSuggestionsResponse)
         }
       }
       for (key, value) in self._unknownFields.json {

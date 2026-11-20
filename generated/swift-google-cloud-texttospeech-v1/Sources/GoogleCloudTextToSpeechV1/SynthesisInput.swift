@@ -132,13 +132,13 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.inputSource {
       switch choice {
       case .text(let value):
-        try container.encode(value, forKey: .text)
+        try container.encodeIfPresent(value, forKey: .text)
       case .markup(let value):
-        try container.encode(value, forKey: .markup)
+        try container.encodeIfPresent(value, forKey: .markup)
       case .ssml(let value):
-        try container.encode(value, forKey: .ssml)
+        try container.encodeIfPresent(value, forKey: .ssml)
       case .multiSpeakerMarkup(let value):
-        try container.encode(value, forKey: .multiSpeakerMarkup)
+        try container.encodeIfPresent(value, forKey: .multiSpeakerMarkup)
       }
     }
     for (key, value) in self._unknownFields.json {

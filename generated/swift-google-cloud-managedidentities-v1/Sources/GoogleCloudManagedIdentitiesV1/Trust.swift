@@ -157,14 +157,20 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.targetDomainName, forKey: .targetDomainName)
-    try container.encode(self.trustType, forKey: .trustType)
-    try container.encode(self.trustDirection, forKey: .trustDirection)
+    if self.trustType != Trust.TrustType() {
+      try container.encode(self.trustType, forKey: .trustType)
+    }
+    if self.trustDirection != Trust.TrustDirection() {
+      try container.encode(self.trustDirection, forKey: .trustDirection)
+    }
     try container.encode(self.selectiveAuthentication, forKey: .selectiveAuthentication)
     try container.encode(self.targetDnsIpAddresses, forKey: .targetDnsIpAddresses)
     try container.encode(self.trustHandshakeSecret, forKey: .trustHandshakeSecret)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Trust.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDescription, forKey: .stateDescription)
     try container.encodeIfPresent(self.lastTrustHeartbeatTime, forKey: .lastTrustHeartbeatTime)
     for (key, value) in self._unknownFields.json {

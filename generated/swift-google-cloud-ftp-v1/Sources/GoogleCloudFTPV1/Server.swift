@@ -167,8 +167,12 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.accessType, forKey: .accessType)
-    try container.encode(self.state, forKey: .state)
+    if self.accessType != Server.AccessType() {
+      try container.encode(self.accessType, forKey: .accessType)
+    }
+    if self.state != Server.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(
       self.googleManagedServerCredential, forKey: .googleManagedServerCredential)
     try container.encode(self.serviceAgent, forKey: .serviceAgent)
@@ -176,9 +180,9 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.accessConfig {
       switch choice {
       case .externalConfig(let value):
-        try container.encode(value, forKey: .externalConfig)
+        try container.encodeIfPresent(value, forKey: .externalConfig)
       case .internalConfig(let value):
-        try container.encode(value, forKey: .internalConfig)
+        try container.encodeIfPresent(value, forKey: .internalConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

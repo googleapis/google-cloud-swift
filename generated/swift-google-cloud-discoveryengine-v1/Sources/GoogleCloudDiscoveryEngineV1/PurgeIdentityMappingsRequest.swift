@@ -140,7 +140,7 @@
       if let choice = self.source {
         switch choice {
         case .inlineSource(let value):
-          try container.encode(value, forKey: .inlineSource)
+          try container.encodeIfPresent(value, forKey: .inlineSource)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -139,7 +139,9 @@ public struct DiagnoseClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.region, forKey: .region)
     try container.encode(self.clusterName, forKey: .clusterName)
     try container.encode(self.tarballGcsDir, forKey: .tarballGcsDir)
-    try container.encode(self.tarballAccess, forKey: .tarballAccess)
+    if self.tarballAccess != DiagnoseClusterRequest.TarballAccess() {
+      try container.encode(self.tarballAccess, forKey: .tarballAccess)
+    }
     try container.encodeIfPresent(self.diagnosisInterval, forKey: .diagnosisInterval)
     try container.encode(self.jobs, forKey: .jobs)
     try container.encode(self.yarnApplicationIds, forKey: .yarnApplicationIds)

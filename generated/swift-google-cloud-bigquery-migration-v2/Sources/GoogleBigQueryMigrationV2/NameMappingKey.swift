@@ -105,7 +105,9 @@ public struct NameMappingKey: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != NameMappingKey.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.database, forKey: .database)
     try container.encode(self.schema, forKey: .schema)
     try container.encode(self.relation, forKey: .relation)

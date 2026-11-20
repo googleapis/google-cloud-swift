@@ -247,7 +247,9 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.databaseId, forKey: .databaseId)
     try container.encode(self.dbHomeName, forKey: .dbHomeName)
     try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
-    try container.encode(self.opsInsightsStatus, forKey: .opsInsightsStatus)
+    if self.opsInsightsStatus != Database.OperationsInsightsStatus() {
+      try container.encode(self.opsInsightsStatus, forKey: .opsInsightsStatus)
+    }
     try container.encode(self.pluggableDatabaseId, forKey: .pluggableDatabaseId)
     try container.encode(self.pluggableDatabaseName, forKey: .pluggableDatabaseName)
     for (key, value) in self._unknownFields.json {

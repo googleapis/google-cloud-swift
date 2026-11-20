@@ -92,9 +92,9 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.location {
       switch choice {
       case .messageIndex(let value):
-        try container.encode(value, forKey: .messageIndex)
+        try container.encodeIfPresent(value, forKey: .messageIndex)
       case .allMessages(let value):
-        try container.encode(value, forKey: .allMessages)
+        try container.encodeIfPresent(value, forKey: .allMessages)
       }
     }
     for (key, value) in self._unknownFields.json {

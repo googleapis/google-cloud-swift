@@ -133,25 +133,25 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .noneValue(let value):
-        try container.encode(value, forKey: .noneValue)
+        try container.encodeIfPresent(value, forKey: .noneValue)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .int64Value(let value):
-        try container.encode(value, forKey: .int64Value)
+        try container.encodeIfPresent(value, forKey: .int64Value)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .dictValue(let value):
-        try container.encode(value, forKey: .dictValue)
+        try container.encodeIfPresent(value, forKey: .dictValue)
       case .contractValue(let value):
-        try container.encode(value, forKey: .contractValue)
+        try container.encodeIfPresent(value, forKey: .contractValue)
       case .listValue(let value):
-        try container.encode(value, forKey: .listValue)
+        try container.encodeIfPresent(value, forKey: .listValue)
       case .qualifiedCurrencyValue(let value):
-        try container.encode(value, forKey: .qualifiedCurrencyValue)
+        try container.encodeIfPresent(value, forKey: .qualifiedCurrencyValue)
       case .accountValue(let value):
-        try container.encode(value, forKey: .accountValue)
+        try container.encodeIfPresent(value, forKey: .accountValue)
       case .amountValue(let value):
-        try container.encode(value, forKey: .amountValue)
+        try container.encodeIfPresent(value, forKey: .amountValue)
       }
     }
     for (key, value) in self._unknownFields.json {

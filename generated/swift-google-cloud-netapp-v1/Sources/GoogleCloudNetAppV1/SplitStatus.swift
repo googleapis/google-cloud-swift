@@ -88,7 +88,9 @@ public struct SplitStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.splitState, forKey: .splitState)
+    if self.splitState != SplitState() {
+      try container.encode(self.splitState, forKey: .splitState)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
     try container.encode(self.progressPercent, forKey: .progressPercent)
     for (key, value) in self._unknownFields.json {

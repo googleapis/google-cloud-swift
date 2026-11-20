@@ -189,7 +189,9 @@
       try container.encode(self.cacheTokensDetails, forKey: .cacheTokensDetails)
       try container.encode(self.candidatesTokensDetails, forKey: .candidatesTokensDetails)
       try container.encode(self.toolUsePromptTokensDetails, forKey: .toolUsePromptTokensDetails)
-      try container.encode(self.trafficType, forKey: .trafficType)
+      if self.trafficType != GoogleCloudAIPlatformV1.UsageMetadata.TrafficType() {
+        try container.encode(self.trafficType, forKey: .trafficType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -179,24 +179,26 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.type, forKey: .type)
+    if self.type != MetadataJob.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.status, forKey: .status)
 
     if let choice = self.spec {
       switch choice {
       case .importSpec(let value):
-        try container.encode(value, forKey: .importSpec)
+        try container.encodeIfPresent(value, forKey: .importSpec)
       case .exportSpec(let value):
-        try container.encode(value, forKey: .exportSpec)
+        try container.encodeIfPresent(value, forKey: .exportSpec)
       }
     }
 
     if let choice = self.result {
       switch choice {
       case .importResult(let value):
-        try container.encode(value, forKey: .importResult)
+        try container.encodeIfPresent(value, forKey: .importResult)
       case .exportResult(let value):
-        try container.encode(value, forKey: .exportResult)
+        try container.encodeIfPresent(value, forKey: .exportResult)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -585,9 +587,15 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.sourceStorageUri, forKey: .sourceStorageUri)
       try container.encodeIfPresent(self.sourceCreateTime, forKey: .sourceCreateTime)
       try container.encodeIfPresent(self.scope, forKey: .scope)
-      try container.encode(self.entrySyncMode, forKey: .entrySyncMode)
-      try container.encode(self.aspectSyncMode, forKey: .aspectSyncMode)
-      try container.encode(self.logLevel, forKey: .logLevel)
+      if self.entrySyncMode != MetadataJob.ImportJobSpec.SyncMode() {
+        try container.encode(self.entrySyncMode, forKey: .entrySyncMode)
+      }
+      if self.aspectSyncMode != MetadataJob.ImportJobSpec.SyncMode() {
+        try container.encode(self.aspectSyncMode, forKey: .aspectSyncMode)
+      }
+      if self.logLevel != MetadataJob.ImportJobSpec.LogLevel() {
+        try container.encode(self.logLevel, forKey: .logLevel)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1390,7 +1398,9 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != MetadataJob.Status.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.message, forKey: .message)
       try container.encode(self.completionPercent, forKey: .completionPercent)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

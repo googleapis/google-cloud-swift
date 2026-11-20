@@ -153,16 +153,22 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.location, forKey: .location)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Cluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.serveNodes, forKey: .serveNodes)
-    try container.encode(self.nodeScalingFactor, forKey: .nodeScalingFactor)
-    try container.encode(self.defaultStorageType, forKey: .defaultStorageType)
+    if self.nodeScalingFactor != Cluster.NodeScalingFactor() {
+      try container.encode(self.nodeScalingFactor, forKey: .nodeScalingFactor)
+    }
+    if self.defaultStorageType != StorageType() {
+      try container.encode(self.defaultStorageType, forKey: .defaultStorageType)
+    }
     try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
 
     if let choice = self.config {
       switch choice {
       case .clusterConfig(let value):
-        try container.encode(value, forKey: .clusterConfig)
+        try container.encodeIfPresent(value, forKey: .clusterConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

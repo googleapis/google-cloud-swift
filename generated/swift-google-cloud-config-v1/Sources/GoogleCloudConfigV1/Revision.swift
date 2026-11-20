@@ -269,11 +269,17 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.action, forKey: .action)
-    try container.encode(self.state, forKey: .state)
+    if self.action != Revision.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
+    if self.state != Revision.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.applyResults, forKey: .applyResults)
     try container.encode(self.stateDetail, forKey: .stateDetail)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.errorCode != Revision.ErrorCode() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     try container.encode(self.build, forKey: .build)
     try container.encode(self.logs, forKey: .logs)
     try container.encode(self.tfErrors, forKey: .tfErrors)
@@ -284,13 +290,15 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.tfVersionConstraint, forKey: .tfVersionConstraint)
     try container.encode(self.tfVersion, forKey: .tfVersion)
     try container.encode(self.quotaValidationResults, forKey: .quotaValidationResults)
-    try container.encode(self.quotaValidation, forKey: .quotaValidation)
+    if self.quotaValidation != QuotaValidation() {
+      try container.encode(self.quotaValidation, forKey: .quotaValidation)
+    }
     try container.encodeIfPresent(self.providerConfig, forKey: .providerConfig)
 
     if let choice = self.blueprint {
       switch choice {
       case .terraformBlueprint(let value):
-        try container.encode(value, forKey: .terraformBlueprint)
+        try container.encodeIfPresent(value, forKey: .terraformBlueprint)
       }
     }
     for (key, value) in self._unknownFields.json {

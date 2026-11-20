@@ -189,7 +189,9 @@ public struct RestoreTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.postRestoreConfig, forKey: .postRestoreConfig)
     try container.encodeIfPresent(self.verificationConfig, forKey: .verificationConfig)
     try container.encodeIfPresent(self.restoreProperties, forKey: .restoreProperties)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RestoreTemplate.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.executionSummary, forKey: .executionSummary)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {

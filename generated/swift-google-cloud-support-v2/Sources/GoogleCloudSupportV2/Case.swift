@@ -225,7 +225,9 @@ public struct Case: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.classification, forKey: .classification)
     try container.encode(self.timeZone, forKey: .timeZone)
     try container.encode(self.subscriberEmailAddresses, forKey: .subscriberEmailAddresses)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Case.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.creator, forKey: .creator)
@@ -233,7 +235,9 @@ public struct Case: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.escalated, forKey: .escalated)
     try container.encode(self.testCase, forKey: .testCase)
     try container.encode(self.languageCode, forKey: .languageCode)
-    try container.encode(self.priority, forKey: .priority)
+    if self.priority != Case.Priority() {
+      try container.encode(self.priority, forKey: .priority)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

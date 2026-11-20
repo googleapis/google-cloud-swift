@@ -143,14 +143,16 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.targetDetails, forKey: .targetDetails)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DiskMigrationJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errors, forKey: .errors)
     try container.encode(self.steps, forKey: .steps)
 
     if let choice = self.sourceDiskDetails {
       switch choice {
       case .awsSourceDiskDetails(let value):
-        try container.encode(value, forKey: .awsSourceDiskDetails)
+        try container.encodeIfPresent(value, forKey: .awsSourceDiskDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

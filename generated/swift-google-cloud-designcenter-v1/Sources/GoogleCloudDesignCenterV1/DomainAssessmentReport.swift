@@ -150,7 +150,9 @@ public struct DomainAssessmentReport: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.domainId, forKey: .domainId)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.status, forKey: .status)
+    if self.status != DomainAssessmentReport.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.adcMetadata, forKey: .adcMetadata)
     try container.encode(self.assessedFrameworks, forKey: .assessedFrameworks)
     try container.encode(self.additionalInfo, forKey: .additionalInfo)

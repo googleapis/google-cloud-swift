@@ -161,15 +161,17 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.crc32C, forKey: .crc32C)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Asset.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
 
     if let choice = self.resource {
       switch choice {
       case .video(let value):
-        try container.encode(value, forKey: .video)
+        try container.encodeIfPresent(value, forKey: .video)
       case .image(let value):
-        try container.encode(value, forKey: .image)
+        try container.encodeIfPresent(value, forKey: .image)
       }
     }
     for (key, value) in self._unknownFields.json {

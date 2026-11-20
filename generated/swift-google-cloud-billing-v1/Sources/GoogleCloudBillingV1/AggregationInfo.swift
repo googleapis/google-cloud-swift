@@ -90,8 +90,12 @@ public struct AggregationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.aggregationLevel, forKey: .aggregationLevel)
-    try container.encode(self.aggregationInterval, forKey: .aggregationInterval)
+    if self.aggregationLevel != AggregationInfo.AggregationLevel() {
+      try container.encode(self.aggregationLevel, forKey: .aggregationLevel)
+    }
+    if self.aggregationInterval != AggregationInfo.AggregationInterval() {
+      try container.encode(self.aggregationInterval, forKey: .aggregationInterval)
+    }
     try container.encode(self.aggregationCount, forKey: .aggregationCount)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

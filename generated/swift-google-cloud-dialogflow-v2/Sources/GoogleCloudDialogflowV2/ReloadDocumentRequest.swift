@@ -132,7 +132,7 @@
       if let choice = self.source {
         switch choice {
         case .contentUri(let value):
-          try container.encode(value, forKey: .contentUri)
+          try container.encodeIfPresent(value, forKey: .contentUri)
         }
       }
       for (key, value) in self._unknownFields.json {

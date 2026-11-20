@@ -104,7 +104,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.implementation {
       switch choice {
       case .celExpression(let value):
-        try container.encode(value, forKey: .celExpression)
+        try container.encodeIfPresent(value, forKey: .celExpression)
       }
     }
     for (key, value) in self._unknownFields.json {

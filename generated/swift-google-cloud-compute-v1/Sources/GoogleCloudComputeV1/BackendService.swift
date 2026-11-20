@@ -849,7 +849,7 @@
         forKey: .externalManagedMigrationTestingPercentage)
       try container.encodeIfPresent(self.failoverPolicy, forKey: .failoverPolicy)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

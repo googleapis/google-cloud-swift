@@ -119,13 +119,13 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.label {
       switch choice {
       case .dataAccessLabel(let value):
-        try container.encode(value, forKey: .dataAccessLabel)
+        try container.encodeIfPresent(value, forKey: .dataAccessLabel)
       case .logType(let value):
-        try container.encode(value, forKey: .logType)
+        try container.encodeIfPresent(value, forKey: .logType)
       case .assetNamespace(let value):
-        try container.encode(value, forKey: .assetNamespace)
+        try container.encodeIfPresent(value, forKey: .assetNamespace)
       case .ingestionLabel(let value):
-        try container.encode(value, forKey: .ingestionLabel)
+        try container.encodeIfPresent(value, forKey: .ingestionLabel)
       }
     }
     for (key, value) in self._unknownFields.json {

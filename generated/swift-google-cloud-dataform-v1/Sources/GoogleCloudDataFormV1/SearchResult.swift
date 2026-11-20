@@ -91,9 +91,9 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.entry {
       switch choice {
       case .file(let value):
-        try container.encode(value, forKey: .file)
+        try container.encodeIfPresent(value, forKey: .file)
       case .directory(let value):
-        try container.encode(value, forKey: .directory)
+        try container.encodeIfPresent(value, forKey: .directory)
       }
     }
     for (key, value) in self._unknownFields.json {

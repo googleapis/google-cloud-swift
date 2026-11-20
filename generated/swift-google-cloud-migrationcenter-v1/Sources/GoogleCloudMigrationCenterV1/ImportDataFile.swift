@@ -123,14 +123,18 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.format, forKey: .format)
+    if self.format != ImportJobFormat() {
+      try container.encode(self.format, forKey: .format)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImportDataFile.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.fileInfo {
       switch choice {
       case .uploadFileInfo(let value):
-        try container.encode(value, forKey: .uploadFileInfo)
+        try container.encodeIfPresent(value, forKey: .uploadFileInfo)
       }
     }
     for (key, value) in self._unknownFields.json {

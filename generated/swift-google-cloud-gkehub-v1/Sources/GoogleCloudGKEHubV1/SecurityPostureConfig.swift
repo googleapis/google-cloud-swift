@@ -81,8 +81,12 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.mode, forKey: .mode)
-    try container.encode(self.vulnerabilityMode, forKey: .vulnerabilityMode)
+    if self.mode != SecurityPostureConfig.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
+    if self.vulnerabilityMode != SecurityPostureConfig.VulnerabilityMode() {
+      try container.encode(self.vulnerabilityMode, forKey: .vulnerabilityMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

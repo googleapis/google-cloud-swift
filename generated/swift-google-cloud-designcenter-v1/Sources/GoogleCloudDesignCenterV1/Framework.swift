@@ -153,7 +153,9 @@ public struct Framework: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.url, forKey: .url)
     try container.encode(self.active, forKey: .active)
     try container.encode(self.cloudControlDetails, forKey: .cloudControlDetails)
-    try container.encode(self.deploymentStatus, forKey: .deploymentStatus)
+    if self.deploymentStatus != Framework.DeploymentStatus() {
+      try container.encode(self.deploymentStatus, forKey: .deploymentStatus)
+    }
     try container.encode(self.managedProjectApplicable, forKey: .managedProjectApplicable)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

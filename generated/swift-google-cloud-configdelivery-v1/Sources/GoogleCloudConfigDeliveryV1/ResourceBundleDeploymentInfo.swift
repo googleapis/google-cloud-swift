@@ -111,7 +111,9 @@ public struct ResourceBundleDeploymentInfo: Codable, Equatable, GoogleWKT._AnyPa
     try container.encode(self.release, forKey: .release)
     try container.encode(self.version, forKey: .version)
     try container.encode(self.variant, forKey: .variant)
-    try container.encode(self.syncState, forKey: .syncState)
+    if self.syncState != ResourceBundleDeploymentInfo.SyncState() {
+      try container.encode(self.syncState, forKey: .syncState)
+    }
     try container.encode(self.messages, forKey: .messages)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

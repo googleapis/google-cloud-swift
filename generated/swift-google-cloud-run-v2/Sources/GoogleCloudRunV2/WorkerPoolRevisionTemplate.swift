@@ -228,7 +228,10 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
     try container.encodeIfPresent(self.serviceMesh, forKey: .serviceMesh)
-    try container.encode(self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    if self.encryptionKeyRevocationAction != EncryptionKeyRevocationAction() {
+      try container.encode(
+        self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    }
     try container.encodeIfPresent(
       self.encryptionKeyShutdownDuration, forKey: .encryptionKeyShutdownDuration)
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)

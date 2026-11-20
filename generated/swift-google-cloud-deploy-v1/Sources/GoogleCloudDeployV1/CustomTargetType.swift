@@ -192,7 +192,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.definition {
       switch choice {
       case .customActions(let value):
-        try container.encode(value, forKey: .customActions)
+        try container.encodeIfPresent(value, forKey: .customActions)
       }
     }
     for (key, value) in self._unknownFields.json {

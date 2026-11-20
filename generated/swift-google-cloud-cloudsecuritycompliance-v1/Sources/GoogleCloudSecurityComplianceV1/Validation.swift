@@ -97,11 +97,11 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.constraint {
       switch choice {
       case .allowedValues(let value):
-        try container.encode(value, forKey: .allowedValues)
+        try container.encodeIfPresent(value, forKey: .allowedValues)
       case .intRange(let value):
-        try container.encode(value, forKey: .intRange)
+        try container.encodeIfPresent(value, forKey: .intRange)
       case .regexpPattern(let value):
-        try container.encode(value, forKey: .regexpPattern)
+        try container.encodeIfPresent(value, forKey: .regexpPattern)
       }
     }
     for (key, value) in self._unknownFields.json {

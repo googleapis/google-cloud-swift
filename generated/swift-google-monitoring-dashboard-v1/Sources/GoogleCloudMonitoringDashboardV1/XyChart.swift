@@ -217,10 +217,14 @@ public struct XyChart: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
-      try container.encode(self.plotType, forKey: .plotType)
+      if self.plotType != XyChart.DataSet.PlotType() {
+        try container.encode(self.plotType, forKey: .plotType)
+      }
       try container.encode(self.legendTemplate, forKey: .legendTemplate)
       try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
-      try container.encode(self.targetAxis, forKey: .targetAxis)
+      if self.targetAxis != XyChart.DataSet.TargetAxis() {
+        try container.encode(self.targetAxis, forKey: .targetAxis)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -566,7 +570,9 @@ public struct XyChart: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.label, forKey: .label)
-      try container.encode(self.scale, forKey: .scale)
+      if self.scale != XyChart.Axis.Scale() {
+        try container.encode(self.scale, forKey: .scale)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

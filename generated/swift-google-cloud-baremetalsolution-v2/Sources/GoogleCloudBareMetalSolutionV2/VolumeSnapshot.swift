@@ -114,7 +114,9 @@ public struct VolumeSnapshot: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.storageVolume, forKey: .storageVolume)
-    try container.encode(self.type, forKey: .type)
+    if self.type != VolumeSnapshot.SnapshotType() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

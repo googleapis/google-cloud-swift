@@ -95,7 +95,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.mode, forKey: .mode)
+      if self.mode != FunctionCallingConfig.Mode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       try container.encode(self.allowedFunctionNames, forKey: .allowedFunctionNames)
       try container.encode(self.streamFunctionCallArguments, forKey: .streamFunctionCallArguments)
       for (key, value) in self._unknownFields.json {

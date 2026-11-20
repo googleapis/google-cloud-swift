@@ -81,7 +81,9 @@ public struct PlatformOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.accountStatus, forKey: .accountStatus)
+    if self.accountStatus != AccountStatus() {
+      try container.encode(self.accountStatus, forKey: .accountStatus)
+    }
     try container.encode(self.previousPlatformOperatorId, forKey: .previousPlatformOperatorId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

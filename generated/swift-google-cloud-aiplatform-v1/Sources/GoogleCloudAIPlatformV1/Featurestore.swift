@@ -179,7 +179,9 @@
       try container.encode(self.etag, forKey: .etag)
       try container.encode(self.labels, forKey: .labels)
       try container.encodeIfPresent(self.onlineServingConfig, forKey: .onlineServingConfig)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Featurestore.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.onlineStorageTtlDays, forKey: .onlineStorageTtlDays)
       try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
       try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)

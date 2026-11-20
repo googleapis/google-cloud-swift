@@ -180,7 +180,9 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.provider, forKey: .provider)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Channel.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.activationToken, forKey: .activationToken)
     try container.encode(self.cryptoKeyName, forKey: .cryptoKeyName)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
@@ -189,7 +191,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.transport {
       switch choice {
       case .pubsubTopic(let value):
-        try container.encode(value, forKey: .pubsubTopic)
+        try container.encodeIfPresent(value, forKey: .pubsubTopic)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -160,16 +160,16 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authenticationMethod {
       switch choice {
       case .oidcToken(let value):
-        try container.encode(value, forKey: .oidcToken)
+        try container.encodeIfPresent(value, forKey: .oidcToken)
       }
     }
 
     if let choice = self.wrapper {
       switch choice {
       case .pubsubWrapper(let value):
-        try container.encode(value, forKey: .pubsubWrapper)
+        try container.encodeIfPresent(value, forKey: .pubsubWrapper)
       case .noWrapper(let value):
-        try container.encode(value, forKey: .noWrapper)
+        try container.encodeIfPresent(value, forKey: .noWrapper)
       }
     }
     for (key, value) in self._unknownFields.json {

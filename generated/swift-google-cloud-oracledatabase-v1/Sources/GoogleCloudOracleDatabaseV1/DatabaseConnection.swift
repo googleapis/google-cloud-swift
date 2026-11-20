@@ -196,7 +196,9 @@ public struct DatabaseConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.username, forKey: .username)
     try container.encode(self.passwordSecretVersion, forKey: .passwordSecretVersion)
     try container.encode(self.connectionString, forKey: .connectionString)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DatabaseConnection.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -205,14 +207,14 @@ public struct DatabaseConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.walletSource {
       switch choice {
       case .walletSecretVersion(let value):
-        try container.encode(value, forKey: .walletSecretVersion)
+        try container.encodeIfPresent(value, forKey: .walletSecretVersion)
       }
     }
 
     if let choice = self.networkConfiguration {
       switch choice {
       case .odbNetwork(let value):
-        try container.encode(value, forKey: .odbNetwork)
+        try container.encodeIfPresent(value, forKey: .odbNetwork)
       }
     }
     for (key, value) in self._unknownFields.json {

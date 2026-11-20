@@ -124,7 +124,9 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.config, forKey: .config)
     try container.encode(self.address, forKey: .address)
     try container.encode(self.resourceUri, forKey: .resourceUri)
-    try container.encode(self.platform, forKey: .platform)
+    if self.platform != DeploymentOccurrence.Platform() {
+      try container.encode(self.platform, forKey: .platform)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

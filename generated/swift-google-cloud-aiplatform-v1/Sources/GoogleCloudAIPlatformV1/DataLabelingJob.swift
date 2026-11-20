@@ -255,7 +255,9 @@
       try container.encode(self.instructionUri, forKey: .instructionUri)
       try container.encode(self.inputsSchemaUri, forKey: .inputsSchemaUri)
       try container.encodeIfPresent(self.inputs, forKey: .inputs)
-      try container.encode(self.state, forKey: .state)
+      if self.state != JobState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.labelingProgress, forKey: .labelingProgress)
       try container.encodeIfPresent(self.currentSpend, forKey: .currentSpend)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)

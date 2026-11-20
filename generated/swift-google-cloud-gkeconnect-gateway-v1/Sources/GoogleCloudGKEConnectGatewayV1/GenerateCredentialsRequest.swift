@@ -119,7 +119,9 @@ public struct GenerateCredentialsRequest: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.forceUseAgent, forKey: .forceUseAgent)
     try container.encode(self.version, forKey: .version)
     try container.encode(self.kubernetesNamespace, forKey: .kubernetesNamespace)
-    try container.encode(self.operatingSystem, forKey: .operatingSystem)
+    if self.operatingSystem != GenerateCredentialsRequest.OperatingSystem() {
+      try container.encode(self.operatingSystem, forKey: .operatingSystem)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

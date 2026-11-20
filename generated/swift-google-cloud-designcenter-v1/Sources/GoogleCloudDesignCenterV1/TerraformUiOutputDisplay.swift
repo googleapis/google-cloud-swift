@@ -71,7 +71,9 @@ public struct TerraformUiOutputDisplay: Codable, Equatable, GoogleWKT._AnyPackab
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.visibility, forKey: .visibility)
+    if self.visibility != DisplayVariableVisibility() {
+      try container.encode(self.visibility, forKey: .visibility)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

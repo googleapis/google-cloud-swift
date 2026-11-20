@@ -457,7 +457,9 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
   #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.travelMode, forKey: .travelMode)
+    if self.travelMode != Vehicle.TravelMode() {
+      try container.encode(self.travelMode, forKey: .travelMode)
+    }
     try container.encodeIfPresent(self.routeModifiers, forKey: .routeModifiers)
     try container.encodeIfPresent(self.startLocation, forKey: .startLocation)
     try container.encodeIfPresent(self.startWaypoint, forKey: .startWaypoint)
@@ -468,7 +470,9 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.startTimeWindows, forKey: .startTimeWindows)
     try container.encode(self.endTimeWindows, forKey: .endTimeWindows)
     try container.encodeIfPresent(self.travelDurationMultiple, forKey: .travelDurationMultiple)
-    try container.encode(self.unloadingPolicy, forKey: .unloadingPolicy)
+    if self.unloadingPolicy != Vehicle.UnloadingPolicy() {
+      try container.encode(self.unloadingPolicy, forKey: .unloadingPolicy)
+    }
     try container.encode(self.loadLimits, forKey: .loadLimits)
     try container.encode(self.costPerHour, forKey: .costPerHour)
     try container.encode(self.costPerTraveledHour, forKey: .costPerTraveledHour)

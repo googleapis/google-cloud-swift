@@ -91,9 +91,9 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.streamingRequest {
       switch choice {
       case .config(let value):
-        try container.encode(value, forKey: .config)
+        try container.encodeIfPresent(value, forKey: .config)
       case .timeIndexedData(let value):
-        try container.encode(value, forKey: .timeIndexedData)
+        try container.encodeIfPresent(value, forKey: .timeIndexedData)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -180,7 +180,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.dataType {
         switch choice {
         case .videoType(let value):
-          try container.encode(value, forKey: .videoType)
+          try container.encodeIfPresent(value, forKey: .videoType)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -243,7 +243,9 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.containerFormat, forKey: .containerFormat)
+        if self.containerFormat != IngestAssetRequest.Config.VideoType.ContainerFormat() {
+          try container.encode(self.containerFormat, forKey: .containerFormat)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

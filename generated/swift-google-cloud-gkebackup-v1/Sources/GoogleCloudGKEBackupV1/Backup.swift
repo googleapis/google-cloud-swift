@@ -400,7 +400,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.containsVolumeData, forKey: .containsVolumeData)
     try container.encode(self.containsSecrets, forKey: .containsSecrets)
     try container.encodeIfPresent(self.clusterMetadata, forKey: .clusterMetadata)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Backup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
     try container.encode(self.resourceCount, forKey: .resourceCount)
@@ -417,11 +419,11 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.backupScope {
       switch choice {
       case .allNamespaces(let value):
-        try container.encode(value, forKey: .allNamespaces)
+        try container.encodeIfPresent(value, forKey: .allNamespaces)
       case .selectedNamespaces(let value):
-        try container.encode(value, forKey: .selectedNamespaces)
+        try container.encodeIfPresent(value, forKey: .selectedNamespaces)
       case .selectedApplications(let value):
-        try container.encode(value, forKey: .selectedApplications)
+        try container.encodeIfPresent(value, forKey: .selectedApplications)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -543,9 +545,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.platformVersion {
         switch choice {
         case .gkeVersion(let value):
-          try container.encode(value, forKey: .gkeVersion)
+          try container.encodeIfPresent(value, forKey: .gkeVersion)
         case .anthosVersion(let value):
-          try container.encode(value, forKey: .anthosVersion)
+          try container.encodeIfPresent(value, forKey: .anthosVersion)
         }
       }
       for (key, value) in self._unknownFields.json {

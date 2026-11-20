@@ -155,7 +155,9 @@ public struct PackageNote: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.distribution, forKey: .distribution)
     try container.encode(self.packageType, forKey: .packageType)
     try container.encode(self.cpeUri, forKey: .cpeUri)
-    try container.encode(self.architecture, forKey: .architecture)
+    if self.architecture != Architecture() {
+      try container.encode(self.architecture, forKey: .architecture)
+    }
     try container.encodeIfPresent(self.version, forKey: .version)
     try container.encode(self.maintainer, forKey: .maintainer)
     try container.encode(self.url, forKey: .url)

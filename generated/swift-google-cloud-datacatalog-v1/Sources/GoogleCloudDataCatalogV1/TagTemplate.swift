@@ -142,7 +142,9 @@ public struct TagTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.isPubliclyReadable, forKey: .isPubliclyReadable)
     try container.encode(self.fields, forKey: .fields)
-    try container.encode(self.dataplexTransferStatus, forKey: .dataplexTransferStatus)
+    if self.dataplexTransferStatus != TagTemplate.DataplexTransferStatus() {
+      try container.encode(self.dataplexTransferStatus, forKey: .dataplexTransferStatus)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

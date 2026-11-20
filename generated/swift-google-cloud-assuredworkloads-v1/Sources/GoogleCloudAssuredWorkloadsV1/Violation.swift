@@ -191,7 +191,9 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.resolveTime, forKey: .resolveTime)
     try container.encode(self.category, forKey: .category)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Violation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.orgPolicyConstraint, forKey: .orgPolicyConstraint)
     try container.encode(self.auditLogLink, forKey: .auditLogLink)
     try container.encode(self.nonCompliantOrgPolicy, forKey: .nonCompliantOrgPolicy)
@@ -279,7 +281,9 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.instructions, forKey: .instructions)
       try container.encode(self.compliantValues, forKey: .compliantValues)
-      try container.encode(self.remediationType, forKey: .remediationType)
+      if self.remediationType != Violation.Remediation.RemediationType() {
+        try container.encode(self.remediationType, forKey: .remediationType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

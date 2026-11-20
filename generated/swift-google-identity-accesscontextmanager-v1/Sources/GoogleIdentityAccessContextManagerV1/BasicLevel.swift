@@ -85,7 +85,9 @@ public struct BasicLevel: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.conditions, forKey: .conditions)
-    try container.encode(self.combiningFunction, forKey: .combiningFunction)
+    if self.combiningFunction != BasicLevel.ConditionCombiningFunction() {
+      try container.encode(self.combiningFunction, forKey: .combiningFunction)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

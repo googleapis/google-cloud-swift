@@ -127,7 +127,9 @@ public struct SetMasterAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.projectId, forKey: .projectId)
     try container.encode(self.zone, forKey: .zone)
     try container.encode(self.clusterId, forKey: .clusterId)
-    try container.encode(self.action, forKey: .action)
+    if self.action != SetMasterAuthRequest.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encodeIfPresent(self.update, forKey: .update)
     try container.encode(self.name, forKey: .name)
     for (key, value) in self._unknownFields.json {

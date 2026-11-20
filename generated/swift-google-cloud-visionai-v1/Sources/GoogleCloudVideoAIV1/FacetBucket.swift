@@ -102,9 +102,9 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.bucketValue {
       switch choice {
       case .value(let value):
-        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(value, forKey: .value)
       case .range(let value):
-        try container.encode(value, forKey: .range)
+        try container.encodeIfPresent(value, forKey: .range)
       }
     }
     for (key, value) in self._unknownFields.json {

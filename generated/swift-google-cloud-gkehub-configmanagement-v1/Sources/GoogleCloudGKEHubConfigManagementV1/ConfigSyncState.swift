@@ -122,9 +122,15 @@ public struct ConfigSyncState: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.deploymentState, forKey: .deploymentState)
     try container.encodeIfPresent(self.syncState, forKey: .syncState)
     try container.encode(self.errors, forKey: .errors)
-    try container.encode(self.rootsyncCrd, forKey: .rootsyncCrd)
-    try container.encode(self.reposyncCrd, forKey: .reposyncCrd)
-    try container.encode(self.state, forKey: .state)
+    if self.rootsyncCrd != ConfigSyncState.CRDState() {
+      try container.encode(self.rootsyncCrd, forKey: .rootsyncCrd)
+    }
+    if self.reposyncCrd != ConfigSyncState.CRDState() {
+      try container.encode(self.reposyncCrd, forKey: .reposyncCrd)
+    }
+    if self.state != ConfigSyncState.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

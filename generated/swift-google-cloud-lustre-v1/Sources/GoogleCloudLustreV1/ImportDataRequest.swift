@@ -141,14 +141,14 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .gcsPath(let value):
-        try container.encode(value, forKey: .gcsPath)
+        try container.encodeIfPresent(value, forKey: .gcsPath)
       }
     }
 
     if let choice = self.destination {
       switch choice {
       case .lustrePath(let value):
-        try container.encode(value, forKey: .lustrePath)
+        try container.encodeIfPresent(value, forKey: .lustrePath)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -200,10 +200,14 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.credentialMode, forKey: .credentialMode)
+    if self.credentialMode != IcebergCatalog.CredentialMode() {
+      try container.encode(self.credentialMode, forKey: .credentialMode)
+    }
     try container.encode(self.biglakeServiceAccount, forKey: .biglakeServiceAccount)
     try container.encode(self.biglakeServiceAccountUniqueId, forKey: .biglakeServiceAccountUniqueId)
-    try container.encode(self.catalogType, forKey: .catalogType)
+    if self.catalogType != IcebergCatalog.CatalogType() {
+      try container.encode(self.catalogType, forKey: .catalogType)
+    }
     try container.encode(self.defaultLocation, forKey: .defaultLocation)
     try container.encode(self.storageRegions, forKey: .storageRegions)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -281,7 +285,9 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.region, forKey: .region)
-      try container.encode(self.state, forKey: .state)
+      if self.state != IcebergCatalog.Replica.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -655,11 +661,11 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.remoteCatalogInfo {
         switch choice {
         case .unityCatalogInfo(let value):
-          try container.encode(value, forKey: .unityCatalogInfo)
+          try container.encodeIfPresent(value, forKey: .unityCatalogInfo)
         case .glueCatalogInfo(let value):
-          try container.encode(value, forKey: .glueCatalogInfo)
+          try container.encodeIfPresent(value, forKey: .glueCatalogInfo)
         case .snowflakeCatalogInfo(let value):
-          try container.encode(value, forKey: .snowflakeCatalogInfo)
+          try container.encodeIfPresent(value, forKey: .snowflakeCatalogInfo)
         }
       }
       for (key, value) in self._unknownFields.json {

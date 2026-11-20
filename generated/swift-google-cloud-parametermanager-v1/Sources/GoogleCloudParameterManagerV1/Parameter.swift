@@ -143,7 +143,9 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.format, forKey: .format)
+    if self.format != ParameterFormat() {
+      try container.encode(self.format, forKey: .format)
+    }
     try container.encodeIfPresent(self.policyMember, forKey: .policyMember)
     try container.encodeIfPresent(self.kmsKey, forKey: .kmsKey)
     try container.encode(self.tags, forKey: .tags)

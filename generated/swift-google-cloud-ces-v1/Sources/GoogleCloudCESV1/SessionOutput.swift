@@ -156,19 +156,19 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.outputType {
       switch choice {
       case .text(let value):
-        try container.encode(value, forKey: .text)
+        try container.encodeIfPresent(value, forKey: .text)
       case .audio(let value):
-        try container.encode(value, forKey: .audio)
+        try container.encodeIfPresent(value, forKey: .audio)
       case .toolCalls(let value):
-        try container.encode(value, forKey: .toolCalls)
+        try container.encodeIfPresent(value, forKey: .toolCalls)
       case .citations(let value):
-        try container.encode(value, forKey: .citations)
+        try container.encodeIfPresent(value, forKey: .citations)
       case .googleSearchSuggestions(let value):
-        try container.encode(value, forKey: .googleSearchSuggestions)
+        try container.encodeIfPresent(value, forKey: .googleSearchSuggestions)
       case .endSession(let value):
-        try container.encode(value, forKey: .endSession)
+        try container.encodeIfPresent(value, forKey: .endSession)
       case .payload(let value):
-        try container.encode(value, forKey: .payload)
+        try container.encodeIfPresent(value, forKey: .payload)
       }
     }
     for (key, value) in self._unknownFields.json {

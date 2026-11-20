@@ -107,9 +107,9 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.locationType {
       switch choice {
       case .location(let value):
-        try container.encode(value, forKey: .location)
+        try container.encodeIfPresent(value, forKey: .location)
       case .placeId(let value):
-        try container.encode(value, forKey: .placeId)
+        try container.encodeIfPresent(value, forKey: .placeId)
       }
     }
     for (key, value) in self._unknownFields.json {

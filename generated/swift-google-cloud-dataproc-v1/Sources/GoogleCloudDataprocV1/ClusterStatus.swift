@@ -94,10 +94,14 @@ public struct ClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ClusterStatus.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.detail, forKey: .detail)
     try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
-    try container.encode(self.substate, forKey: .substate)
+    if self.substate != ClusterStatus.Substate() {
+      try container.encode(self.substate, forKey: .substate)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

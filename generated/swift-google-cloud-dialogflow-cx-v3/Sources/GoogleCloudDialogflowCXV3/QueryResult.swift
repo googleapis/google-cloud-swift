@@ -338,15 +338,15 @@
       if let choice = self.query {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .triggerIntent(let value):
-          try container.encode(value, forKey: .triggerIntent)
+          try container.encodeIfPresent(value, forKey: .triggerIntent)
         case .transcript(let value):
-          try container.encode(value, forKey: .transcript)
+          try container.encodeIfPresent(value, forKey: .transcript)
         case .triggerEvent(let value):
-          try container.encode(value, forKey: .triggerEvent)
+          try container.encodeIfPresent(value, forKey: .triggerEvent)
         case .dtmf(let value):
-          try container.encode(value, forKey: .dtmf)
+          try container.encodeIfPresent(value, forKey: .dtmf)
         }
       }
       for (key, value) in self._unknownFields.json {

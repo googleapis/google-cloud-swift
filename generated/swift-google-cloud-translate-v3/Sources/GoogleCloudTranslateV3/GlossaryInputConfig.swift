@@ -85,7 +85,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       }
     }
     for (key, value) in self._unknownFields.json {

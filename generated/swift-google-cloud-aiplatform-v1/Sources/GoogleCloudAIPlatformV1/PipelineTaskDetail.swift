@@ -192,7 +192,9 @@
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encodeIfPresent(self.executorDetail, forKey: .executorDetail)
-      try container.encode(self.state, forKey: .state)
+      if self.state != PipelineTaskDetail.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.execution, forKey: .execution)
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.pipelineTaskStatus, forKey: .pipelineTaskStatus)
@@ -275,7 +277,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-        try container.encode(self.state, forKey: .state)
+        if self.state != PipelineTaskDetail.State() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encodeIfPresent(self.error, forKey: .error)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -130,7 +130,9 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.batchUuid, forKey: .batchUuid)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.doneTime, forKey: .doneTime)
-    try container.encode(self.operationType, forKey: .operationType)
+    if self.operationType != BatchOperationMetadata.BatchOperationType() {
+      try container.encode(self.operationType, forKey: .operationType)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.warnings, forKey: .warnings)

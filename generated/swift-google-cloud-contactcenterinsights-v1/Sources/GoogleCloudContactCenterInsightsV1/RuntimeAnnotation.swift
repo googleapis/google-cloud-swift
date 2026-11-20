@@ -169,17 +169,17 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .articleSuggestion(let value):
-        try container.encode(value, forKey: .articleSuggestion)
+        try container.encodeIfPresent(value, forKey: .articleSuggestion)
       case .faqAnswer(let value):
-        try container.encode(value, forKey: .faqAnswer)
+        try container.encodeIfPresent(value, forKey: .faqAnswer)
       case .smartReply(let value):
-        try container.encode(value, forKey: .smartReply)
+        try container.encodeIfPresent(value, forKey: .smartReply)
       case .smartComposeSuggestion(let value):
-        try container.encode(value, forKey: .smartComposeSuggestion)
+        try container.encodeIfPresent(value, forKey: .smartComposeSuggestion)
       case .dialogflowInteraction(let value):
-        try container.encode(value, forKey: .dialogflowInteraction)
+        try container.encodeIfPresent(value, forKey: .dialogflowInteraction)
       case .conversationSummarizationSuggestion(let value):
-        try container.encode(value, forKey: .conversationSummarizationSuggestion)
+        try container.encodeIfPresent(value, forKey: .conversationSummarizationSuggestion)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -262,7 +262,9 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.query, forKey: .query)
       try container.encode(self.generatorName, forKey: .generatorName)
-      try container.encode(self.querySource, forKey: .querySource)
+      if self.querySource != RuntimeAnnotation.UserInput.QuerySource() {
+        try container.encode(self.querySource, forKey: .querySource)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

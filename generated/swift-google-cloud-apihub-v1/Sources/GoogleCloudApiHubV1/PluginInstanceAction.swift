@@ -152,7 +152,9 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.actionId, forKey: .actionId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PluginInstanceAction.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.scheduleCronExpression, forKey: .scheduleCronExpression)
     try container.encodeIfPresent(self.curationConfig, forKey: .curationConfig)
     try container.encode(self.scheduleTimeZone, forKey: .scheduleTimeZone)
@@ -162,7 +164,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.actionStatus {
       switch choice {
       case .hubInstanceAction(let value):
-        try container.encode(value, forKey: .hubInstanceAction)
+        try container.encodeIfPresent(value, forKey: .hubInstanceAction)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -231,7 +233,9 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.actionType, forKey: .actionType)
+      if self.actionType != ActionType() {
+        try container.encode(self.actionType, forKey: .actionType)
+      }
       try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

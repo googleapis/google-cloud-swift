@@ -154,13 +154,13 @@
       if let choice = self.response {
         switch choice {
         case .responseChunk(let value):
-          try container.encode(value, forKey: .responseChunk)
+          try container.encodeIfPresent(value, forKey: .responseChunk)
         case .status(let value):
-          try container.encode(value, forKey: .status)
+          try container.encodeIfPresent(value, forKey: .status)
         case .reactiveModeFinalResponse(let value):
-          try container.encode(value, forKey: .reactiveModeFinalResponse)
+          try container.encodeIfPresent(value, forKey: .reactiveModeFinalResponse)
         case .intermediateToolCallEvents(let value):
-          try container.encode(value, forKey: .intermediateToolCallEvents)
+          try container.encodeIfPresent(value, forKey: .intermediateToolCallEvents)
         }
       }
       for (key, value) in self._unknownFields.json {

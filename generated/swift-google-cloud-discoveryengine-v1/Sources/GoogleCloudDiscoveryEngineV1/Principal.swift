@@ -98,11 +98,11 @@
       if let choice = self.principal {
         switch choice {
         case .userId(let value):
-          try container.encode(value, forKey: .userId)
+          try container.encodeIfPresent(value, forKey: .userId)
         case .groupId(let value):
-          try container.encode(value, forKey: .groupId)
+          try container.encodeIfPresent(value, forKey: .groupId)
         case .externalEntityId(let value):
-          try container.encode(value, forKey: .externalEntityId)
+          try container.encodeIfPresent(value, forKey: .externalEntityId)
         }
       }
       for (key, value) in self._unknownFields.json {

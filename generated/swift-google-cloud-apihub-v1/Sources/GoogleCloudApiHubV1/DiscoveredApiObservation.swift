@@ -182,7 +182,9 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.style, forKey: .style)
+    if self.style != DiscoveredApiObservation.Style() {
+      try container.encode(self.style, forKey: .style)
+    }
     try container.encode(self.serverIps, forKey: .serverIps)
     try container.encode(self.hostname, forKey: .hostname)
     try container.encodeIfPresent(self.lastEventDetectedTime, forKey: .lastEventDetectedTime)

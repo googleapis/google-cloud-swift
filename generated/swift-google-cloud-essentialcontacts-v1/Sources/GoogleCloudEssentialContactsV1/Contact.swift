@@ -125,7 +125,9 @@ public struct Contact: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(
       self.notificationCategorySubscriptions, forKey: .notificationCategorySubscriptions)
     try container.encode(self.languageTag, forKey: .languageTag)
-    try container.encode(self.validationState, forKey: .validationState)
+    if self.validationState != ValidationState() {
+      try container.encode(self.validationState, forKey: .validationState)
+    }
     try container.encodeIfPresent(self.validateTime, forKey: .validateTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

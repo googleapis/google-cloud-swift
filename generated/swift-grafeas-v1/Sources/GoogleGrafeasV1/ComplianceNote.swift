@@ -159,14 +159,14 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.complianceType {
       switch choice {
       case .cisBenchmark(let value):
-        try container.encode(value, forKey: .cisBenchmark)
+        try container.encodeIfPresent(value, forKey: .cisBenchmark)
       }
     }
 
     if let choice = self.potentialImpact {
       switch choice {
       case .impact(let value):
-        try container.encode(value, forKey: .impact)
+        try container.encodeIfPresent(value, forKey: .impact)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -233,7 +233,9 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.profileLevel, forKey: .profileLevel)
-      try container.encode(self.severity, forKey: .severity)
+      if self.severity != Severity() {
+        try container.encode(self.severity, forKey: .severity)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

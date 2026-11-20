@@ -184,7 +184,9 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parameter, forKey: .parameter)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.dataType, forKey: .dataType)
+      if self.dataType != DataType() {
+        try container.encode(self.dataType, forKey: .dataType)
+      }
       try container.encode(self.nullable, forKey: .nullable)
       try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
       for (key, value) in self._unknownFields.json {
@@ -284,7 +286,9 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.field, forKey: .field)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.dataType, forKey: .dataType)
+      if self.dataType != DataType() {
+        try container.encode(self.dataType, forKey: .dataType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

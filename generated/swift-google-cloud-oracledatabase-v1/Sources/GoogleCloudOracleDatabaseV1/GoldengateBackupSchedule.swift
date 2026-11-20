@@ -113,7 +113,9 @@ public struct GoldengateBackupSchedule: Codable, Equatable, GoogleWKT._AnyPackab
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucket, forKey: .bucket)
     try container.encode(self.compartmentId, forKey: .compartmentId)
-    try container.encode(self.frequencyBackupScheduled, forKey: .frequencyBackupScheduled)
+    if self.frequencyBackupScheduled != GoldengateBackupSchedule.FrequencyBackupScheduled() {
+      try container.encode(self.frequencyBackupScheduled, forKey: .frequencyBackupScheduled)
+    }
     try container.encode(self.metadataOnly, forKey: .metadataOnly)
     try container.encode(self.namespace, forKey: .namespace)
     try container.encodeIfPresent(self.backupScheduledTime, forKey: .backupScheduledTime)

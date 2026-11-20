@@ -211,7 +211,9 @@
       try container.encode(self.host, forKey: .host)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.project, forKey: .project)
-      try container.encode(self.type, forKey: .type)
+      if self.type != User.SqlUserType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.iamEmail, forKey: .iamEmail)
       try container.encodeIfPresent(self.passwordPolicy, forKey: .passwordPolicy)
       try container.encodeIfPresent(self.dualPasswordType, forKey: .dualPasswordType)
@@ -222,7 +224,7 @@
       if let choice = self.userDetails {
         switch choice {
         case .sqlserverUserDetails(let value):
-          try container.encode(value, forKey: .sqlserverUserDetails)
+          try container.encodeIfPresent(value, forKey: .sqlserverUserDetails)
         }
       }
       for (key, value) in self._unknownFields.json {

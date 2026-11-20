@@ -171,14 +171,16 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.passwordSet, forKey: .passwordSet)
     try container.encodeIfPresent(self.ssl, forKey: .ssl)
     try container.encode(self.cloudSqlId, forKey: .cloudSqlId)
-    try container.encode(self.networkArchitecture, forKey: .networkArchitecture)
+    if self.networkArchitecture != NetworkArchitecture() {
+      try container.encode(self.networkArchitecture, forKey: .networkArchitecture)
+    }
 
     if let choice = self.connectivity {
       switch choice {
       case .staticIpConnectivity(let value):
-        try container.encode(value, forKey: .staticIpConnectivity)
+        try container.encodeIfPresent(value, forKey: .staticIpConnectivity)
       case .privateServiceConnectConnectivity(let value):
-        try container.encode(value, forKey: .privateServiceConnectConnectivity)
+        try container.encodeIfPresent(value, forKey: .privateServiceConnectConnectivity)
       }
     }
     for (key, value) in self._unknownFields.json {

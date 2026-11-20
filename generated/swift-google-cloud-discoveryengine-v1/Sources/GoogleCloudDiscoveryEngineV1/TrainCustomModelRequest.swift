@@ -131,7 +131,7 @@
       if let choice = self.trainingInput {
         switch choice {
         case .gcsTrainingInput(let value):
-          try container.encode(value, forKey: .gcsTrainingInput)
+          try container.encodeIfPresent(value, forKey: .gcsTrainingInput)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -73,7 +73,9 @@ public struct SdpBasicConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
+    if self.filterEnforcement != SdpBasicConfig.SdpBasicConfigEnforcement() {
+      try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -100,9 +100,15 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.connectionType, forKey: .connectionType)
-      try container.encode(self.dnsScope, forKey: .dnsScope)
-      try container.encode(self.recordManager, forKey: .recordManager)
+      if self.connectionType != DnsNameMapping.ConnectionType() {
+        try container.encode(self.connectionType, forKey: .connectionType)
+      }
+      if self.dnsScope != DnsNameMapping.DnsScope() {
+        try container.encode(self.dnsScope, forKey: .dnsScope)
+      }
+      if self.recordManager != DnsNameMapping.RecordManager() {
+        try container.encode(self.recordManager, forKey: .recordManager)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

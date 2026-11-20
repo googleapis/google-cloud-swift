@@ -293,7 +293,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.tunedModelDisplayName, forKey: .tunedModelDisplayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.state, forKey: .state)
+      if self.state != JobState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -310,16 +312,16 @@
       if let choice = self.sourceModel {
         switch choice {
         case .baseModel(let value):
-          try container.encode(value, forKey: .baseModel)
+          try container.encodeIfPresent(value, forKey: .baseModel)
         case .preTunedModel(let value):
-          try container.encode(value, forKey: .preTunedModel)
+          try container.encodeIfPresent(value, forKey: .preTunedModel)
         }
       }
 
       if let choice = self.tuningSpec {
         switch choice {
         case .supervisedTuningSpec(let value):
-          try container.encode(value, forKey: .supervisedTuningSpec)
+          try container.encodeIfPresent(value, forKey: .supervisedTuningSpec)
         }
       }
       for (key, value) in self._unknownFields.json {

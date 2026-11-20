@@ -117,8 +117,12 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.findingCategory, forKey: .findingCategory)
-    try container.encode(self.findingClass, forKey: .findingClass)
-    try container.encode(self.severity, forKey: .severity)
+    if self.findingClass != FindingClass() {
+      try container.encode(self.findingClass, forKey: .findingClass)
+    }
+    if self.severity != Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.findingCount, forKey: .findingCount)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.relatedFrameworks, forKey: .relatedFrameworks)
