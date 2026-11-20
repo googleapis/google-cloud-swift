@@ -114,7 +114,7 @@ Also update the `--from` installation version in `pkgs/swift-*/README.md` for an
 - [`pkgs/swift-google-wkt-convert/README.md`](../../../pkgs/swift-google-wkt-convert/README.md)
 
 > [!NOTE]
-> **Preemptive version bumps**: If versions are bumped in `librarian.yaml` ahead of publishing, keep monorepo-only files (`Package.swift`, `guide/Package.swift`, and root `README.md`) on already-published versions until after Step 4 of publishing so Dependabot and root Quickstart instructions continue to resolve against published tags.
+> **Preemptive version bumps**: If versions are bumped in `librarian.yaml` ahead of publishing, keep monorepo-only files (`Package.swift`, `guide/Package.swift`, and root `README.md`) on already-published versions until after Step 4 of publishing so root Quickstart instructions and default remote dependencies continue to resolve against published tags.
 
 ### Step 4: Tidy and Regenerate All Libraries
 
@@ -272,6 +272,5 @@ After the release pull request is merged into `main`:
 5. **Post-Release Manifest and Documentation Follow-Up**:
    After publishing the split repositories and monorepo tag, open a follow-up PR on `main` to:
    - Update internal `from:` constraints in [`Package.swift`](../../../Package.swift) and [`guide/Package.swift`](../../../guide/Package.swift) to match the newly published release versions, and ensure external dependency minimums (such as `swift-log`) in [`Package.swift`](../../../Package.swift) and [`guide/Package.swift`](../../../guide/Package.swift) are at least as recent as those in `pkgs/*/Package.swift`.
-   - Refresh [`Package.resolved`](../../../Package.resolved) by running `swift package resolve` without `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS` set so remote pins match the newly published tags.
    - Verify `--from` installation snippets in [`README.md`](../../../README.md) and `pkgs/swift-*/README.md` match the published versions.
    - Update `--from` / `from:` package version snippets in the Swift User Guide articles on Cloud Docs (`https://docs.cloud.google.com/swift/*`).

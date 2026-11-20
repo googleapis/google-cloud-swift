@@ -49,7 +49,7 @@ export GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/109
 errors=0
 count=1
 echo "--- Running top-level integration tests ---"
-if swift test "${flags[@]}" --disable-automatic-resolution --quiet; then
+if swift test "${flags[@]}" --quiet; then
     echo; echo "✓ integration tests passed"
 else
     echo; echo "✗ integration tests failed"

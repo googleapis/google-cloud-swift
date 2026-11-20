@@ -17,7 +17,7 @@ Releases in `google-cloud-swift` follow a two-phase workflow:
 2. **Publishing and Tagging (Post-Merge)**:
    - Run `librarian publish` from the merged `main` commit to split each package subdirectory (`pkgs/swift-*` and `generated/swift-*`) into its standalone GitHub repository (`googleapis/swift-*`) and push version tags.
    - Tag the monorepo release commit on `upstream/main`.
-   - Open a post-release follow-up PR to update monorepo/guide manifests, `Package.resolved`, handwritten `README.md` snippets, and Cloud Docs User Guide dependency versions.
+   - Open a post-release follow-up PR to update monorepo/guide manifests, handwritten `README.md` snippets, and Cloud Docs User Guide dependency versions.
 
 ## Prerequisites
 
@@ -105,8 +105,8 @@ the new version:
 > **Note on preemptive version bumps**: If versions are bumped in `librarian.yaml`
 > ahead of publishing, keep monorepo-only files (`Package.swift`,
 > `guide/Package.swift`, and root `README.md`) on already-published versions until
-> after Step 4 of publishing so Dependabot and root Quickstart instructions
-> continue to resolve against published tags.
+> after Step 4 of publishing so root Quickstart instructions and default remote
+> dependencies continue to resolve against published tags.
 
 ### Step 4: Tidy and Regenerate All Libraries
 
@@ -264,6 +264,5 @@ Once the release pull request has been reviewed and merged into `main`:
 5. **Post-Release Manifest and Documentation Follow-Up**:
    Once the split repositories and monorepo tag are published, open a follow-up PR on `main` to:
    - Ensure internal `from:` constraints in [`Package.swift`](../../Package.swift) and [`guide/Package.swift`](../../guide/Package.swift) match the newly published release versions, and check that external dependency minimums (such as `swift-log`) in [`Package.swift`](../../Package.swift) and [`guide/Package.swift`](../../guide/Package.swift) are at least as recent as those in `pkgs/*/Package.swift`.
-   - Refresh [`Package.resolved`](../../Package.resolved) by running `swift package resolve` without `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS` set so remote pins reflect the newly published tags.
    - Verify `--from` installation snippets in [`README.md`](../../README.md) and `pkgs/swift-*/README.md` match the published versions.
    - Update `--from` / `from:` package version snippets in the Swift User Guide articles on Cloud Docs (`https://docs.cloud.google.com/swift/*`).
