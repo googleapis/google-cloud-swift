@@ -83,7 +83,9 @@ public struct PriceByResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.resourceType, forKey: .resourceType)
+    if self.resourceType != ResourceType() {
+      try container.encode(self.resourceType, forKey: .resourceType)
+    }
     try container.encodeIfPresent(self.price, forKey: .price)
     try container.encode(self.pricePhases, forKey: .pricePhases)
     for (key, value) in self._unknownFields.json {

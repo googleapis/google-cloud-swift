@@ -181,11 +181,18 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.maxQps, forKey: .maxQps)
     try container.encode(self.startingUrls, forKey: .startingUrls)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
-    try container.encode(self.userAgent, forKey: .userAgent)
+    if self.userAgent != ScanConfig.UserAgent() {
+      try container.encode(self.userAgent, forKey: .userAgent)
+    }
     try container.encode(self.blacklistPatterns, forKey: .blacklistPatterns)
     try container.encodeIfPresent(self.schedule, forKey: .schedule)
-    try container.encode(self.exportToSecurityCommandCenter, forKey: .exportToSecurityCommandCenter)
-    try container.encode(self.riskLevel, forKey: .riskLevel)
+    if self.exportToSecurityCommandCenter != ScanConfig.ExportToSecurityCommandCenter() {
+      try container.encode(
+        self.exportToSecurityCommandCenter, forKey: .exportToSecurityCommandCenter)
+    }
+    if self.riskLevel != ScanConfig.RiskLevel() {
+      try container.encode(self.riskLevel, forKey: .riskLevel)
+    }
     try container.encode(self.managedScan, forKey: .managedScan)
     try container.encode(self.staticIpScan, forKey: .staticIpScan)
     try container.encode(self.ignoreHttpStatusErrors, forKey: .ignoreHttpStatusErrors)
@@ -285,11 +292,11 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.authentication {
         switch choice {
         case .googleAccount(let value):
-          try container.encode(value, forKey: .googleAccount)
+          try container.encodeIfPresent(value, forKey: .googleAccount)
         case .customAccount(let value):
-          try container.encode(value, forKey: .customAccount)
+          try container.encodeIfPresent(value, forKey: .customAccount)
         case .iapCredential(let value):
-          try container.encode(value, forKey: .iapCredential)
+          try container.encodeIfPresent(value, forKey: .iapCredential)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -560,7 +567,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.iapCredentials {
           switch choice {
           case .iapTestServiceAccountInfo(let value):
-            try container.encode(value, forKey: .iapTestServiceAccountInfo)
+            try container.encodeIfPresent(value, forKey: .iapTestServiceAccountInfo)
           }
         }
         for (key, value) in self._unknownFields.json {

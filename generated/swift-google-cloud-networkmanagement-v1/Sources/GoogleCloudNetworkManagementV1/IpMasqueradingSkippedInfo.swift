@@ -82,7 +82,9 @@ public struct IpMasqueradingSkippedInfo: Codable, Equatable, GoogleWKT._AnyPacka
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.reason, forKey: .reason)
+    if self.reason != IpMasqueradingSkippedInfo.Reason() {
+      try container.encode(self.reason, forKey: .reason)
+    }
     try container.encode(self.nonMasqueradeRange, forKey: .nonMasqueradeRange)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

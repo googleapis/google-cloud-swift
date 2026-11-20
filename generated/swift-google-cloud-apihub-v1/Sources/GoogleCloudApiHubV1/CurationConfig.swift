@@ -91,12 +91,14 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.curationType, forKey: .curationType)
+    if self.curationType != CurationType() {
+      try container.encode(self.curationType, forKey: .curationType)
+    }
 
     if let choice = self.curationConfig {
       switch choice {
       case .customCuration(let value):
-        try container.encode(value, forKey: .customCuration)
+        try container.encodeIfPresent(value, forKey: .customCuration)
       }
     }
     for (key, value) in self._unknownFields.json {

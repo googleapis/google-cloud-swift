@@ -97,7 +97,7 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.passphraseSource {
       switch choice {
       case .passphraseSecretVersion(let value):
-        try container.encode(value, forKey: .passphraseSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passphraseSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

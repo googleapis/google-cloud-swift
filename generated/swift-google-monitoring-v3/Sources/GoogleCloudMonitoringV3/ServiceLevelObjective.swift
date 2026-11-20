@@ -156,9 +156,9 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.period {
       switch choice {
       case .rollingPeriod(let value):
-        try container.encode(value, forKey: .rollingPeriod)
+        try container.encodeIfPresent(value, forKey: .rollingPeriod)
       case .calendarPeriod(let value):
-        try container.encode(value, forKey: .calendarPeriod)
+        try container.encodeIfPresent(value, forKey: .calendarPeriod)
       }
     }
     for (key, value) in self._unknownFields.json {

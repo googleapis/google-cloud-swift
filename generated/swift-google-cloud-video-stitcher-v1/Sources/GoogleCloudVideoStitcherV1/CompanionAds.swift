@@ -79,7 +79,9 @@ public struct CompanionAds: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.displayRequirement, forKey: .displayRequirement)
+    if self.displayRequirement != CompanionAds.DisplayRequirement() {
+      try container.encode(self.displayRequirement, forKey: .displayRequirement)
+    }
     try container.encode(self.companions, forKey: .companions)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

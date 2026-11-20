@@ -191,7 +191,9 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.searchResultType, forKey: .searchResultType)
+    if self.searchResultType != SearchResultType() {
+      try container.encode(self.searchResultType, forKey: .searchResultType)
+    }
     try container.encode(self.searchResultSubtype, forKey: .searchResultSubtype)
     try container.encode(self.relativeResourceName, forKey: .relativeResourceName)
     try container.encode(self.linkedResource, forKey: .linkedResource)
@@ -203,9 +205,9 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.system {
       switch choice {
       case .integratedSystem(let value):
-        try container.encode(value, forKey: .integratedSystem)
+        try container.encodeIfPresent(value, forKey: .integratedSystem)
       case .userSpecifiedSystem(let value):
-        try container.encode(value, forKey: .userSpecifiedSystem)
+        try container.encodeIfPresent(value, forKey: .userSpecifiedSystem)
       }
     }
     for (key, value) in self._unknownFields.json {

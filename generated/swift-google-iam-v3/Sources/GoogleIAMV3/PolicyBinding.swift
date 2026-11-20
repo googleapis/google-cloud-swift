@@ -218,7 +218,9 @@ public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.annotations, forKey: .annotations)
     try container.encodeIfPresent(self.target, forKey: .target)
-    try container.encode(self.policyKind, forKey: .policyKind)
+    if self.policyKind != PolicyBinding.PolicyKind() {
+      try container.encode(self.policyKind, forKey: .policyKind)
+    }
     try container.encode(self.policy, forKey: .policy)
     try container.encode(self.policyUid, forKey: .policyUid)
     try container.encodeIfPresent(self.condition, forKey: .condition)
@@ -304,9 +306,9 @@ public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.target {
         switch choice {
         case .principalSet(let value):
-          try container.encode(value, forKey: .principalSet)
+          try container.encodeIfPresent(value, forKey: .principalSet)
         case .resource(let value):
-          try container.encode(value, forKey: .resource)
+          try container.encodeIfPresent(value, forKey: .resource)
         }
       }
       for (key, value) in self._unknownFields.json {

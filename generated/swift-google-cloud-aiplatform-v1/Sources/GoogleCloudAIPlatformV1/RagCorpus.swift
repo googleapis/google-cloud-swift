@@ -160,9 +160,9 @@
       if let choice = self.backendConfig {
         switch choice {
         case .vectorDbConfig(let value):
-          try container.encode(value, forKey: .vectorDbConfig)
+          try container.encodeIfPresent(value, forKey: .vectorDbConfig)
         case .vertexAiSearchConfig(let value):
-          try container.encode(value, forKey: .vertexAiSearchConfig)
+          try container.encodeIfPresent(value, forKey: .vertexAiSearchConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

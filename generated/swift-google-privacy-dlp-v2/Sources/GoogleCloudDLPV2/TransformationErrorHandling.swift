@@ -101,9 +101,9 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.mode {
       switch choice {
       case .throwError(let value):
-        try container.encode(value, forKey: .throwError)
+        try container.encodeIfPresent(value, forKey: .throwError)
       case .leaveUntransformed(let value):
-        try container.encode(value, forKey: .leaveUntransformed)
+        try container.encodeIfPresent(value, forKey: .leaveUntransformed)
       }
     }
     for (key, value) in self._unknownFields.json {

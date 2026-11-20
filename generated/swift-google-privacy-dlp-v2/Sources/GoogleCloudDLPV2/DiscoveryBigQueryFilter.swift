@@ -104,11 +104,11 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.filter {
       switch choice {
       case .tables(let value):
-        try container.encode(value, forKey: .tables)
+        try container.encodeIfPresent(value, forKey: .tables)
       case .otherTables(let value):
-        try container.encode(value, forKey: .otherTables)
+        try container.encodeIfPresent(value, forKey: .otherTables)
       case .tableReference(let value):
-        try container.encode(value, forKey: .tableReference)
+        try container.encodeIfPresent(value, forKey: .tableReference)
       }
     }
     for (key, value) in self._unknownFields.json {

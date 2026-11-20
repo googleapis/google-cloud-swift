@@ -287,9 +287,15 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.phase, forKey: .phase)
-    try container.encode(self.type, forKey: .type)
+    if self.state != MigrationJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.phase != MigrationJob.Phase() {
+      try container.encode(self.phase, forKey: .phase)
+    }
+    if self.type != MigrationJob.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.dumpPath, forKey: .dumpPath)
     try container.encodeIfPresent(self.dumpFlags, forKey: .dumpFlags)
     try container.encode(self.source, forKey: .source)
@@ -307,11 +313,11 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.connectivity {
       switch choice {
       case .reverseSshConnectivity(let value):
-        try container.encode(value, forKey: .reverseSshConnectivity)
+        try container.encodeIfPresent(value, forKey: .reverseSshConnectivity)
       case .vpcPeeringConnectivity(let value):
-        try container.encode(value, forKey: .vpcPeeringConnectivity)
+        try container.encodeIfPresent(value, forKey: .vpcPeeringConnectivity)
       case .staticIpConnectivity(let value):
-        try container.encode(value, forKey: .staticIpConnectivity)
+        try container.encodeIfPresent(value, forKey: .staticIpConnectivity)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -544,7 +550,9 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.dumpParallelLevel, forKey: .dumpParallelLevel)
+      if self.dumpParallelLevel != MigrationJob.PerformanceConfig.DumpParallelLevel() {
+        try container.encode(self.dumpParallelLevel, forKey: .dumpParallelLevel)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

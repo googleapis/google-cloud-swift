@@ -687,7 +687,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.timeContext {
         switch choice {
         case .accessTime(let value):
-          try container.encode(value, forKey: .accessTime)
+          try container.encodeIfPresent(value, forKey: .accessTime)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -288,7 +288,9 @@
       try container.encodeIfPresent(self.deployedIndexAuthConfig, forKey: .deployedIndexAuthConfig)
       try container.encode(self.reservedIpRanges, forKey: .reservedIpRanges)
       try container.encode(self.deploymentGroup, forKey: .deploymentGroup)
-      try container.encode(self.deploymentTier, forKey: .deploymentTier)
+      if self.deploymentTier != DeployedIndex.DeploymentTier() {
+        try container.encode(self.deploymentTier, forKey: .deploymentTier)
+      }
       try container.encode(self.pscAutomationConfigs, forKey: .pscAutomationConfigs)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

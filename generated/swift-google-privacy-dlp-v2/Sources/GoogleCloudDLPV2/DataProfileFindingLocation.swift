@@ -105,7 +105,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.locationExtraDetails {
       switch choice {
       case .dataProfileFindingRecordLocation(let value):
-        try container.encode(value, forKey: .dataProfileFindingRecordLocation)
+        try container.encodeIfPresent(value, forKey: .dataProfileFindingRecordLocation)
       }
     }
     for (key, value) in self._unknownFields.json {

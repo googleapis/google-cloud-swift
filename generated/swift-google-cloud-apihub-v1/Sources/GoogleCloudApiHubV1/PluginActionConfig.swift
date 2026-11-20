@@ -99,7 +99,9 @@ public struct PluginActionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.id, forKey: .id)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.triggerMode, forKey: .triggerMode)
+    if self.triggerMode != PluginActionConfig.TriggerMode() {
+      try container.encode(self.triggerMode, forKey: .triggerMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

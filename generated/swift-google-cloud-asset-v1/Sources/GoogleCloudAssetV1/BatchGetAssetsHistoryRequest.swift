@@ -130,7 +130,9 @@ public struct BatchGetAssetsHistoryRequest: Codable, Equatable, GoogleWKT._AnyPa
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.assetNames, forKey: .assetNames)
-    try container.encode(self.contentType, forKey: .contentType)
+    if self.contentType != ContentType() {
+      try container.encode(self.contentType, forKey: .contentType)
+    }
     try container.encodeIfPresent(self.readTimeWindow, forKey: .readTimeWindow)
     try container.encode(self.relationshipTypes, forKey: .relationshipTypes)
     for (key, value) in self._unknownFields.json {

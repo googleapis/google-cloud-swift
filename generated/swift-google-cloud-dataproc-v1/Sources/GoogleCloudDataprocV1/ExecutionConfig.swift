@@ -197,9 +197,9 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.network {
       switch choice {
       case .networkUri(let value):
-        try container.encode(value, forKey: .networkUri)
+        try container.encodeIfPresent(value, forKey: .networkUri)
       case .subnetworkUri(let value):
-        try container.encode(value, forKey: .subnetworkUri)
+        try container.encodeIfPresent(value, forKey: .subnetworkUri)
       }
     }
     for (key, value) in self._unknownFields.json {

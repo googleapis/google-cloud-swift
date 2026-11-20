@@ -104,9 +104,9 @@ public struct ServiceNowProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.credentials {
       switch choice {
       case .userPasswordCredentials(let value):
-        try container.encode(value, forKey: .userPasswordCredentials)
+        try container.encodeIfPresent(value, forKey: .userPasswordCredentials)
       case .oauthClientCredentials(let value):
-        try container.encode(value, forKey: .oauthClientCredentials)
+        try container.encodeIfPresent(value, forKey: .oauthClientCredentials)
       }
     }
     for (key, value) in self._unknownFields.json {

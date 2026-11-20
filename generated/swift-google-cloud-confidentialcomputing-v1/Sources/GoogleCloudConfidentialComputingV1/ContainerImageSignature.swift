@@ -105,7 +105,9 @@ public struct ContainerImageSignature: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.payload, forKey: .payload)
     try container.encode(self.signature, forKey: .signature)
     try container.encode(self.publicKey, forKey: .publicKey)
-    try container.encode(self.sigAlg, forKey: .sigAlg)
+    if self.sigAlg != SigningAlgorithm() {
+      try container.encode(self.sigAlg, forKey: .sigAlg)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

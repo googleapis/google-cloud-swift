@@ -287,7 +287,9 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.cloudRunRevision, forKey: .cloudRunRevision)
     try container.encode(self.cloudRunJob, forKey: .cloudRunJob)
     try container.encode(self.network, forKey: .network)
-    try container.encode(self.networkType, forKey: .networkType)
+    if self.networkType != Endpoint.NetworkType() {
+      try container.encode(self.networkType, forKey: .networkType)
+    }
     try container.encode(self.projectId, forKey: .projectId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

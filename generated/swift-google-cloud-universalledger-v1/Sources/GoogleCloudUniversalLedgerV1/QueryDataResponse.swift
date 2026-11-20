@@ -102,9 +102,9 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .account(let value):
-        try container.encode(value, forKey: .account)
+        try container.encodeIfPresent(value, forKey: .account)
       case .transactionState(let value):
-        try container.encode(value, forKey: .transactionState)
+        try container.encodeIfPresent(value, forKey: .transactionState)
       }
     }
     for (key, value) in self._unknownFields.json {

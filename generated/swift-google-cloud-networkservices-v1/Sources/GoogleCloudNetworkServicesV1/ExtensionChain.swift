@@ -471,8 +471,12 @@ public struct ExtensionChain: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.forwardHeaders, forKey: .forwardHeaders)
       try container.encode(self.forwardAttributes, forKey: .forwardAttributes)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
-      try container.encode(self.requestBodySendMode, forKey: .requestBodySendMode)
-      try container.encode(self.responseBodySendMode, forKey: .responseBodySendMode)
+      if self.requestBodySendMode != BodySendMode() {
+        try container.encode(self.requestBodySendMode, forKey: .requestBodySendMode)
+      }
+      if self.responseBodySendMode != BodySendMode() {
+        try container.encode(self.responseBodySendMode, forKey: .responseBodySendMode)
+      }
       try container.encode(self.observabilityMode, forKey: .observabilityMode)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

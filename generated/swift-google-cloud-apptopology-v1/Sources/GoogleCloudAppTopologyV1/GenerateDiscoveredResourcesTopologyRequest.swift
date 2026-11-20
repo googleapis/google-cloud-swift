@@ -110,7 +110,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
     if let choice = self.query {
       switch choice {
       case .filter(let value):
-        try container.encode(value, forKey: .filter)
+        try container.encodeIfPresent(value, forKey: .filter)
       }
     }
     for (key, value) in self._unknownFields.json {

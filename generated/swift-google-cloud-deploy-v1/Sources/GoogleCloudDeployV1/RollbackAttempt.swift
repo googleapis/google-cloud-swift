@@ -106,7 +106,9 @@ public struct RollbackAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.destinationPhase, forKey: .destinationPhase)
     try container.encode(self.rolloutId, forKey: .rolloutId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RepairState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDesc, forKey: .stateDesc)
     try container.encode(
       self.disableRollbackIfRolloutPending, forKey: .disableRollbackIfRolloutPending)

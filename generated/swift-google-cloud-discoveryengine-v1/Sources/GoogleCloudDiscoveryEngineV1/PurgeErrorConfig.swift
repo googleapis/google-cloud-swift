@@ -86,7 +86,7 @@
       if let choice = self.destination {
         switch choice {
         case .gcsPrefix(let value):
-          try container.encode(value, forKey: .gcsPrefix)
+          try container.encodeIfPresent(value, forKey: .gcsPrefix)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -271,13 +271,13 @@ public struct QaQuestion: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.value {
         switch choice {
         case .strValue(let value):
-          try container.encode(value, forKey: .strValue)
+          try container.encodeIfPresent(value, forKey: .strValue)
         case .numValue(let value):
-          try container.encode(value, forKey: .numValue)
+          try container.encodeIfPresent(value, forKey: .numValue)
         case .boolValue(let value):
-          try container.encode(value, forKey: .boolValue)
+          try container.encodeIfPresent(value, forKey: .boolValue)
         case .naValue(let value):
-          try container.encode(value, forKey: .naValue)
+          try container.encodeIfPresent(value, forKey: .naValue)
         }
       }
       for (key, value) in self._unknownFields.json {

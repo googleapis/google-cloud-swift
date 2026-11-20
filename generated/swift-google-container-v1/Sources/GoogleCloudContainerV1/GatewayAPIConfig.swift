@@ -69,7 +69,9 @@ public struct GatewayAPIConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.channel, forKey: .channel)
+    if self.channel != GatewayAPIConfig.Channel() {
+      try container.encode(self.channel, forKey: .channel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

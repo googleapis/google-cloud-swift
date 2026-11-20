@@ -321,9 +321,13 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.fullResource, forKey: .fullResource)
     try container.encodeIfPresent(self.configSnapshot, forKey: .configSnapshot)
     try container.encodeIfPresent(self.profileStatus, forKey: .profileStatus)
-    try container.encode(self.state, forKey: .state)
+    if self.state != FileStoreDataProfile.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.profileLastGenerated, forKey: .profileLastGenerated)
-    try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    if self.resourceVisibility != ResourceVisibility() {
+      try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    }
     try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
     try container.encodeIfPresent(self.dataRiskLevel, forKey: .dataRiskLevel)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

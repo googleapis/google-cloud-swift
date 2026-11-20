@@ -97,11 +97,11 @@ public struct FacetValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .integerValue(let value):
-        try container.encode(value, forKey: .integerValue)
+        try container.encodeIfPresent(value, forKey: .integerValue)
       case .datetimeValue(let value):
-        try container.encode(value, forKey: .datetimeValue)
+        try container.encodeIfPresent(value, forKey: .datetimeValue)
       }
     }
     for (key, value) in self._unknownFields.json {

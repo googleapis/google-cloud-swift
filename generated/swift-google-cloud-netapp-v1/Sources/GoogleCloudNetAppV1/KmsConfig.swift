@@ -139,7 +139,9 @@ public struct KmsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.cryptoKeyName, forKey: .cryptoKeyName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != KmsConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.description, forKey: .description)

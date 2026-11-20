@@ -122,13 +122,15 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.humanReviewConfig, forKey: .humanReviewConfig)
     try container.encode(self.enableSchemaValidation, forKey: .enableSchemaValidation)
-    try container.encode(self.priority, forKey: .priority)
+    if self.priority != ReviewDocumentRequest.Priority() {
+      try container.encode(self.priority, forKey: .priority)
+    }
     try container.encodeIfPresent(self.documentSchema, forKey: .documentSchema)
 
     if let choice = self.source {
       switch choice {
       case .inlineDocument(let value):
-        try container.encode(value, forKey: .inlineDocument)
+        try container.encodeIfPresent(value, forKey: .inlineDocument)
       }
     }
     for (key, value) in self._unknownFields.json {

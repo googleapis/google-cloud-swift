@@ -184,7 +184,9 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.network, forKey: .network)
     try container.encode(self.connectedEndpointGroups, forKey: .connectedEndpointGroups)
     try container.encode(self.nestedDeployments, forKey: .nestedDeployments)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MirroringDeploymentGroup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.locations, forKey: .locations)
@@ -338,7 +340,9 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleWKT._AnyPackab
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.state, forKey: .state)
+      if self.state != MirroringDeployment.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

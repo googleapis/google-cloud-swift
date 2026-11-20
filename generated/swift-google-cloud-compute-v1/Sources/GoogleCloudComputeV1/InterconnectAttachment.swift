@@ -644,7 +644,7 @@
       try container.encodeIfPresent(self.kind, forKey: .kind)
       try container.encodeIfPresent(self.l2Forwarding, forKey: .l2Forwarding)
       if let v = labelFingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }

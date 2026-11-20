@@ -167,7 +167,9 @@ public struct RestoreVerificationPlan: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RestoreVerificationPlan.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.schedule, forKey: .schedule)
     try container.encode(self.timeZone, forKey: .timeZone)
     try container.encodeIfPresent(self.successCleanupRule, forKey: .successCleanupRule)

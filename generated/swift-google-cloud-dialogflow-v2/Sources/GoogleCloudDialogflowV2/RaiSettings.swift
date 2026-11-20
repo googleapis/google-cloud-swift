@@ -144,8 +144,12 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.category, forKey: .category)
-        try container.encode(self.sensitivityLevel, forKey: .sensitivityLevel)
+        if self.category != RaiSettings.RaiCategoryConfig.RaiCategory() {
+          try container.encode(self.category, forKey: .category)
+        }
+        if self.sensitivityLevel != RaiSettings.RaiCategoryConfig.SensitivityLevel() {
+          try container.encode(self.sensitivityLevel, forKey: .sensitivityLevel)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

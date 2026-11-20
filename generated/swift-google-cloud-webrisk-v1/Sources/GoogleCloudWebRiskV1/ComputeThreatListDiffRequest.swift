@@ -90,7 +90,9 @@ public struct ComputeThreatListDiffRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.threatType, forKey: .threatType)
+    if self.threatType != ThreatType() {
+      try container.encode(self.threatType, forKey: .threatType)
+    }
     try container.encode(self.versionToken, forKey: .versionToken)
     try container.encodeIfPresent(self.constraints, forKey: .constraints)
     for (key, value) in self._unknownFields.json {

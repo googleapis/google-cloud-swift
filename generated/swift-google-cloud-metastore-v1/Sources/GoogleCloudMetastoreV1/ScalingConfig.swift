@@ -93,9 +93,9 @@ public struct ScalingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.scalingModel {
       switch choice {
       case .instanceSize(let value):
-        try container.encode(value, forKey: .instanceSize)
+        try container.encodeIfPresent(value, forKey: .instanceSize)
       case .scalingFactor(let value):
-        try container.encode(value, forKey: .scalingFactor)
+        try container.encodeIfPresent(value, forKey: .scalingFactor)
       }
     }
     for (key, value) in self._unknownFields.json {

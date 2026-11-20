@@ -159,11 +159,11 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
       if let choice = self.result {
         switch choice {
         case .finding(let value):
-          try container.encode(value, forKey: .finding)
+          try container.encodeIfPresent(value, forKey: .finding)
         case .noViolation(let value):
-          try container.encode(value, forKey: .noViolation)
+          try container.encodeIfPresent(value, forKey: .noViolation)
         case .error(let value):
-          try container.encode(value, forKey: .error)
+          try container.encodeIfPresent(value, forKey: .error)
         }
       }
       for (key, value) in self._unknownFields.json {

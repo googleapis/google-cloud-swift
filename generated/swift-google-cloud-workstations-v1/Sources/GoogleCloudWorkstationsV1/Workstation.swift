@@ -233,7 +233,9 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.persistentDirectories, forKey: .persistentDirectories)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Workstation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.host, forKey: .host)
     try container.encode(self.env, forKey: .env)
     try container.encode(self.kmsKey, forKey: .kmsKey)
@@ -406,7 +408,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.hostType {
         switch choice {
         case .gceInstanceHost(let value):
-          try container.encode(value, forKey: .gceInstanceHost)
+          try container.encodeIfPresent(value, forKey: .gceInstanceHost)
         }
       }
       for (key, value) in self._unknownFields.json {

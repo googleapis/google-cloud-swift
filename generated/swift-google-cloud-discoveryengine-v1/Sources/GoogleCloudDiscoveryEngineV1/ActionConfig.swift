@@ -166,9 +166,9 @@
       if let choice = self.actionConfigParams {
         switch choice {
         case .actionParams(let value):
-          try container.encode(value, forKey: .actionParams)
+          try container.encodeIfPresent(value, forKey: .actionParams)
         case .jsonActionParams(let value):
-          try container.encode(value, forKey: .jsonActionParams)
+          try container.encodeIfPresent(value, forKey: .jsonActionParams)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -142,8 +142,12 @@ public struct WKTField: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.kind, forKey: .kind)
-    try container.encode(self.cardinality, forKey: .cardinality)
+    if self.kind != WKTField.Kind() {
+      try container.encode(self.kind, forKey: .kind)
+    }
+    if self.cardinality != WKTField.Cardinality() {
+      try container.encode(self.cardinality, forKey: .cardinality)
+    }
     try container.encode(self.number, forKey: .number)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.typeUrl, forKey: .typeUrl)

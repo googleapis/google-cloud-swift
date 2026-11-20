@@ -132,11 +132,17 @@ public struct HostGroup: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.type != HostGroup.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.state != HostGroup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.hosts, forKey: .hosts)
-    try container.encode(self.osType, forKey: .osType)
+    if self.osType != OsType() {
+      try container.encode(self.osType, forKey: .osType)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     for (key, value) in self._unknownFields.json {

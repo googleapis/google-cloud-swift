@@ -79,8 +79,12 @@ public struct WafSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.wafService, forKey: .wafService)
-    try container.encode(self.wafFeature, forKey: .wafFeature)
+    if self.wafService != WafSettings.WafService() {
+      try container.encode(self.wafService, forKey: .wafService)
+    }
+    if self.wafFeature != WafSettings.WafFeature() {
+      try container.encode(self.wafFeature, forKey: .wafFeature)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

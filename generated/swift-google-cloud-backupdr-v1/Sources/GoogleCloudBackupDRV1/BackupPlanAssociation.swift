@@ -222,7 +222,9 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.backupPlan, forKey: .backupPlan)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupPlanAssociation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.rulesConfigInfo, forKey: .rulesConfigInfo)
     try container.encode(self.dataSource, forKey: .dataSource)
     try container.encode(self.backupPlanRevisionId, forKey: .backupPlanRevisionId)
@@ -232,9 +234,10 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceProperties {
       switch choice {
       case .cloudSqlInstanceBackupPlanAssociationProperties(let value):
-        try container.encode(value, forKey: .cloudSqlInstanceBackupPlanAssociationProperties)
+        try container.encodeIfPresent(
+          value, forKey: .cloudSqlInstanceBackupPlanAssociationProperties)
       case .alloydbClusterBackupPlanAssociationProperties(let value):
-        try container.encode(value, forKey: .alloydbClusterBackupPlanAssociationProperties)
+        try container.encodeIfPresent(value, forKey: .alloydbClusterBackupPlanAssociationProperties)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -185,11 +185,15 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.deliveryPipeline, forKey: .deliveryPipeline)
     try container.encode(self.targetUid, forKey: .targetUid)
     try container.encode(self.target, forKey: .target)
-    try container.encode(self.invoker, forKey: .invoker)
+    if self.invoker != DeployPolicy.Invoker() {
+      try container.encode(self.invoker, forKey: .invoker)
+    }
     try container.encode(self.deployPolicy, forKey: .deployPolicy)
     try container.encode(self.deployPolicyUid, forKey: .deployPolicyUid)
     try container.encode(self.allowed, forKey: .allowed)
-    try container.encode(self.verdict, forKey: .verdict)
+    if self.verdict != DeployPolicyEvaluationEvent.PolicyVerdict() {
+      try container.encode(self.verdict, forKey: .verdict)
+    }
     try container.encode(self.overrides, forKey: .overrides)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

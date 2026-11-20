@@ -173,21 +173,21 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.sourceLocation {
       switch choice {
       case .gcsSourcePath(let value):
-        try container.encode(value, forKey: .gcsSourcePath)
+        try container.encodeIfPresent(value, forKey: .gcsSourcePath)
       }
     }
 
     if let choice = self.targetLocation {
       switch choice {
       case .gcsTargetPath(let value):
-        try container.encode(value, forKey: .gcsTargetPath)
+        try container.encodeIfPresent(value, forKey: .gcsTargetPath)
       }
     }
 
     if let choice = self.outputNameMapping {
       switch choice {
       case .nameMappingList(let value):
-        try container.encode(value, forKey: .nameMappingList)
+        try container.encodeIfPresent(value, forKey: .nameMappingList)
       }
     }
     for (key, value) in self._unknownFields.json {

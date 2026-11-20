@@ -140,7 +140,9 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.tableSpecs, forKey: .tableSpecs)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Dataset.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.dateRange, forKey: .dateRange)
     try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
     for (key, value) in self._unknownFields.json {

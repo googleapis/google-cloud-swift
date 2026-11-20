@@ -231,14 +231,16 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.skillTriggeringEvent, forKey: .skillTriggeringEvent)
+        if self.skillTriggeringEvent != CompanionAgent.SkillConfig.SkillTriggerEvent() {
+          try container.encode(self.skillTriggeringEvent, forKey: .skillTriggeringEvent)
+        }
 
         if let choice = self.config {
           switch choice {
           case .guidanceSkillConfig(let value):
-            try container.encode(value, forKey: .guidanceSkillConfig)
+            try container.encodeIfPresent(value, forKey: .guidanceSkillConfig)
           case .translationSkillConfig(let value):
-            try container.encode(value, forKey: .translationSkillConfig)
+            try container.encodeIfPresent(value, forKey: .translationSkillConfig)
           }
         }
         for (key, value) in self._unknownFields.json {

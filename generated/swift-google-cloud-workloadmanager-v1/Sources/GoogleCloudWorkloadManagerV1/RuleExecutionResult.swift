@@ -102,7 +102,9 @@ public struct RuleExecutionResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rule, forKey: .rule)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RuleExecutionResult.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.message, forKey: .message)
     try container.encode(self.resultCount, forKey: .resultCount)
     try container.encode(self.scannedResourceCount, forKey: .scannedResourceCount)

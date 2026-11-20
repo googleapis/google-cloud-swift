@@ -171,9 +171,15 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.edition, forKey: .edition)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.type != Instance.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.edition != Instance.Edition() {
+      try container.encode(self.edition, forKey: .edition)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)

@@ -294,7 +294,9 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.release, forKey: .release)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Rollout.RolloutState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encodeIfPresent(self.stateTransitionTime, forKey: .stateTransitionTime)
     try container.encode(self.rootRollout, forKey: .rootRollout)

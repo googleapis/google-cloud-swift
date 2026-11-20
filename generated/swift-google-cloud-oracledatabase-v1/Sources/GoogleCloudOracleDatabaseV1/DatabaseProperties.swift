@@ -94,7 +94,9 @@ public struct DatabaseProperties: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DatabaseProperties.DatabaseLifecycleState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.dbVersion, forKey: .dbVersion)
     try container.encodeIfPresent(self.dbBackupConfig, forKey: .dbBackupConfig)
     try container.encodeIfPresent(self.databaseManagementConfig, forKey: .databaseManagementConfig)

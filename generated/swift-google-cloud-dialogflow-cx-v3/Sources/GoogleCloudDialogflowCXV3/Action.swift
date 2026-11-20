@@ -128,19 +128,19 @@
       if let choice = self.action {
         switch choice {
         case .userUtterance(let value):
-          try container.encode(value, forKey: .userUtterance)
+          try container.encodeIfPresent(value, forKey: .userUtterance)
         case .agentUtterance(let value):
-          try container.encode(value, forKey: .agentUtterance)
+          try container.encodeIfPresent(value, forKey: .agentUtterance)
         case .toolUse(let value):
-          try container.encode(value, forKey: .toolUse)
+          try container.encodeIfPresent(value, forKey: .toolUse)
         case .playbookInvocation(let value):
-          try container.encode(value, forKey: .playbookInvocation)
+          try container.encodeIfPresent(value, forKey: .playbookInvocation)
         case .flowInvocation(let value):
-          try container.encode(value, forKey: .flowInvocation)
+          try container.encodeIfPresent(value, forKey: .flowInvocation)
         case .playbookTransition(let value):
-          try container.encode(value, forKey: .playbookTransition)
+          try container.encodeIfPresent(value, forKey: .playbookTransition)
         case .flowTransition(let value):
-          try container.encode(value, forKey: .flowTransition)
+          try container.encodeIfPresent(value, forKey: .flowTransition)
         }
       }
       for (key, value) in self._unknownFields.json {

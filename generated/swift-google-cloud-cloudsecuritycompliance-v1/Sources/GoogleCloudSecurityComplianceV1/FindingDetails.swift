@@ -90,7 +90,9 @@ public struct FindingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.complianceState, forKey: .complianceState)
+    if self.complianceState != ComplianceState() {
+      try container.encode(self.complianceState, forKey: .complianceState)
+    }
     try container.encodeIfPresent(self.observation, forKey: .observation)
     try container.encodeIfPresent(self.evidence, forKey: .evidence)
     for (key, value) in self._unknownFields.json {

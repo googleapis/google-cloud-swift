@@ -136,9 +136,9 @@
       if let choice = self.mode {
         switch choice {
         case .snapshotExport(let value):
-          try container.encode(value, forKey: .snapshotExport)
+          try container.encodeIfPresent(value, forKey: .snapshotExport)
         case .fullExport(let value):
-          try container.encode(value, forKey: .fullExport)
+          try container.encodeIfPresent(value, forKey: .fullExport)
         }
       }
       for (key, value) in self._unknownFields.json {

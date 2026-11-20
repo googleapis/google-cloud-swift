@@ -87,7 +87,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.option {
       switch choice {
       case .recurrencePeriodDuration(let value):
-        try container.encode(value, forKey: .recurrencePeriodDuration)
+        try container.encodeIfPresent(value, forKey: .recurrencePeriodDuration)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -310,9 +310,9 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.agentType {
       switch choice {
       case .llmAgent(let value):
-        try container.encode(value, forKey: .llmAgent)
+        try container.encodeIfPresent(value, forKey: .llmAgent)
       case .remoteDialogflowAgent(let value):
-        try container.encode(value, forKey: .remoteDialogflowAgent)
+        try container.encodeIfPresent(value, forKey: .remoteDialogflowAgent)
       }
     }
     for (key, value) in self._unknownFields.json {

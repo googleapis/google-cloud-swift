@@ -111,14 +111,16 @@ public struct LinkMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != OperationState() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.request {
       switch choice {
       case .createLinkRequest(let value):
-        try container.encode(value, forKey: .createLinkRequest)
+        try container.encodeIfPresent(value, forKey: .createLinkRequest)
       case .deleteLinkRequest(let value):
-        try container.encode(value, forKey: .deleteLinkRequest)
+        try container.encodeIfPresent(value, forKey: .deleteLinkRequest)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -135,7 +135,9 @@
       try container.encode(self.agentAction, forKey: .agentAction)
       try container.encode(self.systemAction, forKey: .systemAction)
       try container.encodeIfPresent(self.duplicateCheckResult, forKey: .duplicateCheckResult)
-      try container.encode(self.triggeringEvent, forKey: .triggeringEvent)
+      if self.triggeringEvent != AgentCoachingInstruction.TriggerEvent() {
+        try container.encode(self.triggeringEvent, forKey: .triggeringEvent)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

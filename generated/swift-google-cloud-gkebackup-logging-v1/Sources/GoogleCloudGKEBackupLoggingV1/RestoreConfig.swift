@@ -189,9 +189,17 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.volumeDataRestorePolicy, forKey: .volumeDataRestorePolicy)
-    try container.encode(self.clusterResourceConflictPolicy, forKey: .clusterResourceConflictPolicy)
-    try container.encode(self.namespacedResourceRestoreMode, forKey: .namespacedResourceRestoreMode)
+    if self.volumeDataRestorePolicy != RestoreConfig.VolumeDataRestorePolicy() {
+      try container.encode(self.volumeDataRestorePolicy, forKey: .volumeDataRestorePolicy)
+    }
+    if self.clusterResourceConflictPolicy != RestoreConfig.ClusterResourceConflictPolicy() {
+      try container.encode(
+        self.clusterResourceConflictPolicy, forKey: .clusterResourceConflictPolicy)
+    }
+    if self.namespacedResourceRestoreMode != RestoreConfig.NamespacedResourceRestoreMode() {
+      try container.encode(
+        self.namespacedResourceRestoreMode, forKey: .namespacedResourceRestoreMode)
+    }
     try container.encodeIfPresent(
       self.clusterResourceRestoreScope, forKey: .clusterResourceRestoreScope)
     try container.encode(self.substitutionRules, forKey: .substitutionRules)
@@ -200,15 +208,15 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.namespacedResourceRestoreScope {
       switch choice {
       case .allNamespaces(let value):
-        try container.encode(value, forKey: .allNamespaces)
+        try container.encodeIfPresent(value, forKey: .allNamespaces)
       case .selectedNamespaces(let value):
-        try container.encode(value, forKey: .selectedNamespaces)
+        try container.encodeIfPresent(value, forKey: .selectedNamespaces)
       case .selectedApplications(let value):
-        try container.encode(value, forKey: .selectedApplications)
+        try container.encodeIfPresent(value, forKey: .selectedApplications)
       case .noNamespaces(let value):
-        try container.encode(value, forKey: .noNamespaces)
+        try container.encodeIfPresent(value, forKey: .noNamespaces)
       case .excludedNamespaces(let value):
-        try container.encode(value, forKey: .excludedNamespaces)
+        try container.encodeIfPresent(value, forKey: .excludedNamespaces)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -678,7 +686,9 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.op, forKey: .op)
+      if self.op != RestoreConfig.TransformationRuleAction.Op() {
+        try container.encode(self.op, forKey: .op)
+      }
       try container.encode(self.fromPath, forKey: .fromPath)
       try container.encode(self.path, forKey: .path)
       try container.encode(self.value, forKey: .value)

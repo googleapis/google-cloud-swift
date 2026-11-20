@@ -95,7 +95,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.bindings, forKey: .bindings)
       if let v = etag {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .etag
         )
       }

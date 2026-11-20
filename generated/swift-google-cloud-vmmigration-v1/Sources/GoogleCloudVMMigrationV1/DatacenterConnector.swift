@@ -192,7 +192,9 @@ public struct DatacenterConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.version, forKey: .version)
     try container.encode(self.bucket, forKey: .bucket)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DatacenterConnector.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(

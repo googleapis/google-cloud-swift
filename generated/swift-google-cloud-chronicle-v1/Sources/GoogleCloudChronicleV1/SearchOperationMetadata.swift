@@ -106,7 +106,9 @@ public struct SearchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != SearchOperationMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)

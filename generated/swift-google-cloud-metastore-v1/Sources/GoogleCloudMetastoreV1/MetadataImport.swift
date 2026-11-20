@@ -134,12 +134,14 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MetadataImport.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.metadata {
       switch choice {
       case .databaseDump(let value):
-        try container.encode(value, forKey: .databaseDump)
+        try container.encodeIfPresent(value, forKey: .databaseDump)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -237,10 +239,14 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.databaseType, forKey: .databaseType)
+      if self.databaseType != MetadataImport.DatabaseDump.DatabaseType() {
+        try container.encode(self.databaseType, forKey: .databaseType)
+      }
       try container.encode(self.gcsUri, forKey: .gcsUri)
       try container.encode(self.sourceDatabase, forKey: .sourceDatabase)
-      try container.encode(self.type, forKey: .type)
+      if self.type != DatabaseDumpSpec.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

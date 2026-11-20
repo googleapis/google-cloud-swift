@@ -120,7 +120,9 @@ public struct CreateClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.region, forKey: .region)
     try container.encodeIfPresent(self.cluster, forKey: .cluster)
     try container.encode(self.requestId, forKey: .requestId)
-    try container.encode(self.actionOnFailedPrimaryWorkers, forKey: .actionOnFailedPrimaryWorkers)
+    if self.actionOnFailedPrimaryWorkers != FailureAction() {
+      try container.encode(self.actionOnFailedPrimaryWorkers, forKey: .actionOnFailedPrimaryWorkers)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

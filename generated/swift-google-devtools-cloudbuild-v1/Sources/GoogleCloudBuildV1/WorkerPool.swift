@@ -184,13 +184,15 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != WorkerPool.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.config {
       switch choice {
       case .privatePoolV1Config(let value):
-        try container.encode(value, forKey: .privatePoolV1Config)
+        try container.encodeIfPresent(value, forKey: .privatePoolV1Config)
       }
     }
     for (key, value) in self._unknownFields.json {

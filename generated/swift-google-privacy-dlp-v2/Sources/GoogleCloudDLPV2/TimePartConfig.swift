@@ -72,7 +72,9 @@ public struct TimePartConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.partToExtract, forKey: .partToExtract)
+    if self.partToExtract != TimePartConfig.TimePart() {
+      try container.encode(self.partToExtract, forKey: .partToExtract)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

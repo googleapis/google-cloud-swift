@@ -127,7 +127,9 @@ public struct PatchConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.rebootConfig, forKey: .rebootConfig)
+    if self.rebootConfig != PatchConfig.RebootConfig() {
+      try container.encode(self.rebootConfig, forKey: .rebootConfig)
+    }
     try container.encodeIfPresent(self.apt, forKey: .apt)
     try container.encodeIfPresent(self.yum, forKey: .yum)
     try container.encodeIfPresent(self.goo, forKey: .goo)

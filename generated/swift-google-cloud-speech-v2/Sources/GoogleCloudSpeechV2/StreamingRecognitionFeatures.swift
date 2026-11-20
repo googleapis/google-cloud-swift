@@ -105,7 +105,9 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
     try container.encode(self.enableVoiceActivityEvents, forKey: .enableVoiceActivityEvents)
     try container.encode(self.interimResults, forKey: .interimResults)
     try container.encodeIfPresent(self.voiceActivityTimeout, forKey: .voiceActivityTimeout)
-    try container.encode(self.endpointingSensitivity, forKey: .endpointingSensitivity)
+    if self.endpointingSensitivity != StreamingRecognitionFeatures.EndpointingSensitivity() {
+      try container.encode(self.endpointingSensitivity, forKey: .endpointingSensitivity)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

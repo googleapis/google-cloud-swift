@@ -125,11 +125,11 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.targetName {
       switch choice {
       case .linkedResource(let value):
-        try container.encode(value, forKey: .linkedResource)
+        try container.encodeIfPresent(value, forKey: .linkedResource)
       case .sqlResource(let value):
-        try container.encode(value, forKey: .sqlResource)
+        try container.encodeIfPresent(value, forKey: .sqlResource)
       case .fullyQualifiedName(let value):
-        try container.encode(value, forKey: .fullyQualifiedName)
+        try container.encodeIfPresent(value, forKey: .fullyQualifiedName)
       }
     }
     for (key, value) in self._unknownFields.json {

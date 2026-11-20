@@ -105,11 +105,11 @@ public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.filter {
       switch choice {
       case .collection(let value):
-        try container.encode(value, forKey: .collection)
+        try container.encodeIfPresent(value, forKey: .collection)
       case .vertexDatasetResourceReference(let value):
-        try container.encode(value, forKey: .vertexDatasetResourceReference)
+        try container.encodeIfPresent(value, forKey: .vertexDatasetResourceReference)
       case .others(let value):
-        try container.encode(value, forKey: .others)
+        try container.encodeIfPresent(value, forKey: .others)
       }
     }
     for (key, value) in self._unknownFields.json {

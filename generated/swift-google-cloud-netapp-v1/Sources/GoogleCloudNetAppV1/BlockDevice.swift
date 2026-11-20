@@ -115,7 +115,9 @@ public struct BlockDevice: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.hostGroups, forKey: .hostGroups)
     try container.encode(self.identifier, forKey: .identifier)
     try container.encodeIfPresent(self.sizeGib, forKey: .sizeGib)
-    try container.encode(self.osType, forKey: .osType)
+    if self.osType != OsType() {
+      try container.encode(self.osType, forKey: .osType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

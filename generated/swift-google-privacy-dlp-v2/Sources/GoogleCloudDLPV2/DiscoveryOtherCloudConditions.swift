@@ -96,7 +96,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.conditions {
       switch choice {
       case .amazonS3BucketConditions(let value):
-        try container.encode(value, forKey: .amazonS3BucketConditions)
+        try container.encodeIfPresent(value, forKey: .amazonS3BucketConditions)
       }
     }
     for (key, value) in self._unknownFields.json {

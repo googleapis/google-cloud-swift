@@ -95,8 +95,12 @@ public struct AzureBlobStoreSettings: Codable, Equatable, GoogleWKT._AnyPackable
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.azureUri, forKey: .azureUri)
-    try container.encode(self.sourceType, forKey: .sourceType)
-    try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    if self.sourceType != URISourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
+    if self.sourceDeletionOption != SourceDeletionOption() {
+      try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

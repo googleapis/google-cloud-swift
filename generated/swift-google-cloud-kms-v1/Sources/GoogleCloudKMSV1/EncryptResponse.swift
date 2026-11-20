@@ -180,7 +180,9 @@ public struct EncryptResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(
       self.verifiedAdditionalAuthenticatedDataCrc32C,
       forKey: .verifiedAdditionalAuthenticatedDataCrc32C)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

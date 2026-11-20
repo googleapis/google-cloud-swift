@@ -169,7 +169,9 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.interceptDeploymentGroup, forKey: .interceptDeploymentGroup)
     try container.encodeIfPresent(self.connectedDeploymentGroup, forKey: .connectedDeploymentGroup)
-    try container.encode(self.state, forKey: .state)
+    if self.state != InterceptEndpointGroup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.associations, forKey: .associations)
     try container.encode(self.description, forKey: .description)
@@ -347,7 +349,9 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.network, forKey: .network)
-      try container.encode(self.state, forKey: .state)
+      if self.state != InterceptEndpointGroupAssociation.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -195,39 +195,39 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
     if let choice = self.target {
       switch choice {
       case .connectionProfile(let value):
-        try container.encode(value, forKey: .connectionProfile)
+        try container.encodeIfPresent(value, forKey: .connectionProfile)
       case .connectionProfileName(let value):
-        try container.encode(value, forKey: .connectionProfileName)
+        try container.encodeIfPresent(value, forKey: .connectionProfileName)
       }
     }
 
     if let choice = self.hierarchy {
       switch choice {
       case .fullHierarchy(let value):
-        try container.encode(value, forKey: .fullHierarchy)
+        try container.encodeIfPresent(value, forKey: .fullHierarchy)
       case .hierarchyDepth(let value):
-        try container.encode(value, forKey: .hierarchyDepth)
+        try container.encodeIfPresent(value, forKey: .hierarchyDepth)
       }
     }
 
     if let choice = self.dataObject {
       switch choice {
       case .oracleRdbms(let value):
-        try container.encode(value, forKey: .oracleRdbms)
+        try container.encodeIfPresent(value, forKey: .oracleRdbms)
       case .mysqlRdbms(let value):
-        try container.encode(value, forKey: .mysqlRdbms)
+        try container.encodeIfPresent(value, forKey: .mysqlRdbms)
       case .postgresqlRdbms(let value):
-        try container.encode(value, forKey: .postgresqlRdbms)
+        try container.encodeIfPresent(value, forKey: .postgresqlRdbms)
       case .sqlServerRdbms(let value):
-        try container.encode(value, forKey: .sqlServerRdbms)
+        try container.encodeIfPresent(value, forKey: .sqlServerRdbms)
       case .salesforceOrg(let value):
-        try container.encode(value, forKey: .salesforceOrg)
+        try container.encodeIfPresent(value, forKey: .salesforceOrg)
       case .mongodbCluster(let value):
-        try container.encode(value, forKey: .mongodbCluster)
+        try container.encodeIfPresent(value, forKey: .mongodbCluster)
       case .spannerDatabase(let value):
-        try container.encode(value, forKey: .spannerDatabase)
+        try container.encodeIfPresent(value, forKey: .spannerDatabase)
       case .sourceCatalog(let value):
-        try container.encode(value, forKey: .sourceCatalog)
+        try container.encodeIfPresent(value, forKey: .sourceCatalog)
       }
     }
     for (key, value) in self._unknownFields.json {

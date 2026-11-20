@@ -93,9 +93,9 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceForm {
       switch choice {
       case .assetGcsSource(let value):
-        try container.encode(value, forKey: .assetGcsSource)
+        try container.encodeIfPresent(value, forKey: .assetGcsSource)
       case .assetContentData(let value):
-        try container.encode(value, forKey: .assetContentData)
+        try container.encodeIfPresent(value, forKey: .assetContentData)
       }
     }
     for (key, value) in self._unknownFields.json {

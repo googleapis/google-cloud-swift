@@ -243,7 +243,9 @@ public struct ManagedFolder: Codable, Equatable, GoogleWKT._AnyPackable,
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.rapidCacheId, forKey: .rapidCacheId)
-        try container.encode(self.ingestOnWrite, forKey: .ingestOnWrite)
+        if self.ingestOnWrite != ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite() {
+          try container.encode(self.ingestOnWrite, forKey: .ingestOnWrite)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

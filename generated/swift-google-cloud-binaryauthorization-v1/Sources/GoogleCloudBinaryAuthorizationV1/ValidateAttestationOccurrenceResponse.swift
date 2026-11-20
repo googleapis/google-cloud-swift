@@ -83,7 +83,9 @@ public struct ValidateAttestationOccurrenceResponse: Codable, Equatable, GoogleW
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.result, forKey: .result)
+    if self.result != ValidateAttestationOccurrenceResponse.Result() {
+      try container.encode(self.result, forKey: .result)
+    }
     try container.encode(self.denialReason, forKey: .denialReason)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

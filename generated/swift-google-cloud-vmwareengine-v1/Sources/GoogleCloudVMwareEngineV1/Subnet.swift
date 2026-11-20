@@ -120,7 +120,9 @@ public struct Subnet: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
     try container.encode(self.gatewayIp, forKey: .gatewayIp)
     try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Subnet.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.vlanId, forKey: .vlanId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

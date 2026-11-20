@@ -168,7 +168,9 @@ public struct EventTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.eventFilters, forKey: .eventFilters)
     try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
     try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
-    try container.encode(self.retryPolicy, forKey: .retryPolicy)
+    if self.retryPolicy != EventTrigger.RetryPolicy() {
+      try container.encode(self.retryPolicy, forKey: .retryPolicy)
+    }
     try container.encode(self.channel, forKey: .channel)
     try container.encode(self.service, forKey: .service)
     for (key, value) in self._unknownFields.json {

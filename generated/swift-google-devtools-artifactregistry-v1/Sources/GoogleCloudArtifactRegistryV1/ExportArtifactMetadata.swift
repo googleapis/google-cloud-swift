@@ -166,7 +166,7 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.destination {
         switch choice {
         case .gcsObjectPath(let value):
-          try container.encode(value, forKey: .gcsObjectPath)
+          try container.encodeIfPresent(value, forKey: .gcsObjectPath)
         }
       }
       for (key, value) in self._unknownFields.json {

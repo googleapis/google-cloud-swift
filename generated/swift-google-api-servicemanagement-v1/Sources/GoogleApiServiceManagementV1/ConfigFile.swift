@@ -87,7 +87,9 @@ public struct ConfigFile: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.filePath, forKey: .filePath)
     try container.encode(self.fileContents, forKey: .fileContents)
-    try container.encode(self.fileType, forKey: .fileType)
+    if self.fileType != ConfigFile.FileType() {
+      try container.encode(self.fileType, forKey: .fileType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -88,7 +88,7 @@
       if let choice = self.chunkingConfig {
         switch choice {
         case .fixedLengthChunking(let value):
-          try container.encode(value, forKey: .fixedLengthChunking)
+          try container.encodeIfPresent(value, forKey: .fixedLengthChunking)
         }
       }
       for (key, value) in self._unknownFields.json {

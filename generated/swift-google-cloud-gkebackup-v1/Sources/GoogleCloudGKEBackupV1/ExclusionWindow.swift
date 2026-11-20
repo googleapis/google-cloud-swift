@@ -126,11 +126,11 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.recurrence {
       switch choice {
       case .singleOccurrenceDate(let value):
-        try container.encode(value, forKey: .singleOccurrenceDate)
+        try container.encodeIfPresent(value, forKey: .singleOccurrenceDate)
       case .daily(let value):
-        try container.encode(value, forKey: .daily)
+        try container.encodeIfPresent(value, forKey: .daily)
       case .daysOfWeek(let value):
-        try container.encode(value, forKey: .daysOfWeek)
+        try container.encodeIfPresent(value, forKey: .daysOfWeek)
       }
     }
     for (key, value) in self._unknownFields.json {

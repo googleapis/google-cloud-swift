@@ -185,7 +185,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.errorType, forKey: .errorType)
+        if self.errorType != NearestNeighborSearchOperationMetadata.RecordError.RecordErrorType() {
+          try container.encode(self.errorType, forKey: .errorType)
+        }
         try container.encode(self.errorMessage, forKey: .errorMessage)
         try container.encode(self.sourceGcsUri, forKey: .sourceGcsUri)
         try container.encode(self.embeddingId, forKey: .embeddingId)

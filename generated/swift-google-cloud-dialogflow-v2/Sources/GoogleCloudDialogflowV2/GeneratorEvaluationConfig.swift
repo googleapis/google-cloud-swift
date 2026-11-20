@@ -109,7 +109,7 @@
       if let choice = self.evaluationFeatureConfig {
         switch choice {
         case .summarizationConfig(let value):
-          try container.encode(value, forKey: .summarizationConfig)
+          try container.encodeIfPresent(value, forKey: .summarizationConfig)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -434,19 +434,25 @@
       #endif
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.inputDataSourceType, forKey: .inputDataSourceType)
+        if self.inputDataSourceType != GeneratorEvaluationConfig.InputDataSourceType() {
+          try container.encode(self.inputDataSourceType, forKey: .inputDataSourceType)
+        }
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encodeIfPresent(self.endTime, forKey: .endTime)
         try container.encode(self.sampleSize, forKey: .sampleSize)
         try container.encode(self.isSummaryGenerationAllowed, forKey: .isSummaryGenerationAllowed)
-        try container.encode(self.summaryGenerationOption, forKey: .summaryGenerationOption)
+        if self.summaryGenerationOption
+          != GeneratorEvaluationConfig.InputDataConfig.SummaryGenerationOption()
+        {
+          try container.encode(self.summaryGenerationOption, forKey: .summaryGenerationOption)
+        }
 
         if let choice = self.sourceSpecificConfig {
           switch choice {
           case .agentAssistInputDataConfig(let value):
-            try container.encode(value, forKey: .agentAssistInputDataConfig)
+            try container.encodeIfPresent(value, forKey: .agentAssistInputDataConfig)
           case .datasetInputDataConfig(let value):
-            try container.encode(value, forKey: .datasetInputDataConfig)
+            try container.encodeIfPresent(value, forKey: .datasetInputDataConfig)
           }
         }
         for (key, value) in self._unknownFields.json {

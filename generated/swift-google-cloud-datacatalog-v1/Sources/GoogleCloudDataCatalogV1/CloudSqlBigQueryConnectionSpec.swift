@@ -90,7 +90,9 @@ public struct CloudSqlBigQueryConnectionSpec: Codable, Equatable, GoogleWKT._Any
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.instanceId, forKey: .instanceId)
     try container.encode(self.database, forKey: .database)
-    try container.encode(self.type, forKey: .type)
+    if self.type != CloudSqlBigQueryConnectionSpec.DatabaseType() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

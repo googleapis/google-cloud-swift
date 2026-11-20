@@ -111,7 +111,9 @@ public struct FacetGroup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.facetId, forKey: .facetId)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.buckets, forKey: .buckets)
-    try container.encode(self.bucketType, forKey: .bucketType)
+    if self.bucketType != FacetBucketType() {
+      try container.encode(self.bucketType, forKey: .bucketType)
+    }
     try container.encode(self.fetchMatchedAnnotations, forKey: .fetchMatchedAnnotations)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

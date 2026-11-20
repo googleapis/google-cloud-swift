@@ -156,7 +156,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
       if let choice = self.entry {
         switch choice {
         case .teamFolder(let value):
-          try container.encode(value, forKey: .teamFolder)
+          try container.encodeIfPresent(value, forKey: .teamFolder)
         }
       }
       for (key, value) in self._unknownFields.json {

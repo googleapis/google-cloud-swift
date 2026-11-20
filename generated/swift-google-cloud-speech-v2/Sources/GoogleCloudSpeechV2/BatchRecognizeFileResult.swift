@@ -130,9 +130,9 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.result {
       switch choice {
       case .cloudStorageResult(let value):
-        try container.encode(value, forKey: .cloudStorageResult)
+        try container.encodeIfPresent(value, forKey: .cloudStorageResult)
       case .inlineResult(let value):
-        try container.encode(value, forKey: .inlineResult)
+        try container.encodeIfPresent(value, forKey: .inlineResult)
       }
     }
     for (key, value) in self._unknownFields.json {

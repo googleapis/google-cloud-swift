@@ -127,7 +127,9 @@ public struct HiveMetastoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.version, forKey: .version)
     try container.encode(self.configOverrides, forKey: .configOverrides)
     try container.encodeIfPresent(self.kerberosConfig, forKey: .kerberosConfig)
-    try container.encode(self.endpointProtocol, forKey: .endpointProtocol)
+    if self.endpointProtocol != HiveMetastoreConfig.EndpointProtocol() {
+      try container.encode(self.endpointProtocol, forKey: .endpointProtocol)
+    }
     try container.encode(self.auxiliaryVersions, forKey: .auxiliaryVersions)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

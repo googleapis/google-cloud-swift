@@ -180,7 +180,9 @@ public struct Publishing: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.githubLabel, forKey: .githubLabel)
     try container.encode(self.codeownerGithubTeams, forKey: .codeownerGithubTeams)
     try container.encode(self.docTagPrefix, forKey: .docTagPrefix)
-    try container.encode(self.organization, forKey: .organization)
+    if self.organization != ClientLibraryOrganization() {
+      try container.encode(self.organization, forKey: .organization)
+    }
     try container.encode(self.librarySettings, forKey: .librarySettings)
     try container.encode(
       self.protoReferenceDocumentationUri, forKey: .protoReferenceDocumentationUri)

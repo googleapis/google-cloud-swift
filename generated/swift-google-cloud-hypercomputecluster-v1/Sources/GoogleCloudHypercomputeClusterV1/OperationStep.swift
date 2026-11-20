@@ -241,56 +241,58 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != OperationStep.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.type {
       switch choice {
       case .createNetwork(let value):
-        try container.encode(value, forKey: .createNetwork)
+        try container.encodeIfPresent(value, forKey: .createNetwork)
       case .createPrivateServiceAccess(let value):
-        try container.encode(value, forKey: .createPrivateServiceAccess)
+        try container.encodeIfPresent(value, forKey: .createPrivateServiceAccess)
       case .createFilestoreInstance(let value):
-        try container.encode(value, forKey: .createFilestoreInstance)
+        try container.encodeIfPresent(value, forKey: .createFilestoreInstance)
       case .createStorageBucket(let value):
-        try container.encode(value, forKey: .createStorageBucket)
+        try container.encodeIfPresent(value, forKey: .createStorageBucket)
       case .createLustreInstance(let value):
-        try container.encode(value, forKey: .createLustreInstance)
+        try container.encodeIfPresent(value, forKey: .createLustreInstance)
       case .createOrchestrator(let value):
-        try container.encode(value, forKey: .createOrchestrator)
+        try container.encodeIfPresent(value, forKey: .createOrchestrator)
       case .createNodeset(let value):
-        try container.encode(value, forKey: .createNodeset)
+        try container.encodeIfPresent(value, forKey: .createNodeset)
       case .createPartition(let value):
-        try container.encode(value, forKey: .createPartition)
+        try container.encodeIfPresent(value, forKey: .createPartition)
       case .createLoginNode(let value):
-        try container.encode(value, forKey: .createLoginNode)
+        try container.encodeIfPresent(value, forKey: .createLoginNode)
       case .checkClusterHealth(let value):
-        try container.encode(value, forKey: .checkClusterHealth)
+        try container.encodeIfPresent(value, forKey: .checkClusterHealth)
       case .updateOrchestrator(let value):
-        try container.encode(value, forKey: .updateOrchestrator)
+        try container.encodeIfPresent(value, forKey: .updateOrchestrator)
       case .updateNodeset(let value):
-        try container.encode(value, forKey: .updateNodeset)
+        try container.encodeIfPresent(value, forKey: .updateNodeset)
       case .updatePartition(let value):
-        try container.encode(value, forKey: .updatePartition)
+        try container.encodeIfPresent(value, forKey: .updatePartition)
       case .updateLoginNode(let value):
-        try container.encode(value, forKey: .updateLoginNode)
+        try container.encodeIfPresent(value, forKey: .updateLoginNode)
       case .deleteOrchestrator(let value):
-        try container.encode(value, forKey: .deleteOrchestrator)
+        try container.encodeIfPresent(value, forKey: .deleteOrchestrator)
       case .deleteNodeset(let value):
-        try container.encode(value, forKey: .deleteNodeset)
+        try container.encodeIfPresent(value, forKey: .deleteNodeset)
       case .deletePartition(let value):
-        try container.encode(value, forKey: .deletePartition)
+        try container.encodeIfPresent(value, forKey: .deletePartition)
       case .deleteLoginNode(let value):
-        try container.encode(value, forKey: .deleteLoginNode)
+        try container.encodeIfPresent(value, forKey: .deleteLoginNode)
       case .deleteFilestoreInstance(let value):
-        try container.encode(value, forKey: .deleteFilestoreInstance)
+        try container.encodeIfPresent(value, forKey: .deleteFilestoreInstance)
       case .deleteStorageBucket(let value):
-        try container.encode(value, forKey: .deleteStorageBucket)
+        try container.encodeIfPresent(value, forKey: .deleteStorageBucket)
       case .deleteLustreInstance(let value):
-        try container.encode(value, forKey: .deleteLustreInstance)
+        try container.encodeIfPresent(value, forKey: .deleteLustreInstance)
       case .deletePrivateServiceAccess(let value):
-        try container.encode(value, forKey: .deletePrivateServiceAccess)
+        try container.encodeIfPresent(value, forKey: .deletePrivateServiceAccess)
       case .deleteNetwork(let value):
-        try container.encode(value, forKey: .deleteNetwork)
+        try container.encodeIfPresent(value, forKey: .deleteNetwork)
       }
     }
     for (key, value) in self._unknownFields.json {

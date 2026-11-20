@@ -181,7 +181,9 @@ public struct Domain: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.fqdn, forKey: .fqdn)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Domain.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.statusMessage, forKey: .statusMessage)
     try container.encode(self.trusts, forKey: .trusts)
     for (key, value) in self._unknownFields.json {

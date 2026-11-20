@@ -249,7 +249,9 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleWKT._AnyP
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.cryptoKeyVersion, forKey: .cryptoKeyVersion)
-    try container.encode(self.algorithm, forKey: .algorithm)
+    if self.algorithm != CryptoKeyVersion.CryptoKeyVersionAlgorithm() {
+      try container.encode(self.algorithm, forKey: .algorithm)
+    }
     try container.encode(self.importJob, forKey: .importJob)
     try container.encode(self.wrappedKey, forKey: .wrappedKey)
     try container.encode(self.trustedWrappingEnabled, forKey: .trustedWrappingEnabled)
@@ -257,7 +259,7 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.wrappedKeyMaterial {
       switch choice {
       case .rsaAesWrappedKey(let value):
-        try container.encode(value, forKey: .rsaAesWrappedKey)
+        try container.encodeIfPresent(value, forKey: .rsaAesWrappedKey)
       }
     }
     for (key, value) in self._unknownFields.json {

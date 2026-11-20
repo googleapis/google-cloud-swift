@@ -137,18 +137,22 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.format, forKey: .format)
-    try container.encode(self.compressionFormat, forKey: .compressionFormat)
+    if self.format != StorageFormat.Format() {
+      try container.encode(self.format, forKey: .format)
+    }
+    if self.compressionFormat != StorageFormat.CompressionFormat() {
+      try container.encode(self.compressionFormat, forKey: .compressionFormat)
+    }
     try container.encode(self.mimeType, forKey: .mimeType)
 
     if let choice = self.options {
       switch choice {
       case .csv(let value):
-        try container.encode(value, forKey: .csv)
+        try container.encodeIfPresent(value, forKey: .csv)
       case .json(let value):
-        try container.encode(value, forKey: .json)
+        try container.encodeIfPresent(value, forKey: .json)
       case .iceberg(let value):
-        try container.encode(value, forKey: .iceberg)
+        try container.encodeIfPresent(value, forKey: .iceberg)
       }
     }
     for (key, value) in self._unknownFields.json {

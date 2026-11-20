@@ -153,7 +153,9 @@ public struct ReplicationCycle: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.totalPauseDuration, forKey: .totalPauseDuration)
     try container.encode(self.progressPercent, forKey: .progressPercent)
     try container.encode(self.steps, forKey: .steps)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ReplicationCycle.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.warnings, forKey: .warnings)
     for (key, value) in self._unknownFields.json {

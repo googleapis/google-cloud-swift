@@ -155,30 +155,30 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.filter {
       switch choice {
       case .isNull(let value):
-        try container.encode(value, forKey: .isNull)
+        try container.encodeIfPresent(value, forKey: .isNull)
       case .valueList(let value):
-        try container.encode(value, forKey: .valueList)
+        try container.encodeIfPresent(value, forKey: .valueList)
       case .intComparison(let value):
-        try container.encode(value, forKey: .intComparison)
+        try container.encodeIfPresent(value, forKey: .intComparison)
       case .doubleComparison(let value):
-        try container.encode(value, forKey: .doubleComparison)
+        try container.encodeIfPresent(value, forKey: .doubleComparison)
       }
     }
 
     if let choice = self.action {
       switch choice {
       case .assignNull(let value):
-        try container.encode(value, forKey: .assignNull)
+        try container.encodeIfPresent(value, forKey: .assignNull)
       case .assignSpecificValue(let value):
-        try container.encode(value, forKey: .assignSpecificValue)
+        try container.encodeIfPresent(value, forKey: .assignSpecificValue)
       case .assignMinValue(let value):
-        try container.encode(value, forKey: .assignMinValue)
+        try container.encodeIfPresent(value, forKey: .assignMinValue)
       case .assignMaxValue(let value):
-        try container.encode(value, forKey: .assignMaxValue)
+        try container.encodeIfPresent(value, forKey: .assignMaxValue)
       case .roundScale(let value):
-        try container.encode(value, forKey: .roundScale)
+        try container.encodeIfPresent(value, forKey: .roundScale)
       case .applyHash(let value):
-        try container.encode(value, forKey: .applyHash)
+        try container.encodeIfPresent(value, forKey: .applyHash)
       }
     }
     for (key, value) in self._unknownFields.json {

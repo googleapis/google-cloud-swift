@@ -135,9 +135,9 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.purchaseOption {
       switch choice {
       case .createEntitlementPurchase(let value):
-        try container.encode(value, forKey: .createEntitlementPurchase)
+        try container.encodeIfPresent(value, forKey: .createEntitlementPurchase)
       case .changeOfferPurchase(let value):
-        try container.encode(value, forKey: .changeOfferPurchase)
+        try container.encodeIfPresent(value, forKey: .changeOfferPurchase)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -301,7 +301,9 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entitlement, forKey: .entitlement)
-      try container.encode(self.changeType, forKey: .changeType)
+      if self.changeType != ListPurchasableSkusRequest.ChangeOfferPurchase.ChangeType() {
+        try container.encode(self.changeType, forKey: .changeType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

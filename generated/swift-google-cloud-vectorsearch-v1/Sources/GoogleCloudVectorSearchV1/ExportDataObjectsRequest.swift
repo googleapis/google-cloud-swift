@@ -115,7 +115,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -188,7 +188,9 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.exportUri, forKey: .exportUri)
-      try container.encode(self.format, forKey: .format)
+      if self.format != ExportDataObjectsRequest.GcsExportDestination.Format() {
+        try container.encode(self.format, forKey: .format)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -404,9 +406,9 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       if let choice = self.selector {
         switch choice {
         case .includedFields(let value):
-          try container.encode(value, forKey: .includedFields)
+          try container.encodeIfPresent(value, forKey: .includedFields)
         case .excludedFields(let value):
-          try container.encode(value, forKey: .excludedFields)
+          try container.encodeIfPresent(value, forKey: .excludedFields)
         }
       }
       for (key, value) in self._unknownFields.json {

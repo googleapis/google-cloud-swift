@@ -151,7 +151,9 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.domain, forKey: .domain)
     try container.encodeIfPresent(self.dnsResourceRecord, forKey: .dnsResourceRecord)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DnsAuthorization.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

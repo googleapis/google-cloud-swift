@@ -253,7 +253,9 @@ public struct UnitKind: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(
       self.applicationTemplateComponent, forKey: .applicationTemplateComponent)
     try container.encodeIfPresent(self.appParams, forKey: .appParams)
-    try container.encode(self.boundaryType, forKey: .boundaryType)
+    if self.boundaryType != UnitKind.BoundaryType() {
+      try container.encode(self.boundaryType, forKey: .boundaryType)
+    }
     try container.encodeIfPresent(self.durationLimits, forKey: .durationLimits)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.annotations, forKey: .annotations)

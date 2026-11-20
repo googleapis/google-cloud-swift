@@ -143,9 +143,9 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.query {
       switch choice {
       case .imageQuery(let value):
-        try container.encode(value, forKey: .imageQuery)
+        try container.encodeIfPresent(value, forKey: .imageQuery)
       case .textQuery(let value):
-        try container.encode(value, forKey: .textQuery)
+        try container.encodeIfPresent(value, forKey: .textQuery)
       }
     }
     for (key, value) in self._unknownFields.json {

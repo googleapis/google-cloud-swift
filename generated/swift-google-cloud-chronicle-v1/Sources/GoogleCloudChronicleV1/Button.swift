@@ -163,7 +163,9 @@ public struct Button: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.color, forKey: .color)
-      try container.encode(self.buttonStyle, forKey: .buttonStyle)
+      if self.buttonStyle != ButtonStyle() {
+        try container.encode(self.buttonStyle, forKey: .buttonStyle)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -129,9 +129,9 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.toolIdentifier {
       switch choice {
       case .toolId(let value):
-        try container.encode(value, forKey: .toolId)
+        try container.encodeIfPresent(value, forKey: .toolId)
       case .toolset(let value):
-        try container.encode(value, forKey: .toolset)
+        try container.encodeIfPresent(value, forKey: .toolset)
       }
     }
     for (key, value) in self._unknownFields.json {

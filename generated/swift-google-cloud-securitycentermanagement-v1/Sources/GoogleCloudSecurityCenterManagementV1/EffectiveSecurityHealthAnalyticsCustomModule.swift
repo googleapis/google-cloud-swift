@@ -111,7 +111,9 @@ public struct EffectiveSecurityHealthAnalyticsCustomModule: Codable, Equatable, 
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.customConfig, forKey: .customConfig)
-    try container.encode(self.enablementState, forKey: .enablementState)
+    if self.enablementState != EffectiveSecurityHealthAnalyticsCustomModule.EnablementState() {
+      try container.encode(self.enablementState, forKey: .enablementState)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

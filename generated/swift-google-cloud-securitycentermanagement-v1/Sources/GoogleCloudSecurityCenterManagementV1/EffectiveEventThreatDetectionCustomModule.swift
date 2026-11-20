@@ -126,7 +126,9 @@ public struct EffectiveEventThreatDetectionCustomModule: Codable, Equatable, Goo
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.config, forKey: .config)
-    try container.encode(self.enablementState, forKey: .enablementState)
+    if self.enablementState != EffectiveEventThreatDetectionCustomModule.EnablementState() {
+      try container.encode(self.enablementState, forKey: .enablementState)
+    }
     try container.encode(self.type, forKey: .type)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)

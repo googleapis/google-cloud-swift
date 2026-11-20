@@ -189,25 +189,27 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleW
     try container.encode(self.connectionString, forKey: .connectionString)
     try container.encode(self.username, forKey: .username)
     try container.encode(self.databaseId, forKey: .databaseId)
-    try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    if self.securityProtocol != GoldengateMongodbConnectionProperties.MongodbSecurityProtocol() {
+      try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    }
     try container.encode(self.tlsCaFile, forKey: .tlsCaFile)
     try container.encode(self.tlsCertificateKeyFile, forKey: .tlsCertificateKeyFile)
 
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
 
     if let choice = self.tlsCertificateKeyFilePasswordOptions {
       switch choice {
       case .tlsCertificateKeyFilePassword(let value):
-        try container.encode(value, forKey: .tlsCertificateKeyFilePassword)
+        try container.encodeIfPresent(value, forKey: .tlsCertificateKeyFilePassword)
       case .tlsCertificateKeyFilePasswordSecretVersion(let value):
-        try container.encode(value, forKey: .tlsCertificateKeyFilePasswordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .tlsCertificateKeyFilePasswordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

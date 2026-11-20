@@ -441,7 +441,9 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.fadeType, forKey: .fadeType)
+      if self.fadeType != Overlay.FadeType() {
+        try container.encode(self.fadeType, forKey: .fadeType)
+      }
       try container.encodeIfPresent(self.xy, forKey: .xy)
       try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
       try container.encodeIfPresent(self.endTimeOffset, forKey: .endTimeOffset)
@@ -637,11 +639,11 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.animationType {
         switch choice {
         case .animationStatic(let value):
-          try container.encode(value, forKey: .animationStatic)
+          try container.encodeIfPresent(value, forKey: .animationStatic)
         case .animationFade(let value):
-          try container.encode(value, forKey: .animationFade)
+          try container.encodeIfPresent(value, forKey: .animationFade)
         case .animationEnd(let value):
-          try container.encode(value, forKey: .animationEnd)
+          try container.encodeIfPresent(value, forKey: .animationEnd)
         }
       }
       for (key, value) in self._unknownFields.json {

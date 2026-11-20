@@ -132,7 +132,9 @@ public struct SyncState: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.syncToken, forKey: .syncToken)
     try container.encode(self.lastSync, forKey: .lastSync)
     try container.encodeIfPresent(self.lastSyncTime, forKey: .lastSyncTime)
-    try container.encode(self.code, forKey: .code)
+    if self.code != SyncState.SyncCode() {
+      try container.encode(self.code, forKey: .code)
+    }
     try container.encode(self.errors, forKey: .errors)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

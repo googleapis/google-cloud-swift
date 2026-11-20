@@ -121,9 +121,9 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.transformation {
       switch choice {
       case .primitiveTransformation(let value):
-        try container.encode(value, forKey: .primitiveTransformation)
+        try container.encodeIfPresent(value, forKey: .primitiveTransformation)
       case .infoTypeTransformations(let value):
-        try container.encode(value, forKey: .infoTypeTransformations)
+        try container.encodeIfPresent(value, forKey: .infoTypeTransformations)
       }
     }
     for (key, value) in self._unknownFields.json {

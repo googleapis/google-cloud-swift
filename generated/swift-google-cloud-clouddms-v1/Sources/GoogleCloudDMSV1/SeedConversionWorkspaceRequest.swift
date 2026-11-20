@@ -118,9 +118,9 @@ public struct SeedConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._Any
     if let choice = self.seedFrom {
       switch choice {
       case .sourceConnectionProfile(let value):
-        try container.encode(value, forKey: .sourceConnectionProfile)
+        try container.encodeIfPresent(value, forKey: .sourceConnectionProfile)
       case .destinationConnectionProfile(let value):
-        try container.encode(value, forKey: .destinationConnectionProfile)
+        try container.encodeIfPresent(value, forKey: .destinationConnectionProfile)
       }
     }
     for (key, value) in self._unknownFields.json {

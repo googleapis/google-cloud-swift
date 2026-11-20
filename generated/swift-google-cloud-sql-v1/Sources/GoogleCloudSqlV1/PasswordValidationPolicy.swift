@@ -131,7 +131,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.minLength, forKey: .minLength)
-      try container.encode(self.complexity, forKey: .complexity)
+      if self.complexity != PasswordValidationPolicy.Complexity() {
+        try container.encode(self.complexity, forKey: .complexity)
+      }
       try container.encodeIfPresent(self.reuseInterval, forKey: .reuseInterval)
       try container.encodeIfPresent(
         self.disallowUsernameSubstring, forKey: .disallowUsernameSubstring)

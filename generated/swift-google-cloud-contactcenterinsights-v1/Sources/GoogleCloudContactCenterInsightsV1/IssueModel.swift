@@ -145,10 +145,14 @@ public struct IssueModel: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.issueCount, forKey: .issueCount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != IssueModel.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.inputDataConfig, forKey: .inputDataConfig)
     try container.encodeIfPresent(self.trainingStats, forKey: .trainingStats)
-    try container.encode(self.modelType, forKey: .modelType)
+    if self.modelType != IssueModel.ModelType() {
+      try container.encode(self.modelType, forKey: .modelType)
+    }
     try container.encode(self.languageCode, forKey: .languageCode)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -235,7 +239,9 @@ public struct IssueModel: Codable, Equatable, GoogleWKT._AnyPackable,
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.medium, forKey: .medium)
+      if self.medium != Conversation.Medium() {
+        try container.encode(self.medium, forKey: .medium)
+      }
       try container.encode(self.trainingConversationsCount, forKey: .trainingConversationsCount)
       try container.encode(self.filter, forKey: .filter)
       for (key, value) in self._unknownFields.json {

@@ -124,14 +124,16 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.id, forKey: .id)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.sourceStream, forKey: .sourceStream)
-    try container.encode(self.type, forKey: .type)
+    if self.type != StreamAnnotationType() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.annotationPayload {
       switch choice {
       case .activeZone(let value):
-        try container.encode(value, forKey: .activeZone)
+        try container.encodeIfPresent(value, forKey: .activeZone)
       case .crossingLine(let value):
-        try container.encode(value, forKey: .crossingLine)
+        try container.encodeIfPresent(value, forKey: .crossingLine)
       }
     }
     for (key, value) in self._unknownFields.json {

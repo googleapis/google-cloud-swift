@@ -174,12 +174,18 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.licenseCount, forKey: .licenseCount)
-      try container.encode(self.subscriptionTier, forKey: .subscriptionTier)
-      try container.encode(self.state, forKey: .state)
+      if self.subscriptionTier != SubscriptionTier() {
+        try container.encode(self.subscriptionTier, forKey: .subscriptionTier)
+      }
+      if self.state != LicenseConfig.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.autoRenew, forKey: .autoRenew)
       try container.encodeIfPresent(self.startDate, forKey: .startDate)
       try container.encodeIfPresent(self.endDate, forKey: .endDate)
-      try container.encode(self.subscriptionTerm, forKey: .subscriptionTerm)
+      if self.subscriptionTerm != SubscriptionTerm() {
+        try container.encode(self.subscriptionTerm, forKey: .subscriptionTerm)
+      }
       try container.encode(self.freeTrial, forKey: .freeTrial)
       try container.encode(self.geminiBundle, forKey: .geminiBundle)
       try container.encode(self.earlyTerminated, forKey: .earlyTerminated)

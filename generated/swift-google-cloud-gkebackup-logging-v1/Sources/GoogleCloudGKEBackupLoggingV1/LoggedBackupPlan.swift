@@ -455,11 +455,11 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.backupScope {
         switch choice {
         case .allNamespaces(let value):
-          try container.encode(value, forKey: .allNamespaces)
+          try container.encodeIfPresent(value, forKey: .allNamespaces)
         case .selectedNamespaces(let value):
-          try container.encode(value, forKey: .selectedNamespaces)
+          try container.encodeIfPresent(value, forKey: .selectedNamespaces)
         case .selectedApplications(let value):
-          try container.encode(value, forKey: .selectedApplications)
+          try container.encodeIfPresent(value, forKey: .selectedApplications)
         }
       }
       for (key, value) in self._unknownFields.json {

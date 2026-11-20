@@ -190,7 +190,9 @@ public struct DataTable: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.rowTimeToLive, forKey: .rowTimeToLive)
     try container.encode(self.approximateRowCount, forKey: .approximateRowCount)
     try container.encodeIfPresent(self.scopeInfo, forKey: .scopeInfo)
-    try container.encode(self.updateSource, forKey: .updateSource)
+    if self.updateSource != DataTableUpdateSource() {
+      try container.encode(self.updateSource, forKey: .updateSource)
+    }
     try container.encodeIfPresent(self.rowTimeToLiveUpdateTime, forKey: .rowTimeToLiveUpdateTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

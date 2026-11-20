@@ -128,14 +128,14 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.executionSink {
       switch choice {
       case .gcsOutputBucket(let value):
-        try container.encode(value, forKey: .gcsOutputBucket)
+        try container.encodeIfPresent(value, forKey: .gcsOutputBucket)
       }
     }
 
     if let choice = self.repositorySnapshotStorage {
       switch choice {
       case .gcsRepositorySnapshotDestination(let value):
-        try container.encode(value, forKey: .gcsRepositorySnapshotDestination)
+        try container.encodeIfPresent(value, forKey: .gcsRepositorySnapshotDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

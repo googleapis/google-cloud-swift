@@ -138,13 +138,13 @@ public struct IngestApplicationTemplateIaCRequest: Codable, Equatable, GoogleWKT
     if let choice = self.source {
       switch choice {
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       case .iacModule(let value):
-        try container.encode(value, forKey: .iacModule)
+        try container.encodeIfPresent(value, forKey: .iacModule)
       case .devconnectSourceConfig(let value):
-        try container.encode(value, forKey: .devconnectSourceConfig)
+        try container.encodeIfPresent(value, forKey: .devconnectSourceConfig)
       case .gitSource(let value):
-        try container.encode(value, forKey: .gitSource)
+        try container.encodeIfPresent(value, forKey: .gitSource)
       }
     }
     for (key, value) in self._unknownFields.json {

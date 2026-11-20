@@ -84,8 +84,12 @@ public struct AutoTranscriptionConfig: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.displayTiming, forKey: .displayTiming)
-    try container.encode(self.qualityPreset, forKey: .qualityPreset)
+    if self.displayTiming != AutoTranscriptionConfig.DisplayTiming() {
+      try container.encode(self.displayTiming, forKey: .displayTiming)
+    }
+    if self.qualityPreset != AutoTranscriptionConfig.QualityPreset() {
+      try container.encode(self.qualityPreset, forKey: .qualityPreset)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

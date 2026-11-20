@@ -114,9 +114,9 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .protoSchema(let value):
-        try container.encode(value, forKey: .protoSchema)
+        try container.encodeIfPresent(value, forKey: .protoSchema)
       case .avroSchema(let value):
-        try container.encode(value, forKey: .avroSchema)
+        try container.encodeIfPresent(value, forKey: .avroSchema)
       }
     }
     for (key, value) in self._unknownFields.json {

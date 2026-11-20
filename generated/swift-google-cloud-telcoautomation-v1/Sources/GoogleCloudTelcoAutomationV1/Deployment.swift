@@ -199,7 +199,9 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.revisionId, forKey: .revisionId)
     try container.encode(self.sourceBlueprintRevision, forKey: .sourceBlueprintRevision)
     try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Deployment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.repository, forKey: .repository)
     try container.encode(self.files, forKey: .files)
@@ -208,7 +210,9 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.sourceProvider, forKey: .sourceProvider)
     try container.encode(self.workloadCluster, forKey: .workloadCluster)
-    try container.encode(self.deploymentLevel, forKey: .deploymentLevel)
+    if self.deploymentLevel != DeploymentLevel() {
+      try container.encode(self.deploymentLevel, forKey: .deploymentLevel)
+    }
     try container.encode(self.rollbackSupport, forKey: .rollbackSupport)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

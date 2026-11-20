@@ -117,7 +117,9 @@
       try container.encode(self.description, forKey: .description)
       try container.encodeIfPresent(self.nluSettings, forKey: .nluSettings)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Version.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

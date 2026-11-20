@@ -215,10 +215,14 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.speechModelVariant, forKey: .speechModelVariant)
+      if self.speechModelVariant != SpeechModelVariant() {
+        try container.encode(self.speechModelVariant, forKey: .speechModelVariant)
+      }
       try container.encode(self.model, forKey: .model)
       try container.encode(self.phraseSets, forKey: .phraseSets)
-      try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      if self.audioEncoding != AudioEncoding() {
+        try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      }
       try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encode(self.enableWordInfo, forKey: .enableWordInfo)
@@ -321,8 +325,12 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.silenceDurationMs, forKey: .silenceDurationMs)
         try container.encode(self.prefixPaddingMs, forKey: .prefixPaddingMs)
-        try container.encode(self.startOfSpeechSensitivity, forKey: .startOfSpeechSensitivity)
-        try container.encode(self.endOfSpeechSensitivity, forKey: .endOfSpeechSensitivity)
+        if self.startOfSpeechSensitivity != SpeechToTextConfig.GeminiAsrConfig.StartSensitivity() {
+          try container.encode(self.startOfSpeechSensitivity, forKey: .startOfSpeechSensitivity)
+        }
+        if self.endOfSpeechSensitivity != SpeechToTextConfig.GeminiAsrConfig.EndSensitivity() {
+          try container.encode(self.endOfSpeechSensitivity, forKey: .endOfSpeechSensitivity)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

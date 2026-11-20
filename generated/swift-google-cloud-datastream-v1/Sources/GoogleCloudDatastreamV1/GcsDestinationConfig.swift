@@ -122,9 +122,9 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.fileFormat {
       switch choice {
       case .avroFileFormat(let value):
-        try container.encode(value, forKey: .avroFileFormat)
+        try container.encodeIfPresent(value, forKey: .avroFileFormat)
       case .jsonFileFormat(let value):
-        try container.encode(value, forKey: .jsonFileFormat)
+        try container.encodeIfPresent(value, forKey: .jsonFileFormat)
       }
     }
     for (key, value) in self._unknownFields.json {

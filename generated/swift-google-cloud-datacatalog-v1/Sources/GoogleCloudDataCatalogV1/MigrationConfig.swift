@@ -97,8 +97,12 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.tagTemplateMigration, forKey: .tagTemplateMigration)
-    try container.encode(self.catalogUiExperience, forKey: .catalogUiExperience)
+    if self.tagTemplateMigration != TagTemplateMigration() {
+      try container.encode(self.tagTemplateMigration, forKey: .tagTemplateMigration)
+    }
+    if self.catalogUiExperience != CatalogUIExperience() {
+      try container.encode(self.catalogUiExperience, forKey: .catalogUiExperience)
+    }
     try container.encodeIfPresent(
       self.templateMigrationEnabledTime, forKey: .templateMigrationEnabledTime)
     for (key, value) in self._unknownFields.json {

@@ -182,7 +182,9 @@
       try container.encode(self.sessionId, forKey: .sessionId)
       try container.encode(self.conversation, forKey: .conversation)
       try container.encode(self.latestMessage, forKey: .latestMessage)
-      try container.encode(self.querySource, forKey: .querySource)
+      if self.querySource != SearchKnowledgeRequest.QuerySource() {
+        try container.encode(self.querySource, forKey: .querySource)
+      }
       try container.encodeIfPresent(self.endUserMetadata, forKey: .endUserMetadata)
       try container.encodeIfPresent(self.searchConfig, forKey: .searchConfig)
       try container.encode(self.exactSearch, forKey: .exactSearch)
@@ -625,8 +627,18 @@
               public func encode(to encoder: any Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode(self.fieldName, forKey: .fieldName)
-                try container.encode(self.attributeType, forKey: .attributeType)
-                try container.encode(self.interpolationType, forKey: .interpolationType)
+                if self.attributeType
+                  != SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
+                  .BoostControlSpec.AttributeType()
+                {
+                  try container.encode(self.attributeType, forKey: .attributeType)
+                }
+                if self.interpolationType
+                  != SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
+                  .BoostControlSpec.InterpolationType()
+                {
+                  try container.encode(self.interpolationType, forKey: .interpolationType)
+                }
                 try container.encode(self.controlPoints, forKey: .controlPoints)
                 for (key, value) in self._unknownFields.json {
                   try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -207,9 +207,9 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.wideScopeSubscription {
       switch choice {
       case .organizationSubscription(let value):
-        try container.encode(value, forKey: .organizationSubscription)
+        try container.encodeIfPresent(value, forKey: .organizationSubscription)
       case .projectSubscriptions(let value):
-        try container.encode(value, forKey: .projectSubscriptions)
+        try container.encodeIfPresent(value, forKey: .projectSubscriptions)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -92,9 +92,9 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.maskingExpression {
       switch choice {
       case .predefinedExpression(let value):
-        try container.encode(value, forKey: .predefinedExpression)
+        try container.encodeIfPresent(value, forKey: .predefinedExpression)
       case .routine(let value):
-        try container.encode(value, forKey: .routine)
+        try container.encodeIfPresent(value, forKey: .routine)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -86,7 +86,9 @@ public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleWKT._AnyPac
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.rankingMethod, forKey: .rankingMethod)
+    if self.rankingMethod != StatisticalTimeSeriesFilter.Method() {
+      try container.encode(self.rankingMethod, forKey: .rankingMethod)
+    }
     try container.encode(self.numTimeSeries, forKey: .numTimeSeries)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

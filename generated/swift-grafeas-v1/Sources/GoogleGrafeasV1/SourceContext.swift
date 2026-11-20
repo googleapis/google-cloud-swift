@@ -108,11 +108,11 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.context {
       switch choice {
       case .cloudRepo(let value):
-        try container.encode(value, forKey: .cloudRepo)
+        try container.encodeIfPresent(value, forKey: .cloudRepo)
       case .gerrit(let value):
-        try container.encode(value, forKey: .gerrit)
+        try container.encodeIfPresent(value, forKey: .gerrit)
       case .git(let value):
-        try container.encode(value, forKey: .git)
+        try container.encodeIfPresent(value, forKey: .git)
       }
     }
     for (key, value) in self._unknownFields.json {

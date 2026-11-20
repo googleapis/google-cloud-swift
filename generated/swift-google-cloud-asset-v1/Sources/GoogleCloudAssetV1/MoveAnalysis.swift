@@ -100,9 +100,9 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .analysis(let value):
-        try container.encode(value, forKey: .analysis)
+        try container.encodeIfPresent(value, forKey: .analysis)
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       }
     }
     for (key, value) in self._unknownFields.json {

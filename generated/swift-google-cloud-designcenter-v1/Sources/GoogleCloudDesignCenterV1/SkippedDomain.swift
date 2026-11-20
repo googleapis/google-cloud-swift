@@ -76,7 +76,9 @@ public struct SkippedDomain: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.domain, forKey: .domain)
-    try container.encode(self.skipReason, forKey: .skipReason)
+    if self.skipReason != SkippedDomain.Reason() {
+      try container.encode(self.skipReason, forKey: .skipReason)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

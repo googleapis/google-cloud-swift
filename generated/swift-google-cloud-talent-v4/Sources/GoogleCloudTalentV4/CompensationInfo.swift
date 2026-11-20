@@ -277,17 +277,21 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
-      try container.encode(self.unit, forKey: .unit)
+      if self.type != CompensationInfo.CompensationType() {
+        try container.encode(self.type, forKey: .type)
+      }
+      if self.unit != CompensationInfo.CompensationUnit() {
+        try container.encode(self.unit, forKey: .unit)
+      }
       try container.encode(self.description, forKey: .description)
       try container.encodeIfPresent(self.expectedUnitsPerYear, forKey: .expectedUnitsPerYear)
 
       if let choice = self.compensationAmount {
         switch choice {
         case .amount(let value):
-          try container.encode(value, forKey: .amount)
+          try container.encodeIfPresent(value, forKey: .amount)
         case .range(let value):
-          try container.encode(value, forKey: .range)
+          try container.encodeIfPresent(value, forKey: .range)
         }
       }
       for (key, value) in self._unknownFields.json {

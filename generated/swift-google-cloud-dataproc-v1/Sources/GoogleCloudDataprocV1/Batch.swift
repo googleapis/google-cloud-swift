@@ -213,7 +213,9 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uuid, forKey: .uuid)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.runtimeInfo, forKey: .runtimeInfo)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Batch.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encode(self.creator, forKey: .creator)
@@ -226,15 +228,15 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.batchConfig {
       switch choice {
       case .pysparkBatch(let value):
-        try container.encode(value, forKey: .pysparkBatch)
+        try container.encodeIfPresent(value, forKey: .pysparkBatch)
       case .sparkBatch(let value):
-        try container.encode(value, forKey: .sparkBatch)
+        try container.encodeIfPresent(value, forKey: .sparkBatch)
       case .sparkRBatch(let value):
-        try container.encode(value, forKey: .sparkRBatch)
+        try container.encodeIfPresent(value, forKey: .sparkRBatch)
       case .sparkSqlBatch(let value):
-        try container.encode(value, forKey: .sparkSqlBatch)
+        try container.encodeIfPresent(value, forKey: .sparkSqlBatch)
       case .pysparkNotebookBatch(let value):
-        try container.encode(value, forKey: .pysparkNotebookBatch)
+        try container.encodeIfPresent(value, forKey: .pysparkNotebookBatch)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -309,7 +311,9 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Batch.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.stateMessage, forKey: .stateMessage)
       try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
       for (key, value) in self._unknownFields.json {

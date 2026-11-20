@@ -97,7 +97,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.config {
       switch choice {
       case .yarnConfig(let value):
-        try container.encode(value, forKey: .yarnConfig)
+        try container.encodeIfPresent(value, forKey: .yarnConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

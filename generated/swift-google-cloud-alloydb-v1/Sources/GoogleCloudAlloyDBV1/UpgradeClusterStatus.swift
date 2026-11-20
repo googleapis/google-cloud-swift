@@ -104,10 +104,16 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UpgradeClusterResponse.Status() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.cancellable, forKey: .cancellable)
-    try container.encode(self.sourceVersion, forKey: .sourceVersion)
-    try container.encode(self.targetVersion, forKey: .targetVersion)
+    if self.sourceVersion != DatabaseVersion() {
+      try container.encode(self.sourceVersion, forKey: .sourceVersion)
+    }
+    if self.targetVersion != DatabaseVersion() {
+      try container.encode(self.targetVersion, forKey: .targetVersion)
+    }
     try container.encode(self.stages, forKey: .stages)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -208,14 +214,18 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.stage, forKey: .stage)
-      try container.encode(self.state, forKey: .state)
+      if self.stage != UpgradeClusterResponse.Stage() {
+        try container.encode(self.stage, forKey: .stage)
+      }
+      if self.state != UpgradeClusterResponse.Status() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.schedule, forKey: .schedule)
 
       if let choice = self.stageSpecificStatus {
         switch choice {
         case .readPoolInstancesUpgrade(let value):
-          try container.encode(value, forKey: .readPoolInstancesUpgrade)
+          try container.encodeIfPresent(value, forKey: .readPoolInstancesUpgrade)
         }
       }
       for (key, value) in self._unknownFields.json {

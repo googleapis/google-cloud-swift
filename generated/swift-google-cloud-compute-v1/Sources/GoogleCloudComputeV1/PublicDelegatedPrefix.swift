@@ -268,7 +268,7 @@
       try container.encodeIfPresent(
         self.enableEnhancedIpv4Allocation, forKey: .enableEnhancedIpv4Allocation)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

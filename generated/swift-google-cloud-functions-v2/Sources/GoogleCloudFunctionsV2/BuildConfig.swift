@@ -226,16 +226,18 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.sourceProvenance, forKey: .sourceProvenance)
     try container.encode(self.workerPool, forKey: .workerPool)
     try container.encode(self.environmentVariables, forKey: .environmentVariables)
-    try container.encode(self.dockerRegistry, forKey: .dockerRegistry)
+    if self.dockerRegistry != BuildConfig.DockerRegistry() {
+      try container.encode(self.dockerRegistry, forKey: .dockerRegistry)
+    }
     try container.encode(self.dockerRepository, forKey: .dockerRepository)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
 
     if let choice = self.runtimeUpdatePolicy {
       switch choice {
       case .automaticUpdatePolicy(let value):
-        try container.encode(value, forKey: .automaticUpdatePolicy)
+        try container.encodeIfPresent(value, forKey: .automaticUpdatePolicy)
       case .onDeployUpdatePolicy(let value):
-        try container.encode(value, forKey: .onDeployUpdatePolicy)
+        try container.encodeIfPresent(value, forKey: .onDeployUpdatePolicy)
       }
     }
     for (key, value) in self._unknownFields.json {

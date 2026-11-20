@@ -150,7 +150,9 @@ public struct QuotaOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.consumerId, forKey: .consumerId)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.quotaMetrics, forKey: .quotaMetrics)
-    try container.encode(self.quotaMode, forKey: .quotaMode)
+    if self.quotaMode != QuotaOperation.QuotaMode() {
+      try container.encode(self.quotaMode, forKey: .quotaMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

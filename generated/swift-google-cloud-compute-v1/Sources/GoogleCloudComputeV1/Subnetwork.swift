@@ -406,7 +406,7 @@
       try container.encodeIfPresent(self.enableFlowLogs, forKey: .enableFlowLogs)
       try container.encodeIfPresent(self.externalIpv6Prefix, forKey: .externalIpv6Prefix)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

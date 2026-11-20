@@ -102,11 +102,11 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.filter {
       switch choice {
       case .collection(let value):
-        try container.encode(value, forKey: .collection)
+        try container.encodeIfPresent(value, forKey: .collection)
       case .singleResource(let value):
-        try container.encode(value, forKey: .singleResource)
+        try container.encodeIfPresent(value, forKey: .singleResource)
       case .others(let value):
-        try container.encode(value, forKey: .others)
+        try container.encodeIfPresent(value, forKey: .others)
       }
     }
     for (key, value) in self._unknownFields.json {

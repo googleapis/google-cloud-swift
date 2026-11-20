@@ -252,7 +252,9 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.primaryContact, forKey: .primaryContact)
     try container.encode(self.documentation, forKey: .documentation)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Listing.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.icon, forKey: .icon)
     try container.encodeIfPresent(self.dataProvider, forKey: .dataProvider)
     try container.encode(self.categories, forKey: .categories)
@@ -261,7 +263,9 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.restrictedExportConfig, forKey: .restrictedExportConfig)
     try container.encodeIfPresent(self.storedProcedureConfig, forKey: .storedProcedureConfig)
     try container.encodeIfPresent(self.discoveryType, forKey: .discoveryType)
-    try container.encode(self.resourceType, forKey: .resourceType)
+    if self.resourceType != SharedResourceType() {
+      try container.encode(self.resourceType, forKey: .resourceType)
+    }
     try container.encodeIfPresent(self.commercialInfo, forKey: .commercialInfo)
     try container.encodeIfPresent(
       self.logLinkedDatasetQueryUserEmail, forKey: .logLinkedDatasetQueryUserEmail)
@@ -270,9 +274,9 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .bigqueryDataset(let value):
-        try container.encode(value, forKey: .bigqueryDataset)
+        try container.encodeIfPresent(value, forKey: .bigqueryDataset)
       case .pubsubTopic(let value):
-        try container.encode(value, forKey: .pubsubTopic)
+        try container.encodeIfPresent(value, forKey: .pubsubTopic)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -462,9 +466,9 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.resource {
           switch choice {
           case .table(let value):
-            try container.encode(value, forKey: .table)
+            try container.encodeIfPresent(value, forKey: .table)
           case .routine(let value):
-            try container.encode(value, forKey: .routine)
+            try container.encodeIfPresent(value, forKey: .routine)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -684,7 +688,9 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.location, forKey: .location)
-        try container.encode(self.replicaState, forKey: .replicaState)
+        if self.replicaState != Listing.BigQueryDatasetSource.Replica.ReplicaState() {
+          try container.encode(self.replicaState, forKey: .replicaState)
+        }
         try container.encodeIfPresent(self.primaryState, forKey: .primaryState)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

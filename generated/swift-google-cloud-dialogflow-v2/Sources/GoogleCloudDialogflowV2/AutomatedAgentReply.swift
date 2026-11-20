@@ -169,7 +169,9 @@
       try container.encode(self.event, forKey: .event)
       try container.encode(self.matchConfidence, forKey: .matchConfidence)
       try container.encodeIfPresent(self.parameters, forKey: .parameters)
-      try container.encode(self.automatedAgentReplyType, forKey: .automatedAgentReplyType)
+      if self.automatedAgentReplyType != AutomatedAgentReply.AutomatedAgentReplyType() {
+        try container.encode(self.automatedAgentReplyType, forKey: .automatedAgentReplyType)
+      }
       try container.encode(self.allowCancellation, forKey: .allowCancellation)
       try container.encode(self.cxCurrentPage, forKey: .cxCurrentPage)
       try container.encode(self.callCompanionAuthCode, forKey: .callCompanionAuthCode)

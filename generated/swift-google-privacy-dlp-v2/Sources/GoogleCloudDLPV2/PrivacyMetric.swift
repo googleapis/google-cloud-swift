@@ -123,17 +123,17 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .numericalStatsConfig(let value):
-        try container.encode(value, forKey: .numericalStatsConfig)
+        try container.encodeIfPresent(value, forKey: .numericalStatsConfig)
       case .categoricalStatsConfig(let value):
-        try container.encode(value, forKey: .categoricalStatsConfig)
+        try container.encodeIfPresent(value, forKey: .categoricalStatsConfig)
       case .kAnonymityConfig(let value):
-        try container.encode(value, forKey: .kAnonymityConfig)
+        try container.encodeIfPresent(value, forKey: .kAnonymityConfig)
       case .lDiversityConfig(let value):
-        try container.encode(value, forKey: .lDiversityConfig)
+        try container.encodeIfPresent(value, forKey: .lDiversityConfig)
       case .kMapEstimationConfig(let value):
-        try container.encode(value, forKey: .kMapEstimationConfig)
+        try container.encodeIfPresent(value, forKey: .kMapEstimationConfig)
       case .deltaPresenceEstimationConfig(let value):
-        try container.encode(value, forKey: .deltaPresenceEstimationConfig)
+        try container.encodeIfPresent(value, forKey: .deltaPresenceEstimationConfig)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -671,11 +671,11 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.tag {
           switch choice {
           case .infoType(let value):
-            try container.encode(value, forKey: .infoType)
+            try container.encodeIfPresent(value, forKey: .infoType)
           case .customTag(let value):
-            try container.encode(value, forKey: .customTag)
+            try container.encodeIfPresent(value, forKey: .customTag)
           case .inferred(let value):
-            try container.encode(value, forKey: .inferred)
+            try container.encodeIfPresent(value, forKey: .inferred)
           }
         }
         for (key, value) in self._unknownFields.json {

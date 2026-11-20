@@ -141,14 +141,16 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.freeBytes, forKey: .freeBytes)
     try container.encode(self.diskLabel, forKey: .diskLabel)
     try container.encode(self.diskLabelType, forKey: .diskLabelType)
-    try container.encode(self.interfaceType, forKey: .interfaceType)
+    if self.interfaceType != DiskEntry.InterfaceType() {
+      try container.encode(self.interfaceType, forKey: .interfaceType)
+    }
     try container.encodeIfPresent(self.partitions, forKey: .partitions)
     try container.encode(self.hwAddress, forKey: .hwAddress)
 
     if let choice = self.platformSpecific {
       switch choice {
       case .vmware(let value):
-        try container.encode(value, forKey: .vmware)
+        try container.encodeIfPresent(value, forKey: .vmware)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -126,15 +126,15 @@ public struct CutoverStep: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.step {
       switch choice {
       case .previousReplicationCycle(let value):
-        try container.encode(value, forKey: .previousReplicationCycle)
+        try container.encodeIfPresent(value, forKey: .previousReplicationCycle)
       case .shuttingDownSourceVm(let value):
-        try container.encode(value, forKey: .shuttingDownSourceVm)
+        try container.encodeIfPresent(value, forKey: .shuttingDownSourceVm)
       case .finalSync(let value):
-        try container.encode(value, forKey: .finalSync)
+        try container.encodeIfPresent(value, forKey: .finalSync)
       case .preparingVmDisks(let value):
-        try container.encode(value, forKey: .preparingVmDisks)
+        try container.encodeIfPresent(value, forKey: .preparingVmDisks)
       case .instantiatingMigratedVm(let value):
-        try container.encode(value, forKey: .instantiatingMigratedVm)
+        try container.encodeIfPresent(value, forKey: .instantiatingMigratedVm)
       }
     }
     for (key, value) in self._unknownFields.json {

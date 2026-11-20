@@ -89,9 +89,9 @@ public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.image {
       switch choice {
       case .inputImage(let value):
-        try container.encode(value, forKey: .inputImage)
+        try container.encodeIfPresent(value, forKey: .inputImage)
       case .asset(let value):
-        try container.encode(value, forKey: .asset)
+        try container.encodeIfPresent(value, forKey: .asset)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -195,7 +195,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.blockReason, forKey: .blockReason)
+        if self.blockReason != GenerateContentResponse.PromptFeedback.BlockedReason() {
+          try container.encode(self.blockReason, forKey: .blockReason)
+        }
         try container.encode(self.safetyRatings, forKey: .safetyRatings)
         try container.encode(self.blockReasonMessage, forKey: .blockReasonMessage)
         for (key, value) in self._unknownFields.json {
@@ -528,7 +530,9 @@
         try container.encode(self.cacheTokensDetails, forKey: .cacheTokensDetails)
         try container.encode(self.candidatesTokensDetails, forKey: .candidatesTokensDetails)
         try container.encode(self.toolUsePromptTokensDetails, forKey: .toolUsePromptTokensDetails)
-        try container.encode(self.trafficType, forKey: .trafficType)
+        if self.trafficType != GenerateContentResponse.UsageMetadata.TrafficType() {
+          try container.encode(self.trafficType, forKey: .trafficType)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

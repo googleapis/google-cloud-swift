@@ -149,16 +149,18 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ManagementDnsZoneBinding.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.uid, forKey: .uid)
 
     if let choice = self.bindNetwork {
       switch choice {
       case .vpcNetwork(let value):
-        try container.encode(value, forKey: .vpcNetwork)
+        try container.encodeIfPresent(value, forKey: .vpcNetwork)
       case .vmwareEngineNetwork(let value):
-        try container.encode(value, forKey: .vmwareEngineNetwork)
+        try container.encodeIfPresent(value, forKey: .vmwareEngineNetwork)
       }
     }
     for (key, value) in self._unknownFields.json {

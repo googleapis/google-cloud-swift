@@ -94,11 +94,11 @@ public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.contents {
       switch choice {
       case .statusUpdate(let value):
-        try container.encode(value, forKey: .statusUpdate)
+        try container.encodeIfPresent(value, forKey: .statusUpdate)
       case .streamStatus(let value):
-        try container.encode(value, forKey: .streamStatus)
+        try container.encodeIfPresent(value, forKey: .streamStatus)
       case .streamData(let value):
-        try container.encode(value, forKey: .streamData)
+        try container.encodeIfPresent(value, forKey: .streamData)
       }
     }
     for (key, value) in self._unknownFields.json {

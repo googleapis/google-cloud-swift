@@ -166,8 +166,12 @@ public struct InterconnectAttachment: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.network, forKey: .network)
     try container.encode(self.vlanId, forKey: .vlanId)
     try container.encode(self.mtu, forKey: .mtu)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.peeringType, forKey: .peeringType)
+    if self.state != ResourceState() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.peeringType != RemotePeeringNetworkType() {
+      try container.encode(self.peeringType, forKey: .peeringType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

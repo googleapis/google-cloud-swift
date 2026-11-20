@@ -115,9 +115,9 @@ public struct RegisterAppHubApplicationResourcesRequest: Codable, Equatable, Goo
     if let choice = self.tfstateSource {
       switch choice {
       case .tfstateContent(let value):
-        try container.encode(value, forKey: .tfstateContent)
+        try container.encodeIfPresent(value, forKey: .tfstateContent)
       case .tfstateSignedGcsUri(let value):
-        try container.encode(value, forKey: .tfstateSignedGcsUri)
+        try container.encodeIfPresent(value, forKey: .tfstateSignedGcsUri)
       }
     }
     for (key, value) in self._unknownFields.json {

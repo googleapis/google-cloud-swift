@@ -135,7 +135,9 @@ public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleWKT
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.enablementState, forKey: .enablementState)
+    if self.enablementState != SecurityHealthAnalyticsCustomModule.EnablementState() {
+      try container.encode(self.enablementState, forKey: .enablementState)
+    }
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.lastEditor, forKey: .lastEditor)
     try container.encode(self.ancestorModule, forKey: .ancestorModule)

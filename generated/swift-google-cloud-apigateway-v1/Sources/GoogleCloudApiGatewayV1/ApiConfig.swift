@@ -186,7 +186,9 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.gatewayServiceAccount, forKey: .gatewayServiceAccount)
     try container.encode(self.serviceConfigId, forKey: .serviceConfigId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ApiConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.openapiDocuments, forKey: .openapiDocuments)
     try container.encode(self.grpcServices, forKey: .grpcServices)
     try container.encode(self.managedServiceConfigs, forKey: .managedServiceConfigs)

@@ -132,10 +132,14 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.query, forKey: .query)
     try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
-    try container.encode(self.dialect, forKey: .dialect)
+    if self.dialect != QueryDialect() {
+      try container.encode(self.dialect, forKey: .dialect)
+    }
     try container.encodeIfPresent(self.draftDataAccessScope, forKey: .draftDataAccessScope)
     try container.encode(self.resultLimit, forKey: .resultLimit)
-    try container.encode(self.simulatedDataVisibility, forKey: .simulatedDataVisibility)
+    if self.simulatedDataVisibility != SimulatedDataVisibility() {
+      try container.encode(self.simulatedDataVisibility, forKey: .simulatedDataVisibility)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

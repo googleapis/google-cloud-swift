@@ -920,7 +920,9 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.rollbackSafeUpgrade, forKey: .rollbackSafeUpgrade)
     try container.encode(self.currentNodeVersion, forKey: .currentNodeVersion)
     try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.status, forKey: .status)
+    if self.status != Cluster.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.statusMessage, forKey: .statusMessage)
     try container.encode(self.nodeIpv4CidrSize, forKey: .nodeIpv4CidrSize)
     try container.encode(self.servicesIpv4Cidr, forKey: .servicesIpv4Cidr)

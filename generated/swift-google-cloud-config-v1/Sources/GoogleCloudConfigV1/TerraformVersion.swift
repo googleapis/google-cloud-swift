@@ -101,7 +101,9 @@ public struct TerraformVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != TerraformVersion.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.supportTime, forKey: .supportTime)
     try container.encodeIfPresent(self.deprecateTime, forKey: .deprecateTime)
     try container.encodeIfPresent(self.obsoleteTime, forKey: .obsoleteTime)

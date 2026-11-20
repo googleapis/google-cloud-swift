@@ -160,7 +160,9 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.maintenanceName, forKey: .maintenanceName)
     try container.encode(self.title, forKey: .title)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.category, forKey: .category)
+    if self.category != MaintenanceCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
     try container.encodeIfPresent(
       self.maintenanceScheduledStartTime, forKey: .maintenanceScheduledStartTime)
     try container.encodeIfPresent(

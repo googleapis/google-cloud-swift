@@ -110,9 +110,9 @@ public struct SqlAclEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.expiration {
       switch choice {
       case .expireTime(let value):
-        try container.encode(value, forKey: .expireTime)
+        try container.encodeIfPresent(value, forKey: .expireTime)
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       }
     }
     for (key, value) in self._unknownFields.json {

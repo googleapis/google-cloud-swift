@@ -309,37 +309,39 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.link, forKey: .link)
     try container.encodeIfPresent(self.identity, forKey: .identity)
     try container.encodeIfPresent(self.status, forKey: .status)
-    try container.encode(self.datasetConfigState, forKey: .datasetConfigState)
+    if self.datasetConfigState != DatasetConfig.ConfigState() {
+      try container.encode(self.datasetConfigState, forKey: .datasetConfigState)
+    }
     try container.encode(self.description, forKey: .description)
 
     if let choice = self.sourceOptions {
       switch choice {
       case .sourceProjects(let value):
-        try container.encode(value, forKey: .sourceProjects)
+        try container.encodeIfPresent(value, forKey: .sourceProjects)
       case .sourceFolders(let value):
-        try container.encode(value, forKey: .sourceFolders)
+        try container.encodeIfPresent(value, forKey: .sourceFolders)
       case .organizationScope(let value):
-        try container.encode(value, forKey: .organizationScope)
+        try container.encodeIfPresent(value, forKey: .organizationScope)
       case .cloudStorageObjectPath(let value):
-        try container.encode(value, forKey: .cloudStorageObjectPath)
+        try container.encodeIfPresent(value, forKey: .cloudStorageObjectPath)
       }
     }
 
     if let choice = self.cloudStorageLocations {
       switch choice {
       case .includeCloudStorageLocations(let value):
-        try container.encode(value, forKey: .includeCloudStorageLocations)
+        try container.encodeIfPresent(value, forKey: .includeCloudStorageLocations)
       case .excludeCloudStorageLocations(let value):
-        try container.encode(value, forKey: .excludeCloudStorageLocations)
+        try container.encodeIfPresent(value, forKey: .excludeCloudStorageLocations)
       }
     }
 
     if let choice = self.cloudStorageBuckets {
       switch choice {
       case .includeCloudStorageBuckets(let value):
-        try container.encode(value, forKey: .includeCloudStorageBuckets)
+        try container.encodeIfPresent(value, forKey: .includeCloudStorageBuckets)
       case .excludeCloudStorageBuckets(let value):
-        try container.encode(value, forKey: .excludeCloudStorageBuckets)
+        try container.encodeIfPresent(value, forKey: .excludeCloudStorageBuckets)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -719,9 +721,9 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.cloudStorageBucket {
           switch choice {
           case .bucketName(let value):
-            try container.encode(value, forKey: .bucketName)
+            try container.encodeIfPresent(value, forKey: .bucketName)
           case .bucketPrefixRegex(let value):
-            try container.encode(value, forKey: .bucketPrefixRegex)
+            try container.encodeIfPresent(value, forKey: .bucketPrefixRegex)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1212,9 +1214,9 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.destinationProjectCheckResult {
         switch choice {
         case .destinationProjectOrgError(let value):
-          try container.encode(value, forKey: .destinationProjectOrgError)
+          try container.encodeIfPresent(value, forKey: .destinationProjectOrgError)
         case .destinationProjectCheckHasInternalError(let value):
-          try container.encode(value, forKey: .destinationProjectCheckHasInternalError)
+          try container.encodeIfPresent(value, forKey: .destinationProjectCheckHasInternalError)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -98,7 +98,9 @@ public struct CreateCompilationResultMetadata: Codable, Equatable, GoogleWKT._An
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.target, forKey: .target)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CreateCompilationResultMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(
       self.createCompilationResultRequest, forKey: .createCompilationResultRequest)
     for (key, value) in self._unknownFields.json {

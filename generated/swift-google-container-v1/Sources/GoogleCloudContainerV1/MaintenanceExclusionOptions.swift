@@ -83,8 +83,12 @@ public struct MaintenanceExclusionOptions: Codable, Equatable, GoogleWKT._AnyPac
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.endTimeBehavior, forKey: .endTimeBehavior)
+    if self.scope != MaintenanceExclusionOptions.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
+    if self.endTimeBehavior != MaintenanceExclusionOptions.EndTimeBehavior() {
+      try container.encode(self.endTimeBehavior, forKey: .endTimeBehavior)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

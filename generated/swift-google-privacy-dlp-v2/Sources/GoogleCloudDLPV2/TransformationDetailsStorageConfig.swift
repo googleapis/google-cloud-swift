@@ -85,7 +85,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
     if let choice = self.type {
       switch choice {
       case .table(let value):
-        try container.encode(value, forKey: .table)
+        try container.encodeIfPresent(value, forKey: .table)
       }
     }
     for (key, value) in self._unknownFields.json {

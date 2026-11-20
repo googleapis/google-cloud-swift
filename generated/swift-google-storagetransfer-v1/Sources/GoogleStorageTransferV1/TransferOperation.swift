@@ -145,7 +145,9 @@ public struct TransferOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.status, forKey: .status)
+    if self.status != TransferOperation.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.errorBreakdowns, forKey: .errorBreakdowns)
     try container.encode(self.transferJobName, forKey: .transferJobName)

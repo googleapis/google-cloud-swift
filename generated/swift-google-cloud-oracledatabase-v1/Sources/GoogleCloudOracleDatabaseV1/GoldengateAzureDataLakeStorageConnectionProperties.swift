@@ -156,7 +156,11 @@ public struct GoldengateAzureDataLakeStorageConnectionProperties: Codable, Equat
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.technologyType, forKey: .technologyType)
-    try container.encode(self.authenticationType, forKey: .authenticationType)
+    if self.authenticationType
+      != GoldengateAzureDataLakeStorageConnectionProperties.AuthenticationType()
+    {
+      try container.encode(self.authenticationType, forKey: .authenticationType)
+    }
     try container.encode(self.account, forKey: .account)
     try container.encode(self.accountKeySecret, forKey: .accountKeySecret)
     try container.encode(self.sasTokenSecret, forKey: .sasTokenSecret)

@@ -111,9 +111,13 @@ public struct Restore: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Restore.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.backup, forKey: .backup)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Restore.RestoreType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.details, forKey: .details)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

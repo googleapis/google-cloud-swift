@@ -121,7 +121,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.languageCode, forKey: .languageCode)
-      try container.encode(self.intentView, forKey: .intentView)
+      if self.intentView != IntentView() {
+        try container.encode(self.intentView, forKey: .intentView)
+      }
       try container.encode(self.pageSize, forKey: .pageSize)
       try container.encode(self.pageToken, forKey: .pageToken)
       for (key, value) in self._unknownFields.json {

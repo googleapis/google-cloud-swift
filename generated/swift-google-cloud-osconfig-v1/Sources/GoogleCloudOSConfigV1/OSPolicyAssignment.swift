@@ -205,7 +205,9 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.revisionId, forKey: .revisionId)
     try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.rolloutState, forKey: .rolloutState)
+    if self.rolloutState != OSPolicyAssignment.RolloutState() {
+      try container.encode(self.rolloutState, forKey: .rolloutState)
+    }
     try container.encode(self.baseline, forKey: .baseline)
     try container.encode(self.deleted, forKey: .deleted)
     try container.encode(self.reconciling, forKey: .reconciling)

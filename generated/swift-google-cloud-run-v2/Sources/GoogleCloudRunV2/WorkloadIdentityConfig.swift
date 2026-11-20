@@ -88,7 +88,9 @@ public struct WorkloadIdentityConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.identity, forKey: .identity)
-    try container.encode(self.identityType, forKey: .identityType)
+    if self.identityType != IdentityType() {
+      try container.encode(self.identityType, forKey: .identityType)
+    }
     try container.encodeIfPresent(
       self.identityCertificateEnabled, forKey: .identityCertificateEnabled)
     for (key, value) in self._unknownFields.json {

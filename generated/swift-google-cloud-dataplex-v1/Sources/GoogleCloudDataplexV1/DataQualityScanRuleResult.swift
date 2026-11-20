@@ -180,11 +180,17 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleWKT._AnyPacka
     try container.encode(self.dataSource, forKey: .dataSource)
     try container.encode(self.column, forKey: .column)
     try container.encode(self.ruleName, forKey: .ruleName)
-    try container.encode(self.ruleType, forKey: .ruleType)
-    try container.encode(self.evalutionType, forKey: .evalutionType)
+    if self.ruleType != DataQualityScanRuleResult.RuleType() {
+      try container.encode(self.ruleType, forKey: .ruleType)
+    }
+    if self.evalutionType != DataQualityScanRuleResult.EvaluationType() {
+      try container.encode(self.evalutionType, forKey: .evalutionType)
+    }
     try container.encode(self.ruleDimension, forKey: .ruleDimension)
     try container.encode(self.thresholdPercent, forKey: .thresholdPercent)
-    try container.encode(self.result, forKey: .result)
+    if self.result != DataQualityScanRuleResult.Result() {
+      try container.encode(self.result, forKey: .result)
+    }
     try container.encode(self.evaluatedRowCount, forKey: .evaluatedRowCount)
     try container.encode(self.passedRowCount, forKey: .passedRowCount)
     try container.encode(self.nullRowCount, forKey: .nullRowCount)

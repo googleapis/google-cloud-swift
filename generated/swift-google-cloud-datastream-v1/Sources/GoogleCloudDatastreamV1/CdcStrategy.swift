@@ -103,11 +103,11 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.startPosition {
       switch choice {
       case .mostRecentStartPosition(let value):
-        try container.encode(value, forKey: .mostRecentStartPosition)
+        try container.encodeIfPresent(value, forKey: .mostRecentStartPosition)
       case .nextAvailableStartPosition(let value):
-        try container.encode(value, forKey: .nextAvailableStartPosition)
+        try container.encodeIfPresent(value, forKey: .nextAvailableStartPosition)
       case .specificStartPosition(let value):
-        try container.encode(value, forKey: .specificStartPosition)
+        try container.encodeIfPresent(value, forKey: .specificStartPosition)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -362,17 +362,17 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.position {
         switch choice {
         case .mysqlLogPosition(let value):
-          try container.encode(value, forKey: .mysqlLogPosition)
+          try container.encodeIfPresent(value, forKey: .mysqlLogPosition)
         case .oracleScnPosition(let value):
-          try container.encode(value, forKey: .oracleScnPosition)
+          try container.encodeIfPresent(value, forKey: .oracleScnPosition)
         case .sqlServerLsnPosition(let value):
-          try container.encode(value, forKey: .sqlServerLsnPosition)
+          try container.encodeIfPresent(value, forKey: .sqlServerLsnPosition)
         case .mysqlGtidPosition(let value):
-          try container.encode(value, forKey: .mysqlGtidPosition)
+          try container.encodeIfPresent(value, forKey: .mysqlGtidPosition)
         case .mongodbChangeStreamPosition(let value):
-          try container.encode(value, forKey: .mongodbChangeStreamPosition)
+          try container.encodeIfPresent(value, forKey: .mongodbChangeStreamPosition)
         case .spannerChangeStreamPosition(let value):
-          try container.encode(value, forKey: .spannerChangeStreamPosition)
+          try container.encodeIfPresent(value, forKey: .spannerChangeStreamPosition)
         }
       }
       for (key, value) in self._unknownFields.json {

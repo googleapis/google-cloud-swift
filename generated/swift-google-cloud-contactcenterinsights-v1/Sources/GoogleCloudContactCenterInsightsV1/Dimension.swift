@@ -116,18 +116,20 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.dimensionKey, forKey: .dimensionKey)
+    if self.dimensionKey != Dimension.DimensionKey() {
+      try container.encode(self.dimensionKey, forKey: .dimensionKey)
+    }
 
     if let choice = self.dimensionMetadata {
       switch choice {
       case .issueDimensionMetadata(let value):
-        try container.encode(value, forKey: .issueDimensionMetadata)
+        try container.encodeIfPresent(value, forKey: .issueDimensionMetadata)
       case .agentDimensionMetadata(let value):
-        try container.encode(value, forKey: .agentDimensionMetadata)
+        try container.encodeIfPresent(value, forKey: .agentDimensionMetadata)
       case .qaQuestionDimensionMetadata(let value):
-        try container.encode(value, forKey: .qaQuestionDimensionMetadata)
+        try container.encodeIfPresent(value, forKey: .qaQuestionDimensionMetadata)
       case .qaQuestionAnswerDimensionMetadata(let value):
-        try container.encode(value, forKey: .qaQuestionAnswerDimensionMetadata)
+        try container.encodeIfPresent(value, forKey: .qaQuestionAnswerDimensionMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

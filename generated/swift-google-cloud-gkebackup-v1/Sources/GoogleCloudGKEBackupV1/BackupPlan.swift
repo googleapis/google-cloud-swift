@@ -258,7 +258,9 @@ public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.deactivated, forKey: .deactivated)
     try container.encodeIfPresent(self.backupConfig, forKey: .backupConfig)
     try container.encode(self.protectedPodCount, forKey: .protectedPodCount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupPlan.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
     try container.encode(self.rpoRiskLevel, forKey: .rpoRiskLevel)
     try container.encode(self.rpoRiskReason, forKey: .rpoRiskReason)
@@ -668,11 +670,11 @@ public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.backupScope {
         switch choice {
         case .allNamespaces(let value):
-          try container.encode(value, forKey: .allNamespaces)
+          try container.encodeIfPresent(value, forKey: .allNamespaces)
         case .selectedNamespaces(let value):
-          try container.encode(value, forKey: .selectedNamespaces)
+          try container.encodeIfPresent(value, forKey: .selectedNamespaces)
         case .selectedApplications(let value):
-          try container.encode(value, forKey: .selectedApplications)
+          try container.encodeIfPresent(value, forKey: .selectedApplications)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -210,7 +210,9 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.metricValueSets, forKey: .metricValueSets)
     try container.encode(self.logEntries, forKey: .logEntries)
-    try container.encode(self.importance, forKey: .importance)
+    if self.importance != Operation.Importance() {
+      try container.encode(self.importance, forKey: .importance)
+    }
     try container.encode(self.userLabels, forKey: .userLabels)
     try container.encode(self.extensions, forKey: .extensions)
     for (key, value) in self._unknownFields.json {

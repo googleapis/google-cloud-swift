@@ -117,7 +117,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.resourceProperties {
       switch choice {
       case .cloudSqlInstanceProperties(let value):
-        try container.encode(value, forKey: .cloudSqlInstanceProperties)
+        try container.encodeIfPresent(value, forKey: .cloudSqlInstanceProperties)
       }
     }
     for (key, value) in self._unknownFields.json {

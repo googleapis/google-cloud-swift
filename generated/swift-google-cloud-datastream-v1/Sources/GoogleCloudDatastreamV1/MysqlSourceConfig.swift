@@ -129,9 +129,9 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.cdcMethod {
       switch choice {
       case .binaryLogPosition(let value):
-        try container.encode(value, forKey: .binaryLogPosition)
+        try container.encodeIfPresent(value, forKey: .binaryLogPosition)
       case .gtid(let value):
-        try container.encode(value, forKey: .gtid)
+        try container.encodeIfPresent(value, forKey: .gtid)
       }
     }
     for (key, value) in self._unknownFields.json {

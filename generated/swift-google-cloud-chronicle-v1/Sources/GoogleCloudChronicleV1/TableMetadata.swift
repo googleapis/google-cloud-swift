@@ -87,7 +87,9 @@ public struct TableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.table, forKey: .table)
-    try container.encode(self.dataSource, forKey: .dataSource)
+    if self.dataSource != TableMetadata.DataSource() {
+      try container.encode(self.dataSource, forKey: .dataSource)
+    }
     try container.encode(self.index, forKey: .index)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

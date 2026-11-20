@@ -115,9 +115,9 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .termsPair(let value):
-        try container.encode(value, forKey: .termsPair)
+        try container.encodeIfPresent(value, forKey: .termsPair)
       case .termsSet(let value):
-        try container.encode(value, forKey: .termsSet)
+        try container.encodeIfPresent(value, forKey: .termsSet)
       }
     }
     for (key, value) in self._unknownFields.json {

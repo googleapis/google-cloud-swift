@@ -138,9 +138,9 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.level {
       switch choice {
       case .basic(let value):
-        try container.encode(value, forKey: .basic)
+        try container.encodeIfPresent(value, forKey: .basic)
       case .custom(let value):
-        try container.encode(value, forKey: .custom)
+        try container.encodeIfPresent(value, forKey: .custom)
       }
     }
     for (key, value) in self._unknownFields.json {

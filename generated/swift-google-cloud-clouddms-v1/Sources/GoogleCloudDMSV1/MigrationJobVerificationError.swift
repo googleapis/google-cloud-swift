@@ -89,7 +89,9 @@ public struct MigrationJobVerificationError: Codable, Equatable, GoogleWKT._AnyP
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.errorCode != MigrationJobVerificationError.ErrorCode() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     try container.encode(self.errorMessage, forKey: .errorMessage)
     try container.encode(self.errorDetailMessage, forKey: .errorDetailMessage)
     for (key, value) in self._unknownFields.json {

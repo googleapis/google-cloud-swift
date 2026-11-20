@@ -104,7 +104,7 @@ public struct ControlledMode: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.startingOffset {
       switch choice {
       case .startingLogicalOffset(let value):
-        try container.encode(value, forKey: .startingLogicalOffset)
+        try container.encodeIfPresent(value, forKey: .startingLogicalOffset)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -137,7 +137,9 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.bytesLimitPerFile, forKey: .bytesLimitPerFile)
     try container.encode(self.bytesLimitPerFilePercent, forKey: .bytesLimitPerFilePercent)
     try container.encode(self.fileTypes, forKey: .fileTypes)
-    try container.encode(self.sampleMethod, forKey: .sampleMethod)
+    if self.sampleMethod != CloudStorageOptions.SampleMethod() {
+      try container.encode(self.sampleMethod, forKey: .sampleMethod)
+    }
     try container.encode(self.filesLimitPercent, forKey: .filesLimitPercent)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

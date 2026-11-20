@@ -95,9 +95,9 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.method {
       switch choice {
       case .goodTotalRatio(let value):
-        try container.encode(value, forKey: .goodTotalRatio)
+        try container.encodeIfPresent(value, forKey: .goodTotalRatio)
       case .distributionCut(let value):
-        try container.encode(value, forKey: .distributionCut)
+        try container.encodeIfPresent(value, forKey: .distributionCut)
       }
     }
     for (key, value) in self._unknownFields.json {

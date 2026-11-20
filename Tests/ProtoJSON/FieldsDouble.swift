@@ -92,58 +92,27 @@ import Testing
   @Test(
     "double fields serialize",
     arguments: [
+      (#"{}"#, T()),
+      (#"{}"#, T().with { $0.singular = 0.0 }),
+      (#"{"singular":-0}"#, T().with { $0.singular = -0.0 }),
+      (#"{"singular":1.5}"#, T().with { $0.singular = 1.5 }),
+      (#"{"singular":"Infinity"}"#, T().with { $0.singular = .infinity }),
+      (#"{"singular":"-Infinity"}"#, T().with { $0.singular = -.infinity }),
+      (#"{"singular":"NaN"}"#, T().with { $0.singular = .nan }),
+      (#"{"option":0}"#, T().with { $0.option = 0.0 }),
+      (#"{"option":"Infinity"}"#, T().with { $0.option = .infinity }),
+      (#"{"option":"-Infinity"}"#, T().with { $0.option = -.infinity }),
+      (#"{"option":"NaN"}"#, T().with { $0.option = .nan }),
+      (#"{"repeated":[0]}"#, T().with { $0.repeated = [0.0] }),
       (
-        #"{"singular":0}"#,
-        T()
-      ),
-      (
-        #"{"singular":1.5}"#,
-        T().with { $0.singular = 1.5 }
-      ),
-      (
-        #"{"singular":"Infinity"}"#,
-        T().with { $0.singular = .infinity }
-      ),
-      (
-        #"{"singular":"-Infinity"}"#,
-        T().with { $0.singular = -.infinity }
-      ),
-      (
-        #"{"singular":"NaN"}"#,
-        T().with { $0.singular = .nan }
-      ),
-      (
-        #"{"option":"Infinity","singular":0}"#,
-        T().with { $0.option = .infinity }
-      ),
-      (
-        #"{"option":"-Infinity","singular":0}"#,
-        T().with { $0.option = -.infinity }
-      ),
-      (
-        #"{"option":"NaN","singular":0}"#,
-        T().with { $0.option = .nan }
-      ),
-      (
-        #"{"repeated":["Infinity","-Infinity"],"singular":0}"#,
+        #"{"repeated":["Infinity","-Infinity"]}"#,
         T().with { $0.repeated = [.infinity, -.infinity] }
       ),
-      (
-        #"{"repeated":["NaN"],"singular":0}"#,
-        T().with { $0.repeated = [.nan] }
-      ),
-      (
-        #"{"map":{"a":"Infinity"},"singular":0}"#,
-        T().with { $0.map = ["a": .infinity] }
-      ),
-      (
-        #"{"map":{"a":"-Infinity"},"singular":0}"#,
-        T().with { $0.map = ["a": -.infinity] }
-      ),
-      (
-        #"{"map":{"a":"NaN"},"singular":0}"#,
-        T().with { $0.map = ["a": .nan] }
-      ),
+      (#"{"repeated":["NaN"]}"#, T().with { $0.repeated = [.nan] }),
+      (#"{"map":{"a":0}}"#, T().with { $0.map = ["a": 0.0] }),
+      (#"{"map":{"a":"Infinity"}}"#, T().with { $0.map = ["a": .infinity] }),
+      (#"{"map":{"a":"-Infinity"}}"#, T().with { $0.map = ["a": -.infinity] }),
+      (#"{"map":{"a":"NaN"}}"#, T().with { $0.map = ["a": .nan] }),
     ]
   )
   func serialize(want: String, input: T) throws {

@@ -126,7 +126,9 @@ public struct InternalChecker: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.network, forKey: .network)
     try container.encode(self.gcpZone, forKey: .gcpZone)
     try container.encode(self.peerProjectId, forKey: .peerProjectId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != InternalChecker.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

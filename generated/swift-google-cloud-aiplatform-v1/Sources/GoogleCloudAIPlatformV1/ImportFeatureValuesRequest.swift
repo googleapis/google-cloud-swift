@@ -202,20 +202,20 @@
       if let choice = self.source {
         switch choice {
         case .avroSource(let value):
-          try container.encode(value, forKey: .avroSource)
+          try container.encodeIfPresent(value, forKey: .avroSource)
         case .bigquerySource(let value):
-          try container.encode(value, forKey: .bigquerySource)
+          try container.encodeIfPresent(value, forKey: .bigquerySource)
         case .csvSource(let value):
-          try container.encode(value, forKey: .csvSource)
+          try container.encodeIfPresent(value, forKey: .csvSource)
         }
       }
 
       if let choice = self.featureTimeSource {
         switch choice {
         case .featureTimeField(let value):
-          try container.encode(value, forKey: .featureTimeField)
+          try container.encodeIfPresent(value, forKey: .featureTimeField)
         case .featureTime(let value):
-          try container.encode(value, forKey: .featureTime)
+          try container.encodeIfPresent(value, forKey: .featureTime)
         }
       }
       for (key, value) in self._unknownFields.json {

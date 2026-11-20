@@ -101,11 +101,11 @@
       if let choice = self.destination {
         switch choice {
         case .bigqueryDestination(let value):
-          try container.encode(value, forKey: .bigqueryDestination)
+          try container.encodeIfPresent(value, forKey: .bigqueryDestination)
         case .tfrecordDestination(let value):
-          try container.encode(value, forKey: .tfrecordDestination)
+          try container.encodeIfPresent(value, forKey: .tfrecordDestination)
         case .csvDestination(let value):
-          try container.encode(value, forKey: .csvDestination)
+          try container.encodeIfPresent(value, forKey: .csvDestination)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -137,9 +137,9 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.job {
       switch choice {
       case .inspectJob(let value):
-        try container.encode(value, forKey: .inspectJob)
+        try container.encodeIfPresent(value, forKey: .inspectJob)
       case .riskJob(let value):
-        try container.encode(value, forKey: .riskJob)
+        try container.encodeIfPresent(value, forKey: .riskJob)
       }
     }
     for (key, value) in self._unknownFields.json {

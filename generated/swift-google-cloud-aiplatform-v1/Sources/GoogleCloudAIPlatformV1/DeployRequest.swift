@@ -135,9 +135,9 @@
       if let choice = self.artifacts {
         switch choice {
         case .publisherModelName(let value):
-          try container.encode(value, forKey: .publisherModelName)
+          try container.encodeIfPresent(value, forKey: .publisherModelName)
         case .huggingFaceModelId(let value):
-          try container.encode(value, forKey: .huggingFaceModelId)
+          try container.encodeIfPresent(value, forKey: .huggingFaceModelId)
         }
       }
       for (key, value) in self._unknownFields.json {

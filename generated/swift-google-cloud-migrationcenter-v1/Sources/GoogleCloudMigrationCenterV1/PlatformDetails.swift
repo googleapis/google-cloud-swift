@@ -114,15 +114,15 @@ public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.vendorDetails {
       switch choice {
       case .vmwareDetails(let value):
-        try container.encode(value, forKey: .vmwareDetails)
+        try container.encodeIfPresent(value, forKey: .vmwareDetails)
       case .awsEc2Details(let value):
-        try container.encode(value, forKey: .awsEc2Details)
+        try container.encodeIfPresent(value, forKey: .awsEc2Details)
       case .azureVmDetails(let value):
-        try container.encode(value, forKey: .azureVmDetails)
+        try container.encodeIfPresent(value, forKey: .azureVmDetails)
       case .genericDetails(let value):
-        try container.encode(value, forKey: .genericDetails)
+        try container.encodeIfPresent(value, forKey: .genericDetails)
       case .physicalDetails(let value):
-        try container.encode(value, forKey: .physicalDetails)
+        try container.encodeIfPresent(value, forKey: .physicalDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

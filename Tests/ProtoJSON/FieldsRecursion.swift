@@ -154,4 +154,30 @@ import Testing
     let decoded = try _ProtoJSONDecoder().decode(MessageWithRecursion.self, from: data)
     #expect(decoded == input)
   }
+
+  @Test(
+    "Recursion fields serialize",
+    arguments: [
+      (#"{}"#, MessageWithRecursion()),
+      (
+        #"{"singular":{}}"#,
+        MessageWithRecursion().with { $0.singular = WKTRecursive(value: .init()) }
+      ),
+      (
+        #"{"optional":{}}"#,
+        MessageWithRecursion().with { $0.optional = WKTRecursive(value: .init()) }
+      ),
+    ]
+  )
+  func serialize(want: String, input: MessageWithRecursion) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(MessageWithRecursion.self, from: data)
+    #expect(roundtrip == input)
+  }
 }

@@ -402,7 +402,9 @@ public struct File: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.authentihash, forKey: .authentihash)
     try container.encode(self.symhash, forKey: .symhash)
     try container.encodeIfPresent(self.prefetchFileMetadata, forKey: .prefetchFileMetadata)
-    try container.encode(self.fileType, forKey: .fileType)
+    if self.fileType != File.FileType() {
+      try container.encode(self.fileType, forKey: .fileType)
+    }
     try container.encode(self.capabilitiesTags, forKey: .capabilitiesTags)
     try container.encode(self.names, forKey: .names)
     try container.encode(self.tags, forKey: .tags)

@@ -154,11 +154,11 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dataView {
       switch choice {
       case .gaugeView(let value):
-        try container.encode(value, forKey: .gaugeView)
+        try container.encodeIfPresent(value, forKey: .gaugeView)
       case .sparkChartView(let value):
-        try container.encode(value, forKey: .sparkChartView)
+        try container.encodeIfPresent(value, forKey: .sparkChartView)
       case .blankView(let value):
-        try container.encode(value, forKey: .blankView)
+        try container.encodeIfPresent(value, forKey: .blankView)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -325,7 +325,9 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sparkChartType, forKey: .sparkChartType)
+      if self.sparkChartType != SparkChartType() {
+        try container.encode(self.sparkChartType, forKey: .sparkChartType)
+      }
       try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

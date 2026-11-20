@@ -209,7 +209,9 @@
       try container.encodeIfPresent(
         self.enablePrivatePathForGoogleCloudServices,
         forKey: .enablePrivatePathForGoogleCloudServices)
-      try container.encode(self.sslMode, forKey: .sslMode)
+      if self.sslMode != IpConfiguration.SslMode() {
+        try container.encode(self.sslMode, forKey: .sslMode)
+      }
       try container.encodeIfPresent(self.pscConfig, forKey: .pscConfig)
       try container.encodeIfPresent(self.serverCaMode, forKey: .serverCaMode)
       try container.encode(

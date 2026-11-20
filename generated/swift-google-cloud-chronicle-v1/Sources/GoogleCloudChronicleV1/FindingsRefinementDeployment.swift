@@ -132,7 +132,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.findingsRefinementApplication {
       switch choice {
       case .detectionExclusionApplication(let value):
-        try container.encode(value, forKey: .detectionExclusionApplication)
+        try container.encodeIfPresent(value, forKey: .detectionExclusionApplication)
       }
     }
     for (key, value) in self._unknownFields.json {

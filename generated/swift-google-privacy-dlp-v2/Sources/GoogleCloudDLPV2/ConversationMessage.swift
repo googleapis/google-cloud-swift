@@ -93,7 +93,9 @@ public struct ConversationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.content, forKey: .content)
-    try container.encode(self.messageType, forKey: .messageType)
+    if self.messageType != ConversationMessage.MessageType() {
+      try container.encode(self.messageType, forKey: .messageType)
+    }
     try container.encode(self.participantId, forKey: .participantId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

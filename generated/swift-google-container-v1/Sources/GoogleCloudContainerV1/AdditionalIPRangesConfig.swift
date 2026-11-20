@@ -96,7 +96,9 @@ public struct AdditionalIPRangesConfig: Codable, Equatable, GoogleWKT._AnyPackab
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.subnetwork, forKey: .subnetwork)
     try container.encode(self.podIpv4RangeNames, forKey: .podIpv4RangeNames)
-    try container.encode(self.status, forKey: .status)
+    if self.status != AdditionalIPRangesConfig.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

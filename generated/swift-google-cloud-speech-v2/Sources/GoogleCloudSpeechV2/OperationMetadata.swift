@@ -274,40 +274,40 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.request {
       switch choice {
       case .batchRecognizeRequest(let value):
-        try container.encode(value, forKey: .batchRecognizeRequest)
+        try container.encodeIfPresent(value, forKey: .batchRecognizeRequest)
       case .createRecognizerRequest(let value):
-        try container.encode(value, forKey: .createRecognizerRequest)
+        try container.encodeIfPresent(value, forKey: .createRecognizerRequest)
       case .updateRecognizerRequest(let value):
-        try container.encode(value, forKey: .updateRecognizerRequest)
+        try container.encodeIfPresent(value, forKey: .updateRecognizerRequest)
       case .deleteRecognizerRequest(let value):
-        try container.encode(value, forKey: .deleteRecognizerRequest)
+        try container.encodeIfPresent(value, forKey: .deleteRecognizerRequest)
       case .undeleteRecognizerRequest(let value):
-        try container.encode(value, forKey: .undeleteRecognizerRequest)
+        try container.encodeIfPresent(value, forKey: .undeleteRecognizerRequest)
       case .createCustomClassRequest(let value):
-        try container.encode(value, forKey: .createCustomClassRequest)
+        try container.encodeIfPresent(value, forKey: .createCustomClassRequest)
       case .updateCustomClassRequest(let value):
-        try container.encode(value, forKey: .updateCustomClassRequest)
+        try container.encodeIfPresent(value, forKey: .updateCustomClassRequest)
       case .deleteCustomClassRequest(let value):
-        try container.encode(value, forKey: .deleteCustomClassRequest)
+        try container.encodeIfPresent(value, forKey: .deleteCustomClassRequest)
       case .undeleteCustomClassRequest(let value):
-        try container.encode(value, forKey: .undeleteCustomClassRequest)
+        try container.encodeIfPresent(value, forKey: .undeleteCustomClassRequest)
       case .createPhraseSetRequest(let value):
-        try container.encode(value, forKey: .createPhraseSetRequest)
+        try container.encodeIfPresent(value, forKey: .createPhraseSetRequest)
       case .updatePhraseSetRequest(let value):
-        try container.encode(value, forKey: .updatePhraseSetRequest)
+        try container.encodeIfPresent(value, forKey: .updatePhraseSetRequest)
       case .deletePhraseSetRequest(let value):
-        try container.encode(value, forKey: .deletePhraseSetRequest)
+        try container.encodeIfPresent(value, forKey: .deletePhraseSetRequest)
       case .undeletePhraseSetRequest(let value):
-        try container.encode(value, forKey: .undeletePhraseSetRequest)
+        try container.encodeIfPresent(value, forKey: .undeletePhraseSetRequest)
       case .updateConfigRequest(let value):
-        try container.encode(value, forKey: .updateConfigRequest)
+        try container.encodeIfPresent(value, forKey: .updateConfigRequest)
       }
     }
 
     if let choice = self.metadata {
       switch choice {
       case .batchRecognizeMetadata(let value):
-        try container.encode(value, forKey: .batchRecognizeMetadata)
+        try container.encodeIfPresent(value, forKey: .batchRecognizeMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

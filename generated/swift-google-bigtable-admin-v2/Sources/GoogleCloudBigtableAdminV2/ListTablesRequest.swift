@@ -107,7 +107,9 @@ public struct ListTablesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.view, forKey: .view)
+    if self.view != Table.View() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     for (key, value) in self._unknownFields.json {

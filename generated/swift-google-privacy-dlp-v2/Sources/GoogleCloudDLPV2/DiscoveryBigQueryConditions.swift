@@ -115,9 +115,9 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.includedTypes {
       switch choice {
       case .types(let value):
-        try container.encode(value, forKey: .types)
+        try container.encodeIfPresent(value, forKey: .types)
       case .typeCollection(let value):
-        try container.encode(value, forKey: .typeCollection)
+        try container.encodeIfPresent(value, forKey: .typeCollection)
       }
     }
     for (key, value) in self._unknownFields.json {

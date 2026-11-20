@@ -417,61 +417,61 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.entryType {
       switch choice {
       case .type(let value):
-        try container.encode(value, forKey: .type)
+        try container.encodeIfPresent(value, forKey: .type)
       case .userSpecifiedType(let value):
-        try container.encode(value, forKey: .userSpecifiedType)
+        try container.encodeIfPresent(value, forKey: .userSpecifiedType)
       }
     }
 
     if let choice = self.system {
       switch choice {
       case .integratedSystem(let value):
-        try container.encode(value, forKey: .integratedSystem)
+        try container.encodeIfPresent(value, forKey: .integratedSystem)
       case .userSpecifiedSystem(let value):
-        try container.encode(value, forKey: .userSpecifiedSystem)
+        try container.encodeIfPresent(value, forKey: .userSpecifiedSystem)
       }
     }
 
     if let choice = self.systemSpec {
       switch choice {
       case .sqlDatabaseSystemSpec(let value):
-        try container.encode(value, forKey: .sqlDatabaseSystemSpec)
+        try container.encodeIfPresent(value, forKey: .sqlDatabaseSystemSpec)
       case .lookerSystemSpec(let value):
-        try container.encode(value, forKey: .lookerSystemSpec)
+        try container.encodeIfPresent(value, forKey: .lookerSystemSpec)
       case .cloudBigtableSystemSpec(let value):
-        try container.encode(value, forKey: .cloudBigtableSystemSpec)
+        try container.encodeIfPresent(value, forKey: .cloudBigtableSystemSpec)
       }
     }
 
     if let choice = self.typeSpec {
       switch choice {
       case .gcsFilesetSpec(let value):
-        try container.encode(value, forKey: .gcsFilesetSpec)
+        try container.encodeIfPresent(value, forKey: .gcsFilesetSpec)
       case .bigqueryTableSpec(let value):
-        try container.encode(value, forKey: .bigqueryTableSpec)
+        try container.encodeIfPresent(value, forKey: .bigqueryTableSpec)
       case .bigqueryDateShardedSpec(let value):
-        try container.encode(value, forKey: .bigqueryDateShardedSpec)
+        try container.encodeIfPresent(value, forKey: .bigqueryDateShardedSpec)
       }
     }
 
     if let choice = self.spec {
       switch choice {
       case .databaseTableSpec(let value):
-        try container.encode(value, forKey: .databaseTableSpec)
+        try container.encodeIfPresent(value, forKey: .databaseTableSpec)
       case .dataSourceConnectionSpec(let value):
-        try container.encode(value, forKey: .dataSourceConnectionSpec)
+        try container.encodeIfPresent(value, forKey: .dataSourceConnectionSpec)
       case .routineSpec(let value):
-        try container.encode(value, forKey: .routineSpec)
+        try container.encodeIfPresent(value, forKey: .routineSpec)
       case .datasetSpec(let value):
-        try container.encode(value, forKey: .datasetSpec)
+        try container.encodeIfPresent(value, forKey: .datasetSpec)
       case .filesetSpec(let value):
-        try container.encode(value, forKey: .filesetSpec)
+        try container.encodeIfPresent(value, forKey: .filesetSpec)
       case .serviceSpec(let value):
-        try container.encode(value, forKey: .serviceSpec)
+        try container.encodeIfPresent(value, forKey: .serviceSpec)
       case .modelSpec(let value):
-        try container.encode(value, forKey: .modelSpec)
+        try container.encodeIfPresent(value, forKey: .modelSpec)
       case .featureOnlineStoreSpec(let value):
-        try container.encode(value, forKey: .featureOnlineStoreSpec)
+        try container.encodeIfPresent(value, forKey: .featureOnlineStoreSpec)
       }
     }
     for (key, value) in self._unknownFields.json {

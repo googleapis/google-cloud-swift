@@ -200,11 +200,11 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
       if let choice = self.mod {
         switch choice {
         case .create(let value):
-          try container.encode(value, forKey: .create)
+          try container.encodeIfPresent(value, forKey: .create)
         case .update(let value):
-          try container.encode(value, forKey: .update)
+          try container.encodeIfPresent(value, forKey: .update)
         case .drop(let value):
-          try container.encode(value, forKey: .drop)
+          try container.encodeIfPresent(value, forKey: .drop)
         }
       }
       for (key, value) in self._unknownFields.json {

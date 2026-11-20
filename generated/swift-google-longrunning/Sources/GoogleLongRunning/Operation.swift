@@ -127,9 +127,9 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       case .response(let value):
-        try container.encode(value, forKey: .response)
+        try container.encodeIfPresent(value, forKey: .response)
       }
     }
     for (key, value) in self._unknownFields.json {

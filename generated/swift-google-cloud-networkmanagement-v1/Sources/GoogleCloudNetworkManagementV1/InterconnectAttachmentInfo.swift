@@ -132,7 +132,9 @@ public struct InterconnectAttachmentInfo: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.interconnectUri, forKey: .interconnectUri)
     try container.encode(self.region, forKey: .region)
     try container.encode(self.cloudRouterUri, forKey: .cloudRouterUri)
-    try container.encode(self.type, forKey: .type)
+    if self.type != InterconnectAttachmentInfo.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.l2AttachmentMatchedIpAddress, forKey: .l2AttachmentMatchedIpAddress)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

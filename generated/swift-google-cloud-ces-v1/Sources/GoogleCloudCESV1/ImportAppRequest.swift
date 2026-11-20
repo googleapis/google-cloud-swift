@@ -150,9 +150,9 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.app {
       switch choice {
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       case .appContent(let value):
-        try container.encode(value, forKey: .appContent)
+        try container.encodeIfPresent(value, forKey: .appContent)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -219,7 +219,11 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.conflictResolutionStrategy, forKey: .conflictResolutionStrategy)
+      if self.conflictResolutionStrategy
+        != ImportAppRequest.ImportOptions.ConflictResolutionStrategy()
+      {
+        try container.encode(self.conflictResolutionStrategy, forKey: .conflictResolutionStrategy)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -96,11 +96,11 @@
       if let choice = self.tunedModelRef {
         switch choice {
         case .tunedModel(let value):
-          try container.encode(value, forKey: .tunedModel)
+          try container.encodeIfPresent(value, forKey: .tunedModel)
         case .tuningJob(let value):
-          try container.encode(value, forKey: .tuningJob)
+          try container.encodeIfPresent(value, forKey: .tuningJob)
         case .pipelineJob(let value):
-          try container.encode(value, forKey: .pipelineJob)
+          try container.encodeIfPresent(value, forKey: .pipelineJob)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -93,9 +93,9 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.messageType {
       switch choice {
       case .config(let value):
-        try container.encode(value, forKey: .config)
+        try container.encodeIfPresent(value, forKey: .config)
       case .realtimeInput(let value):
-        try container.encode(value, forKey: .realtimeInput)
+        try container.encodeIfPresent(value, forKey: .realtimeInput)
       }
     }
     for (key, value) in self._unknownFields.json {

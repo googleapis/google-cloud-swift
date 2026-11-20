@@ -184,9 +184,9 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
       if let choice = self.operation {
         switch choice {
         case .writeFile(let value):
-          try container.encode(value, forKey: .writeFile)
+          try container.encodeIfPresent(value, forKey: .writeFile)
         case .deleteFile(let value):
-          try container.encode(value, forKey: .deleteFile)
+          try container.encodeIfPresent(value, forKey: .deleteFile)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -220,7 +220,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.dataType, forKey: .dataType)
+      if self.dataType != GoogleCloudVideoAIV1.DataType() {
+        try container.encode(self.dataType, forKey: .dataType)
+      }
       try container.encode(self.acceptedDataTypeUris, forKey: .acceptedDataTypeUris)
       try container.encode(self.`required`, forKey: .`required`)
       try container.encode(self.maxConnectionAllowed, forKey: .maxConnectionAllowed)
@@ -321,7 +323,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.dataType, forKey: .dataType)
+      if self.dataType != GoogleCloudVideoAIV1.DataType() {
+        try container.encode(self.dataType, forKey: .dataType)
+      }
       try container.encode(self.dataTypeUri, forKey: .dataTypeUri)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -438,9 +442,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.resourceType {
         switch choice {
         case .configTypeUri(let value):
-          try container.encode(value, forKey: .configTypeUri)
+          try container.encodeIfPresent(value, forKey: .configTypeUri)
         case .resourceTypeUri(let value):
-          try container.encode(value, forKey: .resourceTypeUri)
+          try container.encodeIfPresent(value, forKey: .resourceTypeUri)
         }
       }
       for (key, value) in self._unknownFields.json {

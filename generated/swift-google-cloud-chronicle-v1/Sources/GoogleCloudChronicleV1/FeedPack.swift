@@ -142,7 +142,9 @@ public struct FeedPack: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.icon, forKey: .icon)
     try container.encode(self.categories, forKey: .categories)
-    try container.encode(self.packType, forKey: .packType)
+    if self.packType != FeedPack.PackType() {
+      try container.encode(self.packType, forKey: .packType)
+    }
     try container.encode(self.packLogTypes, forKey: .packLogTypes)
     try container.encode(self.hidden, forKey: .hidden)
     try container.encode(self.packDocumentation, forKey: .packDocumentation)

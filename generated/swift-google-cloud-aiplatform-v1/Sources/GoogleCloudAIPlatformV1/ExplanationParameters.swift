@@ -141,13 +141,13 @@
       if let choice = self.method {
         switch choice {
         case .sampledShapleyAttribution(let value):
-          try container.encode(value, forKey: .sampledShapleyAttribution)
+          try container.encodeIfPresent(value, forKey: .sampledShapleyAttribution)
         case .integratedGradientsAttribution(let value):
-          try container.encode(value, forKey: .integratedGradientsAttribution)
+          try container.encodeIfPresent(value, forKey: .integratedGradientsAttribution)
         case .xraiAttribution(let value):
-          try container.encode(value, forKey: .xraiAttribution)
+          try container.encodeIfPresent(value, forKey: .xraiAttribution)
         case .examples(let value):
-          try container.encode(value, forKey: .examples)
+          try container.encodeIfPresent(value, forKey: .examples)
         }
       }
       for (key, value) in self._unknownFields.json {

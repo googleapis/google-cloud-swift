@@ -115,12 +115,14 @@ public struct Boundary: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Boundary.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.scope {
       switch choice {
       case .crmNode(let value):
-        try container.encode(value, forKey: .crmNode)
+        try container.encodeIfPresent(value, forKey: .crmNode)
       }
     }
     for (key, value) in self._unknownFields.json {

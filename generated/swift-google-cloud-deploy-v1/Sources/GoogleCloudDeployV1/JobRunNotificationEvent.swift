@@ -143,7 +143,9 @@ public struct JobRunNotificationEvent: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.rolloutUid, forKey: .rolloutUid)
     try container.encode(self.rollout, forKey: .rollout)
     try container.encode(self.targetId, forKey: .targetId)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

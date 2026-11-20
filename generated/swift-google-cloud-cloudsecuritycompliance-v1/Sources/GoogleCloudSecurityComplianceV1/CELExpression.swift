@@ -98,7 +98,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.criteria {
       switch choice {
       case .resourceTypesValues(let value):
-        try container.encode(value, forKey: .resourceTypesValues)
+        try container.encodeIfPresent(value, forKey: .resourceTypesValues)
       }
     }
     for (key, value) in self._unknownFields.json {

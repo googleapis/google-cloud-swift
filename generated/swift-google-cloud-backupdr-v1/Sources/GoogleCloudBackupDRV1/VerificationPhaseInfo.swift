@@ -118,7 +118,9 @@ public struct VerificationPhaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.phaseState, forKey: .phaseState)
+    if self.phaseState != PhaseState() {
+      try container.encode(self.phaseState, forKey: .phaseState)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -127,7 +129,7 @@ public struct VerificationPhaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .cloudRunExecution(let value):
-        try container.encode(value, forKey: .cloudRunExecution)
+        try container.encodeIfPresent(value, forKey: .cloudRunExecution)
       }
     }
     for (key, value) in self._unknownFields.json {

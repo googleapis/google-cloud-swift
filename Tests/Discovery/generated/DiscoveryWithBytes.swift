@@ -115,7 +115,7 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(transformed, forKey: .map)
     }
     if let v = `optional` {
-      try container.encode(
+      try container.encodeIfPresent(
         GoogleWKT._DiscoveryBase64.encode(v), forKey: .`optional`
       )
     }

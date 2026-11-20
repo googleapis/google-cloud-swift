@@ -285,8 +285,12 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.maxInstanceCount, forKey: .maxInstanceCount)
     try container.encode(self.minInstanceCount, forKey: .minInstanceCount)
     try container.encode(self.vpcConnector, forKey: .vpcConnector)
-    try container.encode(self.vpcConnectorEgressSettings, forKey: .vpcConnectorEgressSettings)
-    try container.encode(self.ingressSettings, forKey: .ingressSettings)
+    if self.vpcConnectorEgressSettings != ServiceConfig.VpcConnectorEgressSettings() {
+      try container.encode(self.vpcConnectorEgressSettings, forKey: .vpcConnectorEgressSettings)
+    }
+    if self.ingressSettings != ServiceConfig.IngressSettings() {
+      try container.encode(self.ingressSettings, forKey: .ingressSettings)
+    }
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
     try container.encode(self.allTrafficOnLatestRevision, forKey: .allTrafficOnLatestRevision)
@@ -294,7 +298,9 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.secretVolumes, forKey: .secretVolumes)
     try container.encode(self.revision, forKey: .revision)
     try container.encode(self.maxInstanceRequestConcurrency, forKey: .maxInstanceRequestConcurrency)
-    try container.encode(self.securityLevel, forKey: .securityLevel)
+    if self.securityLevel != ServiceConfig.SecurityLevel() {
+      try container.encode(self.securityLevel, forKey: .securityLevel)
+    }
     try container.encode(self.binaryAuthorizationPolicy, forKey: .binaryAuthorizationPolicy)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

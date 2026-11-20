@@ -115,7 +115,9 @@ public struct Group: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.migrationTargetType, forKey: .migrationTargetType)
+    if self.migrationTargetType != Group.MigrationTargetType() {
+      try container.encode(self.migrationTargetType, forKey: .migrationTargetType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

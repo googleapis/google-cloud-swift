@@ -165,7 +165,9 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Index.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.deployedIndexes, forKey: .deployedIndexes)
@@ -175,7 +177,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.assetFilter {
       switch choice {
       case .entireCorpus(let value):
-        try container.encode(value, forKey: .entireCorpus)
+        try container.encodeIfPresent(value, forKey: .entireCorpus)
       }
     }
     for (key, value) in self._unknownFields.json {

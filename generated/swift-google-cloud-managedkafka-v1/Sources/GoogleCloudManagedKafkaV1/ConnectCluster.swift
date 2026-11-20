@@ -155,13 +155,15 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.capacityConfig, forKey: .capacityConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ConnectCluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.config, forKey: .config)
 
     if let choice = self.platformConfig {
       switch choice {
       case .gcpConfig(let value):
-        try container.encode(value, forKey: .gcpConfig)
+        try container.encodeIfPresent(value, forKey: .gcpConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -171,7 +171,9 @@ public struct RecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.enableAutomaticPunctuation, forKey: .enableAutomaticPunctuation)
     try container.encode(self.enableSpokenPunctuation, forKey: .enableSpokenPunctuation)
     try container.encode(self.enableSpokenEmojis, forKey: .enableSpokenEmojis)
-    try container.encode(self.multiChannelMode, forKey: .multiChannelMode)
+    if self.multiChannelMode != RecognitionFeatures.MultiChannelMode() {
+      try container.encode(self.multiChannelMode, forKey: .multiChannelMode)
+    }
     try container.encodeIfPresent(self.diarizationConfig, forKey: .diarizationConfig)
     try container.encode(self.maxAlternatives, forKey: .maxAlternatives)
     try container.encodeIfPresent(self.customPromptConfig, forKey: .customPromptConfig)

@@ -102,7 +102,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.answer, forKey: .answer)
-      try container.encode(self.answerType, forKey: .answerType)
+      if self.answerType != SearchKnowledgeAnswer.AnswerType() {
+        try container.encode(self.answerType, forKey: .answerType)
+      }
       try container.encode(self.answerSources, forKey: .answerSources)
       try container.encode(self.answerRecord, forKey: .answerRecord)
       for (key, value) in self._unknownFields.json {

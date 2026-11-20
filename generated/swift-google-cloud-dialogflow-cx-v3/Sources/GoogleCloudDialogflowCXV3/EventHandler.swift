@@ -152,11 +152,11 @@
       if let choice = self.target {
         switch choice {
         case .targetPage(let value):
-          try container.encode(value, forKey: .targetPage)
+          try container.encodeIfPresent(value, forKey: .targetPage)
         case .targetFlow(let value):
-          try container.encode(value, forKey: .targetFlow)
+          try container.encodeIfPresent(value, forKey: .targetFlow)
         case .targetPlaybook(let value):
-          try container.encode(value, forKey: .targetPlaybook)
+          try container.encodeIfPresent(value, forKey: .targetPlaybook)
         }
       }
       for (key, value) in self._unknownFields.json {

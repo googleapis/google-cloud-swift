@@ -134,18 +134,18 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceNode {
       switch choice {
       case .srcNodeType(let value):
-        try container.encode(value, forKey: .srcNodeType)
+        try container.encodeIfPresent(value, forKey: .srcNodeType)
       case .srcNodeGroup(let value):
-        try container.encode(value, forKey: .srcNodeGroup)
+        try container.encodeIfPresent(value, forKey: .srcNodeGroup)
       }
     }
 
     if let choice = self.destinationNode {
       switch choice {
       case .destNodeType(let value):
-        try container.encode(value, forKey: .destNodeType)
+        try container.encodeIfPresent(value, forKey: .destNodeType)
       case .destNodeGroup(let value):
-        try container.encode(value, forKey: .destNodeGroup)
+        try container.encodeIfPresent(value, forKey: .destNodeGroup)
       }
     }
     for (key, value) in self._unknownFields.json {

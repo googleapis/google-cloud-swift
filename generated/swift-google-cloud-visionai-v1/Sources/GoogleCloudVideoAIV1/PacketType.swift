@@ -182,9 +182,9 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.typeDetails {
         switch choice {
         case .gstreamerBufferDescriptor(let value):
-          try container.encode(value, forKey: .gstreamerBufferDescriptor)
+          try container.encodeIfPresent(value, forKey: .gstreamerBufferDescriptor)
         case .rawImageDescriptor(let value):
-          try container.encode(value, forKey: .rawImageDescriptor)
+          try container.encodeIfPresent(value, forKey: .rawImageDescriptor)
         }
       }
       for (key, value) in self._unknownFields.json {

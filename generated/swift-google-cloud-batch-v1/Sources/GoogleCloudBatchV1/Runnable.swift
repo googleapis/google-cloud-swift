@@ -181,11 +181,11 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.executable {
       switch choice {
       case .container(let value):
-        try container.encode(value, forKey: .container)
+        try container.encodeIfPresent(value, forKey: .container)
       case .script(let value):
-        try container.encode(value, forKey: .script)
+        try container.encodeIfPresent(value, forKey: .script)
       case .barrier(let value):
-        try container.encode(value, forKey: .barrier)
+        try container.encodeIfPresent(value, forKey: .barrier)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -483,9 +483,9 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.command {
         switch choice {
         case .path(let value):
-          try container.encode(value, forKey: .path)
+          try container.encodeIfPresent(value, forKey: .path)
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         }
       }
       for (key, value) in self._unknownFields.json {

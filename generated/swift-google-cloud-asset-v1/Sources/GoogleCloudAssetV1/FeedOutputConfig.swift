@@ -87,7 +87,7 @@ public struct FeedOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destination {
       switch choice {
       case .pubsubDestination(let value):
-        try container.encode(value, forKey: .pubsubDestination)
+        try container.encodeIfPresent(value, forKey: .pubsubDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

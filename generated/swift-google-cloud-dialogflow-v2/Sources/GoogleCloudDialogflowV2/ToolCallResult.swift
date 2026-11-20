@@ -157,24 +157,24 @@
       if let choice = self.source {
         switch choice {
         case .tool(let value):
-          try container.encode(value, forKey: .tool)
+          try container.encodeIfPresent(value, forKey: .tool)
         case .cesToolset(let value):
-          try container.encode(value, forKey: .cesToolset)
+          try container.encodeIfPresent(value, forKey: .cesToolset)
         case .cesTool(let value):
-          try container.encode(value, forKey: .cesTool)
+          try container.encodeIfPresent(value, forKey: .cesTool)
         case .cesApp(let value):
-          try container.encode(value, forKey: .cesApp)
+          try container.encodeIfPresent(value, forKey: .cesApp)
         }
       }
 
       if let choice = self.result {
         switch choice {
         case .error(let value):
-          try container.encode(value, forKey: .error)
+          try container.encodeIfPresent(value, forKey: .error)
         case .rawContent(let value):
-          try container.encode(value, forKey: .rawContent)
+          try container.encodeIfPresent(value, forKey: .rawContent)
         case .content(let value):
-          try container.encode(value, forKey: .content)
+          try container.encodeIfPresent(value, forKey: .content)
         }
       }
       for (key, value) in self._unknownFields.json {

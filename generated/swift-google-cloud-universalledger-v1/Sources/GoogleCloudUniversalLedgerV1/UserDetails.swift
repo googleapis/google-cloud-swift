@@ -113,7 +113,9 @@ public struct UserDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.accountManagerId, forKey: .accountManagerId)
     try container.encode(self.tokenManagerId, forKey: .tokenManagerId)
     try container.encode(self.roles, forKey: .roles)
-    try container.encode(self.accountStatus, forKey: .accountStatus)
+    if self.accountStatus != AccountStatus() {
+      try container.encode(self.accountStatus, forKey: .accountStatus)
+    }
     try container.encodeIfPresent(self.balance, forKey: .balance)
     try container.encode(self.contractAccountFields, forKey: .contractAccountFields)
     for (key, value) in self._unknownFields.json {

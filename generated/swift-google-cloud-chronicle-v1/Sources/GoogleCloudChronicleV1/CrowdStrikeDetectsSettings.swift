@@ -89,7 +89,9 @@ public struct CrowdStrikeDetectsSettings: Codable, Equatable, GoogleWKT._AnyPack
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.hostname, forKey: .hostname)
-    try container.encode(self.ingestionType, forKey: .ingestionType)
+    if self.ingestionType != CrowdStrikeDetectsSettings.IngestionType() {
+      try container.encode(self.ingestionType, forKey: .ingestionType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -447,7 +447,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.lastModifier, forKey: .lastModifier)
     try container.encode(self.client, forKey: .client)
     try container.encode(self.clientVersion, forKey: .clientVersion)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
     try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
@@ -455,18 +457,25 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
-    try container.encode(self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    if self.encryptionKeyRevocationAction != EncryptionKeyRevocationAction() {
+      try container.encode(
+        self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    }
     try container.encodeIfPresent(
       self.encryptionKeyShutdownDuration, forKey: .encryptionKeyShutdownDuration)
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
     try container.encodeIfPresent(
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
-    try container.encode(self.ingress, forKey: .ingress)
+    if self.ingress != IngressTraffic() {
+      try container.encode(self.ingress, forKey: .ingress)
+    }
     try container.encode(self.invokerIamDisabled, forKey: .invokerIamDisabled)
     try container.encode(self.defaultUriDisabled, forKey: .defaultUriDisabled)
     try container.encode(self.iapEnabled, forKey: .iapEnabled)
     try container.encodeIfPresent(self.sshEnabled, forKey: .sshEnabled)
-    try container.encode(self.restartPolicy, forKey: .restartPolicy)
+    if self.restartPolicy != Instance.RestartPolicy() {
+      try container.encode(self.restartPolicy, forKey: .restartPolicy)
+    }
     try container.encode(self.observedGeneration, forKey: .observedGeneration)
     try container.encode(self.logUri, forKey: .logUri)
     try container.encodeIfPresent(self.terminalCondition, forKey: .terminalCondition)

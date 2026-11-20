@@ -88,7 +88,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.systemSpec {
       switch choice {
       case .vertexDatasetSpec(let value):
-        try container.encode(value, forKey: .vertexDatasetSpec)
+        try container.encodeIfPresent(value, forKey: .vertexDatasetSpec)
       }
     }
     for (key, value) in self._unknownFields.json {

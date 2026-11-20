@@ -182,7 +182,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.matcherValue, forKey: .matcherValue)
-        try container.encode(self.state, forKey: .state)
+        if self.state != BatchGetDocumentsMetadataResponse.State() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encodeIfPresent(self.lastRefreshedTime, forKey: .lastRefreshedTime)
         try container.encode(self.dataIngestionSource, forKey: .dataIngestionSource)
         for (key, value) in self._unknownFields.json {
@@ -271,9 +273,9 @@
           if let choice = self.matcherValue {
             switch choice {
             case .uri(let value):
-              try container.encode(value, forKey: .uri)
+              try container.encodeIfPresent(value, forKey: .uri)
             case .fhirResource(let value):
-              try container.encode(value, forKey: .fhirResource)
+              try container.encodeIfPresent(value, forKey: .fhirResource)
             }
           }
           for (key, value) in self._unknownFields.json {

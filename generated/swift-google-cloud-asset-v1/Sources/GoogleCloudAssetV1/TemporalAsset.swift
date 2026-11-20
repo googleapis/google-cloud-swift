@@ -102,7 +102,9 @@ public struct TemporalAsset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.window, forKey: .window)
     try container.encode(self.deleted, forKey: .deleted)
     try container.encodeIfPresent(self.asset, forKey: .asset)
-    try container.encode(self.priorAssetState, forKey: .priorAssetState)
+    if self.priorAssetState != TemporalAsset.PriorAssetState() {
+      try container.encode(self.priorAssetState, forKey: .priorAssetState)
+    }
     try container.encodeIfPresent(self.priorAsset, forKey: .priorAsset)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

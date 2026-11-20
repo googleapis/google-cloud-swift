@@ -189,15 +189,15 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.connectionConfig {
       switch choice {
       case .githubConfig(let value):
-        try container.encode(value, forKey: .githubConfig)
+        try container.encodeIfPresent(value, forKey: .githubConfig)
       case .githubEnterpriseConfig(let value):
-        try container.encode(value, forKey: .githubEnterpriseConfig)
+        try container.encodeIfPresent(value, forKey: .githubEnterpriseConfig)
       case .gitlabConfig(let value):
-        try container.encode(value, forKey: .gitlabConfig)
+        try container.encodeIfPresent(value, forKey: .gitlabConfig)
       case .bitbucketDataCenterConfig(let value):
-        try container.encode(value, forKey: .bitbucketDataCenterConfig)
+        try container.encodeIfPresent(value, forKey: .bitbucketDataCenterConfig)
       case .bitbucketCloudConfig(let value):
-        try container.encode(value, forKey: .bitbucketCloudConfig)
+        try container.encodeIfPresent(value, forKey: .bitbucketCloudConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -111,11 +111,11 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.transformation {
       switch choice {
       case .infoTypeTransformations(let value):
-        try container.encode(value, forKey: .infoTypeTransformations)
+        try container.encodeIfPresent(value, forKey: .infoTypeTransformations)
       case .recordTransformations(let value):
-        try container.encode(value, forKey: .recordTransformations)
+        try container.encodeIfPresent(value, forKey: .recordTransformations)
       case .imageTransformations(let value):
-        try container.encode(value, forKey: .imageTransformations)
+        try container.encodeIfPresent(value, forKey: .imageTransformations)
       }
     }
     for (key, value) in self._unknownFields.json {

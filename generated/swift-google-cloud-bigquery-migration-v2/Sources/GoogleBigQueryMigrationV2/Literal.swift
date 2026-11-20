@@ -101,9 +101,9 @@ public struct Literal: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.literalData {
       switch choice {
       case .literalString(let value):
-        try container.encode(value, forKey: .literalString)
+        try container.encodeIfPresent(value, forKey: .literalString)
       case .literalBytes(let value):
-        try container.encode(value, forKey: .literalBytes)
+        try container.encodeIfPresent(value, forKey: .literalBytes)
       }
     }
     for (key, value) in self._unknownFields.json {

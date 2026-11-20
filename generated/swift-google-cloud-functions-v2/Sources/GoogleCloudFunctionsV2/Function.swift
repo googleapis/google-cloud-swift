@@ -181,11 +181,15 @@ public struct Function: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.buildConfig, forKey: .buildConfig)
     try container.encodeIfPresent(self.serviceConfig, forKey: .serviceConfig)
     try container.encodeIfPresent(self.eventTrigger, forKey: .eventTrigger)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Function.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.stateMessages, forKey: .stateMessages)
-    try container.encode(self.environment, forKey: .environment)
+    if self.environment != Environment() {
+      try container.encode(self.environment, forKey: .environment)
+    }
     try container.encode(self.url, forKey: .url)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)

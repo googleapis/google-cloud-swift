@@ -99,14 +99,16 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != MetadataType() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.label {
       switch choice {
       case .storageLabel(let value):
-        try container.encode(value, forKey: .storageLabel)
+        try container.encodeIfPresent(value, forKey: .storageLabel)
       case .keyValueMetadataLabel(let value):
-        try container.encode(value, forKey: .keyValueMetadataLabel)
+        try container.encodeIfPresent(value, forKey: .keyValueMetadataLabel)
       }
     }
     for (key, value) in self._unknownFields.json {

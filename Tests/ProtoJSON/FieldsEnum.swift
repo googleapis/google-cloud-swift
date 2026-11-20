@@ -67,59 +67,32 @@ import Testing
   @Test(
     "Enum fields serialize",
     arguments: [
-      (#"{"singular":"TEST_ENUM_UNSPECIFIED"}"#, T()),
+      (#"{}"#, T()),
+      (#"{}"#, T().with { $0.singular = .unspecified }),
+      (#"{"singular":"RED"}"#, T().with { $0.singular = .red }),
+      (#"{"singular":"CYAN"}"#, T().with { $0.singular = .unknownStringValue("CYAN") }),
+      (#"{"singular":42}"#, T().with { $0.singular = .unknownIntValue(42) }),
       (
-        #"{"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.singular = .unspecified }
+        #"{"optional":"TEST_ENUM_UNSPECIFIED"}"#,
+        T().with { $0.optional = .unspecified }
       ),
+      (#"{"optional":"GREEN"}"#, T().with { $0.optional = .green }),
+      (#"{"optional":"CYAN"}"#, T().with { $0.optional = .unknownStringValue("CYAN") }),
+      (#"{"optional":42}"#, T().with { $0.optional = .unknownIntValue(42) }),
       (
-        #"{"singular":"RED"}"#,
-        T().with { $0.singular = .red }
+        #"{"repeated":["TEST_ENUM_UNSPECIFIED"]}"#,
+        T().with { $0.repeated = [.unspecified] }
       ),
+      (#"{"repeated":["RED","BLUE","BLUE"]}"#, T().with { $0.repeated = [.red, .blue, .blue] }),
+      (#"{"repeated":[42]}"#, T().with { $0.repeated = [.unknownIntValue(42)] }),
+      (#"{"repeated":["CYAN"]}"#, T().with { $0.repeated = [.unknownStringValue("CYAN")] }),
       (
-        #"{"singular":"CYAN"}"#,
-        T().with { $0.singular = .unknownStringValue("CYAN") }
+        #"{"map":{"a":"TEST_ENUM_UNSPECIFIED"}}"#,
+        T().with { $0.map = ["a": .unspecified] }
       ),
-      (
-        #"{"singular":42}"#,
-        T().with { $0.singular = .unknownIntValue(42) }
-      ),
-      (
-        #"{"optional":"GREEN","singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.optional = .green }
-      ),
-      (
-        #"{"optional":"CYAN","singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.optional = .unknownStringValue("CYAN") }
-      ),
-      (
-        #"{"optional":42,"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.optional = .unknownIntValue(42) }
-      ),
-      (
-        #"{"repeated":["RED","BLUE","BLUE"],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.repeated = [.red, .blue, .blue] }
-      ),
-      (
-        #"{"repeated":[42],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.repeated = [.unknownIntValue(42)] }
-      ),
-      (
-        #"{"repeated":["CYAN"],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.repeated = [.unknownStringValue("CYAN")] }
-      ),
-      (
-        #"{"map":{"a":"GREEN"},"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.map = ["a": .green] }
-      ),
-      (
-        #"{"map":{"a":42},"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.map = ["a": .unknownIntValue(42)] }
-      ),
-      (
-        #"{"map":{"a":"MAGENTA"},"singular":"TEST_ENUM_UNSPECIFIED"}"#,
-        T().with { $0.map = ["a": .unknownStringValue("MAGENTA")] }
-      ),
+      (#"{"map":{"a":"GREEN"}}"#, T().with { $0.map = ["a": .green] }),
+      (#"{"map":{"a":42}}"#, T().with { $0.map = ["a": .unknownIntValue(42)] }),
+      (#"{"map":{"a":"MAGENTA"}}"#, T().with { $0.map = ["a": .unknownStringValue("MAGENTA")] }),
     ])
   func serialize(want: String, input: MessageWithEnum) throws {
     let encoder = _ProtoJSONEncoder()

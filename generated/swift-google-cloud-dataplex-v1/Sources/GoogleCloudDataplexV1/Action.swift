@@ -209,7 +209,9 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.category, forKey: .category)
+    if self.category != GoogleCloudDataplexV1.Action.Category() {
+      try container.encode(self.category, forKey: .category)
+    }
     try container.encode(self.issue, forKey: .issue)
     try container.encodeIfPresent(self.detectTime, forKey: .detectTime)
     try container.encode(self.name, forKey: .name)
@@ -221,21 +223,21 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.details {
       switch choice {
       case .invalidDataFormat(let value):
-        try container.encode(value, forKey: .invalidDataFormat)
+        try container.encodeIfPresent(value, forKey: .invalidDataFormat)
       case .incompatibleDataSchema(let value):
-        try container.encode(value, forKey: .incompatibleDataSchema)
+        try container.encodeIfPresent(value, forKey: .incompatibleDataSchema)
       case .invalidDataPartition(let value):
-        try container.encode(value, forKey: .invalidDataPartition)
+        try container.encodeIfPresent(value, forKey: .invalidDataPartition)
       case .missingData(let value):
-        try container.encode(value, forKey: .missingData)
+        try container.encodeIfPresent(value, forKey: .missingData)
       case .missingResource(let value):
-        try container.encode(value, forKey: .missingResource)
+        try container.encodeIfPresent(value, forKey: .missingResource)
       case .unauthorizedResource(let value):
-        try container.encode(value, forKey: .unauthorizedResource)
+        try container.encodeIfPresent(value, forKey: .unauthorizedResource)
       case .failedSecurityPolicyApply(let value):
-        try container.encode(value, forKey: .failedSecurityPolicyApply)
+        try container.encodeIfPresent(value, forKey: .failedSecurityPolicyApply)
       case .invalidDataOrganization(let value):
-        try container.encode(value, forKey: .invalidDataOrganization)
+        try container.encodeIfPresent(value, forKey: .invalidDataOrganization)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -664,7 +666,9 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.existingSchema, forKey: .existingSchema)
       try container.encode(self.newSchema, forKey: .newSchema)
       try container.encode(self.sampledDataLocations, forKey: .sampledDataLocations)
-      try container.encode(self.schemaChange, forKey: .schemaChange)
+      if self.schemaChange != GoogleCloudDataplexV1.Action.IncompatibleDataSchema.SchemaChange() {
+        try container.encode(self.schemaChange, forKey: .schemaChange)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -867,7 +871,11 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.expectedStructure, forKey: .expectedStructure)
+      if self.expectedStructure
+        != GoogleCloudDataplexV1.Action.InvalidDataPartition.PartitionStructure()
+      {
+        try container.encode(self.expectedStructure, forKey: .expectedStructure)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

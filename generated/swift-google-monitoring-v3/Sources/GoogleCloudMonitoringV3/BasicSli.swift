@@ -137,9 +137,9 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sliCriteria {
       switch choice {
       case .availability(let value):
-        try container.encode(value, forKey: .availability)
+        try container.encodeIfPresent(value, forKey: .availability)
       case .latency(let value):
-        try container.encode(value, forKey: .latency)
+        try container.encodeIfPresent(value, forKey: .latency)
       }
     }
     for (key, value) in self._unknownFields.json {

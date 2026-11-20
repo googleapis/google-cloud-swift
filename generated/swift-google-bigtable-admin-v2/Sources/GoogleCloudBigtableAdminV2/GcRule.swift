@@ -103,13 +103,13 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rule {
       switch choice {
       case .maxNumVersions(let value):
-        try container.encode(value, forKey: .maxNumVersions)
+        try container.encodeIfPresent(value, forKey: .maxNumVersions)
       case .maxAge(let value):
-        try container.encode(value, forKey: .maxAge)
+        try container.encodeIfPresent(value, forKey: .maxAge)
       case .intersection(let value):
-        try container.encode(value, forKey: .intersection)
+        try container.encodeIfPresent(value, forKey: .intersection)
       case .union(let value):
-        try container.encode(value, forKey: .union)
+        try container.encodeIfPresent(value, forKey: .union)
       }
     }
     for (key, value) in self._unknownFields.json {

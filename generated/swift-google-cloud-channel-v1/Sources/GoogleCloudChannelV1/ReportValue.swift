@@ -116,17 +116,17 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .intValue(let value):
-        try container.encode(value, forKey: .intValue)
+        try container.encodeIfPresent(value, forKey: .intValue)
       case .decimalValue(let value):
-        try container.encode(value, forKey: .decimalValue)
+        try container.encodeIfPresent(value, forKey: .decimalValue)
       case .moneyValue(let value):
-        try container.encode(value, forKey: .moneyValue)
+        try container.encodeIfPresent(value, forKey: .moneyValue)
       case .dateValue(let value):
-        try container.encode(value, forKey: .dateValue)
+        try container.encodeIfPresent(value, forKey: .dateValue)
       case .dateTimeValue(let value):
-        try container.encode(value, forKey: .dateTimeValue)
+        try container.encodeIfPresent(value, forKey: .dateTimeValue)
       }
     }
     for (key, value) in self._unknownFields.json {

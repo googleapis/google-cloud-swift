@@ -121,9 +121,9 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.vmConfig {
       switch choice {
       case .vmCreationConfig(let value):
-        try container.encode(value, forKey: .vmCreationConfig)
+        try container.encodeIfPresent(value, forKey: .vmCreationConfig)
       case .vmSelectionConfig(let value):
-        try container.encode(value, forKey: .vmSelectionConfig)
+        try container.encodeIfPresent(value, forKey: .vmSelectionConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

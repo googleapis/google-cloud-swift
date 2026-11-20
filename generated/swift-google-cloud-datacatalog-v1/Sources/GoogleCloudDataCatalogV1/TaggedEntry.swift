@@ -106,7 +106,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.entry {
       switch choice {
       case .v1Entry(let value):
-        try container.encode(value, forKey: .v1Entry)
+        try container.encodeIfPresent(value, forKey: .v1Entry)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -187,16 +187,16 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.schedule {
       switch choice {
       case .weeklySchedule(let value):
-        try container.encode(value, forKey: .weeklySchedule)
+        try container.encodeIfPresent(value, forKey: .weeklySchedule)
       }
     }
 
     if let choice = self.retention {
       switch choice {
       case .timeBasedRetention(let value):
-        try container.encode(value, forKey: .timeBasedRetention)
+        try container.encodeIfPresent(value, forKey: .timeBasedRetention)
       case .quantityBasedRetention(let value):
-        try container.encode(value, forKey: .quantityBasedRetention)
+        try container.encodeIfPresent(value, forKey: .quantityBasedRetention)
       }
     }
     for (key, value) in self._unknownFields.json {

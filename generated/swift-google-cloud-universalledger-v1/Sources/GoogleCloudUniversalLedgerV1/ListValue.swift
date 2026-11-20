@@ -101,13 +101,13 @@ public struct ListValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.values {
       switch choice {
       case .boolValues(let value):
-        try container.encode(value, forKey: .boolValues)
+        try container.encodeIfPresent(value, forKey: .boolValues)
       case .stringValues(let value):
-        try container.encode(value, forKey: .stringValues)
+        try container.encodeIfPresent(value, forKey: .stringValues)
       case .int64Values(let value):
-        try container.encode(value, forKey: .int64Values)
+        try container.encodeIfPresent(value, forKey: .int64Values)
       case .genericValues(let value):
-        try container.encode(value, forKey: .genericValues)
+        try container.encodeIfPresent(value, forKey: .genericValues)
       }
     }
     for (key, value) in self._unknownFields.json {

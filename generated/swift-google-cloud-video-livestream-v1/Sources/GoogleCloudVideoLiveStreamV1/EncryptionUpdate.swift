@@ -96,7 +96,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.secretSource {
       switch choice {
       case .secretManagerKeySource(let value):
-        try container.encode(value, forKey: .secretManagerKeySource)
+        try container.encodeIfPresent(value, forKey: .secretManagerKeySource)
       }
     }
     for (key, value) in self._unknownFields.json {

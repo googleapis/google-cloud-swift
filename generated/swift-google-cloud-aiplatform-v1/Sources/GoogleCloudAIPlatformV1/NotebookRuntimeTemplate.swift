@@ -263,7 +263,9 @@
       try container.encodeIfPresent(self.eucConfig, forKey: .eucConfig)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-      try container.encode(self.notebookRuntimeType, forKey: .notebookRuntimeType)
+      if self.notebookRuntimeType != NotebookRuntimeType() {
+        try container.encode(self.notebookRuntimeType, forKey: .notebookRuntimeType)
+      }
       try container.encodeIfPresent(self.shieldedVmConfig, forKey: .shieldedVmConfig)
       try container.encode(self.networkTags, forKey: .networkTags)
       try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)

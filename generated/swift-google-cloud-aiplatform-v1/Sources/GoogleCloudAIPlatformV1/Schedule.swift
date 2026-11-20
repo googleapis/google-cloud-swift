@@ -284,7 +284,9 @@
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encode(self.maxRunCount, forKey: .maxRunCount)
       try container.encode(self.startedRunCount, forKey: .startedRunCount)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Schedule.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encodeIfPresent(self.nextRunTime, forKey: .nextRunTime)
@@ -300,16 +302,16 @@
       if let choice = self.timeSpecification {
         switch choice {
         case .cron(let value):
-          try container.encode(value, forKey: .cron)
+          try container.encodeIfPresent(value, forKey: .cron)
         }
       }
 
       if let choice = self.request {
         switch choice {
         case .createPipelineJobRequest(let value):
-          try container.encode(value, forKey: .createPipelineJobRequest)
+          try container.encodeIfPresent(value, forKey: .createPipelineJobRequest)
         case .createNotebookExecutionJobRequest(let value):
-          try container.encode(value, forKey: .createNotebookExecutionJobRequest)
+          try container.encodeIfPresent(value, forKey: .createNotebookExecutionJobRequest)
         }
       }
       for (key, value) in self._unknownFields.json {

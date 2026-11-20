@@ -144,7 +144,9 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.spec, forKey: .spec)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Definition.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.attributes, forKey: .attributes)
@@ -152,7 +154,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .schema(let value):
-        try container.encode(value, forKey: .schema)
+        try container.encodeIfPresent(value, forKey: .schema)
       }
     }
     for (key, value) in self._unknownFields.json {

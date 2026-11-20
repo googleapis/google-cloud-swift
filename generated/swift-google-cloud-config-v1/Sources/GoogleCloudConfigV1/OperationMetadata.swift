@@ -171,11 +171,11 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceMetadata {
       switch choice {
       case .deploymentMetadata(let value):
-        try container.encode(value, forKey: .deploymentMetadata)
+        try container.encodeIfPresent(value, forKey: .deploymentMetadata)
       case .previewMetadata(let value):
-        try container.encode(value, forKey: .previewMetadata)
+        try container.encodeIfPresent(value, forKey: .previewMetadata)
       case .provisionDeploymentGroupMetadata(let value):
-        try container.encode(value, forKey: .provisionDeploymentGroupMetadata)
+        try container.encodeIfPresent(value, forKey: .provisionDeploymentGroupMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

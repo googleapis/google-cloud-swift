@@ -124,7 +124,9 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != OSPolicy.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encode(self.resourceGroups, forKey: .resourceGroups)
     try container.encode(self.allowNoResourceGroupMatch, forKey: .allowNoResourceGroupMatch)
     for (key, value) in self._unknownFields.json {
@@ -338,13 +340,13 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.resourceType {
         switch choice {
         case .pkg(let value):
-          try container.encode(value, forKey: .pkg)
+          try container.encodeIfPresent(value, forKey: .pkg)
         case .repository(let value):
-          try container.encode(value, forKey: .repository)
+          try container.encodeIfPresent(value, forKey: .repository)
         case .exec(let value):
-          try container.encode(value, forKey: .exec)
+          try container.encodeIfPresent(value, forKey: .exec)
         case .file(let value):
-          try container.encode(value, forKey: .file)
+          try container.encodeIfPresent(value, forKey: .file)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -445,11 +447,11 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.type {
           switch choice {
           case .remote(let value):
-            try container.encode(value, forKey: .remote)
+            try container.encodeIfPresent(value, forKey: .remote)
           case .gcs(let value):
-            try container.encode(value, forKey: .gcs)
+            try container.encodeIfPresent(value, forKey: .gcs)
           case .localPath(let value):
-            try container.encode(value, forKey: .localPath)
+            try container.encodeIfPresent(value, forKey: .localPath)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -796,24 +798,26 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.desiredState, forKey: .desiredState)
+        if self.desiredState != OSPolicy.Resource.PackageResource.DesiredState() {
+          try container.encode(self.desiredState, forKey: .desiredState)
+        }
 
         if let choice = self.systemPackage {
           switch choice {
           case .apt(let value):
-            try container.encode(value, forKey: .apt)
+            try container.encodeIfPresent(value, forKey: .apt)
           case .deb(let value):
-            try container.encode(value, forKey: .deb)
+            try container.encodeIfPresent(value, forKey: .deb)
           case .yum(let value):
-            try container.encode(value, forKey: .yum)
+            try container.encodeIfPresent(value, forKey: .yum)
           case .zypper(let value):
-            try container.encode(value, forKey: .zypper)
+            try container.encodeIfPresent(value, forKey: .zypper)
           case .rpm(let value):
-            try container.encode(value, forKey: .rpm)
+            try container.encodeIfPresent(value, forKey: .rpm)
           case .googet(let value):
-            try container.encode(value, forKey: .googet)
+            try container.encodeIfPresent(value, forKey: .googet)
           case .msi(let value):
-            try container.encode(value, forKey: .msi)
+            try container.encodeIfPresent(value, forKey: .msi)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1675,13 +1679,13 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.repository {
           switch choice {
           case .apt(let value):
-            try container.encode(value, forKey: .apt)
+            try container.encodeIfPresent(value, forKey: .apt)
           case .yum(let value):
-            try container.encode(value, forKey: .yum)
+            try container.encodeIfPresent(value, forKey: .yum)
           case .zypper(let value):
-            try container.encode(value, forKey: .zypper)
+            try container.encodeIfPresent(value, forKey: .zypper)
           case .goo(let value):
-            try container.encode(value, forKey: .goo)
+            try container.encodeIfPresent(value, forKey: .goo)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1781,7 +1785,9 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.archiveType, forKey: .archiveType)
+          if self.archiveType != OSPolicy.Resource.RepositoryResource.AptRepository.ArchiveType() {
+            try container.encode(self.archiveType, forKey: .archiveType)
+          }
           try container.encode(self.uri, forKey: .uri)
           try container.encode(self.distribution, forKey: .distribution)
           try container.encode(self.components, forKey: .components)
@@ -2480,15 +2486,17 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.args, forKey: .args)
-          try container.encode(self.interpreter, forKey: .interpreter)
+          if self.interpreter != OSPolicy.Resource.ExecResource.Exec.Interpreter() {
+            try container.encode(self.interpreter, forKey: .interpreter)
+          }
           try container.encode(self.outputFilePath, forKey: .outputFilePath)
 
           if let choice = self.source {
             switch choice {
             case .file(let value):
-              try container.encode(value, forKey: .file)
+              try container.encodeIfPresent(value, forKey: .file)
             case .script(let value):
-              try container.encode(value, forKey: .script)
+              try container.encodeIfPresent(value, forKey: .script)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -2787,15 +2795,17 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.path, forKey: .path)
-        try container.encode(self.state, forKey: .state)
+        if self.state != OSPolicy.Resource.FileResource.DesiredState() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encode(self.permissions, forKey: .permissions)
 
         if let choice = self.source {
           switch choice {
           case .file(let value):
-            try container.encode(value, forKey: .file)
+            try container.encodeIfPresent(value, forKey: .file)
           case .content(let value):
-            try container.encode(value, forKey: .content)
+            try container.encodeIfPresent(value, forKey: .content)
           }
         }
         for (key, value) in self._unknownFields.json {

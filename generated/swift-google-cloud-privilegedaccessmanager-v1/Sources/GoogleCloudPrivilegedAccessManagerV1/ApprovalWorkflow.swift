@@ -87,7 +87,7 @@ public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.approvalWorkflow {
       switch choice {
       case .manualApprovals(let value):
-        try container.encode(value, forKey: .manualApprovals)
+        try container.encodeIfPresent(value, forKey: .manualApprovals)
       }
     }
     for (key, value) in self._unknownFields.json {

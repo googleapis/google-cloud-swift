@@ -209,11 +209,15 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lastModifyTime, forKey: .lastModifyTime)
     try container.encode(self.organizationId, forKey: .organizationId)
     try container.encode(self.organizationDisplayName, forKey: .organizationDisplayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Subscription.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.linkedDatasetMap, forKey: .linkedDatasetMap)
     try container.encode(self.subscriberContact, forKey: .subscriberContact)
     try container.encode(self.linkedResources, forKey: .linkedResources)
-    try container.encode(self.resourceType, forKey: .resourceType)
+    if self.resourceType != SharedResourceType() {
+      try container.encode(self.resourceType, forKey: .resourceType)
+    }
     try container.encodeIfPresent(self.commercialInfo, forKey: .commercialInfo)
     try container.encodeIfPresent(
       self.logLinkedDatasetQueryUserEmail, forKey: .logLinkedDatasetQueryUserEmail)
@@ -222,9 +226,9 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceName {
       switch choice {
       case .listing(let value):
-        try container.encode(value, forKey: .listing)
+        try container.encodeIfPresent(value, forKey: .listing)
       case .dataExchange(let value):
-        try container.encode(value, forKey: .dataExchange)
+        try container.encodeIfPresent(value, forKey: .dataExchange)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -317,9 +321,9 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.reference {
         switch choice {
         case .linkedDataset(let value):
-          try container.encode(value, forKey: .linkedDataset)
+          try container.encodeIfPresent(value, forKey: .linkedDataset)
         case .linkedPubsubSubscription(let value):
-          try container.encode(value, forKey: .linkedPubsubSubscription)
+          try container.encodeIfPresent(value, forKey: .linkedPubsubSubscription)
         }
       }
       for (key, value) in self._unknownFields.json {

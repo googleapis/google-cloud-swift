@@ -298,7 +298,9 @@ public struct AzureCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.authorization, forKey: .authorization)
     try container.encodeIfPresent(
       self.azureServicesAuthentication, forKey: .azureServicesAuthentication)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AzureCluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.endpoint, forKey: .endpoint)
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.reconciling, forKey: .reconciling)

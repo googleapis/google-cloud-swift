@@ -380,17 +380,21 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
-      try container.encode(self.originType, forKey: .originType)
+      if self.originType != GoogleCloudOSConfigV1.Inventory.Item.OriginType() {
+        try container.encode(self.originType, forKey: .originType)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-      try container.encode(self.type, forKey: .type)
+      if self.type != GoogleCloudOSConfigV1.Inventory.Item.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
 
       if let choice = self.details {
         switch choice {
         case .installedPackage(let value):
-          try container.encode(value, forKey: .installedPackage)
+          try container.encodeIfPresent(value, forKey: .installedPackage)
         case .availablePackage(let value):
-          try container.encode(value, forKey: .availablePackage)
+          try container.encodeIfPresent(value, forKey: .availablePackage)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -782,23 +786,23 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.details {
         switch choice {
         case .yumPackage(let value):
-          try container.encode(value, forKey: .yumPackage)
+          try container.encodeIfPresent(value, forKey: .yumPackage)
         case .aptPackage(let value):
-          try container.encode(value, forKey: .aptPackage)
+          try container.encodeIfPresent(value, forKey: .aptPackage)
         case .zypperPackage(let value):
-          try container.encode(value, forKey: .zypperPackage)
+          try container.encodeIfPresent(value, forKey: .zypperPackage)
         case .googetPackage(let value):
-          try container.encode(value, forKey: .googetPackage)
+          try container.encodeIfPresent(value, forKey: .googetPackage)
         case .zypperPatch(let value):
-          try container.encode(value, forKey: .zypperPatch)
+          try container.encodeIfPresent(value, forKey: .zypperPatch)
         case .wuaPackage(let value):
-          try container.encode(value, forKey: .wuaPackage)
+          try container.encodeIfPresent(value, forKey: .wuaPackage)
         case .qfePackage(let value):
-          try container.encode(value, forKey: .qfePackage)
+          try container.encodeIfPresent(value, forKey: .qfePackage)
         case .cosPackage(let value):
-          try container.encode(value, forKey: .cosPackage)
+          try container.encodeIfPresent(value, forKey: .cosPackage)
         case .windowsApplication(let value):
-          try container.encode(value, forKey: .windowsApplication)
+          try container.encodeIfPresent(value, forKey: .windowsApplication)
         }
       }
       for (key, value) in self._unknownFields.json {

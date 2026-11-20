@@ -125,14 +125,16 @@ public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dialogflowParticipant, forKey: .dialogflowParticipant)
     try container.encode(self.obfuscatedExternalUserId, forKey: .obfuscatedExternalUserId)
-    try container.encode(self.role, forKey: .role)
+    if self.role != ConversationParticipant.Role() {
+      try container.encode(self.role, forKey: .role)
+    }
 
     if let choice = self.participant {
       switch choice {
       case .dialogflowParticipantName(let value):
-        try container.encode(value, forKey: .dialogflowParticipantName)
+        try container.encodeIfPresent(value, forKey: .dialogflowParticipantName)
       case .userId(let value):
-        try container.encode(value, forKey: .userId)
+        try container.encodeIfPresent(value, forKey: .userId)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -222,29 +222,31 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
     try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.errorSummaries, forKey: .errorSummaries)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Job.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.dryRun, forKey: .dryRun)
     try container.encode(self.isMultiBucketJob, forKey: .isMultiBucketJob)
 
     if let choice = self.source {
       switch choice {
       case .bucketList(let value):
-        try container.encode(value, forKey: .bucketList)
+        try container.encodeIfPresent(value, forKey: .bucketList)
       }
     }
 
     if let choice = self.transformation {
       switch choice {
       case .putObjectHold(let value):
-        try container.encode(value, forKey: .putObjectHold)
+        try container.encodeIfPresent(value, forKey: .putObjectHold)
       case .deleteObject(let value):
-        try container.encode(value, forKey: .deleteObject)
+        try container.encodeIfPresent(value, forKey: .deleteObject)
       case .putMetadata(let value):
-        try container.encode(value, forKey: .putMetadata)
+        try container.encodeIfPresent(value, forKey: .putMetadata)
       case .rewriteObject(let value):
-        try container.encode(value, forKey: .rewriteObject)
+        try container.encodeIfPresent(value, forKey: .rewriteObject)
       case .updateObjectCustomContext(let value):
-        try container.encode(value, forKey: .updateObjectCustomContext)
+        try container.encodeIfPresent(value, forKey: .updateObjectCustomContext)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -155,10 +155,14 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.instanceType, forKey: .instanceType)
+    if self.instanceType != Instance.InstanceType() {
+      try container.encode(self.instanceType, forKey: .instanceType)
+    }
     try container.encode(self.inputResources, forKey: .inputResources)
     try container.encode(self.outputResources, forKey: .outputResources)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -282,7 +286,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.dataType, forKey: .dataType)
+      if self.dataType != GoogleCloudVideoAIV1.DataType() {
+        try container.encode(self.dataType, forKey: .dataType)
+      }
       try container.encode(self.consumerNode, forKey: .consumerNode)
       try container.encode(self.inputResourceBinding, forKey: .inputResourceBinding)
       try container.encodeIfPresent(self.annotations, forKey: .annotations)
@@ -290,9 +296,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.inputResourceInformation {
         switch choice {
         case .inputResource(let value):
-          try container.encode(value, forKey: .inputResource)
+          try container.encodeIfPresent(value, forKey: .inputResource)
         case .annotatedStream(let value):
-          try container.encode(value, forKey: .annotatedStream)
+          try container.encodeIfPresent(value, forKey: .annotatedStream)
         }
       }
       for (key, value) in self._unknownFields.json {

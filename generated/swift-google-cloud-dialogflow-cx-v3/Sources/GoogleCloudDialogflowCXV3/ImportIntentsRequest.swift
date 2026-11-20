@@ -112,14 +112,16 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.mergeOption, forKey: .mergeOption)
+      if self.mergeOption != ImportIntentsRequest.MergeOption() {
+        try container.encode(self.mergeOption, forKey: .mergeOption)
+      }
 
       if let choice = self.intents {
         switch choice {
         case .intentsUri(let value):
-          try container.encode(value, forKey: .intentsUri)
+          try container.encodeIfPresent(value, forKey: .intentsUri)
         case .intentsContent(let value):
-          try container.encode(value, forKey: .intentsContent)
+          try container.encodeIfPresent(value, forKey: .intentsContent)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -306,8 +306,14 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.state, forKey: .state)
-        try container.encode(self.anomalyDetectionBaseline, forKey: .anomalyDetectionBaseline)
+        if self.state != FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.State() {
+          try container.encode(self.state, forKey: .state)
+        }
+        if self.anomalyDetectionBaseline
+          != FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.Baseline()
+        {
+          try container.encode(self.anomalyDetectionBaseline, forKey: .anomalyDetectionBaseline)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -670,7 +676,7 @@
         if let choice = self.threshold {
           switch choice {
           case .value(let value):
-            try container.encode(value, forKey: .value)
+            try container.encodeIfPresent(value, forKey: .value)
           }
         }
         for (key, value) in self._unknownFields.json {

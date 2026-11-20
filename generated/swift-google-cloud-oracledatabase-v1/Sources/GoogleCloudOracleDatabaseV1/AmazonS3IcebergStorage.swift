@@ -112,7 +112,9 @@ public struct AmazonS3IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.schemeType, forKey: .schemeType)
+    if self.schemeType != AmazonS3IcebergStorage.SchemeType() {
+      try container.encode(self.schemeType, forKey: .schemeType)
+    }
     try container.encode(self.accessKeyId, forKey: .accessKeyId)
     try container.encode(self.region, forKey: .region)
     try container.encode(self.bucket, forKey: .bucket)

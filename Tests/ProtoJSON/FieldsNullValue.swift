@@ -39,19 +39,11 @@ import Testing
   @Test(
     "NullValue fields serialize",
     arguments: [
-      (#"{"singular":null}"#, T()),
-      (
-        #"{"optional":null,"singular":null}"#,
-        T().with { $0.optional = WKTNullValue() }
-      ),
-      (
-        #"{"repeated":[null],"singular":null}"#,
-        T().with { $0.repeated = [WKTNullValue()] }
-      ),
-      (
-        #"{"map":{"a":null},"singular":null}"#,
-        T().with { $0.map = ["a": WKTNullValue()] }
-      ),
+      (#"{}"#, T()),
+      (#"{}"#, T().with { $0.singular = WKTNullValue() }),
+      (#"{"optional":null}"#, T().with { $0.optional = WKTNullValue() }),
+      (#"{"repeated":[null]}"#, T().with { $0.repeated = [WKTNullValue()] }),
+      (#"{"map":{"a":null}}"#, T().with { $0.map = ["a": WKTNullValue()] }),
     ]
   )
   func serialize(want: String, input: T) throws {

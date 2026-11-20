@@ -132,7 +132,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.initializationConfig {
       switch choice {
       case .cloudSqlInstanceInitializationConfig(let value):
-        try container.encode(value, forKey: .cloudSqlInstanceInitializationConfig)
+        try container.encodeIfPresent(value, forKey: .cloudSqlInstanceInitializationConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

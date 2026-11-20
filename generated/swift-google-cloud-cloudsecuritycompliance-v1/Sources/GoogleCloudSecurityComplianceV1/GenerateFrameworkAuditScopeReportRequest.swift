@@ -95,7 +95,9 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.reportFormat, forKey: .reportFormat)
+    if self.reportFormat != GenerateFrameworkAuditScopeReportRequest.Format() {
+      try container.encode(self.reportFormat, forKey: .reportFormat)
+    }
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

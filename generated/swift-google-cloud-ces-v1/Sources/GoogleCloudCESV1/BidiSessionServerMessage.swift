@@ -112,15 +112,15 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.messageType {
       switch choice {
       case .sessionOutput(let value):
-        try container.encode(value, forKey: .sessionOutput)
+        try container.encodeIfPresent(value, forKey: .sessionOutput)
       case .recognitionResult(let value):
-        try container.encode(value, forKey: .recognitionResult)
+        try container.encodeIfPresent(value, forKey: .recognitionResult)
       case .interruptionSignal(let value):
-        try container.encode(value, forKey: .interruptionSignal)
+        try container.encodeIfPresent(value, forKey: .interruptionSignal)
       case .endSession(let value):
-        try container.encode(value, forKey: .endSession)
+        try container.encodeIfPresent(value, forKey: .endSession)
       case .goAway(let value):
-        try container.encode(value, forKey: .goAway)
+        try container.encodeIfPresent(value, forKey: .goAway)
       }
     }
     for (key, value) in self._unknownFields.json {

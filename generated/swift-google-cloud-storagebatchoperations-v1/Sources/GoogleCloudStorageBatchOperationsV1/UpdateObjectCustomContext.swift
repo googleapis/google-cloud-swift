@@ -92,9 +92,9 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.action {
       switch choice {
       case .customContextUpdates(let value):
-        try container.encode(value, forKey: .customContextUpdates)
+        try container.encodeIfPresent(value, forKey: .customContextUpdates)
       case .clearAll(let value):
-        try container.encode(value, forKey: .clearAll)
+        try container.encodeIfPresent(value, forKey: .clearAll)
       }
     }
     for (key, value) in self._unknownFields.json {

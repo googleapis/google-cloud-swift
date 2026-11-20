@@ -197,29 +197,31 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
     try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.errorSummaries, forKey: .errorSummaries)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BucketOperation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.objectConfiguration {
       switch choice {
       case .prefixList(let value):
-        try container.encode(value, forKey: .prefixList)
+        try container.encodeIfPresent(value, forKey: .prefixList)
       case .manifest(let value):
-        try container.encode(value, forKey: .manifest)
+        try container.encodeIfPresent(value, forKey: .manifest)
       }
     }
 
     if let choice = self.transformation {
       switch choice {
       case .putObjectHold(let value):
-        try container.encode(value, forKey: .putObjectHold)
+        try container.encodeIfPresent(value, forKey: .putObjectHold)
       case .deleteObject(let value):
-        try container.encode(value, forKey: .deleteObject)
+        try container.encodeIfPresent(value, forKey: .deleteObject)
       case .putMetadata(let value):
-        try container.encode(value, forKey: .putMetadata)
+        try container.encodeIfPresent(value, forKey: .putMetadata)
       case .rewriteObject(let value):
-        try container.encode(value, forKey: .rewriteObject)
+        try container.encodeIfPresent(value, forKey: .rewriteObject)
       case .updateObjectCustomContext(let value):
-        try container.encode(value, forKey: .updateObjectCustomContext)
+        try container.encodeIfPresent(value, forKey: .updateObjectCustomContext)
       }
     }
     for (key, value) in self._unknownFields.json {

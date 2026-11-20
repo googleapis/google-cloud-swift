@@ -86,7 +86,9 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != ClusterPersistenceConfig.PersistenceMode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encodeIfPresent(self.rdbConfig, forKey: .rdbConfig)
     try container.encodeIfPresent(self.aofConfig, forKey: .aofConfig)
     for (key, value) in self._unknownFields.json {
@@ -158,7 +160,9 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
+      if self.rdbSnapshotPeriod != ClusterPersistenceConfig.RDBConfig.SnapshotPeriod() {
+        try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
+      }
       try container.encodeIfPresent(self.rdbSnapshotStartTime, forKey: .rdbSnapshotStartTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -373,7 +377,9 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.appendFsync, forKey: .appendFsync)
+      if self.appendFsync != ClusterPersistenceConfig.AOFConfig.AppendFsync() {
+        try container.encode(self.appendFsync, forKey: .appendFsync)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

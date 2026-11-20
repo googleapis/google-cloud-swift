@@ -335,8 +335,12 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.endpoint, forKey: .endpoint)
-      try container.encode(self.state, forKey: .state)
-      try container.encode(self.scheduleState, forKey: .scheduleState)
+      if self.state != JobState() {
+        try container.encode(self.state, forKey: .state)
+      }
+      if self.scheduleState != ModelDeploymentMonitoringJob.MonitoringScheduleState() {
+        try container.encode(self.scheduleState, forKey: .scheduleState)
+      }
       try container.encodeIfPresent(
         self.latestMonitoringPipelineMetadata, forKey: .latestMonitoringPipelineMetadata)
       try container.encode(

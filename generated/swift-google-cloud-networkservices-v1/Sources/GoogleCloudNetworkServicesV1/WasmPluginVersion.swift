@@ -194,9 +194,9 @@ public struct WasmPluginVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pluginConfigSource {
       switch choice {
       case .pluginConfigData(let value):
-        try container.encode(value, forKey: .pluginConfigData)
+        try container.encodeIfPresent(value, forKey: .pluginConfigData)
       case .pluginConfigUri(let value):
-        try container.encode(value, forKey: .pluginConfigUri)
+        try container.encodeIfPresent(value, forKey: .pluginConfigUri)
       }
     }
     for (key, value) in self._unknownFields.json {

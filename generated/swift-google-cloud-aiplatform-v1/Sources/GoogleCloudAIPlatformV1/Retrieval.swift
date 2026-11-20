@@ -111,9 +111,9 @@
       if let choice = self.source {
         switch choice {
         case .vertexAiSearch(let value):
-          try container.encode(value, forKey: .vertexAiSearch)
+          try container.encodeIfPresent(value, forKey: .vertexAiSearch)
         case .vertexRagStore(let value):
-          try container.encode(value, forKey: .vertexRagStore)
+          try container.encodeIfPresent(value, forKey: .vertexRagStore)
         }
       }
       for (key, value) in self._unknownFields.json {

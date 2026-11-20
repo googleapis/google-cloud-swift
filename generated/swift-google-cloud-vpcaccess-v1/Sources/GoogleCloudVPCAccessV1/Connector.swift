@@ -151,7 +151,9 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Connector.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.minThroughput, forKey: .minThroughput)
     try container.encode(self.maxThroughput, forKey: .maxThroughput)
     try container.encode(self.connectedProjects, forKey: .connectedProjects)

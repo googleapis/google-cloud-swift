@@ -95,9 +95,9 @@ public struct TagFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.format {
       switch choice {
       case .namespacedTagValue(let value):
-        try container.encode(value, forKey: .namespacedTagValue)
+        try container.encodeIfPresent(value, forKey: .namespacedTagValue)
       case .namespacedTagKey(let value):
-        try container.encode(value, forKey: .namespacedTagKey)
+        try container.encodeIfPresent(value, forKey: .namespacedTagKey)
       }
     }
     for (key, value) in self._unknownFields.json {

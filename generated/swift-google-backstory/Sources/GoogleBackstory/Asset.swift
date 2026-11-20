@@ -281,7 +281,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.software, forKey: .software)
     try container.encodeIfPresent(self.location, forKey: .location)
     try container.encode(self.category, forKey: .category)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Asset.AssetType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.networkDomain, forKey: .networkDomain)
     try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
     try container.encodeIfPresent(self.firstDiscoverTime, forKey: .firstDiscoverTime)
@@ -289,7 +291,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.systemLastUpdateTime, forKey: .systemLastUpdateTime)
     try container.encodeIfPresent(self.lastBootTime, forKey: .lastBootTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.deploymentStatus, forKey: .deploymentStatus)
+    if self.deploymentStatus != Asset.DeploymentStatus() {
+      try container.encode(self.deploymentStatus, forKey: .deploymentStatus)
+    }
     try container.encode(self.vulnerabilities, forKey: .vulnerabilities)
     try container.encodeIfPresent(self.attribute, forKey: .attribute)
     try container.encodeIfPresent(self.wmiPersistenceItem, forKey: .wmiPersistenceItem)

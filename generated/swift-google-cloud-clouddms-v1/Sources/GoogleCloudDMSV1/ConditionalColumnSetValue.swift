@@ -114,9 +114,9 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.sourceFilter {
       switch choice {
       case .sourceTextFilter(let value):
-        try container.encode(value, forKey: .sourceTextFilter)
+        try container.encodeIfPresent(value, forKey: .sourceTextFilter)
       case .sourceNumericFilter(let value):
-        try container.encode(value, forKey: .sourceNumericFilter)
+        try container.encodeIfPresent(value, forKey: .sourceNumericFilter)
       }
     }
     for (key, value) in self._unknownFields.json {

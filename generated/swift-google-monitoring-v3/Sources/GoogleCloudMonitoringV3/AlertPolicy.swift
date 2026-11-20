@@ -242,14 +242,18 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.documentation, forKey: .documentation)
     try container.encode(self.userLabels, forKey: .userLabels)
     try container.encode(self.conditions, forKey: .conditions)
-    try container.encode(self.combiner, forKey: .combiner)
+    if self.combiner != AlertPolicy.ConditionCombinerType() {
+      try container.encode(self.combiner, forKey: .combiner)
+    }
     try container.encodeIfPresent(self.enabled, forKey: .enabled)
     try container.encodeIfPresent(self.validity, forKey: .validity)
     try container.encode(self.notificationChannels, forKey: .notificationChannels)
     try container.encodeIfPresent(self.creationRecord, forKey: .creationRecord)
     try container.encodeIfPresent(self.mutationRecord, forKey: .mutationRecord)
     try container.encodeIfPresent(self.alertStrategy, forKey: .alertStrategy)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != AlertPolicy.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -638,17 +642,17 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.condition {
         switch choice {
         case .conditionThreshold(let value):
-          try container.encode(value, forKey: .conditionThreshold)
+          try container.encodeIfPresent(value, forKey: .conditionThreshold)
         case .conditionAbsent(let value):
-          try container.encode(value, forKey: .conditionAbsent)
+          try container.encodeIfPresent(value, forKey: .conditionAbsent)
         case .conditionMatchedLog(let value):
-          try container.encode(value, forKey: .conditionMatchedLog)
+          try container.encodeIfPresent(value, forKey: .conditionMatchedLog)
         case .conditionMonitoringQueryLanguage(let value):
-          try container.encode(value, forKey: .conditionMonitoringQueryLanguage)
+          try container.encodeIfPresent(value, forKey: .conditionMonitoringQueryLanguage)
         case .conditionPrometheusQueryLanguage(let value):
-          try container.encode(value, forKey: .conditionPrometheusQueryLanguage)
+          try container.encodeIfPresent(value, forKey: .conditionPrometheusQueryLanguage)
         case .conditionSql(let value):
-          try container.encode(value, forKey: .conditionSql)
+          try container.encodeIfPresent(value, forKey: .conditionSql)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -730,9 +734,9 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.type {
           switch choice {
           case .count(let value):
-            try container.encode(value, forKey: .count)
+            try container.encodeIfPresent(value, forKey: .count)
           case .percent(let value):
-            try container.encode(value, forKey: .percent)
+            try container.encodeIfPresent(value, forKey: .percent)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -966,11 +970,15 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.denominatorFilter, forKey: .denominatorFilter)
         try container.encode(self.denominatorAggregations, forKey: .denominatorAggregations)
         try container.encodeIfPresent(self.forecastOptions, forKey: .forecastOptions)
-        try container.encode(self.comparison, forKey: .comparison)
+        if self.comparison != ComparisonType() {
+          try container.encode(self.comparison, forKey: .comparison)
+        }
         try container.encode(self.thresholdValue, forKey: .thresholdValue)
         try container.encodeIfPresent(self.duration, forKey: .duration)
         try container.encodeIfPresent(self.trigger, forKey: .trigger)
-        try container.encode(self.evaluationMissingData, forKey: .evaluationMissingData)
+        if self.evaluationMissingData != AlertPolicy.Condition.EvaluationMissingData() {
+          try container.encode(self.evaluationMissingData, forKey: .evaluationMissingData)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1423,7 +1431,9 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.query, forKey: .query)
         try container.encodeIfPresent(self.duration, forKey: .duration)
         try container.encodeIfPresent(self.trigger, forKey: .trigger)
-        try container.encode(self.evaluationMissingData, forKey: .evaluationMissingData)
+        if self.evaluationMissingData != AlertPolicy.Condition.EvaluationMissingData() {
+          try container.encode(self.evaluationMissingData, forKey: .evaluationMissingData)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1805,20 +1815,20 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.schedule {
           switch choice {
           case .minutes(let value):
-            try container.encode(value, forKey: .minutes)
+            try container.encodeIfPresent(value, forKey: .minutes)
           case .hourly(let value):
-            try container.encode(value, forKey: .hourly)
+            try container.encodeIfPresent(value, forKey: .hourly)
           case .daily(let value):
-            try container.encode(value, forKey: .daily)
+            try container.encodeIfPresent(value, forKey: .daily)
           }
         }
 
         if let choice = self.evaluate {
           switch choice {
           case .rowCountTest(let value):
-            try container.encode(value, forKey: .rowCountTest)
+            try container.encodeIfPresent(value, forKey: .rowCountTest)
           case .booleanTest(let value):
-            try container.encode(value, forKey: .booleanTest)
+            try container.encodeIfPresent(value, forKey: .booleanTest)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -2154,7 +2164,9 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.comparison, forKey: .comparison)
+          if self.comparison != ComparisonType() {
+            try container.encode(self.comparison, forKey: .comparison)
+          }
           try container.encode(self.threshold, forKey: .threshold)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))

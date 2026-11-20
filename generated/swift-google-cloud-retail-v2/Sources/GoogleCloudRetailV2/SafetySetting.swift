@@ -90,9 +90,15 @@ public struct SafetySetting: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.category, forKey: .category)
-    try container.encode(self.threshold, forKey: .threshold)
-    try container.encode(self.method, forKey: .method)
+    if self.category != HarmCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
+    if self.threshold != SafetySetting.HarmBlockThreshold() {
+      try container.encode(self.threshold, forKey: .threshold)
+    }
+    if self.method != SafetySetting.HarmBlockMethod() {
+      try container.encode(self.method, forKey: .method)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

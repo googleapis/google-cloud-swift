@@ -199,9 +199,13 @@ public struct FirewallInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.targetServiceAccounts, forKey: .targetServiceAccounts)
     try container.encode(self.policy, forKey: .policy)
     try container.encode(self.policyUri, forKey: .policyUri)
-    try container.encode(self.firewallRuleType, forKey: .firewallRuleType)
+    if self.firewallRuleType != FirewallInfo.FirewallRuleType() {
+      try container.encode(self.firewallRuleType, forKey: .firewallRuleType)
+    }
     try container.encode(self.policyPriority, forKey: .policyPriority)
-    try container.encode(self.targetType, forKey: .targetType)
+    if self.targetType != FirewallInfo.TargetType() {
+      try container.encode(self.targetType, forKey: .targetType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -128,9 +128,9 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.trackInfo {
       switch choice {
       case .segment(let value):
-        try container.encode(value, forKey: .segment)
+        try container.encodeIfPresent(value, forKey: .segment)
       case .trackId(let value):
-        try container.encode(value, forKey: .trackId)
+        try container.encodeIfPresent(value, forKey: .trackId)
       }
     }
     for (key, value) in self._unknownFields.json {

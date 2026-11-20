@@ -141,7 +141,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.resourceType, forKey: .resourceType)
+        if self.resourceType != GoogleDriveSource.ResourceId.ResourceType() {
+          try container.encode(self.resourceType, forKey: .resourceType)
+        }
         try container.encode(self.resourceId, forKey: .resourceId)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

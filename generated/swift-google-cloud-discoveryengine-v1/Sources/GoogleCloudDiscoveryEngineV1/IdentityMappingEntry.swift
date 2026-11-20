@@ -113,9 +113,9 @@
       if let choice = self.identityProviderId {
         switch choice {
         case .userId(let value):
-          try container.encode(value, forKey: .userId)
+          try container.encodeIfPresent(value, forKey: .userId)
         case .groupId(let value):
-          try container.encode(value, forKey: .groupId)
+          try container.encodeIfPresent(value, forKey: .groupId)
         }
       }
       for (key, value) in self._unknownFields.json {

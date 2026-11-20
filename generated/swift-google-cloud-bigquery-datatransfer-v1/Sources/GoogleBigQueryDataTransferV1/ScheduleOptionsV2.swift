@@ -104,11 +104,11 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.schedule {
       switch choice {
       case .timeBasedSchedule(let value):
-        try container.encode(value, forKey: .timeBasedSchedule)
+        try container.encodeIfPresent(value, forKey: .timeBasedSchedule)
       case .manualSchedule(let value):
-        try container.encode(value, forKey: .manualSchedule)
+        try container.encodeIfPresent(value, forKey: .manualSchedule)
       case .eventDrivenSchedule(let value):
-        try container.encode(value, forKey: .eventDrivenSchedule)
+        try container.encodeIfPresent(value, forKey: .eventDrivenSchedule)
       }
     }
     for (key, value) in self._unknownFields.json {

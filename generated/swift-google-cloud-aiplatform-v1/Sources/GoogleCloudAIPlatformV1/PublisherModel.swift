@@ -152,11 +152,17 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.versionId, forKey: .versionId)
-      try container.encode(self.openSourceCategory, forKey: .openSourceCategory)
+      if self.openSourceCategory != PublisherModel.OpenSourceCategory() {
+        try container.encode(self.openSourceCategory, forKey: .openSourceCategory)
+      }
       try container.encodeIfPresent(self.supportedActions, forKey: .supportedActions)
       try container.encode(self.frameworks, forKey: .frameworks)
-      try container.encode(self.launchStage, forKey: .launchStage)
-      try container.encode(self.versionState, forKey: .versionState)
+      if self.launchStage != PublisherModel.LaunchStage() {
+        try container.encode(self.launchStage, forKey: .launchStage)
+      }
+      if self.versionState != PublisherModel.VersionState() {
+        try container.encode(self.versionState, forKey: .versionState)
+      }
       try container.encode(self.publisherModelTemplate, forKey: .publisherModelTemplate)
       try container.encodeIfPresent(self.predictSchemata, forKey: .predictSchemata)
       for (key, value) in self._unknownFields.json {
@@ -255,13 +261,13 @@
         if let choice = self.reference {
           switch choice {
           case .uri(let value):
-            try container.encode(value, forKey: .uri)
+            try container.encodeIfPresent(value, forKey: .uri)
           case .resourceName(let value):
-            try container.encode(value, forKey: .resourceName)
+            try container.encodeIfPresent(value, forKey: .resourceName)
           case .useCase(let value):
-            try container.encode(value, forKey: .useCase)
+            try container.encodeIfPresent(value, forKey: .useCase)
           case .description(let value):
-            try container.encode(value, forKey: .description)
+            try container.encodeIfPresent(value, forKey: .description)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1097,11 +1103,11 @@
           if let choice = self.predictionResources {
             switch choice {
             case .dedicatedResources(let value):
-              try container.encode(value, forKey: .dedicatedResources)
+              try container.encodeIfPresent(value, forKey: .dedicatedResources)
             case .automaticResources(let value):
-              try container.encode(value, forKey: .automaticResources)
+              try container.encodeIfPresent(value, forKey: .automaticResources)
             case .sharedResources(let value):
-              try container.encode(value, forKey: .sharedResources)
+              try container.encodeIfPresent(value, forKey: .sharedResources)
             }
           }
           for (key, value) in self._unknownFields.json {

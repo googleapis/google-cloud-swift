@@ -157,21 +157,21 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .interruptionData(let value):
-        try container.encode(value, forKey: .interruptionData)
+        try container.encodeIfPresent(value, forKey: .interruptionData)
       case .sentimentData(let value):
-        try container.encode(value, forKey: .sentimentData)
+        try container.encodeIfPresent(value, forKey: .sentimentData)
       case .silenceData(let value):
-        try container.encode(value, forKey: .silenceData)
+        try container.encodeIfPresent(value, forKey: .silenceData)
       case .holdData(let value):
-        try container.encode(value, forKey: .holdData)
+        try container.encodeIfPresent(value, forKey: .holdData)
       case .entityMentionData(let value):
-        try container.encode(value, forKey: .entityMentionData)
+        try container.encodeIfPresent(value, forKey: .entityMentionData)
       case .intentMatchData(let value):
-        try container.encode(value, forKey: .intentMatchData)
+        try container.encodeIfPresent(value, forKey: .intentMatchData)
       case .phraseMatchData(let value):
-        try container.encode(value, forKey: .phraseMatchData)
+        try container.encodeIfPresent(value, forKey: .phraseMatchData)
       case .issueMatchData(let value):
-        try container.encode(value, forKey: .issueMatchData)
+        try container.encodeIfPresent(value, forKey: .issueMatchData)
       }
     }
     for (key, value) in self._unknownFields.json {

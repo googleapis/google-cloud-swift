@@ -190,7 +190,9 @@ public struct PatchJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PatchJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.instanceFilter, forKey: .instanceFilter)
     try container.encodeIfPresent(self.patchConfig, forKey: .patchConfig)
     try container.encodeIfPresent(self.duration, forKey: .duration)

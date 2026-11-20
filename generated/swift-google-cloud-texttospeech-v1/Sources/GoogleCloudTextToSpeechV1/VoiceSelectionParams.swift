@@ -137,7 +137,9 @@ public struct VoiceSelectionParams: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.languageCode, forKey: .languageCode)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.ssmlGender, forKey: .ssmlGender)
+    if self.ssmlGender != SsmlVoiceGender() {
+      try container.encode(self.ssmlGender, forKey: .ssmlGender)
+    }
     try container.encodeIfPresent(self.customVoice, forKey: .customVoice)
     try container.encodeIfPresent(self.voiceClone, forKey: .voiceClone)
     try container.encode(self.modelName, forKey: .modelName)

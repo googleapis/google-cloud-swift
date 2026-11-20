@@ -103,9 +103,9 @@ public struct DependencyEntityReference: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.identifier {
       switch choice {
       case .operationResourceName(let value):
-        try container.encode(value, forKey: .operationResourceName)
+        try container.encodeIfPresent(value, forKey: .operationResourceName)
       case .externalApiResourceName(let value):
-        try container.encode(value, forKey: .externalApiResourceName)
+        try container.encodeIfPresent(value, forKey: .externalApiResourceName)
       }
     }
     for (key, value) in self._unknownFields.json {

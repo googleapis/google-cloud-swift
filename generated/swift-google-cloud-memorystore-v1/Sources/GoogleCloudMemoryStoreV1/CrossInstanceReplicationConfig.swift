@@ -119,7 +119,9 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.instanceRole, forKey: .instanceRole)
+    if self.instanceRole != CrossInstanceReplicationConfig.InstanceRole() {
+      try container.encode(self.instanceRole, forKey: .instanceRole)
+    }
     try container.encodeIfPresent(self.primaryInstance, forKey: .primaryInstance)
     try container.encode(self.secondaryInstances, forKey: .secondaryInstances)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

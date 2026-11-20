@@ -243,12 +243,16 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleWKT.
     try container.encode(self.kmsKeyId, forKey: .kmsKeyId)
     try container.encode(self.kmsKeyVersionId, forKey: .kmsKeyVersionId)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
-    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    if self.lifecycleState != AutonomousDatabaseBackupProperties.State() {
+      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    }
     try container.encode(self.sizeTb, forKey: .sizeTb)
     try container.encodeIfPresent(self.availableTillTime, forKey: .availableTillTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
-    try container.encode(self.type, forKey: .type)
+    if self.type != AutonomousDatabaseBackupProperties.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.vaultId, forKey: .vaultId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

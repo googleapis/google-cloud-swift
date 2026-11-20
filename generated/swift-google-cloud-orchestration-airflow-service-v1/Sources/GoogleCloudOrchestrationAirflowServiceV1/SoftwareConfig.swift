@@ -221,7 +221,9 @@ public struct SoftwareConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.schedulerCount, forKey: .schedulerCount)
     try container.encodeIfPresent(
       self.cloudDataLineageIntegration, forKey: .cloudDataLineageIntegration)
-    try container.encode(self.webServerPluginsMode, forKey: .webServerPluginsMode)
+    if self.webServerPluginsMode != SoftwareConfig.WebServerPluginsMode() {
+      try container.encode(self.webServerPluginsMode, forKey: .webServerPluginsMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

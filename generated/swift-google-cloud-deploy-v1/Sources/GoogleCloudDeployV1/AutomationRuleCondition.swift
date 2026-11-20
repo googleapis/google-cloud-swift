@@ -97,7 +97,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.ruleTypeCondition {
       switch choice {
       case .timedPromoteReleaseCondition(let value):
-        try container.encode(value, forKey: .timedPromoteReleaseCondition)
+        try container.encodeIfPresent(value, forKey: .timedPromoteReleaseCondition)
       }
     }
     for (key, value) in self._unknownFields.json {

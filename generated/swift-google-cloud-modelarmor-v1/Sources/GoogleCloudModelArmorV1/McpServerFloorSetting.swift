@@ -101,9 +101,9 @@ public struct McpServerFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.enforcementType {
       switch choice {
       case .inspectOnly(let value):
-        try container.encode(value, forKey: .inspectOnly)
+        try container.encodeIfPresent(value, forKey: .inspectOnly)
       case .inspectAndBlock(let value):
-        try container.encode(value, forKey: .inspectAndBlock)
+        try container.encodeIfPresent(value, forKey: .inspectAndBlock)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -102,7 +102,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.conversationModel, forKey: .conversationModel)
-      try container.encode(self.state, forKey: .state)
+      if self.state != CreateConversationModelOperationMetadata.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.doneTime, forKey: .doneTime)
       for (key, value) in self._unknownFields.json {

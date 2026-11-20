@@ -89,7 +89,9 @@ public struct OpenApiSpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.format, forKey: .format)
+    if self.format != OpenApiSpecDetails.Format() {
+      try container.encode(self.format, forKey: .format)
+    }
     try container.encode(self.version, forKey: .version)
     try container.encodeIfPresent(self.owner, forKey: .owner)
     for (key, value) in self._unknownFields.json {

@@ -110,11 +110,11 @@ public struct JwtLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.`in` {
       switch choice {
       case .header(let value):
-        try container.encode(value, forKey: .header)
+        try container.encodeIfPresent(value, forKey: .header)
       case .query(let value):
-        try container.encode(value, forKey: .query)
+        try container.encodeIfPresent(value, forKey: .query)
       case .cookie(let value):
-        try container.encode(value, forKey: .cookie)
+        try container.encodeIfPresent(value, forKey: .cookie)
       }
     }
     for (key, value) in self._unknownFields.json {

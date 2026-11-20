@@ -104,9 +104,9 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.params {
       switch choice {
       case .oauthParams(let value):
-        try container.encode(value, forKey: .oauthParams)
+        try container.encodeIfPresent(value, forKey: .oauthParams)
       case .googleOauthParams(let value):
-        try container.encode(value, forKey: .googleOauthParams)
+        try container.encodeIfPresent(value, forKey: .googleOauthParams)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -113,7 +113,9 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.config, forKey: .config)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != StoredInfoTypeState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errors, forKey: .errors)
     try container.encodeIfPresent(self.stats, forKey: .stats)
     for (key, value) in self._unknownFields.json {

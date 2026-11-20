@@ -113,7 +113,9 @@ public struct FeedSourceTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.readOnly, forKey: .readOnly)
-    try container.encode(self.feedSourceType, forKey: .feedSourceType)
+    if self.feedSourceType != FeedDetails.FeedSourceType() {
+      try container.encode(self.feedSourceType, forKey: .feedSourceType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

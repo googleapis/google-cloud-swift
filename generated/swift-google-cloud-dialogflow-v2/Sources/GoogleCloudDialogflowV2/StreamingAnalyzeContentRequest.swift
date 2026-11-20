@@ -303,22 +303,22 @@
       if let choice = self.config {
         switch choice {
         case .audioConfig(let value):
-          try container.encode(value, forKey: .audioConfig)
+          try container.encodeIfPresent(value, forKey: .audioConfig)
         case .textConfig(let value):
-          try container.encode(value, forKey: .textConfig)
+          try container.encodeIfPresent(value, forKey: .textConfig)
         }
       }
 
       if let choice = self.input {
         switch choice {
         case .inputAudio(let value):
-          try container.encode(value, forKey: .inputAudio)
+          try container.encodeIfPresent(value, forKey: .inputAudio)
         case .inputText(let value):
-          try container.encode(value, forKey: .inputText)
+          try container.encodeIfPresent(value, forKey: .inputText)
         case .inputDtmf(let value):
-          try container.encode(value, forKey: .inputDtmf)
+          try container.encodeIfPresent(value, forKey: .inputDtmf)
         case .suggestionInput(let value):
-          try container.encode(value, forKey: .suggestionInput)
+          try container.encodeIfPresent(value, forKey: .suggestionInput)
         }
       }
       for (key, value) in self._unknownFields.json {

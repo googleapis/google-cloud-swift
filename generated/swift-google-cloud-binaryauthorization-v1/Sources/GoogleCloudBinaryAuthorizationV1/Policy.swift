@@ -197,7 +197,11 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.globalPolicyEvaluationMode, forKey: .globalPolicyEvaluationMode)
+    if self.globalPolicyEvaluationMode
+      != GoogleCloudBinaryAuthorizationV1.Policy.GlobalPolicyEvaluationMode()
+    {
+      try container.encode(self.globalPolicyEvaluationMode, forKey: .globalPolicyEvaluationMode)
+    }
     try container.encode(self.admissionWhitelistPatterns, forKey: .admissionWhitelistPatterns)
     try container.encode(self.clusterAdmissionRules, forKey: .clusterAdmissionRules)
     try container.encode(

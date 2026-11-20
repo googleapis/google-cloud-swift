@@ -103,9 +103,9 @@
       if let choice = self.data {
         switch choice {
         case .inlineData(let value):
-          try container.encode(value, forKey: .inlineData)
+          try container.encodeIfPresent(value, forKey: .inlineData)
         case .fileData(let value):
-          try container.encode(value, forKey: .fileData)
+          try container.encodeIfPresent(value, forKey: .fileData)
         }
       }
       for (key, value) in self._unknownFields.json {

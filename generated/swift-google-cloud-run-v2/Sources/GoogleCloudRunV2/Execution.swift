@@ -351,7 +351,9 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encode(self.job, forKey: .job)
     try container.encode(self.parallelism, forKey: .parallelism)
     try container.encode(self.taskCount, forKey: .taskCount)

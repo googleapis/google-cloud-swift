@@ -142,7 +142,9 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AppConnector.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.principalInfo, forKey: .principalInfo)
     try container.encodeIfPresent(self.resourceInfo, forKey: .resourceInfo)
     for (key, value) in self._unknownFields.json {
@@ -219,7 +221,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.type {
         switch choice {
         case .serviceAccount(let value):
-          try container.encode(value, forKey: .serviceAccount)
+          try container.encodeIfPresent(value, forKey: .serviceAccount)
         }
       }
       for (key, value) in self._unknownFields.json {

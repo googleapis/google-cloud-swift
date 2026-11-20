@@ -584,8 +584,12 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.state, forKey: .state)
-      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      if self.state != DatabaseInstance.SqlInstanceState() {
+        try container.encode(self.state, forKey: .state)
+      }
+      if self.databaseVersion != SqlDatabaseVersion() {
+        try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      }
       try container.encodeIfPresent(self.settings, forKey: .settings)
       try container.encode(self.etag, forKey: .etag)
       try container.encodeIfPresent(self.failoverReplica, forKey: .failoverReplica)
@@ -595,13 +599,17 @@
       try container.encodeIfPresent(self.currentDiskSize, forKey: .currentDiskSize)
       try container.encode(self.ipAddresses, forKey: .ipAddresses)
       try container.encodeIfPresent(self.serverCaCert, forKey: .serverCaCert)
-      try container.encode(self.instanceType, forKey: .instanceType)
+      if self.instanceType != SqlInstanceType() {
+        try container.encode(self.instanceType, forKey: .instanceType)
+      }
       try container.encode(self.project, forKey: .project)
       try container.encode(self.ipv6Address, forKey: .ipv6Address)
       try container.encode(self.serviceAccountEmailAddress, forKey: .serviceAccountEmailAddress)
       try container.encodeIfPresent(self.onPremisesConfiguration, forKey: .onPremisesConfiguration)
       try container.encodeIfPresent(self.replicaConfiguration, forKey: .replicaConfiguration)
-      try container.encode(self.backendType, forKey: .backendType)
+      if self.backendType != SqlBackendType() {
+        try container.encode(self.backendType, forKey: .backendType)
+      }
       try container.encode(self.selfLink, forKey: .selfLink)
       try container.encode(self.suspensionReason, forKey: .suspensionReason)
       try container.encode(self.connectionName, forKey: .connectionName)

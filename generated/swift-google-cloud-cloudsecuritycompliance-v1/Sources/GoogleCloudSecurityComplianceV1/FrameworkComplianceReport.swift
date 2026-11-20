@@ -167,7 +167,9 @@ public struct FrameworkComplianceReport: Codable, Equatable, GoogleWKT._AnyPacka
     try container.encode(self.frameworkDescription, forKey: .frameworkDescription)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.controlAssessmentDetails, forKey: .controlAssessmentDetails)
-    try container.encode(self.frameworkType, forKey: .frameworkType)
+    if self.frameworkType != Framework.FrameworkType() {
+      try container.encode(self.frameworkType, forKey: .frameworkType)
+    }
     try container.encode(self.supportedCloudProviders, forKey: .supportedCloudProviders)
     try container.encode(self.frameworkCategories, forKey: .frameworkCategories)
     try container.encode(self.frameworkDisplayName, forKey: .frameworkDisplayName)

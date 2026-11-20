@@ -95,9 +95,9 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.budgetAmount {
       switch choice {
       case .specifiedAmount(let value):
-        try container.encode(value, forKey: .specifiedAmount)
+        try container.encodeIfPresent(value, forKey: .specifiedAmount)
       case .lastPeriodAmount(let value):
-        try container.encode(value, forKey: .lastPeriodAmount)
+        try container.encodeIfPresent(value, forKey: .lastPeriodAmount)
       }
     }
     for (key, value) in self._unknownFields.json {

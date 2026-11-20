@@ -139,7 +139,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.region, forKey: .region)
     try container.encode(self.productActivation, forKey: .productActivation)
     try container.encode(self.licenseVersionId, forKey: .licenseVersionId)

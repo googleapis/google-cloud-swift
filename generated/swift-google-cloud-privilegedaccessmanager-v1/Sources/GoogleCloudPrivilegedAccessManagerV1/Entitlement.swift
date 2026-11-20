@@ -168,7 +168,9 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.approvalWorkflow, forKey: .approvalWorkflow)
     try container.encodeIfPresent(self.privilegedAccess, forKey: .privilegedAccess)
     try container.encodeIfPresent(self.maxRequestDuration, forKey: .maxRequestDuration)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Entitlement.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(
       self.requesterJustificationConfig, forKey: .requesterJustificationConfig)
     try container.encodeIfPresent(
@@ -258,9 +260,9 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.justificationType {
         switch choice {
         case .notMandatory(let value):
-          try container.encode(value, forKey: .notMandatory)
+          try container.encodeIfPresent(value, forKey: .notMandatory)
         case .unstructured(let value):
-          try container.encode(value, forKey: .unstructured)
+          try container.encodeIfPresent(value, forKey: .unstructured)
         }
       }
       for (key, value) in self._unknownFields.json {

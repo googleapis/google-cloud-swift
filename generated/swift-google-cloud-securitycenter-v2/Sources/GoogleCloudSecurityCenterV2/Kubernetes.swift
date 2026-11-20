@@ -491,7 +491,9 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.kind, forKey: .kind)
+      if self.kind != Kubernetes.Role.Kind() {
+        try container.encode(self.kind, forKey: .kind)
+      }
       try container.encode(self.ns, forKey: .ns)
       try container.encode(self.name, forKey: .name)
       for (key, value) in self._unknownFields.json {
@@ -813,7 +815,9 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.kind, forKey: .kind)
+      if self.kind != Kubernetes.Subject.AuthType() {
+        try container.encode(self.kind, forKey: .kind)
+      }
       try container.encode(self.ns, forKey: .ns)
       try container.encode(self.name, forKey: .name)
       for (key, value) in self._unknownFields.json {

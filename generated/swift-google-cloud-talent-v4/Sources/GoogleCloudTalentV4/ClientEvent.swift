@@ -132,7 +132,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.event {
       switch choice {
       case .jobEvent(let value):
-        try container.encode(value, forKey: .jobEvent)
+        try container.encodeIfPresent(value, forKey: .jobEvent)
       }
     }
     for (key, value) in self._unknownFields.json {

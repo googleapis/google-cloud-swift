@@ -151,7 +151,9 @@ public struct Organization: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Organization.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
@@ -160,7 +162,7 @@ public struct Organization: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.owner {
       switch choice {
       case .directoryCustomerId(let value):
-        try container.encode(value, forKey: .directoryCustomerId)
+        try container.encodeIfPresent(value, forKey: .directoryCustomerId)
       }
     }
     for (key, value) in self._unknownFields.json {

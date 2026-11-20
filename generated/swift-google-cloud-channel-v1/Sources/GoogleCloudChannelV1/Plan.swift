@@ -104,8 +104,12 @@ public struct Plan: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.paymentPlan, forKey: .paymentPlan)
-    try container.encode(self.paymentType, forKey: .paymentType)
+    if self.paymentPlan != PaymentPlan() {
+      try container.encode(self.paymentPlan, forKey: .paymentPlan)
+    }
+    if self.paymentType != PaymentType() {
+      try container.encode(self.paymentType, forKey: .paymentType)
+    }
     try container.encodeIfPresent(self.paymentCycle, forKey: .paymentCycle)
     try container.encodeIfPresent(self.trialPeriod, forKey: .trialPeriod)
     try container.encode(self.billingAccount, forKey: .billingAccount)

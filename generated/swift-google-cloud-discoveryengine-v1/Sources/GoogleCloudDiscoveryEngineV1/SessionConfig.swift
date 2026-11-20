@@ -81,7 +81,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sessionManagementPolicy, forKey: .sessionManagementPolicy)
+      if self.sessionManagementPolicy != SessionConfig.SessionManagementPolicy() {
+        try container.encode(self.sessionManagementPolicy, forKey: .sessionManagementPolicy)
+      }
       try container.encodeIfPresent(self.sessionTtl, forKey: .sessionTtl)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -156,7 +158,7 @@
         if let choice = self.timeInfo {
           switch choice {
           case .days(let value):
-            try container.encode(value, forKey: .days)
+            try container.encodeIfPresent(value, forKey: .days)
           }
         }
         for (key, value) in self._unknownFields.json {

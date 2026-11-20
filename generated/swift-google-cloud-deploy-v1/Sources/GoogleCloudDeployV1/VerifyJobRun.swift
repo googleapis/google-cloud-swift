@@ -111,7 +111,9 @@ public struct VerifyJobRun: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.build, forKey: .build)
     try container.encode(self.artifactUri, forKey: .artifactUri)
     try container.encode(self.eventLogPath, forKey: .eventLogPath)
-    try container.encode(self.failureCause, forKey: .failureCause)
+    if self.failureCause != VerifyJobRun.FailureCause() {
+      try container.encode(self.failureCause, forKey: .failureCause)
+    }
     try container.encode(self.failureMessage, forKey: .failureMessage)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -552,12 +552,18 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.employmentTypes, forKey: .employmentTypes)
     try container.encode(self.incentives, forKey: .incentives)
     try container.encode(self.languageCode, forKey: .languageCode)
-    try container.encode(self.jobLevel, forKey: .jobLevel)
+    if self.jobLevel != JobLevel() {
+      try container.encode(self.jobLevel, forKey: .jobLevel)
+    }
     try container.encode(self.promotionValue, forKey: .promotionValue)
     try container.encode(self.qualifications, forKey: .qualifications)
     try container.encode(self.responsibilities, forKey: .responsibilities)
-    try container.encode(self.postingRegion, forKey: .postingRegion)
-    try container.encode(self.visibility, forKey: .visibility)
+    if self.postingRegion != PostingRegion() {
+      try container.encode(self.postingRegion, forKey: .postingRegion)
+    }
+    if self.visibility != Visibility() {
+      try container.encode(self.visibility, forKey: .visibility)
+    }
     try container.encodeIfPresent(self.jobStartTime, forKey: .jobStartTime)
     try container.encodeIfPresent(self.jobEndTime, forKey: .jobEndTime)
     try container.encodeIfPresent(self.postingPublishTime, forKey: .postingPublishTime)
@@ -866,7 +872,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.disableStreetAddressResolution, forKey: .disableStreetAddressResolution)
-      try container.encode(self.htmlSanitization, forKey: .htmlSanitization)
+      if self.htmlSanitization != HtmlSanitization() {
+        try container.encode(self.htmlSanitization, forKey: .htmlSanitization)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

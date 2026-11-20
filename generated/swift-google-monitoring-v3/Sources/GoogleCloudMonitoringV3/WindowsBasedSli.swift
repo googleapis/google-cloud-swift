@@ -119,13 +119,13 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.windowCriterion {
       switch choice {
       case .goodBadMetricFilter(let value):
-        try container.encode(value, forKey: .goodBadMetricFilter)
+        try container.encodeIfPresent(value, forKey: .goodBadMetricFilter)
       case .goodTotalRatioThreshold(let value):
-        try container.encode(value, forKey: .goodTotalRatioThreshold)
+        try container.encodeIfPresent(value, forKey: .goodTotalRatioThreshold)
       case .metricMeanInRange(let value):
-        try container.encode(value, forKey: .metricMeanInRange)
+        try container.encodeIfPresent(value, forKey: .metricMeanInRange)
       case .metricSumInRange(let value):
-        try container.encode(value, forKey: .metricSumInRange)
+        try container.encodeIfPresent(value, forKey: .metricSumInRange)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -220,9 +220,9 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.type {
         switch choice {
         case .performance(let value):
-          try container.encode(value, forKey: .performance)
+          try container.encodeIfPresent(value, forKey: .performance)
         case .basicSliPerformance(let value):
-          try container.encode(value, forKey: .basicSliPerformance)
+          try container.encodeIfPresent(value, forKey: .basicSliPerformance)
         }
       }
       for (key, value) in self._unknownFields.json {

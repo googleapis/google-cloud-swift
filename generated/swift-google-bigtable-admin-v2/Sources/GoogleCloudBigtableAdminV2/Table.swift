@@ -251,7 +251,9 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.clusterStates, forKey: .clusterStates)
     try container.encode(self.columnFamilies, forKey: .columnFamilies)
-    try container.encode(self.granularity, forKey: .granularity)
+    if self.granularity != Table.TimestampGranularity() {
+      try container.encode(self.granularity, forKey: .granularity)
+    }
     try container.encodeIfPresent(self.restoreInfo, forKey: .restoreInfo)
     try container.encodeIfPresent(self.changeStreamConfig, forKey: .changeStreamConfig)
     try container.encode(self.deletionProtection, forKey: .deletionProtection)
@@ -263,7 +265,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.automatedBackupConfig {
       switch choice {
       case .automatedBackupPolicy(let value):
-        try container.encode(value, forKey: .automatedBackupPolicy)
+        try container.encodeIfPresent(value, forKey: .automatedBackupPolicy)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -338,7 +340,9 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.replicationState, forKey: .replicationState)
+      if self.replicationState != Table.ClusterState.ReplicationState() {
+        try container.encode(self.replicationState, forKey: .replicationState)
+      }
       try container.encode(self.encryptionInfo, forKey: .encryptionInfo)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

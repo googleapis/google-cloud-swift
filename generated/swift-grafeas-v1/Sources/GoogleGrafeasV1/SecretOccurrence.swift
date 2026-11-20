@@ -98,7 +98,9 @@ public struct SecretOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.kind, forKey: .kind)
+    if self.kind != SecretKind() {
+      try container.encode(self.kind, forKey: .kind)
+    }
     try container.encode(self.locations, forKey: .locations)
     try container.encode(self.statuses, forKey: .statuses)
     try container.encodeIfPresent(self.data, forKey: .data)

@@ -113,7 +113,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.transform {
       switch choice {
       case .javascriptUdf(let value):
-        try container.encode(value, forKey: .javascriptUdf)
+        try container.encodeIfPresent(value, forKey: .javascriptUdf)
       }
     }
     for (key, value) in self._unknownFields.json {

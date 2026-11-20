@@ -107,7 +107,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.credential {
       switch choice {
       case .cloudSqlSingleUserCredentials(let value):
-        try container.encode(value, forKey: .cloudSqlSingleUserCredentials)
+        try container.encodeIfPresent(value, forKey: .cloudSqlSingleUserCredentials)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -298,7 +298,7 @@ public struct DataProduct: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.type {
         switch choice {
         case .googleGroup(let value):
-          try container.encode(value, forKey: .googleGroup)
+          try container.encodeIfPresent(value, forKey: .googleGroup)
         }
       }
       for (key, value) in self._unknownFields.json {

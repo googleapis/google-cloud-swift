@@ -95,7 +95,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.role, forKey: .role)
+      if self.role != MessageEntry.Role() {
+        try container.encode(self.role, forKey: .role)
+      }
       try container.encode(self.text, forKey: .text)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)

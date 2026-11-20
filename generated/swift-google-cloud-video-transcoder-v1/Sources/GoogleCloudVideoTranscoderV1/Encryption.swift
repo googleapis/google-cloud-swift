@@ -139,18 +139,18 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.encryptionMode {
       switch choice {
       case .aes128(let value):
-        try container.encode(value, forKey: .aes128)
+        try container.encodeIfPresent(value, forKey: .aes128)
       case .sampleAes(let value):
-        try container.encode(value, forKey: .sampleAes)
+        try container.encodeIfPresent(value, forKey: .sampleAes)
       case .mpegCenc(let value):
-        try container.encode(value, forKey: .mpegCenc)
+        try container.encodeIfPresent(value, forKey: .mpegCenc)
       }
     }
 
     if let choice = self.secretSource {
       switch choice {
       case .secretManagerKeySource(let value):
-        try container.encode(value, forKey: .secretManagerKeySource)
+        try container.encodeIfPresent(value, forKey: .secretManagerKeySource)
       }
     }
     for (key, value) in self._unknownFields.json {

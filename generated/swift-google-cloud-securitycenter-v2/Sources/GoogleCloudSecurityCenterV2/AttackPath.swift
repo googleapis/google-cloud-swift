@@ -396,7 +396,9 @@ public struct AttackPath: Codable, Equatable, GoogleWKT._AnyPackable,
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uuid, forKey: .uuid)
-        try container.encode(self.type, forKey: .type)
+        if self.type != AttackPath.AttackPathNode.NodeType() {
+          try container.encode(self.type, forKey: .type)
+        }
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.labels, forKey: .labels)
         try container.encode(self.description, forKey: .description)

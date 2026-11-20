@@ -102,7 +102,9 @@ public struct CompensationFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != CompensationFilter.FilterType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.units, forKey: .units)
     try container.encodeIfPresent(self.range, forKey: .range)
     try container.encode(

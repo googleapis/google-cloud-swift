@@ -95,7 +95,7 @@
       if let choice = self.content {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         }
       }
       for (key, value) in self._unknownFields.json {

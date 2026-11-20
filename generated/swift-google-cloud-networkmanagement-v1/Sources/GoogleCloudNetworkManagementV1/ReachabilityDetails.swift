@@ -93,7 +93,9 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.result, forKey: .result)
+    if self.result != ReachabilityDetails.Result() {
+      try container.encode(self.result, forKey: .result)
+    }
     try container.encodeIfPresent(self.verifyTime, forKey: .verifyTime)
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.traces, forKey: .traces)

@@ -100,11 +100,11 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.authType {
       switch choice {
       case .msso(let value):
-        try container.encode(value, forKey: .msso)
+        try container.encodeIfPresent(value, forKey: .msso)
       case .trellixIam(let value):
-        try container.encode(value, forKey: .trellixIam)
+        try container.encodeIfPresent(value, forKey: .trellixIam)
       case .trellixLocal(let value):
-        try container.encode(value, forKey: .trellixLocal)
+        try container.encodeIfPresent(value, forKey: .trellixLocal)
       }
     }
     for (key, value) in self._unknownFields.json {

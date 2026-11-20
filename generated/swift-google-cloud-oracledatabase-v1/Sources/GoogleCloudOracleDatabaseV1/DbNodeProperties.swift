@@ -138,7 +138,9 @@ public struct DbNodeProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.dbNodeStorageSizeGb, forKey: .dbNodeStorageSizeGb)
     try container.encode(self.dbServerOcid, forKey: .dbServerOcid)
     try container.encode(self.hostname, forKey: .hostname)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DbNodeProperties.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.totalCpuCoreCount, forKey: .totalCpuCoreCount)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     for (key, value) in self._unknownFields.json {

@@ -91,7 +91,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.certificateType, forKey: .certificateType)
+      if self.certificateType != CertificateType() {
+        try container.encode(self.certificateType, forKey: .certificateType)
+      }
       try container.encode(self.content, forKey: .content)
       try container.encode(self.filePath, forKey: .filePath)
       for (key, value) in self._unknownFields.json {

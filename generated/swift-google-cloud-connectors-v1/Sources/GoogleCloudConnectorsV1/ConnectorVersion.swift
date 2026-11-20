@@ -185,7 +185,9 @@ public struct ConnectorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleCloudConnectorsV1.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encode(self.releaseVersion, forKey: .releaseVersion)
     try container.encode(self.authConfigTemplates, forKey: .authConfigTemplates)
     try container.encode(self.configVariableTemplates, forKey: .configVariableTemplates)

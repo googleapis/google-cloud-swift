@@ -260,25 +260,33 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.network, forKey: .network)
     try container.encode(self.endpointUri, forKey: .endpointUri)
     try container.encode(self.port, forKey: .port)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Service.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.artifactGcsUri, forKey: .artifactGcsUri)
-    try container.encode(self.tier, forKey: .tier)
+    if self.tier != Service.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
     try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
     try container.encode(self.uid, forKey: .uid)
     try container.encodeIfPresent(
       self.metadataManagementActivity, forKey: .metadataManagementActivity)
-    try container.encode(self.releaseChannel, forKey: .releaseChannel)
+    if self.releaseChannel != Service.ReleaseChannel() {
+      try container.encode(self.releaseChannel, forKey: .releaseChannel)
+    }
     try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
     try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
-    try container.encode(self.databaseType, forKey: .databaseType)
+    if self.databaseType != Service.DatabaseType() {
+      try container.encode(self.databaseType, forKey: .databaseType)
+    }
     try container.encodeIfPresent(self.telemetryConfig, forKey: .telemetryConfig)
     try container.encodeIfPresent(self.scalingConfig, forKey: .scalingConfig)
 
     if let choice = self.metastoreConfig {
       switch choice {
       case .hiveMetastoreConfig(let value):
-        try container.encode(value, forKey: .hiveMetastoreConfig)
+        try container.encodeIfPresent(value, forKey: .hiveMetastoreConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

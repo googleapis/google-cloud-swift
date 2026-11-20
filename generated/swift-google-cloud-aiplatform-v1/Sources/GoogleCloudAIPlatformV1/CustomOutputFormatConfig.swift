@@ -88,7 +88,7 @@
       if let choice = self.customOutputFormatConfig {
         switch choice {
         case .returnRawOutput(let value):
-          try container.encode(value, forKey: .returnRawOutput)
+          try container.encodeIfPresent(value, forKey: .returnRawOutput)
         }
       }
       for (key, value) in self._unknownFields.json {

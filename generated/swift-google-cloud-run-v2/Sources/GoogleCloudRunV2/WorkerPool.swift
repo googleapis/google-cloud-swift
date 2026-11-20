@@ -408,7 +408,9 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.lastModifier, forKey: .lastModifier)
     try container.encode(self.client, forKey: .client)
     try container.encode(self.clientVersion, forKey: .clientVersion)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
     try container.encodeIfPresent(self.template, forKey: .template)
     try container.encode(self.instanceSplits, forKey: .instanceSplits)

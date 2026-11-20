@@ -138,7 +138,9 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.profileId, forKey: .profileId)
-    try container.encode(self.channelType, forKey: .channelType)
+    if self.channelType != ChannelProfile.ChannelType() {
+      try container.encode(self.channelType, forKey: .channelType)
+    }
     try container.encodeIfPresent(self.personaProperty, forKey: .personaProperty)
     try container.encode(self.disableDtmf, forKey: .disableDtmf)
     try container.encode(self.disableBargeInControl, forKey: .disableBargeInControl)
@@ -206,7 +208,9 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.persona, forKey: .persona)
+      if self.persona != ChannelProfile.PersonaProperty.Persona() {
+        try container.encode(self.persona, forKey: .persona)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -431,8 +435,12 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.modality, forKey: .modality)
-      try container.encode(self.theme, forKey: .theme)
+      if self.modality != ChannelProfile.WebWidgetConfig.Modality() {
+        try container.encode(self.modality, forKey: .modality)
+      }
+      if self.theme != ChannelProfile.WebWidgetConfig.Theme() {
+        try container.encode(self.theme, forKey: .theme)
+      }
       try container.encode(self.webWidgetTitle, forKey: .webWidgetTitle)
       try container.encodeIfPresent(self.securitySettings, forKey: .securitySettings)
       for (key, value) in self._unknownFields.json {

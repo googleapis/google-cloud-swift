@@ -94,9 +94,9 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.assignmentType {
       switch choice {
       case .manualAssignmentType(let value):
-        try container.encode(value, forKey: .manualAssignmentType)
+        try container.encodeIfPresent(value, forKey: .manualAssignmentType)
       case .autoAssignmentType(let value):
-        try container.encode(value, forKey: .autoAssignmentType)
+        try container.encodeIfPresent(value, forKey: .autoAssignmentType)
       }
     }
     for (key, value) in self._unknownFields.json {

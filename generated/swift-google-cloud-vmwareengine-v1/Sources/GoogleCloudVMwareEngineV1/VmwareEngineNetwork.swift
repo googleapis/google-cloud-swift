@@ -148,8 +148,12 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.vpcNetworks, forKey: .vpcNetworks)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.type, forKey: .type)
+    if self.state != VmwareEngineNetwork.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.type != VmwareEngineNetwork.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {
@@ -223,7 +227,9 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != VmwareEngineNetwork.VpcNetwork.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.network, forKey: .network)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

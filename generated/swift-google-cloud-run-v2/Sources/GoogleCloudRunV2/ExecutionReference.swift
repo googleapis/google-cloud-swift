@@ -107,7 +107,9 @@ public struct ExecutionReference: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.completionTime, forKey: .completionTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.completionStatus, forKey: .completionStatus)
+    if self.completionStatus != ExecutionReference.CompletionStatus() {
+      try container.encode(self.completionStatus, forKey: .completionStatus)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

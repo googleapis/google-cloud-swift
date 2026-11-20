@@ -95,7 +95,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.destination {
       switch choice {
       case .bigQueryDestination(let value):
-        try container.encode(value, forKey: .bigQueryDestination)
+        try container.encodeIfPresent(value, forKey: .bigQueryDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

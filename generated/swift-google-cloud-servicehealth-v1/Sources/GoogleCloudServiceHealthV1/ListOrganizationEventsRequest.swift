@@ -139,7 +139,9 @@ public struct ListOrganizationEventsRequest: Codable, Equatable, GoogleWKT._AnyP
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.view, forKey: .view)
+    if self.view != OrganizationEventView() {
+      try container.encode(self.view, forKey: .view)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

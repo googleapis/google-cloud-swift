@@ -109,10 +109,18 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.authMethod, forKey: .authMethod)
-    try container.encode(self.requestModel, forKey: .requestModel)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
-    try container.encode(self.listApi, forKey: .listApi)
+    if self.authMethod != S3CompatibleMetadata.AuthMethod() {
+      try container.encode(self.authMethod, forKey: .authMethod)
+    }
+    if self.requestModel != S3CompatibleMetadata.RequestModel() {
+      try container.encode(self.requestModel, forKey: .requestModel)
+    }
+    if self.`protocol` != S3CompatibleMetadata.NetworkProtocol() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
+    if self.listApi != S3CompatibleMetadata.ListApi() {
+      try container.encode(self.listApi, forKey: .listApi)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

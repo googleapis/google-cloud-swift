@@ -173,7 +173,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.stages, forKey: .stages)
     try container.encode(self.sourceToken, forKey: .sourceToken)
     try container.encode(self.buildName, forKey: .buildName)
-    try container.encode(self.operationType, forKey: .operationType)
+    if self.operationType != OperationType() {
+      try container.encode(self.operationType, forKey: .operationType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

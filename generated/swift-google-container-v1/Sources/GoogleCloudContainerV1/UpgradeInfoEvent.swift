@@ -181,7 +181,9 @@ public struct UpgradeInfoEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.resourceType, forKey: .resourceType)
+    if self.resourceType != UpgradeResourceType() {
+      try container.encode(self.resourceType, forKey: .resourceType)
+    }
     try container.encode(self.operation, forKey: .operation)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -190,11 +192,15 @@ public struct UpgradeInfoEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.currentEmulatedVersion, forKey: .currentEmulatedVersion)
     try container.encode(self.targetEmulatedVersion, forKey: .targetEmulatedVersion)
     try container.encode(self.resource, forKey: .resource)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UpgradeInfoEvent.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.standardSupportEndTime, forKey: .standardSupportEndTime)
     try container.encodeIfPresent(self.extendedSupportEndTime, forKey: .extendedSupportEndTime)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != UpgradeInfoEvent.EventType() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     try container.encodeIfPresent(self.disruptionEvent, forKey: .disruptionEvent)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -225,27 +225,29 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.isSearchable, forKey: .isSearchable)
     try container.encode(self.isMetadata, forKey: .isMetadata)
     try container.encode(self.isRequired, forKey: .isRequired)
-    try container.encode(self.retrievalImportance, forKey: .retrievalImportance)
+    if self.retrievalImportance != PropertyDefinition.RetrievalImportance() {
+      try container.encode(self.retrievalImportance, forKey: .retrievalImportance)
+    }
     try container.encode(self.schemaSources, forKey: .schemaSources)
 
     if let choice = self.valueTypeOptions {
       switch choice {
       case .integerTypeOptions(let value):
-        try container.encode(value, forKey: .integerTypeOptions)
+        try container.encodeIfPresent(value, forKey: .integerTypeOptions)
       case .floatTypeOptions(let value):
-        try container.encode(value, forKey: .floatTypeOptions)
+        try container.encodeIfPresent(value, forKey: .floatTypeOptions)
       case .textTypeOptions(let value):
-        try container.encode(value, forKey: .textTypeOptions)
+        try container.encodeIfPresent(value, forKey: .textTypeOptions)
       case .propertyTypeOptions(let value):
-        try container.encode(value, forKey: .propertyTypeOptions)
+        try container.encodeIfPresent(value, forKey: .propertyTypeOptions)
       case .enumTypeOptions(let value):
-        try container.encode(value, forKey: .enumTypeOptions)
+        try container.encodeIfPresent(value, forKey: .enumTypeOptions)
       case .dateTimeTypeOptions(let value):
-        try container.encode(value, forKey: .dateTimeTypeOptions)
+        try container.encodeIfPresent(value, forKey: .dateTimeTypeOptions)
       case .mapTypeOptions(let value):
-        try container.encode(value, forKey: .mapTypeOptions)
+        try container.encodeIfPresent(value, forKey: .mapTypeOptions)
       case .timestampTypeOptions(let value):
-        try container.encode(value, forKey: .timestampTypeOptions)
+        try container.encodeIfPresent(value, forKey: .timestampTypeOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

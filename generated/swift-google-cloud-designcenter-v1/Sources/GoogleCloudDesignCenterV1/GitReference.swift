@@ -96,11 +96,11 @@ public struct GitReference: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.reference {
       switch choice {
       case .branch(let value):
-        try container.encode(value, forKey: .branch)
+        try container.encodeIfPresent(value, forKey: .branch)
       case .refTag(let value):
-        try container.encode(value, forKey: .refTag)
+        try container.encodeIfPresent(value, forKey: .refTag)
       case .commitSha(let value):
-        try container.encode(value, forKey: .commitSha)
+        try container.encodeIfPresent(value, forKey: .commitSha)
       }
     }
     for (key, value) in self._unknownFields.json {

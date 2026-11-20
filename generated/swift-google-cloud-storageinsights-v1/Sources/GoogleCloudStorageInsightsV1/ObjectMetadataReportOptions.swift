@@ -119,14 +119,14 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.filter {
       switch choice {
       case .storageFilters(let value):
-        try container.encode(value, forKey: .storageFilters)
+        try container.encodeIfPresent(value, forKey: .storageFilters)
       }
     }
 
     if let choice = self.destinationOptions {
       switch choice {
       case .storageDestinationOptions(let value):
-        try container.encode(value, forKey: .storageDestinationOptions)
+        try container.encodeIfPresent(value, forKey: .storageDestinationOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

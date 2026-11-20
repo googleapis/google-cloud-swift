@@ -143,7 +143,9 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.isOnboarded, forKey: .isOnboarded)
     try container.encode(self.keyManagementProjectId, forKey: .keyManagementProjectId)
     try container.encode(self.location, forKey: .location)
-    try container.encode(self.partner, forKey: .partner)
+    if self.partner != Workload.Partner() {
+      try container.encode(self.partner, forKey: .partner)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

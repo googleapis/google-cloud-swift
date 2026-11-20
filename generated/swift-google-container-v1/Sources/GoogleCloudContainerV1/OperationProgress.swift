@@ -102,7 +102,9 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.status, forKey: .status)
+    if self.status != Operation.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.metrics, forKey: .metrics)
     try container.encode(self.stages, forKey: .stages)
     for (key, value) in self._unknownFields.json {
@@ -197,11 +199,11 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.value {
         switch choice {
         case .intValue(let value):
-          try container.encode(value, forKey: .intValue)
+          try container.encodeIfPresent(value, forKey: .intValue)
         case .doubleValue(let value):
-          try container.encode(value, forKey: .doubleValue)
+          try container.encodeIfPresent(value, forKey: .doubleValue)
         case .stringValue(let value):
-          try container.encode(value, forKey: .stringValue)
+          try container.encodeIfPresent(value, forKey: .stringValue)
         }
       }
       for (key, value) in self._unknownFields.json {

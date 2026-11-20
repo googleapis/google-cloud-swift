@@ -229,10 +229,14 @@ public struct NetworkPeering: Codable, Equatable, GoogleWKT._AnyPackable,
       self.exportCustomRoutesWithPublicIp, forKey: .exportCustomRoutesWithPublicIp)
     try container.encodeIfPresent(
       self.importCustomRoutesWithPublicIp, forKey: .importCustomRoutesWithPublicIp)
-    try container.encode(self.state, forKey: .state)
+    if self.state != NetworkPeering.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
     try container.encode(self.peerMtu, forKey: .peerMtu)
-    try container.encode(self.peerNetworkType, forKey: .peerNetworkType)
+    if self.peerNetworkType != NetworkPeering.PeerNetworkType() {
+      try container.encode(self.peerNetworkType, forKey: .peerNetworkType)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.vmwareEngineNetwork, forKey: .vmwareEngineNetwork)
     try container.encode(self.description, forKey: .description)

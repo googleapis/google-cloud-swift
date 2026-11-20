@@ -164,13 +164,17 @@ public struct PscConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.projectId, forKey: .projectId)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
-    try container.encode(self.pscConnectionStatus, forKey: .pscConnectionStatus)
-    try container.encode(self.connectionType, forKey: .connectionType)
+    if self.pscConnectionStatus != PscConnectionStatus() {
+      try container.encode(self.pscConnectionStatus, forKey: .pscConnectionStatus)
+    }
+    if self.connectionType != ConnectionType() {
+      try container.encode(self.connectionType, forKey: .connectionType)
+    }
 
     if let choice = self.ports {
       switch choice {
       case .port(let value):
-        try container.encode(value, forKey: .port)
+        try container.encodeIfPresent(value, forKey: .port)
       }
     }
     for (key, value) in self._unknownFields.json {

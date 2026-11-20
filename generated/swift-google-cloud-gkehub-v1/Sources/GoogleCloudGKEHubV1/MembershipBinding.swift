@@ -150,7 +150,7 @@ public struct MembershipBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .scope(let value):
-        try container.encode(value, forKey: .scope)
+        try container.encodeIfPresent(value, forKey: .scope)
       }
     }
     for (key, value) in self._unknownFields.json {

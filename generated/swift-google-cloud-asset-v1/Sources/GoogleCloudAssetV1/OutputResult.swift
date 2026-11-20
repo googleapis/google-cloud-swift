@@ -85,7 +85,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .gcsResult(let value):
-        try container.encode(value, forKey: .gcsResult)
+        try container.encodeIfPresent(value, forKey: .gcsResult)
       }
     }
     for (key, value) in self._unknownFields.json {

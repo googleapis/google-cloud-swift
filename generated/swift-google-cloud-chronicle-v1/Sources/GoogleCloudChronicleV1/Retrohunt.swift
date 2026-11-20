@@ -111,7 +111,9 @@ public struct Retrohunt: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.processInterval, forKey: .processInterval)
     try container.encodeIfPresent(self.executionInterval, forKey: .executionInterval)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Retrohunt.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.progressPercentage, forKey: .progressPercentage)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -94,9 +94,9 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceType {
       switch choice {
       case .cloudStorageSource(let value):
-        try container.encode(value, forKey: .cloudStorageSource)
+        try container.encodeIfPresent(value, forKey: .cloudStorageSource)
       case .inlinedSource(let value):
-        try container.encode(value, forKey: .inlinedSource)
+        try container.encodeIfPresent(value, forKey: .inlinedSource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -238,12 +238,16 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.zones, forKey: .zones)
     try container.encode(self.nodeCount, forKey: .nodeCount)
     try container.encodeIfPresent(self.nodeConfig, forKey: .nodeConfig)
-    try container.encode(self.memcacheVersion, forKey: .memcacheVersion)
+    if self.memcacheVersion != MemcacheVersion() {
+      try container.encode(self.memcacheVersion, forKey: .memcacheVersion)
+    }
     try container.encodeIfPresent(self.parameters, forKey: .parameters)
     try container.encode(self.memcacheNodes, forKey: .memcacheNodes)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.memcacheFullVersion, forKey: .memcacheFullVersion)
     try container.encode(self.instanceMessages, forKey: .instanceMessages)
     try container.encode(self.discoveryEndpoint, forKey: .discoveryEndpoint)
@@ -436,7 +440,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.nodeId, forKey: .nodeId)
       try container.encode(self.zone, forKey: .zone)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Instance.Node.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.host, forKey: .host)
       try container.encode(self.port, forKey: .port)
       try container.encodeIfPresent(self.parameters, forKey: .parameters)
@@ -659,7 +665,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.code, forKey: .code)
+      if self.code != Instance.InstanceMessage.Code() {
+        try container.encode(self.code, forKey: .code)
+      }
       try container.encode(self.message, forKey: .message)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

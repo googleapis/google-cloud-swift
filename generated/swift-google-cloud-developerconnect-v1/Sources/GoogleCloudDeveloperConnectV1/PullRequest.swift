@@ -182,8 +182,12 @@ public struct PullRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.mergeTime, forKey: .mergeTime)
     try container.encodeIfPresent(self.closeTime, forKey: .closeTime)
     try container.encodeIfPresent(self.declineTime, forKey: .declineTime)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.mergeability, forKey: .mergeability)
+    if self.state != PullRequest.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.mergeability != PullRequest.Mergeability() {
+      try container.encode(self.mergeability, forKey: .mergeability)
+    }
     try container.encode(self.htmlUrl, forKey: .htmlUrl)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

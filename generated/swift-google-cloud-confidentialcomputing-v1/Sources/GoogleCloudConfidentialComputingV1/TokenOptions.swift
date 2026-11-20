@@ -112,12 +112,14 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.audience, forKey: .audience)
     try container.encode(self.nonce, forKey: .nonce)
-    try container.encode(self.tokenType, forKey: .tokenType)
+    if self.tokenType != TokenType() {
+      try container.encode(self.tokenType, forKey: .tokenType)
+    }
 
     if let choice = self.tokenTypeOptions {
       switch choice {
       case .awsPrincipalTagsOptions(let value):
-        try container.encode(value, forKey: .awsPrincipalTagsOptions)
+        try container.encodeIfPresent(value, forKey: .awsPrincipalTagsOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -141,7 +141,7 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.conversionRule {
       switch choice {
       case .prebuiltRule(let value):
-        try container.encode(value, forKey: .prebuiltRule)
+        try container.encodeIfPresent(value, forKey: .prebuiltRule)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -189,13 +189,17 @@ public struct Browser: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.browserType, forKey: .browserType)
+    if self.browserType != Browser.BrowserType() {
+      try container.encode(self.browserType, forKey: .browserType)
+    }
     try container.encode(self.browserVersion, forKey: .browserVersion)
     try container.encodeIfPresent(self.firstVisitTime, forKey: .firstVisitTime)
     try container.encodeIfPresent(self.lastVisitTime, forKey: .lastVisitTime)
     try container.encode(self.profile, forKey: .profile)
     try container.encode(self.typed, forKey: .typed)
-    try container.encode(self.visitType, forKey: .visitType)
+    if self.visitType != Browser.UrlVisitType() {
+      try container.encode(self.visitType, forKey: .visitType)
+    }
     try container.encode(self.hidden, forKey: .hidden)
     try container.encode(self.requestOriginUri, forKey: .requestOriginUri)
     try container.encode(self.visitCount, forKey: .visitCount)
@@ -204,7 +208,9 @@ public struct Browser: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.firstBookmarkedTime, forKey: .firstBookmarkedTime)
     try container.encode(self.cookies, forKey: .cookies)
     try container.encode(self.typedCount, forKey: .typedCount)
-    try container.encode(self.visitSource, forKey: .visitSource)
+    if self.visitSource != Browser.VisitSource() {
+      try container.encode(self.visitSource, forKey: .visitSource)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -353,7 +359,9 @@ public struct Browser: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.httpOnly, forKey: .httpOnly)
       try container.encode(self.secure, forKey: .secure)
       try container.encode(self.maxAge, forKey: .maxAge)
-      try container.encode(self.sameSite, forKey: .sameSite)
+      if self.sameSite != Browser.Cookie.CookieSameSite() {
+        try container.encode(self.sameSite, forKey: .sameSite)
+      }
       try container.encode(self.session, forKey: .session)
       try container.encode(self.partitioned, forKey: .partitioned)
       for (key, value) in self._unknownFields.json {

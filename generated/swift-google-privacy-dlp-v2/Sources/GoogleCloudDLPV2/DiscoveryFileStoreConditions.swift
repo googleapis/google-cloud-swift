@@ -106,7 +106,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.conditions {
       switch choice {
       case .cloudStorageConditions(let value):
-        try container.encode(value, forKey: .cloudStorageConditions)
+        try container.encodeIfPresent(value, forKey: .cloudStorageConditions)
       }
     }
     for (key, value) in self._unknownFields.json {

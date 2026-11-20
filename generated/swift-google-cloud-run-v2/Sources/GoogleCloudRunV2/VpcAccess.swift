@@ -95,7 +95,9 @@ public struct VpcAccess: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.connector, forKey: .connector)
-    try container.encode(self.egress, forKey: .egress)
+    if self.egress != VpcAccess.VpcEgress() {
+      try container.encode(self.egress, forKey: .egress)
+    }
     try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

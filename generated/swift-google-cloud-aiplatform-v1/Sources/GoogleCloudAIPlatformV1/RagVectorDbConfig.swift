@@ -117,11 +117,11 @@
       if let choice = self.vectorDb {
         switch choice {
         case .ragManagedDb(let value):
-          try container.encode(value, forKey: .ragManagedDb)
+          try container.encodeIfPresent(value, forKey: .ragManagedDb)
         case .pinecone(let value):
-          try container.encode(value, forKey: .pinecone)
+          try container.encodeIfPresent(value, forKey: .pinecone)
         case .vertexVectorSearch(let value):
-          try container.encode(value, forKey: .vertexVectorSearch)
+          try container.encodeIfPresent(value, forKey: .vertexVectorSearch)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -206,9 +206,9 @@
         if let choice = self.retrievalStrategy {
           switch choice {
           case .knn(let value):
-            try container.encode(value, forKey: .knn)
+            try container.encodeIfPresent(value, forKey: .knn)
           case .ann(let value):
-            try container.encode(value, forKey: .ann)
+            try container.encodeIfPresent(value, forKey: .ann)
           }
         }
         for (key, value) in self._unknownFields.json {

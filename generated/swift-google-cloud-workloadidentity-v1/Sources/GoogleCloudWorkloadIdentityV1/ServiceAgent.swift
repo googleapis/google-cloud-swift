@@ -121,7 +121,9 @@ public struct ServiceAgent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceProducer, forKey: .serviceProducer)
     try container.encode(self.principal, forKey: .principal)
     try container.encode(self.role, forKey: .role)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ServiceAgent.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

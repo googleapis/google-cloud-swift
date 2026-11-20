@@ -137,11 +137,11 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pageRange {
       switch choice {
       case .individualPageSelector(let value):
-        try container.encode(value, forKey: .individualPageSelector)
+        try container.encodeIfPresent(value, forKey: .individualPageSelector)
       case .fromStart(let value):
-        try container.encode(value, forKey: .fromStart)
+        try container.encodeIfPresent(value, forKey: .fromStart)
       case .fromEnd(let value):
-        try container.encode(value, forKey: .fromEnd)
+        try container.encodeIfPresent(value, forKey: .fromEnd)
       }
     }
     for (key, value) in self._unknownFields.json {

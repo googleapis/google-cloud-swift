@@ -363,7 +363,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.lastModifier, forKey: .lastModifier)
     try container.encode(self.client, forKey: .client)
     try container.encode(self.clientVersion, forKey: .clientVersion)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
     try container.encodeIfPresent(self.template, forKey: .template)
     try container.encode(self.observedGeneration, forKey: .observedGeneration)
@@ -373,15 +375,17 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.latestCreatedExecution, forKey: .latestCreatedExecution)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.functionalType, forKey: .functionalType)
+    if self.functionalType != FunctionalType() {
+      try container.encode(self.functionalType, forKey: .functionalType)
+    }
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.createExecution {
       switch choice {
       case .startExecutionToken(let value):
-        try container.encode(value, forKey: .startExecutionToken)
+        try container.encodeIfPresent(value, forKey: .startExecutionToken)
       case .runExecutionToken(let value):
-        try container.encode(value, forKey: .runExecutionToken)
+        try container.encodeIfPresent(value, forKey: .runExecutionToken)
       }
     }
     for (key, value) in self._unknownFields.json {

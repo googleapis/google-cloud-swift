@@ -103,9 +103,9 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.attributeType {
       switch choice {
       case .type(let value):
-        try container.encode(value, forKey: .type)
+        try container.encodeIfPresent(value, forKey: .type)
       case .objectId(let value):
-        try container.encode(value, forKey: .objectId)
+        try container.encodeIfPresent(value, forKey: .objectId)
       }
     }
     for (key, value) in self._unknownFields.json {

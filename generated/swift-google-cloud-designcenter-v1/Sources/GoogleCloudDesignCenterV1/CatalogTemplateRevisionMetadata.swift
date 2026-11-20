@@ -138,7 +138,9 @@ public struct CatalogTemplateRevisionMetadata: Codable, Equatable, GoogleWKT._An
     try container.encode(self.uuid, forKey: .uuid)
     try container.encode(self.latestRevisionId, forKey: .latestRevisionId)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.templateCategory, forKey: .templateCategory)
+    if self.templateCategory != TemplateCategory() {
+      try container.encode(self.templateCategory, forKey: .templateCategory)
+    }
     try container.encode(self.gitSourceUri, forKey: .gitSourceUri)
     try container.encode(self.description, forKey: .description)
     for (key, value) in self._unknownFields.json {

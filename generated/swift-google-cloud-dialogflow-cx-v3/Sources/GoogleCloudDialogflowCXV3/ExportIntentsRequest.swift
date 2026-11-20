@@ -124,14 +124,16 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.intents, forKey: .intents)
-      try container.encode(self.dataFormat, forKey: .dataFormat)
+      if self.dataFormat != ExportIntentsRequest.DataFormat() {
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+      }
 
       if let choice = self.destination {
         switch choice {
         case .intentsUri(let value):
-          try container.encode(value, forKey: .intentsUri)
+          try container.encodeIfPresent(value, forKey: .intentsUri)
         case .intentsContentInline(let value):
-          try container.encode(value, forKey: .intentsContentInline)
+          try container.encodeIfPresent(value, forKey: .intentsContentInline)
         }
       }
       for (key, value) in self._unknownFields.json {

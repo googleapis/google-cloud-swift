@@ -104,9 +104,9 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.source {
       switch choice {
       case .fileInputSource(let value):
-        try container.encode(value, forKey: .fileInputSource)
+        try container.encodeIfPresent(value, forKey: .fileInputSource)
       case .gcsInputSource(let value):
-        try container.encode(value, forKey: .gcsInputSource)
+        try container.encodeIfPresent(value, forKey: .gcsInputSource)
       }
     }
     for (key, value) in self._unknownFields.json {

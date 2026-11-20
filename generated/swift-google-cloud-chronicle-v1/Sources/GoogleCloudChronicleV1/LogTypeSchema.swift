@@ -445,7 +445,9 @@ public struct LogTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.fieldPath, forKey: .fieldPath)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.type, forKey: .type)
+      if self.type != SemanticType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.enumFieldSchemas, forKey: .enumFieldSchemas)
       try container.encode(self.`required`, forKey: .`required`)
       try container.encode(self.exampleInput, forKey: .exampleInput)

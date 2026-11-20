@@ -165,8 +165,12 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.type, forKey: .type)
+    if self.state != GoogleCloudDataplexV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.type != Zone.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.discoverySpec, forKey: .discoverySpec)
     try container.encodeIfPresent(self.resourceSpec, forKey: .resourceSpec)
     try container.encodeIfPresent(self.assetStatus, forKey: .assetStatus)
@@ -230,7 +234,9 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.locationType, forKey: .locationType)
+      if self.locationType != Zone.ResourceSpec.LocationType() {
+        try container.encode(self.locationType, forKey: .locationType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -493,7 +499,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.trigger {
         switch choice {
         case .schedule(let value):
-          try container.encode(value, forKey: .schedule)
+          try container.encodeIfPresent(value, forKey: .schedule)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -102,7 +102,9 @@ public struct ReplayConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.policyOverlay, forKey: .policyOverlay)
-    try container.encode(self.logSource, forKey: .logSource)
+    if self.logSource != ReplayConfig.LogSource() {
+      try container.encode(self.logSource, forKey: .logSource)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

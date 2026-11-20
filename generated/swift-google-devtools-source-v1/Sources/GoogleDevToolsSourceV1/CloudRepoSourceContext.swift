@@ -110,11 +110,11 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.revision {
       switch choice {
       case .revisionId(let value):
-        try container.encode(value, forKey: .revisionId)
+        try container.encodeIfPresent(value, forKey: .revisionId)
       case .aliasName(let value):
-        try container.encode(value, forKey: .aliasName)
+        try container.encodeIfPresent(value, forKey: .aliasName)
       case .aliasContext(let value):
-        try container.encode(value, forKey: .aliasContext)
+        try container.encodeIfPresent(value, forKey: .aliasContext)
       }
     }
     for (key, value) in self._unknownFields.json {

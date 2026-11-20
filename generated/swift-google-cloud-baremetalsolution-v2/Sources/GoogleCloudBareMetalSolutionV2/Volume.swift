@@ -279,8 +279,12 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.storageType, forKey: .storageType)
-    try container.encode(self.state, forKey: .state)
+    if self.storageType != Volume.StorageType() {
+      try container.encode(self.storageType, forKey: .storageType)
+    }
+    if self.state != Volume.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.requestedSizeGib, forKey: .requestedSizeGib)
     try container.encode(self.originallyRequestedSizeGib, forKey: .originallyRequestedSizeGib)
     try container.encode(self.currentSizeGib, forKey: .currentSizeGib)
@@ -290,15 +294,23 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.remainingSpaceGib, forKey: .remainingSpaceGib)
     try container.encodeIfPresent(
       self.snapshotReservationDetail, forKey: .snapshotReservationDetail)
-    try container.encode(self.snapshotAutoDeleteBehavior, forKey: .snapshotAutoDeleteBehavior)
+    if self.snapshotAutoDeleteBehavior != Volume.SnapshotAutoDeleteBehavior() {
+      try container.encode(self.snapshotAutoDeleteBehavior, forKey: .snapshotAutoDeleteBehavior)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.snapshotEnabled, forKey: .snapshotEnabled)
     try container.encode(self.pod, forKey: .pod)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
+    if self.`protocol` != Volume.Protocol_() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
     try container.encode(self.bootVolume, forKey: .bootVolume)
-    try container.encode(self.performanceTier, forKey: .performanceTier)
+    if self.performanceTier != VolumePerformanceTier() {
+      try container.encode(self.performanceTier, forKey: .performanceTier)
+    }
     try container.encode(self.notes, forKey: .notes)
-    try container.encode(self.workloadProfile, forKey: .workloadProfile)
+    if self.workloadProfile != Volume.WorkloadProfile() {
+      try container.encode(self.workloadProfile, forKey: .workloadProfile)
+    }
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.instances, forKey: .instances)
     try container.encode(self.attached, forKey: .attached)

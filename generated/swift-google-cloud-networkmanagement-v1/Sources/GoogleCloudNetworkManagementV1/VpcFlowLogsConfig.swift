@@ -230,13 +230,13 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.targetResource {
       switch choice {
       case .network(let value):
-        try container.encode(value, forKey: .network)
+        try container.encodeIfPresent(value, forKey: .network)
       case .subnet(let value):
-        try container.encode(value, forKey: .subnet)
+        try container.encodeIfPresent(value, forKey: .subnet)
       case .interconnectAttachment(let value):
-        try container.encode(value, forKey: .interconnectAttachment)
+        try container.encodeIfPresent(value, forKey: .interconnectAttachment)
       case .vpnTunnel(let value):
-        try container.encode(value, forKey: .vpnTunnel)
+        try container.encodeIfPresent(value, forKey: .vpnTunnel)
       }
     }
     for (key, value) in self._unknownFields.json {

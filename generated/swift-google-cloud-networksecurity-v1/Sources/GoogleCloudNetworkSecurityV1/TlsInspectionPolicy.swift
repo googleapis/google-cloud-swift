@@ -183,8 +183,12 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.caPool, forKey: .caPool)
     try container.encode(self.trustConfig, forKey: .trustConfig)
     try container.encodeIfPresent(self.excludePublicCaSet, forKey: .excludePublicCaSet)
-    try container.encode(self.minTlsVersion, forKey: .minTlsVersion)
-    try container.encode(self.tlsFeatureProfile, forKey: .tlsFeatureProfile)
+    if self.minTlsVersion != TlsInspectionPolicy.TlsVersion() {
+      try container.encode(self.minTlsVersion, forKey: .minTlsVersion)
+    }
+    if self.tlsFeatureProfile != TlsInspectionPolicy.Profile() {
+      try container.encode(self.tlsFeatureProfile, forKey: .tlsFeatureProfile)
+    }
     try container.encode(self.customTlsFeatures, forKey: .customTlsFeatures)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

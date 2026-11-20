@@ -99,11 +99,11 @@
       if let choice = self.tier {
         switch choice {
         case .scaled(let value):
-          try container.encode(value, forKey: .scaled)
+          try container.encodeIfPresent(value, forKey: .scaled)
         case .basic(let value):
-          try container.encode(value, forKey: .basic)
+          try container.encodeIfPresent(value, forKey: .basic)
         case .unprovisioned(let value):
-          try container.encode(value, forKey: .unprovisioned)
+          try container.encodeIfPresent(value, forKey: .unprovisioned)
         }
       }
       for (key, value) in self._unknownFields.json {

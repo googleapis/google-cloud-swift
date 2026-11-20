@@ -150,11 +150,11 @@ public struct RepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.revision {
       switch choice {
       case .branchName(let value):
-        try container.encode(value, forKey: .branchName)
+        try container.encodeIfPresent(value, forKey: .branchName)
       case .tagName(let value):
-        try container.encode(value, forKey: .tagName)
+        try container.encodeIfPresent(value, forKey: .tagName)
       case .commitSha(let value):
-        try container.encode(value, forKey: .commitSha)
+        try container.encodeIfPresent(value, forKey: .commitSha)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -137,25 +137,25 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .intValue(let value):
-        try container.encode(value, forKey: .intValue)
+        try container.encodeIfPresent(value, forKey: .intValue)
       case .floatValue(let value):
-        try container.encode(value, forKey: .floatValue)
+        try container.encodeIfPresent(value, forKey: .floatValue)
       case .strValue(let value):
-        try container.encode(value, forKey: .strValue)
+        try container.encodeIfPresent(value, forKey: .strValue)
       case .datetimeValue(let value):
-        try container.encode(value, forKey: .datetimeValue)
+        try container.encodeIfPresent(value, forKey: .datetimeValue)
       case .geoCoordinate(let value):
-        try container.encode(value, forKey: .geoCoordinate)
+        try container.encodeIfPresent(value, forKey: .geoCoordinate)
       case .protoAnyValue(let value):
-        try container.encode(value, forKey: .protoAnyValue)
+        try container.encodeIfPresent(value, forKey: .protoAnyValue)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .customizedStructDataValue(let value):
-        try container.encode(value, forKey: .customizedStructDataValue)
+        try container.encodeIfPresent(value, forKey: .customizedStructDataValue)
       case .listValue(let value):
-        try container.encode(value, forKey: .listValue)
+        try container.encodeIfPresent(value, forKey: .listValue)
       case .customizedStructValue(let value):
-        try container.encode(value, forKey: .customizedStructValue)
+        try container.encodeIfPresent(value, forKey: .customizedStructValue)
       }
     }
     for (key, value) in self._unknownFields.json {

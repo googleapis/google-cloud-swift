@@ -114,9 +114,9 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .content(let value):
-        try container.encode(value, forKey: .content)
+        try container.encodeIfPresent(value, forKey: .content)
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       }
     }
     for (key, value) in self._unknownFields.json {

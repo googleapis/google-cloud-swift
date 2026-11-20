@@ -511,7 +511,7 @@
       try container.encode(self.disks, forKey: .disks)
       try container.encodeIfPresent(self.displayDevice, forKey: .displayDevice)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
@@ -522,7 +522,7 @@
       try container.encodeIfPresent(self.keyRevocationActionType, forKey: .keyRevocationActionType)
       try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }

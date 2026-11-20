@@ -90,7 +90,7 @@
       if let choice = self.tuningDataStats {
         switch choice {
         case .supervisedTuningDataStats(let value):
-          try container.encode(value, forKey: .supervisedTuningDataStats)
+          try container.encodeIfPresent(value, forKey: .supervisedTuningDataStats)
         }
       }
       for (key, value) in self._unknownFields.json {

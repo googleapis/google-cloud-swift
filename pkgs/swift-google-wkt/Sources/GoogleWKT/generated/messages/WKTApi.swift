@@ -152,7 +152,9 @@ public struct WKTApi: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.version, forKey: .version)
     try container.encodeIfPresent(self.sourceContext, forKey: .sourceContext)
     try container.encode(self.mixins, forKey: .mixins)
-    try container.encode(self.syntax, forKey: .syntax)
+    if self.syntax != WKTSyntax() {
+      try container.encode(self.syntax, forKey: .syntax)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

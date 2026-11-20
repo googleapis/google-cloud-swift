@@ -133,7 +133,9 @@ public struct ListExecutionsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.view, forKey: .view)
+    if self.view != ExecutionView() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.orderBy, forKey: .orderBy)
     for (key, value) in self._unknownFields.json {

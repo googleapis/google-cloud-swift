@@ -129,9 +129,9 @@
       if let choice = self.partialFailureSink {
         switch choice {
         case .partialFailuresGcsPath(let value):
-          try container.encode(value, forKey: .partialFailuresGcsPath)
+          try container.encodeIfPresent(value, forKey: .partialFailuresGcsPath)
         case .partialFailuresBigqueryTable(let value):
-          try container.encode(value, forKey: .partialFailuresBigqueryTable)
+          try container.encodeIfPresent(value, forKey: .partialFailuresBigqueryTable)
         }
       }
       for (key, value) in self._unknownFields.json {

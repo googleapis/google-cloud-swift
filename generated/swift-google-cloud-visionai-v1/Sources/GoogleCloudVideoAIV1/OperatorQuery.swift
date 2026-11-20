@@ -87,7 +87,9 @@ public struct OperatorQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.`operator`, forKey: .`operator`)
     try container.encode(self.tag, forKey: .tag)
-    try container.encode(self.registry, forKey: .registry)
+    if self.registry != Registry() {
+      try container.encode(self.registry, forKey: .registry)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -83,7 +83,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.retentionUnit, forKey: .retentionUnit)
+      if self.retentionUnit != BackupRetentionSettings.RetentionUnit() {
+        try container.encode(self.retentionUnit, forKey: .retentionUnit)
+      }
       try container.encodeIfPresent(self.retainedBackups, forKey: .retainedBackups)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

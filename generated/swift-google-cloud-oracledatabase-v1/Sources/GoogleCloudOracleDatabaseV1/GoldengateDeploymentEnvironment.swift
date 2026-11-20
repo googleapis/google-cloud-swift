@@ -173,10 +173,14 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleWKT._An
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.category, forKey: .category)
+    if self.category != GoldengateDeploymentEnvironment.DeploymentCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.defaultCpuCoreCount, forKey: .defaultCpuCoreCount)
-    try container.encode(self.environmentType, forKey: .environmentType)
+    if self.environmentType != GoldengateDeploymentEnvironment.DeploymentEnvironmentType() {
+      try container.encode(self.environmentType, forKey: .environmentType)
+    }
     try container.encode(self.autoScalingEnabled, forKey: .autoScalingEnabled)
     try container.encode(self.maxCpuCoreCount, forKey: .maxCpuCoreCount)
     try container.encode(self.memoryGbPerCpuCore, forKey: .memoryGbPerCpuCore)

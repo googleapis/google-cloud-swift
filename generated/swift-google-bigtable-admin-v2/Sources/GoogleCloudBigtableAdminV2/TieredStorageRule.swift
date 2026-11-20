@@ -87,7 +87,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rule {
       switch choice {
       case .includeIfOlderThan(let value):
-        try container.encode(value, forKey: .includeIfOlderThan)
+        try container.encodeIfPresent(value, forKey: .includeIfOlderThan)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -91,12 +91,14 @@ public struct WebhookConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != WebhookConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.authMethod {
       switch choice {
       case .secret(let value):
-        try container.encode(value, forKey: .secret)
+        try container.encodeIfPresent(value, forKey: .secret)
       }
     }
     for (key, value) in self._unknownFields.json {

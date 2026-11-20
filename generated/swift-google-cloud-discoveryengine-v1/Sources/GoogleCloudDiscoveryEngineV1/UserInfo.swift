@@ -204,9 +204,9 @@
         if let choice = self.location {
           switch choice {
           case .point(let value):
-            try container.encode(value, forKey: .point)
+            try container.encodeIfPresent(value, forKey: .point)
           case .address(let value):
-            try container.encode(value, forKey: .address)
+            try container.encodeIfPresent(value, forKey: .address)
           }
         }
         for (key, value) in self._unknownFields.json {

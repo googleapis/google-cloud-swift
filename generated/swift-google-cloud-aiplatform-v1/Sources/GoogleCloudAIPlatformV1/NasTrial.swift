@@ -100,7 +100,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
-      try container.encode(self.state, forKey: .state)
+      if self.state != NasTrial.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.finalMeasurement, forKey: .finalMeasurement)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)

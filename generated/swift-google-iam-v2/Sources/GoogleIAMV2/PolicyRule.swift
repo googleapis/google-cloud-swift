@@ -94,7 +94,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .denyRule(let value):
-        try container.encode(value, forKey: .denyRule)
+        try container.encodeIfPresent(value, forKey: .denyRule)
       }
     }
     for (key, value) in self._unknownFields.json {

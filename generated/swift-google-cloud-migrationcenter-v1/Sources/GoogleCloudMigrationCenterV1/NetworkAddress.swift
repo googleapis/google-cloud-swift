@@ -107,7 +107,9 @@ public struct NetworkAddress: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.subnetMask, forKey: .subnetMask)
     try container.encode(self.bcast, forKey: .bcast)
     try container.encode(self.fqdn, forKey: .fqdn)
-    try container.encode(self.assignment, forKey: .assignment)
+    if self.assignment != NetworkAddress.AddressAssignment() {
+      try container.encode(self.assignment, forKey: .assignment)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

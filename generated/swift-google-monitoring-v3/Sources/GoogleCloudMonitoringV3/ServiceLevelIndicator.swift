@@ -111,11 +111,11 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .basicSli(let value):
-        try container.encode(value, forKey: .basicSli)
+        try container.encodeIfPresent(value, forKey: .basicSli)
       case .requestBased(let value):
-        try container.encode(value, forKey: .requestBased)
+        try container.encodeIfPresent(value, forKey: .requestBased)
       case .windowsBased(let value):
-        try container.encode(value, forKey: .windowsBased)
+        try container.encodeIfPresent(value, forKey: .windowsBased)
       }
     }
     for (key, value) in self._unknownFields.json {

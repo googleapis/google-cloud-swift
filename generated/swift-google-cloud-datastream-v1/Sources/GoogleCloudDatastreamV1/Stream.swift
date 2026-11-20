@@ -204,7 +204,9 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.sourceConfig, forKey: .sourceConfig)
     try container.encodeIfPresent(self.destinationConfig, forKey: .destinationConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Stream.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errors, forKey: .errors)
     try container.encodeIfPresent(
       self.customerManagedEncryptionKey, forKey: .customerManagedEncryptionKey)
@@ -216,9 +218,9 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.backfillStrategy {
       switch choice {
       case .backfillAll(let value):
-        try container.encode(value, forKey: .backfillAll)
+        try container.encodeIfPresent(value, forKey: .backfillAll)
       case .backfillNone(let value):
-        try container.encode(value, forKey: .backfillNone)
+        try container.encodeIfPresent(value, forKey: .backfillNone)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -346,21 +348,21 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.excludedObjects {
         switch choice {
         case .oracleExcludedObjects(let value):
-          try container.encode(value, forKey: .oracleExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .oracleExcludedObjects)
         case .mysqlExcludedObjects(let value):
-          try container.encode(value, forKey: .mysqlExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .mysqlExcludedObjects)
         case .postgresqlExcludedObjects(let value):
-          try container.encode(value, forKey: .postgresqlExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .postgresqlExcludedObjects)
         case .sqlServerExcludedObjects(let value):
-          try container.encode(value, forKey: .sqlServerExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .sqlServerExcludedObjects)
         case .salesforceExcludedObjects(let value):
-          try container.encode(value, forKey: .salesforceExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .salesforceExcludedObjects)
         case .mongodbExcludedObjects(let value):
-          try container.encode(value, forKey: .mongodbExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .mongodbExcludedObjects)
         case .spannerExcludedObjects(let value):
-          try container.encode(value, forKey: .spannerExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .spannerExcludedObjects)
         case .saasExcludedObjects(let value):
-          try container.encode(value, forKey: .saasExcludedObjects)
+          try container.encodeIfPresent(value, forKey: .saasExcludedObjects)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -618,7 +620,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.filterType {
           switch choice {
           case .sourceObjectIdentifier(let value):
-            try container.encode(value, forKey: .sourceObjectIdentifier)
+            try container.encodeIfPresent(value, forKey: .sourceObjectIdentifier)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -731,9 +733,9 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.rule {
           switch choice {
           case .bigqueryPartitioning(let value):
-            try container.encode(value, forKey: .bigqueryPartitioning)
+            try container.encodeIfPresent(value, forKey: .bigqueryPartitioning)
           case .bigqueryClustering(let value):
-            try container.encode(value, forKey: .bigqueryClustering)
+            try container.encodeIfPresent(value, forKey: .bigqueryClustering)
           }
         }
         for (key, value) in self._unknownFields.json {

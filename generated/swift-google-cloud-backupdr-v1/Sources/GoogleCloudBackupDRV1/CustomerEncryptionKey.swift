@@ -107,11 +107,11 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.key {
       switch choice {
       case .rawKey(let value):
-        try container.encode(value, forKey: .rawKey)
+        try container.encodeIfPresent(value, forKey: .rawKey)
       case .rsaEncryptedKey(let value):
-        try container.encode(value, forKey: .rsaEncryptedKey)
+        try container.encodeIfPresent(value, forKey: .rsaEncryptedKey)
       case .kmsKeyName(let value):
-        try container.encode(value, forKey: .kmsKeyName)
+        try container.encodeIfPresent(value, forKey: .kmsKeyName)
       }
     }
     for (key, value) in self._unknownFields.json {

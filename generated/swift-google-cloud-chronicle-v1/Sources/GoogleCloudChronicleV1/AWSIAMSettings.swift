@@ -77,7 +77,9 @@ public struct AWSIAMSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
-    try container.encode(self.apiType, forKey: .apiType)
+    if self.apiType != AWSIAMSettings.ApiType() {
+      try container.encode(self.apiType, forKey: .apiType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

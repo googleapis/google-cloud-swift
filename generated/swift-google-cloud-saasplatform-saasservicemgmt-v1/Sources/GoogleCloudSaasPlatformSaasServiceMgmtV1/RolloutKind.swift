@@ -210,7 +210,9 @@ public struct RolloutKind: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.unitKind, forKey: .unitKind)
     try container.encode(self.rolloutOrchestrationStrategy, forKey: .rolloutOrchestrationStrategy)
     try container.encode(self.unitFilter, forKey: .unitFilter)
-    try container.encode(self.updateUnitKindStrategy, forKey: .updateUnitKindStrategy)
+    if self.updateUnitKindStrategy != RolloutKind.UpdateUnitKindStrategy() {
+      try container.encode(self.updateUnitKindStrategy, forKey: .updateUnitKindStrategy)
+    }
     try container.encodeIfPresent(self.errorBudget, forKey: .errorBudget)
     try container.encodeIfPresent(self.unitUpdatePacing, forKey: .unitUpdatePacing)
     try container.encode(self.labels, forKey: .labels)

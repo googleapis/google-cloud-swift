@@ -350,7 +350,9 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         self.authenticationTokenSecretVersion, forKey: .authenticationTokenSecretVersion)
       try container.encodeIfPresent(self.sshAuthenticationConfig, forKey: .sshAuthenticationConfig)
       try container.encodeIfPresent(self.gitRepositoryLink, forKey: .gitRepositoryLink)
-      try container.encode(self.tokenStatus, forKey: .tokenStatus)
+      if self.tokenStatus != Repository.GitRemoteSettings.TokenStatus() {
+        try container.encode(self.tokenStatus, forKey: .tokenStatus)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

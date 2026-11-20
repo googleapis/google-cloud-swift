@@ -89,9 +89,9 @@ public struct AdbMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.contents {
       switch choice {
       case .`open`(let value):
-        try container.encode(value, forKey: .`open`)
+        try container.encodeIfPresent(value, forKey: .`open`)
       case .streamData(let value):
-        try container.encode(value, forKey: .streamData)
+        try container.encodeIfPresent(value, forKey: .streamData)
       }
     }
     for (key, value) in self._unknownFields.json {

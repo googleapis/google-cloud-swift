@@ -147,7 +147,9 @@ public struct SemanticSearch: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.searchText, forKey: .searchText)
     try container.encode(self.searchField, forKey: .searchField)
-    try container.encode(self.taskType, forKey: .taskType)
+    if self.taskType != EmbeddingTaskType() {
+      try container.encode(self.taskType, forKey: .taskType)
+    }
     try container.encodeIfPresent(self.outputFields, forKey: .outputFields)
     try container.encodeIfPresent(self.filter, forKey: .filter)
     try container.encodeIfPresent(self.topK, forKey: .topK)

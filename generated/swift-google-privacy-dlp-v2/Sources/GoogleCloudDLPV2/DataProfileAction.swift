@@ -122,17 +122,17 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.action {
       switch choice {
       case .exportData(let value):
-        try container.encode(value, forKey: .exportData)
+        try container.encodeIfPresent(value, forKey: .exportData)
       case .pubSubNotification(let value):
-        try container.encode(value, forKey: .pubSubNotification)
+        try container.encodeIfPresent(value, forKey: .pubSubNotification)
       case .publishToChronicle(let value):
-        try container.encode(value, forKey: .publishToChronicle)
+        try container.encodeIfPresent(value, forKey: .publishToChronicle)
       case .publishToScc(let value):
-        try container.encode(value, forKey: .publishToScc)
+        try container.encodeIfPresent(value, forKey: .publishToScc)
       case .tagResources(let value):
-        try container.encode(value, forKey: .tagResources)
+        try container.encodeIfPresent(value, forKey: .tagResources)
       case .publishToDataplexCatalog(let value):
-        try container.encode(value, forKey: .publishToDataplexCatalog)
+        try container.encodeIfPresent(value, forKey: .publishToDataplexCatalog)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -347,9 +347,13 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.topic, forKey: .topic)
-      try container.encode(self.event, forKey: .event)
+      if self.event != DataProfileAction.EventType() {
+        try container.encode(self.event, forKey: .event)
+      }
       try container.encodeIfPresent(self.pubsubCondition, forKey: .pubsubCondition)
-      try container.encode(self.detailOfMessage, forKey: .detailOfMessage)
+      if self.detailOfMessage != DataProfileAction.PubSubNotification.DetailLevel() {
+        try container.encode(self.detailOfMessage, forKey: .detailOfMessage)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -905,7 +909,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.type {
           switch choice {
           case .sensitivityScore(let value):
-            try container.encode(value, forKey: .sensitivityScore)
+            try container.encodeIfPresent(value, forKey: .sensitivityScore)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1013,7 +1017,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.format {
           switch choice {
           case .namespacedValue(let value):
-            try container.encode(value, forKey: .namespacedValue)
+            try container.encodeIfPresent(value, forKey: .namespacedValue)
           }
         }
         for (key, value) in self._unknownFields.json {

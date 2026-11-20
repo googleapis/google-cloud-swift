@@ -151,9 +151,9 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.processorFlags {
       switch choice {
       case .customDocumentExtractionOptions(let value):
-        try container.encode(value, forKey: .customDocumentExtractionOptions)
+        try container.encodeIfPresent(value, forKey: .customDocumentExtractionOptions)
       case .foundationModelTuningOptions(let value):
-        try container.encode(value, forKey: .foundationModelTuningOptions)
+        try container.encodeIfPresent(value, forKey: .foundationModelTuningOptions)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -309,7 +309,11 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.trainingMethod, forKey: .trainingMethod)
+      if self.trainingMethod
+        != TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod()
+      {
+        try container.encode(self.trainingMethod, forKey: .trainingMethod)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

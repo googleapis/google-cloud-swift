@@ -104,7 +104,9 @@ public struct GenerateApplicationIaCRequest: Codable, Equatable, GoogleWKT._AnyP
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.iacFormat, forKey: .iacFormat)
+    if self.iacFormat != GoogleCloudDesignCenterV1.IACFormat() {
+      try container.encode(self.iacFormat, forKey: .iacFormat)
+    }
     try container.encode(self.gcsUri, forKey: .gcsUri)
     try container.encodeIfPresent(self.artifactLocation, forKey: .artifactLocation)
     for (key, value) in self._unknownFields.json {

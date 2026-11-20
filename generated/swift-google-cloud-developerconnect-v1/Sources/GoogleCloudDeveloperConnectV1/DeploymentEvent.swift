@@ -148,7 +148,9 @@ public struct DeploymentEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.runtimeConfig, forKey: .runtimeConfig)
     try container.encode(self.runtimeDeploymentUri, forKey: .runtimeDeploymentUri)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DeploymentEvent.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.artifactDeployments, forKey: .artifactDeployments)
     try container.encodeIfPresent(self.deployTime, forKey: .deployTime)
     try container.encodeIfPresent(self.undeployTime, forKey: .undeployTime)

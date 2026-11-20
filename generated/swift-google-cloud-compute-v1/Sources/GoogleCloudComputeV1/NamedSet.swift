@@ -114,7 +114,7 @@
       try container.encodeIfPresent(self.description, forKey: .description)
       try container.encode(self.elements, forKey: .elements)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

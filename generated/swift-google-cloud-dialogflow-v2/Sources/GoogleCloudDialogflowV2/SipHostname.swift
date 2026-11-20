@@ -122,7 +122,9 @@
       try container.encodeIfPresent(self.pingInterval, forKey: .pingInterval)
       try container.encode(self.peerSocketAddress, forKey: .peerSocketAddress)
       try container.encodeIfPresent(self.probeDetails, forKey: .probeDetails)
-      try container.encode(self.connectionState, forKey: .connectionState)
+      if self.connectionState != SipHostname.ConnectionState() {
+        try container.encode(self.connectionState, forKey: .connectionState)
+      }
       try container.encodeIfPresent(self.errorDetails, forKey: .errorDetails)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -192,7 +194,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.certificateState, forKey: .certificateState)
+        if self.certificateState != SipHostname.HostnameCertificateState() {
+          try container.encode(self.certificateState, forKey: .certificateState)
+        }
         try container.encode(self.errorMessage, forKey: .errorMessage)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

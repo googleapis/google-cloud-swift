@@ -138,9 +138,9 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.importOptions {
       switch choice {
       case .sqlImportOptions(let value):
-        try container.encode(value, forKey: .sqlImportOptions)
+        try container.encodeIfPresent(value, forKey: .sqlImportOptions)
       case .csvImportOptions(let value):
-        try container.encode(value, forKey: .csvImportOptions)
+        try container.encodeIfPresent(value, forKey: .csvImportOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

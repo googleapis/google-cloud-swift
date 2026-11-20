@@ -164,9 +164,9 @@ public struct HadoopJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.driver {
       switch choice {
       case .mainJarFileUri(let value):
-        try container.encode(value, forKey: .mainJarFileUri)
+        try container.encodeIfPresent(value, forKey: .mainJarFileUri)
       case .mainClass(let value):
-        try container.encode(value, forKey: .mainClass)
+        try container.encodeIfPresent(value, forKey: .mainClass)
       }
     }
     for (key, value) in self._unknownFields.json {

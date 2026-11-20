@@ -160,7 +160,9 @@ public struct RestoreVerificationPlanAssociation: Codable, Equatable, GoogleWKT.
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RestoreVerificationPlanAssociation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.triggerSummary, forKey: .triggerSummary)
     try container.encode(self.resourceType, forKey: .resourceType)
     try container.encode(self.labels, forKey: .labels)
@@ -168,7 +170,7 @@ public struct RestoreVerificationPlanAssociation: Codable, Equatable, GoogleWKT.
     if let choice = self.association {
       switch choice {
       case .restoreTemplate(let value):
-        try container.encode(value, forKey: .restoreTemplate)
+        try container.encodeIfPresent(value, forKey: .restoreTemplate)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -99,9 +99,9 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destination {
       switch choice {
       case .serviceAttachment(let value):
-        try container.encode(value, forKey: .serviceAttachment)
+        try container.encodeIfPresent(value, forKey: .serviceAttachment)
       case .host(let value):
-        try container.encode(value, forKey: .host)
+        try container.encodeIfPresent(value, forKey: .host)
       }
     }
     for (key, value) in self._unknownFields.json {

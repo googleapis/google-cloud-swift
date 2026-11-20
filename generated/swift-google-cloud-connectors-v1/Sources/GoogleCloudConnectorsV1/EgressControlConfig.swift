@@ -95,9 +95,9 @@ public struct EgressControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.oneofBackends {
       switch choice {
       case .backends(let value):
-        try container.encode(value, forKey: .backends)
+        try container.encodeIfPresent(value, forKey: .backends)
       case .extractionRules(let value):
-        try container.encode(value, forKey: .extractionRules)
+        try container.encodeIfPresent(value, forKey: .extractionRules)
       }
     }
     for (key, value) in self._unknownFields.json {

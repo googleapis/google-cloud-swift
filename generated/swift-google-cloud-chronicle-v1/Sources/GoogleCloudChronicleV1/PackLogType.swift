@@ -128,7 +128,9 @@ public struct PackLogType: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.logType, forKey: .logType)
     try container.encode(self.`required`, forKey: .`required`)
     try container.encode(self.hasDefaultParser, forKey: .hasDefaultParser)
-    try container.encode(self.recommendedSourceType, forKey: .recommendedSourceType)
+    if self.recommendedSourceType != FeedDetails.FeedSourceType() {
+      try container.encode(self.recommendedSourceType, forKey: .recommendedSourceType)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.configurationDocumentation, forKey: .configurationDocumentation)
     try container.encode(self.additionalDocumentation, forKey: .additionalDocumentation)

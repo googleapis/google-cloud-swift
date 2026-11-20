@@ -188,7 +188,9 @@ public struct RawDecryptResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.plaintext, forKey: .plaintext)
     try container.encodeIfPresent(self.plaintextCrc32C, forKey: .plaintextCrc32C)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     try container.encode(self.verifiedCiphertextCrc32C, forKey: .verifiedCiphertextCrc32C)
     try container.encode(
       self.verifiedAdditionalAuthenticatedDataCrc32C,

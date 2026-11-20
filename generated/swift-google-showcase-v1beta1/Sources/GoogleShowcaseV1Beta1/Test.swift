@@ -100,7 +100,9 @@ public struct Test: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.expectationLevel, forKey: .expectationLevel)
+    if self.expectationLevel != Test.ExpectationLevel() {
+      try container.encode(self.expectationLevel, forKey: .expectationLevel)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.blueprints, forKey: .blueprints)
     for (key, value) in self._unknownFields.json {

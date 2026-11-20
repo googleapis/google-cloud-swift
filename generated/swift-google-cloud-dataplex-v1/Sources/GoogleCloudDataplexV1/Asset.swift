@@ -174,7 +174,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudDataplexV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.resourceSpec, forKey: .resourceSpec)
     try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
     try container.encodeIfPresent(self.securityStatus, forKey: .securityStatus)
@@ -255,7 +257,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Asset.SecurityStatus.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.message, forKey: .message)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       for (key, value) in self._unknownFields.json {
@@ -529,7 +533,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.trigger {
         switch choice {
         case .schedule(let value):
-          try container.encode(value, forKey: .schedule)
+          try container.encodeIfPresent(value, forKey: .schedule)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -852,8 +856,12 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.type, forKey: .type)
-      try container.encode(self.readAccessMode, forKey: .readAccessMode)
+      if self.type != Asset.ResourceSpec.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
+      if self.readAccessMode != Asset.ResourceSpec.AccessMode() {
+        try container.encode(self.readAccessMode, forKey: .readAccessMode)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1194,7 +1202,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Asset.ResourceStatus.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.message, forKey: .message)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.managedAccessIdentity, forKey: .managedAccessIdentity)
@@ -1430,7 +1440,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Asset.DiscoveryStatus.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.message, forKey: .message)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encodeIfPresent(self.lastRunTime, forKey: .lastRunTime)

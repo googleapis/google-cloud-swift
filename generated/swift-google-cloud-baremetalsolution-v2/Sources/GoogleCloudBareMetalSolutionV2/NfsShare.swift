@@ -142,12 +142,16 @@ public struct NfsShare: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.nfsShareId, forKey: .nfsShareId)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.state, forKey: .state)
+    if self.state != NfsShare.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.volume, forKey: .volume)
     try container.encode(self.allowedClients, forKey: .allowedClients)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.requestedSizeGib, forKey: .requestedSizeGib)
-    try container.encode(self.storageType, forKey: .storageType)
+    if self.storageType != NfsShare.StorageType() {
+      try container.encode(self.storageType, forKey: .storageType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -271,7 +275,9 @@ public struct NfsShare: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.network, forKey: .network)
       try container.encode(self.shareIp, forKey: .shareIp)
       try container.encode(self.allowedClientsCidr, forKey: .allowedClientsCidr)
-      try container.encode(self.mountPermissions, forKey: .mountPermissions)
+      if self.mountPermissions != NfsShare.MountPermissions() {
+        try container.encode(self.mountPermissions, forKey: .mountPermissions)
+      }
       try container.encode(self.allowDev, forKey: .allowDev)
       try container.encode(self.allowSuid, forKey: .allowSuid)
       try container.encode(self.noRootSquash, forKey: .noRootSquash)

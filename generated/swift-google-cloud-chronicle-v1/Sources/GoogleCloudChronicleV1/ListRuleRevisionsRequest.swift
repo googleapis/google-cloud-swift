@@ -106,7 +106,9 @@ public struct ListRuleRevisionsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.name, forKey: .name)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.view, forKey: .view)
+    if self.view != RuleView() {
+      try container.encode(self.view, forKey: .view)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

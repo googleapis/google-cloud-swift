@@ -182,7 +182,9 @@ public struct LineageOutput: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != LineageOutput.RecognizedInput.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.uncompressedSizeBytes, forKey: .uncompressedSizeBytes)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -404,7 +406,9 @@ public struct LineageOutput: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.processingStage, forKey: .processingStage)
+      if self.processingStage != LineageOutput.ProgressReport.ProcessingStage() {
+        try container.encode(self.processingStage, forKey: .processingStage)
+      }
       try container.encode(self.workSummaries, forKey: .workSummaries)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -485,7 +489,9 @@ public struct LineageOutput: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.state, forKey: .state)
+        if self.state != LineageOutput.ProgressReport.WorkSummary.State() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encode(self.size, forKey: .size)
         try container.encode(self.comment, forKey: .comment)
         for (key, value) in self._unknownFields.json {

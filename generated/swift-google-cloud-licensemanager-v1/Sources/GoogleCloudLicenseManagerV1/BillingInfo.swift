@@ -100,7 +100,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.currentBillingInfo {
       switch choice {
       case .userCountBilling(let value):
-        try container.encode(value, forKey: .userCountBilling)
+        try container.encodeIfPresent(value, forKey: .userCountBilling)
       }
     }
     for (key, value) in self._unknownFields.json {

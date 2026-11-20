@@ -108,11 +108,11 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.elementaryStream {
       switch choice {
       case .videoStream(let value):
-        try container.encode(value, forKey: .videoStream)
+        try container.encodeIfPresent(value, forKey: .videoStream)
       case .audioStream(let value):
-        try container.encode(value, forKey: .audioStream)
+        try container.encodeIfPresent(value, forKey: .audioStream)
       case .textStream(let value):
-        try container.encode(value, forKey: .textStream)
+        try container.encodeIfPresent(value, forKey: .textStream)
       }
     }
     for (key, value) in self._unknownFields.json {

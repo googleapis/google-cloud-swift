@@ -100,9 +100,9 @@
       if let choice = self.response {
         switch choice {
         case .selectEntity(let value):
-          try container.encode(value, forKey: .selectEntity)
+          try container.encodeIfPresent(value, forKey: .selectEntity)
         case .selectTimeRangeAndFeature(let value):
-          try container.encode(value, forKey: .selectTimeRangeAndFeature)
+          try container.encodeIfPresent(value, forKey: .selectTimeRangeAndFeature)
         }
       }
       for (key, value) in self._unknownFields.json {

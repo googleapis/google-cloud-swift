@@ -138,9 +138,9 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pathOrType {
       switch choice {
       case .mappedColumnPath(let value):
-        try container.encode(value, forKey: .mappedColumnPath)
+        try container.encodeIfPresent(value, forKey: .mappedColumnPath)
       case .columnType(let value):
-        try container.encode(value, forKey: .columnType)
+        try container.encodeIfPresent(value, forKey: .columnType)
       }
     }
     for (key, value) in self._unknownFields.json {

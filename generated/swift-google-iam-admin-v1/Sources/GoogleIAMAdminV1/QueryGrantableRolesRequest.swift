@@ -100,7 +100,9 @@ public struct QueryGrantableRolesRequest: Codable, Equatable, GoogleWKT._AnyPack
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fullResourceName, forKey: .fullResourceName)
-    try container.encode(self.view, forKey: .view)
+    if self.view != RoleView() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     for (key, value) in self._unknownFields.json {

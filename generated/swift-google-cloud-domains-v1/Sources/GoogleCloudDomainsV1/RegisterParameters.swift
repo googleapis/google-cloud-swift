@@ -105,7 +105,9 @@ public struct RegisterParameters: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.domainName, forKey: .domainName)
-    try container.encode(self.availability, forKey: .availability)
+    if self.availability != RegisterParameters.Availability() {
+      try container.encode(self.availability, forKey: .availability)
+    }
     try container.encode(self.supportedPrivacy, forKey: .supportedPrivacy)
     try container.encode(self.domainNotices, forKey: .domainNotices)
     try container.encodeIfPresent(self.yearlyPrice, forKey: .yearlyPrice)

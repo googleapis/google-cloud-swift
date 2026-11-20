@@ -158,15 +158,19 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.dataPolicyId, forKey: .dataPolicyId)
     try container.encodeIfPresent(self.etag, forKey: .etag)
-    try container.encode(self.dataPolicyType, forKey: .dataPolicyType)
+    if self.dataPolicyType != DataPolicy.DataPolicyType() {
+      try container.encode(self.dataPolicyType, forKey: .dataPolicyType)
+    }
     try container.encode(self.policyTag, forKey: .policyTag)
     try container.encode(self.grantees, forKey: .grantees)
-    try container.encode(self.version, forKey: .version)
+    if self.version != DataPolicy.Version() {
+      try container.encode(self.version, forKey: .version)
+    }
 
     if let choice = self.policy {
       switch choice {
       case .dataMaskingPolicy(let value):
-        try container.encode(value, forKey: .dataMaskingPolicy)
+        try container.encodeIfPresent(value, forKey: .dataMaskingPolicy)
       }
     }
     for (key, value) in self._unknownFields.json {

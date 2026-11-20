@@ -146,15 +146,17 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.entityTypes, forKey: .entityTypes)
-      try container.encode(self.dataFormat, forKey: .dataFormat)
+      if self.dataFormat != ExportEntityTypesRequest.DataFormat() {
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+      }
       try container.encode(self.languageCode, forKey: .languageCode)
 
       if let choice = self.destination {
         switch choice {
         case .entityTypesUri(let value):
-          try container.encode(value, forKey: .entityTypesUri)
+          try container.encodeIfPresent(value, forKey: .entityTypesUri)
         case .entityTypesContentInline(let value):
-          try container.encode(value, forKey: .entityTypesContentInline)
+          try container.encodeIfPresent(value, forKey: .entityTypesContentInline)
         }
       }
       for (key, value) in self._unknownFields.json {

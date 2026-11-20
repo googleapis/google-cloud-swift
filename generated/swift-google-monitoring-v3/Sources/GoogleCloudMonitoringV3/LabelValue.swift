@@ -95,11 +95,11 @@ public struct LabelValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .int64Value(let value):
-        try container.encode(value, forKey: .int64Value)
+        try container.encodeIfPresent(value, forKey: .int64Value)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       }
     }
     for (key, value) in self._unknownFields.json {

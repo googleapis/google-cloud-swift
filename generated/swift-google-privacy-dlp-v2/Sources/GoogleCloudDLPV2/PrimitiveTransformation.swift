@@ -162,29 +162,29 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.transformation {
       switch choice {
       case .replaceConfig(let value):
-        try container.encode(value, forKey: .replaceConfig)
+        try container.encodeIfPresent(value, forKey: .replaceConfig)
       case .redactConfig(let value):
-        try container.encode(value, forKey: .redactConfig)
+        try container.encodeIfPresent(value, forKey: .redactConfig)
       case .characterMaskConfig(let value):
-        try container.encode(value, forKey: .characterMaskConfig)
+        try container.encodeIfPresent(value, forKey: .characterMaskConfig)
       case .cryptoReplaceFfxFpeConfig(let value):
-        try container.encode(value, forKey: .cryptoReplaceFfxFpeConfig)
+        try container.encodeIfPresent(value, forKey: .cryptoReplaceFfxFpeConfig)
       case .fixedSizeBucketingConfig(let value):
-        try container.encode(value, forKey: .fixedSizeBucketingConfig)
+        try container.encodeIfPresent(value, forKey: .fixedSizeBucketingConfig)
       case .bucketingConfig(let value):
-        try container.encode(value, forKey: .bucketingConfig)
+        try container.encodeIfPresent(value, forKey: .bucketingConfig)
       case .replaceWithInfoTypeConfig(let value):
-        try container.encode(value, forKey: .replaceWithInfoTypeConfig)
+        try container.encodeIfPresent(value, forKey: .replaceWithInfoTypeConfig)
       case .timePartConfig(let value):
-        try container.encode(value, forKey: .timePartConfig)
+        try container.encodeIfPresent(value, forKey: .timePartConfig)
       case .cryptoHashConfig(let value):
-        try container.encode(value, forKey: .cryptoHashConfig)
+        try container.encodeIfPresent(value, forKey: .cryptoHashConfig)
       case .dateShiftConfig(let value):
-        try container.encode(value, forKey: .dateShiftConfig)
+        try container.encodeIfPresent(value, forKey: .dateShiftConfig)
       case .cryptoDeterministicConfig(let value):
-        try container.encode(value, forKey: .cryptoDeterministicConfig)
+        try container.encodeIfPresent(value, forKey: .cryptoDeterministicConfig)
       case .replaceDictionaryConfig(let value):
-        try container.encode(value, forKey: .replaceDictionaryConfig)
+        try container.encodeIfPresent(value, forKey: .replaceDictionaryConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

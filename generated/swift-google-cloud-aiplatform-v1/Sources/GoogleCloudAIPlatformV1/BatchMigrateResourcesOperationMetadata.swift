@@ -183,11 +183,11 @@
         if let choice = self.result {
           switch choice {
           case .error(let value):
-            try container.encode(value, forKey: .error)
+            try container.encodeIfPresent(value, forKey: .error)
           case .model(let value):
-            try container.encode(value, forKey: .model)
+            try container.encodeIfPresent(value, forKey: .model)
           case .dataset(let value):
-            try container.encode(value, forKey: .dataset)
+            try container.encodeIfPresent(value, forKey: .dataset)
           }
         }
         for (key, value) in self._unknownFields.json {

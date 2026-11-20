@@ -130,9 +130,9 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.cdcMethod {
       switch choice {
       case .transactionLogs(let value):
-        try container.encode(value, forKey: .transactionLogs)
+        try container.encodeIfPresent(value, forKey: .transactionLogs)
       case .changeTables(let value):
-        try container.encode(value, forKey: .changeTables)
+        try container.encodeIfPresent(value, forKey: .changeTables)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -170,7 +170,7 @@ public struct Control: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.control {
       switch choice {
       case .rule(let value):
-        try container.encode(value, forKey: .rule)
+        try container.encodeIfPresent(value, forKey: .rule)
       }
     }
     for (key, value) in self._unknownFields.json {

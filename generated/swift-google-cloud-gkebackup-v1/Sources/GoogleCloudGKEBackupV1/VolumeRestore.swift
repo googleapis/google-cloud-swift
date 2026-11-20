@@ -173,9 +173,13 @@ public struct VolumeRestore: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.volumeBackup, forKey: .volumeBackup)
     try container.encodeIfPresent(self.targetPvc, forKey: .targetPvc)
     try container.encode(self.volumeHandle, forKey: .volumeHandle)
-    try container.encode(self.volumeType, forKey: .volumeType)
+    if self.volumeType != VolumeRestore.VolumeType() {
+      try container.encode(self.volumeType, forKey: .volumeType)
+    }
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != VolumeRestore.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {

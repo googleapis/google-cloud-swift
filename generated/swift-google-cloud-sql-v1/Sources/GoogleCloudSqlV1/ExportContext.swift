@@ -152,7 +152,9 @@
       try container.encode(self.kind, forKey: .kind)
       try container.encodeIfPresent(self.sqlExportOptions, forKey: .sqlExportOptions)
       try container.encodeIfPresent(self.csvExportOptions, forKey: .csvExportOptions)
-      try container.encode(self.fileType, forKey: .fileType)
+      if self.fileType != SqlFileType() {
+        try container.encode(self.fileType, forKey: .fileType)
+      }
       try container.encodeIfPresent(self.offload, forKey: .offload)
       try container.encodeIfPresent(self.bakExportOptions, forKey: .bakExportOptions)
       try container.encodeIfPresent(self.tdeExportOptions, forKey: .tdeExportOptions)
@@ -688,7 +690,9 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.striped, forKey: .striped)
         try container.encodeIfPresent(self.stripeCount, forKey: .stripeCount)
-        try container.encode(self.bakType, forKey: .bakType)
+        if self.bakType != BakType() {
+          try container.encode(self.bakType, forKey: .bakType)
+        }
         try container.encodeIfPresent(self.copyOnly, forKey: .copyOnly)
         try container.encodeIfPresent(self.differentialBase, forKey: .differentialBase)
         try container.encodeIfPresent(self.exportLogStartTime, forKey: .exportLogStartTime)

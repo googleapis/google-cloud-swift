@@ -225,33 +225,33 @@
       if let choice = self.importSource {
         switch choice {
         case .gcsSource(let value):
-          try container.encode(value, forKey: .gcsSource)
+          try container.encodeIfPresent(value, forKey: .gcsSource)
         case .googleDriveSource(let value):
-          try container.encode(value, forKey: .googleDriveSource)
+          try container.encodeIfPresent(value, forKey: .googleDriveSource)
         case .slackSource(let value):
-          try container.encode(value, forKey: .slackSource)
+          try container.encodeIfPresent(value, forKey: .slackSource)
         case .jiraSource(let value):
-          try container.encode(value, forKey: .jiraSource)
+          try container.encodeIfPresent(value, forKey: .jiraSource)
         case .sharePointSources(let value):
-          try container.encode(value, forKey: .sharePointSources)
+          try container.encodeIfPresent(value, forKey: .sharePointSources)
         }
       }
 
       if let choice = self.partialFailureSink {
         switch choice {
         case .partialFailureGcsSink(let value):
-          try container.encode(value, forKey: .partialFailureGcsSink)
+          try container.encodeIfPresent(value, forKey: .partialFailureGcsSink)
         case .partialFailureBigquerySink(let value):
-          try container.encode(value, forKey: .partialFailureBigquerySink)
+          try container.encodeIfPresent(value, forKey: .partialFailureBigquerySink)
         }
       }
 
       if let choice = self.importResultSink {
         switch choice {
         case .importResultGcsSink(let value):
-          try container.encode(value, forKey: .importResultGcsSink)
+          try container.encodeIfPresent(value, forKey: .importResultGcsSink)
         case .importResultBigquerySink(let value):
-          try container.encode(value, forKey: .importResultBigquerySink)
+          try container.encodeIfPresent(value, forKey: .importResultBigquerySink)
         }
       }
       for (key, value) in self._unknownFields.json {

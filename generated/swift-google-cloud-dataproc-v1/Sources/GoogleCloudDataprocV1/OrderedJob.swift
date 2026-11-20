@@ -188,25 +188,25 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.jobType {
       switch choice {
       case .hadoopJob(let value):
-        try container.encode(value, forKey: .hadoopJob)
+        try container.encodeIfPresent(value, forKey: .hadoopJob)
       case .sparkJob(let value):
-        try container.encode(value, forKey: .sparkJob)
+        try container.encodeIfPresent(value, forKey: .sparkJob)
       case .pysparkJob(let value):
-        try container.encode(value, forKey: .pysparkJob)
+        try container.encodeIfPresent(value, forKey: .pysparkJob)
       case .hiveJob(let value):
-        try container.encode(value, forKey: .hiveJob)
+        try container.encodeIfPresent(value, forKey: .hiveJob)
       case .pigJob(let value):
-        try container.encode(value, forKey: .pigJob)
+        try container.encodeIfPresent(value, forKey: .pigJob)
       case .sparkRJob(let value):
-        try container.encode(value, forKey: .sparkRJob)
+        try container.encodeIfPresent(value, forKey: .sparkRJob)
       case .sparkSqlJob(let value):
-        try container.encode(value, forKey: .sparkSqlJob)
+        try container.encodeIfPresent(value, forKey: .sparkSqlJob)
       case .prestoJob(let value):
-        try container.encode(value, forKey: .prestoJob)
+        try container.encodeIfPresent(value, forKey: .prestoJob)
       case .trinoJob(let value):
-        try container.encode(value, forKey: .trinoJob)
+        try container.encodeIfPresent(value, forKey: .trinoJob)
       case .flinkJob(let value):
-        try container.encode(value, forKey: .flinkJob)
+        try container.encodeIfPresent(value, forKey: .flinkJob)
       }
     }
     for (key, value) in self._unknownFields.json {

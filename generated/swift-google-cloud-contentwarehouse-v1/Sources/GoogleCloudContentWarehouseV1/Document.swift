@@ -301,9 +301,13 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.properties, forKey: .properties)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.rawDocumentFileType, forKey: .rawDocumentFileType)
+    if self.rawDocumentFileType != RawDocumentFileType() {
+      try container.encode(self.rawDocumentFileType, forKey: .rawDocumentFileType)
+    }
     try container.encode(self.asyncEnabled, forKey: .asyncEnabled)
-    try container.encode(self.contentCategory, forKey: .contentCategory)
+    if self.contentCategory != ContentCategory() {
+      try container.encode(self.contentCategory, forKey: .contentCategory)
+    }
     try container.encode(self.textExtractionDisabled, forKey: .textExtractionDisabled)
     try container.encode(self.textExtractionEnabled, forKey: .textExtractionEnabled)
     try container.encode(self.creator, forKey: .creator)
@@ -314,18 +318,18 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.structuredContent {
       switch choice {
       case .plainText(let value):
-        try container.encode(value, forKey: .plainText)
+        try container.encodeIfPresent(value, forKey: .plainText)
       case .cloudAiDocument(let value):
-        try container.encode(value, forKey: .cloudAiDocument)
+        try container.encodeIfPresent(value, forKey: .cloudAiDocument)
       }
     }
 
     if let choice = self.rawDocument {
       switch choice {
       case .rawDocumentPath(let value):
-        try container.encode(value, forKey: .rawDocumentPath)
+        try container.encodeIfPresent(value, forKey: .rawDocumentPath)
       case .inlineRawDocument(let value):
-        try container.encode(value, forKey: .inlineRawDocument)
+        try container.encodeIfPresent(value, forKey: .inlineRawDocument)
       }
     }
     for (key, value) in self._unknownFields.json {

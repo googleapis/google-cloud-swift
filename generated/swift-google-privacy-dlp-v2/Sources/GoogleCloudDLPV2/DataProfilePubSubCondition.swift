@@ -151,9 +151,9 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       if let choice = self.value {
         switch choice {
         case .minimumRiskScore(let value):
-          try container.encode(value, forKey: .minimumRiskScore)
+          try container.encodeIfPresent(value, forKey: .minimumRiskScore)
         case .minimumSensitivityScore(let value):
-          try container.encode(value, forKey: .minimumSensitivityScore)
+          try container.encodeIfPresent(value, forKey: .minimumSensitivityScore)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -257,7 +257,11 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.logicalOperator, forKey: .logicalOperator)
+      if self.logicalOperator
+        != DataProfilePubSubCondition.PubSubExpressions.PubSubLogicalOperator()
+      {
+        try container.encode(self.logicalOperator, forKey: .logicalOperator)
+      }
       try container.encode(self.conditions, forKey: .conditions)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

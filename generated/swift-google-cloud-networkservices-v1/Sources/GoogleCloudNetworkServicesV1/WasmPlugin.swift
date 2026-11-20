@@ -341,9 +341,9 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.pluginConfigSource {
         switch choice {
         case .pluginConfigData(let value):
-          try container.encode(value, forKey: .pluginConfigData)
+          try container.encodeIfPresent(value, forKey: .pluginConfigData)
         case .pluginConfigUri(let value):
-          try container.encode(value, forKey: .pluginConfigUri)
+          try container.encodeIfPresent(value, forKey: .pluginConfigUri)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -495,7 +495,9 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enable, forKey: .enable)
       try container.encode(self.sampleRate, forKey: .sampleRate)
-      try container.encode(self.minLogLevel, forKey: .minLogLevel)
+      if self.minLogLevel != WasmPlugin.LogConfig.LogLevel() {
+        try container.encode(self.minLogLevel, forKey: .minLogLevel)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

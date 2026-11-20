@@ -219,9 +219,9 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pathValue {
       switch choice {
       case .value(let value):
-        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(value, forKey: .value)
       case .valueMatcher(let value):
-        try container.encode(value, forKey: .valueMatcher)
+        try container.encodeIfPresent(value, forKey: .valueMatcher)
       }
     }
     for (key, value) in self._unknownFields.json {

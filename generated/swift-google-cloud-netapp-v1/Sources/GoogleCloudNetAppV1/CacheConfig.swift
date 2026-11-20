@@ -99,7 +99,9 @@ public struct CacheConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.cachePrePopulate, forKey: .cachePrePopulate)
     try container.encodeIfPresent(self.writebackEnabled, forKey: .writebackEnabled)
     try container.encodeIfPresent(self.cifsChangeNotifyEnabled, forKey: .cifsChangeNotifyEnabled)
-    try container.encode(self.cachePrePopulateState, forKey: .cachePrePopulateState)
+    if self.cachePrePopulateState != CacheConfig.CachePrePopulateState() {
+      try container.encode(self.cachePrePopulateState, forKey: .cachePrePopulateState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

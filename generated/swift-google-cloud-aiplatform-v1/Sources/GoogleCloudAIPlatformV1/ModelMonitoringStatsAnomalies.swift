@@ -99,7 +99,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.objective, forKey: .objective)
+      if self.objective != ModelDeploymentMonitoringObjectiveType() {
+        try container.encode(self.objective, forKey: .objective)
+      }
       try container.encode(self.deployedModelId, forKey: .deployedModelId)
       try container.encode(self.anomalyCount, forKey: .anomalyCount)
       try container.encode(self.featureStats, forKey: .featureStats)

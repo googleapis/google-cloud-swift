@@ -206,7 +206,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.dtype, forKey: .dtype)
+      if self.dtype != Tensor.DataType() {
+        try container.encode(self.dtype, forKey: .dtype)
+      }
       try container.encode(self.shape, forKey: .shape)
       try container.encode(self.boolVal, forKey: .boolVal)
       try container.encode(self.stringVal, forKey: .stringVal)

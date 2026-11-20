@@ -129,7 +129,7 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._An
     if let choice = self.destination {
       switch choice {
       case .connectionProfile(let value):
-        try container.encode(value, forKey: .connectionProfile)
+        try container.encodeIfPresent(value, forKey: .connectionProfile)
       }
     }
     for (key, value) in self._unknownFields.json {

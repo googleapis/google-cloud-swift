@@ -274,14 +274,18 @@
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      if self.audioEncoding != AudioEncoding() {
+        try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      }
       try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encode(self.enableWordInfo, forKey: .enableWordInfo)
       try container.encode(self.phraseHints, forKey: .phraseHints)
       try container.encode(self.speechContexts, forKey: .speechContexts)
       try container.encode(self.model, forKey: .model)
-      try container.encode(self.modelVariant, forKey: .modelVariant)
+      if self.modelVariant != SpeechModelVariant() {
+        try container.encode(self.modelVariant, forKey: .modelVariant)
+      }
       try container.encode(self.singleUtterance, forKey: .singleUtterance)
       try container.encode(self.enableVoiceActivityEvents, forKey: .enableVoiceActivityEvents)
       try container.encode(

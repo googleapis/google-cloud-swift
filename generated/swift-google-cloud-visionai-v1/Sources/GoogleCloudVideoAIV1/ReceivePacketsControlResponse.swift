@@ -92,9 +92,9 @@ public struct ReceivePacketsControlResponse: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.control {
       switch choice {
       case .heartbeat(let value):
-        try container.encode(value, forKey: .heartbeat)
+        try container.encodeIfPresent(value, forKey: .heartbeat)
       case .writesDoneRequest(let value):
-        try container.encode(value, forKey: .writesDoneRequest)
+        try container.encodeIfPresent(value, forKey: .writesDoneRequest)
       }
     }
     for (key, value) in self._unknownFields.json {

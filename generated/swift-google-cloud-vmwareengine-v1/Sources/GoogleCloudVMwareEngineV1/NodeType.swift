@@ -168,7 +168,9 @@ public struct NodeType: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.memoryGb, forKey: .memoryGb)
     try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
     try container.encode(self.availableCustomCoreCounts, forKey: .availableCustomCoreCounts)
-    try container.encode(self.kind, forKey: .kind)
+    if self.kind != NodeType.Kind() {
+      try container.encode(self.kind, forKey: .kind)
+    }
     try container.encode(self.families, forKey: .families)
     try container.encode(self.capabilities, forKey: .capabilities)
     for (key, value) in self._unknownFields.json {

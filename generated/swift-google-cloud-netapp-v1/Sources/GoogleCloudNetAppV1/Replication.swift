@@ -216,11 +216,19 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Replication.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
-    try container.encode(self.role, forKey: .role)
-    try container.encode(self.replicationSchedule, forKey: .replicationSchedule)
-    try container.encode(self.mirrorState, forKey: .mirrorState)
+    if self.role != Replication.ReplicationRole() {
+      try container.encode(self.role, forKey: .role)
+    }
+    if self.replicationSchedule != Replication.ReplicationSchedule() {
+      try container.encode(self.replicationSchedule, forKey: .replicationSchedule)
+    }
+    if self.mirrorState != Replication.MirrorState() {
+      try container.encode(self.mirrorState, forKey: .mirrorState)
+    }
     try container.encodeIfPresent(self.healthy, forKey: .healthy)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.destinationVolume, forKey: .destinationVolume)
@@ -232,7 +240,9 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sourceVolume, forKey: .sourceVolume)
     try container.encodeIfPresent(self.hybridPeeringDetails, forKey: .hybridPeeringDetails)
     try container.encode(self.clusterLocation, forKey: .clusterLocation)
-    try container.encode(self.hybridReplicationType, forKey: .hybridReplicationType)
+    if self.hybridReplicationType != Replication.HybridReplicationType() {
+      try container.encode(self.hybridReplicationType, forKey: .hybridReplicationType)
+    }
     try container.encodeIfPresent(
       self.hybridReplicationUserCommands, forKey: .hybridReplicationUserCommands)
     for (key, value) in self._unknownFields.json {

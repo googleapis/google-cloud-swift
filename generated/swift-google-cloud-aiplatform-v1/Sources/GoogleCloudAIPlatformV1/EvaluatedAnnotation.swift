@@ -191,7 +191,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != EvaluatedAnnotation.EvaluatedAnnotationType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.predictions, forKey: .predictions)
       try container.encode(self.groundTruths, forKey: .groundTruths)
       try container.encodeIfPresent(self.dataItemPayload, forKey: .dataItemPayload)

@@ -162,7 +162,9 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.adminUsername, forKey: .adminUsername)
     try container.encode(self.oggVersion, forKey: .oggVersion)
     try container.encode(self.certificate, forKey: .certificate)
-    try container.encode(self.credentialStore, forKey: .credentialStore)
+    if self.credentialStore != GoldengateOggDeployment.CredentialStore() {
+      try container.encode(self.credentialStore, forKey: .credentialStore)
+    }
     try container.encode(self.identityDomainId, forKey: .identityDomainId)
     try container.encode(self.passwordSecretId, forKey: .passwordSecretId)
     try container.encodeIfPresent(self.groupRolesMapping, forKey: .groupRolesMapping)
@@ -170,9 +172,9 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.deploymentPasswordOptions {
       switch choice {
       case .adminPassword(let value):
-        try container.encode(value, forKey: .adminPassword)
+        try container.encodeIfPresent(value, forKey: .adminPassword)
       case .adminPasswordSecretVersion(let value):
-        try container.encode(value, forKey: .adminPasswordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .adminPasswordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

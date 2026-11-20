@@ -289,8 +289,12 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encodeIfPresent(self.createCompletionTime, forKey: .createCompletionTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.type, forKey: .type)
+    if self.state != Backup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.type != Backup.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.clusterUid, forKey: .clusterUid)
     try container.encode(self.clusterName, forKey: .clusterName)
@@ -303,7 +307,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.expiryTime, forKey: .expiryTime)
     try container.encodeIfPresent(self.expiryQuantity, forKey: .expiryQuantity)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.databaseVersion, forKey: .databaseVersion)
+    if self.databaseVersion != DatabaseVersion() {
+      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+    }
     try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

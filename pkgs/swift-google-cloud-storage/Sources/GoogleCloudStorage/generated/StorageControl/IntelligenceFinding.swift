@@ -200,9 +200,15 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.category, forKey: .category)
-    try container.encode(self.severity, forKey: .severity)
+    if self.type != FindingType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.category != FindingCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
+    if self.severity != FindingSeverity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.targetResource, forKey: .targetResource)
@@ -212,13 +218,13 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.intelligenceFindingDetails {
       switch choice {
       case .coldlineAndArchivalStorageOperationsSpike(let value):
-        try container.encode(value, forKey: .coldlineAndArchivalStorageOperationsSpike)
+        try container.encodeIfPresent(value, forKey: .coldlineAndArchivalStorageOperationsSpike)
       case .throttledRequestsSpike(let value):
-        try container.encode(value, forKey: .throttledRequestsSpike)
+        try container.encodeIfPresent(value, forKey: .throttledRequestsSpike)
       case .crossRegionEgressSpike(let value):
-        try container.encode(value, forKey: .crossRegionEgressSpike)
+        try container.encodeIfPresent(value, forKey: .crossRegionEgressSpike)
       case .storageGrowthAboveTrend(let value):
-        try container.encode(value, forKey: .storageGrowthAboveTrend)
+        try container.encodeIfPresent(value, forKey: .storageGrowthAboveTrend)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -419,9 +425,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.details {
           switch choice {
           case .contribution(let value):
-            try container.encode(value, forKey: .contribution)
+            try container.encodeIfPresent(value, forKey: .contribution)
           case .error(let value):
-            try container.encode(value, forKey: .error)
+            try container.encodeIfPresent(value, forKey: .error)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -872,9 +878,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.details {
           switch choice {
           case .contribution(let value):
-            try container.encode(value, forKey: .contribution)
+            try container.encodeIfPresent(value, forKey: .contribution)
           case .error(let value):
-            try container.encode(value, forKey: .error)
+            try container.encodeIfPresent(value, forKey: .error)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1324,9 +1330,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.details {
           switch choice {
           case .contribution(let value):
-            try container.encode(value, forKey: .contribution)
+            try container.encodeIfPresent(value, forKey: .contribution)
           case .error(let value):
-            try container.encode(value, forKey: .error)
+            try container.encodeIfPresent(value, forKey: .error)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1767,7 +1773,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.details {
           switch choice {
           case .error(let value):
-            try container.encode(value, forKey: .error)
+            try container.encodeIfPresent(value, forKey: .error)
           }
         }
         for (key, value) in self._unknownFields.json {

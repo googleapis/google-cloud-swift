@@ -177,7 +177,9 @@ public struct PrivateCloud: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PrivateCloud.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
     try container.encodeIfPresent(self.managementCluster, forKey: .managementCluster)
     try container.encode(self.description, forKey: .description)
@@ -185,7 +187,9 @@ public struct PrivateCloud: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.nsx, forKey: .nsx)
     try container.encodeIfPresent(self.vcenter, forKey: .vcenter)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.type, forKey: .type)
+    if self.type != PrivateCloud.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

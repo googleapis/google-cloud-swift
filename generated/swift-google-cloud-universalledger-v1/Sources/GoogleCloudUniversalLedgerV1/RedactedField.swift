@@ -88,7 +88,9 @@ public struct RedactedField: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.redactedPath, forKey: .redactedPath)
     try container.encode(self.reason, forKey: .reason)
-    try container.encode(self.reasonCode, forKey: .reasonCode)
+    if self.reasonCode != GoogleRpc.Code() {
+      try container.encode(self.reasonCode, forKey: .reasonCode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

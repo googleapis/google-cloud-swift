@@ -124,7 +124,9 @@ public struct PscPropagationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sourceForwardingRule, forKey: .sourceForwardingRule)
     try container.encode(self.targetSpoke, forKey: .targetSpoke)
     try container.encode(self.targetGroup, forKey: .targetGroup)
-    try container.encode(self.code, forKey: .code)
+    if self.code != PscPropagationStatus.Code() {
+      try container.encode(self.code, forKey: .code)
+    }
     try container.encode(self.message, forKey: .message)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

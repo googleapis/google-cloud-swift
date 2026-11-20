@@ -125,7 +125,9 @@ public struct CalendarAddOnManifest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.createSettingsUrlFunction, forKey: .createSettingsUrlFunction)
     try container.encodeIfPresent(self.eventOpenTrigger, forKey: .eventOpenTrigger)
     try container.encodeIfPresent(self.eventUpdateTrigger, forKey: .eventUpdateTrigger)
-    try container.encode(self.currentEventAccess, forKey: .currentEventAccess)
+    if self.currentEventAccess != CalendarAddOnManifest.EventAccess() {
+      try container.encode(self.currentEventAccess, forKey: .currentEventAccess)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

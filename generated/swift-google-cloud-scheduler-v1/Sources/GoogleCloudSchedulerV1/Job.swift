@@ -278,7 +278,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.schedule, forKey: .schedule)
     try container.encode(self.timeZone, forKey: .timeZone)
     try container.encodeIfPresent(self.userUpdateTime, forKey: .userUpdateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Job.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
     try container.encodeIfPresent(self.lastAttemptTime, forKey: .lastAttemptTime)
@@ -288,11 +290,11 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .pubsubTarget(let value):
-        try container.encode(value, forKey: .pubsubTarget)
+        try container.encodeIfPresent(value, forKey: .pubsubTarget)
       case .appEngineHttpTarget(let value):
-        try container.encode(value, forKey: .appEngineHttpTarget)
+        try container.encodeIfPresent(value, forKey: .appEngineHttpTarget)
       case .httpTarget(let value):
-        try container.encode(value, forKey: .httpTarget)
+        try container.encodeIfPresent(value, forKey: .httpTarget)
       }
     }
     for (key, value) in self._unknownFields.json {

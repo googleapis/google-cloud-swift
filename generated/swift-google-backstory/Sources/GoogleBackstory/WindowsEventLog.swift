@@ -87,7 +87,9 @@ public struct WindowsEventLog: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.channel, forKey: .channel)
+    if self.channel != WindowsEventLog.Channel() {
+      try container.encode(self.channel, forKey: .channel)
+    }
     try container.encode(self.eventId, forKey: .eventId)
     try container.encode(self.activityId, forKey: .activityId)
     for (key, value) in self._unknownFields.json {

@@ -154,14 +154,14 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.source {
       switch choice {
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       }
     }
 
     if let choice = self.objectConfig {
       switch choice {
       case .transcriptObjectConfig(let value):
-        try container.encode(value, forKey: .transcriptObjectConfig)
+        try container.encodeIfPresent(value, forKey: .transcriptObjectConfig)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -258,7 +258,9 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.bucketUri, forKey: .bucketUri)
-      try container.encode(self.bucketObjectType, forKey: .bucketObjectType)
+      if self.bucketObjectType != IngestConversationsRequest.GcsSource.BucketObjectType() {
+        try container.encode(self.bucketObjectType, forKey: .bucketObjectType)
+      }
       try container.encodeIfPresent(self.metadataBucketUri, forKey: .metadataBucketUri)
       try container.encode(self.customMetadataKeys, forKey: .customMetadataKeys)
       for (key, value) in self._unknownFields.json {
@@ -456,7 +458,9 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.medium, forKey: .medium)
+      if self.medium != Conversation.Medium() {
+        try container.encode(self.medium, forKey: .medium)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

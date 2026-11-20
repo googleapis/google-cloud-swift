@@ -178,7 +178,9 @@ public struct VodSession: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.adTagMacroMap, forKey: .adTagMacroMap)
     try container.encodeIfPresent(self.manifestOptions, forKey: .manifestOptions)
     try container.encode(self.assetId, forKey: .assetId)
-    try container.encode(self.adTracking, forKey: .adTracking)
+    if self.adTracking != AdTracking() {
+      try container.encode(self.adTracking, forKey: .adTracking)
+    }
     try container.encodeIfPresent(self.gamSettings, forKey: .gamSettings)
     try container.encode(self.vodConfig, forKey: .vodConfig)
     for (key, value) in self._unknownFields.json {

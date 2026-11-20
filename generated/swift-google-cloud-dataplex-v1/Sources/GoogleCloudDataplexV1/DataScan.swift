@@ -284,38 +284,42 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudDataplexV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.data, forKey: .data)
     try container.encodeIfPresent(self.executionSpec, forKey: .executionSpec)
     try container.encodeIfPresent(self.executionStatus, forKey: .executionStatus)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DataScanType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.executionIdentity, forKey: .executionIdentity)
 
     if let choice = self.spec {
       switch choice {
       case .dataQualitySpec(let value):
-        try container.encode(value, forKey: .dataQualitySpec)
+        try container.encodeIfPresent(value, forKey: .dataQualitySpec)
       case .dataProfileSpec(let value):
-        try container.encode(value, forKey: .dataProfileSpec)
+        try container.encodeIfPresent(value, forKey: .dataProfileSpec)
       case .dataDiscoverySpec(let value):
-        try container.encode(value, forKey: .dataDiscoverySpec)
+        try container.encodeIfPresent(value, forKey: .dataDiscoverySpec)
       case .dataDocumentationSpec(let value):
-        try container.encode(value, forKey: .dataDocumentationSpec)
+        try container.encodeIfPresent(value, forKey: .dataDocumentationSpec)
       }
     }
 
     if let choice = self.result {
       switch choice {
       case .dataQualityResult(let value):
-        try container.encode(value, forKey: .dataQualityResult)
+        try container.encodeIfPresent(value, forKey: .dataQualityResult)
       case .dataProfileResult(let value):
-        try container.encode(value, forKey: .dataProfileResult)
+        try container.encodeIfPresent(value, forKey: .dataProfileResult)
       case .dataDiscoveryResult(let value):
-        try container.encode(value, forKey: .dataDiscoveryResult)
+        try container.encodeIfPresent(value, forKey: .dataDiscoveryResult)
       case .dataDocumentationResult(let value):
-        try container.encode(value, forKey: .dataDocumentationResult)
+        try container.encodeIfPresent(value, forKey: .dataDocumentationResult)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -406,7 +410,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.incremental {
         switch choice {
         case .field(let value):
-          try container.encode(value, forKey: .field)
+          try container.encodeIfPresent(value, forKey: .field)
         }
       }
       for (key, value) in self._unknownFields.json {

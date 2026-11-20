@@ -118,9 +118,9 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.outcome {
       switch choice {
       case .noChallenge(let value):
-        try container.encode(value, forKey: .noChallenge)
+        try container.encodeIfPresent(value, forKey: .noChallenge)
       case .challenge(let value):
-        try container.encode(value, forKey: .challenge)
+        try container.encodeIfPresent(value, forKey: .challenge)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -256,7 +256,9 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.difficulty, forKey: .difficulty)
+      if self.difficulty != WebKeySettings.ChallengeSecurityPreference() {
+        try container.encode(self.difficulty, forKey: .difficulty)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

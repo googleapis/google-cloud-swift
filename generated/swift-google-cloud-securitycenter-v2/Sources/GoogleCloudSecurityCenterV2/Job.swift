@@ -97,7 +97,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != JobState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errorCode, forKey: .errorCode)
     try container.encode(self.location, forKey: .location)
     for (key, value) in self._unknownFields.json {

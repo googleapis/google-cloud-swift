@@ -96,9 +96,9 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.strategy {
       switch choice {
       case .allAtOnceStrategyInfo(let value):
-        try container.encode(value, forKey: .allAtOnceStrategyInfo)
+        try container.encodeIfPresent(value, forKey: .allAtOnceStrategyInfo)
       case .rollingStrategyInfo(let value):
-        try container.encode(value, forKey: .rollingStrategyInfo)
+        try container.encodeIfPresent(value, forKey: .rollingStrategyInfo)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -264,7 +264,9 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.asn, forKey: .asn)
       try container.encode(self.csp, forKey: .csp)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Destination.DestinationEndpoint.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

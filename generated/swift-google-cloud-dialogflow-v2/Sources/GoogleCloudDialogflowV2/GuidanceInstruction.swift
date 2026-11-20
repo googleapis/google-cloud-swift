@@ -127,7 +127,9 @@
       try container.encode(self.displayDetails, forKey: .displayDetails)
       try container.encode(self.condition, forKey: .condition)
       try container.encode(self.actions, forKey: .actions)
-      try container.encode(self.triggerEvent, forKey: .triggerEvent)
+      if self.triggerEvent != CompanionAgent.TriggerEvent() {
+        try container.encode(self.triggerEvent, forKey: .triggerEvent)
+      }
       try container.encode(self.disableSuggestedReply, forKey: .disableSuggestedReply)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

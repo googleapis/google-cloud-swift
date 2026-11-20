@@ -123,7 +123,9 @@ public struct LookupEntryLinksRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.entry, forKey: .entry)
-    try container.encode(self.entryMode, forKey: .entryMode)
+    if self.entryMode != LookupEntryLinksRequest.EntryMode() {
+      try container.encode(self.entryMode, forKey: .entryMode)
+    }
     try container.encode(self.entryLinkTypes, forKey: .entryLinkTypes)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)

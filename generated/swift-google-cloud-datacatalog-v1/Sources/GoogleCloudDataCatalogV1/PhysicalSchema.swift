@@ -115,17 +115,17 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.schema {
       switch choice {
       case .avro(let value):
-        try container.encode(value, forKey: .avro)
+        try container.encodeIfPresent(value, forKey: .avro)
       case .thrift(let value):
-        try container.encode(value, forKey: .thrift)
+        try container.encodeIfPresent(value, forKey: .thrift)
       case .protobuf(let value):
-        try container.encode(value, forKey: .protobuf)
+        try container.encodeIfPresent(value, forKey: .protobuf)
       case .parquet(let value):
-        try container.encode(value, forKey: .parquet)
+        try container.encodeIfPresent(value, forKey: .parquet)
       case .orc(let value):
-        try container.encode(value, forKey: .orc)
+        try container.encodeIfPresent(value, forKey: .orc)
       case .csv(let value):
-        try container.encode(value, forKey: .csv)
+        try container.encodeIfPresent(value, forKey: .csv)
       }
     }
     for (key, value) in self._unknownFields.json {

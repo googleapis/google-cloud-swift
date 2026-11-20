@@ -95,9 +95,9 @@
       if let choice = self.schema {
         switch choice {
         case .inlineSchema(let value):
-          try container.encode(value, forKey: .inlineSchema)
+          try container.encodeIfPresent(value, forKey: .inlineSchema)
         case .schemaReference(let value):
-          try container.encode(value, forKey: .schemaReference)
+          try container.encodeIfPresent(value, forKey: .schemaReference)
         }
       }
       for (key, value) in self._unknownFields.json {

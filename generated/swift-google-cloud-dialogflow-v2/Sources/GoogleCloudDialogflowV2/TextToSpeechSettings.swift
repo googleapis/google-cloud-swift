@@ -106,7 +106,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enableTextToSpeech, forKey: .enableTextToSpeech)
-      try container.encode(self.outputAudioEncoding, forKey: .outputAudioEncoding)
+      if self.outputAudioEncoding != OutputAudioEncoding() {
+        try container.encode(self.outputAudioEncoding, forKey: .outputAudioEncoding)
+      }
       try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
       try container.encode(self.synthesizeSpeechConfigs, forKey: .synthesizeSpeechConfigs)
       for (key, value) in self._unknownFields.json {

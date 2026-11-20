@@ -177,16 +177,16 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .dataText(let value):
-        try container.encode(value, forKey: .dataText)
+        try container.encodeIfPresent(value, forKey: .dataText)
       }
     }
 
     if let choice = self.content {
       switch choice {
       case .sqlScript(let value):
-        try container.encode(value, forKey: .sqlScript)
+        try container.encodeIfPresent(value, forKey: .sqlScript)
       case .notebook(let value):
-        try container.encode(value, forKey: .notebook)
+        try container.encodeIfPresent(value, forKey: .notebook)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -248,7 +248,9 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.engine, forKey: .engine)
+      if self.engine != Content.SqlScript.QueryEngine() {
+        try container.encode(self.engine, forKey: .engine)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -440,7 +442,9 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.kernelType, forKey: .kernelType)
+      if self.kernelType != Content.Notebook.KernelType() {
+        try container.encode(self.kernelType, forKey: .kernelType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

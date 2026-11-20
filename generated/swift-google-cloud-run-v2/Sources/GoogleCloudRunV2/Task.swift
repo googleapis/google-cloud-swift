@@ -386,7 +386,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.maxRetries, forKey: .maxRetries)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    if self.executionEnvironment != ExecutionEnvironment() {
+      try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.conditions, forKey: .conditions)
     try container.encode(self.observedGeneration, forKey: .observedGeneration)

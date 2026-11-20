@@ -117,14 +117,14 @@ public struct RestoreVolumeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .backupSource(let value):
-        try container.encode(value, forKey: .backupSource)
+        try container.encodeIfPresent(value, forKey: .backupSource)
       }
     }
 
     if let choice = self.target {
       switch choice {
       case .ontapVolumeTarget(let value):
-        try container.encode(value, forKey: .ontapVolumeTarget)
+        try container.encodeIfPresent(value, forKey: .ontapVolumeTarget)
       }
     }
     for (key, value) in self._unknownFields.json {

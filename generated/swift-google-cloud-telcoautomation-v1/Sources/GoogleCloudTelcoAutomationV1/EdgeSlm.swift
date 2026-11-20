@@ -138,8 +138,12 @@ public struct EdgeSlm: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.tnaVersion, forKey: .tnaVersion)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.workloadClusterType, forKey: .workloadClusterType)
+    if self.state != EdgeSlm.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.workloadClusterType != EdgeSlm.WorkloadClusterType() {
+      try container.encode(self.workloadClusterType, forKey: .workloadClusterType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -214,10 +214,14 @@ public struct EntityMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.productName, forKey: .productName)
     try container.encode(self.feed, forKey: .feed)
     try container.encode(self.productVersion, forKey: .productVersion)
-    try container.encode(self.entityType, forKey: .entityType)
+    if self.entityType != EntityMetadata.EntityType() {
+      try container.encode(self.entityType, forKey: .entityType)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.threat, forKey: .threat)
-    try container.encode(self.sourceType, forKey: .sourceType)
+    if self.sourceType != EntityMetadata.SourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
     try container.encode(self.sourceLabels, forKey: .sourceLabels)
     try container.encodeIfPresent(self.eventMetadata, forKey: .eventMetadata)
     try container.encodeIfPresent(self.structuredFields, forKey: .structuredFields)

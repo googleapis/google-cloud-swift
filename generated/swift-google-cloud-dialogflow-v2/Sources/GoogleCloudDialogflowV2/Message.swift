@@ -151,7 +151,9 @@
       try container.encode(self.responseMessages, forKey: .responseMessages)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encode(self.participant, forKey: .participant)
-      try container.encode(self.participantRole, forKey: .participantRole)
+      if self.participantRole != Participant.Role() {
+        try container.encode(self.participantRole, forKey: .participantRole)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.sendTime, forKey: .sendTime)
       try container.encodeIfPresent(self.messageAnnotation, forKey: .messageAnnotation)

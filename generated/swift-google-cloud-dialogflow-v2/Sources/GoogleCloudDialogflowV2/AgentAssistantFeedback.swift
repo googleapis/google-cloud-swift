@@ -152,9 +152,15 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.answerRelevance, forKey: .answerRelevance)
-      try container.encode(self.documentCorrectness, forKey: .documentCorrectness)
-      try container.encode(self.documentEfficiency, forKey: .documentEfficiency)
+      if self.answerRelevance != AgentAssistantFeedback.AnswerRelevance() {
+        try container.encode(self.answerRelevance, forKey: .answerRelevance)
+      }
+      if self.documentCorrectness != AgentAssistantFeedback.DocumentCorrectness() {
+        try container.encode(self.documentCorrectness, forKey: .documentCorrectness)
+      }
+      if self.documentEfficiency != AgentAssistantFeedback.DocumentEfficiency() {
+        try container.encode(self.documentEfficiency, forKey: .documentEfficiency)
+      }
       try container.encodeIfPresent(self.summarizationFeedback, forKey: .summarizationFeedback)
       try container.encodeIfPresent(self.knowledgeSearchFeedback, forKey: .knowledgeSearchFeedback)
       try container.encodeIfPresent(self.knowledgeAssistFeedback, forKey: .knowledgeAssistFeedback)

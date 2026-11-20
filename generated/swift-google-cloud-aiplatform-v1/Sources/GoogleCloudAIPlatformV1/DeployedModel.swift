@@ -314,11 +314,11 @@
       if let choice = self.predictionResources {
         switch choice {
         case .dedicatedResources(let value):
-          try container.encode(value, forKey: .dedicatedResources)
+          try container.encodeIfPresent(value, forKey: .dedicatedResources)
         case .automaticResources(let value):
-          try container.encode(value, forKey: .automaticResources)
+          try container.encodeIfPresent(value, forKey: .automaticResources)
         case .sharedResources(let value):
-          try container.encode(value, forKey: .sharedResources)
+          try container.encodeIfPresent(value, forKey: .sharedResources)
         }
       }
       for (key, value) in self._unknownFields.json {

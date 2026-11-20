@@ -149,7 +149,7 @@
       if let choice = self.metrics {
         switch choice {
         case .smartReplyMetrics(let value):
-          try container.encode(value, forKey: .smartReplyMetrics)
+          try container.encodeIfPresent(value, forKey: .smartReplyMetrics)
         }
       }
       for (key, value) in self._unknownFields.json {

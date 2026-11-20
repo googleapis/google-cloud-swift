@@ -169,11 +169,11 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.target {
         switch choice {
         case .selectedInfoTypes(let value):
-          try container.encode(value, forKey: .selectedInfoTypes)
+          try container.encodeIfPresent(value, forKey: .selectedInfoTypes)
         case .allInfoTypes(let value):
-          try container.encode(value, forKey: .allInfoTypes)
+          try container.encodeIfPresent(value, forKey: .allInfoTypes)
         case .allText(let value):
-          try container.encode(value, forKey: .allText)
+          try container.encodeIfPresent(value, forKey: .allText)
         }
       }
       for (key, value) in self._unknownFields.json {

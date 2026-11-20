@@ -226,9 +226,9 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.targetProxy {
         switch choice {
         case .targetHttpsProxy(let value):
-          try container.encode(value, forKey: .targetHttpsProxy)
+          try container.encodeIfPresent(value, forKey: .targetHttpsProxy)
         case .targetSslProxy(let value):
-          try container.encode(value, forKey: .targetSslProxy)
+          try container.encodeIfPresent(value, forKey: .targetSslProxy)
         }
       }
       for (key, value) in self._unknownFields.json {

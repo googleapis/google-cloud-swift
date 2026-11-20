@@ -104,11 +104,11 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.format {
       switch choice {
       case .protoMessage(let value):
-        try container.encode(value, forKey: .protoMessage)
+        try container.encodeIfPresent(value, forKey: .protoMessage)
       case .jsonMessage(let value):
-        try container.encode(value, forKey: .jsonMessage)
+        try container.encodeIfPresent(value, forKey: .jsonMessage)
       case .avroMessage(let value):
-        try container.encode(value, forKey: .avroMessage)
+        try container.encodeIfPresent(value, forKey: .avroMessage)
       }
     }
     for (key, value) in self._unknownFields.json {

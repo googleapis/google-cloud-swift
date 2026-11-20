@@ -94,11 +94,11 @@ public struct UserId: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.idOneof {
       switch choice {
       case .email(let value):
-        try container.encode(value, forKey: .email)
+        try container.encodeIfPresent(value, forKey: .email)
       case .phoneNumber(let value):
-        try container.encode(value, forKey: .phoneNumber)
+        try container.encodeIfPresent(value, forKey: .phoneNumber)
       case .username(let value):
-        try container.encode(value, forKey: .username)
+        try container.encodeIfPresent(value, forKey: .username)
       }
     }
     for (key, value) in self._unknownFields.json {

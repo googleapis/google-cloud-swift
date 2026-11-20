@@ -129,9 +129,9 @@
       if let choice = self.rubricsSource {
         switch choice {
         case .rubricGroupKey(let value):
-          try container.encode(value, forKey: .rubricGroupKey)
+          try container.encodeIfPresent(value, forKey: .rubricGroupKey)
         case .predefinedRubricGenerationSpec(let value):
-          try container.encode(value, forKey: .predefinedRubricGenerationSpec)
+          try container.encodeIfPresent(value, forKey: .predefinedRubricGenerationSpec)
         }
       }
       for (key, value) in self._unknownFields.json {

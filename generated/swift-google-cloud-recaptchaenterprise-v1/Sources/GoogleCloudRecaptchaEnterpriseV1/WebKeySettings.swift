@@ -126,8 +126,12 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.allowAllDomains, forKey: .allowAllDomains)
     try container.encode(self.allowedDomains, forKey: .allowedDomains)
     try container.encode(self.allowAmpTraffic, forKey: .allowAmpTraffic)
-    try container.encode(self.integrationType, forKey: .integrationType)
-    try container.encode(self.challengeSecurityPreference, forKey: .challengeSecurityPreference)
+    if self.integrationType != WebKeySettings.IntegrationType() {
+      try container.encode(self.integrationType, forKey: .integrationType)
+    }
+    if self.challengeSecurityPreference != WebKeySettings.ChallengeSecurityPreference() {
+      try container.encode(self.challengeSecurityPreference, forKey: .challengeSecurityPreference)
+    }
     try container.encodeIfPresent(self.challengeSettings, forKey: .challengeSettings)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

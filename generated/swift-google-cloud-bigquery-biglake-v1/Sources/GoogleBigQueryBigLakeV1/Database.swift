@@ -136,12 +136,14 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Database.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.options {
       switch choice {
       case .hiveOptions(let value):
-        try container.encode(value, forKey: .hiveOptions)
+        try container.encodeIfPresent(value, forKey: .hiveOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

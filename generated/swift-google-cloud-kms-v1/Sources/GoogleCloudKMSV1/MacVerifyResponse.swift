@@ -171,7 +171,9 @@ public struct MacVerifyResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.verifiedDataCrc32C, forKey: .verifiedDataCrc32C)
     try container.encode(self.verifiedMacCrc32C, forKey: .verifiedMacCrc32C)
     try container.encode(self.verifiedSuccessIntegrity, forKey: .verifiedSuccessIntegrity)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

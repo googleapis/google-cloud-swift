@@ -245,8 +245,12 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.redactionStrategy, forKey: .redactionStrategy)
-      try container.encode(self.redactionScope, forKey: .redactionScope)
+      if self.redactionStrategy != SecuritySettings.RedactionStrategy() {
+        try container.encode(self.redactionStrategy, forKey: .redactionStrategy)
+      }
+      if self.redactionScope != SecuritySettings.RedactionScope() {
+        try container.encode(self.redactionScope, forKey: .redactionScope)
+      }
       try container.encode(self.inspectTemplate, forKey: .inspectTemplate)
       try container.encode(self.deidentifyTemplate, forKey: .deidentifyTemplate)
       try container.encode(self.purgeDataTypes, forKey: .purgeDataTypes)
@@ -256,9 +260,9 @@
       if let choice = self.dataRetention {
         switch choice {
         case .retentionWindowDays(let value):
-          try container.encode(value, forKey: .retentionWindowDays)
+          try container.encodeIfPresent(value, forKey: .retentionWindowDays)
         case .retentionStrategy(let value):
-          try container.encode(value, forKey: .retentionStrategy)
+          try container.encodeIfPresent(value, forKey: .retentionStrategy)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -369,7 +373,9 @@
         try container.encode(self.gcsBucket, forKey: .gcsBucket)
         try container.encode(self.audioExportPattern, forKey: .audioExportPattern)
         try container.encode(self.enableAudioRedaction, forKey: .enableAudioRedaction)
-        try container.encode(self.audioFormat, forKey: .audioFormat)
+        if self.audioFormat != SecuritySettings.AudioExportSettings.AudioFormat() {
+          try container.encode(self.audioFormat, forKey: .audioFormat)
+        }
         try container.encode(self.storeTtsAudio, forKey: .storeTtsAudio)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

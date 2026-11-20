@@ -175,7 +175,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.messageType, forKey: .messageType)
+      if self.messageType != StreamingRecognitionResult.MessageType() {
+        try container.encode(self.messageType, forKey: .messageType)
+      }
       try container.encode(self.transcript, forKey: .transcript)
       try container.encode(self.isFinal, forKey: .isFinal)
       try container.encode(self.confidence, forKey: .confidence)

@@ -135,7 +135,9 @@ public struct AsymmetricDecryptResponse: Codable, Equatable, GoogleWKT._AnyPacka
     try container.encode(self.plaintext, forKey: .plaintext)
     try container.encodeIfPresent(self.plaintextCrc32C, forKey: .plaintextCrc32C)
     try container.encode(self.verifiedCiphertextCrc32C, forKey: .verifiedCiphertextCrc32C)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

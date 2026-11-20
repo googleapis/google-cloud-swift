@@ -199,7 +199,9 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.lastRunTime, forKey: .lastRunTime)
-    try container.encode(self.status, forKey: .status)
+    if self.status != DiscoveryConfig.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.processingLocation, forKey: .processingLocation)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

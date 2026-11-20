@@ -90,7 +90,9 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.format, forKey: .format)
+    if self.format != KeyOperationAttestation.AttestationFormat() {
+      try container.encode(self.format, forKey: .format)
+    }
     try container.encode(self.content, forKey: .content)
     try container.encodeIfPresent(self.certChains, forKey: .certChains)
     for (key, value) in self._unknownFields.json {

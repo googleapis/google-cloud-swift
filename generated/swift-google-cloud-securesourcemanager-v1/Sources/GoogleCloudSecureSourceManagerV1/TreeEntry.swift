@@ -103,7 +103,9 @@ public struct TreeEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != TreeEntry.ObjectType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.sha, forKey: .sha)
     try container.encode(self.path, forKey: .path)
     try container.encode(self.mode, forKey: .mode)

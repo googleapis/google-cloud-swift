@@ -94,7 +94,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .csv(let value):
-        try container.encode(value, forKey: .csv)
+        try container.encodeIfPresent(value, forKey: .csv)
       }
     }
     for (key, value) in self._unknownFields.json {

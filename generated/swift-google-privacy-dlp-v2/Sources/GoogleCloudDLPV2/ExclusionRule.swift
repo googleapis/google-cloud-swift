@@ -118,20 +118,22 @@ public struct ExclusionRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.matchingType, forKey: .matchingType)
+    if self.matchingType != MatchingType() {
+      try container.encode(self.matchingType, forKey: .matchingType)
+    }
 
     if let choice = self.type {
       switch choice {
       case .dictionary(let value):
-        try container.encode(value, forKey: .dictionary)
+        try container.encodeIfPresent(value, forKey: .dictionary)
       case .regex(let value):
-        try container.encode(value, forKey: .regex)
+        try container.encodeIfPresent(value, forKey: .regex)
       case .excludeInfoTypes(let value):
-        try container.encode(value, forKey: .excludeInfoTypes)
+        try container.encodeIfPresent(value, forKey: .excludeInfoTypes)
       case .excludeByHotword(let value):
-        try container.encode(value, forKey: .excludeByHotword)
+        try container.encodeIfPresent(value, forKey: .excludeByHotword)
       case .excludeByImageFindings(let value):
-        try container.encode(value, forKey: .excludeByImageFindings)
+        try container.encodeIfPresent(value, forKey: .excludeByImageFindings)
       }
     }
     for (key, value) in self._unknownFields.json {

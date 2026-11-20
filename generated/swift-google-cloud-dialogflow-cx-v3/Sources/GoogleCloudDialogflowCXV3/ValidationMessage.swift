@@ -113,10 +113,14 @@
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.resourceType, forKey: .resourceType)
+      if self.resourceType != ValidationMessage.ResourceType() {
+        try container.encode(self.resourceType, forKey: .resourceType)
+      }
       try container.encode(self.resources, forKey: .resources)
       try container.encode(self.resourceNames, forKey: .resourceNames)
-      try container.encode(self.severity, forKey: .severity)
+      if self.severity != ValidationMessage.Severity() {
+        try container.encode(self.severity, forKey: .severity)
+      }
       try container.encode(self.detail, forKey: .detail)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

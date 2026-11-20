@@ -136,9 +136,9 @@
       if let choice = self.task {
         switch choice {
         case .containerSpec(let value):
-          try container.encode(value, forKey: .containerSpec)
+          try container.encodeIfPresent(value, forKey: .containerSpec)
         case .pythonPackageSpec(let value):
-          try container.encode(value, forKey: .pythonPackageSpec)
+          try container.encodeIfPresent(value, forKey: .pythonPackageSpec)
         }
       }
       for (key, value) in self._unknownFields.json {

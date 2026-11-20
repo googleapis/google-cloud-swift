@@ -159,7 +159,9 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.capacityConfig, forKey: .capacityConfig)
     try container.encodeIfPresent(self.rebalanceConfig, forKey: .rebalanceConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Cluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.tlsConfig, forKey: .tlsConfig)
@@ -167,7 +169,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.platformConfig {
       switch choice {
       case .gcpConfig(let value):
-        try container.encode(value, forKey: .gcpConfig)
+        try container.encodeIfPresent(value, forKey: .gcpConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

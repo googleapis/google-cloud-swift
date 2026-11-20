@@ -100,13 +100,13 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .i(let value):
-        try container.encode(value, forKey: .i)
+        try container.encodeIfPresent(value, forKey: .i)
       case .f(let value):
-        try container.encode(value, forKey: .f)
+        try container.encodeIfPresent(value, forKey: .f)
       case .b(let value):
-        try container.encode(value, forKey: .b)
+        try container.encodeIfPresent(value, forKey: .b)
       case .s(let value):
-        try container.encode(value, forKey: .s)
+        try container.encodeIfPresent(value, forKey: .s)
       }
     }
     for (key, value) in self._unknownFields.json {

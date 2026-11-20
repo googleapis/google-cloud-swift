@@ -115,9 +115,9 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .productSetPurgeConfig(let value):
-        try container.encode(value, forKey: .productSetPurgeConfig)
+        try container.encodeIfPresent(value, forKey: .productSetPurgeConfig)
       case .deleteOrphanProducts(let value):
-        try container.encode(value, forKey: .deleteOrphanProducts)
+        try container.encodeIfPresent(value, forKey: .deleteOrphanProducts)
       }
     }
     for (key, value) in self._unknownFields.json {

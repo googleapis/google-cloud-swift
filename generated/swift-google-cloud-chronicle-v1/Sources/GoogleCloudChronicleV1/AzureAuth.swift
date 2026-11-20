@@ -90,9 +90,9 @@ public struct AzureAuth: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authType {
       switch choice {
       case .sharedKey(let value):
-        try container.encode(value, forKey: .sharedKey)
+        try container.encodeIfPresent(value, forKey: .sharedKey)
       case .sasToken(let value):
-        try container.encode(value, forKey: .sasToken)
+        try container.encodeIfPresent(value, forKey: .sasToken)
       }
     }
     for (key, value) in self._unknownFields.json {

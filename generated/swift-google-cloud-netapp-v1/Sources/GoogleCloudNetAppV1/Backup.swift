@@ -200,10 +200,14 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Backup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.volumeUsageBytes, forKey: .volumeUsageBytes)
-    try container.encode(self.backupType, forKey: .backupType)
+    if self.backupType != Backup.Type_() {
+      try container.encode(self.backupType, forKey: .backupType)
+    }
     try container.encode(self.sourceVolume, forKey: .sourceVolume)
     try container.encodeIfPresent(self.sourceSnapshot, forKey: .sourceSnapshot)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

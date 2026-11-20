@@ -91,9 +91,13 @@ public struct ReplaceSigningPublicKey: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.keySlot, forKey: .keySlot)
+    if self.keySlot != KeySlot() {
+      try container.encode(self.keySlot, forKey: .keySlot)
+    }
     try container.encode(self.newPublicKey, forKey: .newPublicKey)
-    try container.encode(self.newKeyFormat, forKey: .newKeyFormat)
+    if self.newKeyFormat != KeyFormat() {
+      try container.encode(self.newKeyFormat, forKey: .newKeyFormat)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

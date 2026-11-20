@@ -220,8 +220,12 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.ruleScope, forKey: .ruleScope)
+    if self.state != MappingRule.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.ruleScope != DatabaseEntityType() {
+      try container.encode(self.ruleScope, forKey: .ruleScope)
+    }
     try container.encodeIfPresent(self.filter, forKey: .filter)
     try container.encode(self.ruleOrder, forKey: .ruleOrder)
     try container.encode(self.revisionId, forKey: .revisionId)
@@ -230,27 +234,27 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.details {
       switch choice {
       case .singleEntityRename(let value):
-        try container.encode(value, forKey: .singleEntityRename)
+        try container.encodeIfPresent(value, forKey: .singleEntityRename)
       case .multiEntityRename(let value):
-        try container.encode(value, forKey: .multiEntityRename)
+        try container.encodeIfPresent(value, forKey: .multiEntityRename)
       case .entityMove(let value):
-        try container.encode(value, forKey: .entityMove)
+        try container.encodeIfPresent(value, forKey: .entityMove)
       case .singleColumnChange(let value):
-        try container.encode(value, forKey: .singleColumnChange)
+        try container.encodeIfPresent(value, forKey: .singleColumnChange)
       case .multiColumnDataTypeChange(let value):
-        try container.encode(value, forKey: .multiColumnDataTypeChange)
+        try container.encodeIfPresent(value, forKey: .multiColumnDataTypeChange)
       case .conditionalColumnSetValue(let value):
-        try container.encode(value, forKey: .conditionalColumnSetValue)
+        try container.encodeIfPresent(value, forKey: .conditionalColumnSetValue)
       case .convertRowidColumn(let value):
-        try container.encode(value, forKey: .convertRowidColumn)
+        try container.encodeIfPresent(value, forKey: .convertRowidColumn)
       case .setTablePrimaryKey(let value):
-        try container.encode(value, forKey: .setTablePrimaryKey)
+        try container.encodeIfPresent(value, forKey: .setTablePrimaryKey)
       case .singlePackageChange(let value):
-        try container.encode(value, forKey: .singlePackageChange)
+        try container.encodeIfPresent(value, forKey: .singlePackageChange)
       case .sourceSqlChange(let value):
-        try container.encode(value, forKey: .sourceSqlChange)
+        try container.encodeIfPresent(value, forKey: .sourceSqlChange)
       case .filterTableColumns(let value):
-        try container.encode(value, forKey: .filterTableColumns)
+        try container.encodeIfPresent(value, forKey: .filterTableColumns)
       }
     }
     for (key, value) in self._unknownFields.json {

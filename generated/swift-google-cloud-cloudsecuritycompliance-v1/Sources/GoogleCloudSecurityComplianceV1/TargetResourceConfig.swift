@@ -96,9 +96,9 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceConfig {
       switch choice {
       case .existingTargetResource(let value):
-        try container.encode(value, forKey: .existingTargetResource)
+        try container.encodeIfPresent(value, forKey: .existingTargetResource)
       case .targetResourceCreationConfig(let value):
-        try container.encode(value, forKey: .targetResourceCreationConfig)
+        try container.encodeIfPresent(value, forKey: .targetResourceCreationConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

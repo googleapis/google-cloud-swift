@@ -145,25 +145,25 @@
       if let choice = self.value {
         switch choice {
         case .boolValue(let value):
-          try container.encode(value, forKey: .boolValue)
+          try container.encodeIfPresent(value, forKey: .boolValue)
         case .doubleValue(let value):
-          try container.encode(value, forKey: .doubleValue)
+          try container.encodeIfPresent(value, forKey: .doubleValue)
         case .int64Value(let value):
-          try container.encode(value, forKey: .int64Value)
+          try container.encodeIfPresent(value, forKey: .int64Value)
         case .stringValue(let value):
-          try container.encode(value, forKey: .stringValue)
+          try container.encodeIfPresent(value, forKey: .stringValue)
         case .boolArrayValue(let value):
-          try container.encode(value, forKey: .boolArrayValue)
+          try container.encodeIfPresent(value, forKey: .boolArrayValue)
         case .doubleArrayValue(let value):
-          try container.encode(value, forKey: .doubleArrayValue)
+          try container.encodeIfPresent(value, forKey: .doubleArrayValue)
         case .int64ArrayValue(let value):
-          try container.encode(value, forKey: .int64ArrayValue)
+          try container.encodeIfPresent(value, forKey: .int64ArrayValue)
         case .stringArrayValue(let value):
-          try container.encode(value, forKey: .stringArrayValue)
+          try container.encodeIfPresent(value, forKey: .stringArrayValue)
         case .bytesValue(let value):
-          try container.encode(value, forKey: .bytesValue)
+          try container.encodeIfPresent(value, forKey: .bytesValue)
         case .structValue(let value):
-          try container.encode(value, forKey: .structValue)
+          try container.encodeIfPresent(value, forKey: .structValue)
         }
       }
       for (key, value) in self._unknownFields.json {

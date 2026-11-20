@@ -114,7 +114,7 @@ public struct OperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.operation {
       switch choice {
       case .httpOperation(let value):
-        try container.encode(value, forKey: .httpOperation)
+        try container.encodeIfPresent(value, forKey: .httpOperation)
       }
     }
     for (key, value) in self._unknownFields.json {

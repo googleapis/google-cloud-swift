@@ -174,40 +174,42 @@ public struct FindingVariable: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != FindingVariable.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.value, forKey: .value)
     try container.encode(self.sourcePath, forKey: .sourcePath)
 
     if let choice = self.typedValue {
       switch choice {
       case .boolVal(let value):
-        try container.encode(value, forKey: .boolVal)
+        try container.encodeIfPresent(value, forKey: .boolVal)
       case .bytesVal(let value):
-        try container.encode(value, forKey: .bytesVal)
+        try container.encodeIfPresent(value, forKey: .bytesVal)
       case .doubleVal(let value):
-        try container.encode(value, forKey: .doubleVal)
+        try container.encodeIfPresent(value, forKey: .doubleVal)
       case .int64Val(let value):
-        try container.encode(value, forKey: .int64Val)
+        try container.encodeIfPresent(value, forKey: .int64Val)
       case .uint64Val(let value):
-        try container.encode(value, forKey: .uint64Val)
+        try container.encodeIfPresent(value, forKey: .uint64Val)
       case .stringVal(let value):
-        try container.encode(value, forKey: .stringVal)
+        try container.encodeIfPresent(value, forKey: .stringVal)
       case .timestampTime(let value):
-        try container.encode(value, forKey: .timestampTime)
+        try container.encodeIfPresent(value, forKey: .timestampTime)
       case .nullVal(let value):
-        try container.encode(value, forKey: .nullVal)
+        try container.encodeIfPresent(value, forKey: .nullVal)
       case .boolSeq(let value):
-        try container.encode(value, forKey: .boolSeq)
+        try container.encodeIfPresent(value, forKey: .boolSeq)
       case .bytesSeq(let value):
-        try container.encode(value, forKey: .bytesSeq)
+        try container.encodeIfPresent(value, forKey: .bytesSeq)
       case .doubleSeq(let value):
-        try container.encode(value, forKey: .doubleSeq)
+        try container.encodeIfPresent(value, forKey: .doubleSeq)
       case .int64Seq(let value):
-        try container.encode(value, forKey: .int64Seq)
+        try container.encodeIfPresent(value, forKey: .int64Seq)
       case .uint64Seq(let value):
-        try container.encode(value, forKey: .uint64Seq)
+        try container.encodeIfPresent(value, forKey: .uint64Seq)
       case .stringSeq(let value):
-        try container.encode(value, forKey: .stringSeq)
+        try container.encodeIfPresent(value, forKey: .stringSeq)
       }
     }
     for (key, value) in self._unknownFields.json {

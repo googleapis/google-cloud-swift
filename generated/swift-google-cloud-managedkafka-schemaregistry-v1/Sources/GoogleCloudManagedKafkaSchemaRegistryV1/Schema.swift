@@ -86,7 +86,9 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.schemaType, forKey: .schemaType)
+    if self.schemaType != Schema.SchemaType() {
+      try container.encode(self.schemaType, forKey: .schemaType)
+    }
     try container.encode(self.schemaPayload, forKey: .schemaPayload)
     try container.encode(self.references, forKey: .references)
     for (key, value) in self._unknownFields.json {

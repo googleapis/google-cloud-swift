@@ -97,7 +97,9 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.versionNumber, forKey: .versionNumber)
     try container.encode(self.defaultVersion, forKey: .defaultVersion)
     try container.encode(self.availableFeatures, forKey: .availableFeatures)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Version.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

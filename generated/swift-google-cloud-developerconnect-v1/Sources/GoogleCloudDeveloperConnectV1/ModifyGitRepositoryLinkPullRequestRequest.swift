@@ -118,7 +118,9 @@ public struct ModifyGitRepositoryLinkPullRequestRequest: Codable, Equatable, Goo
     try container.encode(self.title, forKey: .title)
     try container.encode(self.body, forKey: .body)
     try container.encode(self.baseRef, forKey: .baseRef)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ModifyGitRepositoryLinkPullRequestRequest.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

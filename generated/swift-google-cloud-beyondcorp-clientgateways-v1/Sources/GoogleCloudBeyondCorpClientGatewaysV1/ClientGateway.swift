@@ -113,7 +113,9 @@ public struct ClientGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ClientGateway.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.id, forKey: .id)
     try container.encode(self.clientConnectorService, forKey: .clientConnectorService)
     for (key, value) in self._unknownFields.json {

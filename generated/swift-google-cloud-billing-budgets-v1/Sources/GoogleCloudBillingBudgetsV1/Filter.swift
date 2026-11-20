@@ -191,7 +191,9 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.projects, forKey: .projects)
     try container.encode(self.resourceAncestors, forKey: .resourceAncestors)
     try container.encode(self.creditTypes, forKey: .creditTypes)
-    try container.encode(self.creditTypesTreatment, forKey: .creditTypesTreatment)
+    if self.creditTypesTreatment != Filter.CreditTypesTreatment() {
+      try container.encode(self.creditTypesTreatment, forKey: .creditTypesTreatment)
+    }
     try container.encode(self.services, forKey: .services)
     try container.encode(self.subaccounts, forKey: .subaccounts)
     try container.encode(self.labels, forKey: .labels)
@@ -199,9 +201,9 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.usagePeriod {
       switch choice {
       case .calendarPeriod(let value):
-        try container.encode(value, forKey: .calendarPeriod)
+        try container.encodeIfPresent(value, forKey: .calendarPeriod)
       case .customPeriod(let value):
-        try container.encode(value, forKey: .customPeriod)
+        try container.encodeIfPresent(value, forKey: .customPeriod)
       }
     }
     for (key, value) in self._unknownFields.json {

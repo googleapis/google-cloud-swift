@@ -177,7 +177,9 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.remediation, forKey: .remediation)
     try container.encode(self.tags, forKey: .tags)
-    try container.encode(self.ruleType, forKey: .ruleType)
+    if self.ruleType != Rule.RuleType() {
+      try container.encode(self.ruleType, forKey: .ruleType)
+    }
     try container.encode(self.assetType, forKey: .assetType)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

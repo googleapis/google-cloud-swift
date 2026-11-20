@@ -134,7 +134,9 @@ public struct ValuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.resource, forKey: .resource)
     try container.encode(self.resourceType, forKey: .resourceType)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.resourceValue, forKey: .resourceValue)
+    if self.resourceValue != ValuedResource.ResourceValue() {
+      try container.encode(self.resourceValue, forKey: .resourceValue)
+    }
     try container.encode(self.exposedScore, forKey: .exposedScore)
     try container.encode(self.resourceValueConfigsUsed, forKey: .resourceValueConfigsUsed)
     for (key, value) in self._unknownFields.json {

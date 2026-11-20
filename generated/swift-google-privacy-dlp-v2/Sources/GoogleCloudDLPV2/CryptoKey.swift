@@ -101,11 +101,11 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .transient(let value):
-        try container.encode(value, forKey: .transient)
+        try container.encodeIfPresent(value, forKey: .transient)
       case .unwrapped(let value):
-        try container.encode(value, forKey: .unwrapped)
+        try container.encodeIfPresent(value, forKey: .unwrapped)
       case .kmsWrapped(let value):
-        try container.encode(value, forKey: .kmsWrapped)
+        try container.encodeIfPresent(value, forKey: .kmsWrapped)
       }
     }
     for (key, value) in self._unknownFields.json {

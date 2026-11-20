@@ -163,13 +163,13 @@
       if let choice = self.probeType {
         switch choice {
         case .exec(let value):
-          try container.encode(value, forKey: .exec)
+          try container.encodeIfPresent(value, forKey: .exec)
         case .httpGet(let value):
-          try container.encode(value, forKey: .httpGet)
+          try container.encodeIfPresent(value, forKey: .httpGet)
         case .grpc(let value):
-          try container.encode(value, forKey: .grpc)
+          try container.encodeIfPresent(value, forKey: .grpc)
         case .tcpSocket(let value):
-          try container.encode(value, forKey: .tcpSocket)
+          try container.encodeIfPresent(value, forKey: .tcpSocket)
         }
       }
       for (key, value) in self._unknownFields.json {

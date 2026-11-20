@@ -205,11 +205,15 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.sourcePvc, forKey: .sourcePvc)
     try container.encode(self.volumeBackupHandle, forKey: .volumeBackupHandle)
-    try container.encode(self.format, forKey: .format)
+    if self.format != VolumeBackup.VolumeBackupFormat() {
+      try container.encode(self.format, forKey: .format)
+    }
     try container.encode(self.storageBytes, forKey: .storageBytes)
     try container.encode(self.diskSizeBytes, forKey: .diskSizeBytes)
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != VolumeBackup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)

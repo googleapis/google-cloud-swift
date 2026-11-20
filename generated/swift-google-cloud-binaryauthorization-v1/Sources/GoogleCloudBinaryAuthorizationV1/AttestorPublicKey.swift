@@ -119,9 +119,9 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.publicKey {
       switch choice {
       case .asciiArmoredPgpPublicKey(let value):
-        try container.encode(value, forKey: .asciiArmoredPgpPublicKey)
+        try container.encodeIfPresent(value, forKey: .asciiArmoredPgpPublicKey)
       case .pkixPublicKey(let value):
-        try container.encode(value, forKey: .pkixPublicKey)
+        try container.encodeIfPresent(value, forKey: .pkixPublicKey)
       }
     }
     for (key, value) in self._unknownFields.json {

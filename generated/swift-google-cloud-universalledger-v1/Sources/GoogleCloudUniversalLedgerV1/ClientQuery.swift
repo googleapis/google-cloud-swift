@@ -116,9 +116,9 @@ public struct ClientQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .accountQuery(let value):
-        try container.encode(value, forKey: .accountQuery)
+        try container.encodeIfPresent(value, forKey: .accountQuery)
       case .transactionStateQuery(let value):
-        try container.encode(value, forKey: .transactionStateQuery)
+        try container.encodeIfPresent(value, forKey: .transactionStateQuery)
       }
     }
     for (key, value) in self._unknownFields.json {
