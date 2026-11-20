@@ -98,6 +98,11 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
       subjectToken = try await subjectTokenProvider.subjectToken()
     } catch is CancellationError {
       throw CancellationError()
+    } catch let urlError as URLError where urlError.isTransientNetworkError {
+      throw CredentialsError.cannotFetchToken(
+        message: "Could not obtain subject token for external account credentials.",
+        underlyingError: AuthHTTPError.transportError(urlError)
+      )
     } catch {
       throw CredentialsError.cannotFetchToken(
         message: "Could not obtain subject token for external account credentials.",
@@ -267,7 +272,8 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     self.cache = TokenCache(
       provider: provider,
       clock: ContinuousClock(),
-      isRetryable: AuthHTTPError.isRetryable
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
   }
 

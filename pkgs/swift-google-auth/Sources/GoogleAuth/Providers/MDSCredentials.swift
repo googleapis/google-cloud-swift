@@ -51,7 +51,7 @@ actor MDSUniverseDomainCache {
     } catch {
       if self.activeTask == task {
         self.activeTask = nil
-        if !(error is CancellationError) && !AuthHTTPError.isRetryable(error) {
+        if AuthHTTPError.shouldCachePermanentError(error) {
           self.permanentError = error
         }
       }
@@ -140,7 +140,8 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     self.cache = TokenCache(
       provider: provider,
       jitter: jitter,
-      isRetryable: AuthHTTPError.isRetryable
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
   }
 

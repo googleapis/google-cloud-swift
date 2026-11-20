@@ -135,3 +135,32 @@ extension CredentialsError: CustomStringConvertible {
     }
   }
 }
+
+extension CredentialsError: ClassifiedAuthError {
+  var errorDisposition: TokenErrorDisposition {
+    switch self {
+    case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
+      return .permanent
+    case .cannotFetchToken(_, let underlyingError):
+      if let classified = underlyingError as? any ClassifiedAuthError {
+        return classified.errorDisposition
+      }
+      return .uncached
+    }
+  }
+}
+
+@_spi(GoogleCloudInternal)
+extension CredentialsError {
+  /// Indicates whether this credentials error represents a transient token-fetch failure that is
+  /// eligible for transport-level retry or stream resumption.
+  ///
+  /// Returns `true` only when `.cannotFetchToken` wraps a transient `AuthHTTPError` (such as
+  /// HTTP 408, 429, 5xx, or a network transport error) or recursively wraps a retryable
+  /// `CredentialsError`. Configuration, file-loading, discovery, universe-domain mismatch, HTTP
+  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, and non-network
+  /// `SubjectTokenProvider` failures return `false`.
+  public var _isRetryable: Bool {
+    self.errorDisposition == .retryable
+  }
+}

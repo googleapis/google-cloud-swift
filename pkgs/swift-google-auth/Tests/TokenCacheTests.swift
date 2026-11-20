@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 // MARK: - Mock Concurrency-Safe Token Provider Actor
 
@@ -860,6 +860,45 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
   }
 
+  /// Verifies that opaque custom provider errors (for which `isRetryable` and
+  /// `shouldCachePermanentError` both return `false`) neither poison `permanentError` nor spawn a
+  /// background refresh loop.
+  @Test func uncachedNonRetryableErrorsDoNotPoisonPermanentErrorOrStartBackgroundRefresh()
+    async throws
+  {
+    struct CustomSupplierError: Error {}
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let customError = CredentialsError.cannotFetchToken(
+      message: "custom supplier failed",
+      underlyingError: CustomSupplierError()
+    )
+    await provider.configure(token: nil, error: customError)
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
+    )
+
+    let caught = await #expect(throws: CredentialsError.self) {
+      _ = try await cache.token()
+    }
+    #expect(caught?._isRetryable == false)
+    #expect(await provider.count == 1)
+    #expect(!clock.hasSleepers)
+
+    // Subsequent on-demand call re-invokes the provider and succeeds once recovered.
+    let validToken = AccessToken(
+      token: "valid-after-recovery", expirationDate: Date().addingTimeInterval(1000))
+    await provider.configure(token: validToken, error: nil)
+
+    let token = try await cache.token()
+    #expect(token.token == "valid-after-recovery")
+    #expect(await provider.count == 2)
+  }
+
   @Test func tokenThrowsPermanentError() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
@@ -1338,5 +1377,65 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     await clock.sleeperWaiting()
     #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
+  }
+
+  /// Verifies that when a proactive background refresh encounters a non-retryable, non-cached
+  /// error (such as an opaque custom supplier failure), the loop exits cleanly via
+  /// `terminateBackgroundRefresh(taskID:)` without latching `permanentError`, so the next
+  /// successful on-demand `token()` restarts proactive background refresh.
+  @Test func uncachedNonRetryableErrorInBackgroundRefreshClearsTaskAndRestartsOnRecovery()
+    async throws
+  {
+    struct OpaqueSupplierError: Error {}
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    let token1 = AccessToken(token: "token-1", expirationDate: now.addingTimeInterval(10.0))
+    await provider.configure(token: token1)
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource,
+      normalRefreshSlack: .seconds(2),
+      shortRefreshSlack: .seconds(1),
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
+    )
+
+    #expect(try await cache.token() == token1)
+    await clock.sleeperWaiting()
+    #expect(await cache.hasBackgroundTask)
+
+    // Advance into the stale window; background refresh fails with an opaque supplier error.
+    let opaqueError = CredentialsError.cannotFetchToken(
+      message: "custom supplier failed",
+      underlyingError: OpaqueSupplierError()
+    )
+    await provider.configure(token: nil, error: opaqueError)
+    timeSource.advance(by: 8.0)
+    clock.advance(by: .seconds(8))
+
+    for _ in 0..<1_000 {
+      guard await cache.hasBackgroundTask else { break }
+      await Task.yield()
+    }
+    #expect(await !cache.hasBackgroundTask)
+    #expect(!clock.hasSleepers)
+    #expect(await provider.count == 2)
+
+    // Advance past token-1's expiration; foreground recovery restarts proactive background refresh.
+    timeSource.advance(by: 3.0)
+    let token2 = AccessToken(
+      token: "token-2", expirationDate: timeSource.now.addingTimeInterval(10.0))
+    await provider.configure(token: token2, error: nil)
+    #expect(try await cache.token() == token2)
+
+    await clock.sleeperWaiting()
+    #expect(await cache.hasBackgroundTask)
+    #expect(clock.hasSleepers)
+    #expect(await provider.count == 3)
   }
 }

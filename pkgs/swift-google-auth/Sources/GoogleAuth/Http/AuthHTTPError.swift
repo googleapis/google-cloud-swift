@@ -102,50 +102,71 @@ extension AuthHTTPError {
     }
   }
 
-  /// Indicates whether this HTTP error is transient and eligible for retry.
-  ///
-  /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
-  /// transport errors, and unknown errors are considered transient and retryable. Client errors
-  /// (other 4xx statuses) and payload decoding errors are considered permanent.
-  var isRetryable: Bool {
+  /// Retry and cache-latching classification for this HTTP error.
+  var errorDisposition: TokenErrorDisposition {
     switch self {
     case .unsuccessfulResponse(let response, _):
       let status = response.status.code
-      return status >= 500 || status == 429 || status == 408
+      return (status >= 500 || status == 429 || status == 408) ? .retryable : .permanent
     case .decodingError, .invalidUTF8Response:
-      return false
-    case .transportError:
-      return true
+      return .permanent
+    case .transportError(let urlError):
+      if urlError.code == .cancelled {
+        return .uncached
+      }
+      return urlError.isTransientNetworkError ? .retryable : .permanent
     case .unknown(let error):
-      return !(error is CancellationError)
+      return (error is CancellationError) ? .uncached : .retryable
     }
+  }
+
+  /// Indicates whether this HTTP error is transient and eligible for retry.
+  ///
+  /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
+  /// transient network `URLError`s (`URLError.isTransientNetworkError`), and non-cancellation
+  /// unknown errors are considered transient and retryable. Client errors (other 4xx statuses),
+  /// non-transient `URLError`s, and payload decoding errors are considered permanent.
+  var isRetryable: Bool {
+    self.errorDisposition == .retryable
   }
 
   /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
   ///
-  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`,
-  /// and treats other `CredentialsError` cases as permanent.
+  /// Delegates to `ClassifiedAuthError.errorDisposition` (unwrapping `CredentialsError.cannotFetchToken`
+  /// recursively) and treats `CancellationError` and unrecognized error types as non-retryable.
   ///
   /// - Parameter error: The error to evaluate.
-  /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
+  /// - Returns: `true` if the error is transient and should be retried; `false` otherwise.
   static func isRetryable(_ error: any Error) -> Bool {
     if error is CancellationError {
       return false
     }
-    if let credentialsError = error as? CredentialsError {
-      switch credentialsError {
-      case .cannotFetchToken(_, let underlyingError):
-        return isRetryable(underlyingError)
-      case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
-        return false
-      }
+    if let classified = error as? any ClassifiedAuthError {
+      return classified.errorDisposition == .retryable
     }
-    if let authError = error as? AuthHTTPError {
-      return authError.isRetryable
+    return false
+  }
+
+  /// Evaluates whether a non-retryable error is definitively permanent and safe to latch in
+  /// `TokenCache.permanentError` or `MDSUniverseDomainCache.permanentError` for the lifetime of
+  /// the credentials instance.
+  ///
+  /// Returns `true` only when `error` conforms to `ClassifiedAuthError` with `.permanent`
+  /// disposition (configuration/parse/discovery errors, permanent HTTP responses, and expired
+  /// static tokens). Returns `false` for `CancellationError`, `.uncached` errors, and opaque errors
+  /// thrown by user-supplied `SubjectTokenProvider` or `AccessTokenProvider` implementations.
+  static func shouldCachePermanentError(_ error: any Error) -> Bool {
+    if error is CancellationError {
+      return false
     }
-    return true
+    if let classified = error as? any ClassifiedAuthError {
+      return classified.errorDisposition == .permanent
+    }
+    return false
   }
 }
+
+extension AuthHTTPError: ClassifiedAuthError {}
 
 // MARK: - Error Formatting
 

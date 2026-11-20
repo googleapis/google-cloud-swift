@@ -18,7 +18,7 @@ import NIOFoundationCompat
 import NIOHTTP1
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct AuthHTTPErrorTest {
   private let testURL = URL(string: "https://example.com")!
@@ -123,60 +123,137 @@ import Testing
 
     let wrapped = CredentialsError.cannotFetchToken(message: "failed", underlyingError: error)
     #expect(AuthHTTPError.isRetryable(wrapped) == expected)
+    #expect(wrapped._isRetryable == expected)
   }
 
-  @Test func isRetryableErrorCases() {
+  @Test func isRetryableErrorCases() async throws {
     let decodingError = AuthHTTPError.decodingError(
       error: DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "corrupted"))
     )
     #expect(decodingError.isRetryable == false)
     #expect(AuthHTTPError.isRetryable(decodingError) == false)
-    #expect(
-      AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", underlyingError: decodingError)
-      ) == false
-    )
+    let wrappedDecoding = CredentialsError.cannotFetchToken(
+      message: "failed", underlyingError: decodingError)
+    #expect(AuthHTTPError.isRetryable(wrappedDecoding) == false)
+    #expect(wrappedDecoding._isRetryable == false)
 
     let invalidUTF8 = AuthHTTPError.invalidUTF8Response
     #expect(invalidUTF8.isRetryable == false)
     #expect(AuthHTTPError.isRetryable(invalidUTF8) == false)
-    #expect(
-      AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", underlyingError: invalidUTF8)
-      ) == false
-    )
+    let wrappedInvalidUTF8 = CredentialsError.cannotFetchToken(
+      message: "failed", underlyingError: invalidUTF8)
+    #expect(AuthHTTPError.isRetryable(wrappedInvalidUTF8) == false)
+    #expect(wrappedInvalidUTF8._isRetryable == false)
 
     let transportError = AuthHTTPError.transportError(URLError(.timedOut))
     #expect(transportError.isRetryable == true)
     #expect(AuthHTTPError.isRetryable(transportError) == true)
-    #expect(
-      AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", underlyingError: transportError)
-      ) == true
-    )
+    let wrappedTransport = CredentialsError.cannotFetchToken(
+      message: "failed", underlyingError: transportError)
+    #expect(AuthHTTPError.isRetryable(wrappedTransport) == true)
+    #expect(wrappedTransport._isRetryable == true)
+
+    let cancelledTransport = AuthHTTPError.transportError(URLError(.cancelled))
+    #expect(cancelledTransport.isRetryable == false)
+    #expect(AuthHTTPError.isRetryable(cancelledTransport) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(cancelledTransport) == false)
+    let wrappedCancelledTransport = CredentialsError.cannotFetchToken(
+      message: "cancelled", underlyingError: cancelledTransport)
+    #expect(AuthHTTPError.isRetryable(wrappedCancelledTransport) == false)
+    #expect(wrappedCancelledTransport._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrappedCancelledTransport) == false)
+
+    #expect(AuthHTTPError.isRetryable(URLError(.timedOut)) == false)
+
+    let cancelledUnknown = AuthHTTPError.unknown(CancellationError())
+    #expect(cancelledUnknown.isRetryable == false)
+    #expect(AuthHTTPError.isRetryable(cancelledUnknown) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(cancelledUnknown) == false)
+    let wrappedCancelledUnknown = CredentialsError.cannotFetchToken(
+      message: "cancelled", underlyingError: cancelledUnknown)
+    #expect(wrappedCancelledUnknown._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrappedCancelledUnknown) == false)
 
     let unknownError = AuthHTTPError.unknown(URLError(.unknown))
     #expect(unknownError.isRetryable == true)
     #expect(AuthHTTPError.isRetryable(unknownError) == true)
-    #expect(
-      AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", underlyingError: unknownError)
-      ) == true
-    )
+    let wrappedUnknown = CredentialsError.cannotFetchToken(
+      message: "failed", underlyingError: unknownError)
+    #expect(AuthHTTPError.isRetryable(wrappedUnknown) == true)
+    #expect(wrappedUnknown._isRetryable == true)
 
-    // Other CredentialsError cases are permanent
-    #expect(
-      AuthHTTPError.isRetryable(
-        CredentialsError.cannotLoadFile(
-          message: "missing", underlyingError: URLError(.fileDoesNotExist))
-      ) == false
+    // Expired static token errors are non-retryable and permanently cacheable.
+    let expiredProvider = StaticAccessTokenProvider(
+      token: AccessToken(token: "mock-token.expired", expirationDate: .distantPast),
+      timeSource: SystemTimeSource()
     )
+    let expiredError = await #expect(throws: CredentialsError.self) {
+      _ = try await expiredProvider.accessToken()
+    }
+    if let expiredError {
+      #expect(AuthHTTPError.isRetryable(expiredError) == false)
+      #expect(expiredError._isRetryable == false)
+      #expect(AuthHTTPError.shouldCachePermanentError(expiredError) == true)
+    }
+
+    // Other CredentialsError cases are permanent and cacheable.
+    let cannotLoad = CredentialsError.cannotLoadFile(
+      message: "missing", underlyingError: URLError(.fileDoesNotExist))
+    #expect(AuthHTTPError.isRetryable(cannotLoad) == false)
+    #expect(cannotLoad._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(cannotLoad) == true)
     #expect(AuthHTTPError.isRetryable(CredentialsError.parseError("invalid")) == false)
+    #expect(
+      AuthHTTPError.shouldCachePermanentError(CredentialsError.parseError("invalid")) == true)
     #expect(AuthHTTPError.isRetryable(CredentialsError.notSupported("unsupported")) == false)
+    #expect(
+      AuthHTTPError.shouldCachePermanentError(CredentialsError.notSupported("unsupported")) == true)
     #expect(AuthHTTPError.isRetryable(CredentialsError.credentialsNotFound("missing")) == false)
+    #expect(
+      AuthHTTPError.shouldCachePermanentError(CredentialsError.credentialsNotFound("missing"))
+        == true)
+    #expect(AuthHTTPError.shouldCachePermanentError(CancellationError()) == false)
 
-    // Non-AuthHTTPError errors default to retryable
-    #expect(AuthHTTPError.isRetryable(URLError(.cannotConnectToHost)) == true)
+    // Unrecognized custom provider errors are non-retryable for outer policies, and
+    // `shouldCachePermanentError` returns `false` so transient Linux transport errors from custom
+    // suppliers do not permanently poison `TokenCache`.
+    struct UnrecognizedError: Error {}
+    let customProviderError = CredentialsError.cannotFetchToken(
+      message: "custom provider failure", underlyingError: UnrecognizedError())
+    #expect(AuthHTTPError.isRetryable(UnrecognizedError()) == false)
+    #expect(AuthHTTPError.isRetryable(customProviderError) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(UnrecognizedError()) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(customProviderError) == false)
+  }
+
+  @Test(
+    arguments: [
+      (URLError.Code.timedOut, TokenErrorDisposition.retryable),
+      (.networkConnectionLost, .retryable),
+      (.cannotConnectToHost, .retryable),
+      (.notConnectedToInternet, .retryable),
+      (.dnsLookupFailed, .retryable),
+      (.cannotFindHost, .retryable),
+      (.cancelled, .uncached),
+      (.badURL, .permanent),
+      (.unsupportedURL, .permanent),
+      (.fileDoesNotExist, .permanent),
+      (.noPermissionsToReadFile, .permanent),
+      (.userAuthenticationRequired, .permanent),
+      (.serverCertificateUntrusted, .permanent),
+    ]
+  )
+  func transportErrorClassifiesURLErrorCodes(
+    code: URLError.Code,
+    expectedDisposition: TokenErrorDisposition
+  ) {
+    let urlError = URLError(code)
+    let err = AuthHTTPError.transportError(urlError)
+    #expect(urlError.isTransientNetworkError == (expectedDisposition == .retryable))
+    #expect(err.errorDisposition == expectedDisposition)
+    #expect(err.isRetryable == (expectedDisposition == .retryable))
+    #expect(AuthHTTPError.isRetryable(err) == (expectedDisposition == .retryable))
+    #expect(AuthHTTPError.shouldCachePermanentError(err) == (expectedDisposition == .permanent))
   }
 
   // MARK: - String Formatting
