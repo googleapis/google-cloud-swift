@@ -860,18 +860,19 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
   }
 
-  /// Verifies that opaque custom provider errors (for which `isRetryable` and
-  /// `shouldCachePermanentError` both return `false`) neither poison `permanentError` nor spawn a
-  /// background refresh loop.
+  /// Verifies that `.uncached` errors (for which `isRetryable` and `shouldCachePermanentError`
+  /// both return `false`) neither poison `permanentError` nor spawn a background refresh loop.
   @Test func uncachedNonRetryableErrorsDoNotPoisonPermanentErrorOrStartBackgroundRefresh()
     async throws
   {
-    struct CustomSupplierError: Error {}
+    struct UncachedTestError: ClassifiedAuthError {
+      var errorDisposition: TokenErrorDisposition { .uncached }
+    }
     let provider = MockTokenProvider()
     let clock = TestClock()
     let customError = CredentialsError.cannotFetchToken(
-      message: "custom supplier failed",
-      underlyingError: CustomSupplierError()
+      message: "uncached failure",
+      underlyingError: UncachedTestError()
     )
     await provider.configure(token: nil, error: customError)
 
@@ -1379,14 +1380,15 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(clock.hasSleepers)
   }
 
-  /// Verifies that when a proactive background refresh encounters a non-retryable, non-cached
-  /// error (such as an opaque custom supplier failure), the loop exits cleanly via
-  /// `terminateBackgroundRefresh(taskID:)` without latching `permanentError`, so the next
-  /// successful on-demand `token()` restarts proactive background refresh.
+  /// Verifies that when a proactive background refresh encounters an `.uncached` error, the loop
+  /// exits cleanly via `terminateBackgroundRefresh(taskID:)` without latching `permanentError`, so
+  /// the next successful on-demand `token()` restarts proactive background refresh.
   @Test func uncachedNonRetryableErrorInBackgroundRefreshClearsTaskAndRestartsOnRecovery()
     async throws
   {
-    struct OpaqueSupplierError: Error {}
+    struct UncachedRefreshError: ClassifiedAuthError {
+      var errorDisposition: TokenErrorDisposition { .uncached }
+    }
     let provider = MockTokenProvider()
     let clock = TestClock()
     let now = Date()
@@ -1409,12 +1411,12 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     await clock.sleeperWaiting()
     #expect(await cache.hasBackgroundTask)
 
-    // Advance into the stale window; background refresh fails with an opaque supplier error.
-    let opaqueError = CredentialsError.cannotFetchToken(
-      message: "custom supplier failed",
-      underlyingError: OpaqueSupplierError()
+    // Advance into the stale window; background refresh fails with an uncached error.
+    let uncachedError = CredentialsError.cannotFetchToken(
+      message: "uncached refresh failure",
+      underlyingError: UncachedRefreshError()
     )
-    await provider.configure(token: nil, error: opaqueError)
+    await provider.configure(token: nil, error: uncachedError)
     timeSource.advance(by: 8.0)
     clock.advance(by: .seconds(8))
 

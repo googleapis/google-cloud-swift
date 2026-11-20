@@ -163,8 +163,6 @@ import Testing
     #expect(wrappedCancelledTransport._isRetryable == false)
     #expect(AuthHTTPError.shouldCachePermanentError(wrappedCancelledTransport) == false)
 
-    #expect(AuthHTTPError.isRetryable(URLError(.timedOut)) == false)
-
     let cancelledUnknown = AuthHTTPError.unknown(CancellationError())
     #expect(cancelledUnknown.isRetryable == false)
     #expect(AuthHTTPError.isRetryable(cancelledUnknown) == false)
@@ -214,14 +212,13 @@ import Testing
         == true)
     #expect(AuthHTTPError.shouldCachePermanentError(CancellationError()) == false)
 
-    // Unrecognized custom provider errors are non-retryable for outer policies, and
-    // `shouldCachePermanentError` returns `false` so transient Linux transport errors from custom
-    // suppliers do not permanently poison `TokenCache`.
+    // Unrecognized custom provider errors default to `.retryable` without latching `permanentError`.
     struct UnrecognizedError: Error {}
     let customProviderError = CredentialsError.cannotFetchToken(
       message: "custom provider failure", underlyingError: UnrecognizedError())
-    #expect(AuthHTTPError.isRetryable(UnrecognizedError()) == false)
-    #expect(AuthHTTPError.isRetryable(customProviderError) == false)
+    #expect(AuthHTTPError.isRetryable(UnrecognizedError()) == true)
+    #expect(AuthHTTPError.isRetryable(customProviderError) == true)
+    #expect(customProviderError._isRetryable == true)
     #expect(AuthHTTPError.shouldCachePermanentError(UnrecognizedError()) == false)
     #expect(AuthHTTPError.shouldCachePermanentError(customProviderError) == false)
   }
@@ -234,13 +231,17 @@ import Testing
       (.notConnectedToInternet, .retryable),
       (.dnsLookupFailed, .retryable),
       (.cannotFindHost, .retryable),
+      (.secureConnectionFailed, .retryable),
+      (.badServerResponse, .retryable),
+      (.zeroByteResource, .retryable),
+      (.userAuthenticationRequired, .retryable),
+      (.serverCertificateUntrusted, .retryable),
+      (.unknown, .retryable),
       (.cancelled, .uncached),
       (.badURL, .permanent),
       (.unsupportedURL, .permanent),
       (.fileDoesNotExist, .permanent),
       (.noPermissionsToReadFile, .permanent),
-      (.userAuthenticationRequired, .permanent),
-      (.serverCertificateUntrusted, .permanent),
     ]
   )
   func transportErrorClassifiesURLErrorCodes(
@@ -249,9 +250,10 @@ import Testing
   ) {
     let urlError = URLError(code)
     let err = AuthHTTPError.transportError(urlError)
-    #expect(urlError.isTransientNetworkError == (expectedDisposition == .retryable))
+    #expect(urlError.errorDisposition == expectedDisposition)
     #expect(err.errorDisposition == expectedDisposition)
     #expect(err.isRetryable == (expectedDisposition == .retryable))
+    #expect(AuthHTTPError.isRetryable(urlError) == (expectedDisposition == .retryable))
     #expect(AuthHTTPError.isRetryable(err) == (expectedDisposition == .retryable))
     #expect(AuthHTTPError.shouldCachePermanentError(err) == (expectedDisposition == .permanent))
   }

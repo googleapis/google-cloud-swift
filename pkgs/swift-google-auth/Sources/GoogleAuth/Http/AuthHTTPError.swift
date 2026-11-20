@@ -103,6 +103,12 @@ extension AuthHTTPError {
   }
 
   /// Retry and cache-latching classification for this HTTP error.
+  ///
+  /// - `.unsuccessfulResponse`: `.retryable` for HTTP 408, 429, and 5xx; `.permanent` otherwise.
+  /// - `.decodingError`, `.invalidUTF8Response`: `.permanent`.
+  /// - `.transportError`: delegates to `URLError.errorDisposition` (`.uncached` for `.cancelled`,
+  ///   `.permanent` for local URL/file configuration errors, and `.retryable` otherwise).
+  /// - `.unknown`: `.uncached` when wrapping `CancellationError`; `.retryable` otherwise.
   var errorDisposition: TokenErrorDisposition {
     switch self {
     case .unsuccessfulResponse(let response, _):
@@ -111,32 +117,26 @@ extension AuthHTTPError {
     case .decodingError, .invalidUTF8Response:
       return .permanent
     case .transportError(let urlError):
-      if urlError.code == .cancelled {
-        return .uncached
-      }
-      return urlError.isTransientNetworkError ? .retryable : .permanent
+      return urlError.errorDisposition
     case .unknown(let error):
       return (error is CancellationError) ? .uncached : .retryable
     }
   }
 
-  /// Indicates whether this HTTP error is transient and eligible for retry.
-  ///
-  /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
-  /// transient network `URLError`s (`URLError.isTransientNetworkError`), and non-cancellation
-  /// unknown errors are considered transient and retryable. Client errors (other 4xx statuses),
-  /// non-transient `URLError`s, and payload decoding errors are considered permanent.
+  /// Whether this HTTP error has `.retryable` disposition (`errorDisposition == .retryable`).
   var isRetryable: Bool {
     self.errorDisposition == .retryable
   }
 
   /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
   ///
-  /// Delegates to `ClassifiedAuthError.errorDisposition` (unwrapping `CredentialsError.cannotFetchToken`
-  /// recursively) and treats `CancellationError` and unrecognized error types as non-retryable.
+  /// Returns `false` for `CancellationError`, delegates to `ClassifiedAuthError.errorDisposition`
+  /// for classified errors (recursively unwrapping `CredentialsError.cannotFetchToken`), and
+  /// defaults to `true` for unrecognized error types so ambiguous transport or custom-provider
+  /// failures err on retrying rather than failing permanently.
   ///
   /// - Parameter error: The error to evaluate.
-  /// - Returns: `true` if the error is transient and should be retried; `false` otherwise.
+  /// - Returns: `true` if the error should be retried; `false` otherwise.
   static func isRetryable(_ error: any Error) -> Bool {
     if error is CancellationError {
       return false
@@ -144,7 +144,7 @@ extension AuthHTTPError {
     if let classified = error as? any ClassifiedAuthError {
       return classified.errorDisposition == .retryable
     }
-    return false
+    return true
   }
 
   /// Evaluates whether a non-retryable error is definitively permanent and safe to latch in
@@ -152,9 +152,9 @@ extension AuthHTTPError {
   /// the credentials instance.
   ///
   /// Returns `true` only when `error` conforms to `ClassifiedAuthError` with `.permanent`
-  /// disposition (configuration/parse/discovery errors, permanent HTTP responses, and expired
-  /// static tokens). Returns `false` for `CancellationError`, `.uncached` errors, and opaque errors
-  /// thrown by user-supplied `SubjectTokenProvider` or `AccessTokenProvider` implementations.
+  /// disposition (configuration/parse/discovery errors, permanent HTTP responses, permanent
+  /// local/URL `URLError`s, and expired static tokens). Returns `false` for `CancellationError`,
+  /// `.uncached` errors, and unrecognized error types.
   static func shouldCachePermanentError(_ error: any Error) -> Bool {
     if error is CancellationError {
       return false

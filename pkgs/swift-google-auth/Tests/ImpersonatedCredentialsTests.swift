@@ -695,7 +695,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     #expect(headers["Authorization"] == "Bearer mock-anon-impersonated-token")
   }
 
-  @Test func customAccessTokenProviderSourceFailsFastAndRecoversWithoutPoisoningCache()
+  @Test func customAccessTokenProviderSourceRetriesAndRecoversWithoutPoisoningCache()
     async throws
   {
     struct CustomSourceError: Error {}
@@ -740,20 +740,26 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let creds = try ImpersonatedCredentials(
       sourceCredentials: sourceCreds.credentialsProvider,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
-      httpClient: AuthHTTPClient(mock: iamMock)
+      httpClient: AuthHTTPClient(mock: iamMock),
+      retryConfiguration: RetryConfiguration(
+        maxAttempts: 2,
+        initialDelay: .milliseconds(1),
+        multiplier: 1.0,
+        maxDelay: .milliseconds(1)
+      )
     )
 
     let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
-    #expect(error1?._isRetryable == false)
-    #expect(await customProvider.callCount == 1)
+    #expect(error1?._isRetryable == true)
+    #expect(await customProvider.callCount >= 1)
 
     // Opaque custom source errors do not poison TokenCache; once the provider recovers, impersonation succeeds.
     await customProvider.setShouldFail(false)
     let headers = try await creds.headers()
     #expect(headers["Authorization"] == "Bearer impersonated-after-custom-source-recovery")
-    #expect(await customProvider.callCount == 2)
+    #expect(await customProvider.callCount >= 2)
   }
 
   @Test func expiredStaticTokenSourceCachesPermanentFailureInTokenCache() async throws {

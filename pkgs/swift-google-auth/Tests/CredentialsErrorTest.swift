@@ -94,13 +94,13 @@ import Testing
     (CredentialsError.credentialsNotFound("none"), false),
     (
       CredentialsError.cannotFetchToken(
-        message: "custom error", underlyingError: CustomFailure()
+        message: "cancelled", underlyingError: CancellationError()
       ),
       false
     ),
     (
       CredentialsError.cannotFetchToken(
-        message: "url error from custom provider", underlyingError: URLError(.timedOut)
+        message: "bad url", underlyingError: URLError(.badURL)
       ),
       false
     ),
@@ -109,6 +109,18 @@ import Testing
         message: "inner parse error", underlyingError: CredentialsError.parseError("mismatch")
       ),
       false
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "custom error", underlyingError: CustomFailure()
+      ),
+      true
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "url error from custom provider", underlyingError: URLError(.timedOut)
+      ),
+      true
     ),
     (
       CredentialsError.cannotFetchToken(
@@ -145,7 +157,10 @@ import Testing
   }
 
   @Test(arguments: [
-    (URLError(.timedOut) as any Error, false),
+    (CustomFailure() as any Error, true),
+    (URLError(.timedOut) as any Error, true),
+    (URLError(.badURL) as any Error, false),
+    (CredentialsError.parseError("invalid") as any Error, false),
     (
       CredentialsError.cannotFetchToken(
         message: "transient token failure",

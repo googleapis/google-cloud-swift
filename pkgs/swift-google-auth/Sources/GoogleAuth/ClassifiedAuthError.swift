@@ -16,43 +16,41 @@ import Foundation
 
 /// Retry and cache-latching classification for authentication errors.
 enum TokenErrorDisposition: Equatable, Sendable {
-  /// Transient failure: eligible for `RetryEngine`, `TokenCache` background retry, and
-  /// transport-level retry/resume (`CredentialsError._isRetryable == true`).
+  /// Transient or unclassified failure: eligible for `RetryEngine`, `TokenCache` background retry,
+  /// and transport-level retry/resume (`CredentialsError._isRetryable == true`), and never latched
+  /// as `permanentError`.
   case retryable
 
   /// Definitively permanent failure: fails immediately (`_isRetryable == false`) and latches
   /// `permanentError` in `TokenCache` / `MDSUniverseDomainCache`.
   case permanent
 
-  /// Non-retryable failure whose permanence across future calls is unknown (such as task
-  /// cancellation or an opaque custom supplier error): fails the current request fast
-  /// (`_isRetryable == false`) without background polling or latching `permanentError`.
+  /// Non-retryable failure that must not be latched across future calls (such as task
+  /// cancellation): fails the current request fast (`_isRetryable == false`) without background
+  /// polling or latching `permanentError`.
   case uncached
 }
 
-/// Internal protocol adopted by `GoogleAuth` error types to declare their retry and caching
+/// Internal protocol adopted by error types to declare their authentication retry and caching
 /// disposition without cross-type downcasting.
 protocol ClassifiedAuthError: Error {
   var errorDisposition: TokenErrorDisposition { get }
 }
 
-extension URLError {
-  /// Whether this error represents a transient TCP, DNS, or connectivity failure.
-  ///
-  /// Configuration, file-system, authentication, cancellation, and TLS certificate `URLError`
-  /// codes (such as `.badURL`, `.fileDoesNotExist`, `.userAuthenticationRequired`,
-  /// `.serverCertificateUntrusted`, and `.cancelled`) return `false`.
-  var isTransientNetworkError: Bool {
+extension URLError: ClassifiedAuthError {
+  /// Classifies `URLError` codes in favor of retrying unless the code represents cancellation or a
+  /// local URL/file configuration failure that cannot recover on retry.
+  var errorDisposition: TokenErrorDisposition {
     switch self.code {
-    case .timedOut,
-      .networkConnectionLost,
-      .cannotConnectToHost,
-      .notConnectedToInternet,
-      .dnsLookupFailed,
-      .cannotFindHost:
-      return true
+    case .cancelled:
+      return .uncached
+    case .badURL,
+      .unsupportedURL,
+      .fileDoesNotExist,
+      .noPermissionsToReadFile:
+      return .permanent
     default:
-      return false
+      return .retryable
     }
   }
 }

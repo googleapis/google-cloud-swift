@@ -428,7 +428,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       httpClient: httpClient
     )
 
-    // First attempt wraps URLError in AuthHTTPError.transportError inside CredentialsError.cannotFetchToken
+    // First attempt wraps URLError inside CredentialsError.cannotFetchToken
     let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
@@ -438,7 +438,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
       return
     }
-    #expect((underlyingError1 as? AuthHTTPError)?.urlError?.code == .networkConnectionLost)
+    #expect((underlyingError1 as? URLError)?.code == .networkConnectionLost)
 
     // Depending on how the TokenCache background task is scheduled, this count may be 1 or 2.
     let count1 = await provider.callCount
@@ -456,9 +456,9 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
   }
 
   @Test(
-    "Programmatic credentials fail fast on custom provider errors without poisoning TokenCache"
+    "Programmatic credentials treat custom provider errors as retryable without poisoning TokenCache"
   )
-  func programmaticCredentialsCustomProviderErrorFailsFastAndRecovers() async throws {
+  func programmaticCredentialsCustomProviderErrorRetriesAndRecovers() async throws {
     actor RecoverableSubjectTokenProvider: SubjectTokenProvider {
       var callCount = 0
       var shouldFail = true
@@ -511,43 +511,46 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       _ = try await creds.headers()
     }
     let unwrapped1 = try #require(error1)
-    #expect(unwrapped1._isRetryable == false)
+    #expect(unwrapped1._isRetryable == true)
+    #expect(AuthHTTPError.shouldCachePermanentError(unwrapped1) == false)
     guard case let .cannotFetchToken(_, underlyingError1) = unwrapped1 else {
       Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
       return
     }
     #expect(underlyingError1 is HTTPClientError)
-    #expect(await provider.callCount == 1)
+    #expect(await provider.callCount >= 1)
 
     // Once the custom supplier recovers (e.g. after a Linux HTTPClientError blip), TokenCache
     // has not permanently latched the error and the next call succeeds.
     await provider.setShouldFail(false)
     let headers = try await creds.headers()
     #expect(headers["Authorization"] == "Bearer mock-token.sts-recovered")
-    #expect(await provider.callCount == 2)
+    #expect(await provider.callCount >= 2)
   }
 
   @Test(
-    "Programmatic credentials classify SubjectTokenProvider URLErrors via transient network allowlist",
+    "Programmatic credentials classify SubjectTokenProvider URLErrors",
     arguments: [
-      (code: URLError.Code.timedOut, expectedRetryable: true),
-      (code: .networkConnectionLost, expectedRetryable: true),
-      (code: .cannotConnectToHost, expectedRetryable: true),
-      (code: .notConnectedToInternet, expectedRetryable: true),
-      (code: .dnsLookupFailed, expectedRetryable: true),
-      (code: .cannotFindHost, expectedRetryable: true),
-      (code: .cancelled, expectedRetryable: false),
-      (code: .badURL, expectedRetryable: false),
-      (code: .unsupportedURL, expectedRetryable: false),
-      (code: .fileDoesNotExist, expectedRetryable: false),
-      (code: .noPermissionsToReadFile, expectedRetryable: false),
-      (code: .userAuthenticationRequired, expectedRetryable: false),
-      (code: .serverCertificateUntrusted, expectedRetryable: false),
+      (code: URLError.Code.timedOut, expectedDisposition: TokenErrorDisposition.retryable),
+      (code: .networkConnectionLost, expectedDisposition: .retryable),
+      (code: .cannotConnectToHost, expectedDisposition: .retryable),
+      (code: .notConnectedToInternet, expectedDisposition: .retryable),
+      (code: .dnsLookupFailed, expectedDisposition: .retryable),
+      (code: .cannotFindHost, expectedDisposition: .retryable),
+      (code: .secureConnectionFailed, expectedDisposition: .retryable),
+      (code: .badServerResponse, expectedDisposition: .retryable),
+      (code: .userAuthenticationRequired, expectedDisposition: .retryable),
+      (code: .serverCertificateUntrusted, expectedDisposition: .retryable),
+      (code: .cancelled, expectedDisposition: .uncached),
+      (code: .badURL, expectedDisposition: .permanent),
+      (code: .unsupportedURL, expectedDisposition: .permanent),
+      (code: .fileDoesNotExist, expectedDisposition: .permanent),
+      (code: .noPermissionsToReadFile, expectedDisposition: .permanent),
     ]
   )
   func programmaticCredentialsClassifiesSubjectTokenURLErrors(
     code: URLError.Code,
-    expectedRetryable: Bool
+    expectedDisposition: TokenErrorDisposition
   ) async throws {
     let provider = MockFailingSubjectTokenProvider(error: URLError(code))
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
@@ -563,7 +566,10 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       _ = try await creds.headers()
     }
     let unwrapped = try #require(error)
-    #expect(unwrapped._isRetryable == expectedRetryable)
+    #expect(unwrapped.errorDisposition == expectedDisposition)
+    #expect(unwrapped._isRetryable == (expectedDisposition == .retryable))
+    #expect(
+      AuthHTTPError.shouldCachePermanentError(unwrapped) == (expectedDisposition == .permanent))
   }
 
   @Test("Programmatic credentials cache permanent STS HTTP 4xx errors in TokenCache")

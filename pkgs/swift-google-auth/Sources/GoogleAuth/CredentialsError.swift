@@ -142,10 +142,13 @@ extension CredentialsError: ClassifiedAuthError {
     case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
       return .permanent
     case .cannotFetchToken(_, let underlyingError):
+      if underlyingError is CancellationError {
+        return .uncached
+      }
       if let classified = underlyingError as? any ClassifiedAuthError {
         return classified.errorDisposition
       }
-      return .uncached
+      return .retryable
     }
   }
 }
@@ -155,11 +158,11 @@ extension CredentialsError {
   /// Indicates whether this credentials error represents a transient token-fetch failure that is
   /// eligible for transport-level retry or stream resumption.
   ///
-  /// Returns `true` only when `.cannotFetchToken` wraps a transient `AuthHTTPError` (such as
-  /// HTTP 408, 429, 5xx, or a network transport error) or recursively wraps a retryable
-  /// `CredentialsError`. Configuration, file-loading, discovery, universe-domain mismatch, HTTP
-  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, and non-network
-  /// `SubjectTokenProvider` failures return `false`.
+  /// Returns `false` for configuration, file-loading, discovery, and universe-domain mismatch
+  /// cases, as well as `.cannotFetchToken` failures wrapping permanent HTTP responses (status codes
+  /// other than 408, 429, and 5xx), payload decoding errors, permanent local/URL `URLError`s,
+  /// expired static tokens, or task cancellation. Returns `true` for transient and unclassified
+  /// `.cannotFetchToken` failures so ambiguous transport or custom-provider errors err on retrying.
   public var _isRetryable: Bool {
     self.errorDisposition == .retryable
   }
