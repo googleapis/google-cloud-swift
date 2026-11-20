@@ -1446,6 +1446,15 @@ import NIOHTTP1
     #expect(underlying is CredentialsError)
   }
 
+  @Test func referenceSemantics() throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    let alias = client
+    #expect(client === alias)
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
