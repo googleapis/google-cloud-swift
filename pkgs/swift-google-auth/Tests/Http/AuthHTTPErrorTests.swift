@@ -182,6 +182,27 @@ import Testing
     #expect(AuthHTTPError.isRetryable(wrappedUnknown) == true)
     #expect(wrappedUnknown._isRetryable == true)
 
+    // UnconfirmedADCFallbackError marks an otherwise-retryable AuthHTTPError as `.uncached` so
+    // outer retry/resume policies fail fast without latching `permanentError` while preserving
+    // `description` and `debugDescription` across nested `CredentialsError.cannotFetchToken` layers.
+    let unconfirmedTransport = UnconfirmedADCFallbackError(underlying: transportError)
+    #expect(unconfirmedTransport.errorDisposition == .uncached)
+    #expect(AuthHTTPError.isRetryable(unconfirmedTransport) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(unconfirmedTransport) == false)
+    #expect(unconfirmedTransport.description == transportError.description)
+    #expect(unconfirmedTransport.debugDescription == transportError.debugDescription)
+    let wrappedUnconfirmed = CredentialsError.cannotFetchToken(
+      message: "adc fallback", underlyingError: unconfirmedTransport)
+    #expect(wrappedUnconfirmed.errorDisposition == .uncached)
+    #expect(AuthHTTPError.isRetryable(wrappedUnconfirmed) == false)
+    #expect(wrappedUnconfirmed._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrappedUnconfirmed) == false)
+    let doublyWrappedUnconfirmed = CredentialsError.cannotFetchToken(
+      message: "impersonation source failed", underlyingError: wrappedUnconfirmed)
+    #expect(doublyWrappedUnconfirmed.errorDisposition == .uncached)
+    #expect(doublyWrappedUnconfirmed._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(doublyWrappedUnconfirmed) == false)
+
     // Expired static token errors are non-retryable and permanently cacheable.
     let expiredProvider = StaticAccessTokenProvider(
       token: AccessToken(token: "mock-token.expired", expirationDate: .distantPast),

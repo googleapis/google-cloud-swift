@@ -158,8 +158,9 @@ extension CredentialsError {
   /// Returns `true` only when `.cannotFetchToken` wraps a transient `AuthHTTPError` (such as
   /// HTTP 408, 429, 5xx, or a network transport error) or recursively wraps a retryable
   /// `CredentialsError`. Configuration, file-loading, discovery, universe-domain mismatch, HTTP
-  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, and non-network
-  /// `SubjectTokenProvider` failures return `false`.
+  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, non-network
+  /// `SubjectTokenProvider`, and unconfirmed implicit ADC metadata server fallback failures
+  /// return `false`.
   public var _isRetryable: Bool {
     self.errorDisposition == .retryable
   }

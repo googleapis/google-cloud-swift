@@ -781,4 +781,82 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
     #expect(error2?._isRetryable == false)
   }
+
+  @Test func impersonatedOverUnconfirmedADCFallbackRecoversOnceMDSReachable() async throws {
+    struct MockSourceTokenPayload: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let mdsEncoder = JSONEncoder()
+    mdsEncoder.keyEncodingStrategy = .convertToSnakeCase
+    let sourceTokenData = try mdsEncoder.encode(
+      MockSourceTokenPayload(accessToken: "source-mds-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+    let iamResponseData = Data(
+      #"{"accessToken":"impersonated-recovered-token","expireTime":"2099-01-01T00:00:00Z"}"#.utf8
+    )
+
+    let mdsMock = MockHTTPClient([
+      // 1. Initial unconfirmed universe-domain probe fails during cold start.
+      { _ in
+        throw URLError(.cannotConnectToHost)
+      },
+      // 2. MDS comes online: universe-domain and token requests succeed.
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("googleapis.com\n".utf8)))
+        )
+      },
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
+          body: .bytes(.init(data: sourceTokenData))
+        )
+      },
+    ])
+    let iamMock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: iamResponseData))
+        )
+      }
+    ])
+
+    let mdsSource = MDSCredentials(
+      retryConfiguration: RetryConfiguration(
+        maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1)
+      ),
+      client: AuthHTTPClient(mock: mdsMock),
+      fromADC: true,
+      environment: [:],
+      jitter: nil
+    )
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: mdsSource,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      httpClient: AuthHTTPClient(mock: iamMock)
+    )
+
+    // Cold-start failure fails fast (`_isRetryable == false`) without poisoning ImpersonatedCredentials's TokenCache.
+    let firstError = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(firstError?._isRetryable == false)
+
+    // Once MDS is reachable, the next call succeeds end-to-end.
+    let headers = try await creds.headers()
+    #expect(headers["Authorization"] == "Bearer impersonated-recovered-token")
+  }
 }
