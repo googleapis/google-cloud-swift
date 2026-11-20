@@ -762,4 +762,105 @@ import Testing
       )
     }
   }
+
+  @Test func executeMultipleAndEmptyRoutingParams() async throws {
+    actor RequestParamsCollector {
+      var recorded: [[String]] = []
+      func record(_ values: [String]) {
+        recorded.append(values)
+      }
+    }
+    let collector = RequestParamsCollector()
+
+    struct InspectingEchoService: RegistrableRPCService {
+      let collector: RequestParamsCollector
+      func registerMethods<Transport: ServerTransport>(with router: inout RPCRouter<Transport>) {
+        router.registerHandler(
+          forMethod: MethodDescriptor(
+            service: ServiceDescriptor(package: "test", service: "Echo"),
+            method: "Echo"
+          ),
+          deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
+          serializer: ProtobufSerializer<Google_Protobuf_Empty>()
+        ) { request, _ in
+          let paramValues = request.metadata[stringValues: "x-goog-request-params"].map {
+            String($0)
+          }
+          await collector.record(paramValues)
+          return StreamingServerResponse(metadata: [:]) { writer in
+            try await writer.write(Google_Protobuf_Empty())
+            return [:]
+          }
+        }
+      }
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [InspectingEchoService(collector: collector)]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress = try await server.listeningAddress?.ipv4
+      guard let port = listeningAddress?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      var clientOptions = ClientOptions()
+      clientOptions.endpoint = endpoint
+      clientOptions.credentials = try Credentials(configuration: .anonymous)
+
+      let client = try _GRPCClient(from: clientOptions, withDefaultEndpoint: endpoint)
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      let testCases: [(routingParams: [String], expectedHeader: [String])] = [
+        (
+          _RoutingMatcher.format([
+            ("name", _RoutingMatcher.value("billingAccounts/012345", matching: [.multiWildcard])),
+            (
+              "destination_parent",
+              _RoutingMatcher.value("organizations/67890", matching: [.multiWildcard])
+            ),
+          ]),
+          ["name=billingAccounts%2F012345&destination_parent=organizations%2F67890"]
+        ),
+        (
+          _RoutingMatcher.format([
+            ("primary_empty", _RoutingMatcher.value("", matching: [.multiWildcard])),
+            ("parent", _RoutingMatcher.value("organizations/67890", matching: [.multiWildcard])),
+          ]),
+          ["parent=organizations%2F67890"]
+        ),
+        (
+          _RoutingMatcher.format([
+            ("primary_empty", _RoutingMatcher.value("", matching: [.multiWildcard])),
+            ("parent", _RoutingMatcher.value(nil, matching: [.multiWildcard])),
+          ]),
+          []
+        ),
+      ]
+      for testCase in testCases {
+        let _: Google_Protobuf_Empty = try await client.execute(
+          path: "/test.Echo/Echo",
+          request: Google_Protobuf_Empty(),
+          options: RequestOptions(),
+          routingParams: testCase.routingParams
+        )
+      }
+      #expect(await collector.recorded == testCases.map(\.expectedHeader))
+    }
+  }
 }
