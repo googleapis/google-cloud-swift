@@ -171,9 +171,11 @@ import Testing
       .dnsLookupFailed,
       .cannotFindHost,
     ] {
-      let err = AuthHTTPError.transportError(URLError(transientCode))
+      let urlError = URLError(transientCode)
+      let err = AuthHTTPError.transportError(urlError)
+      #expect(urlError.isTransientNetworkError == true)
       #expect(err.isRetryable == true)
-      #expect(AuthHTTPError.isRetryable(URLError(transientCode)) == true)
+      #expect(AuthHTTPError.isRetryable(err) == true)
       #expect(AuthHTTPError.shouldCachePermanentError(err) == false)
     }
 
@@ -185,11 +187,15 @@ import Testing
       .userAuthenticationRequired,
       .serverCertificateUntrusted,
     ] {
-      let err = AuthHTTPError.transportError(URLError(permanentCode))
+      let urlError = URLError(permanentCode)
+      let err = AuthHTTPError.transportError(urlError)
+      #expect(urlError.isTransientNetworkError == false)
       #expect(err.isRetryable == false)
-      #expect(AuthHTTPError.isRetryable(URLError(permanentCode)) == false)
+      #expect(AuthHTTPError.isRetryable(err) == false)
       #expect(AuthHTTPError.shouldCachePermanentError(err) == true)
     }
+    #expect(URLError(.cancelled).isTransientNetworkError == false)
+    #expect(AuthHTTPError.isRetryable(URLError(.timedOut)) == false)
 
     let cancelledUnknown = AuthHTTPError.unknown(CancellationError())
     #expect(cancelledUnknown.isRetryable == false)
