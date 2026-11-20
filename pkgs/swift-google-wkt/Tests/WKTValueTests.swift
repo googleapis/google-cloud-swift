@@ -390,13 +390,31 @@ import Testing
     }
   }
 
+  struct OptionalWrappedNull: Codable, Hashable {
+    var value: WKTNullValue?
+  }
+
   @Test("NullValue encoding")
   func encodeNullValue() throws {
-    let wrapped = WrappedNull(value: WKTNullValue())
     let encoder = _ProtoJSONEncoder()
-    let data = try encoder.encode(wrapped)
-    let got = String(data: data, encoding: .utf8)!
-    #expect(got == "{\"value\":null}")
+    let topLevel = try encoder.encode(WKTNullValue())
+    #expect(String(data: topLevel, encoding: .utf8) == "null")
+
+    let wrapped = WrappedNull(value: WKTNullValue())
+    let defaultOmitted = try encoder.encode(wrapped)
+    #expect(String(data: defaultOmitted, encoding: .utf8) == "{}")
+
+    let optionalPresent = OptionalWrappedNull(value: WKTNullValue())
+    let optionalData = try encoder.encode(optionalPresent)
+    #expect(String(data: optionalData, encoding: .utf8) == "{\"value\":null}")
+
+    let optionalNil = OptionalWrappedNull(value: nil)
+    let optionalNilData = try encoder.encode(optionalNil)
+    #expect(String(data: optionalNilData, encoding: .utf8) == "{}")
+
+    encoder.omitDefaultValues = false
+    let preserved = try encoder.encode(wrapped)
+    #expect(String(data: preserved, encoding: .utf8) == "{\"value\":null}")
   }
 
   @Test(

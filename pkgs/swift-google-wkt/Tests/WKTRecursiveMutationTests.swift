@@ -105,7 +105,7 @@ import Testing
     let data = try encoder.encode(schema)
     #expect(
       String(data: data, encoding: .utf8)
-        == #"{"items":{"title":"","type":"string"},"title":"","type":"array"}"#
+        == #"{"items":{"type":"string"},"type":"array"}"#
     )
 
     let decoder = _ProtoJSONDecoder()

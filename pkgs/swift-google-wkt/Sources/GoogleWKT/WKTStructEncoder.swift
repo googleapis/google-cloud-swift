@@ -34,8 +34,13 @@ struct WKTStructEncoder {
   /// containers. Defaults to `true` to match ProtoJSON default-value omission.
   var omitEmptyCollections: Bool = true
 
-  init(omitEmptyCollections: Bool = true) {
+  /// Whether to omit Proto3 default scalar, bytes, and `NullValue` fields encoded via non-optional
+  /// `encode(_:forKey:)` in keyed message containers. Defaults to `true`.
+  var omitDefaultValues: Bool = true
+
+  init(omitEmptyCollections: Bool = true, omitDefaultValues: Bool = true) {
     self.omitEmptyCollections = omitEmptyCollections
+    self.omitDefaultValues = omitDefaultValues
   }
 
   /// Encodes a top-level message `value` into a `WKTStruct` dictionary.
@@ -44,7 +49,11 @@ struct WKTStructEncoder {
   /// if a primitive or array is passed at the top level).
   func encode<T: Encodable>(_ value: T) throws -> WKTStruct {
     let wktValue = try Self.encodeToValue(
-      value, codingPath: [], omitEmptyCollections: self.omitEmptyCollections)
+      value,
+      codingPath: [],
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
+    )
     guard case .object(let dict) = wktValue else {
       throw EncodingError.invalidValue(
         value,
@@ -65,7 +74,8 @@ struct WKTStructEncoder {
   static func encodeToValue<T: Encodable>(
     _ value: T,
     codingPath: [any CodingKey],
-    omitEmptyCollections: Bool
+    omitEmptyCollections: Bool,
+    omitDefaultValues: Bool
   ) throws -> WKTValue {
     // Fast path for values that are already WKT JSON representations; we only need to verify
     // that any embedded `.number(Double)` values are finite (NaN/Infinity are invalid in JSON).
@@ -111,14 +121,23 @@ struct WKTStructEncoder {
         return .null(WKTNullValue())
       }
       return try encodeToValue(
-        unwrapped, codingPath: codingPath, omitEmptyCollections: omitEmptyCollections)
+        unwrapped,
+        codingPath: codingPath,
+        omitEmptyCollections: omitEmptyCollections,
+        omitDefaultValues: omitDefaultValues
+      )
     }
 
     // Composite `Encodable` types (generated messages, arrays, maps, custom WKT wrappers)
     // encode into a reference-backed `EncodingNode` and then materialize into `WKTValue`.
     let node = EncodingNode()
     let encoder = InternalStructEncoder(
-      node: node, codingPath: codingPath, omitEmptyCollections: omitEmptyCollections)
+      node: node,
+      codingPath: codingPath,
+      omitEmptyCollections: omitEmptyCollections,
+      omitDefaultValues: omitDefaultValues,
+      isDictionary: value is any _DictionaryProtocol
+    )
     try value.encode(to: encoder)
     return node.toWKTValue()
   }
@@ -288,6 +307,8 @@ fileprivate struct InternalStructEncoder: Encoder {
   let node: EncodingNode
   let codingPath: [any CodingKey]
   let omitEmptyCollections: Bool
+  let omitDefaultValues: Bool
+  let isDictionary: Bool
 
   var userInfo: [CodingUserInfoKey: Any] { [:] }
 
@@ -297,7 +318,9 @@ fileprivate struct InternalStructEncoder: Encoder {
       InternalKeyedStructEncodingContainer<Key>(
         node: self.node,
         codingPath: self.codingPath,
-        omitEmptyCollections: self.omitEmptyCollections
+        omitEmptyCollections: self.omitEmptyCollections,
+        omitDefaultValues: self.omitDefaultValues,
+        isDictionary: self.isDictionary
       )
     )
   }
@@ -307,7 +330,8 @@ fileprivate struct InternalStructEncoder: Encoder {
     return InternalUnkeyedStructEncodingContainer(
       node: self.node,
       codingPath: self.codingPath,
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
   }
 
@@ -315,7 +339,8 @@ fileprivate struct InternalStructEncoder: Encoder {
     return InternalSingleValueStructEncodingContainer(
       node: self.node,
       codingPath: self.codingPath,
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
   }
 }
@@ -328,66 +353,158 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
   let node: EncodingNode
   let codingPath: [any CodingKey]
   let omitEmptyCollections: Bool
+  let omitDefaultValues: Bool
+  let isDictionary: Bool
+
+  private var shouldOmitDefaults: Bool {
+    self.omitDefaultValues && !self.isDictionary
+  }
 
   mutating func encodeNil(forKey key: K) throws {
     self.node.setObjectEntry(.value(.null(WKTNullValue())), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Bool, forKey key: K) throws {
+    if self.shouldOmitDefaults && !value { return }
     self.node.setObjectEntry(.value(.bool(value)), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: String, forKey key: K) throws {
+    if self.shouldOmitDefaults && value.isEmpty { return }
     self.node.setObjectEntry(.value(.string(value)), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Double, forKey key: K) throws {
+    if self.shouldOmitDefaults && value.bitPattern == 0 { return }
     self.node.setObjectEntry(
       .value(WKTStructEncoder.encodeDouble(value)), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Float, forKey key: K) throws {
+    if self.shouldOmitDefaults && value.bitPattern == 0 { return }
     self.node.setObjectEntry(
       .value(WKTStructEncoder.encodeFloat(value)), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Int, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Int8, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Int16, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Int32, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: Int64, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: UInt, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: UInt8, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: UInt16, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: UInt32, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
 
   mutating func encode(_ value: UInt64, forKey key: K) throws {
+    if self.shouldOmitDefaults && value == 0 { return }
+    self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Bool?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.bool(value)), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: String?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.string(value)), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Double?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(
+      .value(WKTStructEncoder.encodeDouble(value)), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Float?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(
+      .value(WKTStructEncoder.encodeFloat(value)), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Int?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Int8?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Int16?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Int32?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: Int64?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: UInt?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: UInt8?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: UInt16?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: UInt32?, forKey key: K) throws {
+    guard let value else { return }
+    self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
+  }
+
+  mutating func encodeIfPresent(_ value: UInt64?, forKey key: K) throws {
+    guard let value else { return }
     self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
   }
 
@@ -398,18 +515,20 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
       let encoded = try WKTStructEncoder.encodeToValue(
         unwrapped,
         codingPath: self.codingPath + [key],
-        omitEmptyCollections: self.omitEmptyCollections
+        omitEmptyCollections: self.omitEmptyCollections,
+        omitDefaultValues: self.omitDefaultValues
       )
       self.node.setObjectEntry(.value(encoded), forKey: key.stringValue)
       return
     }
-    // `encodeIfPresent` is used for optional fields (such as `WKTStruct?` or `WKTListValue?`).
-    // When an optional field is explicitly non-nil, we preserve it even if it is an empty `{}`
-    // or `[]`, matching `_ProtoJSONEncoder`.
+    // `encodeIfPresent` is used for optional fields (such as `WKTStruct?` or `WKTListValue?`) and
+    // `oneof` variants. When non-nil, we preserve it even if it is empty or a default scalar value,
+    // matching `_ProtoJSONEncoder`.
     let encoded = try WKTStructEncoder.encodeToValue(
       value,
       codingPath: self.codingPath + [key],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
     self.node.setObjectEntry(.value(encoded), forKey: key.stringValue)
   }
@@ -417,15 +536,19 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
   mutating func encode<T>(_ value: T, forKey key: K) throws where T: Encodable {
     // Non-optional repeated (`[T]`) and map (`[String: V]`) fields use `encode(_:forKey:)`.
     // In ProtoJSON, empty repeated and map fields are omitted from the output object by default.
-    if self.omitEmptyCollections {
+    if self.omitEmptyCollections, !self.isDictionary {
       if let checkable = value as? any _EmptyCollectionProtocol, checkable._isEmptyCollection {
         return
       }
     }
+    if self.shouldOmitDefaults && isProtoJSONDefaultValue(value) {
+      return
+    }
     let encoded = try WKTStructEncoder.encodeToValue(
       value,
       codingPath: self.codingPath + [key],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
     self.node.setObjectEntry(.value(encoded), forKey: key.stringValue)
   }
@@ -439,7 +562,9 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
       InternalKeyedStructEncodingContainer<NestedKey>(
         node: childNode,
         codingPath: self.codingPath + [key],
-        omitEmptyCollections: self.omitEmptyCollections
+        omitEmptyCollections: self.omitEmptyCollections,
+        omitDefaultValues: self.omitDefaultValues,
+        isDictionary: false
       )
     )
   }
@@ -450,7 +575,8 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
     return InternalUnkeyedStructEncodingContainer(
       node: childNode,
       codingPath: self.codingPath + [key],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
   }
 
@@ -460,7 +586,9 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
     return InternalStructEncoder(
       node: childNode,
       codingPath: self.codingPath + [superKey],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues,
+      isDictionary: false
     )
   }
 
@@ -469,7 +597,9 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
     return InternalStructEncoder(
       node: childNode,
       codingPath: self.codingPath + [key],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues,
+      isDictionary: false
     )
   }
 }
@@ -478,6 +608,7 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
   let node: EncodingNode
   let codingPath: [any CodingKey]
   let omitEmptyCollections: Bool
+  let omitDefaultValues: Bool
 
   var count: Int { self.node.arrayCount }
 
@@ -546,7 +677,8 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
     let encoded = try WKTStructEncoder.encodeToValue(
       value,
       codingPath: self.codingPath + [idxKey],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
     self.node.appendArrayEntry(.value(encoded))
   }
@@ -561,7 +693,9 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
       InternalKeyedStructEncodingContainer<NestedKey>(
         node: childNode,
         codingPath: self.codingPath + [idxKey],
-        omitEmptyCollections: self.omitEmptyCollections
+        omitEmptyCollections: self.omitEmptyCollections,
+        omitDefaultValues: self.omitDefaultValues,
+        isDictionary: false
       )
     )
   }
@@ -573,7 +707,8 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
     return InternalUnkeyedStructEncodingContainer(
       node: childNode,
       codingPath: self.codingPath + [idxKey],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
   }
 
@@ -584,7 +719,9 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
     return InternalStructEncoder(
       node: childNode,
       codingPath: self.codingPath + [idxKey],
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues,
+      isDictionary: false
     )
   }
 }
@@ -593,6 +730,7 @@ fileprivate struct InternalSingleValueStructEncodingContainer: SingleValueEncodi
   let node: EncodingNode
   let codingPath: [any CodingKey]
   let omitEmptyCollections: Bool
+  let omitDefaultValues: Bool
 
   mutating func encodeNil() throws {
     self.node.storage = .singleValue(.null(WKTNullValue()))
@@ -658,7 +796,8 @@ fileprivate struct InternalSingleValueStructEncodingContainer: SingleValueEncodi
     let encoded = try WKTStructEncoder.encodeToValue(
       value,
       codingPath: self.codingPath,
-      omitEmptyCollections: self.omitEmptyCollections
+      omitEmptyCollections: self.omitEmptyCollections,
+      omitDefaultValues: self.omitDefaultValues
     )
     self.node.storage = .singleValue(encoded)
   }

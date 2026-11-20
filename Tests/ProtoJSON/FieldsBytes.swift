@@ -59,23 +59,15 @@ import Testing
   @Test(
     "bytes fields serialize",
     arguments: [
-      (#"{"singular":""}"#, T()),
-      (
-        #"{"singular":"NDI="}"#,
-        T().with { $0.singular = Data("42".utf8) }
-      ),
-      (
-        #"{"option":"NDI=","singular":""}"#,
-        T().with { $0.option = Data("42".utf8) }
-      ),
-      (
-        #"{"repeated":["NDI="],"singular":""}"#,
-        T().with { $0.repeated = [Data("42".utf8)] }
-      ),
-      (
-        #"{"map":{"a":"NDI="},"singular":""}"#,
-        T().with { $0.map = ["a": Data("42".utf8)] }
-      ),
+      (#"{}"#, T()),
+      (#"{}"#, T().with { $0.singular = Data() }),
+      (#"{"singular":"NDI="}"#, T().with { $0.singular = Data("42".utf8) }),
+      (#"{"option":""}"#, T().with { $0.option = Data() }),
+      (#"{"option":"NDI="}"#, T().with { $0.option = Data("42".utf8) }),
+      (#"{"repeated":[""]}"#, T().with { $0.repeated = [Data()] }),
+      (#"{"repeated":["NDI="]}"#, T().with { $0.repeated = [Data("42".utf8)] }),
+      (#"{"map":{"a":""}}"#, T().with { $0.map = ["a": Data()] }),
+      (#"{"map":{"a":"NDI="}}"#, T().with { $0.map = ["a": Data("42".utf8)] }),
     ]
   )
   func serialize(want: String, input: T) throws {

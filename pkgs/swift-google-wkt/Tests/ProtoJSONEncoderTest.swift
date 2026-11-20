@@ -122,12 +122,20 @@ import Testing
     let jsonString = try #require(String(data: data, encoding: .utf8))
     #expect(
       jsonString
-        == #"{"mapValue":{"max":"9223372036854775807","min":"-9223372036854775808"},"option":"9223372036854775807","repeated":["-9223372036854775808","0","9223372036854775807"],"singular":"-9223372036854775808","uint64Map":{"max":"18446744073709551615","min":"0"},"uint64Option":"18446744073709551615","uint64Repeated":["0","18446744073709551615"],"uint64Val":"0"}"#
+        == #"{"mapValue":{"max":"9223372036854775807","min":"-9223372036854775808"},"option":"9223372036854775807","repeated":["-9223372036854775808","0","9223372036854775807"],"singular":"-9223372036854775808","uint64Map":{"max":"18446744073709551615","min":"0"},"uint64Option":"18446744073709551615","uint64Repeated":["0","18446744073709551615"]}"#
     )
 
     let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(Int64Model.self, from: data)
     #expect(decoded == model)
+
+    encoder.omitDefaultValues = false
+    let preservedData = try encoder.encode(model)
+    let preservedString = try #require(String(data: preservedData, encoding: .utf8))
+    #expect(
+      preservedString
+        == #"{"mapValue":{"max":"9223372036854775807","min":"-9223372036854775808"},"option":"9223372036854775807","repeated":["-9223372036854775808","0","9223372036854775807"],"singular":"-9223372036854775808","uint64Map":{"max":"18446744073709551615","min":"0"},"uint64Option":"18446744073709551615","uint64Repeated":["0","18446744073709551615"],"uint64Val":"0"}"#
+    )
   }
 
   struct OmitChild: Codable, Equatable {
@@ -386,5 +394,125 @@ import Testing
     let fastPresent = try _anySerialize(message: present)
     let slowPresent = try _slowAnySerialize(message: present)
     #expect(fastPresent == slowPresent)
+  }
+
+  struct DefaultScalarModel: Codable, Equatable {
+    var boolVal: Bool = false
+    var intVal: Int = 0
+    var int8Val: Int8 = 0
+    var int16Val: Int16 = 0
+    var int32Val: Int32 = 0
+    var int64Val: Int64 = 0
+    var uintVal: UInt = 0
+    var uint8Val: UInt8 = 0
+    var uint16Val: UInt16 = 0
+    var uint32Val: UInt32 = 0
+    var uint64Val: UInt64 = 0
+    var floatVal: Float = 0
+    var doubleVal: Double = 0
+    var stringVal: String = ""
+    var dataVal: Data = Data()
+    var nullVal: WKTNullValue = WKTNullValue()
+  }
+
+  @Test func encodeOmitDefaultScalarValuesByDefault() throws {
+    let encoder = Self.omittingEncoder()
+    let model = DefaultScalarModel()
+    let data = try encoder.encode(model)
+    #expect(try #require(String(data: data, encoding: .utf8)) == "{}")
+
+    encoder.omitDefaultValues = false
+    let preserved = try encoder.encode(model)
+    #expect(
+      try #require(String(data: preserved, encoding: .utf8))
+        == #"{"boolVal":false,"dataVal":"","doubleVal":0,"floatVal":0,"int16Val":0,"int32Val":0,"int64Val":"0","int8Val":0,"intVal":0,"nullVal":null,"stringVal":"","uint16Val":0,"uint32Val":0,"uint64Val":"0","uint8Val":0,"uintVal":0}"#
+    )
+  }
+
+  @Test func encodeNegativeZeroFloatAndDoublePreserved() throws {
+    let encoder = Self.omittingEncoder()
+    let positiveZero = FloatModel(floatVal: 0.0, doubleVal: 0.0, url: "")
+    #expect(try #require(String(data: try encoder.encode(positiveZero), encoding: .utf8)) == "{}")
+
+    let negativeZero = FloatModel(floatVal: -0.0, doubleVal: -0.0, url: "")
+    #expect(
+      try #require(String(data: try encoder.encode(negativeZero), encoding: .utf8))
+        == #"{"doubleVal":-0,"floatVal":-0}"#
+    )
+  }
+
+  struct ExplicitOptionalDefaultsModel: Codable, Equatable {
+    var boolVal: Bool?
+    var intVal: Int?
+    var int8Val: Int8?
+    var int16Val: Int16?
+    var int32Val: Int32?
+    var int64Val: Int64?
+    var uintVal: UInt?
+    var uint8Val: UInt8?
+    var uint16Val: UInt16?
+    var uint32Val: UInt32?
+    var uint64Val: UInt64?
+    var floatVal: Float?
+    var doubleVal: Double?
+    var stringVal: String?
+    var dataVal: Data?
+  }
+
+  @Test func encodePreserveExplicitOptionalDefaultValues() throws {
+    let encoder = Self.omittingEncoder()
+    let nilModel = ExplicitOptionalDefaultsModel()
+    #expect(try #require(String(data: try encoder.encode(nilModel), encoding: .utf8)) == "{}")
+
+    let zeroModel = ExplicitOptionalDefaultsModel(
+      boolVal: false,
+      intVal: 0,
+      int8Val: 0,
+      int16Val: 0,
+      int32Val: 0,
+      int64Val: 0,
+      uintVal: 0,
+      uint8Val: 0,
+      uint16Val: 0,
+      uint32Val: 0,
+      uint64Val: 0,
+      floatVal: 0,
+      doubleVal: 0,
+      stringVal: "",
+      dataVal: Data()
+    )
+    let data = try encoder.encode(zeroModel)
+    #expect(
+      try #require(String(data: data, encoding: .utf8))
+        == #"{"boolVal":false,"dataVal":"","doubleVal":0,"floatVal":0,"int16Val":0,"int32Val":0,"int64Val":"0","int8Val":0,"intVal":0,"stringVal":"","uint16Val":0,"uint32Val":0,"uint64Val":"0","uint8Val":0,"uintVal":0}"#
+    )
+    let decoded = try _ProtoJSONDecoder().decode(ExplicitOptionalDefaultsModel.self, from: data)
+    #expect(decoded == zeroModel)
+  }
+
+  struct MapDefaultsModel: Codable, Equatable {
+    var bools: [String: Bool]
+    var ints: [String: Int32]
+    var int64s: [String: Int64]
+    var strings: [String: String]
+    var bytes: [String: Data]
+  }
+
+  @Test func encodePreserveMapEntriesWithDefaultValues() throws {
+    let encoder = Self.omittingEncoder()
+    let model = MapDefaultsModel(
+      bools: ["a": false],
+      ints: ["a": 0],
+      int64s: ["a": 0],
+      strings: ["a": ""],
+      bytes: ["a": Data()]
+    )
+    let data = try encoder.encode(model)
+    #expect(
+      try #require(String(data: data, encoding: .utf8))
+        == #"{"bools":{"a":false},"bytes":{"a":""},"int64s":{"a":"0"},"ints":{"a":0},"strings":{"a":""}}"#
+    )
+    let decoded = try _ProtoJSONDecoder().decode(MapDefaultsModel.self, from: data)
+    #expect(decoded == model)
   }
 }
