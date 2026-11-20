@@ -136,6 +136,20 @@ extension CredentialsError: CustomStringConvertible {
   }
 }
 
+extension CredentialsError: ClassifiedAuthError {
+  var errorDisposition: TokenErrorDisposition {
+    switch self {
+    case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
+      return .permanent
+    case .cannotFetchToken(_, let underlyingError):
+      if let classified = underlyingError as? any ClassifiedAuthError {
+        return classified.errorDisposition
+      }
+      return .uncached
+    }
+  }
+}
+
 @_spi(GoogleCloudInternal)
 extension CredentialsError {
   /// Indicates whether this credentials error represents a transient token-fetch failure that is
@@ -148,17 +162,6 @@ extension CredentialsError {
   /// `SubjectTokenProvider`, and unconfirmed implicit ADC metadata server fallback failures
   /// return `false`.
   public var _isRetryable: Bool {
-    switch self {
-    case .cannotFetchToken(_, let underlyingError):
-      if let inner = underlyingError as? CredentialsError {
-        return inner._isRetryable
-      }
-      if let authError = underlyingError as? AuthHTTPError {
-        return authError.isRetryable
-      }
-      return false
-    case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
-      return false
-    }
+    self.errorDisposition == .retryable
   }
 }
