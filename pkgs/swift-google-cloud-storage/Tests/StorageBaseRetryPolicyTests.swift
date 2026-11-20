@@ -126,6 +126,16 @@ import Testing
     #expect(isPermanent(policy.onError(state: nonIdempotentState(), error: ioError)))
   }
 
+  @Test func storageBaseRetryPolicyCredentialsErrors() async throws {
+    let policy = StorageBaseRetryPolicy.unbounded()
+    let permanentAuthIO = RequestError.io(CredentialsError.parseError("universe domain mismatch"))
+    let transientAuthIO = RequestError.io(try await makeTransientCredentialsError())
+
+    #expect(isPermanent(policy.onError(state: idempotentState(), error: permanentAuthIO)))
+    #expect(isRetry(policy.onError(state: idempotentState(), error: transientAuthIO)))
+    #expect(isPermanent(policy.onError(state: nonIdempotentState(), error: transientAuthIO)))
+  }
+
   @Test func storageBaseRetryPolicyDefaultPolicy() {
     let policy = StorageBaseRetryPolicy.defaultPolicy
     let state = idempotentState()
