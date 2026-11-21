@@ -654,8 +654,12 @@ Tests are organized into suites named after the struct or class under test.
 
 The client libraries validate requests only to the extent necessary to format a
 valid HTTP request (such as ensuring that required URL path parameters are
-non-empty). No attempt is made to validate request contents, resource formats,
-or parameter completeness before sending.
+non-empty). Transport-level validation of configured endpoints and request or
+session URIs—verifying the scheme, configured origin or local loopback emulator
+host, port, and path segments before attaching credentials—is part of forming a
+valid HTTP request rather than service-policy validation. No attempt is made to
+validate request contents, resource formats, or parameter completeness before
+sending.
 
 Client-side validation cannot replace server-side checks in distributed systems:
 

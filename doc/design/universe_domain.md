@@ -59,6 +59,16 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 - If `Task` cancellation (`CancellationError`) occurs while validating the universe domain or resolving authentication headers, `_HTTPClient` rethrows `CancellationError` directly rather than wrapping it in `RequestError.io`.
 - `ContinueOnIO` (for both `RetryPolicy` and `PollingErrorPolicy`) inspects `RequestError.io(let underlying)` and returns `.permanent` when `underlying` is `CredentialsError` or `CancellationError`, ensuring credential and universe domain errors fail immediately on idempotent RPCs.
 
+### Endpoint and Request URI Validation (`_HTTPClient`)
+
+- `_HTTPClient.validateEndpoint(_:)` parses configured endpoints with `URLComponents(string:encodingInvalidCharacters: false)`, clears query items and resets the path, rejects userinfo and fragments, requires an `http` or `https` scheme, and requires a non-empty host without `/`, `\`, or percent-encoding outside bracketed IPv6 literals, throwing `ClientError.invalidEndpoint` on failure.
+- `_HTTPClient.newRequest(uri:options:)` validates continuation and session URIs before calling `configureHeaders` (so `credentials.validateUniverseDomain(_:)` and `credentials.headers()` are never invoked for invalid URIs, throwing permanent `RequestError.badURL(uri)` instead). It rejects empty URIs, ports outside `1...65535`, userinfo, fragments, and paths that are empty, lack a leading `/`, contain `\`, or contain `.` or `..` segments; after validation, it encodes `;` as `%3B` in `percentEncodedQuery` and requires `components.url != nil`.
+- Path-relative URIs (leading `/` without `//`, and with `scheme`, `host`, `encodedHost`, and `port` all `nil`) resolve `(scheme, encodedHost, port)` onto `self.baseURL`.
+- Full URIs must use `http` or `https` with a non-empty host without `/`, `\`, or percent-encoding outside bracketed IPv6 literals, and must satisfy one of:
+  - Matching `(baseScheme, baseEncodedHost, basePort)` or `(baseScheme, hostHeader, basePort | nil)` (supporting VPC-SC/PSC endpoints such as `https://private.<universeDomain>` with `Host: <service>.<universeDomain>`, as well as custom-port endpoints where the server reflects a portless `Host` header).
+  - When `self.baseURL` uses `http` on a loopback host (`localhost`, `127.0.0.1`, `[::1]`), targeting either a local emulator host (`localhost`, `127.0.0.1`, `[::1]`, or `0.0.0.0` on any valid port) or `defaultServiceHosts` (`<service>.<universeDomain>` and `<service>.googleapis.com`).
+  Accepted URIs normalize `(scheme, encodedHost, port)` onto `self.baseURL`.
+
 ## 3. gRPC Transport
 
 `GoogleGaxGRPC._GRPCClient` applies the same universe domain resolution and credential validation rules as `_HTTPClient`:
@@ -71,3 +81,4 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 `GoogleCloudStorage` integrates universe domain support across both the handwritten REST data-plane veneer (`StorageClient`) and the generated gRPC control-plane client (`StorageControlClient`):
 
 - `StorageClient.init(_:mock:)` resolves `universeDomain` and `endpoint` from `options.client` using `_Host.resolveUniverseDomain` and `_Host.endpoint` against `https://storage.googleapis.com` and forwards `universeDomain` and `defaultEndpoint` to `_HTTPClient` (which derives the `Host` header via `_Host.header`).
+- `StorageClient` resumable upload status and chunk requests (`Location` headers from session initiation and `uploadId` values) pass through `_HTTPClient.newRequest(uri:options:)`, keeping VPC-SC and local HTTP loopback emulator sessions routed through the configured endpoint while surfacing invalid or mismatched session URIs as `WriteObjectError.requestError(.badURL(uri))`.

@@ -135,7 +135,10 @@ Never validate data decoded from the service. Unknown enum values, operators, or
 value types must not fail a read: keep them in an `unknown`-style case or as an
 opaque value. Checking that a response is consistent with the request (for
 example, one result per mutation sent) is fine: it detects bugs, not new service
-features.
+features. Similarly, while decoded domain payloads are not validated against
+service limits, continuation or session URIs returned in response headers (such
+as resumable upload `Location` URIs) must be validated through
+`GoogleGax._HTTPClient.newRequest(uri:options:)`.
 
 ### E4: Decide `throws` and `async` up front
 
@@ -522,6 +525,21 @@ When implementing REST veneers or internal wire tests over `GoogleGax` and
   messages containing `Int64` strings, `WKTTimestamp`, or `WKTDuration` fields
   should import `@_spi(GoogleCloudInternal) GoogleWKT` and use `_ProtoJSONDecoder`
   rather than `Foundation.JSONDecoder`.
+- `GoogleGax._HTTPClient.validateEndpoint(_:)` parses configured endpoints with
+  `URLComponents(string:encodingInvalidCharacters: false)`, throwing
+  `ClientError.invalidEndpoint` when userinfo, fragments, non-`http`/`https`
+  schemes, or invalid hosts (empty or containing `/`, `\`, or percent-encoding
+  outside bracketed IPv6 literals) are present. `GoogleGax._HTTPClient.newRequest(uri:options:)`
+  validates continuation or session URIs before resolving credentials (throwing
+  permanent `RequestError.badURL(uri)` on failure, rejecting empty URIs,
+  userinfo, fragments, ports outside `1...65535`, and empty, non-rooted,
+  backslash-containing, or `.`/`..` paths, and encoding `;` as `%3B` in
+  `percentEncodedQuery`). Path-relative URIs (`/upload/...`, excluding `//...`)
+  resolve onto `baseURL`; full URIs must match `(baseScheme, baseEncodedHost, basePort)`
+  or `(baseScheme, hostHeader, basePort | nil)` (for VPC-SC origins and portless
+  `Host` reflections), or—when `baseURL` uses `http` on a loopback host—target
+  a local emulator host (`localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0`) or
+  `defaultServiceHosts`, rewriting accepted URIs onto `baseURL`.
 
 ## Design documents
 

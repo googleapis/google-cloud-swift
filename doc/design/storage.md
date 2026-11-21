@@ -100,6 +100,22 @@ let storageOptions = StorageClientOptions().with {
 let storage = try StorageClient(storageOptions)
 ```
 
+### Endpoints, VPC-SC, and Local Emulators
+
+Both `StorageClient` (via `StorageClientOptions.client`, which is a `GoogleGax.ClientOptions`) and `StorageControlClient` (which accepts `GoogleGax.ClientOptions` directly) use `ClientOptions.endpoint` and `ClientOptions.credentials` to connect to custom/VPC-SC endpoints (such as `https://private.googleapis.com`) and local HTTP loopback emulators:
+
+```swift
+// Connect StorageClient and StorageControlClient to a local HTTP loopback emulator
+let emulatorOptions = try ClientOptions().with {
+    $0.endpoint = "http://localhost:9000"
+    $0.credentials = try Credentials(configuration: .anonymous)
+}
+let storage = try StorageClient(StorageClientOptions(client: emulatorOptions))
+let control = try StorageControlClient(emulatorOptions)
+```
+
+For `StorageClient`, `init(_:)` validates the resolved endpoint via `_HTTPClient.validateEndpoint(_:)` (throwing `ClientError.invalidEndpoint(_:)` if malformed). During resumable uploads, `StorageClient` passes `Location` headers and `uploadId` session URIs through `_HTTPClient.newRequest(uri:options:)`, which validates and normalizes accepted URIs onto the configured endpoint (handling VPC-SC `Host`-header origins, path-relative `/upload/...` locations, and local `http` loopback emulator `Location` formats) while rejecting invalid or unconfigured origins with `WriteObjectError.requestError(.badURL(_:))`.
+
 ______________________________________________________________________
 
 ## 4. Code Organization and Namespaces

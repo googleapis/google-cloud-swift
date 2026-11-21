@@ -50,10 +50,15 @@ public struct ClientOptions: Sendable {
   /// - Using a locational endpoint, such as `https://${service}-${region}.googleapis.com`.
   /// - Using the API in a VPC-SC environment, where `https://private.googleapis.com` serves as the endpoint for all
   ///   APIs.
-  /// - Using the API against an emulator or some other test environment.
+  /// - Using the API against a local HTTP loopback emulator (for example, `"http://localhost:9000"`,
+  ///   typically paired with `.anonymous` credentials) or some other test environment.
   ///
-  /// Only the scheme and authority (host and port) components of the endpoint are used, the path
-  /// and/or query parameters have no effect.
+  /// Only the scheme and authority (host and port) components of the endpoint are used; path and
+  /// query parameters have no effect. Endpoints must use the `http` or `https` scheme and a valid
+  /// host; malformed endpoints (and, for HTTP/REST clients, endpoints with userinfo, fragments,
+  /// omitted schemes, or invalid host characters) fail client initialization with
+  /// ``ClientError/invalidEndpoint(_:)``. Follow-up request or session URIs that are malformed or
+  /// do not match the configured endpoint fail with ``RequestError/badURL(_:)``.
   public var endpoint: String? = nil
 
   /// Overrides the default universe domain (`googleapis.com`) for the client.

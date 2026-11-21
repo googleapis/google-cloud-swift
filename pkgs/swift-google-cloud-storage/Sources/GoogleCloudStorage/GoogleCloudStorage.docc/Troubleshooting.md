@@ -177,6 +177,8 @@ func uploadFileAtomically(
         }
       } else if case .exhausted(let exhaustedError) = requestError {
         print("Upload retry/resume policy exhausted: \(exhaustedError)")
+      } else if case .badURL(let badURI) = requestError {
+        print("Invalid request or upload session URI: \(badURI)")
       }
       throw error
 
@@ -248,3 +250,22 @@ When the underlying ``WriteObjectSource`` or ``SeekableWriteObjectSource`` throw
 
 - ``WriteObjectSourceError/readFailed(underlyingError:)``: Opening or reading from the local file or `AsyncSequence` failed (for example, the file does not exist, permissions were denied, or the upstream sequence threw an error).
 - ``WriteObjectSourceError/offsetOutOfBounds(offset:size:)``: A seek operation requested an offset beyond the end of the source (for example, if a local file was truncated while an upload was in progress).
+
+### Local Emulators and Session URI Validation
+
+To connect ``StorageClient`` to a local HTTP loopback emulator, configure ``StorageClientOptions`` with an `http` loopback endpoint (`http://localhost:<port>`, `http://127.0.0.1:<port>`, or `http://[::1]:<port>`) and anonymous credentials:
+
+```swift
+import GoogleAuth
+import GoogleCloudStorage
+
+let options = try StorageClientOptions().with {
+  $0.client.endpoint = "http://localhost:9000"
+  $0.client.credentials = try Credentials(configuration: .anonymous)
+}
+let client = try StorageClient(options)
+```
+
+Malformed `client.endpoint` values fail during `StorageClient.init(_:)` with `ClientError.invalidEndpoint(_:)`.
+
+During resumable uploads, ``StorageClient`` validates `Location` headers returned from session initiation (and saved session URIs) against the configured endpoint before attaching authentication or customer-supplied encryption headers, failing permanently without retrying as ``WriteObjectError/requestError(_:)`` wrapping `RequestError.badURL(_:)` when a URI is malformed or targets an unconfigured origin. When configured with a local `http` loopback emulator endpoint, ``StorageClient`` automatically normalizes path-relative `/upload/...` URIs, portless `Host`-derived URIs (such as `http://localhost/upload/...`), loopback/`0.0.0.0` URIs, and default Cloud Storage service URIs (such as `https://storage.googleapis.com/upload/...`) onto the configured emulator endpoint.

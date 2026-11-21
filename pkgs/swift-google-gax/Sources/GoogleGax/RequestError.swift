@@ -104,12 +104,15 @@ public enum RequestError: Error, Sendable {
   /// Report this issue to the service team.
   case malformedResponse(String)
 
-  /// The client is configured with an invalid URL.
+  /// The client library could not form a valid HTTP request URL, or a request or session URI did
+  /// not match the client's configured endpoint.
   ///
   /// ## Troubleshooting
   ///
-  /// Typically, this indicates an invalid URL in the client's endpoint. The client library is
-  /// unable to form a valid HTTP request. Review how you configured the client.
+  /// Review the request parameters, any session or continuation URI passed to the client (such as
+  /// a resumable upload URI), and the client's ``ClientOptions/endpoint`` configuration. Invalid
+  /// ``ClientOptions/endpoint`` values fail earlier during client initialization with
+  /// ``ClientError/invalidEndpoint(_:)``.
   case badURL(String)
 }
 

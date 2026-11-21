@@ -109,6 +109,11 @@ GCS Resumable Session URIs expire after 7 days. If a developer attempts to resum
 To prevent network corruption, GCS supports MD5 and CRC32C checksum validation.
 *   **Mitigation:** The library supports automatic client-side checksumming. By default, it calculates CRC32C (or MD5) and includes the hashes in `x-goog-hash` headers. GCS validates this against the received data and rejects the upload if there is a mismatch. This is configured via `WriteObjectOptions.checksums`.
 
+#### 4. Session URI Validation and Local Emulator Support
+Resumable upload follow-up requests use server-provided `Location` headers or caller-supplied `uploadId` session URIs.
+*   **Validation and Non-Retryable Failure:** All resumable upload status query, chunk, and stream `PUT` requests (from both `writeObject` and `resumeWriteObject`) construct their HTTP requests via `_HTTPClient.newRequest(uri:options:)`. Session URIs are validated against the client's configured endpoint before authentication or customer-supplied encryption key (CSEK) headers are attached. Invalid or mismatched URIs fail permanently without retry or resume (`StorageRetryErrors` and `StorageResumePolicy` treat `.badURL` as non-retryable) and surface as `WriteObjectError.requestError(.badURL(uri))`.
+*   **Local Emulator Normalization:** When `StorageClient` is configured with a local `http` loopback emulator endpoint (`http://localhost:<port>`, `http://127.0.0.1:<port>`, or `http://[::1]:<port>`), path-relative `/upload/...` URIs, portless `Host`-derived `http://localhost/upload/...` URIs, loopback/`0.0.0.0` URIs on any valid port, and `https://storage.googleapis.com/upload/...` URIs are normalized onto `baseURL`.
+
 ## 4. Proposed Swift Interface
 
 Here is the proposed public API surface for the GCS Swift upload feature.
