@@ -694,4 +694,409 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let headers = try await creds.headers()
     #expect(headers["Authorization"] == "Bearer mock-anon-impersonated-token")
   }
+
+  @Test(
+    arguments: [
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "googleapis.com"
+      ),
+      (
+        "https://iamcredentials.googleapis.com:443/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "googleapis.com"
+      ),
+      (
+        "HTTPS://IAMCREDENTIALS.GOOGLEAPIS.COM/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "googleapis.com"
+      ),
+      (
+        "https://iamcredentials.custom.universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "custom.universe.com",
+        "custom.universe.com"
+      ),
+      (
+        "https://IAMCREDENTIALS.CUSTOM.UNIVERSE.COM/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "Custom.Universe.Com",
+        "Custom.Universe.Com"
+      ),
+      (
+        "https://iamcredentials.us-central1.rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "googleapis.com"
+      ),
+      (
+        "https://IAMCREDENTIALS.EUROPE-WEST1.REP.CUSTOM.UNIVERSE.COM/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "custom.universe.com",
+        "custom.universe.com"
+      ),
+      (
+        "https://us-central1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "googleapis.com"
+      ),
+      (
+        "https://ASIA-EAST1-IAMCREDENTIALS.CUSTOM.UNIVERSE.COM/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "custom.universe.com",
+        "custom.universe.com"
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/my-project/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "googleapis.com"
+      ),
+    ]
+  )
+  func explicitImpersonationURLAcceptsValidEndpoints(
+    urlString: String,
+    universeDomain: String?,
+    expectedUniverse: String
+  ) async throws {
+    let source = StaticSourceCredentials(
+      authHeaders: [("Authorization", "Bearer source-token")],
+      customUniverseDomain: expectedUniverse
+    )
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      impersonationURLString: urlString,
+      universeDomain: universeDomain
+    )
+    #expect(creds.provider.iamEndpointURL.absoluteString == urlString)
+    #expect(try await creds.universeDomain() == expectedUniverse)
+  }
+
+  @Test(
+    arguments: [
+      (
+        "https://other.example.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com.other.example/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://other-iamcredentials.unsupported.example.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.other-googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://extra.iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials-other.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://storage.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com./v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.169.254.169.254/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "169.254.169.254"
+      ),
+      (
+        "https://169.254.169.254/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "169.254.169.254"
+      ),
+      (
+        "https://iamcredentials..rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.-us.rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.us-.rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.a.b.rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.us_central1.rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://-us-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://us--iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://us.east1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://us_east1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "custom.universe.com"
+      ),
+      (
+        "https://iamcredentials.custom.universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com:8443/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/arbitrary",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:signJwt",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:signBlob:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects//serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/.:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target%2fother@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects%2f-%2fserviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com%3AgenerateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/./v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/%2e/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/../serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/%2e%2e/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/%5c/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/\\-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials%2egoogleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "unix:///tmp/sock",
+        nil as String?
+      ),
+      (
+        "http+unix://%2Ftmp%2Fsock/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        " https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "   ",
+        nil as String?
+      ),
+      (
+        "",
+        nil as String?
+      ),
+    ]
+  )
+  func explicitImpersonationURLRejectsInvalidOrMismatchedURLs(
+    urlString: String,
+    universeDomain: String?
+  ) throws {
+    let source = StaticSourceCredentials(authHeaders: [])
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        impersonationURLString: urlString,
+        universeDomain: universeDomain
+      )
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+  }
+
+  @Test(
+    arguments: [
+      "localhost",
+      "169.254.169.254",
+      "127.0.0.1",
+      "10.0.0.1",
+      "example.123",
+      ".googleapis.com",
+      "googleapis.com.",
+      "google..com",
+      "-bad.com",
+      "bad-.com",
+      "bad_domain.com",
+      "other.example.com/path#",
+      "bad.com:8443",
+      "bad domain.com",
+      "   ",
+      "\(String(repeating: "a", count: 64)).com",
+      "\(String(repeating: "a.", count: 127))com",
+    ]
+  )
+  func rejectsMalformedUniverseDomainValues(universeDomain: String) throws {
+    let source = StaticSourceCredentials(authHeaders: [])
+
+    let principalError = #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        targetPrincipal: "target@project.iam.gserviceaccount.com",
+        universeDomain: universeDomain
+      )
+    }
+    guard case .parseError = principalError else {
+      Issue.record(
+        "Expected CredentialsError.parseError, got \(String(describing: principalError))"
+      )
+      return
+    }
+
+    let urlError = #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        impersonationURLString:
+          "https://iamcredentials.\(universeDomain)/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        universeDomain: universeDomain
+      )
+    }
+    guard case .parseError = urlError else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: urlError))")
+      return
+    }
+  }
+
+  @Test(
+    arguments: [
+      (
+        "https://other.example.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?,
+        "other.example.com",
+        "googleapis.com"
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "custom.universe.com",
+        "iamcredentials.googleapis.com",
+        "custom.universe.com"
+      ),
+    ]
+  )
+  func hostMismatchErrorIncludesHostAndUniverseDomain(
+    urlString: String,
+    universeDomain: String?,
+    expectedHost: String,
+    expectedUniverse: String
+  ) throws {
+    let source = StaticSourceCredentials(authHeaders: [])
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        impersonationURLString: urlString,
+        universeDomain: universeDomain
+      )
+    }
+    guard case let .parseError(message) = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+    #expect(
+      message
+        == "The service_account_impersonation_url host (\(expectedHost)) does not match universe_domain (\(expectedUniverse))."
+    )
+  }
+
+  @Test(
+    arguments: [
+      "",
+      "   ",
+      "localhost",
+      "169.254.169.254",
+      "127.0.0.1",
+      "example.123",
+      "googleapis.com.",
+      "bad..domain",
+      "other.example.com/path#",
+    ]
+  )
+  func rejectsMalformedSourceUniverseDomainWhenFetchingToken(badUniverse: String) async throws {
+    let source = StaticSourceCredentials(
+      authHeaders: [("Authorization", "Bearer source-token")],
+      customUniverseDomain: badUniverse
+    )
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case .parseError = underlyingError as? CredentialsError else {
+      Issue.record(
+        "Expected CredentialsError.parseError, got \(String(describing: underlyingError))")
+      return
+    }
+    #expect(!AuthHTTPError.isRetryable(error))
+  }
 }

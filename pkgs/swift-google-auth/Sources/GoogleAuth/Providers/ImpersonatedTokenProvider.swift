@@ -103,12 +103,10 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       let urlString =
         "https://iamcredentials.\(targetUniverse)/v1/\(targetResourceName):generateAccessToken"
       guard
-        let resolvedURL = URL(string: urlString),
-        resolvedURL.host == "iamcredentials.\(targetUniverse)",
-        resolvedURL.user == nil,
-        resolvedURL.password == nil,
-        resolvedURL.query == nil,
-        resolvedURL.fragment == nil
+        isValidDNSDomain(targetUniverse),
+        let (resolvedURL, host, components) = parseValidatedHTTPSCredentialURL(urlString),
+        isValidIAMCredentialsGenerateAccessTokenPath(components),
+        host.lowercased() == "iamcredentials.\(targetUniverse.lowercased())"
       else {
         throw CredentialsError.cannotFetchToken(
           message: "Invalid IAM endpoint URL for universe domain '\(targetUniverse)'.",

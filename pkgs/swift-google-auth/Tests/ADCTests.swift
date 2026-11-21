@@ -733,4 +733,278 @@ import Testing
       _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
     }
   }
+
+  @Test(
+    arguments: [
+      "https://oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com:443/token",
+      "HTTPS://OAUTH2.GOOGLEAPIS.COM/token",
+      "https://oauth2.googleapis.com/token-override",
+    ]
+  )
+  func acceptsValidTokenURIInAuthorizedUserADC(tokenURI: String) throws {
+    let payload: [String: String] = [
+      "type": "authorized_user",
+      "client_id": "test-client-id",
+      "client_secret": "test-client-secret",
+      "refresh_token": "test-refresh-token",
+      "token_uri": tokenURI,
+    ]
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try JSONEncoder().encode(payload).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let provider = try ADC.resolve(
+      environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+    )
+    let userCreds = try #require(provider as? UserCredentials)
+    #expect(userCreds.provider.tokenURL.absoluteString == tokenURI)
+  }
+
+  @Test(
+    arguments: [
+      "http://oauth2.googleapis.com/token",
+      "https://other.example.com/token",
+      "https://oauth2.googleapis.com.other.example/token",
+      "https://oauth2.googleapis.com./token",
+      "https://169.254.169.254/token",
+      "https://127.0.0.1/token",
+      "unix:///tmp/sock",
+      "http+unix://%2Ftmp%2Fsock/token",
+      "https://oauth2.googleapis.com:8443/token",
+      "https://user:pass@oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com/token?foo=bar",
+      "https://oauth2.googleapis.com/token#frag",
+      "https://oauth2.googleapis.com/./token",
+      "https://oauth2.googleapis.com/%2e/token",
+      "https://oauth2.googleapis.com/v1/../token",
+      "https://oauth2.googleapis.com/%2e%2e/token",
+      "https://oauth2.googleapis.com/v1/%2f..%2f/token",
+      "https://oauth2.googleapis.com/%5ctoken",
+      "https://oauth2.googleapis.com/\\token",
+      " https://oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com/token ",
+      "   ",
+      "",
+    ]
+  )
+  func rejectsInvalidTokenURIInAuthorizedUserADC(tokenURI: String) throws {
+    let payload: [String: String] = [
+      "type": "authorized_user",
+      "client_id": "test-client-id",
+      "client_secret": "test-client-secret",
+      "refresh_token": "test-refresh-token",
+      "token_uri": tokenURI,
+    ]
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try JSONEncoder().encode(payload).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+  }
+
+  @Test(
+    arguments: [
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://IAMCREDENTIALS.GOOGLEAPIS.COM/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.us-central1.rep.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://us-central1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.my-universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "my-universe.com"
+      ),
+      (
+        "https://iamcredentials.europe-west1.rep.my-universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "my-universe.com"
+      ),
+      (
+        "https://europe-west1-iamcredentials.my-universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "my-universe.com"
+      ),
+    ]
+  )
+  func acceptsValidImpersonatedServiceAccountURLsInADC(
+    impersonationURL: String,
+    universeDomain: String?
+  ) async throws {
+    let universeEntry = universeDomain.map { "\"universe_domain\": \"\($0)\"," } ?? ""
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "\(impersonationURL)",
+        \(universeEntry)
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com"
+        }
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let provider = try ADC.resolve(
+      environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+    )
+    let impersonated = try #require(provider as? ImpersonatedCredentials)
+    #expect(impersonated.provider.iamEndpointURL.absoluteString == impersonationURL)
+    #expect(try await impersonated.universeDomain() == (universeDomain ?? "googleapis.com"))
+  }
+
+  @Test(
+    arguments: [
+      (
+        "https://other.example.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com.other.example/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://other-iamcredentials.unsupported.example.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com:8443/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/./serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/%2e/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/../serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/%2e%2e/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/%5c/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:signJwt",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects//serviceAccounts/:generateAccessToken",
+        nil as String?
+      ),
+      (
+        "https://iamcredentials.bad_domain/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "bad_domain"
+      ),
+      (
+        "https://iamcredentials.localhost/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "localhost"
+      ),
+      (
+        "https://iamcredentials.169.254.169.254/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "169.254.169.254"
+      ),
+      (
+        "https://iamcredentials.127.0.0.1/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "127.0.0.1"
+      ),
+      (
+        "https://iamcredentials.example.123/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "example.123"
+      ),
+      (
+        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "invalid..domain"
+      ),
+    ]
+  )
+  func rejectsInvalidImpersonatedServiceAccountURLsInADC(
+    impersonationURL: String,
+    universeDomain: String?
+  ) throws {
+    let universeEntry = universeDomain.map { "\"universe_domain\": \"\($0)\"," } ?? ""
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "\(impersonationURL)",
+        \(universeEntry)
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com"
+        }
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+  }
+
+  @Test func rejectsImpersonatedServiceAccountWithInvalidSourceTokenURIInADC() throws {
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "source_credentials": {
+          "type": "authorized_user",
+          "client_id": "test-client-id",
+          "client_secret": "test-client-secret",
+          "refresh_token": "test-refresh-token",
+          "token_uri": "https://other.example.com/token"
+        }
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+  }
 }

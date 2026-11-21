@@ -92,11 +92,12 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     }
     self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
-    // Resolve Token URL
+    // Resolve and validate Token URL
+    let rawTokenURI = user.tokenUri ?? "https://oauth2.googleapis.com/token"
     guard
-      let resolvedURL = URL(
-        string: user.tokenUri ?? "https://oauth2.googleapis.com/token"
-      )
+      let (resolvedURL, host, _) = parseValidatedHTTPSCredentialURL(
+        rawTokenURI, allowRootPath: true),
+      host.lowercased() == "oauth2.googleapis.com"
     else {
       throw CredentialsError.parseError("Invalid token URI in UserAccountData")
     }

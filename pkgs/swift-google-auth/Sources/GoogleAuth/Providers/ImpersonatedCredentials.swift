@@ -64,6 +64,11 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
     }
     let effectiveUniverseDomain =
       normalizedUniverse ?? payloadUniverse ?? defaultUniverseDomain
+    guard isValidDNSDomain(effectiveUniverseDomain) else {
+      throw CredentialsError.parseError(
+        "Invalid universe_domain in Impersonated Service Account: '\(effectiveUniverseDomain)'"
+      )
+    }
     if case let .string(sourceUniverse)? = payload.sourceCredentials["universe_domain"],
       let nonEmptySourceUniverse = nonEmpty(sourceUniverse)
     {
@@ -167,18 +172,9 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
     guard
-      !impersonationURLString.isEmpty,
-      let resolvedURL = URL(string: impersonationURLString),
-      let scheme = resolvedURL.scheme?.lowercased(),
-      scheme == "https",
-      resolvedURL.user == nil,
-      resolvedURL.password == nil,
-      resolvedURL.query == nil,
-      resolvedURL.fragment == nil,
-      let host = resolvedURL.host,
-      !host.isEmpty,
-      !resolvedURL.path.isEmpty,
-      resolvedURL.path != "/"
+      let (resolvedURL, host, components) = parseValidatedHTTPSCredentialURL(
+        impersonationURLString),
+      isValidIAMCredentialsGenerateAccessTokenPath(components)
     else {
       throw CredentialsError.parseError(
         "Invalid service_account_impersonation_url: '\(impersonationURLString)'"
@@ -194,19 +190,20 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
 
     let normalizedUniverse = nonEmpty(universeDomain)
     let effectiveUniverse = normalizedUniverse ?? defaultUniverseDomain
+    guard isValidDNSDomain(effectiveUniverse) else {
+      throw CredentialsError.parseError(
+        "Invalid universe_domain: '\(effectiveUniverse)'"
+      )
+    }
     if effectiveUniverse != defaultUniverseDomain && sourceCredentials is UserCredentials {
       throw CredentialsError.notSupported(
         "User accounts are only supported in the default (googleapis.com) universe: \(effectiveUniverse)"
       )
     }
-    let lowerHost = host.lowercased()
-    if lowerHost.hasPrefix("iamcredentials.") {
-      let urlUniverse = String(host.dropFirst("iamcredentials.".count))
-      if urlUniverse != effectiveUniverse {
-        throw CredentialsError.parseError(
-          "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
-        )
-      }
+    guard isValidIAMCredentialsHost(host, universeDomain: effectiveUniverse) else {
+      throw CredentialsError.parseError(
+        "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
+      )
     }
 
     let effectiveScopes =
@@ -262,8 +259,11 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     guard
       !principal.isEmpty,
       !principal.contains(".."),
+      !principal.contains("\\"),
+      !principal.lowercased().contains("%2f"),
       !principal.unicodeScalars.contains(where: {
-        $0.properties.isWhitespace || $0 == "?" || $0 == "#" || $0 == ":"
+        $0.value < 0x20 || $0.value == 0x7F || $0.properties.isWhitespace || $0 == "?" || $0 == "#"
+          || $0 == ":"
       })
     else {
       throw CredentialsError.parseError(

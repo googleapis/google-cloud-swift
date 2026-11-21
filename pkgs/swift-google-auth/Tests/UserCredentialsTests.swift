@@ -24,7 +24,7 @@ import Testing
   /// Verifies that initializing `UserCredentials` does not eagerly make a token refresh
   /// network request before `headers()` is called.
   @Test func userProviderInitializationDoesNotMakeNetworkRequests() async throws {
-    let targetURL = URL(string: "https://mock.example.com")!
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let mock = MockHTTPClient([])
 
     let mockData = UserAccountData(
@@ -949,6 +949,140 @@ import Testing
       #expect(output.contains("public-creds-client-id"))
       #expect(output.contains("public-creds-quota-proj"))
       #expect(output.contains("googleapis.com"))
+    }
+  }
+
+  @Test(
+    arguments: [
+      nil,
+      "https://oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com:443/token",
+      "HTTPS://OAUTH2.GOOGLEAPIS.COM/token",
+      "https://oauth2.googleapis.com/token-override",
+      "https://oauth2.googleapis.com/a..b",
+      "https://oauth2.googleapis.com/",
+    ] as [String?]
+  )
+  func initializerAcceptsValidTokenURIs(tokenURI: String?) throws {
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token",
+      tokenUri: tokenURI
+    )
+    let mock = MockHTTPClient([])
+    let creds = try UserCredentials(user: data, httpClient: AuthHTTPClient(mock: mock))
+    #expect(
+      creds.provider.tokenURL.absoluteString == (tokenURI ?? "https://oauth2.googleapis.com/token"))
+    #expect(mock.recordedTimeouts.isEmpty)
+
+    let payload: [String: String] =
+      if let tokenURI {
+        [
+          "type": "authorized_user",
+          "client_id": "test-client-id",
+          "client_secret": "test-client-secret",
+          "refresh_token": "test-refresh-token",
+          "token_uri": tokenURI,
+        ]
+      } else {
+        [
+          "type": "authorized_user",
+          "client_id": "test-client-id",
+          "client_secret": "test-client-secret",
+          "refresh_token": "test-refresh-token",
+        ]
+      }
+    let keyJSON = try JSONEncoder().encode(payload)
+    let jsonCreds = try UserCredentials(keyJSON: keyJSON)
+    #expect(
+      jsonCreds.provider.tokenURL.absoluteString
+        == (tokenURI ?? "https://oauth2.googleapis.com/token")
+    )
+  }
+
+  @Test(
+    arguments: [
+      "http://oauth2.googleapis.com/token",
+      "https://other.example.com/token",
+      "https://oauth2.googleapis.com.other.example/token",
+      "https://other-oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com./token",
+      "https://169.254.169.254/token",
+      "https://127.0.0.1/token",
+      "unix:///tmp/sock",
+      "http+unix://%2Ftmp%2Fsock/token",
+      "https://oauth2.googleapis.com:8443/token",
+      "https://user:pass@oauth2.googleapis.com/token",
+      "https://user@oauth2.googleapis.com/token",
+      "https://@oauth2.googleapis.com/token",
+      "https://:pass@oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com/token?foo=bar",
+      "https://oauth2.googleapis.com/token?",
+      "https://oauth2.googleapis.com/token#frag",
+      "https://oauth2.googleapis.com/token#",
+      "https://oauth2.googleapis.com/./token",
+      "https://oauth2.googleapis.com/%2e/token",
+      "https://oauth2.googleapis.com/%2E/token",
+      "https://oauth2.googleapis.com/token/.",
+      "https://oauth2.googleapis.com/.",
+      "https://oauth2.googleapis.com/%2e",
+      "https://oauth2.googleapis.com/v1/../token",
+      "https://oauth2.googleapis.com/%2e%2e/token",
+      "https://oauth2.googleapis.com/v1/%2f..%2f/token",
+      "https://oauth2.googleapis.com/v1/..%2ftoken",
+      "https://oauth2.googleapis.com/token/..",
+      "https://oauth2.googleapis.com/v1/\\token",
+      "https://oauth2.googleapis.com/%5ctoken",
+      "https://oauth2.googleapis.com/v1/%5c../token",
+      "https://oauth2.googleapis.com/token%2fextra",
+      "https://oauth2.googleapis.com/token%20",
+      "https://oauth2.googleapis.com/token%0a",
+      "https://oauth2.googleapis.com/token%00",
+      "https://oauth2%2egoogleapis.com/token",
+      "https://oauth2.googleapis.com",
+      " https://oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com/token ",
+      "   ",
+      "\t\n",
+      "",
+      "not-a-valid-url",
+    ]
+  )
+  func initializerRejectsInvalidTokenURIs(tokenURI: String) throws {
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token",
+      tokenUri: tokenURI
+    )
+    let mock = MockHTTPClient([])
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try UserCredentials(user: data, httpClient: AuthHTTPClient(mock: mock))
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+    #expect(mock.recordedTimeouts.isEmpty)
+
+    let payload: [String: String] = [
+      "type": "authorized_user",
+      "client_id": "test-client-id",
+      "client_secret": "test-client-secret",
+      "refresh_token": "test-refresh-token",
+      "token_uri": tokenURI,
+    ]
+    let keyJSON = try JSONEncoder().encode(payload)
+    let jsonError = #expect(throws: CredentialsError.self) {
+      _ = try UserCredentials(keyJSON: keyJSON)
+    }
+    guard case .parseError = jsonError else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: jsonError))")
+      return
     }
   }
 }
