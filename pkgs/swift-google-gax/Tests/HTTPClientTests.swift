@@ -83,7 +83,7 @@ import NIOHTTP1
   }
 
   @Test func requestFromURI() async throws {
-    let endpoint = "http://localhost:1234"
+    let endpoint = "https://storage.googleapis.com"
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
@@ -216,6 +216,10 @@ import NIOHTTP1
     "file:///etc/passwd",
     "http:///",
     "https:///",
+    "https://user:pass@storage.googleapis.com",
+    "https://storage.googleapis.com#frag",
+    "https://storage%2Egoogleapis%2Ecom",
+    "https://storage.googleapis.com\\other.example",
   ]) func badEndpoint(input: String) throws {
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with {
@@ -238,6 +242,10 @@ import NIOHTTP1
     "file:///etc/passwd",
     "http:///",
     "https:///",
+    "https://user:pass@storage.googleapis.com",
+    "https://storage.googleapis.com#frag",
+    "https://storage%2Egoogleapis%2Ecom",
+    "https://storage.googleapis.com\\other.example",
   ]) func badDefaultEndpoint(input: String) throws {
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with {
@@ -1479,10 +1487,342 @@ import NIOHTTP1
     #expect(got == ResponseType(name: "from-custom", value: "ok"))
   }
 
+  private func expectBadURL(
+    _ uri: String,
+    on client: _HTTPClient,
+    sourceLocation: SourceLocation = #_sourceLocation
+  ) async {
+    let error = await #expect(throws: RequestError.self, sourceLocation: sourceLocation) {
+      _ = try await client.newRequest(uri: uri)
+    }
+    guard case .badURL(let badURI) = error else {
+      Issue.record(
+        "Expected RequestError.badURL, got \(String(describing: error))",
+        sourceLocation: sourceLocation
+      )
+      return
+    }
+    #expect(badURI == uri, sourceLocation: sourceLocation)
+  }
+
+  @Test(arguments: [
+    "https://other.example/upload",
+    "https://storage.googleapis.com.other.example/upload",
+    "https://other-storage.googleapis.com/upload",
+    "https://storage.other-universe.com/upload",
+    "https://storage%2Egoogleapis%2Ecom/upload",
+    "https://storage%2egoogleapis%2ecom/upload",
+    "https://%73torage.googleapis.com/upload",
+    "https://xn--storage-00a.googleapis.com/upload",
+    "https://storage.googleapis.com./upload",
+    "http://storage.googleapis.com/upload",
+    "unix:///var/run/sock",
+    "http+unix://%2Ftmp%2Fsock/upload",
+    "https+unix://%2Ftmp%2Fsock/upload",
+    "file:///etc/passwd",
+    "https://storage.googleapis.com:8443/upload",
+    "https://storage.googleapis.com:80/upload",
+    "https://user:pass@storage.googleapis.com/upload",
+    "https://user@storage.googleapis.com/upload",
+    "https://@storage.googleapis.com/upload",
+    "https://:@storage.googleapis.com/upload",
+    "https://:pass@storage.googleapis.com/upload",
+    "https://storage.googleapis.com:443@other.example/upload",
+    "https://storage.googleapis.com\\@other.example/upload",
+    "https://storage.googleapis.com%5c@other.example/upload",
+    "https://storage.googleapis.com%2f@other.example/upload",
+    "https://storage.googleapis.com/upload#frag",
+    "https://storage.googleapis.com/upload#",
+    "https://storage.googleapis.com",
+    "https://storage.googleapis.com?upload_id=1",
+    "https://storage.googleapis.com/upload/../other",
+    "https://storage.googleapis.com/upload/%2e%2e/other",
+    "https://storage.googleapis.com/upload/%2E%2E/other",
+    "https://storage.googleapis.com/upload/./other",
+    "https://storage.googleapis.com/upload/%2e/other",
+    "https://storage.googleapis.com/upload/.",
+    "https://storage.googleapis.com/upload/..",
+    "https://storage.googleapis.com/upload/%2f..%2fother",
+    "https://storage.googleapis.com/upload/..%2fother",
+    "https://storage.googleapis.com/upload/%5cother",
+    "https://storage.googleapis.com/upload/%5c../other",
+    "https://storage.googleapis.com/upload\\other",
+    "https://[::1]/upload",
+    "/upload",
+    "upload",
+    "//other.example/upload",
+    "https:storage.googleapis.com/upload",
+    "",
+  ])
+  func newRequestURIRejectsInvalidHTTPSOrigin(uri: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent for invalid URI: \(uri)")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://storage.googleapis.com",
+      credentials: SpyCredentials()
+    )
+    await expectBadURL(uri, on: client)
+  }
+
+  @Test(arguments: [
+    "https://localhost:8080/upload",
+    "http://localhost/upload",
+    "http://localhost:9090/upload",
+    "http://other.example:8080/upload",
+    "http://user@localhost:8080/upload",
+    "http://localhost\\@other.example:8080/upload",
+    "http://localhost:8080/upload#frag",
+    "http://localhost:8080",
+    "http://localhost:8080/upload/../other",
+    "/upload",
+  ])
+  func newRequestURIRejectsInvalidHTTPOrigin(uri: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent for invalid URI: \(uri)")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "http://localhost:8080",
+      credentials: SpyCredentials()
+    )
+    await expectBadURL(uri, on: client)
+  }
+
+  @Test(arguments: [
+    "https://storage.googleapis.com/upload",
+    "https://storage.other-universe.com/upload",
+    "https://other.example/upload",
+    "http://private.my-universe.com/upload",
+  ])
+  func newRequestURIRejectsCrossUniverseOrigin(uri: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent for invalid URI: \(uri)")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://private.my-universe.com",
+      credentials: SpyCredentials(),
+      defaultEndpoint: "https://storage.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+    await expectBadURL(uri, on: client)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "https://storage.googleapis.com",
+      uri: "https://storage.googleapis.com:443/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "https://storage.googleapis.com/upload/storage/v1/b/b/o?upload_id=1"
+    ),
+    (
+      endpoint: "https://storage.googleapis.com:443",
+      uri: "https://storage.googleapis.com/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "https://storage.googleapis.com:443/upload/storage/v1/b/b/o?upload_id=1"
+    ),
+    (
+      endpoint: "http://localhost",
+      uri: "http://localhost:80/upload?upload_id=1",
+      wantURL: "http://localhost/upload?upload_id=1"
+    ),
+    (
+      endpoint: "http://localhost:80",
+      uri: "http://localhost/upload?upload_id=1",
+      wantURL: "http://localhost:80/upload?upload_id=1"
+    ),
+    (
+      endpoint: "https://storage.googleapis.com",
+      uri: "HTTPS://STORAGE.GOOGLEAPIS.COM/upload?a=1;b=2",
+      wantURL: "https://storage.googleapis.com/upload?a=1%3Bb=2"
+    ),
+  ])
+  func newRequestURIAcceptsEquivalentDefaultPort(
+    endpoint: String,
+    uri: String,
+    wantURL: String
+  ) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == wantURL)
+  }
+
+  @Test(arguments: [
+    "https://storage.googleapis.com/",
+    "https://storage.googleapis.com/upload/a..b/other",
+    "https://storage.googleapis.com/upload/.well-known/file.txt",
+  ])
+  func newRequestURIAcceptsNonTraversalPaths(uri: String) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://storage.googleapis.com"
+    )
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == uri)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "http://[::1]:8080",
+      uri: "http://[::1]:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://[::1]:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "[::1]"
+    ),
+    (
+      endpoint: "http://[::1]",
+      uri: "http://[::1]:80/upload",
+      wantURL: "http://[::1]/upload",
+      wantHost: "[::1]"
+    ),
+    (
+      endpoint: "https://[::1]:443",
+      uri: "https://[::1]/upload",
+      wantURL: "https://[::1]:443/upload",
+      wantHost: "[::1]"
+    ),
+    (
+      endpoint: "http://[fe80::1%25eth0]:8080",
+      uri: "http://[FE80::1%25eth0]:8080/upload",
+      wantURL: "http://[fe80::1%25eth0]:8080/upload",
+      wantHost: "[fe80::1%eth0]"
+    ),
+  ])
+  func newRequestURIAcceptsIPv6Origin(
+    endpoint: String,
+    uri: String,
+    wantURL: String,
+    wantHost: String
+  ) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let mock = MockHTTPClient { request, _ in
+      #expect(request.url == wantURL)
+      #expect(request.headers["Host"] == [wantHost])
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == wantURL)
+    #expect(request.headers["Host"] == [wantHost])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test(arguments: [
+    ("http://[::1]:8080", "http://[::1]:9090/upload"),
+    ("http://[::1]:8080", "http://[::1]/upload"),
+    ("http://[::1]:8080", "https://[::1]:8080/upload"),
+    ("http://[::1]:8080", "http://[::2]:8080/upload"),
+    ("http://[::1]:8080", "http://[0:0:0:0:0:0:0:1]:8080/upload"),
+    ("http://[::1]:8080", "http://localhost:8080/upload"),
+    ("http://[fe80::1%25eth0]:8080", "http://[fe80::1%eth0]:8080/upload"),
+    ("http://[fe80::1%25eth0]:8080", "http://[fe80::1%25eth1]:8080/upload"),
+  ])
+  func newRequestURIRejectsInvalidIPv6Origin(endpoint: String, uri: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent for invalid URI: \(uri)")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: endpoint,
+      credentials: SpyCredentials()
+    )
+    await expectBadURL(uri, on: client)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "https://private.googleapis.com",
+      uri: "https://storage.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123",
+      wantURL: "https://private.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123"
+    ),
+    (
+      endpoint: "https://private.googleapis.com",
+      uri: "https://storage.googleapis.com:443/upload/storage/v1/b/my-bucket/o?upload_id=123",
+      wantURL: "https://private.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123"
+    ),
+    (
+      endpoint: "https://private.googleapis.com",
+      uri: "https://private.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123",
+      wantURL: "https://private.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123"
+    ),
+    (
+      endpoint: "https://restricted.googleapis.com",
+      uri: "https://storage.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123",
+      wantURL: "https://restricted.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=123"
+    ),
+  ])
+  func newRequestURIVPCSCRouting(endpoint: String, uri: String, wantURL: String) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let mock = MockHTTPClient { request, _ in
+      #expect(request.url == wantURL)
+      #expect(request.headers["Host"] == ["storage.googleapis.com"])
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0.endpoint = endpoint
+      $0.credentials = credentials
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://storage.googleapis.com"
+    )
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == wantURL)
+    #expect(request.headers["Host"] == ["storage.googleapis.com"])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test(arguments: [
+    "http://storage.googleapis.com/upload",
+    "https://storage.googleapis.com:8443/upload",
+    "https://storage%2Egoogleapis%2Ecom/upload",
+    "https://restricted.googleapis.com/upload",
+    "https://other.example/upload",
+  ])
+  func newRequestURIRejectsInvalidVPCSCOrigin(uri: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent for invalid URI: \(uri)")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://private.googleapis.com",
+      credentials: SpyCredentials(),
+      defaultEndpoint: "https://storage.googleapis.com"
+    )
+    await expectBadURL(uri, on: client)
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
     public let value: String
+  }
+}
+
+private struct SpyCredentials: CredentialsProtocol {
+  func universeDomain() async throws -> String {
+    Issue.record("universeDomain() must not be called when newRequest(uri:) fails validation")
+    return GoogleAuth.Credentials.defaultUniverseDomain
+  }
+
+  func headers() async throws -> AuthHeaders {
+    Issue.record("headers() must not be called when newRequest(uri:) fails validation")
+    return [("authorization", "Bearer test-token")]
   }
 }
 

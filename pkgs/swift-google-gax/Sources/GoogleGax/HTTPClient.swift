@@ -120,7 +120,10 @@ public import Foundation
   @_spi(GoogleCloudInternal) public static func validateEndpoint(_ endpoint: String) throws
     -> URLComponents
   {
-    guard var parsed = URLComponents(string: endpoint) else {
+    guard var parsed = URLComponents(string: endpoint, encodingInvalidCharacters: false) else {
+      throw ClientError.invalidEndpoint(endpoint)
+    }
+    guard parsed.user == nil, parsed.password == nil, parsed.fragment == nil else {
       throw ClientError.invalidEndpoint(endpoint)
     }
     parsed.queryItems = nil
@@ -128,7 +131,12 @@ public import Foundation
     guard let scheme = parsed.scheme, (scheme == "http" || scheme == "https") else {
       throw ClientError.invalidEndpoint(endpoint)
     }
-    guard let host = parsed.host, !host.isEmpty else {
+    guard
+      let host = parsed.host, !host.isEmpty,
+      let encodedHost = parsed.encodedHost, !encodedHost.isEmpty,
+      encodedHost.hasPrefix("[") || !encodedHost.contains("%"),
+      !host.contains("/"), !host.contains("\\")
+    else {
       throw ClientError.invalidEndpoint(endpoint)
     }
     return parsed
@@ -193,15 +201,66 @@ public import Foundation
     uri: String,
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
-    guard var components = URLComponents(string: uri) else {
-      throw RequestError.badURL(uri)
-    }
+    var components = try self.validatedComponents(for: uri)
     if let encoded = components.percentEncodedQuery {
       components.percentEncodedQuery = encoded.replacingOccurrences(of: ";", with: "%3B")
+    }
+    guard components.url != nil else {
+      throw RequestError.badURL(uri)
     }
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)
     return request
+  }
+
+  private func validatedComponents(for uri: String) throws -> URLComponents {
+    guard
+      var components = URLComponents(string: uri, encodingInvalidCharacters: false),
+      let rawScheme = components.scheme?.lowercased(),
+      let baseScheme = self.baseURL.scheme?.lowercased(),
+      rawScheme == baseScheme,
+      components.user == nil,
+      components.password == nil,
+      components.fragment == nil,
+      let rawHost = components.host?.lowercased(), !rawHost.isEmpty,
+      let rawEncodedHost = components.encodedHost?.lowercased(), !rawEncodedHost.isEmpty,
+      let baseHost = self.baseURL.host?.lowercased(), !baseHost.isEmpty,
+      let baseEncodedHost = self.baseURL.encodedHost?.lowercased(), !baseEncodedHost.isEmpty,
+      rawEncodedHost.hasPrefix("[") || !rawEncodedHost.contains("%"),
+      !rawHost.contains("/"), !rawHost.contains("\\")
+    else {
+      throw RequestError.badURL(uri)
+    }
+
+    let defaultPort = baseScheme == "https" ? 443 : 80
+    let rawPort = components.port ?? defaultPort
+    let basePort = self.baseURL.port ?? defaultPort
+    guard rawPort == basePort else {
+      throw RequestError.badURL(uri)
+    }
+
+    let expectedHostHeader = self.hostHeader.lowercased()
+    let matchesBase = rawEncodedHost == baseEncodedHost && rawHost == baseHost
+    let matchesHostHeader =
+      rawEncodedHost == expectedHostHeader
+      && (!rawEncodedHost.hasPrefix("[") || rawHost == expectedHostHeader)
+    guard matchesBase || matchesHostHeader else {
+      throw RequestError.badURL(uri)
+    }
+
+    let path = components.path
+    guard !path.isEmpty, path.hasPrefix("/"), !path.contains("\\") else {
+      throw RequestError.badURL(uri)
+    }
+    let pathSegments = path.split(separator: "/", omittingEmptySubsequences: false)
+    guard !pathSegments.contains("."), !pathSegments.contains("..") else {
+      throw RequestError.badURL(uri)
+    }
+
+    components.scheme = self.baseURL.scheme
+    components.encodedHost = self.baseURL.encodedHost
+    components.port = self.baseURL.port
+    return components
   }
 }
 
