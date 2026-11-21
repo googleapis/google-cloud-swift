@@ -16,7 +16,8 @@
 ///
 /// Under [AIP-4115](https://google.aip.dev/auth/4115), MDS credentials fetch short-lived access tokens
 /// for a compute runtime's attached service account from the link-local metadata server
-/// (`http://metadata.google.internal`).
+/// (`http://metadata.google.internal`). Metadata server requests and 2xx responses must include
+/// the `Metadata-Flavor: Google` HTTP header.
 ///
 /// See [Metadata Server Overview](https://cloud.google.com/compute/docs/metadata/overview).
 public struct MDSConfig: Sendable {
@@ -26,7 +27,9 @@ public struct MDSConfig: Sendable {
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
   ///
   /// When `nil`, the universe domain is queried lazily from `/computeMetadata/v1/universe/universe-domain`
-  /// on the metadata server.
+  /// on the metadata server. The metadata server response must include the `Metadata-Flavor: Google`
+  /// header and, when `/computeMetadata/v1/universe/universe-domain` returns a non-empty value, a
+  /// valid DNS domain name.
   public var universeDomain: String? = nil
 
   /// Scopes requested for the minted access token.

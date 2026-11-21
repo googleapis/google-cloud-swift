@@ -25,10 +25,13 @@ public enum CredentialsError: Error, Sendable {
   /// external credential source types.
   case notSupported(String)
 
-  /// Indicates a failure while parsing, decoding, or validating configuration data.
+  /// Indicates a failure while parsing, decoding, or validating configuration data or metadata responses.
   ///
   /// Examples include malformed Service Account or Authorized User JSON key files, missing required fields
   /// (such as `client_email` or `private_key`), invalid RSA private key PEM formatting, or invalid STS response payloads.
+  /// Invalid metadata server responses (such as missing the `Metadata-Flavor: Google` response header or
+  /// returning a malformed universe domain) surface via ``cannotFetchToken(message:underlyingError:)``
+  /// wrapping ``parseError(_:)``.
   case parseError(String)
 
   /// The credentials file could not be loaded or read from disk.
@@ -61,7 +64,9 @@ public enum CredentialsError: Error, Sendable {
   /// credentials. In most Google Cloud environments (GCE, GKE, Cloud Run) the metadata server is
   /// always available and issues the access tokens that authenticate the workload. Outside those
   /// environments, contacting the metadata server fails unless `GCE_METADATA_HOST` points to a
-  /// reachable metadata server or emulator.
+  /// reachable metadata server or emulator. Invalid metadata server responses (such as missing
+  /// the `Metadata-Flavor: Google` response header or returning a malformed universe domain)
+  /// surface via ``cannotFetchToken(message:underlyingError:)`` wrapping ``parseError(_:)``.
   ///
   /// To set up local credentials, run `gcloud auth application-default login`. More information
   /// on how to authenticate client libraries can be found at

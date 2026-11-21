@@ -29,19 +29,33 @@ credential provider that integrates seamlessly with the `TokenCache` actor and
 # Requirements
 
 -   **Requirement**: Implement the native `TokenProvider` protocol.
--   **Requirement**: Query the MDS `/token` endpoint using `AuthHTTPClient`.
+-   **Requirement**: Query the MDS
+    `/computeMetadata/v1/instance/service-accounts/default/token` (`fetchToken()`)
+    and `/computeMetadata/v1/universe/universe-domain` (`fetchUniverseDomain()`)
+    endpoints using `AuthHTTPClient` (`getWithHeaders` and `getStringWithHeaders`,
+    returning HTTP response headers alongside decoded payloads).
 -   **Requirement**: Append the `Metadata-Flavor: Google` header to all MDS
-    requests.
--   **Requirement**: Parse the returned JSON response to extract the token and
-    its expiration time.
+    requests and verify that all 2xx MDS responses contain a valid
+    `Metadata-Flavor: Google` header (splitting comma-separated header values,
+    trimming HTTP optional whitespace `SP`/`HTAB`, and matching `"google"` ASCII
+    case-insensitively).
+-   **Requirement**: Parse the returned JSON token response to extract the
+    token and its expiration time.
+-   **Requirement**: Resolve and validate the universe domain from
+    `/computeMetadata/v1/universe/universe-domain`, trimming ASCII whitespace and
+    newlines, treating HTTP 404 or empty/ASCII-whitespace-only 2xx bodies as
+    `googleapis.com`, and validating non-empty domain strings against strict
+    DNS domain rules.
 -   **Requirement**: Support configuration overrides for endpoint URL, quota
     project ID, scopes, and retry parameters via the initializer.
 -   **Requirement**: Integrate with the overarching structured exponential
-    backoff retry engine for transient HTTP failures.
+    backoff retry engine for transient HTTP failures while treating
+    `CredentialsError.parseError` from response validation as permanent.
 -   **Requirement**: Support `TokenCache` wrapping to handle token refresh loops
     and thundering herd protection.
 -   **Requirement**: Achieve 100% test parity for transient retry, permanent
-    failure, caching, ADC overrides, and quota project headers.
+    failure, response validation, caching, ADC overrides, and quota project
+    headers.
 -   **Non-Requirement**: Generating OIDC ID tokens from the MDS endpoint.
 
 # Overview
@@ -74,14 +88,31 @@ The package-internal credential struct.
 
 Conforms to `TokenProvider`.
 
--   **Endpoint**: Defaults to `http://metadata.google.internal`.
--   **Path**: `/computeMetadata/v1/instance/service-accounts/default/token`.
--   **Query Parameters**: Optionally appends `scopes` if provided.
--   **Headers**: Injects `Metadata-Flavor: Google`.
--   Uses `AuthHTTPClient` to execute the network request.
--   Decodes the JSON response using
-    `JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase`.
--   Constructs an `AccessToken` with the appropriate expiration time.
+-   **Endpoint**: Defaults to `http://metadata.google.internal` (overridable
+    via explicit `endpoint` or `GCE_METADATA_HOST`).
+-   **Paths**:
+    -   `fetchToken()`: `/computeMetadata/v1/instance/service-accounts/default/token`
+        (optionally appending `scopes` as a query parameter if provided).
+    -   `fetchUniverseDomain()`: `/computeMetadata/v1/universe/universe-domain`.
+-   **Headers**: Injects `Metadata-Flavor: Google` on all requests and uses
+    `AuthHTTPClient.getWithHeaders` / `getStringWithHeaders` so 2xx responses
+    return HTTP response headers alongside decoded payloads.
+-   **Response Header Verification**: Verifies `Metadata-Flavor: Google` on
+    every 2xx response by splitting header values on commas (preserving empty
+    elements), trimming HTTP optional whitespace (`SP`/`HTAB`), and requiring a
+    non-empty list where every element ASCII case-insensitively equals
+    `"google"`.
+-   **Token Payload (`fetchToken()`)**: Decodes the JSON response using
+    `JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase` and constructs an
+    `AccessToken` with the appropriate expiration time.
+-   **Universe Domain Payload (`fetchUniverseDomain()`)**: Trims ASCII
+    whitespace and newlines (`SP`, `HTAB`, `CR`, `LF`), treats HTTP 404 or
+    empty/ASCII-whitespace-only 2xx bodies as `googleapis.com`, and validates
+    any non-empty domain string against strict DNS domain rules (1-253 ASCII
+    bytes, >=2 labels of 1-63 `[A-Za-z0-9-]` characters without leading or
+    trailing hyphens, at least one ASCII alphabetic character in the final TLD
+    label, and valid `https://sts.<domain>` construction via `URLComponents`)
+    before caching in `MDSUniverseDomainCache`.
 
 ## Configuration
 
@@ -108,10 +139,19 @@ retries to prevent hangs in developer environments.
 
 The provider leverages the native swift retry engine.
 
--   Transient errors (e.g., HTTP 500, 503, connection timeouts) trigger
-    exponential backoff according to the `retryConfiguration`.
--   Permanent errors (e.g., HTTP 404, 403, 400) immediately fail without
-    retries.
+-   Transient errors (e.g., HTTP 500, 503, 429, 408, connection timeouts)
+    trigger exponential backoff according to the `retryConfiguration`.
+-   Permanent errors immediately fail without retries, including permanent HTTP
+    4xx status codes (e.g., HTTP 400, 403, and HTTP 404 on `/token`, whereas
+    HTTP 404 on `/universe/universe-domain` maps to `googleapis.com`), payload
+    decoding errors, and `CredentialsError.parseError` caused by missing
+    `Metadata-Flavor: Google` response headers or invalid universe domain
+    syntax.
+-   `MDSAccessTokenProvider` wraps `CredentialsError.parseError` inside
+    `CredentialsError.cannotFetchToken(message:underlyingError:)`. Because
+    `AuthHTTPError.isRetryable(_:)` unwraps `.cannotFetchToken`, `.parseError`
+    is treated as permanent (not retried) and cached as a permanent error in
+    `MDSUniverseDomainCache`.
 
 # Implementation details
 
