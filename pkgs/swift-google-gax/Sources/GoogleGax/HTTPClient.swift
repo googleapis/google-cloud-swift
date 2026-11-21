@@ -24,6 +24,7 @@ public import Foundation
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
   let hostHeader: String
+  let defaultServiceHosts: Set<String>
   let universeDomain: String
   public let clientHeader: _ApiClientHeader
 
@@ -63,6 +64,17 @@ public import Foundation
       defaultEndpoint: withDefaultEndpoint,
       universeDomain: universeDomain
     )
+    let universeDefaultHost = try _Host.header(
+      endpoint: nil,
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: universeDomain
+    ).lowercased()
+    let canonicalDefaultHost = try _Host.header(
+      endpoint: nil,
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: _Host.defaultUniverseDomain
+    ).lowercased()
+    self.defaultServiceHosts = [universeDefaultHost, canonicalDefaultHost]
     self.inner = from._httpClient ?? HTTPClientHolder()
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
@@ -107,11 +119,23 @@ public import Foundation
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner
+    let effectiveDefaultEndpoint = defaultEndpoint ?? endpoint
     self.hostHeader = try _Host.header(
       endpoint: endpoint,
-      defaultEndpoint: defaultEndpoint ?? endpoint,
+      defaultEndpoint: effectiveDefaultEndpoint,
       universeDomain: universeDomain
     )
+    let universeDefaultHost = try _Host.header(
+      endpoint: nil,
+      defaultEndpoint: effectiveDefaultEndpoint,
+      universeDomain: universeDomain
+    ).lowercased()
+    let canonicalDefaultHost = try _Host.header(
+      endpoint: nil,
+      defaultEndpoint: effectiveDefaultEndpoint,
+      universeDomain: _Host.defaultUniverseDomain
+    ).lowercased()
+    self.defaultServiceHosts = [universeDefaultHost, canonicalDefaultHost]
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
     self.clientHeader = header
@@ -215,36 +239,15 @@ public import Foundation
 
   private func validatedComponents(for uri: String) throws -> URLComponents {
     guard
+      !uri.isEmpty,
       var components = URLComponents(string: uri, encodingInvalidCharacters: false),
-      let rawScheme = components.scheme?.lowercased(),
-      let baseScheme = self.baseURL.scheme?.lowercased(),
-      rawScheme == baseScheme,
       components.user == nil,
       components.password == nil,
-      components.fragment == nil,
-      let rawHost = components.host?.lowercased(), !rawHost.isEmpty,
-      let rawEncodedHost = components.encodedHost?.lowercased(), !rawEncodedHost.isEmpty,
-      let baseHost = self.baseURL.host?.lowercased(), !baseHost.isEmpty,
-      let baseEncodedHost = self.baseURL.encodedHost?.lowercased(), !baseEncodedHost.isEmpty,
-      rawEncodedHost.hasPrefix("[") || !rawEncodedHost.contains("%"),
-      !rawHost.contains("/"), !rawHost.contains("\\")
+      components.fragment == nil
     else {
       throw RequestError.badURL(uri)
     }
-
-    let defaultPort = baseScheme == "https" ? 443 : 80
-    let rawPort = components.port ?? defaultPort
-    let basePort = self.baseURL.port ?? defaultPort
-    guard rawPort == basePort else {
-      throw RequestError.badURL(uri)
-    }
-
-    let expectedHostHeader = self.hostHeader.lowercased()
-    let matchesBase = rawEncodedHost == baseEncodedHost && rawHost == baseHost
-    let matchesHostHeader =
-      rawEncodedHost == expectedHostHeader
-      && (!rawEncodedHost.hasPrefix("[") || rawHost == expectedHostHeader)
-    guard matchesBase || matchesHostHeader else {
+    if let port = components.port, !(1...65535).contains(port) {
       throw RequestError.badURL(uri)
     }
 
@@ -257,10 +260,65 @@ public import Foundation
       throw RequestError.badURL(uri)
     }
 
+    if !uri.hasPrefix("//"),
+      components.scheme == nil,
+      components.host == nil,
+      components.encodedHost == nil,
+      components.port == nil
+    {
+      components.scheme = self.baseURL.scheme
+      components.encodedHost = self.baseURL.encodedHost
+      components.port = self.baseURL.port
+      return components
+    }
+
+    guard
+      let rawScheme = components.scheme?.lowercased(),
+      rawScheme == "http" || rawScheme == "https",
+      let baseScheme = self.baseURL.scheme?.lowercased(),
+      let rawHost = components.host?.lowercased(), !rawHost.isEmpty,
+      let rawEncodedHost = components.encodedHost?.lowercased(), !rawEncodedHost.isEmpty,
+      let baseHost = self.baseURL.host?.lowercased(), !baseHost.isEmpty,
+      let baseEncodedHost = self.baseURL.encodedHost?.lowercased(), !baseEncodedHost.isEmpty,
+      rawEncodedHost.hasPrefix("[") || !rawEncodedHost.contains("%"),
+      !rawHost.contains("/"), !rawHost.contains("\\")
+    else {
+      throw RequestError.badURL(uri)
+    }
+
+    let rawPort = components.port ?? (rawScheme == "https" ? 443 : 80)
+    let basePort = self.baseURL.port ?? (baseScheme == "https" ? 443 : 80)
+    let expectedHostHeader = self.hostHeader.lowercased()
+    let matchesBase = rawEncodedHost == baseEncodedHost && rawHost == baseHost
+    let matchesHostHeader =
+      rawEncodedHost == expectedHostHeader
+      && (!rawEncodedHost.hasPrefix("[") || rawHost == expectedHostHeader)
+    let matchesConfiguredOrigin =
+      rawScheme == baseScheme
+      && ((matchesBase && rawPort == basePort)
+        || (matchesHostHeader && (rawPort == basePort || components.port == nil)))
+    let matchesHTTPLoopbackEmulator =
+      baseScheme == "http"
+      && Self.isLoopbackHost(baseEncodedHost)
+      && (Self.isEmulatorLocalHost(rawEncodedHost)
+        || (self.defaultServiceHosts.contains(rawEncodedHost)
+          && (!rawEncodedHost.hasPrefix("[") || rawHost == rawEncodedHost)))
+    guard matchesConfiguredOrigin || matchesHTTPLoopbackEmulator else {
+      throw RequestError.badURL(uri)
+    }
+
     components.scheme = self.baseURL.scheme
     components.encodedHost = self.baseURL.encodedHost
     components.port = self.baseURL.port
     return components
+  }
+
+  private static func isLoopbackHost(_ encodedHost: String) -> Bool {
+    encodedHost == "localhost" || encodedHost == "[::1]" || encodedHost == "127.0.0.1"
+  }
+
+  private static func isEmulatorLocalHost(_ encodedHost: String) -> Bool {
+    Self.isLoopbackHost(encodedHost) || encodedHost == "0.0.0.0"
   }
 }
 

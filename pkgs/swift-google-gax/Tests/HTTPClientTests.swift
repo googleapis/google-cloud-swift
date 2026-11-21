@@ -1548,7 +1548,9 @@ import NIOHTTP1
     "https://storage.googleapis.com/upload/%5c../other",
     "https://storage.googleapis.com/upload\\other",
     "https://[::1]/upload",
-    "/upload",
+    "///upload",
+    "/upload/../other",
+    "/upload#frag",
     "upload",
     "//other.example/upload",
     "https:storage.googleapis.com/upload",
@@ -1568,16 +1570,17 @@ import NIOHTTP1
   }
 
   @Test(arguments: [
-    "https://localhost:8080/upload",
-    "http://localhost/upload",
-    "http://localhost:9090/upload",
     "http://other.example:8080/upload",
+    "https://other.example/upload",
+    "http://169.254.169.254/upload",
+    "http://localhost:0/upload",
     "http://user@localhost:8080/upload",
     "http://localhost\\@other.example:8080/upload",
     "http://localhost:8080/upload#frag",
     "http://localhost:8080",
     "http://localhost:8080/upload/../other",
-    "/upload",
+    "///upload",
+    "upload",
   ])
   func newRequestURIRejectsInvalidHTTPOrigin(uri: String) async throws {
     let mock = MockHTTPClient { (_, _) in
@@ -1588,6 +1591,56 @@ import NIOHTTP1
       mock,
       endpoint: "http://localhost:8080",
       credentials: SpyCredentials()
+    )
+    await expectBadURL(uri, on: client)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "http://proxy.example.internal:8080",
+      defaultEndpoint: "https://storage.googleapis.com" as String?,
+      uri: "https://proxy.example.internal:8080/upload"
+    ),
+    (
+      endpoint: "http://proxy.example.internal:8080",
+      defaultEndpoint: "https://storage.googleapis.com" as String?,
+      uri: "http://proxy.example.internal:9090/upload"
+    ),
+    (
+      endpoint: "http://proxy.example.internal:8080",
+      defaultEndpoint: "https://storage.googleapis.com" as String?,
+      uri: "https://storage.googleapis.com/upload"
+    ),
+    (
+      endpoint: "https://localhost:8080",
+      defaultEndpoint: nil as String?,
+      uri: "http://localhost:8080/upload"
+    ),
+    (
+      endpoint: "https://localhost:8080",
+      defaultEndpoint: nil as String?,
+      uri: "https://localhost:9090/upload"
+    ),
+    (
+      endpoint: "https://localhost:8080",
+      defaultEndpoint: nil as String?,
+      uri: "https://127.0.0.1:8080/upload"
+    ),
+  ])
+  func newRequestURIRejectsMismatchedCustomOrigin(
+    endpoint: String,
+    defaultEndpoint: String?,
+    uri: String
+  ) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent for invalid URI: \(uri)")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: endpoint,
+      credentials: SpyCredentials(),
+      defaultEndpoint: defaultEndpoint
     )
     await expectBadURL(uri, on: client)
   }
@@ -1719,12 +1772,10 @@ import NIOHTTP1
   }
 
   @Test(arguments: [
-    ("http://[::1]:8080", "http://[::1]:9090/upload"),
-    ("http://[::1]:8080", "http://[::1]/upload"),
-    ("http://[::1]:8080", "https://[::1]:8080/upload"),
+    ("https://[::1]:8080", "http://[::1]:8080/upload"),
+    ("https://[::1]:8080", "https://[::1]:9090/upload"),
     ("http://[::1]:8080", "http://[::2]:8080/upload"),
     ("http://[::1]:8080", "http://[0:0:0:0:0:0:0:1]:8080/upload"),
-    ("http://[::1]:8080", "http://localhost:8080/upload"),
     ("http://[fe80::1%25eth0]:8080", "http://[fe80::1%eth0]:8080/upload"),
     ("http://[fe80::1%25eth0]:8080", "http://[fe80::1%25eth1]:8080/upload"),
   ])
@@ -1739,6 +1790,195 @@ import NIOHTTP1
       credentials: SpyCredentials()
     )
     await expectBadURL(uri, on: client)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "https://storage.googleapis.com",
+      defaultEndpoint: "https://storage.googleapis.com",
+      uri: "/upload/storage/v1/b/my-bucket/o?uploadType=resumable&upload_id=123",
+      wantURL:
+        "https://storage.googleapis.com/upload/storage/v1/b/my-bucket/o?uploadType=resumable&upload_id=123",
+      wantHost: "storage.googleapis.com"
+    ),
+    (
+      endpoint: "https://private.googleapis.com",
+      defaultEndpoint: "https://storage.googleapis.com",
+      uri: "/upload?a=1;b=2",
+      wantURL: "https://private.googleapis.com/upload?a=1%3Bb=2",
+      wantHost: "storage.googleapis.com"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      defaultEndpoint: "https://storage.googleapis.com",
+      uri: "/upload/storage/v1/b/my-bucket/o?uploadType=resumable&upload_id=123",
+      wantURL:
+        "http://localhost:8080/upload/storage/v1/b/my-bucket/o?uploadType=resumable&upload_id=123",
+      wantHost: "localhost"
+    ),
+  ])
+  func newRequestURIAcceptsRelativePaths(
+    endpoint: String,
+    defaultEndpoint: String,
+    uri: String,
+    wantURL: String,
+    wantHost: String
+  ) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let mock = MockHTTPClient { request, _ in
+      #expect(request.url == wantURL)
+      #expect(request.headers["Host"] == [wantHost])
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0.endpoint = endpoint
+      $0.credentials = credentials
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: defaultEndpoint)
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == wantURL)
+    #expect(request.headers["Host"] == [wantHost])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://localhost/upload?upload_id=1",
+      wantURL: "http://localhost:8080/upload?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://[::1]:8080",
+      uri: "http://[::1]/upload?upload_id=1",
+      wantURL: "http://[::1]:8080/upload?upload_id=1",
+      wantHost: "[::1]"
+    ),
+    (
+      endpoint: "http://proxy.example.internal:8080",
+      uri: "http://proxy.example.internal/upload?upload_id=1",
+      wantURL: "http://proxy.example.internal:8080/upload?upload_id=1",
+      wantHost: "proxy.example.internal"
+    ),
+    (
+      endpoint: "https://proxy.example.internal:8443",
+      uri: "https://proxy.example.internal/upload?upload_id=1",
+      wantURL: "https://proxy.example.internal:8443/upload?upload_id=1",
+      wantHost: "proxy.example.internal"
+    ),
+  ])
+  func newRequestURIAcceptsOmittedPortHostHeaderLocation(
+    endpoint: String,
+    uri: String,
+    wantURL: String,
+    wantHost: String
+  ) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let mock = MockHTTPClient { request, _ in
+      #expect(request.url == wantURL)
+      #expect(request.headers["Host"] == [wantHost])
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0.endpoint = endpoint
+      $0.credentials = credentials
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://storage.googleapis.com"
+    )
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == wantURL)
+    #expect(request.headers["Host"] == [wantHost])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://localhost/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://127.0.0.1:4443/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://0.0.0.0:4443/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://[::1]:4443/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      uri: "https://storage.googleapis.com/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://localhost:8080",
+      uri: "http://storage.googleapis.com:4443/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://localhost:8080/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "localhost"
+    ),
+    (
+      endpoint: "http://127.0.0.1:9000",
+      uri: "http://localhost/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://127.0.0.1:9000/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "127.0.0.1"
+    ),
+    (
+      endpoint: "http://127.0.0.1:9000",
+      uri: "https://storage.googleapis.com/upload/storage/v1/b/b/o?upload_id=1",
+      wantURL: "http://127.0.0.1:9000/upload/storage/v1/b/b/o?upload_id=1",
+      wantHost: "127.0.0.1"
+    ),
+  ])
+  func newRequestURIAcceptsHTTPLoopbackEmulatorLocation(
+    endpoint: String,
+    uri: String,
+    wantURL: String,
+    wantHost: String
+  ) async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let mock = MockHTTPClient { request, _ in
+      #expect(request.url == wantURL)
+      #expect(request.headers["Host"] == [wantHost])
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0.endpoint = endpoint
+      $0.credentials = credentials
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://storage.googleapis.com"
+    )
+    let request = try await client.newRequest(uri: uri)
+    #expect(request.components.url?.absoluteString == wantURL)
+    #expect(request.headers["Host"] == [wantHost])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
   }
 
   @Test(arguments: [

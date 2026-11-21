@@ -3668,6 +3668,101 @@ import Testing
       #expect(request.value(forHTTPHeaderField: idempotencyToken) == nil)
     }
   }
+
+  @Test(arguments: [
+    "http://localhost:9000/upload/storage/v1/b/test-bucket/o?upload_id=emulator-session",
+    "http://localhost/upload/storage/v1/b/test-bucket/o?upload_id=emulator-session",
+    "https://storage.googleapis.com/upload/storage/v1/b/test-bucket/o?upload_id=emulator-session",
+    "http://0.0.0.0:4443/upload/storage/v1/b/test-bucket/o?upload_id=emulator-session",
+    "/upload/storage/v1/b/test-bucket/o?upload_id=emulator-session",
+  ])
+  func resumableUploadAcceptsLocalEmulatorLocationHeaders(locationHeader: String) async throws {
+    let registry = MockRegistry.create()
+    let emulatorEndpoint = "http://localhost:9000"
+    let bucket = "test-bucket"
+    let objectName = "emulator-object"
+    let data = Data("hello emulator".utf8)
+    let source = BytesSource(data: data)
+
+    let startUrl =
+      "\(emulatorEndpoint)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
+    let chunkUrl =
+      "\(emulatorEndpoint)/upload/storage/v1/b/\(bucket)/o?upload_id=emulator-session"
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data(),
+        headers: ["Location": locationHeader]
+      ),
+      for: startUrl
+    )
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: chunkUrl
+    )
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = emulatorEndpoint
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+      $0.writeObject.resumableUploadThreshold = 0
+    }
+    let client = try StorageClient(options, mock: registry)
+
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].urlString == chunkUrl)
+    #expect(requests[1].value(forHTTPHeaderField: "Host") == "localhost")
+  }
+
+  @Test func resumableUploadRejectsUnconfiguredLocationHost() async throws {
+    let registry = MockRegistry.create()
+    let emulatorEndpoint = "http://localhost:9000"
+    let bucket = "test-bucket"
+    let objectName = "rejected-location-object"
+    let source = BytesSource(data: Data("hello".utf8))
+
+    let badLocation = "https://other.example/upload/storage/v1/b/\(bucket)/o?upload_id=bad"
+    let startUrl =
+      "\(emulatorEndpoint)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data(),
+        headers: ["Location": badLocation]
+      ),
+      for: startUrl
+    )
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = emulatorEndpoint
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+      $0.writeObject.resumableUploadThreshold = 0
+    }
+    let client = try StorageClient(options, mock: registry)
+
+    let error = await #expect(throws: WriteObjectError.self) {
+      _ = try await client.writeObject(source, to: bucket, as: objectName)
+    }
+    guard case .requestError(.badURL(let badURI)) = error else {
+      Issue.record(
+        "Expected WriteObjectError.requestError(.badURL), got \(String(describing: error))")
+      return
+    }
+    #expect(badURI == badLocation)
+    #expect(registry.recordedRequests().count == 1)
+  }
 }
 
 // MARK: - Test Helper Sources
