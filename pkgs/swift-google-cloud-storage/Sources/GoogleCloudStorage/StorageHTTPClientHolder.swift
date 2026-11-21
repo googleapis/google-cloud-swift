@@ -21,7 +21,11 @@ import struct NIOCore.TimeAmount
 /// Owns a dedicated `AsyncHTTPClient.HTTPClient` instance (and its underlying connection pool) on
 /// the shared `HTTPClient.defaultEventLoopGroup`, shutting it down asynchronously on `deinit`.
 final class StorageHTTPClientHolder: _HTTPClientProtocol, Sendable {
-  let inner = AsyncHTTPClient.HTTPClient()
+  // Disable automatic redirect following so 3xx responses (including GCS `308 Resume Incomplete`)
+  // are returned directly to callers.
+  let inner = AsyncHTTPClient.HTTPClient(
+    configuration: .init(redirectConfiguration: .disallow)
+  )
 
   deinit {
     let copy = self.inner

@@ -18,6 +18,7 @@ import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
 import NIOPosix
+import Synchronization
 import Testing
 @testable import GoogleAuth
 
@@ -1023,6 +1024,271 @@ import Testing
       try? await group.shutdownGracefully()
       throw error
     }
+  }
+
+  @Test(arguments: [UInt(301), 302, 303, 307, 308])
+  func defaultClientDoesNotFollowGetRedirects(statusCode: UInt) async throws {
+    try await withRedirectLoopbackServers(
+      status: HTTPResponseStatus(statusCode: Int(statusCode)),
+      responseBody: Data("redirected".utf8),
+      contentType: "text/plain; charset=utf-8"
+    ) { sourcePort, targetPort, sourceRecorder, targetRecorder in
+      let sourceURL = try #require(URL(string: "http://127.0.0.1:\(sourcePort)/mds"))
+      let targetURL = try #require(URL(string: "http://127.0.0.1:\(targetPort)/redirect-target"))
+      let client = AuthHTTPClient()
+
+      let error = await #expect(throws: AuthHTTPError.self) {
+        _ = try await client.getString(
+          url: sourceURL,
+          headers: ["Metadata-Flavor": "Google"],
+          timeout: .seconds(10)
+        )
+      }
+
+      guard case let .unsuccessfulResponse(response, data) = error else {
+        Issue.record(
+          "Expected AuthHTTPError.unsuccessfulResponse, got \(String(describing: error))")
+        return
+      }
+      #expect(response.status.code == statusCode)
+      #expect(response.headers.first(name: "Location") == targetURL.absoluteString)
+      #expect(String(data: data, encoding: .utf8) == "redirected")
+
+      let sourceRequests = sourceRecorder.requests
+      #expect(sourceRequests.count == 1)
+      #expect(sourceRequests.first?.method == .GET)
+      #expect(sourceRequests.first?.uri == "/mds")
+      #expect(sourceRequests.first?.headers["Metadata-Flavor"] == ["Google"])
+      #expect(targetRecorder.requests.isEmpty)
+    }
+  }
+
+  @Test(arguments: [UInt(301), 302, 303, 307, 308])
+  func defaultClientDoesNotFollowPostRedirects(statusCode: UInt) async throws {
+    try await withRedirectLoopbackServers(
+      status: HTTPResponseStatus(statusCode: Int(statusCode)),
+      responseBody: Data(#"{"error": "redirected"}"#.utf8),
+      contentType: "application/json"
+    ) { sourcePort, targetPort, sourceRecorder, targetRecorder in
+      let sourceURL = try #require(URL(string: "http://127.0.0.1:\(sourcePort)/token"))
+      let targetURL = try #require(URL(string: "http://127.0.0.1:\(targetPort)/redirect-target"))
+      let client = AuthHTTPClient()
+
+      let error = await #expect(throws: AuthHTTPError.self) {
+        let _: MockTokenResponse = try await client.post(
+          url: sourceURL,
+          body: ["grant_type": "refresh_token", "refresh_token": "test-refresh-token"],
+          timeout: .seconds(10)
+        )
+      }
+
+      guard case let .unsuccessfulResponse(response, _) = error else {
+        Issue.record(
+          "Expected AuthHTTPError.unsuccessfulResponse, got \(String(describing: error))")
+        return
+      }
+      #expect(response.status.code == statusCode)
+      #expect(response.headers.first(name: "Location") == targetURL.absoluteString)
+
+      let sourceRequests = sourceRecorder.requests
+      #expect(sourceRequests.count == 1)
+      #expect(sourceRequests.first?.method == .POST)
+      #expect(sourceRequests.first?.uri == "/token")
+      #expect(targetRecorder.requests.isEmpty)
+    }
+  }
+
+  @Test(arguments: [UInt(301), 302, 303, 307, 308])
+  func defaultClientDoesNotFollowPostDataRedirects(statusCode: UInt) async throws {
+    try await withRedirectLoopbackServers(
+      status: HTTPResponseStatus(statusCode: Int(statusCode)),
+      responseBody: Data(#"{"error": "redirected"}"#.utf8),
+      contentType: "application/json"
+    ) { sourcePort, targetPort, sourceRecorder, targetRecorder in
+      let sourceURL = try #require(URL(string: "http://127.0.0.1:\(sourcePort)/v1/token"))
+      let targetURL = try #require(URL(string: "http://127.0.0.1:\(targetPort)/redirect-target"))
+      let client = AuthHTTPClient()
+      let payload = Data("grant_type=urn:ietf:params:oauth:grant-type:token-exchange".utf8)
+
+      let error = await #expect(throws: AuthHTTPError.self) {
+        let _: MockTokenResponse = try await client.postData(
+          url: sourceURL,
+          bodyData: payload,
+          contentType: "application/x-www-form-urlencoded",
+          headers: ["x-test-header": "test-value"],
+          timeout: .seconds(10)
+        )
+      }
+
+      guard case let .unsuccessfulResponse(response, _) = error else {
+        Issue.record(
+          "Expected AuthHTTPError.unsuccessfulResponse, got \(String(describing: error))")
+        return
+      }
+      #expect(response.status.code == statusCode)
+      #expect(response.headers.first(name: "Location") == targetURL.absoluteString)
+
+      let sourceRequests = sourceRecorder.requests
+      #expect(sourceRequests.count == 1)
+      #expect(sourceRequests.first?.method == .POST)
+      #expect(sourceRequests.first?.uri == "/v1/token")
+      #expect(sourceRequests.first?.body == payload)
+      #expect(
+        sourceRequests.first?.headers["Content-Type"] == ["application/x-www-form-urlencoded"])
+      #expect(sourceRequests.first?.headers["x-test-header"] == ["test-value"])
+      #expect(targetRecorder.requests.isEmpty)
+    }
+  }
+}
+
+private struct RedirectRecordedRequest: Sendable {
+  let method: HTTPMethod
+  let uri: String
+  let headers: HTTPHeaders
+  let body: Data
+}
+
+private final class RedirectRequestRecorder: Sendable {
+  private let recorded = Mutex<[RedirectRecordedRequest]>([])
+
+  func record(_ request: RedirectRecordedRequest) {
+    self.recorded.withLock { $0.append(request) }
+  }
+
+  var requests: [RedirectRecordedRequest] {
+    self.recorded.withLock { $0 }
+  }
+}
+
+private func withRedirectLoopbackServers<T>(
+  status: HTTPResponseStatus,
+  responseBody: Data,
+  contentType: String,
+  _ operation: (
+    _ sourcePort: Int,
+    _ targetPort: Int,
+    _ sourceRecorder: RedirectRequestRecorder,
+    _ targetRecorder: RedirectRequestRecorder
+  ) async throws -> T
+) async throws -> T {
+  let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+  let sourceRecorder = RedirectRequestRecorder()
+  let targetRecorder = RedirectRequestRecorder()
+
+  var sourceChannel: (any Channel)? = nil
+  var targetChannel: (any Channel)? = nil
+  let result: Result<T, any Error>
+  do {
+    let targetBootstrap = ServerBootstrap(group: group)
+      .serverChannelOption(.backlog, value: 4)
+      .serverChannelOption(.socketOption(.so_reuseaddr), value: 1)
+      .childChannelInitializer { channel in
+        channel.eventLoop.makeCompletedFuture {
+          try channel.pipeline.syncOperations.configureHTTPServerPipeline()
+          try channel.pipeline.syncOperations.addHandler(
+            NIOHTTPServerRequestAggregator(maxContentLength: 1 << 16))
+          try channel.pipeline.syncOperations.addHandler(
+            RedirectStaticServerHandler(
+              status: .ok,
+              headers: HTTPHeaders([("Content-Type", "application/json")]),
+              body: Data(#"{"status": "unexpected"}"#.utf8),
+              recorder: targetRecorder
+            )
+          )
+        }
+      }
+    let boundTarget = try await targetBootstrap.bind(host: "127.0.0.1", port: 0).get()
+    targetChannel = boundTarget
+    let targetPort = try #require(boundTarget.localAddress?.port)
+
+    let sourceHeaders = HTTPHeaders([
+      ("Location", "http://127.0.0.1:\(targetPort)/redirect-target"),
+      ("Content-Type", contentType),
+    ])
+    let sourceBootstrap = ServerBootstrap(group: group)
+      .serverChannelOption(.backlog, value: 4)
+      .serverChannelOption(.socketOption(.so_reuseaddr), value: 1)
+      .childChannelInitializer { channel in
+        channel.eventLoop.makeCompletedFuture {
+          try channel.pipeline.syncOperations.configureHTTPServerPipeline()
+          try channel.pipeline.syncOperations.addHandler(
+            NIOHTTPServerRequestAggregator(maxContentLength: 1 << 16))
+          try channel.pipeline.syncOperations.addHandler(
+            RedirectStaticServerHandler(
+              status: status,
+              headers: sourceHeaders,
+              body: responseBody,
+              recorder: sourceRecorder
+            )
+          )
+        }
+      }
+    let boundSource = try await sourceBootstrap.bind(host: "127.0.0.1", port: 0).get()
+    sourceChannel = boundSource
+    let sourcePort = try #require(boundSource.localAddress?.port)
+
+    result = .success(try await operation(sourcePort, targetPort, sourceRecorder, targetRecorder))
+  } catch {
+    result = .failure(error)
+  }
+
+  try? await sourceChannel?.close().get()
+  try? await targetChannel?.close().get()
+  switch result {
+  case .success(let value):
+    try await group.shutdownGracefully()
+    return value
+  case .failure(let error):
+    try? await group.shutdownGracefully()
+    throw error
+  }
+}
+
+private final class RedirectStaticServerHandler: ChannelInboundHandler {
+  typealias InboundIn = NIOHTTPServerRequestFull
+  typealias OutboundOut = HTTPServerResponsePart
+
+  private let status: HTTPResponseStatus
+  private let headers: HTTPHeaders
+  private let body: Data
+  private let recorder: RedirectRequestRecorder
+
+  init(
+    status: HTTPResponseStatus,
+    headers: HTTPHeaders,
+    body: Data,
+    recorder: RedirectRequestRecorder
+  ) {
+    self.status = status
+    self.headers = headers
+    self.body = body
+    self.recorder = recorder
+  }
+
+  func channelRead(context: ChannelHandlerContext, data: NIOAny) {
+    let request = self.unwrapInboundIn(data)
+    self.recorder.record(
+      RedirectRecordedRequest(
+        method: request.head.method,
+        uri: request.head.uri,
+        headers: request.head.headers,
+        body: request.body.map { Data(buffer: $0) } ?? Data()
+      )
+    )
+    var responseHeaders = self.headers
+    responseHeaders.replaceOrAdd(name: "Content-Length", value: "\(self.body.count)")
+    responseHeaders.replaceOrAdd(name: "Connection", value: "close")
+    let head = HTTPResponseHead(
+      version: request.head.version,
+      status: self.status,
+      headers: responseHeaders
+    )
+    context.write(self.wrapOutboundOut(.head(head)), promise: nil)
+    if !self.body.isEmpty {
+      let buffer = context.channel.allocator.buffer(data: self.body)
+      context.write(self.wrapOutboundOut(.body(.byteBuffer(buffer))), promise: nil)
+    }
+    context.writeAndFlush(self.wrapOutboundOut(.end(nil)), promise: nil)
   }
 }
 

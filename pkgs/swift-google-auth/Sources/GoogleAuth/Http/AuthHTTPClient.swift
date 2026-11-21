@@ -42,10 +42,12 @@ struct SharedHTTPClient: HTTPClientProtocol {
   /// Process-wide shared `HTTPClient` for authentication requests.
   ///
   /// Uses `HTTPClient.defaultEventLoopGroup` with explicit connect (`10s`) and read (`30s`)
-  /// timeouts and `decompression: .disabled` (unlike `HTTPClient.shared`, which injects
+  /// timeouts, automatic HTTP redirect following disabled (`redirectConfiguration: .disallow`),
+  /// and `decompression: .disabled` (unlike `HTTPClient.shared`, which injects
   /// `Accept-Encoding: deflate, gzip` via `.singletonConfiguration`).
   static let defaultClient = HTTPClient(
     configuration: .init(
+      redirectConfiguration: .disallow,
       timeout: .init(connect: .seconds(10), read: .seconds(30))
     )
   )
