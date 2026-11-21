@@ -215,6 +215,10 @@ This internal client encapsulates the following networking policies:
 -   **Plain-Text Support**: Supports retrieving raw UTF-8 string responses
     (bypassing JSON decoding) to accommodate GCE Metadata Server endpoints
     (like ID tokens and emails) that return plain text.
+-   **Disabled Redirects**: Configures `SharedHTTPClient.defaultClient` with
+    `redirectConfiguration: .disallow` so `3xx` responses from token and
+    metadata endpoints are not followed automatically and surface as
+    unsuccessful HTTP responses.
 
 --------------------------------------------------------------------------------
 

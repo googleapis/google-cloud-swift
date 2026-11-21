@@ -336,6 +336,12 @@ is entirely encapsulated and never exposed in public APIs:
 - Applications do not configure or interact directly with `AsyncHTTPClient` types.
 - Encapsulating the transport allows the SDK to optimize, update, or replace the
   underlying HTTP engine in the future without breaking user code.
+- `HTTPClientHolder` (and `StorageHTTPClientHolder` in
+  `swift-google-cloud-storage`) configures `AsyncHTTPClient.HTTPClient` with
+  automatic HTTP redirect following disabled
+  (`redirectConfiguration: .disallow`), ensuring `3xx` responses (including
+  Cloud Storage `308 Resume Incomplete` responses during resumable uploads) are
+  returned directly to the transport caller rather than followed automatically.
 
 ### Package granularity and SPM monorepo
 

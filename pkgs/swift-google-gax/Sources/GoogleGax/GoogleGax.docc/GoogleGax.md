@@ -1,6 +1,6 @@
 # ```GoogleGax```
 
-The GAX library provides protocols, types and functions to configure the Coogle
+The GAX library provides protocols, types and functions to configure the Google
 Cloud Client libraries for Swift.
 
 ## Overview
@@ -32,9 +32,15 @@ configuration of a single request.
 
 The client libraries throw a ``RequestError`` when an operation fails. The error
 type is an enum, each `case` providing information about exactly what failed.
-When the error is returned by the service the `.serviceError` case contains a
-``ServiceError`` which often includes more details about the cause of the
-problem.
+When the error is returned by the service the ``RequestError/service(_:)`` case
+contains a ``ServiceError`` which often includes more details about the cause of
+the problem.
+
+The HTTP transport disables automatic `3xx` redirect following
+(`redirectConfiguration: .disallow`), so unexpected `3xx` redirect status codes
+are returned directly as ``RequestError/http(_:)`` (or
+``RequestError/service(_:)`` when the response payload carries a structured
+service status).
 
 ## Retry loop control
 

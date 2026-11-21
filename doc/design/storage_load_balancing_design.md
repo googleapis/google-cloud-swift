@@ -33,7 +33,7 @@ StorageClient
 1. **Shared `GoogleGax._HTTPClient` and Authentication:**
    `StorageClient` resolves `GoogleAuth.Credentials` once (when `options.client.credentials == nil`) and injects the pooled `_HTTPClientProtocol` transport into a single `GoogleGax._HTTPClient`. Every pooled connection slot therefore shares the same OAuth2 `TokenCache` and request header configuration.
 2. **Shared `EventLoopGroup`:**
-   Each `StorageHTTPClientHolder` constructs `AsyncHTTPClient.HTTPClient()` with default settings, which reuses `HTTPClient.defaultEventLoopGroup` across all holders while giving each holder an independent `HTTPConnectionPool.Manager` (and thus an independent HTTP/2 connection to `storage.googleapis.com`). Each holder shuts down its inner `HTTPClient` asynchronously in `deinit`.
+   Each `StorageHTTPClientHolder` constructs `AsyncHTTPClient.HTTPClient(configuration: .init(redirectConfiguration: .disallow))` on the shared `HTTPClient.defaultEventLoopGroup`, giving each holder an independent `HTTPConnectionPool.Manager` (and thus an independent HTTP/2 connection to `storage.googleapis.com`) while disabling automatic HTTP redirect following so `3xx` responses (including `308 Resume Incomplete`) are delivered directly to `StorageClient`. Each holder shuts down its inner `HTTPClient` asynchronously in `deinit`.
    Because endpoint validation (`_HTTPClient.validateEndpoint`) runs before allocating the pool holders, invalid endpoints fail fast without spawning temporary `HTTPClient` instances.
 3. **Pool Size Heuristic:**
    `StorageClientOptions.resolveConnectionPoolSize(_:coreCount:)` computes the number of HTTP client slots as:
