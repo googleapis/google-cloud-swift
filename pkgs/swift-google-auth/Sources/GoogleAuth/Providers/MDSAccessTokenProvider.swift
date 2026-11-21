@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import NIOHTTP1
 
 /// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
 ///
@@ -151,13 +152,119 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       """
   }
 
+  /// Verifies that the metadata server response carries `Metadata-Flavor: Google`.
+  ///
+  /// Splits each `Metadata-Flavor` header value on commas and requires a non-empty list where
+  /// every element (trimmed of HTTP optional whitespace `SP` and `HTAB`) ASCII case-insensitively
+  /// equals `"google"`.
+  private static func verifyMetadataFlavor(_ responseHeaders: HTTPHeaders) throws {
+    let values = responseHeaders["Metadata-Flavor"]
+    let elements = values.flatMap { $0.split(separator: ",", omittingEmptySubsequences: false) }
+    guard !elements.isEmpty, elements.allSatisfy(Self.isGoogleMetadataFlavorValue) else {
+      throw CredentialsError.parseError(
+        "Metadata server response is missing required 'Metadata-Flavor: Google' header"
+      )
+    }
+  }
+
+  /// Returns `true` when `value` (trimmed of HTTP optional whitespace `SP` and `HTAB`) ASCII
+  /// case-insensitively equals `"google"`.
+  private static func isGoogleMetadataFlavorValue(_ value: Substring) -> Bool {
+    let utf8 = value.utf8
+    guard
+      let start = utf8.firstIndex(where: { !Self.isHTTPOWS($0) }),
+      let end = utf8.lastIndex(where: { !Self.isHTTPOWS($0) })
+    else {
+      return false
+    }
+    return utf8[start...end].elementsEqual("google".utf8) { lhs, rhs in
+      Self.toASCIILower(lhs) == rhs
+    }
+  }
+
+  /// Trims leading and trailing ASCII spaces, horizontal tabs, carriage returns, and line feeds
+  /// from a plain-text metadata response without stripping non-ASCII whitespace or other control
+  /// characters.
+  private static func trimASCIIWhitespaceAndNewlines(_ value: String) -> String {
+    let utf8 = value.utf8
+    guard
+      let start = utf8.firstIndex(where: { !Self.isASCIILineWhitespace($0) }),
+      let end = utf8.lastIndex(where: { !Self.isASCIILineWhitespace($0) })
+    else {
+      return ""
+    }
+    return String(decoding: utf8[start...end], as: UTF8.self)
+  }
+
+  private static func isHTTPOWS(_ byte: UInt8) -> Bool {
+    byte == 0x20 || byte == 0x09
+  }
+
+  private static func isASCIILineWhitespace(_ byte: UInt8) -> Bool {
+    byte == 0x20 || byte == 0x09 || byte == 0x0A || byte == 0x0D
+  }
+
+  private static func toASCIILower(_ byte: UInt8) -> UInt8 {
+    (0x41...0x5A).contains(byte) ? byte + 0x20 : byte
+  }
+
+  /// Validates that `domain` is a strict RFC 1035 / RFC 1123 / RFC 3696 DNS domain name suitable
+  /// for interpolating into service hostnames (`https://sts.\(domain)`).
+  private static func isValidUniverseDomain(_ domain: String) -> Bool {
+    let utf8 = domain.utf8
+    guard (1...253).contains(utf8.count) else {
+      return false
+    }
+    let dot = UInt8(ascii: ".")
+    let hyphen = UInt8(ascii: "-")
+    let labels = utf8.split(separator: dot, omittingEmptySubsequences: false)
+    guard labels.count >= 2 else {
+      return false
+    }
+    for label in labels {
+      guard
+        (1...63).contains(label.count),
+        label.first != hyphen,
+        label.last != hyphen,
+        label.allSatisfy(Self.isDNSLabelByte)
+      else {
+        return false
+      }
+    }
+    // RFC 1123 §2.1 / RFC 3696 §2: the final TLD label cannot be all-numeric (must contain at
+    // least one ASCII letter), rejecting IPv4 dotted-quad literals and numeric TLDs.
+    guard let tld = labels.last, tld.contains(where: Self.isASCIIAlpha) else {
+      return false
+    }
+    guard
+      let components = URLComponents(
+        string: "https://sts.\(domain)",
+        encodingInvalidCharacters: false
+      ),
+      components.encodedHost?.lowercased() == "sts.\(domain.lowercased())",
+      components.url != nil
+    else {
+      return false
+    }
+    return true
+  }
+
+  private static func isASCIIAlpha(_ byte: UInt8) -> Bool {
+    (0x41...0x5A).contains(byte) || (0x61...0x7A).contains(byte)
+  }
+
+  private static func isDNSLabelByte(_ byte: UInt8) -> Bool {
+    Self.isASCIIAlpha(byte) || (0x30...0x39).contains(byte) || byte == 0x2D
+  }
+
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.
   ///
-  /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
-  /// `/computeMetadata/v1/instance/service-accounts/default/token`, and includes the required `Metadata-Flavor: Google` header.
+  /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, appends the token path
+  /// `/computeMetadata/v1/instance/service-accounts/default/token`, sends `Metadata-Flavor: Google`, and verifies
+  /// that the response includes `Metadata-Flavor: Google`.
   ///
   /// - Returns: A valid `AccessToken` containing the access token string and expiration date.
-  /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an error.
+  /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable, omits `Metadata-Flavor: Google`, or returns an error.
   @concurrent
   func fetchToken() async throws -> AccessToken {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
@@ -201,7 +308,9 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     let fetchOperation: @Sendable () async throws -> AccessToken = {
-      let response: TokenResponse = try await self.client.get(url: url, headers: headers)
+      let (response, responseHeaders): (TokenResponse, HTTPHeaders) =
+        try await self.client.getWithHeaders(url: url, headers: headers)
+      try Self.verifyMetadataFlavor(responseHeaders)
       let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
       return AccessToken(
         token: response.accessToken,
@@ -236,12 +345,14 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
   /// Queries the metadata server for the attached environment's universe domain.
   ///
-  /// Requests `/computeMetadata/v1/universe/universe-domain` with `Metadata-Flavor: Google`.
+  /// Requests `/computeMetadata/v1/universe/universe-domain` with `Metadata-Flavor: Google`,
+  /// verifies `Metadata-Flavor: Google` on 2xx responses, and validates any non-empty domain
+  /// against strict RFC 1035 / RFC 1123 / RFC 3696 DNS hostname syntax.
   /// Standard Google Default Universe (`googleapis.com`) metadata servers may return HTTP 404
   /// or an empty body for this endpoint; both are treated as `googleapis.com`.
   ///
   /// - Returns: The resolved and validated universe domain string.
-  /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an unexpected error.
+  /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable, omits `Metadata-Flavor: Google`, returns an invalid domain, or returns an unexpected error.
   @concurrent
   func fetchUniverseDomain() async throws -> String {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
@@ -285,10 +396,15 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     let fetchOperation: @Sendable () async throws -> String = {
       do {
-        let response = try await self.client.getString(url: url, headers: headers)
-        let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
+        let (response, responseHeaders) = try await self.client.getStringWithHeaders(
+          url: url, headers: headers)
+        try Self.verifyMetadataFlavor(responseHeaders)
+        let trimmed = Self.trimASCIIWhitespaceAndNewlines(response)
         if trimmed.isEmpty {
           return defaultUniverseDomain
+        }
+        guard Self.isValidUniverseDomain(trimmed) else {
+          throw CredentialsError.parseError("Invalid universe domain returned by metadata server")
         }
         return trimmed
       } catch let error as AuthHTTPError where error.statusCode == 404 {

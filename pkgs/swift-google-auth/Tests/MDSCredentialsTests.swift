@@ -37,7 +37,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -79,7 +82,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -114,7 +120,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -164,7 +173,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }
@@ -308,7 +320,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -344,7 +359,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -449,7 +467,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: malformedData))
         )
       }
@@ -496,7 +517,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -530,7 +554,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -574,7 +601,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -634,7 +664,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -670,7 +703,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -704,7 +740,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }
@@ -741,7 +780,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }
@@ -797,7 +839,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "text/plain")]),
+          headers: .init([
+            ("Content-Type", "text/plain"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: Data("  my-custom-universe.com\n".utf8)))
         )
       }
@@ -831,6 +876,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: Data("   \n ".utf8)))
         )
       }
@@ -886,6 +932,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: Data("recovered.universe.com\n".utf8)))
         )
       },
@@ -971,7 +1018,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       },
@@ -981,6 +1031,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: Data("queried.universe.com\n".utf8)))
         )
       },
@@ -996,6 +1047,375 @@ import Testing
     #expect(headers["Authorization"] == "Bearer mock-token")
     #expect(headers["x-goog-user-project"] == nil)
     #expect(try await provider.universeDomain() == "queried.universe.com")
+  }
+
+  struct MetadataFlavorHeaderCase: Sendable, CustomTestStringConvertible {
+    let label: String
+    let headers: [(String, String)]
+
+    var testDescription: String { self.label }
+
+    static let invalidCases: [MetadataFlavorHeaderCase] = [
+      .init(label: "missing", headers: []),
+      .init(label: "wrong value", headers: [("Metadata-Flavor", "Other")]),
+      .init(label: "empty value", headers: [("Metadata-Flavor", "")]),
+      .init(label: "whitespace only", headers: [("Metadata-Flavor", "   \t ")]),
+      .init(
+        label: "comma-separated Google and Other",
+        headers: [("Metadata-Flavor", "Google, Other")]
+      ),
+      .init(
+        label: "comma-separated Other then Google",
+        headers: [("Metadata-Flavor", "Other, Google")]
+      ),
+      .init(
+        label: "comma-separated trailing empty",
+        headers: [("Metadata-Flavor", "Google, ")]
+      ),
+      .init(
+        label: "comma-separated leading empty",
+        headers: [("Metadata-Flavor", ", Google")]
+      ),
+      .init(
+        label: "comma-separated empty element",
+        headers: [("Metadata-Flavor", "Google,,Google")]
+      ),
+      .init(
+        label: "duplicate Google then Other",
+        headers: [("Metadata-Flavor", "Google"), ("Metadata-Flavor", "Other")]
+      ),
+      .init(
+        label: "duplicate Other then Google",
+        headers: [("Metadata-Flavor", "Other"), ("Metadata-Flavor", "Google")]
+      ),
+      .init(
+        label: "duplicate Google with empty header",
+        headers: [("Metadata-Flavor", "Google"), ("Metadata-Flavor", "")]
+      ),
+      .init(label: "carriage return control char", headers: [("Metadata-Flavor", "Google\r")]),
+      .init(label: "line feed control char", headers: [("Metadata-Flavor", "Google\n")]),
+      .init(
+        label: "vertical tab control char",
+        headers: [("Metadata-Flavor", "\u{000B}Google")]
+      ),
+      .init(
+        label: "form feed control char",
+        headers: [("Metadata-Flavor", "Google\u{000C}")]
+      ),
+      .init(label: "non-ASCII whitespace", headers: [("Metadata-Flavor", "Google\u{00A0}")]),
+    ]
+
+    static let validCaseInsensitiveCases: [MetadataFlavorHeaderCase] = [
+      .init(label: "lowercase name and value", headers: [("metadata-flavor", "google")]),
+      .init(label: "uppercase name with ASCII spaces", headers: [("METADATA-FLAVOR", "  Google ")]),
+      .init(label: "tab-padded uppercase value", headers: [("Metadata-Flavor", "\tGOOGLE\t")]),
+      .init(
+        label: "duplicate matching Google headers",
+        headers: [("Metadata-Flavor", "Google"), ("metadata-flavor", "google")]
+      ),
+      .init(
+        label: "comma-separated matching Google values",
+        headers: [("Metadata-Flavor", "Google, google")]
+      ),
+      .init(
+        label: "mixed comma-separated and duplicate Google headers",
+        headers: [("Metadata-Flavor", "Google, google"), ("METADATA-FLAVOR", "  Google\t")]
+      ),
+    ]
+  }
+
+  @Test(arguments: MetadataFlavorHeaderCase.invalidCases)
+  func tokenRejectsMissingOrInvalidMetadataFlavorHeaders(testCase: MetadataFlavorHeaderCase)
+    async throws
+  {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encodedData = try JSONEncoder().encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")] + testCase.headers),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case let .parseError(detail) = underlyingError as? CredentialsError else {
+      Issue.record("Expected CredentialsError.parseError, got \(underlyingError)")
+      return
+    }
+    #expect(
+      detail == "Metadata server response is missing required 'Metadata-Flavor: Google' header")
+    #expect(AuthHTTPError.isRetryable(error) == false)
+    #expect(attempts.getCount() == 1)
+
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(attempts.getCount() == 1)
+  }
+
+  @Test(arguments: MetadataFlavorHeaderCase.invalidCases)
+  func universeDomainRejectsMissingOrInvalidMetadataFlavorHeaders(
+    testCase: MetadataFlavorHeaderCase
+  ) async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "text/plain")] + testCase.headers),
+          body: .bytes(.init(data: Data("custom.universe.com\n".utf8)))
+        )
+      }
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case let .parseError(detail) = underlyingError as? CredentialsError else {
+      Issue.record("Expected CredentialsError.parseError, got \(underlyingError)")
+      return
+    }
+    #expect(
+      detail == "Metadata server response is missing required 'Metadata-Flavor: Google' header")
+    #expect(AuthHTTPError.isRetryable(error) == false)
+    #expect(attempts.getCount() == 1)
+
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(attempts.getCount() == 1)
+  }
+
+  @Test(arguments: MetadataFlavorHeaderCase.validCaseInsensitiveCases)
+  func tokenAcceptsCaseInsensitiveMetadataFlavorHeaders(testCase: MetadataFlavorHeaderCase)
+    async throws
+  {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encodedData = try JSONEncoder().encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")] + testCase.headers),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+    let provider = MDSCredentials(client: AuthHTTPClient(mock: mock), environment: [:])
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer mock-token")
+  }
+
+  @Test(arguments: MetadataFlavorHeaderCase.validCaseInsensitiveCases)
+  func universeDomainAcceptsCaseInsensitiveMetadataFlavorHeaders(
+    testCase: MetadataFlavorHeaderCase
+  ) async throws {
+    let mock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "text/plain")] + testCase.headers),
+          body: .bytes(.init(data: Data("custom.universe.com\n".utf8)))
+        )
+      }
+    ])
+    let provider = MDSCredentials(client: AuthHTTPClient(mock: mock), environment: [:])
+    #expect(try await provider.universeDomain() == "custom.universe.com")
+  }
+
+  @Test func universeDomainEmptyBodyStillRequiresMetadataFlavorHeader() async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { _ in
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "text/plain")]),
+          body: .bytes(.init(data: Data()))
+        )
+      }
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case let .parseError(detail) = underlyingError as? CredentialsError else {
+      Issue.record("Expected CredentialsError.parseError, got \(underlyingError)")
+      return
+    }
+    #expect(
+      detail == "Metadata server response is missing required 'Metadata-Flavor: Google' header")
+    #expect(attempts.getCount() == 1)
+  }
+
+  @Test(arguments: [
+    "<html>not found</html>",
+    "other.example.com/path",
+    "other.example.com:8080",
+    "user@other.example.com",
+    "singlelabel",
+    "-bad.com",
+    "bad-.com",
+    "a..b.com",
+    ".leading.com",
+    "trailing.com.",
+    "169.254.169.254",
+    "127.0.0.1",
+    "10.0.0.1",
+    "example.123",
+    "example.1-2",
+    "\(String(repeating: "a", count: 63)).\(String(repeating: "b", count: 63)).\(String(repeating: "c", count: 63)).\(String(repeating: "d", count: 62))",
+    "\(String(repeating: "a", count: 64)).com",
+    "other.example.com?query=1",
+    "other.example.com#fragment",
+    "my universe.com",
+    "bücher.example",
+    "\u{00A0}",
+    "\u{000B}",
+    "\u{000C}",
+    "\u{00A0}custom.universe.com",
+    "custom.universe.com\u{00A0}",
+    "\u{000B}custom.universe.com",
+    "custom.universe.com\u{000C}",
+    "custom\u{0000}.universe.com",
+    "custom\rcmd.universe.com",
+  ])
+  func universeDomainRejectsInvalidSyntaxWithoutRetryOrCaching(payload: String) async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { _ in
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "text/plain"),
+            ("Metadata-Flavor", "Google"),
+          ]),
+          body: .bytes(.init(data: Data(payload.utf8)))
+        )
+      }
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case let .parseError(detail) = underlyingError as? CredentialsError else {
+      Issue.record("Expected CredentialsError.parseError, got \(underlyingError)")
+      return
+    }
+    #expect(detail == "Invalid universe domain returned by metadata server")
+    #expect(AuthHTTPError.isRetryable(error) == false)
+    #expect(attempts.getCount() == 1)
+
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(attempts.getCount() == 1)
+  }
+
+  @Test(arguments: [
+    ("googleapis.com\n", "googleapis.com"),
+    ("  my-custom-universe.com\n", "my-custom-universe.com"),
+    (" \t my-custom-universe.com \r\n", "my-custom-universe.com"),
+    ("\(String(repeating: "a", count: 63)).com", "\(String(repeating: "a", count: 63)).com"),
+    (
+      "\(String(repeating: "a", count: 63)).\(String(repeating: "b", count: 63)).\(String(repeating: "c", count: 63)).\(String(repeating: "d", count: 61))",
+      "\(String(repeating: "a", count: 63)).\(String(repeating: "b", count: 63)).\(String(repeating: "c", count: 63)).\(String(repeating: "d", count: 61))"
+    ),
+    ("A1-b2.Universe-1.COM", "A1-b2.Universe-1.COM"),
+    ("xn--bcher-kva.example", "xn--bcher-kva.example"),
+    ("01.com", "01.com"),
+  ])
+  func universeDomainAcceptsValidBoundaryHostnames(payload: String, expected: String) async throws {
+    let mock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "text/plain"),
+            ("Metadata-Flavor", "Google"),
+          ]),
+          body: .bytes(.init(data: Data(payload.utf8)))
+        )
+      }
+    ])
+    let provider = MDSCredentials(client: AuthHTTPClient(mock: mock), environment: [:])
+    #expect(try await provider.universeDomain() == expected)
   }
 
   static func checkRequest(

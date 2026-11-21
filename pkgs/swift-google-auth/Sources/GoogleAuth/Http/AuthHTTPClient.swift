@@ -113,14 +113,30 @@ struct AuthHTTPClient: Sendable {
     headers: [String: String] = [:],
     timeout: Duration? = nil
   ) async throws -> T {
+    try await self.getWithHeaders(url: url, headers: headers, timeout: timeout).0
+  }
+
+  /// Asynchronously dispatches a GET request, returning both the decoded JSON response and the
+  /// HTTP response headers on 2xx responses.
+  ///
+  /// - Parameters:
+  ///   - url: The target URL of the request.
+  ///   - headers: HTTP request headers.
+  ///   - timeout: Optional execution timeout override (defaults to `defaultTimeout`).
+  /// - Returns: A tuple containing the parsed JSON response structure and the response headers.
+  @concurrent
+  func getWithHeaders<T: Decodable>(
+    url: URL,
+    headers: [String: String] = [:],
+    timeout: Duration? = nil
+  ) async throws -> (T, HTTPHeaders) {
     return try await self.mapError {
-      var request = HTTPClientRequest(url: url.absoluteString)
-      request.method = .GET
-      request.headers = .init(headers.map { ($0.key, $0.value) })
-      let buffer = try await self.executeAndCollectBody(request, timeout: timeout)
+      let (buffer, responseHeaders) = try await self.executeGET(
+        url: url, headers: headers, timeout: timeout)
 
       do {
-        return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
+        let decoded = try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
+        return (decoded, responseHeaders)
       } catch {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -144,18 +160,34 @@ struct AuthHTTPClient: Sendable {
     headers: [String: String] = [:],
     timeout: Duration? = nil
   ) async throws -> String {
+    try await self.getStringWithHeaders(url: url, headers: headers, timeout: timeout).0
+  }
+
+  /// Asynchronously dispatches a GET request, returning both the plain-text response body and the
+  /// HTTP response headers on 2xx responses.
+  ///
+  /// - Parameters:
+  ///   - url: The target URL of the request.
+  ///   - headers: Optional HTTP request headers.
+  ///   - timeout: Optional execution timeout override (defaults to `defaultTimeout`).
+  /// - Returns: A tuple containing the plain-text UTF-8 string and the response headers.
+  /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` if invalid UTF-8.
+  @concurrent
+  func getStringWithHeaders(
+    url: URL,
+    headers: [String: String] = [:],
+    timeout: Duration? = nil
+  ) async throws -> (String, HTTPHeaders) {
     return try await self.mapError {
-      var request = HTTPClientRequest(url: url.absoluteString)
-      request.method = .GET
-      request.headers = .init(headers.map { ($0.key, $0.value) })
-      var buffer = try await self.executeAndCollectBody(request, timeout: timeout)
+      var (buffer, responseHeaders) = try await self.executeGET(
+        url: url, headers: headers, timeout: timeout)
 
       do {
         guard let plainText = try buffer.readUTF8ValidatedString(length: buffer.readableBytes)
         else {
           throw AuthHTTPError.decodingError(error: AuthHTTPError.invalidUTF8Response)
         }
-        return plainText
+        return (plainText, responseHeaders)
       } catch {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -256,16 +288,41 @@ struct AuthHTTPClient: Sendable {
     }
   }
 
+  /// Executes a GET request and collects the validated response body and headers within a single
+  /// overall deadline.
+  @concurrent
+  private func executeGET(
+    url: URL,
+    headers: [String: String],
+    timeout: Duration?
+  ) async throws -> (ByteBuffer, HTTPHeaders) {
+    var request = HTTPClientRequest(url: url.absoluteString)
+    request.method = .GET
+    request.headers = .init(headers.map { ($0.key, $0.value) })
+    return try await self.executeAndCollectBodyWithHeaders(request, timeout: timeout)
+  }
+
   /// Executes `request` and collects the validated response body within a single overall deadline.
   @concurrent
   private func executeAndCollectBody(
     _ request: HTTPClientRequest,
     timeout: Duration? = nil
   ) async throws -> ByteBuffer {
+    try await self.executeAndCollectBodyWithHeaders(request, timeout: timeout).0
+  }
+
+  /// Executes `request` and collects the validated response body and response headers within a
+  /// single overall deadline.
+  @concurrent
+  private func executeAndCollectBodyWithHeaders(
+    _ request: HTTPClientRequest,
+    timeout: Duration? = nil
+  ) async throws -> (ByteBuffer, HTTPHeaders) {
     let effectiveTimeout = timeout ?? Self.defaultTimeout
     let deadline = ContinuousClock.now.advanced(by: effectiveTimeout)
     let response = try await self.performRequest(request, timeout: effectiveTimeout)
-    return try await self.collectBody(response, deadline: deadline)
+    let buffer = try await self.collectBody(response, deadline: deadline)
+    return (buffer, response.headers)
   }
 
   @concurrent

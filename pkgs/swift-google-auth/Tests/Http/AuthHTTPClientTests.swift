@@ -52,6 +52,46 @@ import Testing
     #expect(response == mockPayload)
   }
 
+  @Test func clientPerformsGetWithHeadersAndPreservesResponseHeaders() async throws {
+    let targetURL = URL(string: "http://metadata.google.internal/token")!
+    let mockPayload = MockTokenResponse(accessToken: "fake-token-with-headers", expiresIn: 3600)
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(mockPayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .GET)
+        #expect(request.headers["Metadata-Flavor"] == ["Google"])
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+            ("X-Custom-Multi", "first"),
+            ("x-custom-multi", "second"),
+          ]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let (response, responseHeaders): (MockTokenResponse, HTTPHeaders) =
+      try await client.getWithHeaders(
+        url: targetURL,
+        headers: ["Metadata-Flavor": "Google"],
+        timeout: .seconds(4)
+      )
+
+    #expect(response == mockPayload)
+    #expect(responseHeaders["Metadata-Flavor"] == ["Google"])
+    #expect(responseHeaders["X-Custom-Multi"] == ["first", "second"])
+    #expect(mock.recordedTimeouts == [.seconds(4)])
+  }
+
   @Test func clientPerformsPostAndDecodesSnakeCase() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let mockPayload = MockTokenResponse(accessToken: "fake-post-token", expiresIn: 1800)
@@ -189,8 +229,18 @@ import Testing
     }
 
     let client = AuthHTTPClient(
-      mock: MockHTTPClient([makeErrorResponse, makeErrorResponse, makeErrorResponse])
+      mock: MockHTTPClient([
+        makeErrorResponse, makeErrorResponse, makeErrorResponse, makeErrorResponse,
+        makeErrorResponse,
+      ])
     )
+
+    let getWithHeadersError = await #expect(throws: AuthHTTPError.self) {
+      let _: (MockTokenResponse, HTTPHeaders) = try await client.getWithHeaders(url: targetURL)
+    }
+    #expect(getWithHeadersError?.statusCode == 400)
+    #expect(getWithHeadersError?.body == errorPayload)
+    #expect(getWithHeadersError?.bodyData == errorData)
 
     let getStringError = await #expect(throws: AuthHTTPError.self) {
       _ = try await client.getString(url: targetURL)
@@ -198,6 +248,13 @@ import Testing
     #expect(getStringError?.statusCode == 400)
     #expect(getStringError?.body == errorPayload)
     #expect(getStringError?.bodyData == errorData)
+
+    let getStringWithHeadersError = await #expect(throws: AuthHTTPError.self) {
+      _ = try await client.getStringWithHeaders(url: targetURL)
+    }
+    #expect(getStringWithHeadersError?.statusCode == 400)
+    #expect(getStringWithHeadersError?.body == errorPayload)
+    #expect(getStringWithHeadersError?.bodyData == errorData)
 
     let postError = await #expect(throws: AuthHTTPError.self) {
       let _: MockTokenResponse = try await client.post(
@@ -235,6 +292,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: mockData)),
         )
       }
@@ -247,6 +305,43 @@ import Testing
     )
 
     #expect(result == mockEmail)
+  }
+
+  @Test func clientPerformsGetStringWithHeadersAndPreservesResponseHeaders() async throws {
+    let targetURL = URL(string: "http://metadata.google.internal/universe")!
+    let mockData = Data("my-universe.com\n".utf8)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .GET)
+        #expect(request.headers["Metadata-Flavor"] == ["Google"])
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "text/plain"),
+            ("metadata-flavor", "Google"),
+            ("X-Trace", "one"),
+            ("x-trace", "two"),
+          ]),
+          body: .bytes(.init(data: mockData)),
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let (result, responseHeaders) = try await client.getStringWithHeaders(
+      url: targetURL,
+      headers: ["Metadata-Flavor": "Google"],
+      timeout: .seconds(6)
+    )
+
+    #expect(result == "my-universe.com\n")
+    #expect(responseHeaders["Metadata-Flavor"] == ["Google"])
+    #expect(responseHeaders["X-Trace"] == ["one", "two"])
+    #expect(mock.recordedTimeouts == [.seconds(6)])
   }
 
   @Test func clientThrowsNetworkError() async throws {
@@ -275,6 +370,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: mockData)),
         )
       }
@@ -461,7 +557,10 @@ import Testing
         return HTTPClientResponse(
           version: .http1_1,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .stream(stalledStream)
         )
       }
@@ -489,7 +588,10 @@ import Testing
         return HTTPClientResponse(
           version: .http1_1,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .stream(stalledStream)
         )
       },
@@ -1039,6 +1141,7 @@ private final class LoopbackTokenServerHandler: ChannelInboundHandler {
       let acceptEncoding = request.head.headers["Accept-Encoding"].joined(separator: ", ")
       payload = Data((acceptEncoding.isEmpty ? "<none>" : acceptEncoding).utf8)
       headers.add(name: "Content-Type", value: "text/plain; charset=utf-8")
+      headers.add(name: "Metadata-Flavor", value: "Google")
     } else {
       payload = Data(#"{"access_token": "loopback-token", "expires_in": 3600}"#.utf8)
       headers.add(name: "Content-Type", value: "application/json")
