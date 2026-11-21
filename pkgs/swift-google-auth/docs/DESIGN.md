@@ -180,13 +180,21 @@ initialization, following standard search paths defined in
 
 ### B. Structured Credentials Sources
 
-We implement three concrete, structural credentials sources that satisfy
-`CredentialsProvider` to encapsulate different authentication channels:
+We implement concrete, structural credentials sources that satisfy
+`CredentialsProvider` to encapsulate different authentication channels,
+including:
 
 -   **`UserCredentials`**: Resolves and refreshes tokens using User OAuth2
-    credentials JSON key data.
+    credentials JSON key data, validating that any configured `token_uri`
+    targets `https://oauth2.googleapis.com` during initialization.
 -   **`ServiceAccountCredentials`**: Authenticates API requests using local JSON
     Web Token (JWT) assertions signed by a Service Account private key.
+-   **`ImpersonatedCredentials`**: Obtains short-lived access tokens for a target
+    service account from a source credential via the IAM Credentials API,
+    validating `targetPrincipal`, `universe_domain`, and explicit
+    `service_account_impersonation_url` values against `iamcredentials` global,
+    regional, and locational endpoints within the resolved universe domain
+    during initialization (and when constructing dynamic universe endpoints).
 -   **`MDSCredentials`**: Resolves instance credentials from the local Compute
     Engine Metadata Server.
 

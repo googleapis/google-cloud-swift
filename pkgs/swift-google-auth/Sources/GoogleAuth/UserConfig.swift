@@ -25,6 +25,10 @@ public import Foundation
 /// [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (`googleapis.com`).
 /// Initializing user credentials with a custom universe domain fails with ``CredentialsError/notSupported(_:)``.
 ///
+/// **Token Endpoint Validation**: Any `"token_uri"` specified in `keyJSON` must be a valid
+/// `https://oauth2.googleapis.com` URL (defaulting to `https://oauth2.googleapis.com/token`),
+/// throwing ``CredentialsError/parseError(_:)`` during initialization if invalid.
+///
 /// > Warning: authorized user key files must be kept secure. Do not hardcode their value directly
 /// > in source code or check them into version control. Treat authorized user key files with the
 /// > same security precautions as passwords.

@@ -28,7 +28,7 @@ established test suites.
 -   **Environment Parity:** Must support `GOOGLE_CLOUD_QUOTA_PROJECT` overrides.
 -   **Provider Routing:** Must dynamically route the JSON configuration to the
     appropriate credential provider based on the `"type"` field
-    (`service_account` or `authorized_user`).
+    (`service_account`, `authorized_user`, or `impersonated_service_account`).
 -   **Feature Parity:** Must implement `buildAccessTokenCredentials()`,
     `buildSigner()`, and `build()` endpoints natively.
 -   **Test Parity:** Must execute all applicable unit tests matching Rust
@@ -72,8 +72,14 @@ for the protocol and the thread-safe dynamic registry pattern implementation.
 The ADC resolver will decode a lightweight header struct from the raw file
 `Data` to extract the `"type"` field. It will then pass the raw `Data` to the
 corresponding registered parser, which can use `JSONDecoder` to decode the
-specific configuration struct (e.g., `ServiceAccountCredentials` or
-`UserCredentials`).
+specific configuration struct and initialize the credential provider (e.g.,
+`ServiceAccountCredentials`, `UserCredentials`, or `ImpersonatedCredentials`).
+During initialization, provider parsers validate endpoint URLs (`token_uri`
+for `authorized_user` and `service_account_impersonation_url` for
+`impersonated_service_account`) as well as `universe_domain` constraints and
+consistency, failing with `CredentialsError.parseError` (or
+`CredentialsError.notSupported` when `authorized_user` is configured with a
+non-default universe domain).
 
 ## 3. Quota and Scopes Configuration
 

@@ -27,6 +27,10 @@ public struct ImpersonatedServiceAccountConfig: Sendable {
   public let sourceCredentials: Credentials
 
   /// The email address or resource name (`projects/-/serviceAccounts/{email_or_unique_id}`) of the target service account to impersonate.
+  ///
+  /// Validated against IAM Credentials endpoint path rules during initialization (alongside
+  /// `"service_account_impersonation_url"` in `impersonated_service_account` ADC JSON
+  /// configurations), failing with ``CredentialsError/parseError(_:)`` if invalid.
   public let targetPrincipal: String
 
   /// Optional ordered sequence of service account email addresses or resource names in a delegation chain.
@@ -46,7 +50,16 @@ public struct ImpersonatedServiceAccountConfig: Sendable {
 
   /// Optional target Google Cloud universe domain override.
   ///
-  /// When `nil` or empty, defaults to the universe domain of `sourceCredentials`.
+  /// Explicitly configured values (including `"universe_domain"` and
+  /// `"service_account_impersonation_url"` in `impersonated_service_account` ADC JSON
+  /// configurations) are validated against DNS domain syntax and IAM Credentials endpoint rules
+  /// during initialization, failing with ``CredentialsError/parseError(_:)`` if invalid.
+  ///
+  /// When `nil` or empty, defaults to the universe domain resolved dynamically from
+  /// `sourceCredentials`; if the dynamically resolved universe domain fails DNS domain syntax
+  /// or IAM Credentials endpoint validation, token retrieval fails with
+  /// ``CredentialsError/cannotFetchToken(message:underlyingError:)`` wrapping
+  /// ``CredentialsError/parseError(_:)``.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `ImpersonatedServiceAccountConfig`.
