@@ -260,6 +260,35 @@ let package = Package(
       swiftSettings: swiftSettings
     ),
     .target(
+      name: "PubSubThroughput",
+      dependencies: [
+        .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+      ],
+      path: "Sources/PubSubThroughput",
+      swiftSettings: swiftSettings
+    ),
+    .executableTarget(
+      name: "PubSubThroughputBenchmark",
+      dependencies: [
+        "PubSubThroughput"
+      ],
+      path: "Sources/PubSubThroughputBenchmark",
+      swiftSettings: swiftSettings
+    ),
+    .testTarget(
+      name: "PubSubThroughputTests",
+      dependencies: [
+        "PubSubThroughput",
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+      ],
+      path: "Tests/PubSubThroughputTests",
+      swiftSettings: swiftSettings
+    ),
+    .target(
       name: "GoogleCloudTestHelpers",
       dependencies: [
         .product(name: "GoogleGax", package: "swift-google-gax"),
