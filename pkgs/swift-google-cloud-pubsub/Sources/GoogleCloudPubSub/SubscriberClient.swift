@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleGax
+import Foundation
+@_spi(GoogleCloudInternal) import GoogleGax
+import Logging
+import _GoogleCloudPubSubProtos
+import SwiftProtobuf
 
 extension Clients {
   /// A Swift protocol to mock ``SubscriberClient``.
@@ -99,12 +103,27 @@ public final class SubscriberClient: Clients.SubscriberProtocol, Sendable {
   /// Client configuration used to initialize this instance.
   public let options: SubscriberClientOptions
 
+  private let pool: GRPCChannelPool
+  private let clock: any PubSubClock
+
   /// Creates a new `SubscriberClient`.
   ///
   /// - Parameter options: Transport, credentials, project ID, subchannels, and default subscribe/pull options.
   /// - Throws: ``PubSubError/invalidConfiguration(description:)`` if client or default options
   ///   contain invalid values.
-  public init(_ options: SubscriberClientOptions = .init()) throws {
+  public convenience init(_ options: SubscriberClientOptions = .init()) throws {
+    try self.init(
+      options,
+      clock: SystemPubSubClock(),
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    _ options: SubscriberClientOptions,
+    clock: any PubSubClock,
+    environment: [String: String]
+  ) throws {
     if options.subchannelCount < 1 {
       throw PubSubError.invalidConfiguration(
         description:
@@ -113,6 +132,12 @@ public final class SubscriberClient: Clients.SubscriberProtocol, Sendable {
     try validateSubscribeOptions(options.defaultSubscribeOptions)
     try validatePullOptions(options.defaultPullOptions)
     self.options = options
+    self.clock = clock
+    self.pool = try GRPCChannelPool(
+      from: options.client,
+      subchannelCount: options.subchannelCount,
+      environment: environment
+    )
   }
 
   /// Opens a streaming pull session inheriting ``SubscriberClientOptions/defaultSubscribeOptions``.
@@ -138,9 +163,16 @@ public final class SubscriberClient: Clients.SubscriberProtocol, Sendable {
   public func subscribe(subscription: String, options: SubscribeOptions) throws
     -> any MessageStreamProtocol
   {
-    _ = try resolvePubSubSubscriptionName(subscription, projectID: self.options.projectID)
+    let resolved = try resolvePubSubSubscriptionName(
+      subscription, projectID: self.options.projectID)
     try validateSubscribeOptions(options)
-    return MessageStream(messages: [])
+    let session = StreamingPullSession(
+      subscription: resolved,
+      options: options,
+      pool: self.pool,
+      clock: self.clock
+    )
+    return session.makeMessageStream()
   }
 
   /// Executes a managed unary `Pull` RPC inheriting ``SubscriberClientOptions/defaultPullOptions``.
@@ -162,9 +194,111 @@ public final class SubscriberClient: Clients.SubscriberProtocol, Sendable {
   /// - Returns: A ``PullResult`` containing received messages ready for `ack()` / `nack()`.
   /// - Throws: `GoogleGax.RequestError` or ``PubSubError``.
   public func pull(subscription: String, options: PullOptions) async throws -> PullResult {
-    _ = try resolvePubSubSubscriptionName(subscription, projectID: self.options.projectID)
+    let resolved = try resolvePubSubSubscriptionName(
+      subscription, projectID: self.options.projectID)
     try validatePullOptions(options)
-    throw GoogleGax.RequestError.unimplemented
+
+    let request = Google_Pubsub_V1_PullRequest.with {
+      $0.subscription = resolved
+      $0.maxMessages = Int32(min(options.maxMessages, Int(Int32.max)))
+      $0.returnImmediately = options.returnImmediately
+    }
+    let retryPolicy =
+      options.request.retryPolicy
+      ?? self.options.client.retryPolicy
+      ?? PubSubRetryPolicy.defaultPublishPolicy
+    let backoffPolicy = options.request.backoffPolicy ?? PubSubRetryPolicy.defaultBackoffPolicy
+    let throttler = options.request.retryThrottler ?? self.pool.defaultRetryThrottler
+    let routing = [_RoutingMatcher.format(key: "subscription", value: resolved)]
+
+    self.pool.pubSubLogger.logRPCDebug(
+      "Sending unary Pull RPC",
+      method: .pull,
+      resource: resolved,
+      extraMetadata: [
+        "pubsub.max_messages": .stringConvertible(options.maxMessages),
+        "pubsub.return_immediately": .stringConvertible(options.returnImmediately),
+      ]
+    )
+
+    let response: Google_Pubsub_V1_PullResponse
+    do {
+      response = try await PubSubRetryExecutor.execute(
+        retryPolicy: retryPolicy,
+        backoffPolicy: backoffPolicy,
+        throttler: throttler,
+        clock: self.clock
+      ) { remainingTime in
+        var attemptOptions = options.request
+        if let remainingTime {
+          attemptOptions.attemptTimeout =
+            attemptOptions.attemptTimeout.map {
+              min($0, remainingTime)
+            } ?? remainingTime
+        }
+        return try await self.pool.unary(
+          descriptor: PubSubGRPCDescriptors.pull,
+          request: request,
+          options: attemptOptions,
+          routingParams: routing
+        )
+      }
+    } catch {
+      self.pool.pubSubLogger.logTerminalError(
+        error,
+        method: .pull,
+        resource: resolved,
+        operation: "pull"
+      )
+      throw error
+    }
+
+    guard !response.receivedMessages.isEmpty else {
+      return PullResult(messages: [])
+    }
+
+    let subOptions = SubscribeOptions().with {
+      $0.maxExtension = options.maxExtension
+      $0.minAckExtension = options.minAckExtension
+      $0.maxAckExtension = options.maxAckExtension
+      $0.enableAdaptiveAckExtension = options.enableAdaptiveAckExtension
+      $0.request = options.request
+    }
+    let leaseManager = LeaseManager(
+      subscription: resolved,
+      subscribeOptions: subOptions,
+      pool: self.pool,
+      clock: self.clock
+    )
+    var leaseItems: [LeaseManager.IncomingLeaseItem] = []
+    var messages: [ReceivedMessage] = []
+    leaseItems.reserveCapacity(response.receivedMessages.count)
+    messages.reserveCapacity(response.receivedMessages.count)
+
+    for proto in response.receivedMessages {
+      let msg = StreamingPullSession.convertProtoMessage(proto)
+      let tracker = LeaseTracker(
+        leaseManager: leaseManager,
+        ackID: proto.ackID,
+        isExactlyOnce: false,
+        releaseTarget: .none
+      )
+      leaseItems.append(.init(ackID: proto.ackID, leaseTracker: tracker))
+      messages.append(
+        ReceivedMessage(
+          message: msg,
+          isExactlyOnce: false,
+          leaseTracker: tracker
+        )
+      )
+    }
+
+    _ = await leaseManager.registerBatch(leaseItems, isExactlyOnce: false)
+    return PullResult(messages: messages)
+  }
+
+  package func shutdown() async {
+    await self.pool.shutdown()
   }
 }
 

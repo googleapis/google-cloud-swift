@@ -103,25 +103,57 @@ extension AckHandlerProtocol {
   }
 }
 
+package enum PermitReleaseTarget: Sendable {
+  case none
+  case flowGate(SubscriberFlowGate, bytes: Int)
+  case closure(@Sendable () -> Void)
+
+  fileprivate func release() {
+    switch self {
+    case .none:
+      break
+    case .flowGate(let gate, let bytes):
+      gate.release(bytes: bytes)
+    case .closure(let callback):
+      callback()
+    }
+  }
+}
+
 package final class LeaseTracker: Sendable {
+  private enum BackingAckTarget: Sendable {
+    case leaseManager(LeaseManager, ackID: String, isExactlyOnce: Bool)
+    case handler(any AckHandlerProtocol)
+  }
+
   private struct State: Sendable {
     var settled: Bool = false
     var expired: Bool = false
   }
 
   private let state: Mutex<State> = Mutex(State())
-  fileprivate let handler: any AckHandlerProtocol
-  private let onPermitRelease: (@Sendable () -> Void)?
+  private let backing: BackingAckTarget
+  private let releaseTarget: PermitReleaseTarget
 
   package init(
     handler: any AckHandlerProtocol,
     onPermitRelease: (@Sendable () -> Void)? = nil
   ) {
-    self.handler = handler
-    self.onPermitRelease = onPermitRelease
+    self.backing = .handler(handler)
+    self.releaseTarget = onPermitRelease.map(PermitReleaseTarget.closure) ?? .none
   }
 
-  /// Atomically marks the message settled and invokes `onPermitRelease` once (if not already expired).
+  package init(
+    leaseManager: LeaseManager,
+    ackID: String,
+    isExactlyOnce: Bool,
+    releaseTarget: PermitReleaseTarget
+  ) {
+    self.backing = .leaseManager(leaseManager, ackID: ackID, isExactlyOnce: isExactlyOnce)
+    self.releaseTarget = releaseTarget
+  }
+
+  /// Atomically marks the message settled and invokes permit release once (if not already expired).
   @discardableResult
   package func markSettled() -> Bool {
     let shouldRelease = self.state.withLock { state -> Bool in
@@ -132,7 +164,7 @@ package final class LeaseTracker: Sendable {
       return !state.expired
     }
     if shouldRelease {
-      self.onPermitRelease?()
+      self.releaseTarget.release()
     }
     return shouldRelease
   }
@@ -148,7 +180,51 @@ package final class LeaseTracker: Sendable {
       return true
     }
     if shouldRelease {
-      self.onPermitRelease?()
+      self.releaseTarget.release()
+    }
+  }
+
+  package func ack(options: AckOptions) -> AckQueuedResult {
+    self.markSettled()
+    switch self.backing {
+    case .leaseManager(let manager, let ackID, let isExactlyOnce):
+      manager.ack(ackID: ackID, isExactlyOnce: isExactlyOnce, options: options)
+      return AckQueuedResult()
+    case .handler(let handler):
+      return handler.ack(options: options)
+    }
+  }
+
+  package func nack(options: NackOptions) -> NackQueuedResult {
+    self.markSettled()
+    switch self.backing {
+    case .leaseManager(let manager, let ackID, let isExactlyOnce):
+      manager.nack(ackID: ackID, isExactlyOnce: isExactlyOnce, options: options)
+      return NackQueuedResult()
+    case .handler(let handler):
+      return handler.nack(options: options)
+    }
+  }
+
+  package func ackWithResult(options: AckOptions) async throws -> AckResult {
+    self.markSettled()
+    switch self.backing {
+    case .leaseManager(let manager, let ackID, let isExactlyOnce):
+      return try await manager.ackWithResult(
+        ackID: ackID, isExactlyOnce: isExactlyOnce, options: options)
+    case .handler(let handler):
+      return try await handler.ackWithResult(options: options)
+    }
+  }
+
+  package func nackWithResult(options: NackOptions) async throws -> AckResult {
+    self.markSettled()
+    switch self.backing {
+    case .leaseManager(let manager, let ackID, let isExactlyOnce):
+      return try await manager.nackWithResult(
+        ackID: ackID, isExactlyOnce: isExactlyOnce, options: options)
+    case .handler(let handler):
+      return try await handler.nackWithResult(options: options)
     }
   }
 
@@ -161,8 +237,13 @@ package final class LeaseTracker: Sendable {
       return true
     }
     if shouldAutoNack {
-      _ = self.handler.nack(options: .init())
-      self.onPermitRelease?()
+      switch self.backing {
+      case .leaseManager(let manager, let ackID, let isExactlyOnce):
+        manager.nack(ackID: ackID, isExactlyOnce: isExactlyOnce, options: .init())
+      case .handler(let handler):
+        _ = handler.nack(options: .init())
+      }
+      self.releaseTarget.release()
     }
   }
 }
@@ -171,23 +252,19 @@ private struct TrackedAckHandler: AckHandlerProtocol, Sendable {
   let leaseTracker: LeaseTracker
 
   func ack(options: AckOptions) -> AckQueuedResult {
-    self.leaseTracker.markSettled()
-    return self.leaseTracker.handler.ack(options: options)
+    self.leaseTracker.ack(options: options)
   }
 
   func nack(options: NackOptions) -> NackQueuedResult {
-    self.leaseTracker.markSettled()
-    return self.leaseTracker.handler.nack(options: options)
+    self.leaseTracker.nack(options: options)
   }
 
   func ackWithResult(options: AckOptions) async throws -> AckResult {
-    self.leaseTracker.markSettled()
-    return try await self.leaseTracker.handler.ackWithResult(options: options)
+    try await self.leaseTracker.ackWithResult(options: options)
   }
 
   func nackWithResult(options: NackOptions) async throws -> AckResult {
-    self.leaseTracker.markSettled()
-    return try await self.leaseTracker.handler.nackWithResult(options: options)
+    try await self.leaseTracker.nackWithResult(options: options)
   }
 }
 
@@ -241,7 +318,6 @@ public struct ReceivedMessage: Sendable {
   package init(
     message: Message,
     isExactlyOnce: Bool,
-    ackHandler: any AckHandlerProtocol,
     leaseTracker: LeaseTracker
   ) {
     self.message = message
@@ -255,7 +331,7 @@ public struct ReceivedMessage: Sendable {
   /// - Returns: An ``AckQueuedResult`` handle.
   @discardableResult
   public func ack(options: AckOptions = .init()) -> AckQueuedResult {
-    self.ackHandler.ack(options: options)
+    self.leaseTracker.ack(options: options)
   }
 
   /// Schedules a fire-and-forget negative acknowledgment, requesting immediate redelivery.
@@ -264,7 +340,7 @@ public struct ReceivedMessage: Sendable {
   /// - Returns: A ``NackQueuedResult`` handle.
   @discardableResult
   public func nack(options: NackOptions = .init()) -> NackQueuedResult {
-    self.ackHandler.nack(options: options)
+    self.leaseTracker.nack(options: options)
   }
 
   /// Acknowledges the message and awaits confirmation.
@@ -273,7 +349,7 @@ public struct ReceivedMessage: Sendable {
   /// - Returns: The confirmed ``AckResult``.
   /// - Throws: ``PubSubError/settlementFailed(_:)`` or `GoogleGax.RequestError`.
   public func ackWithResult(options: AckOptions = .init()) async throws -> AckResult {
-    try await self.ackHandler.ackWithResult(options: options)
+    try await self.leaseTracker.ackWithResult(options: options)
   }
 
   /// Negatively acknowledges the message and awaits confirmation.
@@ -282,6 +358,10 @@ public struct ReceivedMessage: Sendable {
   /// - Returns: The confirmed ``AckResult``.
   /// - Throws: ``PubSubError/settlementFailed(_:)`` or `GoogleGax.RequestError`.
   public func nackWithResult(options: NackOptions = .init()) async throws -> AckResult {
-    try await self.ackHandler.nackWithResult(options: options)
+    try await self.leaseTracker.nackWithResult(options: options)
+  }
+
+  package func cancelAutoNackAndRelease() {
+    _ = self.leaseTracker.markSettled()
   }
 }

@@ -73,6 +73,7 @@ public final class MessageStream: MessageStreamProtocol, Sendable {
 
     package enum Kind: Sendable {
       case stream(MessageStream)
+      case session(StreamingPullSession, MessageStream)
       case finished
       case unimplemented
     }
@@ -88,6 +89,11 @@ public final class MessageStream: MessageStreamProtocol, Sendable {
       switch self.kind {
       case .stream(let stream):
         return try await stream.nextElement()
+      case .session(let session, let stream):
+        guard !stream.isStopped else {
+          return nil
+        }
+        return try await session.nextMessage()
       case .finished:
         return nil
       case .unimplemented:
@@ -96,8 +102,15 @@ public final class MessageStream: MessageStreamProtocol, Sendable {
     }
   }
 
-  private let nextImpl: @Sendable () async throws -> ReceivedMessage?
-  private let stopImpl: @Sendable (SubscriberShutdownOptions) async throws -> ShutdownResult
+  private enum Backing: Sendable {
+    case closures(
+      next: @Sendable () async throws -> ReceivedMessage?,
+      onStop: @Sendable (SubscriberShutdownOptions) async throws -> ShutdownResult
+    )
+    case session(StreamingPullSession)
+  }
+
+  private let backing: Backing
   private let lifecycleState = Mutex((iteratorCreated: false, stopped: false))
 
   /// Creates a `MessageStream` backed by custom async element and shutdown handlers.
@@ -114,8 +127,11 @@ public final class MessageStream: MessageStreamProtocol, Sendable {
       ShutdownResult()
     }
   ) {
-    self.nextImpl = next
-    self.stopImpl = onStop
+    self.backing = .closures(next: next, onStop: onStop)
+  }
+
+  package init(session: StreamingPullSession) {
+    self.backing = .session(session)
   }
 
   /// Creates a pre-populated finite `MessageStream` yielding `messages` followed by EOF.
@@ -158,15 +174,31 @@ public final class MessageStream: MessageStreamProtocol, Sendable {
       state.iteratorCreated = true
       return true
     }
-    return AsyncIterator(kind: shouldStream ? .stream(self) : .finished)
+    guard shouldStream else {
+      return AsyncIterator(kind: .finished)
+    }
+    switch self.backing {
+    case .session(let session):
+      return AsyncIterator(kind: .session(session, self))
+    case .closures:
+      return AsyncIterator(kind: .stream(self))
+    }
+  }
+
+  private var isStopped: Bool {
+    self.lifecycleState.withLock { $0.stopped }
   }
 
   private func nextElement() async throws -> ReceivedMessage? {
-    let stopped = self.lifecycleState.withLock { $0.stopped }
-    if stopped {
+    if self.isStopped {
       return nil
     }
-    return try await self.nextImpl()
+    switch self.backing {
+    case .closures(let nextImpl, _):
+      return try await nextImpl()
+    case .session(let session):
+      return try await session.nextMessage()
+    }
   }
 
   /// Stops pulling new messages and performs graceful drain or immediate nack per `options`.
@@ -178,6 +210,11 @@ public final class MessageStream: MessageStreamProtocol, Sendable {
     self.lifecycleState.withLock { state in
       state.stopped = true
     }
-    return try await self.stopImpl(options)
+    switch self.backing {
+    case .closures(_, let stopImpl):
+      return try await stopImpl(options)
+    case .session(let session):
+      return try await session.stop(options: options)
+    }
   }
 }
