@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleGax
+import Foundation
+import GRPCCore
+@_spi(GoogleCloudInternal) import GoogleGax
+import Logging
+import SwiftProtobuf
+import _GoogleCloudPubSubProtos
 
 extension Clients {
   /// A Swift protocol to mock ``BlockingPublisherClient``.
@@ -61,11 +66,27 @@ public final class BlockingPublisherClient: Clients.BlockingPublisherProtocol, S
   /// Client configuration used to initialize this instance.
   public let options: BlockingPublisherClientOptions
 
+  private let pool: GRPCChannelPool
+  private let clock: any PubSubClock
+
   /// Creates a new `BlockingPublisherClient`.
   ///
   /// - Parameter options: Transport, credentials, project ID, subchannels, and default compression.
-  /// - Throws: ``PubSubError/invalidConfiguration(description:)`` if client options are malformed.
-  public init(_ options: BlockingPublisherClientOptions = .init()) throws {
+  /// - Throws: ``PubSubError/invalidConfiguration(description:)`` if client options are malformed,
+  ///   or `GoogleGax.ClientError` / credential errors if endpoint or auth setup fails.
+  public convenience init(_ options: BlockingPublisherClientOptions = .init()) throws {
+    try self.init(
+      options,
+      clock: SystemPubSubClock(),
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    _ options: BlockingPublisherClientOptions,
+    clock: any PubSubClock,
+    environment: [String: String]
+  ) throws {
     if options.subchannelCount < 1 {
       throw PubSubError.invalidConfiguration(
         description:
@@ -79,6 +100,12 @@ public final class BlockingPublisherClient: Clients.BlockingPublisherProtocol, S
       )
     }
     self.options = options
+    self.clock = clock
+    self.pool = try GRPCChannelPool(
+      from: options.client,
+      subchannelCount: options.subchannelCount,
+      environment: environment
+    )
   }
 
   /// Publishes `message` immediately to `topic` via unary `google.pubsub.v1.Publisher/Publish`.
@@ -96,6 +123,85 @@ public final class BlockingPublisherClient: Clients.BlockingPublisherProtocol, S
     topic: String,
     options: BlockingPublishOptions
   ) async throws -> PublishResult {
-    throw GoogleGax.RequestError.unimplemented
+    let resolvedTopic = try resolvePubSubTopicName(topic, projectID: self.options.projectID)
+    do {
+      try message.validateForPublish()
+      let effectiveCompression = options.compression ?? self.options.compression
+      if effectiveCompression.bytesThreshold < 0 {
+        throw PubSubError.invalidConfiguration(
+          description:
+            "CompressionOptions.bytesThreshold (\(effectiveCompression.bytesThreshold)) must be >= 0."
+        )
+      }
+      let protoMessage = message.toProto()
+      let wireBytes = message.estimatedWireByteSize()
+      let useGzip =
+        effectiveCompression.isEnabled && wireBytes > effectiveCompression.bytesThreshold
+      let compression: CompressionAlgorithm? = useGzip ? .gzip : nil
+      let publishRequest = Google_Pubsub_V1_PublishRequest.with {
+        $0.topic = resolvedTopic
+        $0.messages = [protoMessage]
+      }
+      let retryPolicy =
+        options.request.retryPolicy
+        ?? self.options.client.retryPolicy
+        ?? PubSubRetryPolicy.defaultPublishPolicy
+      let backoffPolicy =
+        options.request.backoffPolicy ?? PubSubRetryPolicy.defaultBackoffPolicy
+      let throttler = options.request.retryThrottler ?? self.options.client.retryThrottler
+      let routing = [_RoutingMatcher.format(key: "topic", value: resolvedTopic)]
+
+      self.pool.pubSubLogger.logRPCDebug(
+        "Sending blocking unary Publish RPC",
+        method: .publish,
+        resource: resolvedTopic,
+        extraMetadata: [
+          "pubsub.message_bytes": .stringConvertible(wireBytes),
+          "pubsub.compressed": .stringConvertible(useGzip),
+        ]
+      )
+
+      let response: Google_Pubsub_V1_PublishResponse = try await PubSubRetryExecutor.execute(
+        retryPolicy: retryPolicy,
+        backoffPolicy: backoffPolicy,
+        throttler: throttler,
+        clock: self.clock
+      ) { remainingTime in
+        var attemptOptions = options.request
+        if let remainingTime {
+          attemptOptions.attemptTimeout =
+            attemptOptions.attemptTimeout.map {
+              min($0, remainingTime)
+            } ?? remainingTime
+        }
+        return try await self.pool.unary(
+          descriptor: PubSubGRPCDescriptors.publish,
+          request: publishRequest,
+          options: attemptOptions,
+          routingParams: routing,
+          compression: compression
+        )
+      }
+
+      guard response.messageIds.count == 1 else {
+        throw PubSubError.mismatchedMessageIDCount(
+          expected: 1,
+          received: response.messageIds.count
+        )
+      }
+      return PublishResult(messageID: response.messageIds[0])
+    } catch {
+      self.pool.pubSubLogger.logTerminalError(
+        error,
+        method: .publish,
+        resource: resolvedTopic,
+        operation: "blockingPublish"
+      )
+      throw error
+    }
+  }
+
+  package func shutdown() async {
+    await self.pool.shutdown()
   }
 }
