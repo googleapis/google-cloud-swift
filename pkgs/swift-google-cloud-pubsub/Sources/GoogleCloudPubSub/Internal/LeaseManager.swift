@@ -1306,6 +1306,16 @@ package final class LeaseManager: Sendable {
     let clockStart = self.clock.now
     var attemptCount = 0
     var pending = items
+
+    func finishAndFailAll(_ itemsToFail: [SettlementRequest], error: any Error) {
+      if kind == .ack && !itemsToFail.isEmpty {
+        self.finishPendingExactlyOnceAcks(itemsToFail.map(\.ackID))
+      }
+      for item in itemsToFail {
+        item.continuation?.resume(throwing: error)
+      }
+    }
+
     defer {
       if kind == .ack && !pending.isEmpty {
         self.finishPendingExactlyOnceAcks(pending.map(\.ackID))
@@ -1327,7 +1337,9 @@ package final class LeaseManager: Sendable {
           )
           self.pool.pubSubLogger.logTerminalError(
             err, method: method, resource: self.subscription, operation: operation)
-          for item in pending { item.continuation?.resume(throwing: err) }
+          let toFail = pending
+          pending.removeAll()
+          finishAndFailAll(toFail, error: err)
           return
         }
         attemptOptions.attemptTimeout =
@@ -1343,9 +1355,9 @@ package final class LeaseManager: Sendable {
           self.pool.pubSubLogger.logTerminalError(
             placeholder, method: method, resource: self.subscription, operation: operation)
           let ackErr = Self.mapRequestErrorToAckError(placeholder)
-          for item in pending {
-            item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
-          }
+          let toFail = pending
+          pending.removeAll()
+          finishAndFailAll(toFail, error: PubSubError.settlementFailed(ackErr))
           return
         case .retry:
           let delay = backoffPolicy.backoffDelay(for: state)
@@ -1355,9 +1367,9 @@ package final class LeaseManager: Sendable {
             self.pool.pubSubLogger.logTerminalError(
               placeholder, method: method, resource: self.subscription, operation: operation)
             let ackErr = Self.mapRequestErrorToAckError(placeholder)
-            for item in pending {
-              item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
-            }
+            let toFail = pending
+            pending.removeAll()
+            finishAndFailAll(toFail, error: PubSubError.settlementFailed(ackErr))
             return
           }
           try? await self.clock.sleep(for: delay)
@@ -1394,25 +1406,27 @@ package final class LeaseManager: Sendable {
           )
         }
         throttler.onSuccess()
-        for item in pending {
+        let succeeded = pending
+        pending.removeAll()
+        if kind == .ack && !succeeded.isEmpty {
+          self.finishPendingExactlyOnceAcks(succeeded.map(\.ackID))
+        }
+        for item in succeeded {
           item.continuation?.resume(returning: AckResult(status: .success))
         }
-        if kind == .ack {
-          self.finishPendingExactlyOnceAcks(pending.map(\.ackID))
-        }
-        pending.removeAll()
         return
       } catch let requestError as RequestError {
         let errorMetadata = Self.extractPubSubErrorInfoMetadata(from: requestError)
         if !errorMetadata.isEmpty {
           var nextPending: [SettlementRequest] = []
           var finishedIDs: [String] = []
+          var resolvedItems: [(item: SettlementRequest, result: Result<AckResult, any Error>)] = []
           var hasPermanentError = false
           for item in pending {
             guard let reason = errorMetadata[item.ackID] else {
               // Absent from ErrorInfo metadata -> succeeded cleanly in this batch (`EOD-03b`).
               finishedIDs.append(item.ackID)
-              item.continuation?.resume(returning: AckResult(status: .success))
+              resolvedItems.append((item, .success(AckResult(status: .success))))
               continue
             }
             if reason.hasPrefix("TRANSIENT_FAILURE_") {
@@ -1421,7 +1435,7 @@ package final class LeaseManager: Sendable {
               hasPermanentError = true
               finishedIDs.append(item.ackID)
               let ackErr = Self.mapReasonToAckError(reason, underlying: requestError)
-              item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
+              resolvedItems.append((item, .failure(PubSubError.settlementFailed(ackErr))))
             }
           }
           if hasPermanentError {
@@ -1430,6 +1444,9 @@ package final class LeaseManager: Sendable {
           }
           if kind == .ack {
             self.finishPendingExactlyOnceAcks(finishedIDs)
+          }
+          for entry in resolvedItems {
+            entry.item.continuation?.resume(with: entry.result)
           }
           pending = nextPending
           if pending.isEmpty {
@@ -1446,7 +1463,12 @@ package final class LeaseManager: Sendable {
           {
             self.pool.pubSubLogger.logTerminalError(
               requestError, method: method, resource: self.subscription, operation: operation)
-            for item in pending {
+            let toFail = pending
+            pending.removeAll()
+            if kind == .ack {
+              self.finishPendingExactlyOnceAcks(toFail.map(\.ackID))
+            }
+            for item in toFail {
               let reason = errorMetadata[item.ackID] ?? "TRANSIENT_FAILURE"
               let ackErr = Self.mapReasonToAckError(reason, underlying: requestError)
               item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
@@ -1458,7 +1480,12 @@ package final class LeaseManager: Sendable {
           } catch {
             self.pool.pubSubLogger.logTerminalError(
               error, method: method, resource: self.subscription, operation: operation)
-            for item in pending {
+            let toFail = pending
+            pending.removeAll()
+            if kind == .ack {
+              self.finishPendingExactlyOnceAcks(toFail.map(\.ackID))
+            }
+            for item in toFail {
               let reason = errorMetadata[item.ackID] ?? "TRANSIENT_FAILURE"
               let ackErr = Self.mapReasonToAckError(reason, underlying: requestError)
               item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
@@ -1482,9 +1509,9 @@ package final class LeaseManager: Sendable {
             operation: operation
           )
           let ackErr = Self.mapRequestErrorToAckError(requestError)
-          for item in pending {
-            item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
-          }
+          let toFail = pending
+          pending.removeAll()
+          finishAndFailAll(toFail, error: PubSubError.settlementFailed(ackErr))
           return
 
         case .retry:
@@ -1496,9 +1523,9 @@ package final class LeaseManager: Sendable {
             self.pool.pubSubLogger.logTerminalError(
               requestError, method: method, resource: self.subscription, operation: operation)
             let ackErr = Self.mapRequestErrorToAckError(requestError)
-            for item in pending {
-              item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
-            }
+            let toFail = pending
+            pending.removeAll()
+            finishAndFailAll(toFail, error: PubSubError.settlementFailed(ackErr))
             return
           }
           do {
@@ -1507,9 +1534,9 @@ package final class LeaseManager: Sendable {
             self.pool.pubSubLogger.logTerminalError(
               error, method: method, resource: self.subscription, operation: operation)
             let ackErr = Self.mapRequestErrorToAckError(requestError)
-            for item in pending {
-              item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
-            }
+            let toFail = pending
+            pending.removeAll()
+            finishAndFailAll(toFail, error: PubSubError.settlementFailed(ackErr))
             return
           }
 
@@ -1517,17 +1544,17 @@ package final class LeaseManager: Sendable {
           self.pool.pubSubLogger.logTerminalError(
             requestError, method: method, resource: self.subscription, operation: operation)
           let ackErr = Self.mapRequestErrorToAckError(requestError)
-          for item in pending {
-            item.continuation?.resume(throwing: PubSubError.settlementFailed(ackErr))
-          }
+          let toFail = pending
+          pending.removeAll()
+          finishAndFailAll(toFail, error: PubSubError.settlementFailed(ackErr))
           return
         }
       } catch {
         self.pool.pubSubLogger.logTerminalError(
           error, method: method, resource: self.subscription, operation: operation)
-        for item in pending {
-          item.continuation?.resume(throwing: error)
-        }
+        let toFail = pending
+        pending.removeAll()
+        finishAndFailAll(toFail, error: error)
         return
       }
     }
