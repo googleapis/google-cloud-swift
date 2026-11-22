@@ -273,6 +273,36 @@ let package = Package(
       swiftSettings: testHelperSwiftSettings
     ),
     .target(
+      name: "PubSubSamples",
+      dependencies: [
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleCloudPubSubV1", package: "swift-google-pubsub-v1"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "Logging", package: "swift-log"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleType", package: "swift-google-type"),
+      ],
+      swiftSettings: swiftSettings
+    ),
+    .testTarget(
+      name: "PubSubSamplesDriver",
+      dependencies: [
+        "PubSubSamples",
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleCloudPubSubV1", package: "swift-google-pubsub-v1"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "Logging", package: "swift-log"),
+        "GoogleCloudTestHelpers",
+      ],
+      path: "Tests/PubSubSamplesDriver",
+      swiftSettings: swiftSettings
+    ),
+    .target(
       name: "StorageSamples",
       dependencies: [
         .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
