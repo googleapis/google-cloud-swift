@@ -287,7 +287,10 @@ Clients are initialized from an options struct whose transport configuration is
 a `GoogleGax.ClientOptions`, so credentials, endpoints, universe domains,
 loggers, and retry policies work the same way as in every other client. Emulator
 support uses the service's documented environment variable, which then becomes
-part of the public API (see `doc/public-api.md`).
+part of the public API (see `doc/public-api.md`). Define the environment variable
+name in the service-specific package and pass it into `GoogleGax` /
+`GoogleGaxGRPC` emulator hooks—never hardcode service-specific hostnames or
+environment variable names inside `GoogleGax` or `GoogleGaxGRPC`.
 
 ## Macros
 
@@ -456,6 +459,13 @@ same pull request as the API:
 - **T6: Observability tests** that check the log metadata, including defaulted
   or empty values (see **O3**).
 - **T7: Equality tests** for types with inherited fields (see **E9**).
+- **T8: Co-linking and co-importing test for split Admin and Data-Plane packages.**
+  When a service ships both a generated Admin GAPIC package and a hand-written
+  Data-Plane Veneer package, include a test target that links both libraries in
+  the same binary and `import`s both modules in the same source file, verifying
+  unqualified references to overlapping domain concepts and shared client
+  initialization (including emulator environment variables) compile and run
+  without target-name, linker, or symbol collisions.
 
 ## Documentation
 
@@ -488,16 +498,19 @@ same pull request as the API:
 
 ## Concurrency, `StrictMemorySafety`, and GAX/WKT internals
 
-### Enforce `StrictMemorySafety` with `Synchronization.Mutex`
+### Enforce `StrictMemorySafety` with `Synchronization.Mutex` and `Synchronization.Atomic`
 
 Hand-written packages in this repository compile with `.strictMemorySafety()`.
-Do not fall back to `@unchecked Sendable` in library implementations,
-`Snippets/`, or `Tests/`:
+Prefer Swift 6 `Synchronization` primitives (`Synchronization.Mutex<T>` and
+`Synchronization.Atomic<T>`) or Swift `actor`s, and do not introduce Swift-5
+era lock wrappers (`NIOConcurrencyHelpers.NIOLockedValueBox<T>`, `NIOLock`,
+`NSLock`), extra `swift-nio` dependencies for locking, or `@unchecked Sendable`
+in library implementations, `Snippets/`, or `Tests/`:
 
-- Store `Synchronization.Mutex` (`~Copyable`) on a `final class` (the client,
-  handle, or a `private final class StateBox: Sendable`) rather than directly on
-  a `Copyable` `struct`, and keep closure/helper parameters free of copied
-  `Mutex` values.
+- Store `Synchronization.Mutex` or `Synchronization.Atomic` (`~Copyable`) on a
+  `final class` (the client, handle, or a `private final class StateBox: Sendable`)
+  rather than directly on a `Copyable` `struct`, and keep closure/helper
+  parameters free of copied `Mutex` or `Atomic` values.
 - In unit tests under `.strictMemorySafety()`, avoid `withUnsafeCurrentTask`
   (for example, when coordinating in-flight cancellation); coordinate using
   `AsyncStream` or `withTaskCancellationHandler` instead.
@@ -545,7 +558,10 @@ explicitly):
   standard Contributing/License footer matching existing `pkgs/` packages.
 - **`librarian.yaml` & `generated/_libraries.json`:** Use canonical
   `swift-<name>` package naming (avoid mismatched `package_name_override`),
-  configure any internal generated wire/logging modules or `idempotency_hook`
+  give internal `swift-protobuf` targets package-scoped underscored names
+  (`_GoogleCloud<Service>Protos`) with `visibility: package` so they cannot
+  collide in downstream package graphs, configure any internal generated
+  wire/logging modules, `emulator_environment_variable`, or `idempotency_hook`
   settings, and run `librarian generate <lib>` and `librarian tidy`.
 - **Root `Package.swift`:** Add the package to `baseDependencies` and
   `baseModules`, and add `Sources/<Service>Samples` +
@@ -588,7 +604,7 @@ hand-written package:
   default values are tested (**O1**–**O4**).
 - [ ] Names follow the Swift API Design Guidelines; acronyms are uniformly
   cased; `Int` for counts; one level of options (**I1**–**I7**).
-- [ ] Tests **T1**–**T7** exist.
+- [ ] Tests **T1**–**T7** (and **T8** when split with an Admin GAPIC) exist.
 - [ ] Documentation **Doc1**–**Doc7** is complete.
 - [ ] The design document matches the implementation.
 

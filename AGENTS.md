@@ -12,6 +12,10 @@ This document outlines critical rules, coding standards, and workflow practices 
 - **Access Control and Testing**:
   - Do not elevate visibility of types, functions, or properties (such as using `package`, `public`, or `@_spi`) solely to facilitate unit testing.
   - Keep internal implementation details `internal` (default access) and use `@testable import <Target>` in test files.
+- **Synchronization Primitives**:
+  - Prefer Swift 6 standard-library synchronization primitives from `import Synchronization` (`Synchronization.Mutex<T>` and `Synchronization.Atomic<T>`) or Swift `actor`s for thread-safe mutable state.
+  - Avoid Swift-5 era synchronization primitives and external lock wrappers such as `NIOConcurrencyHelpers.NIOLockedValueBox<T>`, `NIOLock`, `NSLock`, `os_unfair_lock`, `DispatchQueue` locks, or `@unchecked Sendable` lock boxes.
+  - Do not add `swift-nio` (`NIOConcurrencyHelpers`, `NIOCore`) package dependencies solely for synchronization or byte buffers when `Synchronization` and `Foundation.Data` suffice.
 - **Hand-written Public APIs**: See [Hand-written Packages](#hand-written-packages) below.
 - **Error Types**:
   - Error types that are expected to be surfaced to or handled by users must conform to both `CustomStringConvertible` and `CustomDebugStringConvertible`.
@@ -72,9 +76,29 @@ Required checks, in the same pull request as the new API:
 - If the package has a design document in `doc/design/`, update it when the
   implementation diverges.
 - Comply with `.strictMemorySafety()` across library code, `Snippets/`, and
-  `Tests/`: protect mutable state using `Synchronization.Mutex` inside `final class`
-  or `StateBox` reference wrappers (never `@unchecked Sendable`), and avoid
+  `Tests/`: protect mutable state using `Synchronization.Mutex` or
+  `Synchronization.Atomic` inside `final class` or `StateBox` reference wrappers
+  (never `NIOLockedValueBox` or `@unchecked Sendable`), and avoid
   `withUnsafeCurrentTask` in tests.
+- When a service is split into a generated Admin GAPIC package and a
+  hand-written Data-Plane Veneer package, prune unreferenced data-plane wire
+  types from the Admin GAPIC (`skipped_ids` / `included_ids` in `librarian.yaml`)
+  and add a test target verifying that both libraries link and can be co-imported
+  in the same application source file.
+
+## Core Runtime Packages (`pkgs/swift-google-gax`, `pkgs/swift-google-gax-grpc`)
+
+- **No Service-Specific Code**: Shared runtime packages (`GoogleGax`,
+  `GoogleGaxGRPC`, `GoogleAuth`, `GoogleWKT`) must **never** contain
+  service-specific hostnames, emulator environment variable names, headers, or
+  policies.
+- **Caller-Parameterized Hooks**: Expose generic hooks/helpers (e.g., accepting
+  an optional `emulatorEnvironmentVariable: String?` parameter) so the calling
+  service client or generated transport supplies its own service-specific
+  constants.
+- See [`pkgs/swift-google-gax/AGENTS.md`](pkgs/swift-google-gax/AGENTS.md) and
+  [`pkgs/swift-google-gax-grpc/AGENTS.md`](pkgs/swift-google-gax-grpc/AGENTS.md)
+  before modifying GAX or GAX-gRPC.
 
 ## Dependencies and Local Development
 
@@ -98,6 +122,7 @@ Running `./ci/test.sh` automatically resolves dependencies using local working d
 - **Protobuf and Model Conversions**:
   - When protobuf messages or data model conversions are required, add them to `librarian.yaml` under the appropriate library with module types `swift-protobuf` or `convert-swift`, then run `librarian generate`.
   - Do not handwrite protobuf messages or invoke `protoc` manually.
+  - Because SwiftPM requires every target name (even unexported internal targets) to be unique across the entire transitive dependency graph, give new internal `swift-protobuf` targets package-scoped underscored names (e.g., `_GoogleCloud<Service>Protos`, never generic names like `PubSubProtos`) and configure `visibility: package` (`Visibility=Package`) so internal wire protos are not re-exported as `public` symbols.
 - **Deprecation Warnings**:
   - The generated code carries the deprecations from the source specification, and must still read, write and convert those declarations. The generator emits `#if hasAttribute(diagnose)` / `@diagnose(DeprecatedDeclaration, as: ignored)` blocks to silence the resulting warnings.
   - `@diagnose` requires Swift 6.4 (SE-0522). The build scripts demote the diagnostic with `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration` only for older toolchains, via `swift_supports_diagnose` in `ci/swift-version.sh`.

@@ -88,6 +88,13 @@ if let logger = options.logger {
 self.inner = inner
 ```
 
+Both `GoogleGax` and `GoogleGaxGRPC` are strictly **service-agnostic** runtime
+layers: they never hardcode service hostnames, service-specific emulator
+environment variable names, or service-specific policies. Instead, they expose
+generic configuration parameters and hooks (such as an optional caller-supplied
+emulator environment variable name) configured by the calling generated
+transport or handwritten client package.
+
 ### Mocking and testing
 
 For unit testing, application code can depend on the service protocol
@@ -302,6 +309,10 @@ strict memory safety:
   `AsyncSequence`).
 - No public APIs expose legacy completion handlers, dispatch queues, or manual
   thread locks.
+- Internal thread-safe state uses Swift 6 `Synchronization` primitives
+  (`Synchronization.Mutex<T>` and `Synchronization.Atomic<T>`) or Swift `actor`s,
+  avoiding Swift-5 era lock wrappers (`NIOLockedValueBox`, `NSLock`) and
+  `@unchecked Sendable`.
 - Handcrafted packages opt into `-strict-memory-safety`
   ([SE-0458](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0458-strict-memory-safety.md))
   via `.strictMemorySafety()` in `Package.swift`. Any use of unsafe pointers or
@@ -436,6 +447,15 @@ hand-written packages:
   management) delegate directly to the generated client
   (`Clients.StorageControlServiceClient` and `Clients.StorageServiceClient`) to
   minimize handwritten code maintenance.
+
+When a service separates its control-plane Admin GAPIC package from a
+handwritten Data-Plane Veneer package with zero dependency between them,
+applications routinely link and `import` both packages in the same target. In
+that layout, internal `swift-protobuf` targets inside the veneer use
+package-scoped underscored names (`_GoogleCloud<Service>Protos`, `Visibility=Package`)
+to prevent SwiftPM target-name collisions, and unused data-plane wire structs
+are pruned from the Admin GAPIC (`skipped_ids` in `librarian.yaml`) to avoid
+unqualified symbol collisions when co-importing both modules.
 
 New public APIs in hand-written packages follow the rules in
 [howto-guide-handwritten-client-api.md](doc/contributor/howto-guide-handwritten-client-api.md),
