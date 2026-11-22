@@ -552,7 +552,10 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
         HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }

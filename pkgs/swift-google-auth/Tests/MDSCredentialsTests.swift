@@ -37,7 +37,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -79,7 +82,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -114,7 +120,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -164,7 +173,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }
@@ -308,7 +320,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -344,7 +359,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -449,7 +467,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: malformedData))
         )
       }
@@ -496,7 +517,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData)),
         )
       }
@@ -530,7 +554,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -574,7 +601,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -634,7 +664,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -670,7 +703,10 @@ import Testing
       return HTTPClientResponse(
         version: .http2,
         status: .ok,
-        headers: .init([("Content-Type", "application/json")]),
+        headers: .init([
+          ("Content-Type", "application/json"),
+          ("Metadata-Flavor", "Google"),
+        ]),
         body: .bytes(.init(data: encodedData)),
       )
     }
@@ -704,7 +740,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }
@@ -741,7 +780,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       }
@@ -797,7 +839,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "text/plain")]),
+          headers: .init([
+            ("Content-Type", "text/plain"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: Data("  my-custom-universe.com\n".utf8)))
         )
       }
@@ -831,6 +876,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: Data("   \n ".utf8)))
         )
       }
@@ -886,6 +932,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: Data("recovered.universe.com\n".utf8)))
         )
       },
@@ -972,7 +1019,10 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
           body: .bytes(.init(data: encodedData))
         )
       },
@@ -982,6 +1032,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
           body: .bytes(.init(data: Data("queried.universe.com\n".utf8)))
         )
       },
