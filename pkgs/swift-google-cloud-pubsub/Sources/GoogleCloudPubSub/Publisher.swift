@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleGax
 
 extension Clients {
@@ -151,6 +152,7 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
   public let topic: String
 
   package let options: TopicPublisherOptions
+  private let engine: TopicBatchPublisher
 
   /// Creates a standalone topic publisher owning its own gRPC connection pool.
   ///
@@ -166,6 +168,22 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
     clientOptions: PublisherClientOptions = .init(),
     options: TopicPublisherOptions? = nil
   ) throws {
+    try self.init(
+      topic: topic,
+      clientOptions: clientOptions,
+      options: options,
+      clock: SystemPubSubClock(),
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  convenience init(
+    topic: String,
+    clientOptions: PublisherClientOptions,
+    options: TopicPublisherOptions?,
+    clock: any PubSubClock,
+    environment: [String: String]
+  ) throws {
     if clientOptions.subchannelCount < 1 {
       throw PubSubError.invalidConfiguration(
         description:
@@ -175,12 +193,36 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
     let resolved = try resolvePubSubTopicName(topic, projectID: clientOptions.projectID)
     let resolvedOptions = options ?? clientOptions.defaultTopicOptions
     try validateTopicPublisherOptions(resolvedOptions)
-    self.init(resolvedTopic: resolved, options: resolvedOptions)
+    let pool = try GRPCChannelPool(
+      from: clientOptions.client,
+      subchannelCount: clientOptions.subchannelCount,
+      environment: environment
+    )
+    self.init(
+      resolvedTopic: resolved,
+      options: resolvedOptions,
+      pool: pool,
+      ownsPool: true,
+      clock: clock
+    )
   }
 
-  init(resolvedTopic: String, options: TopicPublisherOptions) {
+  init(
+    resolvedTopic: String,
+    options: TopicPublisherOptions,
+    pool: GRPCChannelPool,
+    ownsPool: Bool,
+    clock: any PubSubClock
+  ) {
     self.topic = resolvedTopic
     self.options = options
+    self.engine = TopicBatchPublisher(
+      resolvedTopic: resolvedTopic,
+      options: options,
+      pool: pool,
+      ownsPool: ownsPool,
+      clock: clock
+    )
   }
 
   /// Enqueues `message` into the topic batcher and returns a ``PublishHandle``.
@@ -195,7 +237,7 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
   public func startPublish(_ message: Message, options: PublishOptions) async throws
     -> PublishHandle
   {
-    throw GoogleGax.RequestError.unimplemented
+    try await self.engine.startPublish(message, options: options)
   }
 
   /// Flushes all buffered batches across every ordering key and awaits settlement.
@@ -205,7 +247,7 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
   /// - Returns: A ``FlushResult``.
   /// - Throws: `GoogleGax.RequestError` or ``PubSubError``.
   public func flush(options: FlushOptions) async throws -> FlushResult {
-    throw GoogleGax.RequestError.unimplemented
+    try await self.engine.flush(options: options)
   }
 
   /// Resumes a paused ordering key after an earlier failure.
@@ -220,7 +262,7 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
     orderingKey: String,
     options: ResumePublishingOptions
   ) async throws -> ResumePublishingResult {
-    throw GoogleGax.RequestError.unimplemented
+    try await self.engine.resumePublishing(orderingKey: orderingKey, options: options)
   }
 
   /// Drains pending batches and shuts down this topic publisher.
@@ -230,6 +272,6 @@ public final class Publisher: Clients.PublisherProtocol, Sendable {
   /// - Returns: A ``ShutdownResult``.
   /// - Throws: `GoogleGax.RequestError` or ``PubSubError``.
   public func shutdown(options: PublisherShutdownOptions) async throws -> ShutdownResult {
-    ShutdownResult()
+    try await self.engine.shutdown(options: options)
   }
 }

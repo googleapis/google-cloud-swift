@@ -14,6 +14,7 @@
 
 import Foundation
 import GoogleGax
+import Synchronization
 
 extension Clients {
   /// A Swift protocol to mock ``PublisherClient``.
@@ -83,15 +84,40 @@ extension Clients.PublisherClientProtocol {
 ///
 /// @Snippet(path: "PublisherQuickstart")
 public final class PublisherClient: Clients.PublisherClientProtocol, Sendable {
+  private struct WeakPublisherRef: Sendable {
+    weak var value: Publisher?
+  }
+
+  private struct ClientState: Sendable {
+    var isShutDown: Bool = false
+    var publishers: [WeakPublisherRef] = []
+  }
+
   /// Configuration used to initialize this client.
   public let options: PublisherClientOptions
+
+  private let pool: GRPCChannelPool
+  private let clock: any PubSubClock
+  private let state = Mutex(ClientState())
 
   /// Creates a new `PublisherClient`.
   ///
   /// - Parameter options: Client transport, project ID, subchannel count, and default topic options.
   /// - Throws: ``PubSubError/invalidConfiguration(description:)`` if `subchannelCount < 1` or
   ///   `defaultTopicOptions` contains invalid settings.
-  public init(_ options: PublisherClientOptions = .init()) throws {
+  public convenience init(_ options: PublisherClientOptions = .init()) throws {
+    try self.init(
+      options,
+      clock: SystemPubSubClock(),
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    _ options: PublisherClientOptions,
+    clock: any PubSubClock,
+    environment: [String: String]
+  ) throws {
     if options.subchannelCount < 1 {
       throw PubSubError.invalidConfiguration(
         description:
@@ -99,6 +125,12 @@ public final class PublisherClient: Clients.PublisherClientProtocol, Sendable {
     }
     try validateTopicPublisherOptions(options.defaultTopicOptions)
     self.options = options
+    self.clock = clock
+    self.pool = try GRPCChannelPool(
+      from: options.client,
+      subchannelCount: options.subchannelCount,
+      environment: environment
+    )
   }
 
   /// Creates a topic-bound ``Publisher`` inheriting ``PublisherClientOptions/defaultTopicOptions``.
@@ -126,17 +158,65 @@ public final class PublisherClient: Clients.PublisherClientProtocol, Sendable {
   {
     let resolvedTopic = try resolvePubSubTopicName(topic, projectID: self.options.projectID)
     try validateTopicPublisherOptions(options)
-    return Publisher(resolvedTopic: resolvedTopic, options: options)
+    let isShutDown = self.state.withLock { $0.isShutDown }
+    if isShutDown {
+      throw PubSubError.publisherShutDown
+    }
+    let publisher = Publisher(
+      resolvedTopic: resolvedTopic,
+      options: options,
+      pool: self.pool,
+      ownsPool: false,
+      clock: self.clock
+    )
+    let accepted = self.state.withLock { state -> Bool in
+      guard !state.isShutDown else { return false }
+      state.publishers.removeAll { $0.value == nil }
+      state.publishers.append(WeakPublisherRef(value: publisher))
+      return true
+    }
+    if !accepted {
+      throw PubSubError.publisherShutDown
+    }
+    return publisher
   }
 
-  /// Gracefully shuts down the shared gRPC connection pool.
+  /// Gracefully shuts down all created publishers and the shared gRPC connection pool.
   ///
   /// @Snippet(path: "PublisherFlushAndShutdown")
   /// - Parameter options: Shutdown request options.
   /// - Returns: A ``ShutdownResult``.
   /// - Throws: `GoogleGax.RequestError` or ``PubSubError``.
   public func shutdown(options: PublisherClientShutdownOptions) async throws -> ShutdownResult {
-    ShutdownResult()
+    let (alreadyShutDown, livePublishers) = self.state.withLock {
+      state -> (Bool, [Publisher]) in
+      if state.isShutDown {
+        return (true, [])
+      }
+      state.isShutDown = true
+      let publishers = state.publishers.compactMap(\.value)
+      state.publishers.removeAll()
+      return (false, publishers)
+    }
+    if alreadyShutDown {
+      return ShutdownResult()
+    }
+    let pubShutdownOptions = PublisherShutdownOptions().with {
+      $0.request = options.request
+    }
+    var firstError: (any Error)?
+    for publisher in livePublishers {
+      do {
+        _ = try await publisher.shutdown(options: pubShutdownOptions)
+      } catch {
+        firstError = firstError ?? error
+      }
+    }
+    await self.pool.shutdown()
+    if let firstError {
+      throw firstError
+    }
+    return ShutdownResult()
   }
 }
 
