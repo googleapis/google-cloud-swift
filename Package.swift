@@ -449,6 +449,7 @@ func generatedPackagesStatic() -> [Generated] {
     .init(name: "swift-google-iam-credentials-v1", module: "GoogleIAMCredentialsV1"),
     .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
     .init(name: "swift-google-longrunning", module: "GoogleLongRunning"),
+    .init(name: "swift-google-pubsub-v1", module: "GoogleCloudPubSubV1"),
     .init(name: "swift-google-rpc", module: "GoogleRpc"),
     .init(name: "swift-google-showcase-v1beta1", module: "GoogleShowcaseV1Beta1"),
     .init(name: "swift-google-type", module: "GoogleType"),

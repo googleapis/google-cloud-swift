@@ -1,0 +1,15 @@
+{
+    "api_description": "Provides reliable, many-to-many, asynchronous messaging between\napplications.",
+    "api_id": "pubsub.googleapis.com",
+    "api_shortname": "pubsub",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-pubsub-v1/0.1.0/documentation",
+    "distribution_name": "swift-google-pubsub-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=187173",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "pubsub",
+    "name_pretty": "Cloud Pub/Sub",
+    "product_documentation": "https://cloud.google.com/pubsub/docs",
+    "release_level": "preview",
+    "repo": "googleapis/swift-google-pubsub-v1"
+}

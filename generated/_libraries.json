@@ -1844,6 +1844,15 @@
       "Product": "Sensitive Data Protection (DLP)"
     }
   ],
+  "swift-google-pubsub-v1": [
+    {
+      "PkgName": "swift-google-pubsub-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-pubsub-v1/0.1.0/documentation",
+      "APIShortname": "pubsub",
+      "Product": "Cloud Pub/Sub API"
+    }
+  ],
   "swift-google-rpc": [
     {
       "PkgName": "swift-google-rpc",
