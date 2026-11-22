@@ -210,3 +210,16 @@ package final class ControllableClock: PubSubClock, Sendable {
     }
   }
 }
+
+package final class TestBox<Value: Sendable>: Sendable {
+  private let mutex: Mutex<Value>
+
+  package init(_ value: Value) {
+    self.mutex = Mutex(value)
+  }
+
+  package func withLock<R>(_ body: (inout sending Value) throws -> sending R) rethrows -> sending R
+  {
+    try self.mutex.withLock(body)
+  }
+}
