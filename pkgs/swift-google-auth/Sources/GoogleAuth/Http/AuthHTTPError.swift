@@ -43,6 +43,12 @@ enum AuthHTTPError: Error, Sendable {
 
   /// Failed to decode the response body as a valid UTF-8 plain-text string.
   case invalidUTF8Response
+
+  /// A 2xx HTTP response failed required response-header validation.
+  ///
+  /// Raw header values from the server are intentionally omitted so untrusted headers are never
+  /// reflected into error messages or debug logs.
+  case invalidResponseHeader(String)
 }
 
 extension AuthHTTPError {
@@ -105,7 +111,7 @@ extension AuthHTTPError {
   /// Retry and cache-latching classification for this HTTP error.
   ///
   /// - `.unsuccessfulResponse`: `.retryable` for HTTP 408, 429, and 5xx; `.permanent` otherwise.
-  /// - `.decodingError`, `.invalidUTF8Response`: `.permanent`.
+  /// - `.decodingError`, `.invalidUTF8Response`, `.invalidResponseHeader`: `.permanent`.
   /// - `.transportError`: delegates to `URLError.errorDisposition` (`.uncached` for `.cancelled`,
   ///   `.permanent` for local URL/file configuration errors, and `.retryable` otherwise).
   /// - `.unknown`: `.uncached` when wrapping `CancellationError`; `.retryable` otherwise.
@@ -114,7 +120,7 @@ extension AuthHTTPError {
     case .unsuccessfulResponse(let response, _):
       let status = response.status.code
       return (status >= 500 || status == 429 || status == 408) ? .retryable : .permanent
-    case .decodingError, .invalidUTF8Response:
+    case .decodingError, .invalidUTF8Response, .invalidResponseHeader:
       return .permanent
     case .transportError(let urlError):
       return urlError.errorDisposition
@@ -204,6 +210,8 @@ extension AuthHTTPError: CustomStringConvertible {
       return "Unexpected HTTP error: \(error)"
     case .invalidUTF8Response:
       return "Response body is not valid UTF-8"
+    case .invalidResponseHeader(let detail):
+      return "Invalid HTTP response header: \(detail)"
     }
   }
 }
@@ -231,6 +239,8 @@ extension AuthHTTPError: CustomDebugStringConvertible {
       return "AuthHTTPError.unknown(\(String(reflecting: error)))"
     case .invalidUTF8Response:
       return "AuthHTTPError.invalidUTF8Response: \(description)"
+    case .invalidResponseHeader(let detail):
+      return "AuthHTTPError.invalidResponseHeader(\(String(reflecting: detail))): \(description)"
     }
   }
 }

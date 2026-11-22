@@ -106,18 +106,24 @@ struct AuthHTTPClient: Sendable {
   ///   - url: The target URL of the request.
   ///   - headers: HTTP request headers.
   ///   - timeout: Optional execution timeout override (defaults to `defaultTimeout`).
+  ///   - validateResponseHeaders: Optional validator invoked on 2xx response headers before collecting the body.
   /// - Returns: The parsed JSON response structure.
   @concurrent
   func get<T: Decodable>(
     url: URL,
     headers: [String: String] = [:],
-    timeout: Duration? = nil
+    timeout: Duration? = nil,
+    validateResponseHeaders: (@Sendable (HTTPHeaders) throws -> Void)? = nil
   ) async throws -> T {
     return try await self.mapError {
       var request = HTTPClientRequest(url: url.absoluteString)
       request.method = .GET
       request.headers = .init(headers.map { ($0.key, $0.value) })
-      let buffer = try await self.executeAndCollectBody(request, timeout: timeout)
+      let buffer = try await self.executeAndCollectBody(
+        request,
+        timeout: timeout,
+        validateResponseHeaders: validateResponseHeaders
+      )
 
       do {
         return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
@@ -136,19 +142,25 @@ struct AuthHTTPClient: Sendable {
   ///   - url: The target URL of the request.
   ///   - headers: Optional HTTP request headers.
   ///   - timeout: Optional execution timeout override (defaults to `defaultTimeout`).
+  ///   - validateResponseHeaders: Optional validator invoked on 2xx response headers before collecting the body.
   /// - Returns: The plain-text UTF-8 string returned by the server.
-  /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` if invalid UTF-8.
+  /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, `AuthHTTPError.decodingError` if invalid UTF-8, or any error thrown by `validateResponseHeaders`.
   @concurrent
   func getString(
     url: URL,
     headers: [String: String] = [:],
-    timeout: Duration? = nil
+    timeout: Duration? = nil,
+    validateResponseHeaders: (@Sendable (HTTPHeaders) throws -> Void)? = nil
   ) async throws -> String {
     return try await self.mapError {
       var request = HTTPClientRequest(url: url.absoluteString)
       request.method = .GET
       request.headers = .init(headers.map { ($0.key, $0.value) })
-      var buffer = try await self.executeAndCollectBody(request, timeout: timeout)
+      var buffer = try await self.executeAndCollectBody(
+        request,
+        timeout: timeout,
+        validateResponseHeaders: validateResponseHeaders
+      )
 
       do {
         guard let plainText = try buffer.readUTF8ValidatedString(length: buffer.readableBytes)
@@ -245,6 +257,8 @@ struct AuthHTTPClient: Sendable {
       return try await operation()
     } catch let error as AuthHTTPError {
       throw error
+    } catch let error as CredentialsError {
+      throw error
     } catch let error as CancellationError {
       throw error
     } catch  where Task.isCancelled {
@@ -260,12 +274,17 @@ struct AuthHTTPClient: Sendable {
   @concurrent
   private func executeAndCollectBody(
     _ request: HTTPClientRequest,
-    timeout: Duration? = nil
+    timeout: Duration? = nil,
+    validateResponseHeaders: (@Sendable (HTTPHeaders) throws -> Void)? = nil
   ) async throws -> ByteBuffer {
     let effectiveTimeout = timeout ?? Self.defaultTimeout
     let deadline = ContinuousClock.now.advanced(by: effectiveTimeout)
     let response = try await self.performRequest(request, timeout: effectiveTimeout)
-    return try await self.collectBody(response, deadline: deadline)
+    return try await self.collectBody(
+      response,
+      deadline: deadline,
+      validateResponseHeaders: validateResponseHeaders
+    )
   }
 
   @concurrent
@@ -345,7 +364,8 @@ struct AuthHTTPClient: Sendable {
   /// is released immediately upon unwinding.
   private func collectBody(
     _ response: HTTPClientResponse,
-    deadline: ContinuousClock.Instant
+    deadline: ContinuousClock.Instant,
+    validateResponseHeaders: (@Sendable (HTTPHeaders) throws -> Void)? = nil
   ) async throws -> ByteBuffer {
     guard (200...299).contains(response.status.code) else {
       let data: Data
@@ -366,6 +386,7 @@ struct AuthHTTPClient: Sendable {
       )
       throw AuthHTTPError.unsuccessfulResponse(response: metadataResponse, data: data)
     }
+    try validateResponseHeaders?(response.headers)
     return try await self.collectBodyBytes(response, deadline: deadline)
   }
 }

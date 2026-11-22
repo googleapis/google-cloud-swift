@@ -215,6 +215,10 @@ This internal client encapsulates the following networking policies:
 -   **Plain-Text Support**: Supports retrieving raw UTF-8 string responses
     (bypassing JSON decoding) to accommodate GCE Metadata Server endpoints
     (like ID tokens and emails) that return plain text.
+-   **Pre-Body Response Header Validation**: Supports optional 2xx response
+    header validation callbacks (`validateResponseHeaders`) executed at
+    response-head arrival before buffering the response body (used by
+    `MDSAccessTokenProvider` to enforce `Metadata-Flavor: Google`).
 
 --------------------------------------------------------------------------------
 

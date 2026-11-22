@@ -37,9 +37,9 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
   - Before `ImpersonatedTokenProvider` calls `sourceCredentials.headers()`, it validates the source credentials against the target universe domain via `sourceCredentials.validateUniverseDomain(_:)`, throwing a non-retryable `CredentialsError.cannotFetchToken` wrapping `CredentialsError.parseError` on mismatch so source tokens are never sent to another universe's IAM endpoint.
 - **Compute Engine Metadata Server (`MDSCredentials`)**:
   - When an explicit `universeDomain` override is supplied, `MDSCredentials.universeDomain()` returns that override without querying the metadata server.
-  - Otherwise, `MDSAccessTokenProvider.fetchUniverseDomain()` sends a `GET /computeMetadata/v1/universe/universe-domain` request with `Metadata-Flavor: Google` and caches the resolved value in `MDSUniverseDomainCache`.
-  - If the metadata server returns HTTP 404 or an empty/whitespace-only body, `fetchUniverseDomain()` returns `Credentials.defaultUniverseDomain`.
-  - Non-retryable HTTP errors (such as 4xx status codes other than 404, 408, and 429) are cached as permanent errors in `MDSUniverseDomainCache`, while transient 5xx, 408, 429, and network errors propagate without poisoning the cache. Task cancellation (`CancellationError`) is never cached as a permanent error, and `MDSUniverseDomainCache` cancels any in-flight task on `deinit`.
+  - Otherwise, `MDSAccessTokenProvider.fetchUniverseDomain()` sends a `GET /computeMetadata/v1/universe/universe-domain` request with `Metadata-Flavor: Google`, verifies that any 2xx response carries `Metadata-Flavor: Google` (ASCII case-insensitive across all present `Metadata-Flavor` headers) before reading the response body, and caches the resolved value in `MDSUniverseDomainCache`.
+  - If the metadata server returns HTTP 404 or a validated 2xx empty/whitespace-only body, `fetchUniverseDomain()` returns `Credentials.defaultUniverseDomain`.
+  - Non-retryable errors (such as 4xx status codes other than 404, 408, and 429, and missing/invalid `Metadata-Flavor` headers on 2xx responses) are cached as permanent errors in `MDSUniverseDomainCache`, while transient 5xx, 408, 429, and network errors propagate without poisoning the cache. Task cancellation (`CancellationError`) is never cached as a permanent error, and `MDSUniverseDomainCache` cancels any in-flight task on `deinit`.
 
 ## 2. HTTP Transport and Host Resolution
 

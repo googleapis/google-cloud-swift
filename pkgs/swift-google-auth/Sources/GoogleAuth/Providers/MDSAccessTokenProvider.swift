@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import NIOHTTP1
 
 /// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
 ///
@@ -201,7 +202,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     let fetchOperation: @Sendable () async throws -> AccessToken = {
-      let response: TokenResponse = try await self.client.get(url: url, headers: headers)
+      let response: TokenResponse = try await self.client.get(
+        url: url,
+        headers: headers,
+        validateResponseHeaders: Self.validateMetadataFlavorHeader
+      )
       let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
       return AccessToken(
         token: response.accessToken,
@@ -285,7 +290,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     let fetchOperation: @Sendable () async throws -> String = {
       do {
-        let response = try await self.client.getString(url: url, headers: headers)
+        let response = try await self.client.getString(
+          url: url,
+          headers: headers,
+          validateResponseHeaders: Self.validateMetadataFlavorHeader
+        )
         let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
           return defaultUniverseDomain
@@ -320,5 +329,74 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         underlyingError: error
       )
     }
+  }
+
+  /// Validates that 2xx HTTP responses from the metadata server carry `Metadata-Flavor: Google`.
+  ///
+  /// Uses RFC 9110 ASCII-only case folding and requires every `Metadata-Flavor` header field
+  /// present to match `"Google"` after trimming optional ASCII whitespace (SP / HTAB), preventing
+  /// missing, mismatched, comma-smuggled, or conflicting duplicate headers.
+  static func validateMetadataFlavorHeader(_ headers: HTTPHeaders) throws {
+    let targetName = "metadata-flavor".utf8
+    let targetValue = "google".utf8
+    var foundHeader = false
+
+    for (name, value) in headers {
+      guard Self.asciiEqualsIgnoreCase(name.utf8, targetName) else {
+        continue
+      }
+      foundHeader = true
+      let trimmedValue = Self.trimASCIIHTTPWhitespace(value.utf8)
+      guard Self.asciiEqualsIgnoreCase(trimmedValue, targetValue) else {
+        throw AuthHTTPError.invalidResponseHeader(
+          "Missing or invalid 'Metadata-Flavor: Google' header"
+        )
+      }
+    }
+
+    guard foundHeader else {
+      throw AuthHTTPError.invalidResponseHeader(
+        "Missing or invalid 'Metadata-Flavor: Google' header"
+      )
+    }
+  }
+
+  private static func trimASCIIHTTPWhitespace(_ bytes: String.UTF8View) -> Substring.UTF8View {
+    var start = bytes.startIndex
+    var end = bytes.endIndex
+    while start < end, bytes[start] == 0x20 || bytes[start] == 0x09 {
+      start = bytes.index(after: start)
+    }
+    while end > start {
+      let prev = bytes.index(before: end)
+      guard bytes[prev] == 0x20 || bytes[prev] == 0x09 else {
+        break
+      }
+      end = prev
+    }
+    return bytes[start..<end]
+  }
+
+  private static func asciiEqualsIgnoreCase<S1: Sequence, S2: Sequence>(
+    _ lhs: S1, _ rhs: S2
+  ) -> Bool where S1.Element == UInt8, S2.Element == UInt8 {
+    var lhsIter = lhs.makeIterator()
+    var rhsIter = rhs.makeIterator()
+    while true {
+      switch (lhsIter.next(), rhsIter.next()) {
+      case (nil, nil):
+        return true
+      case (let l?, let r?):
+        guard Self.toASCIILower(l) == Self.toASCIILower(r) else {
+          return false
+        }
+      default:
+        return false
+      }
+    }
+  }
+
+  private static func toASCIILower(_ byte: UInt8) -> UInt8 {
+    (0x41...0x5A).contains(byte) ? byte + 0x20 : byte
   }
 }
