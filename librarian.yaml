@@ -928,6 +928,23 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudPrivilegedAccessManagerV1
+  - name: google-cloud-pubsub
+    version: 0.1.0
+    copyright_year: "2026"
+    output: pkgs/swift-google-cloud-pubsub/Sources/generated/_GoogleCloudPubSubProtos
+    swift:
+      library_name_override: GoogleCloudPubSub
+      modules:
+        - output: pkgs/swift-google-cloud-pubsub/Sources/generated/_GoogleCloudPubSubProtos
+          api_path: google/pubsub/v1
+          module_type: swift-protobuf
+          include_list:
+            - pubsub.proto
+            - schema.proto
+          visibility: package
+        - output: pkgs/swift-google-cloud-pubsub/Sources/GoogleCloudPubSub/generated/version
+          api_path: ""
+          module_type: package-version
   - name: google-cloud-rapidmigrationassessment-v1
     version: 0.7.0
     copyright_year: "2026"

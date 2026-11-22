@@ -1205,6 +1205,15 @@
       "Product": "Privileged Access Manager API"
     }
   ],
+  "swift-google-cloud-pubsub": [
+    {
+      "PkgName": "swift-google-cloud-pubsub",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-pubsub/0.1.0/documentation",
+      "APIShortname": "pubsub",
+      "Product": "Cloud Pub/Sub API"
+    }
+  ],
   "swift-google-cloud-rapidmigrationassessment-v1": [
     {
       "PkgName": "swift-google-cloud-rapidmigrationassessment-v1",

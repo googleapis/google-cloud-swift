@@ -44,6 +44,7 @@ let baseModules: [Target.Dependency] =
   selected.includeBaseModules
   ? [
     .product(name: "GoogleAuth", package: "swift-google-auth"),
+    .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
     .product(name: "GoogleGax", package: "swift-google-gax"),
     .product(name: "GoogleGaxGRPC", package: "swift-google-gax-grpc"),
     .product(name: "GoogleWKT", package: "swift-google-wkt"),
@@ -81,6 +82,7 @@ let baseDependencies: [Package.Dependency] = [
     from: "0.7.0"
   ),
   // Reference local packages via paths
+  .package(path: "./pkgs/swift-google-cloud-pubsub"),
   .package(path: "./pkgs/swift-google-cloud-storage"),
   .package(path: "./guide"),
   .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
