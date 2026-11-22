@@ -51,12 +51,14 @@ public final class _GRPCClient: Sendable {
   public convenience init(
     from options: ClientOptions,
     withDefaultEndpoint defaultEndpoint: String,
-    clientHeader: _ApiClientHeader = .init()
+    clientHeader: _ApiClientHeader = .init(),
+    emulatorEnvironmentVariable: String? = nil
   ) throws {
     try self.init(
       from: options,
       withDefaultEndpoint: defaultEndpoint,
       clientHeader: clientHeader,
+      emulatorEnvironmentVariable: emulatorEnvironmentVariable,
       environment: ProcessInfo.processInfo.environment
     )
   }
@@ -65,11 +67,25 @@ public final class _GRPCClient: Sendable {
     from options: ClientOptions,
     withDefaultEndpoint defaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init(),
+    emulatorEnvironmentVariable: String? = nil,
     environment: [String: String]
   ) throws {
+    let resolvedEmulator = _Host.resolveEmulatorEndpoint(
+      endpoint: options.endpoint,
+      emulatorEnvironmentVariable: emulatorEnvironmentVariable,
+      environment: environment
+    )
+    let effectiveEndpoint =
+      resolvedEmulator.isEmulator ? resolvedEmulator.endpoint : options.endpoint
     let universeDomain = _Host.resolveUniverseDomain(options: options, environment: environment)
     self.universeDomain = universeDomain
-    self.credentials = try options.credentials ?? GoogleAuth.Credentials()
+    if let credentials = options.credentials {
+      self.credentials = credentials
+    } else if resolvedEmulator.isEmulator {
+      self.credentials = try GoogleAuth.Credentials(configuration: .anonymous)
+    } else {
+      self.credentials = try GoogleAuth.Credentials()
+    }
     self.quotaProject = options.quotaProject
     var header = clientHeader
     header.setToken(.grpc, version: PackageVersion.version)
@@ -77,7 +93,7 @@ public final class _GRPCClient: Sendable {
     self.clientHeader = header
 
     let rawEndpoint = try _Host.endpoint(
-      endpoint: options.endpoint,
+      endpoint: effectiveEndpoint,
       defaultEndpoint: defaultEndpoint,
       universeDomain: universeDomain
     )
@@ -95,7 +111,7 @@ public final class _GRPCClient: Sendable {
       isSecure ? .tls : .plaintext
 
     let authority = try _Host.authority(
-      endpoint: options.endpoint,
+      endpoint: effectiveEndpoint,
       defaultEndpoint: defaultEndpoint,
       universeDomain: universeDomain
     )
