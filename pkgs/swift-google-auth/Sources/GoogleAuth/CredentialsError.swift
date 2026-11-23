@@ -142,13 +142,7 @@ extension CredentialsError: ClassifiedAuthError {
     case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
       return .permanent
     case .cannotFetchToken(_, let underlyingError):
-      if underlyingError is CancellationError {
-        return .uncached
-      }
-      if let classified = underlyingError as? any ClassifiedAuthError {
-        return classified.errorDisposition
-      }
-      return .retryable
+      return TokenErrorDisposition.classify(underlyingError)
     }
   }
 }

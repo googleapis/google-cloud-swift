@@ -138,13 +138,7 @@ extension AuthHTTPError {
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` if the error should be retried; `false` otherwise.
   static func isRetryable(_ error: any Error) -> Bool {
-    if error is CancellationError {
-      return false
-    }
-    if let classified = error as? any ClassifiedAuthError {
-      return classified.errorDisposition == .retryable
-    }
-    return true
+    TokenErrorDisposition.classify(error) == .retryable
   }
 
   /// Evaluates whether a non-retryable error is definitively permanent and safe to latch in
@@ -156,13 +150,7 @@ extension AuthHTTPError {
   /// local/URL `URLError`s, and expired static tokens). Returns `false` for `CancellationError`,
   /// `.uncached` errors, and unrecognized error types.
   static func shouldCachePermanentError(_ error: any Error) -> Bool {
-    if error is CancellationError {
-      return false
-    }
-    if let classified = error as? any ClassifiedAuthError {
-      return classified.errorDisposition == .permanent
-    }
-    return false
+    TokenErrorDisposition.classify(error) == .permanent
   }
 }
 

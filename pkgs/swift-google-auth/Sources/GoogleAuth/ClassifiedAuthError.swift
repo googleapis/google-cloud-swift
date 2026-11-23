@@ -54,3 +54,24 @@ extension URLError: ClassifiedAuthError {
     }
   }
 }
+
+extension TokenErrorDisposition {
+  /// Resolves the `TokenErrorDisposition` for an arbitrary `any Error`.
+  ///
+  /// Checks `as? URLError` explicitly in addition to `as? any ClassifiedAuthError` because on
+  /// Darwin, boxing `URLError` into `any Error` bridges it to `NSError` (`NSURLErrorDomain`),
+  /// which does not match a protocol existential cast without a concrete `_ObjectiveCBridgeableError`
+  /// cast.
+  static func classify(_ error: any Error) -> TokenErrorDisposition {
+    if error is CancellationError {
+      return .uncached
+    }
+    if let classified = error as? any ClassifiedAuthError {
+      return classified.errorDisposition
+    }
+    if let urlError = error as? URLError {
+      return urlError.errorDisposition
+    }
+    return .retryable
+  }
+}
