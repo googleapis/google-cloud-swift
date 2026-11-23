@@ -155,8 +155,9 @@ extension CredentialsError {
   /// Returns `false` for configuration, file-loading, discovery, and universe-domain mismatch
   /// cases, as well as `.cannotFetchToken` failures wrapping permanent HTTP responses (status codes
   /// other than 408, 429, and 5xx), payload decoding errors, permanent local/URL `URLError`s,
-  /// expired static tokens, or task cancellation. Returns `true` for transient and unclassified
-  /// `.cannotFetchToken` failures so ambiguous transport or custom-provider errors err on retrying.
+  /// expired static tokens, unconfirmed implicit ADC metadata server fallback probes, or task
+  /// cancellation. Returns `true` for transient and unclassified `.cannotFetchToken` failures so
+  /// ambiguous transport or custom-provider errors err on retrying.
   public var _isRetryable: Bool {
     self.errorDisposition == .retryable
   }

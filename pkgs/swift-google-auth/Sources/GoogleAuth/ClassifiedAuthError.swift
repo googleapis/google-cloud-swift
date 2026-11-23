@@ -26,8 +26,8 @@ enum TokenErrorDisposition: Equatable, Sendable {
   case permanent
 
   /// Non-retryable failure that must not be latched across future calls (such as task
-  /// cancellation): fails the current request fast (`_isRetryable == false`) without background
-  /// polling or latching `permanentError`.
+  /// cancellation or an unconfirmed implicit ADC metadata server probe): fails the current request
+  /// fast (`_isRetryable == false`) without background polling or latching `permanentError`.
   case uncached
 }
 
