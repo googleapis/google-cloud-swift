@@ -339,11 +339,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// conflicting duplicate headers.
   static func validateMetadataFlavorHeader(_ headers: HTTPHeaders) throws {
     let values = headers["Metadata-Flavor"]
-    let ows = CharacterSet(charactersIn: " \t")
     guard
       !values.isEmpty,
       values.allSatisfy({
-        $0.allSatisfy(\.isASCII) && $0.trimmingCharacters(in: ows).lowercased() == "google"
+        $0.allSatisfy(\.isASCII)
+          && $0.trimmingCharacters(in: .whitespaces).lowercased() == "google"
       })
     else {
       throw AuthHTTPError.invalidResponseHeader(
