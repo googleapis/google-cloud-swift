@@ -1375,12 +1375,17 @@ import Testing
       expectedRetryable: false
     ),
     (
+      responseHeaders: [("Metadata-Flavor", "google")],
+      expectedAttempts: 1,
+      expectedRetryable: false
+    ),
+    (
       responseHeaders: [("Metadata-Flavor", "Google")],
       expectedAttempts: 3,
       expectedRetryable: true
     ),
     (
-      responseHeaders: [("Metadata-Flavor", "google")],
+      responseHeaders: [("metadata-flavor", "Google")],
       expectedAttempts: 3,
       expectedRetryable: true
     ),

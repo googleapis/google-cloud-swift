@@ -230,8 +230,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     else {
       return false
     }
-    return values[0].trimmingCharacters(in: .whitespaces)
-      .caseInsensitiveCompare("Google") == .orderedSame
+    return values[0].trimmingCharacters(in: .whitespaces) == "Google"
   }
 
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.
