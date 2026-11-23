@@ -32,6 +32,9 @@ credential provider that integrates seamlessly with the `TokenCache` actor and
 -   **Requirement**: Query the MDS `/token` endpoint using `AuthHTTPClient`.
 -   **Requirement**: Append the `Metadata-Flavor: Google` header to all MDS
     requests.
+-   **Requirement**: Verify that 2xx MDS responses include the
+    `Metadata-Flavor: Google` response header (ASCII case-insensitive) before
+    reading the response body.
 -   **Requirement**: Parse the returned JSON response to extract the token and
     its expiration time.
 -   **Requirement**: Support configuration overrides for endpoint URL, quota
@@ -77,7 +80,10 @@ Conforms to `TokenProvider`.
 -   **Endpoint**: Defaults to `http://metadata.google.internal`.
 -   **Path**: `/computeMetadata/v1/instance/service-accounts/default/token`.
 -   **Query Parameters**: Optionally appends `scopes` if provided.
--   **Headers**: Injects `Metadata-Flavor: Google`.
+-   **Headers**: Injects `Metadata-Flavor: Google` on outbound requests and
+    verifies `Metadata-Flavor: Google` (ASCII case-insensitive across all
+    present `Metadata-Flavor` fields) on 2xx responses before buffering the
+    response body.
 -   Uses `AuthHTTPClient` to execute the network request.
 -   Decodes the JSON response using
     `JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase`.
@@ -110,8 +116,8 @@ The provider leverages the native swift retry engine.
 
 -   Transient errors (e.g., HTTP 500, 503, connection timeouts) trigger
     exponential backoff according to the `retryConfiguration`.
--   Permanent errors (e.g., HTTP 404, 403, 400) immediately fail without
-    retries.
+-   Permanent errors (e.g., HTTP 404, 403, 400, and 2xx responses missing or
+    mismatching `Metadata-Flavor: Google`) immediately fail without retries.
 
 # Implementation details
 

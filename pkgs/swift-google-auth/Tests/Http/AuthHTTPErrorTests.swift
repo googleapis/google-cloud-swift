@@ -509,4 +509,21 @@ import Testing
     #expect(!reflected.contains("bytes"))
     #expect(!reflected.contains("secret-cookie"))
   }
+
+  @Test func invalidResponseHeaderFormattingAndNonRetryable() {
+    let detail = "Missing or invalid 'Metadata-Flavor: Google' header"
+    let error = AuthHTTPError.invalidResponseHeader(detail)
+    #expect(error.errorDisposition == .permanent)
+    #expect(error.isRetryable == false)
+    let wrapped = CredentialsError.cannotFetchToken(message: "mds failed", underlyingError: error)
+    #expect(AuthHTTPError.isRetryable(wrapped) == false)
+    #expect(wrapped._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrapped) == true)
+    #expect(error.description == "Invalid HTTP response header: \(detail)")
+    #expect(
+      error.debugDescription
+        == "AuthHTTPError.invalidResponseHeader(\(String(reflecting: detail))): \(error.description)"
+    )
+    #expect(String(reflecting: error as any Error) == error.debugDescription)
+  }
 }

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import NIOHTTP1
 
 /// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
 ///
@@ -201,7 +202,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     let fetchOperation: @Sendable () async throws -> AccessToken = {
-      let response: TokenResponse = try await self.client.get(url: url, headers: headers)
+      let response: TokenResponse = try await self.client.get(
+        url: url,
+        headers: headers,
+        validateResponseHeaders: Self.validateMetadataFlavorHeader
+      )
       let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
       return AccessToken(
         token: response.accessToken,
@@ -285,7 +290,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     let fetchOperation: @Sendable () async throws -> String = {
       do {
-        let response = try await self.client.getString(url: url, headers: headers)
+        let response = try await self.client.getString(
+          url: url,
+          headers: headers,
+          validateResponseHeaders: Self.validateMetadataFlavorHeader
+        )
         let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
           return defaultUniverseDomain
@@ -318,6 +327,27 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           resource: "the universe domain"
         ),
         underlyingError: error
+      )
+    }
+  }
+
+  /// Validates that 2xx HTTP responses from the metadata server carry `Metadata-Flavor: Google`.
+  ///
+  /// Uses `NIOHTTP1.HTTPHeaders` ASCII case-insensitive field lookup and requires every
+  /// `Metadata-Flavor` header field present to be ASCII and match `"google"` after trimming
+  /// optional ASCII whitespace (SP / HTAB), preventing missing, mismatched, comma-smuggled, or
+  /// conflicting duplicate headers.
+  static func validateMetadataFlavorHeader(_ headers: HTTPHeaders) throws {
+    let values = headers["Metadata-Flavor"]
+    guard
+      !values.isEmpty,
+      values.allSatisfy({
+        $0.allSatisfy(\.isASCII)
+          && $0.trimmingCharacters(in: .whitespaces).lowercased() == "google"
+      })
+    else {
+      throw AuthHTTPError.invalidResponseHeader(
+        "Missing or invalid 'Metadata-Flavor: Google' header"
       )
     }
   }
