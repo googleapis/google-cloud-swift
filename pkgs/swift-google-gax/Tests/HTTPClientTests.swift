@@ -1480,8 +1480,8 @@ import NIOHTTP1
   }
 
   @Test(arguments: [
-    "http://storage.googleapis.com/upload?upload_id=1",
-    "https://storage.other-universe.com/upload?upload_id=1",
+    "http://example.googleapis.com/upload?upload_id=1",
+    "https://example.other-universe.com/upload?upload_id=1",
     "https://evil.example.com/upload?upload_id=1",
     "/upload?upload_id=1",
   ])
@@ -1502,9 +1502,9 @@ import NIOHTTP1
     }
     let client = try _HTTPClient(
       mock,
-      endpoint: "https://storage.googleapis.com",
+      endpoint: "https://example.googleapis.com",
       credentials: GuardedCredentials(),
-      defaultEndpoint: "https://storage.googleapis.com",
+      defaultEndpoint: "https://example.googleapis.com",
       universeDomain: "googleapis.com"
     )
     let error = await #expect(throws: RequestError.self) {
@@ -1517,38 +1517,41 @@ import NIOHTTP1
     #expect(rejected == badURI)
   }
 
-  @Test func newRequestURIResolvesRegionalHostAndVPCSCRouting() async throws {
+  @Test(arguments: [
+    (
+      endpoint: "https://example.googleapis.com",
+      universeDomain: "googleapis.com",
+      uri: "https://example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1",
+      wantURL: "https://example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1",
+      wantHost: "example.us-central1.rep.googleapis.com"
+    ),
+    (
+      endpoint: "https://private.my-universe.com",
+      universeDomain: "my-universe.com",
+      uri: "https://example.my-universe.com/upload/v1/items?upload_id=2",
+      wantURL: "https://private.my-universe.com/upload/v1/items?upload_id=2",
+      wantHost: "example.my-universe.com"
+    ),
+  ])
+  func newRequestURIResolvesRegionalHostAndVPCSCRouting(
+    endpoint: String,
+    universeDomain: String,
+    uri: String,
+    wantURL: String,
+    wantHost: String
+  ) async throws {
     let mock = MockHTTPClient { (_, _) in
       HTTPClientResponse(version: .http1_1, status: .ok)
     }
-
-    // Default client sets regional Host header when session URI targets a regional upload host.
-    let defaultClient = try _HTTPClient(
+    let client = try _HTTPClient(
       mock,
-      endpoint: "https://storage.googleapis.com",
-      defaultEndpoint: "https://storage.googleapis.com",
-      universeDomain: "googleapis.com"
+      endpoint: endpoint,
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: universeDomain
     )
-    let regionalURI =
-      "https://storage.us-central1.rep.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
-    let regionalReq = try await defaultClient.newRequest(uri: regionalURI)
-    #expect(regionalReq.components.url?.absoluteString == regionalURI)
-    #expect(regionalReq.headers["Host"] == ["storage.us-central1.rep.googleapis.com"])
-
-    // VPC-SC client routes connection through private.<universe> while setting service Host header.
-    let vpcClient = try _HTTPClient(
-      mock,
-      endpoint: "https://private.my-universe.com",
-      defaultEndpoint: "https://storage.googleapis.com",
-      universeDomain: "my-universe.com"
-    )
-    let sessionURI = "https://storage.my-universe.com/upload/storage/v1/b/bkt/o?upload_id=2"
-    let vpcReq = try await vpcClient.newRequest(uri: sessionURI)
-    #expect(
-      vpcReq.components.url?.absoluteString
-        == "https://private.my-universe.com/upload/storage/v1/b/bkt/o?upload_id=2"
-    )
-    #expect(vpcReq.headers["Host"] == ["storage.my-universe.com"])
+    let req = try await client.newRequest(uri: uri)
+    #expect(req.components.url?.absoluteString == wantURL)
+    #expect(req.headers["Host"] == [wantHost])
   }
 
   @Test func newRequestURIWithValidURIButMismatchedCredentialsUniverseFailsBeforeHeaders()
@@ -1567,14 +1570,14 @@ import NIOHTTP1
     }
     let client = try _HTTPClient(
       mock,
-      endpoint: "https://storage.my-universe.com",
+      endpoint: "https://example.my-universe.com",
       credentials: MismatchedCredentials(),
-      defaultEndpoint: "https://storage.googleapis.com",
+      defaultEndpoint: "https://example.googleapis.com",
       universeDomain: "my-universe.com"
     )
     let error = await #expect(throws: RequestError.self) {
       _ = try await client.newRequest(
-        uri: "https://storage.my-universe.com/upload/storage/v1/b/bkt/o?upload_id=1"
+        uri: "https://example.my-universe.com/upload/v1/items?upload_id=1"
       )
     }
     guard case .io(let underlying) = error else {
