@@ -42,7 +42,11 @@ public protocol SubjectTokenProvider: Sendable {
   /// endpoint and immediately discarded from memory once exchanged.
   ///
   /// - Returns: A valid, raw subject token string.
-  /// - Throws: Any error preventing the retrieval of the subject token. If the thrown error indicates
-  ///   a transient network failure, the SDK's retry engine will automatically retry the operation.
+  /// - Throws: Any error preventing the retrieval of the subject token. Permanent
+  ///   ``CredentialsError`` values and local URL/file configuration `URLError` codes (`.badURL`,
+  ///   `.unsupportedURL`, `.fileDoesNotExist`, `.noPermissionsToReadFile`) permanently disable
+  ///   future refreshes on that credentials instance; `CancellationError` and
+  ///   `URLError(.cancelled)` abort the current call without caching; all other errors are treated
+  ///   as transient and eligible for retry.
   func subjectToken() async throws -> String
 }

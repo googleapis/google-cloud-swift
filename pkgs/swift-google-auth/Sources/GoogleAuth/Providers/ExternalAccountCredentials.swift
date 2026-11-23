@@ -267,7 +267,8 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     self.cache = TokenCache(
       provider: provider,
       clock: ContinuousClock(),
-      isRetryable: AuthHTTPError.isRetryable
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
   }
 

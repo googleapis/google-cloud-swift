@@ -102,50 +102,59 @@ extension AuthHTTPError {
     }
   }
 
-  /// Indicates whether this HTTP error is transient and eligible for retry.
+  /// Retry and cache-latching classification for this HTTP error.
   ///
-  /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
-  /// transport errors, and unknown errors are considered transient and retryable. Client errors
-  /// (other 4xx statuses) and payload decoding errors are considered permanent.
-  var isRetryable: Bool {
+  /// - `.unsuccessfulResponse`: `.retryable` for HTTP 408, 429, and 5xx; `.permanent` otherwise.
+  /// - `.decodingError`, `.invalidUTF8Response`: `.permanent`.
+  /// - `.transportError`: delegates to `URLError.errorDisposition` (`.uncached` for `.cancelled`,
+  ///   `.permanent` for local URL/file configuration errors, and `.retryable` otherwise).
+  /// - `.unknown`: `.uncached` when wrapping `CancellationError`; `.retryable` otherwise.
+  var errorDisposition: TokenErrorDisposition {
     switch self {
     case .unsuccessfulResponse(let response, _):
       let status = response.status.code
-      return status >= 500 || status == 429 || status == 408
+      return (status >= 500 || status == 429 || status == 408) ? .retryable : .permanent
     case .decodingError, .invalidUTF8Response:
-      return false
-    case .transportError:
-      return true
+      return .permanent
+    case .transportError(let urlError):
+      return urlError.errorDisposition
     case .unknown(let error):
-      return !(error is CancellationError)
+      return (error is CancellationError) ? .uncached : .retryable
     }
+  }
+
+  /// Whether this HTTP error has `.retryable` disposition (`errorDisposition == .retryable`).
+  var isRetryable: Bool {
+    self.errorDisposition == .retryable
   }
 
   /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
   ///
-  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`,
-  /// and treats other `CredentialsError` cases as permanent.
+  /// Returns `false` for `CancellationError`, delegates to `ClassifiedAuthError.errorDisposition`
+  /// for classified errors (recursively unwrapping `CredentialsError.cannotFetchToken`), and
+  /// defaults to `true` for unrecognized error types so ambiguous transport or custom-provider
+  /// failures err on retrying rather than failing permanently.
   ///
   /// - Parameter error: The error to evaluate.
-  /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
+  /// - Returns: `true` if the error should be retried; `false` otherwise.
   static func isRetryable(_ error: any Error) -> Bool {
-    if error is CancellationError {
-      return false
-    }
-    if let credentialsError = error as? CredentialsError {
-      switch credentialsError {
-      case .cannotFetchToken(_, let underlyingError):
-        return isRetryable(underlyingError)
-      case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
-        return false
-      }
-    }
-    if let authError = error as? AuthHTTPError {
-      return authError.isRetryable
-    }
-    return true
+    TokenErrorDisposition.classify(error) == .retryable
+  }
+
+  /// Evaluates whether a non-retryable error is definitively permanent and safe to latch in
+  /// `TokenCache.permanentError` or `MDSUniverseDomainCache.permanentError` for the lifetime of
+  /// the credentials instance.
+  ///
+  /// Returns `true` only when `error` conforms to `ClassifiedAuthError` with `.permanent`
+  /// disposition (configuration/parse/discovery errors, permanent HTTP responses, permanent
+  /// local/URL `URLError`s, and expired static tokens). Returns `false` for `CancellationError`,
+  /// `.uncached` errors, and unrecognized error types.
+  static func shouldCachePermanentError(_ error: any Error) -> Bool {
+    TokenErrorDisposition.classify(error) == .permanent
   }
 }
+
+extension AuthHTTPError: ClassifiedAuthError {}
 
 // MARK: - Error Formatting
 
