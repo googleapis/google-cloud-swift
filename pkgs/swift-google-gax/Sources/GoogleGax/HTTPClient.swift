@@ -31,12 +31,14 @@ public import Foundation
   public convenience init(
     from: ClientOptions,
     withDefaultEndpoint: String,
-    clientHeader: _ApiClientHeader = .init()
+    clientHeader: _ApiClientHeader = .init(),
+    emulatorEnvironmentVariable: String? = nil
   ) throws {
     try self.init(
       from: from,
       withDefaultEndpoint: withDefaultEndpoint,
       clientHeader: clientHeader,
+      emulatorEnvironmentVariable: emulatorEnvironmentVariable,
       environment: ProcessInfo.processInfo.environment
     )
   }
@@ -45,21 +47,35 @@ public import Foundation
     from: ClientOptions,
     withDefaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init(),
+    emulatorEnvironmentVariable: String? = nil,
     environment: [String: String]
   ) throws {
+    let resolvedEmulator = _Host.resolveEmulatorEndpoint(
+      endpoint: from.endpoint,
+      emulatorEnvironmentVariable: emulatorEnvironmentVariable,
+      environment: environment
+    )
+    let effectiveEndpoint =
+      resolvedEmulator.isEmulator ? resolvedEmulator.endpoint : from.endpoint
     let universeDomain = _Host.resolveUniverseDomain(options: from, environment: environment)
     self.universeDomain = universeDomain
-    self.credentials = try from.credentials ?? GoogleAuth.Credentials()
+    if let credentials = from.credentials {
+      self.credentials = credentials
+    } else if resolvedEmulator.isEmulator {
+      self.credentials = try GoogleAuth.Credentials(configuration: .anonymous)
+    } else {
+      self.credentials = try GoogleAuth.Credentials()
+    }
     self.logger = from.logger
     self.quotaProject = from.quotaProject
     let endpoint = try _Host.endpoint(
-      endpoint: from.endpoint,
+      endpoint: effectiveEndpoint,
       defaultEndpoint: withDefaultEndpoint,
       universeDomain: universeDomain
     )
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.hostHeader = try _Host.header(
-      endpoint: from.endpoint,
+      endpoint: effectiveEndpoint,
       defaultEndpoint: withDefaultEndpoint,
       universeDomain: universeDomain
     )

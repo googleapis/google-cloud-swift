@@ -20,6 +20,41 @@ public enum _Host {
   public static let defaultUniverseDomain = "googleapis.com"
   private static let defaultSuffix = ".\(defaultUniverseDomain)"
 
+  /// Resolves an endpoint override from a caller-supplied emulator environment variable.
+  ///
+  /// When `endpoint` is non-empty, it takes precedence over `emulatorEnvironmentVariable`.
+  /// When `endpoint` is `nil` or empty, `emulatorEnvironmentVariable` is non-empty, and
+  /// `environment[emulatorEnvironmentVariable]` is non-empty after trimming whitespace, returns
+  /// `(normalizedEndpoint, true)` using plaintext `http://` when no scheme is specified.
+  public static func resolveEmulatorEndpoint(
+    endpoint: String?,
+    emulatorEnvironmentVariable: String? = nil
+  ) -> (endpoint: String?, isEmulator: Bool) {
+    resolveEmulatorEndpoint(
+      endpoint: endpoint,
+      emulatorEnvironmentVariable: emulatorEnvironmentVariable,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  public static func resolveEmulatorEndpoint(
+    endpoint: String?,
+    emulatorEnvironmentVariable: String? = nil,
+    environment: [String: String]
+  ) -> (endpoint: String?, isEmulator: Bool) {
+    if let endpoint, !endpoint.isEmpty {
+      return (endpoint, false)
+    }
+    guard let envVarName = emulatorEnvironmentVariable, !envVarName.isEmpty,
+      let raw = environment[envVarName]?.trimmingCharacters(in: .whitespacesAndNewlines),
+      !raw.isEmpty
+    else {
+      return (nil, false)
+    }
+    let normalized = raw.contains("://") ? raw : "http://\(raw)"
+    return (normalized, true)
+  }
+
   /// Resolves the universe domain from `ClientOptions` or `GOOGLE_CLOUD_UNIVERSE_DOMAIN`.
   ///
   /// Precedence:

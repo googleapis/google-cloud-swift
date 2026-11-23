@@ -60,6 +60,8 @@ clean_targets=(
     GoogleAuth
     GoogleGax
     GoogleGaxGRPC
+    GoogleCloudPubSub
+    GoogleCloudPubSubV1
     GoogleCloudStorage
     GoogleCloudSecretManagerV1
     GoogleCloudWorkflowsV1
@@ -85,7 +87,7 @@ if [[ "${trigger_name}" != gcb-pm-* && "${shard_count}" -le 1 ]]; then
     extra_packages=""
     if [[ -d "${REPO_ROOT}/.git" ]] && git -C "${REPO_ROOT}" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         git -C "${REPO_ROOT}" fetch --unshallow || true
-        mapfile -t new_dirs < <(git -C "${REPO_ROOT}" diff "origin/main...HEAD" --name-only --diff-filter=A 2>/dev/null | grep '/Package.swift' | grep -v /Sources/ | xargs -I{} dirname {} 2>/dev/null || true)
+        mapfile -t new_dirs < <(git -C "${REPO_ROOT}" diff "origin/main...HEAD" --name-only --diff-filter=A 2>/dev/null | grep -E '^(pkgs|generated)/[^/]+/Package\.swift$' | xargs -I{} dirname {} 2>/dev/null || true)
         if [[ ${#new_dirs[@]} -gt 0 ]]; then
             echo "--- Discovered new directories in this PR: ${new_dirs[*]}"
             new_targets=()

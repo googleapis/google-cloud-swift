@@ -44,6 +44,7 @@ let baseModules: [Target.Dependency] =
   selected.includeBaseModules
   ? [
     .product(name: "GoogleAuth", package: "swift-google-auth"),
+    .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
     .product(name: "GoogleGax", package: "swift-google-gax"),
     .product(name: "GoogleGaxGRPC", package: "swift-google-gax-grpc"),
     .product(name: "GoogleWKT", package: "swift-google-wkt"),
@@ -81,6 +82,7 @@ let baseDependencies: [Package.Dependency] = [
     from: "0.7.0"
   ),
   // Reference local packages via paths
+  .package(path: "./pkgs/swift-google-cloud-pubsub"),
   .package(path: "./pkgs/swift-google-cloud-storage"),
   .package(path: "./guide"),
   .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
@@ -258,6 +260,35 @@ let package = Package(
       swiftSettings: swiftSettings
     ),
     .target(
+      name: "PubSubThroughput",
+      dependencies: [
+        .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+      ],
+      path: "Sources/PubSubThroughput",
+      swiftSettings: swiftSettings
+    ),
+    .executableTarget(
+      name: "PubSubThroughputBenchmark",
+      dependencies: [
+        "PubSubThroughput"
+      ],
+      path: "Sources/PubSubThroughputBenchmark",
+      swiftSettings: swiftSettings
+    ),
+    .testTarget(
+      name: "PubSubThroughputTests",
+      dependencies: [
+        "PubSubThroughput",
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+      ],
+      path: "Tests/PubSubThroughputTests",
+      swiftSettings: swiftSettings
+    ),
+    .target(
       name: "GoogleCloudTestHelpers",
       dependencies: [
         .product(name: "GoogleGax", package: "swift-google-gax"),
@@ -269,6 +300,36 @@ let package = Package(
         .product(name: "NIOPosix", package: "swift-nio"),
       ],
       swiftSettings: testHelperSwiftSettings
+    ),
+    .target(
+      name: "PubSubSamples",
+      dependencies: [
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleCloudPubSubV1", package: "swift-google-pubsub-v1"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "Logging", package: "swift-log"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleType", package: "swift-google-type"),
+      ],
+      swiftSettings: swiftSettings
+    ),
+    .testTarget(
+      name: "PubSubSamplesDriver",
+      dependencies: [
+        "PubSubSamples",
+        .product(name: "GoogleCloudPubSub", package: "swift-google-cloud-pubsub"),
+        .product(name: "GoogleCloudPubSubV1", package: "swift-google-pubsub-v1"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "Logging", package: "swift-log"),
+        "GoogleCloudTestHelpers",
+      ],
+      path: "Tests/PubSubSamplesDriver",
+      swiftSettings: swiftSettings
     ),
     .target(
       name: "StorageSamples",
@@ -449,6 +510,7 @@ func generatedPackagesStatic() -> [Generated] {
     .init(name: "swift-google-iam-credentials-v1", module: "GoogleIAMCredentialsV1"),
     .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
     .init(name: "swift-google-longrunning", module: "GoogleLongRunning"),
+    .init(name: "swift-google-pubsub-v1", module: "GoogleCloudPubSubV1"),
     .init(name: "swift-google-rpc", module: "GoogleRpc"),
     .init(name: "swift-google-showcase-v1beta1", module: "GoogleShowcaseV1Beta1"),
     .init(name: "swift-google-type", module: "GoogleType"),
