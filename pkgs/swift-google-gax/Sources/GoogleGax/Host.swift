@@ -194,7 +194,7 @@ public enum _Host {
     universeDomain: String,
     defaultHostHeader: String
   ) throws -> (components: URLComponents, hostHeader: String) {
-    // Reject relative or unparseable URIs, embedded credentials, fragments, and scheme mismatches
+    // Reject relative or unparsable URIs, embedded credentials, fragments, and scheme mismatches
     // (preventing `https` to `http` downgrades).
     guard let parsed = URLComponents(string: uri),
       parsed.user == nil,
