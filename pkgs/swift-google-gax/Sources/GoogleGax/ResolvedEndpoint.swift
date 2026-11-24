@@ -96,6 +96,9 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     universeDomain: _UniverseDomain = .default,
     allowsBareHost: Bool = false
   ) throws {
+    // Parse `defaultEndpoint` upfront and extract `<service>` when it is a standard
+    // `<service>.googleapis.com` host. Non-universe defaults (e.g. Showcase `localhost:7469`)
+    // yield `nil` so universe substitution and `<service>` header rewriting are skipped.
     let parsedDefault = try Self.parseEndpoint(
       defaultEndpoint,
       allowsBareHost: allowsBareHost
@@ -112,11 +115,15 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
 
     let resolvedBaseURL: URLComponents
     if let endpoint {
+      // Explicit `ClientOptions.endpoint` overrides universe domain host substitution.
       resolvedBaseURL = try Self.parseEndpoint(
         endpoint,
         allowsBareHost: allowsBareHost
       ).components
     } else if !universeDomain.isDefault, let service = extractedService {
+      // Substitute `<service>.<universeDomain>` and round-trip through `URLComponents(string:)`
+      // to reject malformed `universeDomain` values that would inject ports, userinfo, paths,
+      // queries, or fragments into the serialized URL.
       let targetHost = "\(service).\(universeDomain.rawValue)"
       var candidate = parsedDefault.components
       candidate.host = targetHost
@@ -138,6 +145,7 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       resolvedBaseURL = parsedDefault.components
     }
 
+    // Precompute the outbound HTTP `Host` header and gRPC `:authority` once at init.
     let resolvedOrigin = Self.originAndHeader(
       hasCustomEndpoint: endpoint != nil,
       baseURL: resolvedBaseURL,
@@ -254,22 +262,30 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     guard !universeDomain.isEmpty, host.hasSuffix(suffix) else { return false }
     let prefix = host.dropLast(suffix.count)
     let parts = prefix.split(separator: ".", omittingEmptySubsequences: false)
+    // Regional Endpoint (REP): `<service>.<region>.rep.<universeDomain>` with non-empty `<region>`.
     if parts.count == 3 && parts[0] == service && !parts[1].isEmpty && parts[2] == "rep" {
       return true
     }
+    // Locational endpoint: `<region>-<service>.<universeDomain>` with non-empty `<region>`.
     if parts.count == 1 && parts[0].hasSuffix("-\(service)") {
       return !parts[0].dropLast(service.count + 1).isEmpty
     }
     return false
   }
 
+  /// Parses and normalizes a raw endpoint string into clean origin-only `URLComponents` (`http` or
+  /// `https` scheme, non-empty `host`, empty `path`, and `nil` `queryItems`).
   private static func parseEndpoint(
     _ endpoint: String,
     allowsBareHost: Bool
   ) throws -> (components: URLComponents, host: String) {
+    // Reject empty strings and leading slashes upfront so `allowsBareHost` never turns a relative
+    // path like `"/a/b"` into `"https:///a/b"` or `"https://a/b"`.
     guard !endpoint.isEmpty, !endpoint.hasPrefix("/") else {
       throw ClientError.invalidEndpoint(endpoint)
     }
+    // gRPC accepts bare `host[:port]` strings (defaulting to TLS), whereas HTTP requires an
+    // explicit `http://` or `https://` scheme.
     let normalized: String
     if endpoint.contains("://") {
       normalized = endpoint
@@ -287,12 +303,15 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     else {
       throw ClientError.invalidEndpoint(endpoint)
     }
+    // Canonicalize the scheme and strip any path or query so callers can compose per-RPC paths
+    // and query items onto `baseURL` without inheriting residual components.
     parsed.scheme = scheme
     parsed.queryItems = nil
     parsed.path = ""
     return (components: parsed, host: host)
   }
 
+  /// Computes the gRPC `:authority` pseudo-header and HTTP `Host` header for `baseURL`.
   private static func originAndHeader(
     hasCustomEndpoint: Bool,
     baseURL: URLComponents,
@@ -308,10 +327,15 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     }
 
     guard hasCustomEndpoint else {
+      // Standard service endpoint without a custom `ClientOptions.endpoint` override.
       let host = "\(service).\(universeDomain.rawValue)"
       return (authority: host, header: host)
     }
 
+    // Match `customHost` against either the configured universe domain or `.googleapis.com` (for
+    // callers overriding `endpoint` to a VPC-SC VIP or regional `.googleapis.com` host without
+    // setting `universeDomain`). Custom hosts outside both universes (emulators, local proxies,
+    // `localhost`) keep their literal host (and port in gRPC `:authority`).
     let customHost = baseURL.host ?? ""
     let universeSuffix = ".\(universeDomain.rawValue)"
     let defaultSuffix = ".\(_UniverseDomain.defaultRawValue)"
@@ -329,6 +353,10 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       return (authority: authority, header: customHost)
     }
 
+    // Regional and locational service hosts retain their regional hostname in `Host` / `:authority`,
+    // whereas VPC-SC VIPs (`private.<universe>`, `restricted.<universe>`), PSC endpoints
+    // (`<psc>.p.<universe>`), and `www.<universe>` rewrite `Host` / `:authority` to
+    // `<service>.<universe>` so Google Frontends route the request to the target service.
     let parts = prefix.split(separator: ".", omittingEmptySubsequences: false).map(String.init)
     switch parts.count {
     case 3 where parts[2] == "rep" && parts[0] == service && !parts[1].isEmpty:
@@ -343,11 +371,11 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
           return (authority: customHost, header: customHost)
         }
       }
-      // Fallback for VPC-SC / PSC or non-matching service.
+      // Fallback for single-label non-locational universe hosts (e.g. `private`, `restricted`, `www`).
       let fallback = "\(service).\(effectiveUniverseDomain)"
       return (authority: fallback, header: fallback)
     default:
-      // Fallback for VPC-SC / PSC.
+      // Fallback for multi-label universe hosts (e.g. PSC `<endpoint>.p.<universeDomain>`).
       let fallback = "\(service).\(effectiveUniverseDomain)"
       return (authority: fallback, header: fallback)
     }
