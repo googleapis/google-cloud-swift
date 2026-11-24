@@ -107,46 +107,13 @@ import Testing
     #expect(detail.contains("universe_domain"))
   }
 
-  @Test func validateCredentialsUniverseCaseSensitivity() throws {
+  @Test func equalityIsExactCaseSensitive() throws {
     let custom = try #require(_UniverseDomain(nonEmpty: "my-universe.com"))
-    try custom.validate(credentialsUniverse: custom)
-
+    let same = try #require(_UniverseDomain(nonEmpty: "my-universe.com"))
     let upper = try #require(_UniverseDomain(nonEmpty: "MY-UNIVERSE.COM"))
-    let error = #expect(throws: CredentialsError.self) {
-      try custom.validate(credentialsUniverse: upper)
-    }
-    guard case .parseError(let detail) = error else {
-      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
-      return
-    }
-    #expect(detail.contains("my-universe.com"))
-    #expect(detail.contains("MY-UNIVERSE.COM"))
-  }
 
-  @Test func validateUserAccountSupportAndServiceHost() throws {
-    try _UniverseDomain.default.validateUserAccountSupport()
-
-    let custom = try #require(_UniverseDomain(nonEmpty: "custom.universe.com"))
-    #expect(throws: CredentialsError.self) {
-      try custom.validateUserAccountSupport()
-    }
-
-    try custom.validateServiceHost(
-      "iamcredentials.custom.universe.com",
-      service: "iamcredentials",
-      urlField: "service_account_impersonation_url"
-    )
-    try custom.validateServiceHost(
-      "custom-proxy.internal",
-      service: "iamcredentials",
-      urlField: "service_account_impersonation_url"
-    )
-    #expect(throws: CredentialsError.self) {
-      try custom.validateServiceHost(
-        "IAMCREDENTIALS.other-universe.com",
-        service: "iamcredentials",
-        urlField: "service_account_impersonation_url"
-      )
-    }
+    #expect(custom == same)
+    #expect(custom != upper)
+    #expect(custom != .default)
   }
 }

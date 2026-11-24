@@ -70,6 +70,14 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   ///   - retryConfiguration: The retry configuration for token refresh requests.
   /// - Throws: `CredentialsError.notSupported` if a non-default universe domain is configured, or
   ///   `CredentialsError.parseError` if the token URI is invalid.
+  static func validateUniverseDomain(_ universeDomain: _UniverseDomain) throws {
+    guard universeDomain.isDefault else {
+      throw CredentialsError.notSupported(
+        "User accounts are only supported in the default (\(_UniverseDomain.defaultRawValue)) universe: \(universeDomain)"
+      )
+    }
+  }
+
   init(
     user: UserAccountData,
     quotaProjectID: String? = nil,
@@ -78,8 +86,12 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    try _UniverseDomain(nonEmpty: universeDomain)?.validateUserAccountSupport()
-    try _UniverseDomain(nonEmpty: user.universeDomain)?.validateUserAccountSupport()
+    if let configuredUniverse = _UniverseDomain(nonEmpty: universeDomain) {
+      try Self.validateUniverseDomain(configuredUniverse)
+    }
+    if let userUniverse = _UniverseDomain(nonEmpty: user.universeDomain) {
+      try Self.validateUniverseDomain(userUniverse)
+    }
     self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
     // Resolve Token URL

@@ -114,41 +114,6 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     return resolvedURL
   }
 
-  /// Validates that `credentialsUniverse` matches `self` using exact case-sensitive comparison
-  /// per AIP-4110.
-  ///
-  /// - Throws: ``CredentialsError/parseError(_:)`` if `credentialsUniverse` does not match `self`.
-  public func validate(credentialsUniverse: _UniverseDomain) throws {
-    guard self == credentialsUniverse else {
-      throw CredentialsError.parseError(
-        "The configured universe domain (\(rawValue)) does not match the universe domain found in the credentials (\(credentialsUniverse.rawValue))."
-      )
-    }
-  }
-
-  /// Validates that this universe domain is supported for Authorized User (`authorized_user`)
-  /// credentials (which AIP-4116 restricts to `"googleapis.com"`).
-  func validateUserAccountSupport() throws {
-    guard isDefault else {
-      throw CredentialsError.notSupported(
-        "User accounts are only supported in the default (\(Self.defaultRawValue)) universe: \(rawValue)"
-      )
-    }
-  }
-
-  /// If `host` begins with `<service>.` (case-insensitively), verifies that the trailing
-  /// universe domain matches `rawValue` (case-sensitively per AIP-4110).
-  func validateServiceHost(_ host: String, service: String, urlField: String) throws {
-    let prefix = "\(service.lowercased())."
-    guard host.lowercased().hasPrefix(prefix) else { return }
-    let hostUniverse = String(host.dropFirst(prefix.count))
-    guard hostUniverse == rawValue else {
-      throw CredentialsError.parseError(
-        "The \(urlField) host (\(host)) does not match universe_domain (\(rawValue))."
-      )
-    }
-  }
-
   public var description: String {
     rawValue
   }

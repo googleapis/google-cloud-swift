@@ -185,11 +185,14 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     }
 
     let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
-    try effectiveUniverse.validateServiceHost(
-      host,
-      service: "iamcredentials",
-      urlField: "service_account_impersonation_url"
-    )
+    let iamPrefix = "iamcredentials."
+    if host.lowercased().hasPrefix(iamPrefix),
+      _UniverseDomain(nonEmpty: String(host.dropFirst(iamPrefix.count))) != effectiveUniverse
+    {
+      throw CredentialsError.parseError(
+        "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
+      )
+    }
 
     try self.init(
       sourceCredentials: sourceCredentials,
@@ -227,7 +230,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     let lifetimeDuration = try WKTDuration(seconds: lifetime.components.seconds)
 
     if sourceCredentials is UserCredentials {
-      try effectiveUniverse.validateUserAccountSupport()
+      try UserCredentials.validateUniverseDomain(effectiveUniverse)
     }
 
     let effectiveScopes =

@@ -193,7 +193,11 @@ extension CredentialsProvider {
 
   func validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws {
     let credUniverse = try await self.universeDomain()
-    try expectedUniverseDomain.validate(credentialsUniverse: credUniverse)
+    guard credUniverse == expectedUniverseDomain else {
+      throw CredentialsError.parseError(
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+      )
+    }
   }
 }
 
