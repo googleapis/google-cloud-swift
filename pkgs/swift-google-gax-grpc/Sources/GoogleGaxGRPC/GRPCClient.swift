@@ -207,10 +207,12 @@ public final class _GRPCClient: Sendable {
         options: callOptions,
         onResponse: Self.handleResponse
       )
+    } catch let error as CancellationError {
+      throw error
     } catch let error as RequestError {
       throw error
     } catch let error as RPCError {
-      throw error.toRequestError()
+      throw try error.toRequestError()
     } catch {
       throw RequestError.io(error)
     }
@@ -221,11 +223,11 @@ public final class _GRPCClient: Sendable {
   ) throws -> Resp {
     switch response.accepted {
     case .failure(let rpcError):
-      throw rpcError.toRequestError()
+      throw try rpcError.toRequestError()
     case .success(let contents):
       switch contents.message {
       case .failure(let rpcError):
-        throw rpcError.toRequestError()
+        throw try rpcError.toRequestError()
       case .success(let message):
         return message
       }

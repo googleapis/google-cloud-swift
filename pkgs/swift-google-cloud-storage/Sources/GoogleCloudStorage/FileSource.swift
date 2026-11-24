@@ -36,6 +36,8 @@ private final class FileHandleBox: @unchecked Sendable {
         forReadingAt: FilePath(fileURL.path)
       )
       return FileHandleBox(handle: handle)
+    } catch let error as CancellationError {
+      throw error
     } catch {
       throw WriteObjectSourceError.readFailed(underlyingError: error)
     }
@@ -52,6 +54,8 @@ private final class FileHandleBox: @unchecked Sendable {
       )
       guard buffer.readableBytes > 0 else { return nil }
       return buffer
+    } catch let error as CancellationError {
+      throw error
     } catch {
       throw WriteObjectSourceError.readFailed(underlyingError: error)
     }

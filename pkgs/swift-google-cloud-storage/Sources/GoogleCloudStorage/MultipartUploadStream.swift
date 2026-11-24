@@ -59,7 +59,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
       } catch is CancellationError {
         throw CancellationError()
       } catch {
-        throw WriteObjectError.fromSourceError(error)
+        throw try WriteObjectError.fromSourceError(error)
       }
       source = seekable
     }
@@ -120,7 +120,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     } catch is CancellationError {
       throw CancellationError()
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
 
     let checksum =
@@ -192,7 +192,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         } catch is CancellationError {
           throw CancellationError()
         } catch {
-          throw WriteObjectError.fromSourceError(error)
+          throw try WriteObjectError.fromSourceError(error)
         }
         if let chunk = chunk, !chunk.isEmpty {
           bytesYielded += UInt64(chunk.count)

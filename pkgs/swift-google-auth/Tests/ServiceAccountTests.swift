@@ -466,4 +466,28 @@ struct ServiceAccountTests {
       keyJSON: keyWithoutUniverse, universeDomain: "")
     #expect(try await credsEmptyParamAndNoJSONUniverse.universeDomain() == "googleapis.com")
   }
+
+  @Test(
+    "Service Account Token Provider propagates CancellationError without converting to parseError")
+  func cancellationPropagatesUnwrapped() async throws {
+    let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
+    let key = try JSONDecoder().decode(ServiceAccountData.self, from: mockKeyJSON)
+    let provider = try ServiceAccountTokenProvider(key: key)
+
+    let cancelledTask = Task { () throws -> AccessToken in
+      while !Task.isCancelled {
+        await Task.yield()
+      }
+      return try await provider.fetchToken()
+    }
+    cancelledTask.cancel()
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await cancelledTask.value
+    }
+
+    // Subsequent non-cancelled call succeeds normally.
+    let token = try await provider.fetchToken()
+    #expect(!token.token.isEmpty)
+  }
 }

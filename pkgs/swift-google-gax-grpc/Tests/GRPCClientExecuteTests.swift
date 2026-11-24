@@ -1011,4 +1011,119 @@ import Testing
       #expect(flakyProvider.callCount == 2)
     }
   }
+
+  @Test func executeCancellationFromCredentialsPropagatesUnwrapped() async throws {
+    struct CancellingAccessTokenProvider: AccessTokenProvider {
+      func accessToken() async throws -> AccessToken {
+        throw CancellationError()
+      }
+    }
+
+    let endpoint = "http://127.0.0.1:1"
+    var options = ClientOptions()
+    options.endpoint = endpoint
+    options.credentials = try Credentials(
+      configuration: .accessToken(AccessTokenConfig(provider: CancellingAccessTokenProvider()))
+    )
+
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: endpoint,
+      environment: [:]
+    )
+    defer { client.close() }
+
+    await #expect(throws: CancellationError.self) {
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+  }
+
+  @Test func executeTaskCancellationInFlightPropagatesUnwrapped() async throws {
+    let (requestArrived, requestArrivedCont) = AsyncStream<Void>.makeStream()
+    let (releaseHandler, releaseHandlerCont) = AsyncStream<Void>.makeStream()
+
+    struct StallingEchoService: RegistrableRPCService {
+      let requestArrivedCont: AsyncStream<Void>.Continuation
+      let releaseHandler: AsyncStream<Void>
+
+      func registerMethods<Transport: ServerTransport>(with router: inout RPCRouter<Transport>) {
+        router.registerHandler(
+          forMethod: MethodDescriptor(
+            service: ServiceDescriptor(package: "test", service: "Echo"),
+            method: "Stall"
+          ),
+          deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
+          serializer: ProtobufSerializer<Google_Protobuf_Empty>()
+        ) { _, _ in
+          requestArrivedCont.finish()
+          for await _ in releaseHandler {}
+          return StreamingServerResponse(metadata: [:]) { writer in
+            try await writer.write(Google_Protobuf_Empty())
+            return [:]
+          }
+        }
+      }
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [
+        StallingEchoService(
+          requestArrivedCont: requestArrivedCont,
+          releaseHandler: releaseHandler
+        )
+      ]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      guard let port = try await server.listeningAddress?.ipv4?.port else {
+        Issue.record("Failed to get listening port")
+        releaseHandlerCont.finish()
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      var options = ClientOptions()
+      options.endpoint = endpoint
+      options.credentials = try Credentials(configuration: .anonymous)
+
+      let client = try _GRPCClient(
+        from: options,
+        withDefaultEndpoint: endpoint,
+        environment: [:]
+      )
+      defer {
+        releaseHandlerCont.finish()
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      let rpcTask = Task { () throws -> Google_Protobuf_Empty in
+        try await client.execute(
+          path: "/test.Echo/Stall",
+          request: Google_Protobuf_Empty(),
+          options: RequestOptions()
+        )
+      }
+
+      for await _ in requestArrived {}
+      rpcTask.cancel()
+
+      await #expect(throws: CancellationError.self) {
+        _ = try await rpcTask.value
+      }
+    }
+  }
 }

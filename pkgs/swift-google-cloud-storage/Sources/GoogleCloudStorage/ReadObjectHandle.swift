@@ -591,7 +591,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           return resp
         }
         if resp.isError() {
-          throw await resp.decodeError()
+          throw try await resp.decodeError()
         }
         let data = try await resp.data()
         let message = String(data: data, encoding: .utf8) ?? ""
@@ -711,7 +711,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           return (response, metadata)
         }
         if response.isError() {
-          throw await response.decodeError()
+          throw try await response.decodeError()
         }
         let data = try await response.data()
         let message = String(data: data, encoding: .utf8) ?? ""

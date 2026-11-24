@@ -1057,6 +1057,50 @@ import Testing
     }
   }
 
+  /// Tests that CancellationError thrown during error-body decoding or wrapped in WriteObjectSourceError.readFailed propagates unwrapped.
+  @Test func simpleUploadPropagatesCancellationFromSourceAndErrorBodyDecoding() async throws {
+    struct ReadFailedCancelSource: WriteObjectSource {
+      var totalSize: UInt64? { 8 }
+      mutating func read(maxBytes: Int) async throws -> ByteChunk? {
+        throw WriteObjectSourceError.readFailed(underlyingError: CancellationError())
+      }
+    }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancel-error-body"
+    let uploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)"
+    )
+    registry.register(
+      response: .stream(
+        statusCode: 503,
+        chunks: [],
+        error: CancellationError(),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: uploadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await client.writeObject(
+        ReadFailedCancelSource(),
+        to: bucket,
+        as: objectName
+      )
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await client.writeObject(
+        BytesSource(data: Data("12345678".utf8)),
+        to: bucket,
+        as: objectName
+      )
+    }
+  }
+
   /// Tests that client-level `StorageClientOptions.writeObject` defaults (e.g. `checksums`, `kmsKeyName`, `predefinedAcl`, `preconditions`, `metadata`) take effect when not overridden per call.
   @Test func simpleUploadAppliesClientWriteObjectOptionDefaults() async throws {
     let registry = MockRegistry.create()

@@ -54,7 +54,7 @@ Determine the target scope based on user instructions:
 
 Focus on genuine defects rather than code style or linter warnings (which are caught by formatters/linters):
 - **Logic & Correctness**: Off-by-one errors, inverted conditions, improper nil/optional handling, unhandled error cases.
-- **Concurrency & State**: Race conditions, data races, deadlocks, incorrect async/await task cancellations, unprotected mutable state across concurrency boundaries.
+- **Concurrency & State**: Race conditions, data races, deadlocks, incorrect async/await task cancellations (including `catch` blocks or error-mapping helpers that wrap `CancellationError` inside library error enums with `any Error` / `underlyingError` instead of rethrowing `CancellationError` directly), unprotected mutable state across concurrency boundaries.
 - **Resource Leaks & Lifecycle**: Unclosed connections, streams, or buffers; missing cleanup on early returns or error paths.
 - **API Contract Violations**: Incorrect HTTP status handling, header formatting, or parameter encoding.
 

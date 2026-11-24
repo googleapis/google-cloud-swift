@@ -178,7 +178,7 @@ where S: Sendable {
     } catch is CancellationError {
       throw CancellationError()
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
     guard let chunk, !chunk.isEmpty else {
       return nil
@@ -207,7 +207,7 @@ where S: Sendable {
       } catch is CancellationError {
         throw CancellationError()
       } catch {
-        throw WriteObjectError.fromSourceError(error)
+        throw try WriteObjectError.fromSourceError(error)
       }
       isInitialized = true
     }
@@ -224,7 +224,7 @@ where S: Sendable {
     } catch is CancellationError {
       throw CancellationError()
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
     let isLast = nextChunk?.isEmpty ?? true
 
@@ -302,7 +302,7 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
       } catch is CancellationError {
         throw CancellationError()
       } catch {
-        throw WriteObjectError.fromSourceError(error)
+        throw try WriteObjectError.fromSourceError(error)
       }
       return
     }
@@ -313,7 +313,7 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     } catch is CancellationError {
       throw CancellationError()
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
     var currentSeekOffset = tracker.bytesHashed
     var bytesRemaining = offset - tracker.bytesHashed
@@ -326,7 +326,7 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
       } catch is CancellationError {
         throw CancellationError()
       } catch {
-        throw WriteObjectError.fromSourceError(error)
+        throw try WriteObjectError.fromSourceError(error)
       }
       guard let chunk, !chunk.isEmpty else {
         throw WriteObjectError.sourceError(

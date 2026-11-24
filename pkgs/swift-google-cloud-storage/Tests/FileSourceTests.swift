@@ -82,4 +82,44 @@ import Testing
     let third = try await source.read(maxBytes: 10)
     #expect(third == nil)
   }
+
+  /// Tests that task cancellation during file open or chunk reads propagates CancellationError unwrapped.
+  @Test func readPropagatesCancellationErrorUnwrapped() async throws {
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let fileURL = tempDirectory.appendingPathComponent("test_cancel_\(UUID().uuidString).txt")
+    try Data(repeating: 66, count: 64).write(to: fileURL)
+    defer {
+      try? FileManager.default.removeItem(at: fileURL)
+    }
+
+    // 1. Cancellation before initial openFile
+    let openCancelTask = Task { () throws -> ByteChunk? in
+      while !Task.isCancelled {
+        await Task.yield()
+      }
+      var source = FileSource(fileURL: fileURL)
+      return try await source.read(maxBytes: 16)
+    }
+    openCancelTask.cancel()
+    await #expect(throws: CancellationError.self) {
+      _ = try await openCancelTask.value
+    }
+
+    // 2. Cancellation after file handle is open, before subsequent readChunk
+    var openedSource = FileSource(fileURL: fileURL)
+    let first = try await openedSource.read(maxBytes: 16)
+    #expect(first?.count == 16)
+    let sourceForReadCancel = openedSource
+    let readCancelTask = Task { () throws -> ByteChunk? in
+      while !Task.isCancelled {
+        await Task.yield()
+      }
+      var copy = sourceForReadCancel
+      return try await copy.read(maxBytes: 16)
+    }
+    readCancelTask.cancel()
+    await #expect(throws: CancellationError.self) {
+      _ = try await readCancelTask.value
+    }
+  }
 }

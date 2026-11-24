@@ -97,8 +97,26 @@ public enum WriteObjectError: Error, Sendable, CustomStringConvertible,
   /// underlying file system or stream failure.
   case sourceError(any Error)
 
-  package static func fromSourceError(_ error: any Error) -> WriteObjectError {
+  package static func fromSourceError(_ error: any Error) throws -> WriteObjectError {
+    if let cancellationError = error as? CancellationError {
+      throw cancellationError
+    }
+    if case WriteObjectSourceError.readFailed(let underlying) = error,
+      let cancellationError = underlying as? CancellationError
+    {
+      throw cancellationError
+    }
     if let writeError = error as? WriteObjectError {
+      if case .sourceError(let underlying) = writeError {
+        if let cancellationError = underlying as? CancellationError {
+          throw cancellationError
+        }
+        if case WriteObjectSourceError.readFailed(let inner) = underlying,
+          let cancellationError = inner as? CancellationError
+        {
+          throw cancellationError
+        }
+      }
       return writeError
     }
     return .sourceError(error)

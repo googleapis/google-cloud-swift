@@ -146,9 +146,9 @@ import Testing
     #expect(error.description == "Source error: custom source failure")
   }
 
-  @Test func fromSourceError() {
+  @Test func fromSourceError() throws {
     let writeError = WriteObjectError.internalError("already write error")
-    let resolved = WriteObjectError.fromSourceError(writeError)
+    let resolved = try WriteObjectError.fromSourceError(writeError)
     switch resolved {
     case .internalError(let msg):
       #expect(msg == "already write error")
@@ -157,12 +157,26 @@ import Testing
     }
 
     struct GenericErr: Error {}
-    let fromGeneric = WriteObjectError.fromSourceError(GenericErr())
+    let fromGeneric = try WriteObjectError.fromSourceError(GenericErr())
     switch fromGeneric {
     case .sourceError(let err):
       #expect(err is GenericErr)
     default:
       Issue.record("Expected sourceError")
+    }
+
+    let cancellationInputs: [any Error] = [
+      CancellationError(),
+      WriteObjectSourceError.readFailed(underlyingError: CancellationError()),
+      WriteObjectError.sourceError(CancellationError()),
+      WriteObjectError.sourceError(
+        WriteObjectSourceError.readFailed(underlyingError: CancellationError())
+      ),
+    ]
+    for input in cancellationInputs {
+      #expect(throws: CancellationError.self) {
+        _ = try WriteObjectError.fromSourceError(input)
+      }
     }
   }
 }

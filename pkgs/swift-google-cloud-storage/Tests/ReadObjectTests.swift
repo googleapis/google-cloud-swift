@@ -1547,6 +1547,30 @@ import Testing
     #expect(received == chunk1)
   }
 
+  @Test func downloadObjectCancellationDuringErrorBodyDecodingPropagatesUnwrapped() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancel-error-body.txt"
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .stream(
+        statusCode: 503,
+        chunks: [],
+        error: CancellationError(),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let download = client.readObject(from: bucket, object: objectName)
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await download.metadata
+    }
+  }
+
   @Test func downloadObjectAppliesClientReadObjectOptionDefaults() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"

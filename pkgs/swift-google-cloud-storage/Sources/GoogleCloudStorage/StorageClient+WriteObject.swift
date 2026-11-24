@@ -84,14 +84,11 @@ extension StorageClient {
     } catch is CancellationError {
       throw CancellationError()
     } catch let error as WriteObjectError {
-      if case .sourceError(let underlying) = error, underlying is CancellationError {
-        throw CancellationError()
-      }
-      throw error
+      throw try WriteObjectError.fromSourceError(error)
     } catch let error as RequestError {
       throw WriteObjectError.requestError(error)
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
   }
 
@@ -155,14 +152,11 @@ extension StorageClient {
     } catch is CancellationError {
       throw CancellationError()
     } catch let error as WriteObjectError {
-      if case .sourceError(let underlying) = error, underlying is CancellationError {
-        throw CancellationError()
-      }
-      throw error
+      throw try WriteObjectError.fromSourceError(error)
     } catch let error as RequestError {
       throw WriteObjectError.requestError(error)
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
   }
 
@@ -225,13 +219,13 @@ extension StorageClient {
       let response: _HTTPClientResponse
       do {
         response = try await request.execute()
+      } catch let error as CancellationError {
+        throw error
+      } catch let uploadError as WriteObjectError {
+        throw uploadError
+      } catch let reqError as RequestError {
+        throw reqError
       } catch {
-        if let uploadError = error as? WriteObjectError {
-          throw uploadError
-        }
-        if let reqError = error as? RequestError {
-          throw reqError
-        }
         throw RequestError.io(error)
       }
       return try await handleObjectResponse(response: response)
@@ -252,10 +246,11 @@ extension StorageClient {
     let startResponse: _HTTPClientResponse
     do {
       startResponse = try await startRequest.execute()
+    } catch let error as CancellationError {
+      throw error
+    } catch let reqError as RequestError {
+      throw reqError
     } catch {
-      if let reqError = error as? RequestError {
-        throw reqError
-      }
       throw RequestError.io(error)
     }
     let statusCode = Int(startResponse.status.code)
@@ -263,7 +258,7 @@ extension StorageClient {
       let location = startResponse.headers.first(name: "Location")
     else {
       if startResponse.isError() {
-        throw await startResponse.decodeError()
+        throw try await startResponse.decodeError()
       }
       let startData = try await startResponse.data()
       throw WriteObjectError.unexpectedServerResponse(
@@ -286,10 +281,11 @@ extension StorageClient {
     let queryResponse: _HTTPClientResponse
     do {
       queryResponse = try await queryRequest.execute()
+    } catch let error as CancellationError {
+      throw error
+    } catch let reqError as RequestError {
+      throw reqError
     } catch {
-      if let reqError = error as? RequestError {
-        throw reqError
-      }
       throw RequestError.io(error)
     }
 
@@ -304,7 +300,7 @@ extension StorageClient {
       await queryResponse.drain()
       return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
     } else if queryResponse.isError() {
-      throw await queryResponse.decodeError()
+      throw try await queryResponse.decodeError()
     } else {
       let queryData = try await queryResponse.data()
       throw WriteObjectError.unexpectedServerResponse(
@@ -335,10 +331,11 @@ extension StorageClient {
     let uploadResponse: _HTTPClientResponse
     do {
       uploadResponse = try await uploadRequest.execute()
+    } catch let error as CancellationError {
+      throw error
+    } catch let reqError as RequestError {
+      throw reqError
     } catch {
-      if let reqError = error as? RequestError {
-        throw reqError
-      }
       throw RequestError.io(error)
     }
 
@@ -365,7 +362,7 @@ extension StorageClient {
       await uploadResponse.drain()
       return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
     } else if uploadResponse.isError() {
-      throw await uploadResponse.decodeError()
+      throw try await uploadResponse.decodeError()
     } else {
       let uploadData = try await uploadResponse.data()
       throw WriteObjectError.unexpectedServerResponse(
@@ -455,7 +452,7 @@ extension StorageClient {
       await uploadResponse.drain()
       return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
     } else if uploadResponse.isError() {
-      throw await uploadResponse.decodeError()
+      throw try await uploadResponse.decodeError()
     } else {
       let uploadData = try await uploadResponse.data()
       throw WriteObjectError.unexpectedServerResponse(
@@ -1006,14 +1003,11 @@ extension StorageClient {
     } catch is CancellationError {
       throw CancellationError()
     } catch let error as WriteObjectError {
-      if case .sourceError(let underlying) = error, underlying is CancellationError {
-        throw CancellationError()
-      }
-      throw error
+      throw try WriteObjectError.fromSourceError(error)
     } catch let error as RequestError {
       throw WriteObjectError.requestError(error)
     } catch {
-      throw WriteObjectError.fromSourceError(error)
+      throw try WriteObjectError.fromSourceError(error)
     }
   }
 }
@@ -1211,7 +1205,7 @@ extension StorageClient {
     -> Object
   {
     if response.isError() {
-      throw await response.decodeError()
+      throw try await response.decodeError()
     }
     let data = try await response.data()
     let decoder = GoogleWKT._ProtoJSONDecoder()

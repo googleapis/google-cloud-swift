@@ -82,6 +82,7 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
 
   @concurrent
   func fetchToken() async throws -> AccessToken {
+    try Task.checkCancellation()
     let now = timeSource.now
     let iatDate = now.addingTimeInterval(clockSkewFudgeSeconds)
     let expDate = iatDate.addingTimeInterval(tokenLifetimeSeconds)
@@ -102,6 +103,8 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
     let signedJWT: String
     do {
       signedJWT = try await keys.sign(claims, kid: kid)
+    } catch let error as CancellationError {
+      throw error
     } catch {
       throw CredentialsError.parseError("RSA JWT signing failed: \(error.localizedDescription)")
     }
