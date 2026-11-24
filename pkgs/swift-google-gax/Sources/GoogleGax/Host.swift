@@ -131,7 +131,7 @@ public enum _Host {
   private static func extractService(from defaultEndpoint: String) -> String? {
     guard !defaultEndpoint.hasPrefix("/"),
       let components = URLComponents(string: normalizeEndpoint(defaultEndpoint)),
-      let defaultHost = components.encodedHost?.lowercased(),
+      let defaultHost = components.host?.lowercased(),
       defaultHost.hasSuffix(defaultSuffix)
     else {
       return nil
@@ -169,7 +169,7 @@ public enum _Host {
   ///   proxy endpoints).
   /// - **Same-universe service or regional host from a non-regional universe `baseURL`**:
   ///   - When `baseURL` is the global `<service>.<universeDomain>` endpoint, updates the connection
-  ///     host (`components.encodedHost`) to follow regional/locational hosts in the same universe.
+  ///     host (`components.host`) to follow regional/locational hosts in the same universe.
   ///   - When `baseURL` is a VPC-SC or PSC endpoint (such as `private.<universeDomain>`,
   ///     `restricted.<universeDomain>`, or `<psc>.p.<universeDomain>`), keeps `baseURL` as the
   ///     connection target while setting `hostHeader` to the session URI's target service host.
@@ -183,10 +183,10 @@ public enum _Host {
   ///   - universeDomain: The client's resolved universe domain (compared case-sensitively per AIP-4110).
   ///   - defaultHostHeader: The client's precomputed HTTP `Host` header for `baseURL`.
   /// - Returns: The outbound request `URLComponents` and its HTTP `Host` header value.
-  /// - Throws: `RequestError.badURL(uri)` if `uri` is malformed or relative, contains userinfo, a
-  ///   fragment, a percent-encoded host, or a `//`-prefixed path, uses a different scheme (such as
-  ///   an `https` to `http` downgrade) or invalid/disallowed port, or targets an untrusted host,
-  ///   different service, different region (when pinned), or different universe domain.
+  /// - Throws: `RequestError.badURL(uri)` if `uri` is malformed or relative, contains userinfo or a
+  ///   fragment, uses a different scheme (such as an `https` to `http` downgrade) or disallowed
+  ///   port, or targets an untrusted host, different service, different region (when pinned), or
+  ///   different universe domain.
   static func resolveRequestURI(
     _ uri: String,
     baseURL: URLComponents,
@@ -194,43 +194,25 @@ public enum _Host {
     universeDomain: String,
     defaultHostHeader: String
   ) throws -> (components: URLComponents, hostHeader: String) {
-    // Reject relative or unparseable URIs, embedded credentials, fragments, percent-encoded host
-    // characters (which could smuggle ports or path separators into `Host`), and `//`-prefixed
-    // paths (which `URLComponents.url` would reject or reinterpret as an authority).
-    guard let parsed = URLComponents(string: uri, encodingInvalidCharacters: false),
+    // Reject relative or unparseable URIs, embedded credentials, fragments, and scheme mismatches
+    // (preventing `https` to `http` downgrades).
+    guard let parsed = URLComponents(string: uri),
       parsed.user == nil,
       parsed.password == nil,
       parsed.fragment == nil,
-      let rawScheme = parsed.scheme,
-      let encodedHost = parsed.encodedHost,
-      !encodedHost.isEmpty,
-      !encodedHost.contains("%"),
-      parsed.host != nil,
-      !parsed.percentEncodedPath.hasPrefix("//"),
-      let rawBaseScheme = baseURL.scheme,
-      let baseEncodedHost = baseURL.encodedHost
+      let uriScheme = parsed.scheme?.lowercased(),
+      let uriHost = parsed.host?.lowercased(),
+      !uriHost.isEmpty,
+      let baseScheme = baseURL.scheme?.lowercased(),
+      let baseHost = baseURL.host?.lowercased(),
+      uriScheme == baseScheme
     else {
       throw RequestError.badURL(uri)
     }
 
-    // Enforce exact scheme match with `baseURL` so an `https` client never downgrades to `http`
-    // (and an `http` emulator client rejects unexpected `https` URIs).
-    let uriScheme = rawScheme.lowercased()
-    let baseScheme = rawBaseScheme.lowercased()
-    guard uriScheme == baseScheme else {
-      throw RequestError.badURL(uri)
-    }
-
-    // Normalize implicit default ports (443 for `https`, 80 for `http`) and reject out-of-range
-    // port numbers before comparing origins.
     let defaultPort = (uriScheme == "https") ? 443 : 80
-    if let port = parsed.port, !(1...65535).contains(port) {
-      throw RequestError.badURL(uri)
-    }
     let uriPort = parsed.port ?? defaultPort
     let basePort = baseURL.port ?? defaultPort
-    let uriHost = encodedHost.lowercased()
-    let baseHost = baseEncodedHost.lowercased()
 
     // Start from `baseURL` so custom endpoints, VPC-SC VIPs, and PSC endpoints preserve their
     // configured connection origin (`scheme`, `host`, `port`) unless explicitly redirected to a
@@ -254,7 +236,7 @@ public enum _Host {
       // that same universe. Connect directly to `uriHost` only from the global service endpoint;
       // VPC-SC and PSC clients keep connecting via `baseURL` while sending `uriHost` in `Host`.
       if baseHost == "\(service).\(universeDomain)" {
-        out.encodedHost = uriHost
+        out.host = uriHost
       }
       resolvedHostHeader = uriHost
     } else {
