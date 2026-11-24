@@ -477,11 +477,13 @@ import Testing
       universeDomain: "googleapis.com",
       uri: "https://example.googleapis.com/upload?upload_id=1#frag"
     ),
+    // Scheme mismatch (`https` session URI on an `http` endpoint)
     (
       endpoint: "http://private.googleapis.com",
       universeDomain: "googleapis.com",
       uri: "https://example.googleapis.com/upload?upload_id=1"
     ),
+    // Empty region labels in locational (`-<service>`) and regional (`.rep.`) hostnames
     (
       endpoint: nil,
       universeDomain: "googleapis.com",
@@ -492,6 +494,7 @@ import Testing
       universeDomain: "googleapis.com",
       uri: "https://example..rep.googleapis.com/upload?upload_id=1"
     ),
+    // Case-sensitive `universeDomain` mismatch (`GOOGLEAPIS.COM` != `googleapis.com`)
     (
       endpoint: "https://private.googleapis.com",
       universeDomain: "GOOGLEAPIS.COM",

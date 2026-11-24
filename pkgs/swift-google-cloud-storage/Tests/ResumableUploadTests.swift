@@ -3762,27 +3762,32 @@ import Testing
 
   /// Tests that `resumeWriteObject` rejects untrusted, downgraded, cross-universe, or cross-region `uploadId` URIs immediately without seeking the source, sending requests, or looping under `AlwaysResume`.
   @Test(arguments: [
+    // Plaintext HTTP downgrade when client uses default HTTPS endpoint
     (
       endpoint: nil as String?,
       universeDomain: "googleapis.com",
       badUploadId: "http://storage.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
     ),
+    // Different universe domain (`other-universe.com` vs configured `googleapis.com`)
     (
       endpoint: nil,
       universeDomain: "googleapis.com",
       badUploadId: "https://storage.other-universe.com/upload/storage/v1/b/bkt/o?upload_id=1"
     ),
+    // Cross-region session URI when client is pinned to `us-central1` regional endpoint
     (
       endpoint: "https://storage.us-central1.rep.googleapis.com",
       universeDomain: "googleapis.com",
       badUploadId:
         "https://storage.europe-west1.rep.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
     ),
+    // Default GCS host rejected when client is configured with a custom non-universe proxy endpoint
     (
       endpoint: "https://my-proxy.example.com:8443",
       universeDomain: "googleapis.com",
       badUploadId: "https://storage.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
     ),
+    // Plaintext HTTP downgrade on a custom HTTPS proxy endpoint
     (
       endpoint: "https://my-proxy.example.com:8443",
       universeDomain: "googleapis.com",
