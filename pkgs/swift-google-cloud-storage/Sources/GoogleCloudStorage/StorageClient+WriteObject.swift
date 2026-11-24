@@ -474,7 +474,13 @@ extension StorageClient {
   }
 
   /// Returns the existing resumable upload session URI, or starts a new session through
-  /// `resumeLoop` and records its URI in `currentUploadId`.
+  /// `resumeLoop`, validates the returned `Location` URI against `httpClient`'s endpoint and
+  /// universe domain, and records it in `currentUploadId`.
+  ///
+  /// - Throws: `RequestError.badURL` (surfaced by `writeObject` as
+  ///   `WriteObjectError.requestError(.badURL(...))`) if the server's `Location` header fails
+  ///   endpoint or universe domain validation, or any `WriteObjectError` / `RequestError` from
+  ///   starting the session.
   fileprivate static func ensureUploadSession(
     currentUploadId: inout String?,
     httpClient: GoogleGax._HTTPClient,
@@ -506,6 +512,10 @@ extension StorageClient {
         requestOptions: requestOptions
       )
     }
+    // Validate the session URI upfront before reading/seeking `source` or entering the chunk/status
+    // `resumeLoop` (which would otherwise treat `RequestError.badURL` as retryable under policies
+    // such as `AlwaysResume`). Throws `RequestError.badURL(location)`, mapped to
+    // `WriteObjectError.requestError(.badURL(location))` by `writeObject`.
     try httpClient.validateRequestURI(location)
     currentUploadId = location
     return location
@@ -957,6 +967,8 @@ extension StorageClient {
   ///   - uploadId: The saved GCS Upload ID (Session URI).
   ///   - options: Configuration options for the write operation.
   /// - Returns: The created `Object`.
+  /// - Throws: `WriteObjectError` (including `.requestError(.badURL(uploadId))` if `uploadId`
+  ///   fails scheme, host, or universe domain validation), or `CancellationError`.
   // TODO(https://github.com/googleapis/google-cloud-swift/issues/1109) - make this public
   func resumeWriteObject(
     _ source: some SeekableWriteObjectSource,
@@ -974,6 +986,9 @@ extension StorageClient {
     let totalSize = source.totalSize
 
     do {
+      // Validate `uploadId` upfront before seeking `source` or entering `resumeLoop` (which would
+      // otherwise retry `RequestError.badURL` under `AlwaysResume`). Throws
+      // `RequestError.badURL(uploadId)`, caught below as `WriteObjectError.requestError(.badURL(uploadId))`.
       try httpClient.validateRequestURI(uploadId)
       return try await Self.continueResumableSeekableUpload(
         httpClient: httpClient,
