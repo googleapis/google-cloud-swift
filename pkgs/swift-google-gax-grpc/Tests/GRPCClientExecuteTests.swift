@@ -21,6 +21,7 @@ import GRPCProtobuf
 @_spi(GoogleCloudInternal) @testable import GoogleGaxGRPC
 import GoogleRpc
 import SwiftProtobuf
+import Synchronization
 import Testing
 
 @Suite struct GRPCClientExecuteTests {
@@ -959,6 +960,157 @@ import Testing
         request: Google_Protobuf_Empty(),
         options: RequestOptions()
       )
+    }
+  }
+
+  @Test func executePermanentCredentialsErrorNotRetriedByRetryLoop() async throws {
+    let endpoint = "http://127.0.0.1:1"
+    var options = ClientOptions()
+    options.endpoint = endpoint
+    options.universeDomain = "custom-universe.com"
+    options.credentials = try Credentials(
+      configuration: .apiKey("test-api-key"),
+      environment: [:]
+    )
+    options.retryThrottler = CircuitBreaker()
+
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: endpoint,
+      environment: [:]
+    )
+    defer { client.close() }
+
+    let retryLoop = _RetryLoop(options: RequestOptions(), withDefault: options, idempotent: true)
+    var attempts = 0
+    let error = await #expect(throws: RequestError.self) {
+      let _: Google_Protobuf_Empty = try await retryLoop.run(
+        inner: { _ in
+          attempts += 1
+          return try await client.execute(
+            path: "/test.Echo/Echo",
+            request: Google_Protobuf_Empty(),
+            options: RequestOptions()
+          )
+        },
+        sleep: { _ in
+          Issue.record("RetryLoop must not sleep on permanent CredentialsError")
+        }
+      )
+    }
+    #expect(attempts == 1)
+    if case let .io(underlying)? = error {
+      #expect(underlying is CredentialsError)
+    } else {
+      Issue.record("Expected RequestError.io(CredentialsError), got \(String(describing: error))")
+    }
+  }
+
+  @Test func executeTransientCredentialsErrorRetriedByRetryLoop() async throws {
+    struct TransientSubjectProvider: SubjectTokenProvider {
+      func subjectToken() async throws -> String {
+        throw URLError(.networkConnectionLost)
+      }
+    }
+    final class FlakyAccessTokenProvider: AccessTokenProvider, Sendable {
+      let transientError: CredentialsError
+      private let calls = Mutex(0)
+
+      init(transientError: CredentialsError) {
+        self.transientError = transientError
+      }
+
+      var callCount: Int {
+        calls.withLock { $0 }
+      }
+
+      func accessToken() async throws -> AccessToken {
+        let current = calls.withLock { count -> Int in
+          count += 1
+          return count
+        }
+        if current == 1 {
+          throw transientError
+        }
+        return AccessToken(token: "recovered-grpc-token")
+      }
+    }
+
+    let extConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: TransientSubjectProvider()),
+      audience:
+        "//iam.googleapis.com/projects/1/locations/global/workloadIdentityPools/p/providers/pr",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+    )
+    let extCreds = try Credentials(configuration: .externalAccount(extConfig), environment: [:])
+    let transientError: CredentialsError
+    do {
+      _ = try await extCreds.headers()
+      Issue.record("Expected transient CredentialsError")
+      return
+    } catch let err as CredentialsError {
+      transientError = err
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      guard let port = try await server.listeningAddress?.ipv4?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      let flakyProvider = FlakyAccessTokenProvider(transientError: transientError)
+      var options = ClientOptions()
+      options.endpoint = endpoint
+      options.credentials = try Credentials(
+        configuration: .accessToken(AccessTokenConfig(provider: flakyProvider)),
+        environment: [:]
+      )
+      options.retryThrottler = CircuitBreaker()
+
+      let client = try _GRPCClient(
+        from: options,
+        withDefaultEndpoint: endpoint,
+        environment: [:]
+      )
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      let retryLoop = _RetryLoop(options: RequestOptions(), withDefault: options, idempotent: true)
+      var attempts = 0
+      var sleepCalls = 0
+      let _: Google_Protobuf_Empty = try await retryLoop.run(
+        inner: { _ in
+          attempts += 1
+          return try await client.execute(
+            path: "/test.Echo/Echo",
+            request: Google_Protobuf_Empty(),
+            options: RequestOptions()
+          )
+        },
+        sleep: { _ in
+          sleepCalls += 1
+        }
+      )
+      #expect(attempts == 2)
+      #expect(sleepCalls == 1)
+      #expect(flakyProvider.callCount == 2)
     }
   }
 }

@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
+@_spi(GoogleCloudInternal) import GoogleAuth
 import GoogleGax
 
 struct MockPolicy: RetryPolicy {
@@ -43,4 +45,26 @@ func nonIdempotentState() -> RetryState {
 func mockIOError() -> RequestError {
   // The inner error is not important for the tests.
   RequestError.io(RequestError.unimplemented)
+}
+
+func makeTransientCredentialsError() async throws -> CredentialsError {
+  struct TransientSubjectProvider: SubjectTokenProvider {
+    func subjectToken() async throws -> String {
+      throw URLError(.networkConnectionLost)
+    }
+  }
+  let config = ExternalAccountConfig(
+    credentialSource: .programmatic(subjectTokenProvider: TransientSubjectProvider()),
+    audience:
+      "//iam.googleapis.com/projects/1/locations/global/workloadIdentityPools/p/providers/pr",
+    subjectTokenType: .idToken,
+    tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+  )
+  let credentials = try Credentials(configuration: .externalAccount(config), environment: [:])
+  do {
+    _ = try await credentials.headers()
+    preconditionFailure("Expected transient CredentialsError")
+  } catch let error as CredentialsError {
+    return error
+  }
 }
