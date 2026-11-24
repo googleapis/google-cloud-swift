@@ -18,13 +18,11 @@ public import Foundation
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
 @_spi(GoogleCloudInternal) public final class _HTTPClient: Sendable {
-  let baseURL: URLComponents
+  let endpoint: _ResolvedEndpoint
   let credentials: any CredentialsProtocol
   let logger: Logger?
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
-  let hostHeader: String
-  let universeDomain: String
   public let clientHeader: _ApiClientHeader
 
   // Creates a new client.
@@ -41,32 +39,45 @@ public import Foundation
     )
   }
 
-  init(
+  convenience init(
     from: ClientOptions,
     withDefaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init(),
     environment: [String: String]
   ) throws {
-    let universeDomain = _Host.resolveUniverseDomain(options: from, environment: environment)
-    self.universeDomain = universeDomain
-    self.credentials = try from.credentials ?? GoogleAuth.Credentials()
-    self.logger = from.logger
-    self.quotaProject = from.quotaProject
-    let endpoint = try _Host.endpoint(
-      endpoint: from.endpoint,
+    let resolvedEndpoint = try _ResolvedEndpoint(
+      options: from,
       defaultEndpoint: withDefaultEndpoint,
-      universeDomain: universeDomain
+      environment: environment
     )
-    self.baseURL = try Self.validateEndpoint(endpoint)
-    self.hostHeader = try _Host.header(
-      endpoint: from.endpoint,
-      defaultEndpoint: withDefaultEndpoint,
-      universeDomain: universeDomain
+    let credentials = try from.credentials ?? GoogleAuth.Credentials()
+    self.init(
+      from._httpClient ?? HTTPClientHolder(),
+      endpoint: resolvedEndpoint,
+      credentials: credentials,
+      logger: from.logger,
+      quotaProject: from.quotaProject,
+      clientHeader: clientHeader
     )
-    self.inner = from._httpClient ?? HTTPClientHolder()
-    var header = clientHeader
-    header.setToken(.rest, version: gaxVersion())
-    self.clientHeader = header
+  }
+
+  @_spi(GoogleCloudInternal) public convenience init(
+    _ inner: any _HTTPClientProtocol,
+    endpoint: _ResolvedEndpoint,
+    credentials: GoogleAuth.Credentials? = nil,
+    logger: Logging.Logger? = nil,
+    quotaProject: String? = nil,
+    clientHeader: _ApiClientHeader = .init()
+  ) throws {
+    let resolvedCredentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
+    self.init(
+      inner,
+      endpoint: endpoint,
+      credentials: resolvedCredentials as any CredentialsProtocol,
+      logger: logger,
+      quotaProject: quotaProject,
+      clientHeader: clientHeader
+    )
   }
 
   // Creates a new testing client.
@@ -76,7 +87,7 @@ public import Foundation
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
     defaultEndpoint: String? = nil,
-    universeDomain: String = _Host.defaultUniverseDomain,
+    universeDomain: String = _UniverseDomain.defaultRawValue,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
     let resolvedCredentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
@@ -92,46 +103,46 @@ public import Foundation
     )
   }
 
-  init(
+  convenience init(
     _ inner: any _HTTPClientProtocol, endpoint: String,
     credentials: any CredentialsProtocol,
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
     defaultEndpoint: String? = nil,
-    universeDomain: String = _Host.defaultUniverseDomain,
+    universeDomain: String = _UniverseDomain.defaultRawValue,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
-    self.universeDomain = universeDomain
-    self.baseURL = try Self.validateEndpoint(endpoint)
+    let resolvedEndpoint = try _ResolvedEndpoint(
+      endpoint: endpoint,
+      defaultEndpoint: defaultEndpoint ?? endpoint,
+      universeDomain: _UniverseDomain.resolve(universeDomain)
+    )
+    self.init(
+      inner,
+      endpoint: resolvedEndpoint,
+      credentials: credentials,
+      logger: logger,
+      quotaProject: quotaProject,
+      clientHeader: clientHeader
+    )
+  }
+
+  init(
+    _ inner: any _HTTPClientProtocol,
+    endpoint: _ResolvedEndpoint,
+    credentials: any CredentialsProtocol,
+    logger: Logging.Logger? = nil,
+    quotaProject: String? = nil,
+    clientHeader: _ApiClientHeader = .init()
+  ) {
+    self.endpoint = endpoint
     self.credentials = credentials
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner
-    self.hostHeader = try _Host.header(
-      endpoint: endpoint,
-      defaultEndpoint: defaultEndpoint ?? endpoint,
-      universeDomain: universeDomain
-    )
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
     self.clientHeader = header
-  }
-
-  @_spi(GoogleCloudInternal) public static func validateEndpoint(_ endpoint: String) throws
-    -> URLComponents
-  {
-    guard var parsed = URLComponents(string: endpoint) else {
-      throw ClientError.invalidEndpoint(endpoint)
-    }
-    parsed.queryItems = nil
-    parsed.path = ""
-    guard let scheme = parsed.scheme, (scheme == "http" || scheme == "https") else {
-      throw ClientError.invalidEndpoint(endpoint)
-    }
-    guard let host = parsed.host, !host.isEmpty else {
-      throw ClientError.invalidEndpoint(endpoint)
-    }
-    return parsed
   }
 
   private func configureHeaders(
@@ -140,7 +151,7 @@ public import Foundation
   ) async throws {
     let authHeaders: AuthHeaders
     do {
-      try await self.credentials.validateUniverseDomain(self.universeDomain)
+      try await self.credentials._validateUniverseDomain(self.endpoint.universeDomain)
       authHeaders = try await self.credentials.headers()
     } catch is CancellationError {
       throw CancellationError()
@@ -157,7 +168,7 @@ public import Foundation
     if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
-    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+    request.setHeader(name: _HeaderNames.host, value: self.endpoint.hostHeader)
     request.setHeader(name: _HeaderNames.apiClient, value: self.clientHeader.build())
   }
 
@@ -166,7 +177,7 @@ public import Foundation
     query: [URLQueryItem],
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
-    var components = self.baseURL
+    var components = self.endpoint.baseURL
     components.path = path
     components.encodeQuery(query)
     var request = _HTTPClientRequest(self.inner, url: components)
@@ -181,7 +192,7 @@ public import Foundation
   ) async throws
     -> _HTTPClientRequest
   {
-    var components = self.baseURL
+    var components = self.endpoint.baseURL
     components.encodeQuery(query)
     components.percentEncodedPath = percentEncodedPath
     var request = _HTTPClientRequest(self.inner, url: components)

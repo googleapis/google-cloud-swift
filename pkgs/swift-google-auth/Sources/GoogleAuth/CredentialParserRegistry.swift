@@ -27,7 +27,7 @@ protocol CredentialSourceParser: Sendable {
   func parse(
     data: Data,
     quotaProjectID: String?,
-    universeDomain: String?,
+    universeDomain: _UniverseDomain?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider
@@ -51,7 +51,7 @@ final class CredentialParserRegistry: Sendable {
     type: String,
     data: Data,
     quotaProjectID: String?,
-    universeDomain: String?,
+    universeDomain: _UniverseDomain?,
     scopes: [String],
     environment: [String: String]
   ) throws -> (any CredentialsProvider)? {

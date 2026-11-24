@@ -18,7 +18,7 @@ import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
 import Testing
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct UserCredentialsTest {
   /// Verifies that initializing `UserCredentials` does not eagerly make a token refresh
@@ -38,7 +38,7 @@ import Testing
 
     let provider = try UserCredentials(
       user: mockData,
-      universeDomain: defaultUniverseDomain,
+      universeDomain: _UniverseDomain.defaultRawValue,
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -833,7 +833,7 @@ import Testing
       user: defaultUniverseData,
       httpClient: AuthHTTPClient(mock: mock)
     )
-    #expect(try await creds.universeDomain() == "googleapis.com")
+    #expect(try await creds.universeDomain() == .default)
 
     let emptyUniverseData = UserAccountData(
       type: "authorized_user",
@@ -847,7 +847,7 @@ import Testing
       universeDomain: "",
       httpClient: AuthHTTPClient(mock: mock)
     )
-    #expect(try await credsWithEmptyUniverse.universeDomain() == "googleapis.com")
+    #expect(try await credsWithEmptyUniverse.universeDomain() == .default)
 
     let customUniverseData = UserAccountData(
       type: "authorized_user",

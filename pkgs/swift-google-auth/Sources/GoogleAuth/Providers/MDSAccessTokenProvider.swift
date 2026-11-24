@@ -248,7 +248,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// - Returns: The resolved and validated universe domain string.
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an unexpected error.
   @concurrent
-  func fetchUniverseDomain() async throws -> String {
+  func fetchUniverseDomain() async throws -> _UniverseDomain {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = try self.resolveBaseEndpoint(
       hostEnv: hostEnv,
@@ -288,7 +288,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     let headers = ["Metadata-Flavor": "Google"]
 
-    let fetchOperation: @Sendable () async throws -> String = {
+    let fetchOperation: @Sendable () async throws -> _UniverseDomain = {
       do {
         let response = try await self.client.getString(
           url: url,
@@ -296,12 +296,9 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           validateResponseHeaders: Self.validateMetadataFlavorHeader
         )
         let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.isEmpty {
-          return defaultUniverseDomain
-        }
-        return trimmed
+        return _UniverseDomain.resolve(trimmed)
       } catch let error as AuthHTTPError where error.statusCode == 404 {
-        return defaultUniverseDomain
+        return .default
       }
     }
 

@@ -69,7 +69,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(creds.clientAuthentication == clientAuth)
     #expect(creds.workforcePoolUserProject == nil)
     #expect(creds.scopes == ["scope1", "scope2"])
-    #expect(creds.universeDomain == "custom-universe.com")
+    #expect(creds.universeDomain.rawValue == "custom-universe.com")
   }
 
   @Test("Configures custom billing quota project programmatically")
@@ -101,7 +101,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       universeDomain: "my-universe.com"
     )
 
-    #expect(creds.universeDomain == "my-universe.com")
+    #expect(creds.universeDomain.rawValue == "my-universe.com")
   }
 
   @Test("Validates missing programmatic fields throw error during initialization")
@@ -1038,7 +1038,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     _ = try await creds.headers()
-    #expect(try await creds.universeDomain() == "googleapis.com")
+    #expect(try await creds.universeDomain() == .default)
   }
 
   @Test("ExternalAccountCredentials returns universeDomain")
@@ -1053,7 +1053,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       tokenURL: targetURL,
       universeDomain: "custom.universe.com"
     )
-    #expect(try await creds.universeDomain() == "custom.universe.com")
+    #expect(try await creds.universeDomain().rawValue == "custom.universe.com")
 
     let defaultCreds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
@@ -1061,7 +1061,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL
     )
-    #expect(try await defaultCreds.universeDomain() == "googleapis.com")
+    #expect(try await defaultCreds.universeDomain() == .default)
 
     let emptyCreds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
@@ -1070,8 +1070,8 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       tokenURL: targetURL,
       universeDomain: ""
     )
-    #expect(try await emptyCreds.universeDomain() == "googleapis.com")
-    try await emptyCreds.validateUniverseDomain("googleapis.com")
+    #expect(try await emptyCreds.universeDomain() == .default)
+    try await emptyCreds.validateUniverseDomain(.default)
 
     let emptyConfig = ExternalAccountConfig(
       credentialSource: .programmatic(subjectTokenProvider: provider),

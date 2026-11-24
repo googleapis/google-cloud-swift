@@ -18,7 +18,7 @@ import struct NIOCore.ByteBuffer
 import NIOFoundationCompat
 import NIOHTTP1
 import Testing
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct MDSCredentialsTest {
   @Test func headersSuccessWithQuotaProject() async throws {
@@ -825,7 +825,7 @@ import Testing
       environment: [:]
     )
     let domain = try await provider.universeDomain()
-    #expect(domain == "explicit.universe.com")
+    #expect(domain.rawValue == "explicit.universe.com")
   }
 
   @Test func universeDomainFetchesAndCachesFromMetadataServer() async throws {
@@ -854,8 +854,8 @@ import Testing
 
     let domain1 = try await provider.universeDomain()
     let domain2 = try await provider.universeDomain()
-    #expect(domain1 == "my-custom-universe.com")
-    #expect(domain2 == "my-custom-universe.com")
+    #expect(domain1.rawValue == "my-custom-universe.com")
+    #expect(domain2.rawValue == "my-custom-universe.com")
     #expect(networkCalls.getCount() == 1)
   }
 
@@ -868,7 +868,7 @@ import Testing
       }
     ])
     let provider404 = MDSCredentials(client: AuthHTTPClient(mock: mock404), environment: [:])
-    #expect(try await provider404.universeDomain() == "googleapis.com")
+    #expect(try await provider404.universeDomain() == .default)
 
     let mockEmpty = MockHTTPClient([
       { (request: HTTPClientRequest) in
@@ -883,7 +883,7 @@ import Testing
       }
     ])
     let providerEmpty = MDSCredentials(client: AuthHTTPClient(mock: mockEmpty), environment: [:])
-    #expect(try await providerEmpty.universeDomain() == "googleapis.com")
+    #expect(try await providerEmpty.universeDomain() == .default)
   }
 
   @Test func universeDomainPropagatesAndCachesPermanentServerError() async throws {
@@ -959,8 +959,8 @@ import Testing
     #expect(attempts.getCount() == 2)
 
     // 3. Subsequent call succeeds and caches the resolved domain
-    #expect(try await provider.universeDomain() == "recovered.universe.com")
-    #expect(try await provider.universeDomain() == "recovered.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "recovered.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "recovered.universe.com")
     #expect(attempts.getCount() == 3)
   }
 
@@ -1048,7 +1048,7 @@ import Testing
     let headers = try await provider.headers()
     #expect(headers["Authorization"] == "Bearer mock-token")
     #expect(headers["x-goog-user-project"] == nil)
-    #expect(try await provider.universeDomain() == "queried.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "queried.universe.com")
   }
 
   static func checkRequest(
@@ -1232,7 +1232,7 @@ import Testing
     let provider = MDSCredentials(client: AuthHTTPClient(mock: mock), environment: [:])
     let headers = try await provider.headers()
     #expect(headers["Authorization"] == "Bearer mock-token")
-    #expect(try await provider.universeDomain() == "custom.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "custom.universe.com")
   }
 
   @Test(arguments: ["", "googleapis.com"])

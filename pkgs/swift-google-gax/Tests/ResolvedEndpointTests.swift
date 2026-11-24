@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import Testing
+
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) @testable import GoogleGax
 
-@Suite struct HostTests {
+@Suite struct ResolvedEndpointTests {
   @Test(arguments: [
     ("http://www.googleapis.com", "test.googleapis.com"),
     ("http://private.googleapis.com", "test.googleapis.com"),
@@ -25,29 +28,35 @@ import Testing
     ("https://us-central1-wrong.googleapis.com", "test.googleapis.com"),
     ("https://us-central1test.googleapis.com", "test.googleapis.com"),
     ("https://-test.googleapis.com", "test.googleapis.com"),
+    ("https://test..rep.googleapis.com", "test.googleapis.com"),
     ("https://test.us-central1.rep.googleapis.com", "test.us-central1.rep.googleapis.com"),
     ("https://test.my-universe-domain.com", "test.my-universe-domain.com"),
     ("localhost:5678", "localhost"),
     ("https://localhost:5678", "localhost"),
   ]) func headerSuccess(input: String, want: String) throws {
-    let got = try _Host.header(
+    let resolved = try _ResolvedEndpoint(
       endpoint: input,
-      defaultEndpoint: "https://test.googleapis.com"
+      defaultEndpoint: "https://test.googleapis.com",
+      allowsBareHost: true
     )
-    #expect(got == want)
+    #expect(resolved.hostHeader == want)
   }
 
   @Test(arguments: [
     ("https://service.googleapis.com", "service.googleapis.com"),
     ("http://service.googleapis.com", "service.googleapis.com"),
-    ("https://storage.googleapis.com/", "storage.googleapis.com"),
-    ("http://storage.googleapis.com/", "storage.googleapis.com"),
+    ("https://example.googleapis.com/", "example.googleapis.com"),
+    ("http://example.googleapis.com/", "example.googleapis.com"),
     ("test.googleapis.com", "test.googleapis.com"),
     ("localhost:5678", "localhost"),
     ("https://localhost:5678", "localhost"),
   ]) func headerDefault(input: String, want: String) throws {
-    let got = try _Host.header(endpoint: nil, defaultEndpoint: input)
-    #expect(got == want)
+    let resolved = try _ResolvedEndpoint(
+      endpoint: nil,
+      defaultEndpoint: input,
+      allowsBareHost: true
+    )
+    #expect(resolved.hostHeader == want)
   }
 
   @Test(arguments: [
@@ -67,12 +76,13 @@ import Testing
     ("https://test.googleapis.com", "test.googleapis.com"),
     ("https://us-central1-test.googleapis.com", "us-central1-test.googleapis.com"),
   ]) func headerUniverseDomain(input: String, want: String) throws {
-    let got = try _Host.header(
+    let resolved = try _ResolvedEndpoint(
       endpoint: input,
       defaultEndpoint: "https://test.googleapis.com",
-      universeDomain: "my-custom-universe.com"
+      universeDomain: _UniverseDomain.resolve("my-custom-universe.com"),
+      allowsBareHost: true
     )
-    #expect(got == want)
+    #expect(resolved.hostHeader == want)
   }
 
   @Test(arguments: [
@@ -89,24 +99,29 @@ import Testing
     ("localhost:5678", "localhost:5678"),
     ("http://localhost:5678", "localhost:5678"),
   ]) func authoritySuccess(input: String, want: String) throws {
-    let got = try _Host.authority(
+    let resolved = try _ResolvedEndpoint(
       endpoint: input,
-      defaultEndpoint: "https://test.googleapis.com"
+      defaultEndpoint: "https://test.googleapis.com",
+      allowsBareHost: true
     )
-    #expect(got == want)
+    #expect(resolved.authority == want)
   }
 
   @Test(arguments: [
     ("https://service.googleapis.com", "service.googleapis.com"),
     ("http://service.googleapis.com", "service.googleapis.com"),
-    ("https://storage.googleapis.com/", "storage.googleapis.com"),
-    ("http://storage.googleapis.com/", "storage.googleapis.com"),
+    ("https://example.googleapis.com/", "example.googleapis.com"),
+    ("http://example.googleapis.com/", "example.googleapis.com"),
     ("test.googleapis.com", "test.googleapis.com"),
     ("https://localhost:5678", "localhost:5678"),
     ("http://localhost:5678", "localhost:5678"),
   ]) func authorityDefault(input: String, want: String) throws {
-    let got = try _Host.authority(endpoint: nil, defaultEndpoint: input)
-    #expect(got == want)
+    let resolved = try _ResolvedEndpoint(
+      endpoint: nil,
+      defaultEndpoint: input,
+      allowsBareHost: true
+    )
+    #expect(resolved.authority == want)
   }
 
   @Test(arguments: [
@@ -120,108 +135,139 @@ import Testing
       "test.us-central1.rep.my-custom-universe.com"
     ),
   ]) func authorityUniverseDomain(input: String, want: String) throws {
-    let got = try _Host.authority(
+    let resolved = try _ResolvedEndpoint(
       endpoint: input,
       defaultEndpoint: "https://test.googleapis.com",
-      universeDomain: "my-custom-universe.com"
+      universeDomain: _UniverseDomain.resolve("my-custom-universe.com"),
+      allowsBareHost: true
     )
-    #expect(got == want)
+    #expect(resolved.authority == want)
   }
 
   @Test func errors() {
     #expect(throws: ClientError.self) {
-      _ = try _Host.header(
+      _ = try _ResolvedEndpoint(
         endpoint: "https:///a/b/c",
         defaultEndpoint: "https://test.googleapis.com"
       )
     }
 
     #expect(throws: ClientError.self) {
-      _ = try _Host.header(
+      _ = try _ResolvedEndpoint(
         endpoint: "/a/b/c",
-        defaultEndpoint: "https://test.googleapis.com"
+        defaultEndpoint: "https://test.googleapis.com",
+        allowsBareHost: true
       )
     }
 
     #expect(throws: ClientError.self) {
-      _ = try _Host.header(
+      _ = try _ResolvedEndpoint(
+        endpoint: "localhost:5678",
+        defaultEndpoint: "https://test.googleapis.com",
+        allowsBareHost: false
+      )
+    }
+
+    #expect(throws: ClientError.self) {
+      _ = try _ResolvedEndpoint(
         endpoint: nil,
         defaultEndpoint: "https:///"
       )
     }
   }
 
-  @Test func resolveUniverseDomainPrecedence() {
-    let defaults = _Host.resolveUniverseDomain(options: ClientOptions(), environment: [:])
-    #expect(defaults == "googleapis.com")
+  @Test func resolveFromClientOptionsAndEnvironmentPrecedence() throws {
+    let defaultResolved = try _ResolvedEndpoint(
+      options: ClientOptions(),
+      defaultEndpoint: "https://example.googleapis.com",
+      environment: [:]
+    )
+    #expect(defaultResolved.universeDomain == .default)
+    #expect(defaultResolved.baseURL.string == "https://example.googleapis.com")
+    #expect(defaultResolved.service == "example")
+    #expect(defaultResolved.isSecure == true)
+    #expect(defaultResolved.port == 443)
 
-    let emptyFallback = _Host.resolveUniverseDomain(
+    let emptyFallback = try _ResolvedEndpoint(
       options: ClientOptions().with { $0.universeDomain = "" },
+      defaultEndpoint: "https://example.googleapis.com",
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": ""]
     )
-    #expect(emptyFallback == "googleapis.com")
+    #expect(emptyFallback.universeDomain == .default)
 
-    let fromEnv = _Host.resolveUniverseDomain(
+    let fromEnv = try _ResolvedEndpoint(
       options: ClientOptions(),
+      defaultEndpoint: "https://example.googleapis.com",
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
     )
-    #expect(fromEnv == "env.universe.com")
+    #expect(fromEnv.universeDomain.rawValue == "env.universe.com")
+    #expect(fromEnv.baseURL.string == "https://example.env.universe.com")
+    #expect(fromEnv.hostHeader == "example.env.universe.com")
+    #expect(fromEnv.authority == "example.env.universe.com")
 
     let options = ClientOptions().with { $0.universeDomain = "options.universe.com" }
-    let fromOptions = _Host.resolveUniverseDomain(
+    let fromOptions = try _ResolvedEndpoint(
       options: options,
+      defaultEndpoint: "https://example.googleapis.com",
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
     )
-    #expect(fromOptions == "options.universe.com")
+    #expect(fromOptions.universeDomain.rawValue == "options.universe.com")
+    #expect(fromOptions.baseURL.string == "https://example.options.universe.com")
   }
 
   @Test func endpointResolutionWithUniverseDomain() throws {
-    #expect(
-      try _Host.endpoint(
-        endpoint: nil,
-        defaultEndpoint: "https://storage.googleapis.com",
-        universeDomain: "googleapis.com"
-      ) == "https://storage.googleapis.com"
+    let defaultUniverse = try _ResolvedEndpoint(
+      endpoint: nil,
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: .default
     )
-    #expect(
-      try _Host.endpoint(
-        endpoint: nil,
-        defaultEndpoint: "https://storage.googleapis.com",
-        universeDomain: "my-universe.com"
-      ) == "https://storage.my-universe.com"
+    #expect(defaultUniverse.baseURL.string == "https://example.googleapis.com")
+
+    let customUniverse = try _ResolvedEndpoint(
+      endpoint: nil,
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: _UniverseDomain.resolve("my-universe.com")
     )
-    #expect(
-      try _Host.endpoint(
-        endpoint: nil,
-        defaultEndpoint: "storage.googleapis.com",
-        universeDomain: "my-universe.com"
-      ) == "storage.my-universe.com"
+    #expect(customUniverse.baseURL.string == "https://example.my-universe.com")
+    #expect(customUniverse.host == "example.my-universe.com")
+
+    let bareHostUniverse = try _ResolvedEndpoint(
+      endpoint: nil,
+      defaultEndpoint: "example.googleapis.com",
+      universeDomain: _UniverseDomain.resolve("my-universe.com"),
+      allowsBareHost: true
     )
-    #expect(
-      try _Host.endpoint(
-        endpoint: "https://custom.endpoint.com",
-        defaultEndpoint: "https://storage.googleapis.com",
-        universeDomain: "my-universe.com"
-      ) == "https://custom.endpoint.com"
+    #expect(bareHostUniverse.baseURL.string == "https://example.my-universe.com")
+    #expect(bareHostUniverse.authority == "example.my-universe.com")
+
+    let customOverride = try _ResolvedEndpoint(
+      endpoint: "http://custom.endpoint.com",
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: _UniverseDomain.resolve("my-universe.com")
     )
-    #expect(
-      try _Host.endpoint(
-        endpoint: nil,
-        defaultEndpoint: "http://localhost:8080",
-        universeDomain: "my-universe.com"
-      ) == "http://localhost:8080"
+    #expect(customOverride.baseURL.string == "http://custom.endpoint.com")
+    #expect(customOverride.isSecure == false)
+    #expect(customOverride.port == 80)
+
+    let localhostDefault = try _ResolvedEndpoint(
+      endpoint: nil,
+      defaultEndpoint: "http://localhost:8080",
+      universeDomain: _UniverseDomain.resolve("my-universe.com")
     )
+    #expect(localhostDefault.baseURL.string == "http://localhost:8080")
+    #expect(localhostDefault.service == nil)
+
     let error = #expect(throws: ClientError.self) {
-      _ = try _Host.endpoint(
+      _ = try _ResolvedEndpoint(
         endpoint: nil,
-        defaultEndpoint: "https://storage.googleapis.com",
-        universeDomain: "invalid/domain"
+        defaultEndpoint: "https://example.googleapis.com",
+        universeDomain: _UniverseDomain.resolve("invalid/domain")
       )
     }
     guard case .invalidEndpoint(let msg) = error else {
       Issue.record("Expected ClientError.invalidEndpoint, got \(String(describing: error))")
       return
     }
-    #expect(msg == "storage.invalid/domain")
+    #expect(msg == "example.invalid/domain")
   }
 }

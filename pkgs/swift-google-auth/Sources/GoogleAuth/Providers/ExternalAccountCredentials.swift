@@ -187,7 +187,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
   let scopes: [String]
 
   /// The target Google Cloud universe domain.
-  let universeDomain: String
+  let universeDomain: _UniverseDomain
 
   /// Initializes a new instance of `ExternalAccountCredentials`.
   ///
@@ -237,11 +237,10 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
-    let effectiveUniverse = nonEmpty(universeDomain) ?? defaultUniverseDomain
-    let resolvedTokenURL = try Self.resolveTokenURL(
-      tokenURL: tokenURL,
-      universeDomain: effectiveUniverse
-    )
+    let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
+    // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
+    let resolvedTokenURL =
+      try tokenURL ?? effectiveUniverse.serviceURL(service: "sts", path: "/v1/token")
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
@@ -272,32 +271,6 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     )
   }
 
-  private static func resolveTokenURL(tokenURL: URL?, universeDomain: String) throws -> URL {
-    // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
-    if let tokenURL {
-      return tokenURL
-    }
-    let targetHost = "sts.\(universeDomain)"
-    let urlString = "https://\(targetHost)/v1/token"
-    guard
-      let parsed = URLComponents(string: urlString, encodingInvalidCharacters: false),
-      parsed.scheme == "https",
-      parsed.host == targetHost,
-      parsed.port == nil,
-      parsed.user == nil,
-      parsed.password == nil,
-      parsed.path == "/v1/token",
-      parsed.query == nil,
-      parsed.fragment == nil,
-      let resolvedURL = parsed.url
-    else {
-      throw CredentialsError.parseError(
-        "Invalid universe_domain for STS endpoint: '\(universeDomain)'"
-      )
-    }
-    return resolvedURL
-  }
-
   func accessToken() async throws -> AccessToken {
     return try await cache.token()
   }
@@ -318,7 +291,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     return headers
   }
 
-  func universeDomain() async throws -> String {
+  func universeDomain() async throws -> _UniverseDomain {
     return self.universeDomain
   }
 }

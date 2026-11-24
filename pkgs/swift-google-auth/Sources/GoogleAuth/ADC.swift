@@ -59,7 +59,7 @@ enum ADC: Sendable {
     _ = isInitialized
     let quotaProject =
       nonEmpty(environment["GOOGLE_CLOUD_QUOTA_PROJECT"]) ?? nonEmpty(quotaProjectID)
-    let resolvedUniverseDomain = nonEmpty(universeDomain)
+    let resolvedUniverseDomain = _UniverseDomain(nonEmpty: universeDomain)
 
     let contents = try loadADC(environment: environment)
     switch contents {
@@ -78,7 +78,7 @@ enum ADC: Sendable {
       }
       return MDSCredentials(
         quotaProjectID: quotaProject,
-        universeDomain: resolvedUniverseDomain,
+        universeDomainOverride: resolvedUniverseDomain,
         scopes: scopes,
         fromADC: true,
         environment: environment

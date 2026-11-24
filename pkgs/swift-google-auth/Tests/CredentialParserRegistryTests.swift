@@ -16,7 +16,7 @@ import Dispatch
 import Foundation
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 struct MockCredentialsProvider: CredentialsProvider {
   func headers() async throws -> AuthHeaders {
@@ -30,7 +30,7 @@ struct MockParser: CredentialSourceParser {
   func parse(
     data: Data,
     quotaProjectID: String?,
-    universeDomain: String?,
+    universeDomain: _UniverseDomain?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider {

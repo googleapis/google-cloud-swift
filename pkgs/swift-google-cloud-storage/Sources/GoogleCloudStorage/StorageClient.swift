@@ -92,16 +92,11 @@ public final class StorageClient: StorageProtocol, Sendable {
     environment: [String: String] = ProcessInfo.processInfo.environment,
     makeClients: (Int) -> [any _HTTPClientProtocol]
   ) throws {
-    let universeDomain = GoogleGax._Host.resolveUniverseDomain(
+    let resolvedEndpoint = try GoogleGax._ResolvedEndpoint(
       options: options.client,
+      defaultEndpoint: Self.defaultEndpoint,
       environment: environment
     )
-    let endpoint = try GoogleGax._Host.endpoint(
-      endpoint: options.client.endpoint,
-      defaultEndpoint: Self.defaultEndpoint,
-      universeDomain: universeDomain
-    )
-    _ = try GoogleGax._HTTPClient.validateEndpoint(endpoint)
     let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
     let transport = Self.makeTransport(
       clients: makeClients(poolSize),
@@ -110,12 +105,10 @@ public final class StorageClient: StorageProtocol, Sendable {
     )
     let client = try GoogleGax._HTTPClient(
       transport,
-      endpoint: endpoint,
+      endpoint: resolvedEndpoint,
       credentials: credentials,
       logger: options.client.logger,
       quotaProject: options.client.quotaProject,
-      defaultEndpoint: Self.defaultEndpoint,
-      universeDomain: universeDomain,
       clientHeader: .veneer(packageVersion: PackageVersion.version)
     )
     self.init(options, client: client)

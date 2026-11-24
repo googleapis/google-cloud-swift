@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 @_spi(GoogleCloudInternal) public import SwiftProtobuf
 
@@ -42,10 +42,7 @@ public final class _GRPCClient: Sendable {
   let connectionTask: Task<Void, any Error>
   let credentials: GoogleAuth.Credentials
   let quotaProject: String?
-  let universeDomain: String
-  let targetHost: String
-  let targetPort: Int
-  let authority: String
+  let endpoint: _ResolvedEndpoint
   public let clientHeader: _ApiClientHeader
 
   public convenience init(
@@ -67,8 +64,13 @@ public final class _GRPCClient: Sendable {
     clientHeader: _ApiClientHeader = .init(),
     environment: [String: String]
   ) throws {
-    let universeDomain = _Host.resolveUniverseDomain(options: options, environment: environment)
-    self.universeDomain = universeDomain
+    let resolvedEndpoint = try _ResolvedEndpoint(
+      options: options,
+      defaultEndpoint: defaultEndpoint,
+      allowsBareHost: true,
+      environment: environment
+    )
+    self.endpoint = resolvedEndpoint
     self.credentials = try options.credentials ?? GoogleAuth.Credentials()
     self.quotaProject = options.quotaProject
     var header = clientHeader
@@ -76,38 +78,14 @@ public final class _GRPCClient: Sendable {
     header.setToken(.protobuf, version: SwiftProtobuf.Version.versionString)
     self.clientHeader = header
 
-    let rawEndpoint = try _Host.endpoint(
-      endpoint: options.endpoint,
-      defaultEndpoint: defaultEndpoint,
-      universeDomain: universeDomain
-    )
-    let endpointWithScheme = rawEndpoint.contains("://") ? rawEndpoint : "https://\(rawEndpoint)"
-    guard let components = URLComponents(string: endpointWithScheme),
-      let scheme = components.scheme?.lowercased(), scheme == "http" || scheme == "https",
-      let host = components.host, !host.isEmpty
-    else {
-      throw ClientError.invalidEndpoint(rawEndpoint)
-    }
-
-    let isSecure = scheme == "https"
-    let port = components.port ?? (isSecure ? 443 : 80)
     let transportSecurity: HTTP2ClientTransport.Posix.TransportSecurity =
-      isSecure ? .tls : .plaintext
-
-    let authority = try _Host.authority(
-      endpoint: options.endpoint,
-      defaultEndpoint: defaultEndpoint,
-      universeDomain: universeDomain
-    )
-    self.targetHost = host
-    self.targetPort = port
-    self.authority = authority
+      resolvedEndpoint.isSecure ? .tls : .plaintext
 
     let transport = try HTTP2ClientTransport.Posix(
-      target: .dns(host: host, port: port),
+      target: .dns(host: resolvedEndpoint.host, port: resolvedEndpoint.port),
       transportSecurity: transportSecurity,
       config: .defaults {
-        $0.http2.authority = authority
+        $0.http2.authority = resolvedEndpoint.authority
       }
     )
 
@@ -154,7 +132,7 @@ public final class _GRPCClient: Sendable {
     var metadata = Metadata()
     let authHeaders: AuthHeaders
     do {
-      try await self.credentials.validateUniverseDomain(self.universeDomain)
+      try await self.credentials._validateUniverseDomain(self.endpoint.universeDomain)
       authHeaders = try await self.credentials.headers()
     } catch is CancellationError {
       throw CancellationError()

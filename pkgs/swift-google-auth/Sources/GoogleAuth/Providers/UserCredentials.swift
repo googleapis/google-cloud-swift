@@ -24,14 +24,14 @@ struct UserCredentialsParser: CredentialSourceParser {
   func parse(
     data: Data,
     quotaProjectID: String?,
-    universeDomain: String?,
+    universeDomain: _UniverseDomain?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider {
     return try UserCredentials(
       keyJSON: data,
       quotaProjectID: quotaProjectID,
-      universeDomain: universeDomain,
+      universeDomain: universeDomain?.rawValue,
       scopes: scopes
     )
   }
@@ -78,18 +78,8 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    if let ud = nonEmpty(universeDomain) {
-      if ud != defaultUniverseDomain {
-        throw CredentialsError.notSupported(
-          "User accounts are only supported in the default (googleapis.com) universe: \(ud)")
-      }
-    }
-    if let userUD = nonEmpty(user.universeDomain) {
-      if userUD != defaultUniverseDomain {
-        throw CredentialsError.notSupported(
-          "User accounts are only supported in the default (googleapis.com) universe: \(userUD)")
-      }
-    }
+    try _UniverseDomain(nonEmpty: universeDomain)?.validateUserAccountSupport()
+    try _UniverseDomain(nonEmpty: user.universeDomain)?.validateUserAccountSupport()
     self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
     // Resolve Token URL

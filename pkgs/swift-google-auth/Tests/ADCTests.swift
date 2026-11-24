@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct ADCTest {
   @Test func resolvesToMDSCredentials() async throws {
@@ -414,7 +414,7 @@ import Testing
       return
     }
     #expect(impersonated.quotaProjectID == "json-quota-project")
-    #expect(try await impersonated.universeDomain() == "googleapis.com")
+    #expect(try await impersonated.universeDomain() == .default)
     #expect(
       impersonated.provider.iamEndpointURL.absoluteString
         == "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
@@ -464,7 +464,7 @@ import Testing
       return
     }
     #expect(impersonated.quotaProjectID == "env-quota-proj")
-    #expect(try await impersonated.universeDomain() == "my-universe.com")
+    #expect(try await impersonated.universeDomain().rawValue == "my-universe.com")
     #expect(impersonated.provider.sourceCredentials is ServiceAccountCredentials)
     let sourceHeaders = try await impersonated.provider.sourceCredentials.headers()
     #expect(sourceHeaders["Authorization"]?.hasPrefix("Bearer ") == true)
@@ -513,7 +513,7 @@ import Testing
     #expect(impersonated.quotaProjectID == nil)
     let sourceUser = try #require(impersonated.provider.sourceCredentials as? UserCredentials)
     #expect(sourceUser.quotaProjectID == nil)
-    #expect(try await impersonated.universeDomain() == "googleapis.com")
+    #expect(try await impersonated.universeDomain() == .default)
   }
 
   @Test func resolvesNestedImpersonatedServiceAccountInSourceCredentials() throws {
@@ -660,7 +660,7 @@ import Testing
       Issue.record("Expected MDSCredentials")
       return
     }
-    #expect(try await mdsCreds.universeDomain() == "custom.universe.com")
+    #expect(try await mdsCreds.universeDomain().rawValue == "custom.universe.com")
   }
 
   @Test func rejectsConflictingSourceUniverseDomainInImpersonatedADC() throws {

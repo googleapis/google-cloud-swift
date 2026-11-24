@@ -16,7 +16,7 @@ import Foundation
 import Testing
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleGax
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 import GoogleRpc
 import struct GoogleWKT.WKTEmpty
 import AsyncHTTPClient
@@ -1242,7 +1242,9 @@ import NIOHTTP1
   @Test func universeDomainMismatchThrowsErrorBeforeFetchingAuthHeaders() async throws {
     struct CustomUniverseCredentials: CredentialsProtocol {
       let domain: String
-      func universeDomain() async throws -> String { domain }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve(domain)
+      }
       func headers() async throws -> AuthHeaders {
         Issue.record("headers() must not be called when universe domains mismatch")
         return [("authorization", "Bearer secret-token")]
@@ -1275,7 +1277,9 @@ import NIOHTTP1
   @Test func universeDomainMatchSucceeds() async throws {
     struct CustomUniverseCredentials: CredentialsProtocol {
       let domain: String
-      func universeDomain() async throws -> String { domain }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve(domain)
+      }
       func headers() async throws -> AuthHeaders {
         [("authorization", "Bearer valid-universe-token")]
       }
@@ -1300,7 +1304,9 @@ import NIOHTTP1
   @Test func universeDomainMismatchIsNotRetriedByRetryLoop() async throws {
     struct CustomUniverseCredentials: CredentialsProtocol {
       let domain: String
-      func universeDomain() async throws -> String { domain }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve(domain)
+      }
       func headers() async throws -> AuthHeaders {
         [("authorization", "Bearer secret-token")]
       }
@@ -1342,7 +1348,7 @@ import NIOHTTP1
 
   @Test func cancellationErrorFromCredentialsIsRethrownDirectly() async throws {
     struct CancellingUniverseCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
+      func _universeDomain() async throws -> _UniverseDomain {
         throw CancellationError()
       }
       func headers() async throws -> AuthHeaders {
@@ -1350,8 +1356,8 @@ import NIOHTTP1
       }
     }
     struct CancellingHeaderCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
-        "googleapis.com"
+      func _universeDomain() async throws -> _UniverseDomain {
+        .default
       }
       func headers() async throws -> AuthHeaders {
         throw CancellationError()
@@ -1402,8 +1408,8 @@ import NIOHTTP1
 
   @Test func credentialsHeadersErrorWrappedInIOAndNotRetriedByRetryLoop() async throws {
     struct FailingHeaderCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
-        "googleapis.com"
+      func _universeDomain() async throws -> _UniverseDomain {
+        .default
       }
       func headers() async throws -> AuthHeaders {
         throw CredentialsError.cannotFetchToken(

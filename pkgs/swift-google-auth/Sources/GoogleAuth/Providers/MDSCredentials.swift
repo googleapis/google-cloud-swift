@@ -16,22 +16,22 @@ import Foundation
 
 /// Thread-safe actor caching the metadata server's universe domain response.
 actor MDSUniverseDomainCache {
-  private var cached: String?
+  private var cached: _UniverseDomain?
   private var permanentError: (any Error)?
-  private var activeTask: Task<String, any Error>?
+  private var activeTask: Task<_UniverseDomain, any Error>?
 
   deinit {
     activeTask?.cancel()
   }
 
-  func get(using provider: MDSAccessTokenProvider) async throws -> String {
+  func get(using provider: MDSAccessTokenProvider) async throws -> _UniverseDomain {
     if let cached = self.cached {
       return cached
     }
     if let error = self.permanentError {
       throw error
     }
-    let task: Task<String, any Error>
+    let task: Task<_UniverseDomain, any Error>
     if let existing = self.activeTask {
       task = existing
     } else {
@@ -92,7 +92,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   let cache: TokenCache<ContinuousClock>
 
   /// An optional explicit universe domain override. When `nil`, the metadata server is queried.
-  private let universeDomainOverride: String?
+  private let universeDomainOverride: _UniverseDomain?
 
   /// Lazily populated cache for the metadata server universe domain query.
   private let universeDomainCache = MDSUniverseDomainCache()
@@ -125,6 +125,30 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     environment: [String: String] = ProcessInfo.processInfo.environment,
     jitter: TokenCache<ContinuousClock>.JitterGenerator? = TokenCache<ContinuousClock>.defaultJitter
   ) {
+    self.init(
+      endpoint: endpoint,
+      quotaProjectID: quotaProjectID,
+      universeDomainOverride: _UniverseDomain(nonEmpty: universeDomain),
+      scopes: scopes,
+      retryConfiguration: retryConfiguration,
+      client: client,
+      fromADC: fromADC,
+      environment: environment,
+      jitter: jitter
+    )
+  }
+
+  init(
+    endpoint: URL? = nil,
+    quotaProjectID: String? = nil,
+    universeDomainOverride: _UniverseDomain?,
+    scopes: [String] = [],
+    retryConfiguration: RetryConfiguration? = nil,
+    client: AuthHTTPClient = AuthHTTPClient(),
+    fromADC: Bool = false,
+    environment: [String: String] = ProcessInfo.processInfo.environment,
+    jitter: TokenCache<ContinuousClock>.JitterGenerator? = TokenCache<ContinuousClock>.defaultJitter
+  ) {
     let provider = MDSAccessTokenProvider(
       endpoint: endpoint,
       quotaProjectID: nonEmpty(quotaProjectID),
@@ -135,7 +159,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
       environment: environment
     )
     self.provider = provider
-    self.universeDomainOverride = nonEmpty(universeDomain)
+    self.universeDomainOverride = universeDomainOverride
 
     self.cache = TokenCache(
       provider: provider,
@@ -155,7 +179,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   ///
   /// Returns the explicit `universeDomain` override if one was configured, or queries and caches
   /// `/computeMetadata/v1/universe/universe-domain` on the metadata server.
-  func universeDomain() async throws -> String {
+  func universeDomain() async throws -> _UniverseDomain {
     if let override = self.universeDomainOverride {
       return override
     }

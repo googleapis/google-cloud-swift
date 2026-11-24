@@ -24,14 +24,14 @@ import Testing
 
 private struct StaticSourceCredentials: CredentialsProvider {
   let authHeaders: AuthHeaders
-  var customUniverseDomain: String = defaultUniverseDomain
+  var customUniverseDomain: String = _UniverseDomain.defaultRawValue
 
   func headers() async throws -> AuthHeaders {
     authHeaders
   }
 
-  func universeDomain() async throws -> String {
-    customUniverseDomain
+  func universeDomain() async throws -> _UniverseDomain {
+    _UniverseDomain.resolve(customUniverseDomain)
   }
 }
 
@@ -524,7 +524,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
 
     #expect(impersonated.quotaProjectID == "billing-proj")
-    #expect(try await impersonated.universeDomain() == "custom.universe.com")
+    #expect(try await impersonated.universeDomain().rawValue == "custom.universe.com")
     #expect(
       impersonated.provider.iamEndpointURL.absoluteString
         == "https://iamcredentials.custom.universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
@@ -570,7 +570,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       targetPrincipal: "target@project.iam.gserviceaccount.com",
       httpClient: AuthHTTPClient(mock: mock)
     )
-    #expect(try await withoutOverride.universeDomain() == "source.universe.com")
+    #expect(try await withoutOverride.universeDomain().rawValue == "source.universe.com")
     let headers = try await withoutOverride.headers()
     #expect(headers["Authorization"] == "Bearer mock-source-universe-token")
 
@@ -579,7 +579,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       targetPrincipal: "target@project.iam.gserviceaccount.com",
       universeDomain: "override.universe.com"
     )
-    #expect(try await withOverride.universeDomain() == "override.universe.com")
+    #expect(try await withOverride.universeDomain().rawValue == "override.universe.com")
 
     let withEmptyOverride = try ImpersonatedCredentials(
       sourceCredentials: source,
@@ -587,7 +587,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       universeDomain: "",
       httpClient: AuthHTTPClient(mock: mock)
     )
-    #expect(try await withEmptyOverride.universeDomain() == "source.universe.com")
+    #expect(try await withEmptyOverride.universeDomain().rawValue == "source.universe.com")
 
     let urlWithEmptyOverride = try ImpersonatedCredentials(
       sourceCredentials: StaticSourceCredentials(authHeaders: []),
@@ -595,13 +595,13 @@ private struct FailingSourceCredentials: CredentialsProvider {
         "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
       universeDomain: ""
     )
-    #expect(try await urlWithEmptyOverride.universeDomain() == "googleapis.com")
+    #expect(try await urlWithEmptyOverride.universeDomain() == .default)
   }
 
   @Test func sourceUniverseDomainMismatchFailsBeforeFetchingSourceToken() async throws {
     struct SpySourceCredentials: CredentialsProvider {
-      func universeDomain() async throws -> String {
-        "googleapis.com"
+      func universeDomain() async throws -> _UniverseDomain {
+        .default
       }
       func headers() async throws -> AuthHeaders {
         Issue.record("sourceCredentials.headers() must not be called on universe domain mismatch")

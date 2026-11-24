@@ -25,7 +25,7 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
   func parse(
     data: Data,
     quotaProjectID: String?,
-    universeDomain: String?,
+    universeDomain: _UniverseDomain?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider {
@@ -55,23 +55,20 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       )
     }
 
-    let normalizedUniverse = nonEmpty(universeDomain)
-    let payloadUniverse = nonEmpty(payload.universeDomain)
-    if let normalizedUniverse, let payloadUniverse, normalizedUniverse != payloadUniverse {
+    let payloadUniverse = _UniverseDomain(nonEmpty: payload.universeDomain)
+    if let universeDomain, let payloadUniverse, universeDomain != payloadUniverse {
       throw CredentialsError.parseError(
-        "The configured universe_domain (\(normalizedUniverse)) does not match the impersonated_service_account universe_domain (\(payloadUniverse))."
+        "The configured universe_domain (\(universeDomain)) does not match the impersonated_service_account universe_domain (\(payloadUniverse))."
       )
     }
-    let effectiveUniverseDomain =
-      normalizedUniverse ?? payloadUniverse ?? defaultUniverseDomain
-    if case let .string(sourceUniverse)? = payload.sourceCredentials["universe_domain"],
-      let nonEmptySourceUniverse = nonEmpty(sourceUniverse)
+    let effectiveUniverseDomain = universeDomain ?? payloadUniverse ?? .default
+    if case let .string(sourceUniverseRaw)? = payload.sourceCredentials["universe_domain"],
+      let sourceUniverse = _UniverseDomain(nonEmpty: sourceUniverseRaw),
+      sourceUniverse != effectiveUniverseDomain
     {
-      if nonEmptySourceUniverse != effectiveUniverseDomain {
-        throw CredentialsError.parseError(
-          "The universe_domain in source_credentials (\(nonEmptySourceUniverse)) does not match the impersonated_service_account universe_domain (\(effectiveUniverseDomain))."
-        )
-      }
+      throw CredentialsError.parseError(
+        "The universe_domain in source_credentials (\(sourceUniverse)) does not match the impersonated_service_account universe_domain (\(effectiveUniverseDomain))."
+      )
     }
     let effectiveQuotaProjectID =
       nonEmpty(quotaProjectID) ?? nonEmpty(payload.quotaProjectId)
@@ -103,7 +100,7 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       scopes: scopes,
       lifetime: .seconds(3600),
       quotaProjectID: effectiveQuotaProjectID,
-      universeDomain: effectiveUniverseDomain
+      universeDomain: effectiveUniverseDomain.rawValue
     )
   }
 }
@@ -119,7 +116,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
   private let cache: TokenCache<ContinuousClock>
   let provider: ImpersonatedTokenProvider
   let quotaProjectID: String?
-  private let universeDomainOverride: String?
+  private let universeDomainOverride: _UniverseDomain?
 
   /// Initializes `ImpersonatedCredentials` for a target service account principal.
   init(
@@ -133,21 +130,24 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    let normalizedUniverse = nonEmpty(universeDomain)
-    let effectiveUniverse = normalizedUniverse ?? defaultUniverseDomain
+    let normalizedUniverse = _UniverseDomain(nonEmpty: universeDomain)
+    let effectiveUniverse = normalizedUniverse ?? .default
     let resourceName = try Self.normalizeServiceAccountResourceName(targetPrincipal)
-    let urlString =
-      "https://iamcredentials.\(effectiveUniverse)/v1/\(resourceName):generateAccessToken"
+    let resolvedURL = try effectiveUniverse.serviceURL(
+      service: "iamcredentials",
+      path: "/v1/\(resourceName):generateAccessToken"
+    )
 
     try self.init(
       sourceCredentials: sourceCredentials,
-      impersonationURLString: urlString,
+      iamEndpointURL: resolvedURL,
       targetResourceName: resourceName,
       delegates: delegates,
       scopes: scopes,
       lifetime: lifetime,
       quotaProjectID: quotaProjectID,
-      universeDomain: normalizedUniverse,
+      universeDomainOverride: normalizedUniverse,
+      effectiveUniverse: effectiveUniverse,
       httpClient: httpClient,
       retryConfiguration: retryConfiguration
     )
@@ -157,7 +157,6 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
   init(
     sourceCredentials: any CredentialsProvider,
     impersonationURLString: String,
-    targetResourceName: String? = nil,
     delegates: [String] = [],
     scopes: [String] = [],
     lifetime: Duration = .seconds(3600),
@@ -185,6 +184,41 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
       )
     }
 
+    let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
+    try effectiveUniverse.validateServiceHost(
+      host,
+      service: "iamcredentials",
+      urlField: "service_account_impersonation_url"
+    )
+
+    try self.init(
+      sourceCredentials: sourceCredentials,
+      iamEndpointURL: resolvedURL,
+      targetResourceName: nil,
+      delegates: delegates,
+      scopes: scopes,
+      lifetime: lifetime,
+      quotaProjectID: quotaProjectID,
+      universeDomainOverride: effectiveUniverse,
+      effectiveUniverse: effectiveUniverse,
+      httpClient: httpClient,
+      retryConfiguration: retryConfiguration
+    )
+  }
+
+  private init(
+    sourceCredentials: any CredentialsProvider,
+    iamEndpointURL: URL,
+    targetResourceName: String?,
+    delegates: [String],
+    scopes: [String],
+    lifetime: Duration,
+    quotaProjectID: String?,
+    universeDomainOverride: _UniverseDomain?,
+    effectiveUniverse: _UniverseDomain,
+    httpClient: AuthHTTPClient,
+    retryConfiguration: RetryConfiguration
+  ) throws {
     guard lifetime >= .seconds(1), lifetime <= .seconds(43_200) else {
       throw CredentialsError.parseError(
         "Impersonated token lifetime must be between 1 and 43200 seconds"
@@ -192,36 +226,22 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     }
     let lifetimeDuration = try WKTDuration(seconds: lifetime.components.seconds)
 
-    let normalizedUniverse = nonEmpty(universeDomain)
-    let effectiveUniverse = normalizedUniverse ?? defaultUniverseDomain
-    if effectiveUniverse != defaultUniverseDomain && sourceCredentials is UserCredentials {
-      throw CredentialsError.notSupported(
-        "User accounts are only supported in the default (googleapis.com) universe: \(effectiveUniverse)"
-      )
-    }
-    let lowerHost = host.lowercased()
-    if lowerHost.hasPrefix("iamcredentials.") {
-      let urlUniverse = String(host.dropFirst("iamcredentials.".count))
-      if urlUniverse != effectiveUniverse {
-        throw CredentialsError.parseError(
-          "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
-        )
-      }
+    if sourceCredentials is UserCredentials {
+      try effectiveUniverse.validateUserAccountSupport()
     }
 
     let effectiveScopes =
       scopes.isEmpty ? [ImpersonatedServiceAccountConfig.defaultScope] : scopes
     let normalizedDelegates = try delegates.map(Self.normalizeServiceAccountResourceName)
-    let resolvedOverride = targetResourceName == nil ? effectiveUniverse : normalizedUniverse
 
     self.quotaProjectID = nonEmpty(quotaProjectID)
-    self.universeDomainOverride = resolvedOverride
+    self.universeDomainOverride = universeDomainOverride
 
     let provider = ImpersonatedTokenProvider(
       sourceCredentials: sourceCredentials,
-      iamEndpointURL: resolvedURL,
+      iamEndpointURL: iamEndpointURL,
       targetResourceName: targetResourceName,
-      universeDomainOverride: resolvedOverride,
+      universeDomainOverride: universeDomainOverride,
       scopes: effectiveScopes,
       delegates: normalizedDelegates,
       lifetime: lifetimeDuration,
@@ -250,7 +270,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     return headers
   }
 
-  func universeDomain() async throws -> String {
+  func universeDomain() async throws -> _UniverseDomain {
     if let override = self.universeDomainOverride {
       return override
     }
