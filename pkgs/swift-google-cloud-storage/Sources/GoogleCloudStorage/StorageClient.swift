@@ -37,13 +37,11 @@ public final class StorageClient: StorageProtocol, Sendable {
   /// files from disk). Prefer initializing the client at application startup and reusing it across
   /// requests.
   public convenience init(_ options: StorageClientOptions = .init()) throws {
-    let environment = ProcessInfo.processInfo.environment
-    let credentials =
-      try options.client.credentials ?? GoogleAuth.Credentials(environment: environment)
     try self.init(
       options,
-      credentials: credentials,
-      environment: environment,
+      credentials: options.client.credentials,
+      resolveDefaultADC: true,
+      environment: ProcessInfo.processInfo.environment,
       makeClients: { poolSize in (0..<poolSize).map { _ in StorageHTTPClientHolder() } }
     )
   }
@@ -91,6 +89,7 @@ public final class StorageClient: StorageProtocol, Sendable {
   convenience init(
     _ options: StorageClientOptions = .init(),
     credentials: GoogleAuth.Credentials?,
+    resolveDefaultADC: Bool = false,
     seed: UInt64? = nil,
     environment: [String: String] = ProcessInfo.processInfo.environment,
     makeClients: (Int) -> [any _HTTPClientProtocol]
@@ -100,6 +99,14 @@ public final class StorageClient: StorageProtocol, Sendable {
       defaultEndpoint: Self.defaultEndpoint,
       environment: environment
     )
+    let resolvedCredentials: GoogleAuth.Credentials?
+    if let credentials {
+      resolvedCredentials = credentials
+    } else if resolveDefaultADC {
+      resolvedCredentials = try GoogleAuth.Credentials(environment: environment)
+    } else {
+      resolvedCredentials = nil
+    }
     let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
     let transport = Self.makeTransport(
       clients: makeClients(poolSize),
@@ -109,7 +116,7 @@ public final class StorageClient: StorageProtocol, Sendable {
     let client = try GoogleGax._HTTPClient(
       transport,
       endpoint: resolvedEndpoint,
-      credentials: credentials,
+      credentials: resolvedCredentials,
       logger: options.client.logger,
       quotaProject: options.client.quotaProject,
       clientHeader: .veneer(packageVersion: PackageVersion.version)

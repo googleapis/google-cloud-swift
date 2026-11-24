@@ -86,7 +86,11 @@ import NIOHTTP1
     let endpoint = "https://storage.googleapis.com"
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with { $0.credentials = credentials }
-    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: endpoint,
+      environment: [:]
+    )
     let uri = "https://storage.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=12345"
     var request = try await client.newRequest(uri: uri)
     request.setHeader(name: "X-Test-Header", value: "TestValue")
@@ -1478,7 +1482,8 @@ import NIOHTTP1
     }
     let client = try _HTTPClient(
       from: options,
-      withDefaultEndpoint: "https://secretmanager.googleapis.com"
+      withDefaultEndpoint: "https://secretmanager.googleapis.com",
+      environment: [:]
     )
     let req = try await client.newRequest(path: "/v1/test", query: [])
     let got = try await req.rpc(ResponseType.self).get()

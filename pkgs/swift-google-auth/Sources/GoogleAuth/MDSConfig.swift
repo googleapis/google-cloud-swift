@@ -25,8 +25,8 @@ public struct MDSConfig: Sendable {
 
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
   ///
-  /// When `nil`, the universe domain is queried lazily from `/computeMetadata/v1/universe/universe-domain`
-  /// on the metadata server.
+  /// When `nil` or empty, the universe domain is queried lazily from
+  /// `/computeMetadata/v1/universe/universe-domain` on the metadata server.
   public var universeDomain: String? = nil
 
   /// Scopes requested for the minted access token.

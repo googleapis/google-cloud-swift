@@ -459,11 +459,14 @@ struct ServiceAccountTests {
         "client_email": "test-client-email@gserviceaccount.com"
       }
       """.utf8)
-    let credsDefault = try ServiceAccountCredentials(keyJSON: keyWithoutUniverse)
+    let credsDefault = try ServiceAccountCredentials(keyJSON: keyWithoutUniverse, environment: [:])
     #expect(try await credsDefault.universeDomain() == .default)
 
     let credsEmptyParamAndNoJSONUniverse = try ServiceAccountCredentials(
-      keyJSON: keyWithoutUniverse, universeDomain: "")
+      keyJSON: keyWithoutUniverse,
+      universeDomain: "",
+      environment: [:]
+    )
     #expect(try await credsEmptyParamAndNoJSONUniverse.universeDomain() == .default)
   }
 }

@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleGaxGRPC
 import GoogleRpc
@@ -680,7 +680,10 @@ import Testing
     var options = ClientOptions()
     options.endpoint = endpoint
     options.universeDomain = optionUniverse
-    options.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+    options.credentials = try Credentials(
+      configuration: .apiKey("test-api-key"),
+      environment: [:]
+    )
 
     let client = try _GRPCClient(
       from: options,
@@ -703,6 +706,49 @@ import Testing
     #expect(underlying is CredentialsError)
     #expect(String(describing: underlying).contains(expectedUniverse))
     #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
+  @Test func defaultCredentialsForwardsEnvironmentAndCatchesFileMismatch() async throws {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh",
+        "universe_domain": "googleapis.com"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    var options = ClientOptions()
+    options.endpoint = "http://127.0.0.1:1"
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com",
+      ]
+    )
+    defer { client.close() }
+
+    let error = await #expect(throws: RequestError.self) {
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
   }
 
   @Test(arguments: [
@@ -743,7 +789,7 @@ import Testing
       var options = ClientOptions()
       options.endpoint = endpoint
       options.universeDomain = universeDomain
-      options.credentials = try Credentials(configuration: credentials)
+      options.credentials = try Credentials(configuration: credentials, environment: [:])
 
       let client = try _GRPCClient(
         from: options,

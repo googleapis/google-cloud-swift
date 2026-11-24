@@ -44,7 +44,10 @@ enum ADC: Sendable {
   ///
   /// - Parameters:
   ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
-  ///   - universeDomain: An optional target universe domain (defaults to `googleapis.com`).
+  ///   - universeDomain: An optional target universe domain override. When `nil` or empty, local
+  ///     credential sources fall back to their JSON `"universe_domain"`,
+  ///     `GOOGLE_CLOUD_UNIVERSE_DOMAIN`, or `"googleapis.com"`, while metadata server credentials
+  ///     query `/computeMetadata/v1/universe/universe-domain`.
   ///   - scopes: Scopes requested for the issued token.
   ///   - environment: The environment variable dictionary used for discovery (defaults to `ProcessInfo.processInfo.environment`).
   /// - Returns: A configured `CredentialsProvider` ready to furnish authentication headers.

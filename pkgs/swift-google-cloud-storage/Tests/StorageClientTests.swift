@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
@@ -212,7 +212,7 @@ import Testing
         $0.credentials = try Credentials(configuration: .anonymous)
       }
     }
-    let client = try StorageClient(options, mock: registry)
+    let client = try StorageClient(options, mock: registry, environment: [:])
     let task = client.readObject(from: "test-bucket", object: "test-obj")
     _ = try await task.metadata
 
@@ -323,7 +323,7 @@ import Testing
       $0.client = try .init().with {
         $0.endpoint = endpoint
         $0.universeDomain = optionUniverse
-        $0.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+        $0.credentials = try Credentials(configuration: .apiKey("test-api-key"), environment: [:])
         $0.backoffPolicy = ZeroBackoff()
       }
     }
@@ -375,7 +375,7 @@ import Testing
       $0.client = try .init().with {
         $0.endpoint = endpoint
         $0.universeDomain = universeDomain
-        $0.credentials = try Credentials(configuration: credentials)
+        $0.credentials = try Credentials(configuration: credentials, environment: [:])
       }
     }
     let client = try StorageClient(options, mock: registry, environment: [:])
@@ -410,7 +410,7 @@ import Testing
       $0.client = try .init().with {
         $0.endpoint = endpoint
         $0.universeDomain = "my-universe.com"
-        $0.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+        $0.credentials = try Credentials(configuration: .apiKey("test-api-key"), environment: [:])
         $0.backoffPolicy = ZeroBackoff()
       }
     }
@@ -500,7 +500,7 @@ import Testing
         $0.credentials = try Credentials(configuration: .anonymous)
       }
     }
-    let client = try StorageClient(options, mock: registry)
+    let client = try StorageClient(options, mock: registry, environment: [:])
     let data = Data("hello world".utf8)
     _ = try await client.writeObject(data, to: bucket, as: objectName)
 
@@ -584,7 +584,10 @@ import Testing
 
     let options = StorageClientOptions().with {
       $0.client.endpoint = endpoint
-      $0.client.credentials = try? Credentials(configuration: .apiKey("shared-test-key"))
+      $0.client.credentials = try? Credentials(
+        configuration: .apiKey("shared-test-key"),
+        environment: [:]
+      )
       $0.connectionPoolSize = 2
       $0.loadBalancer = .roundRobin
     }
@@ -759,5 +762,71 @@ import Testing
     let chunkReq = registry.lastRequest(for: expectedChunkUrl)
     #expect(chunkReq != nil)
     #expect(chunkReq?.value(forHTTPHeaderField: "Host") == expectedChunkHost)
+  }
+
+  @Test func defaultADCValidatesEndpointBeforeADCAndForwardsEnvironment() async throws {
+    let registry = MockRegistry.create()
+
+    // Invalid endpoint/universe fails fast with ClientError.invalidEndpoint before ADC disk/MDS resolution.
+    let badOptions = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.universeDomain = "invalid/domain"
+      }
+    }
+    #expect(throws: ClientError.self) {
+      _ = try StorageClient(
+        badOptions,
+        credentials: nil,
+        resolveDefaultADC: true,
+        environment: ["NO_GCE_CHECK": "1"],
+        makeClients: { _ in [registry] }
+      )
+    }
+
+    // Default ADC forwards environment to Credentials(environment:) and catches file mismatch on request.
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh",
+        "universe_domain": "googleapis.com"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    let mismatchOptions = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let mismatchClient = try StorageClient(
+      mismatchOptions,
+      credentials: nil,
+      resolveDefaultADC: true,
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com",
+      ],
+      makeClients: { _ in [registry] }
+    )
+    let task = mismatchClient.readObject(from: "test-bucket", object: "test-obj")
+    let error = await #expect(throws: ReadObjectError.self) {
+      _ = try await task.metadata
+    }
+    guard let error, case .requestError(let reqError) = error,
+      let underlying = Self.unwrapIOError(reqError)
+    else {
+      Issue.record(
+        "Expected ReadObjectError.requestError wrapping .io, got \(String(describing: error))"
+      )
+      return
+    }
+    #expect(underlying is CredentialsError)
   }
 }

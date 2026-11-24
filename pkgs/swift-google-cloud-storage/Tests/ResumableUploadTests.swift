@@ -14,7 +14,7 @@
 
 import Crypto
 import Foundation
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import NIOHTTP1
@@ -3695,7 +3695,10 @@ import Testing
     )
     let clientOptions = try StorageClientOptions().with {
       $0.client = try .init().with {
-        $0.credentials = try Credentials(configuration: .apiKey("sensitive-api-key"))
+        $0.credentials = try Credentials(
+          configuration: .apiKey("sensitive-api-key"),
+          environment: [:]
+        )
       }
       $0.writeObject.resumableUploadThreshold = 0
       $0.writeObject.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()

@@ -517,7 +517,10 @@ import Testing
     let saConfigDefaultUniverse = ServiceAccountConfig(keyJSON: saJSONWithoutUniverse).with {
       $0.universeDomain = ""
     }
-    let saCredsDefault = try Credentials(configuration: .serviceAccount(saConfigDefaultUniverse))
+    let saCredsDefault = try Credentials(
+      configuration: .serviceAccount(saConfigDefaultUniverse),
+      environment: [:]
+    )
     #expect(try await saCredsDefault.universeDomain() == "googleapis.com")
 
     let userJSON = Data(
@@ -532,7 +535,7 @@ import Testing
     let userConfig = UserConfig(keyJSON: userJSON).with {
       $0.universeDomain = ""
     }
-    let userCreds = try Credentials(configuration: .user(userConfig))
+    let userCreds = try Credentials(configuration: .user(userConfig), environment: [:])
     #expect(try await userCreds.universeDomain() == "googleapis.com")
 
     let impConfig = ImpersonatedServiceAccountConfig(
@@ -541,19 +544,22 @@ import Testing
     ).with {
       $0.universeDomain = ""
     }
-    let impCreds = try Credentials(configuration: .impersonatedServiceAccount(impConfig))
+    let impCreds = try Credentials(
+      configuration: .impersonatedServiceAccount(impConfig),
+      environment: [:]
+    )
     #expect(try await impCreds.universeDomain() == "json.universe.com")
   }
 
   @Test func defaultUniverseDomainAndValidation() async throws {
     #expect(Credentials.defaultUniverseDomain == "googleapis.com")
 
-    let anon = try Credentials(configuration: .anonymous)
+    let anon = try Credentials(configuration: .anonymous, environment: [:])
     #expect(try await anon.universeDomain() == "googleapis.com")
     try await anon.validateUniverseDomain("googleapis.com")
     try await anon.validateUniverseDomain("custom.universe.com")
 
-    let apiKey = try Credentials(configuration: .apiKey("test-api-key"))
+    let apiKey = try Credentials(configuration: .apiKey("test-api-key"), environment: [:])
     #expect(try await apiKey.universeDomain() == "googleapis.com")
     try await apiKey.validateUniverseDomain("googleapis.com")
     await #expect(throws: CredentialsError.self) {

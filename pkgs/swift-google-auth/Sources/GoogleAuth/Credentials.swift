@@ -326,10 +326,12 @@ public struct Credentials: Sendable {
   /// credentials' universe domain with the client's configured universe domain before sending
   /// requests.
   ///
-  /// For most credential types, this returns the configured universe domain (or `"googleapis.com"`
-  /// by default) immediately. For Metadata Server (MDS) credentials without an explicit universe
-  /// domain override, this queries `/computeMetadata/v1/universe/universe-domain` on the metadata
-  /// server and caches the result.
+  /// For local and programmatic credentials, this resolves the explicit configuration override,
+  /// any `"universe_domain"` field in the credential JSON, the `GOOGLE_CLOUD_UNIVERSE_DOMAIN`
+  /// environment variable, or `"googleapis.com"` by default (while impersonated credentials
+  /// without an explicit or environment override delegate to their source credentials). For
+  /// Metadata Server (MDS) credentials without an explicit universe domain override, this queries
+  /// `/computeMetadata/v1/universe/universe-domain` on the metadata server and caches the result.
   ///
   /// - Returns: The universe domain string (e.g., `"googleapis.com"`).
   /// - Throws: A ``CredentialsError`` if resolving the universe domain from the metadata server fails.
