@@ -197,15 +197,17 @@ enum _RequestBody: Sendable {
   }
 
   @concurrent
-  public consuming func rpc<R>(_ type: R.Type, timeout: Duration? = nil) async
+  public consuming func rpc<R>(_ type: R.Type, timeout: Duration? = nil) async throws
     -> Result<R, RequestError> where R: Decodable
   {
     do {
       let response = try await self.execute(timeout: timeout ?? Self.defaultTimeout)
       if response.isError() {
-        return .failure(await response.decodeError())
+        return .failure(try await response.decodeError())
       }
       return try await response.decode(type)
+    } catch let e as CancellationError {
+      throw e
     } catch let e as RequestError {
       return .failure(e)
     } catch let e {
@@ -220,15 +222,17 @@ enum _RequestBody: Sendable {
   /// JSON-encoded protobuf message. Returns a tuple instead of `GoogleApi.HttpBody` directly so
   /// `GoogleGax` does not depend on the generated `GoogleApi` package.
   @concurrent
-  public consuming func rpcRaw(timeout: Duration? = nil) async
+  public consuming func rpcRaw(timeout: Duration? = nil) async throws
     -> Result<(data: Data, contentType: String), RequestError>
   {
     do {
       let response = try await self.execute(timeout: timeout ?? Self.defaultTimeout)
       if response.isError() {
-        return .failure(await response.decodeError())
+        return .failure(try await response.decodeError())
       }
-      return await response.decodeRaw()
+      return try await response.decodeRaw()
+    } catch let e as CancellationError {
+      throw e
     } catch let e as RequestError {
       return .failure(e)
     } catch let e {

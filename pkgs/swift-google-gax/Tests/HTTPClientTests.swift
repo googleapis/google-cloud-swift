@@ -425,7 +425,7 @@ import NIOHTTP1
       query: [URLQueryItem(name: "$alt", value: "json")],
     )
     request.setMethod(.GET)
-    guard case .success(let response) = await request.rpc(ResponseType.self) else {
+    guard case .success(let response) = try await request.rpc(ResponseType.self) else {
       Issue.record("expected a successful RPC")
       return
     }
@@ -452,7 +452,7 @@ import NIOHTTP1
       path: "/v1/projects/my-project/secrets",
       query: [URLQueryItem(name: "$alt", value: "json")]
     )
-    let result = await request.rpc(ResponseType.self, timeout: .seconds(1))
+    let result = try await request.rpc(ResponseType.self, timeout: .seconds(1))
     guard case .failure(.malformedResponse(let message)) = result else {
       Issue.record("expected .failure(.malformedResponse), got=\(result)")
       return
@@ -480,7 +480,7 @@ import NIOHTTP1
     let client = try _HTTPClient(mock, endpoint: endpoint)
     let request = try await client.newRequest(
       path: path, query: [URLQueryItem(name: "$alt", value: "json")])
-    let response = await request.rpc(ResponseType.self, timeout: .seconds(1))
+    let response = try await request.rpc(ResponseType.self, timeout: .seconds(1))
     guard case let .failure(.service(serviceError)) = response else {
       Issue.record("expected an service error response, got=\(response)")
       return
@@ -511,7 +511,7 @@ import NIOHTTP1
     let request = try await client.newRequest(
       path: path, query: [URLQueryItem(name: "$alt", value: "json")])
 
-    let response = await request.rpc(ResponseType.self)
+    let response = try await request.rpc(ResponseType.self)
     guard case let .failure(.http(httpError)) = response else {
       Issue.record("expected an http error response, got=\(response)")
       return
@@ -541,7 +541,7 @@ import NIOHTTP1
     let request = try await client.newRequest(
       path: path, query: [URLQueryItem(name: "$alt", value: "json")])
 
-    let response = await request.rpc(ResponseType.self)
+    let response = try await request.rpc(ResponseType.self)
     guard case let .failure(.http(httpError)) = response else {
       Issue.record("expected an http error response, got=\(response)")
       return
@@ -786,7 +786,7 @@ import NIOHTTP1
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
     let e = await #expect(throws: GoogleGax.RequestError.self) {
-      _ = try (await req.rpc(GoogleWKT.WKTEmpty.self)).get()
+      _ = try await req.rpc(GoogleWKT.WKTEmpty.self).get()
     }
     guard case .service(let serviceError) = e else {
       Issue.record("expected service error , got \(e)")
@@ -854,7 +854,7 @@ import NIOHTTP1
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
     let e = await #expect(throws: GoogleGax.RequestError.self) {
-      _ = try (await req.rpc(GoogleWKT.WKTEmpty.self)).get()
+      _ = try await req.rpc(GoogleWKT.WKTEmpty.self).get()
     }
     guard case .http(let httpError) = e else {
       Issue.record("expected service error , got \(e)")
@@ -1174,7 +1174,7 @@ import NIOHTTP1
 
     let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
     let request = try await client.newRequest(path: "/v1/raw", query: [])
-    let response = await request.rpcRaw(timeout: .seconds(1))
+    let response = try await request.rpcRaw(timeout: .seconds(1))
     guard case let .failure(.service(serviceError)) = response else {
       Issue.record("expected a service error response, got=\(response)")
       return
@@ -1194,7 +1194,7 @@ import NIOHTTP1
 
     let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
     let request = try await client.newRequest(path: "/v1/raw", query: [])
-    let response = await request.rpcRaw(timeout: .seconds(1))
+    let response = try await request.rpcRaw(timeout: .seconds(1))
     guard case let .failure(.http(details)) = response else {
       Issue.record("expected an HTTP error response, got=\(response)")
       return
@@ -1692,6 +1692,90 @@ import NIOHTTP1
       return
     }
     #expect(underlying is CredentialsError)
+  }
+
+  @Test func rpcAndRpcRawPropagateCancellationErrorUnwrapped() async throws {
+    enum Stage: CaseIterable, Sendable {
+      case execute
+      case successBody
+      case errorBody
+      case decoding
+    }
+
+    struct CancellingResponse: Decodable, Sendable {
+      init(from decoder: any Decoder) throws {
+        throw CancellationError()
+      }
+    }
+
+    for stage in Stage.allCases {
+      let mock = MockHTTPClient { (_, _) in
+        switch stage {
+        case .execute:
+          throw CancellationError()
+        case .successBody:
+          let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+            continuation.finish(throwing: CancellationError())
+          }
+          return HTTPClientResponse(
+            version: .http1_1,
+            status: .ok,
+            headers: .init([("Content-Type", "application/json")]),
+            body: .stream(stream)
+          )
+        case .errorBody:
+          let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+            continuation.finish(throwing: CancellationError())
+          }
+          return HTTPClientResponse(
+            version: .http1_1,
+            status: .serviceUnavailable,
+            headers: .init([("Content-Type", "application/json")]),
+            body: .stream(stream)
+          )
+        case .decoding:
+          return HTTPClientResponse(
+            version: .http1_1,
+            status: .ok,
+            headers: .init([("Content-Type", "application/json")]),
+            body: .bytes(.init(string: "{}"))
+          )
+        }
+      }
+
+      let client = try _HTTPClient(mock, endpoint: "https://example.googleapis.com")
+      let throttler = MockThrottler()
+      let retryLoop = _RetryLoop(
+        retryPolicy: AlwaysRetry(),
+        backoffPolicy: MockBackoff(),
+        retryThrottler: throttler,
+        idempotent: true
+      )
+
+      await #expect(throws: CancellationError.self) {
+        try await retryLoop.run(
+          inner: { timeout in
+            let req = try await client.newRequest(path: "/v1/items", query: [])
+            if stage == .decoding {
+              _ = try await req.rpc(CancellingResponse.self, timeout: timeout).get()
+            } else {
+              _ = try await req.rpc(ResponseType.self, timeout: timeout).get()
+            }
+          },
+          sleep: { _ in
+            Issue.record("RetryLoop must not sleep on CancellationError")
+          }
+        )
+      }
+      #expect(throttler.onRetryFailureCalled.isEmpty)
+
+      if stage != .decoding {
+        let reqRaw = try await client.newRequest(path: "/v1/raw", query: [])
+        await #expect(throws: CancellationError.self) {
+          _ = try await reqRaw.rpcRaw().get()
+        }
+      }
+    }
   }
 
   /// A test response type.

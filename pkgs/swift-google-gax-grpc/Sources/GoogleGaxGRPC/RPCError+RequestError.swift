@@ -149,8 +149,12 @@ private func fallbackAny(typeUrl: String = "") -> GoogleWKT.WKTAny {
 }
 
 extension RPCError {
-  /// Converts an `RPCError` to a `GoogleGax.RequestError`.
-  func toRequestError() -> RequestError {
+  /// Converts an `RPCError` to a `GoogleGax.RequestError`, or rethrows `CancellationError` when
+  /// client-side task cancellation is carried as the `RPCError` cause.
+  func toRequestError() throws -> RequestError {
+    if let cancellationError = self.cause as? CancellationError {
+      throw cancellationError
+    }
     if self.cause != nil {
       return .io(self)
     }

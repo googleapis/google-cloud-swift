@@ -893,6 +893,44 @@ import Testing
     }
   }
 
+  @Test func clientDoesNotWrapCancellationErrorThrownDuringDecoding() async throws {
+    struct CancellingDecodable: Decodable, Sendable {
+      init(from decoder: any Decoder) throws {
+        throw CancellationError()
+      }
+    }
+
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let mock = MockHTTPClient(
+      Array(
+        repeating: { _ in
+          HTTPClientResponse(
+            version: .http2,
+            status: .ok,
+            headers: .init([("Content-Type", "application/json")]),
+            body: .bytes(.init(string: "{}"))
+          )
+        },
+        count: 3
+      )
+    )
+    let client = AuthHTTPClient(mock: mock)
+
+    await #expect(throws: CancellationError.self) {
+      let _: CancellingDecodable = try await client.get(url: targetURL)
+    }
+    await #expect(throws: CancellationError.self) {
+      let _: CancellingDecodable = try await client.post(url: targetURL, body: ["grant": "test"])
+    }
+    await #expect(throws: CancellationError.self) {
+      let _: CancellingDecodable = try await client.postData(
+        url: targetURL,
+        bodyData: Data("grant=test".utf8),
+        contentType: "application/x-www-form-urlencoded"
+      )
+    }
+  }
+
   @Test func clientTimesOutWhenHeadersArriveAfterDeadline() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let okBody = Data(#"{"access_token": "tok", "expires_in": 3600}"#.utf8)

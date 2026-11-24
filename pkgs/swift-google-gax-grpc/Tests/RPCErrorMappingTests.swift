@@ -23,7 +23,7 @@ import SwiftProtobuf
 import Testing
 
 @Suite struct RPCErrorMappingTests {
-  @Test func mapsAllStatusCodes() {
+  @Test func mapsAllStatusCodes() throws {
     let cases: [(RPCError.Code, GoogleRpc.Code)] = [
       (.cancelled, .cancelled),
       (.unknown, .unknown),
@@ -45,7 +45,7 @@ import Testing
 
     for (rpcCode, expectedRpcCode) in cases {
       let rpcError = RPCError(code: rpcCode, message: "Error for \(rpcCode)")
-      let requestError = rpcError.toRequestError()
+      let requestError = try rpcError.toRequestError()
 
       guard case let .service(serviceError) = requestError else {
         Issue.record("Expected .service error for \(rpcCode), got \(requestError)")
@@ -57,14 +57,14 @@ import Testing
     }
   }
 
-  @Test func mapsCauseToIOError() {
+  @Test func mapsCauseToIOError() throws {
     struct CustomUnderlyingError: Error, Equatable {}
     let rpcError = RPCError(
       code: .unavailable,
       message: "Connection lost",
       cause: CustomUnderlyingError()
     )
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .io(error) = requestError else {
       Issue.record("Expected .io error, got \(requestError)")
@@ -79,11 +79,22 @@ import Testing
     #expect(underlying.cause is CustomUnderlyingError)
   }
 
-  @Test func mapsBadContentTypeToIOError() {
+  @Test func rethrowsCancellationErrorCauseDirectly() {
+    let rpcError = RPCError(
+      code: .unknown,
+      message: "The transport threw an unexpected error.",
+      cause: CancellationError()
+    )
+    #expect(throws: CancellationError.self) {
+      _ = try rpcError.toRequestError()
+    }
+  }
+
+  @Test func mapsBadContentTypeToIOError() throws {
     var metadata = Metadata()
     metadata.replaceOrAddString("text/html", forKey: "content-type")
     let rpcError = RPCError(code: .unknown, message: "Bad gateway", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .io(error) = requestError else {
       Issue.record("Expected .io error, got \(requestError)")
@@ -99,11 +110,11 @@ import Testing
       badContentType.description.contains("unexpected value in content-type header 'text/html'"))
   }
 
-  @Test func allowsGrpcContentType() {
+  @Test func allowsGrpcContentType() throws {
     var metadata = Metadata()
     metadata.replaceOrAddString("application/grpc", forKey: "content-type")
     let rpcError = RPCError(code: .notFound, message: "Resource not found", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -113,11 +124,11 @@ import Testing
     #expect(serviceError.message == "Resource not found")
   }
 
-  @Test func allowsGrpcWithSuffixContentType() {
+  @Test func allowsGrpcWithSuffixContentType() throws {
     var metadata = Metadata()
     metadata.replaceOrAddString("application/grpc+proto", forKey: "content-type")
     let rpcError = RPCError(code: .notFound, message: "Resource not found", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -146,7 +157,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .unauthenticated, message: "Fallback message", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -188,7 +199,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .invalidArgument, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -228,7 +239,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .unavailable, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -264,7 +275,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .internalError, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -303,7 +314,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .permissionDenied, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -339,7 +350,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .notFound, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -379,7 +390,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .failedPrecondition, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -420,7 +431,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .resourceExhausted, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -456,7 +467,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .internalError, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -493,7 +504,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .notFound, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -529,7 +540,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .unknown, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")
@@ -544,7 +555,7 @@ import Testing
     #expect(other.typeURL == "type.googleapis.com/custom.unknown.Message")
   }
 
-  @Test func fallsBackOnCorruptedDetails() {
+  @Test func fallsBackOnCorruptedDetails() throws {
     var metadata = Metadata()
     metadata.replaceOrAddBinary(
       [0xFF, 0xFF, 0xFF],  // Invalid protobuf wire bytes
@@ -552,7 +563,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .invalidArgument, message: "Invalid argument", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error on corrupted details, got \(requestError)")
@@ -583,7 +594,7 @@ import Testing
     )
 
     let rpcError = RPCError(code: .resourceExhausted, message: "Fallback", metadata: metadata)
-    let requestError = rpcError.toRequestError()
+    let requestError = try rpcError.toRequestError()
 
     guard case let .service(serviceError) = requestError else {
       Issue.record("Expected .service error, got \(requestError)")

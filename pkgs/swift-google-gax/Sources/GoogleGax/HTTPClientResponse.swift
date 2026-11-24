@@ -70,11 +70,13 @@ import NIOFoundationCompat
   }
 
   @concurrent
-  public consuming func decodeError() async -> RequestError {
+  public consuming func decodeError() async throws -> RequestError {
     let data: Data
     do {
       let buffer = try await self.response.body.collect(upTo: Self.defaultMaximumResponseSize)
       data = Data(buffer: buffer)
+    } catch let e as CancellationError {
+      throw e
     } catch let e {
       return .io(e)
     }
@@ -98,6 +100,8 @@ import NIOFoundationCompat
     let buffer: NIOCore.ByteBuffer
     do {
       buffer = try await self.response.body.collect(upTo: Self.defaultMaximumResponseSize)
+    } catch let e as CancellationError {
+      throw e
     } catch let e {
       return .failure(.io(e))
     }
@@ -108,6 +112,8 @@ import NIOFoundationCompat
     do {
       let payload = try decoder.decode(type, from: data)
       return .success(payload)
+    } catch let e as CancellationError {
+      throw e
     } catch {
       return .failure(.malformedResponse("Failed to decode \(type): \(error)"))
     }
@@ -115,12 +121,14 @@ import NIOFoundationCompat
 
   /// Collects the raw response body bytes and `Content-Type` header without JSON decoding.
   @concurrent
-  public consuming func decodeRaw() async
+  public consuming func decodeRaw() async throws
     -> Result<(data: Data, contentType: String), RequestError>
   {
     let buffer: NIOCore.ByteBuffer
     do {
       buffer = try await self.response.body.collect(upTo: Self.defaultMaximumResponseSize)
+    } catch let e as CancellationError {
+      throw e
     } catch let e {
       return .failure(.io(e))
     }

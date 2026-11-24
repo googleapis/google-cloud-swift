@@ -26,8 +26,10 @@ Call out, in particular:
 - Streamed results (`AsyncSequence`) that applications cannot construct or wrap
   using only public API.
 - Public, non-underscored symbols called by macro expansions.
-- Public error cases that are never thrown, or errors reported with the wrong
-  case.
+- Public error cases that are never thrown, errors reported with the wrong
+  case, or `catch` blocks / error-mapping helpers that wrap `CancellationError`
+  in `RequestError.io` or a package error enum instead of rethrowing
+  `CancellationError` directly.
 - Logging metadata keys that differ from the generated `<Service>+Logging`
   layer, and `rpc.method` values that are not real RPCs.
 - Missing tests: option fields reaching the request, a plain-`import` mock and

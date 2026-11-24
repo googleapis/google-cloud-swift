@@ -127,6 +127,8 @@ struct AuthHTTPClient: Sendable {
 
       do {
         return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
+      } catch let error as CancellationError {
+        throw error
       } catch {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -168,6 +170,8 @@ struct AuthHTTPClient: Sendable {
           throw AuthHTTPError.decodingError(error: AuthHTTPError.invalidUTF8Response)
         }
         return plainText
+      } catch let error as CancellationError {
+        throw error
       } catch {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -206,6 +210,8 @@ struct AuthHTTPClient: Sendable {
 
       do {
         return try self.makeDecoder().decode(Response.self, from: recvBuffer)
+      } catch let error as CancellationError {
+        throw error
       } catch {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -243,6 +249,8 @@ struct AuthHTTPClient: Sendable {
 
       do {
         return try self.makeDecoder().decode(Response.self, from: Data(buffer: buffer))
+      } catch let error as CancellationError {
+        throw error
       } catch {
         throw AuthHTTPError.decodingError(error: error)
       }

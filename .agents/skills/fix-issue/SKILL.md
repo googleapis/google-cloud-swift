@@ -96,6 +96,7 @@ Before modifying code, research the problem and write an implementation plan art
   - Testing framework: Always `import Testing` with `@Suite struct` (never `import XCTest`).
   - Formatting: Code must pass `swift-format` and `./ci/lint.sh pr`.
   - Access control: Do not elevate visibility (e.g. `public`, `package`) solely for unit tests; use `@testable import`.
+  - Error handling: Never wrap `CancellationError` inside library error enums (such as `RequestError.io`, `CredentialsError`, `WriteObjectError`, or any `underlyingError: any Error` case); always check for and rethrow `CancellationError` directly.
   - Dependencies: If modifying packages locally, use `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test` or `./ci/test.sh`.
 - **`librarian` Rules**: If the issue originates in the code generator, consult and follow `AGENTS.md` in `librarian`.
 

@@ -210,6 +210,11 @@ Applications must know which errors to catch.
 - Loops that run out of attempts either rethrow the last
   `GoogleGax.RequestError` (consistent with `RequestError.exhausted`) or throw a
   package error that carries the underlying error. Pick one, and document it.
+- Never wrap `CancellationError` inside `GoogleGax.RequestError` or a package
+  error type (including `any Error` / `underlyingError` cases), and never map it
+  into a permanent parse or configuration error. Rethrow `CancellationError`
+  directly (unwrapping transport-specific cancellation causes such as
+  `GRPCCore.RPCError` with `cause is CancellationError`).
 
 ### E9: Define equality for types with inherited fields
 
@@ -453,9 +458,11 @@ same pull request as the API:
   that recovers, retries running out, the behavior of the object after the
   terminal error, and the exact error type thrown in each case.
 - **T4: Every public error case is produced by at least one test.**
-- **T5: Cancellation tests** for APIs that hold server resources (transactions,
-  sessions): cancelling the task has documented and tested behavior, for example
-  a rollback.
+- **T5: Cancellation tests.** Verify that task cancellation propagates
+  `CancellationError` directly—never wrapped in `RequestError.io` or a package
+  error type—whenever an async operation catches and maps errors. For APIs that
+  hold server resources (transactions, sessions), cancelling the task also has
+  documented and tested cleanup behavior, for example a rollback.
 - **T6: Observability tests** that check the log metadata, including defaulted
   or empty values (see **O3**).
 - **T7: Equality tests** for types with inherited fields (see **E9**).
@@ -520,14 +527,14 @@ in library implementations, `Snippets/`, or `Tests/`:
 When implementing REST veneers or internal wire tests over `GoogleGax` and
 `GoogleWKT`:
 
-- `GoogleGax._HTTPClientRequest.rpc(_:timeout:)` returns
-  `Result<R, RequestError>` and wraps non-`RequestError` errors thrown by
-  `execute`—including an in-flight `CancellationError`—into
-  `RequestError.io(CancellationError())` (which `ContinueOnIO` treats as
-  permanent). Operations and async streams that distinguish task cancellation
-  from transport errors must unwrap
-  `case .io(let inner) where inner is CancellationError` alongside
-  `error is CancellationError` before logging terminal errors or rethrowing.
+- `GoogleGax._HTTPClientRequest.rpc(_:timeout:)`, `rpcRaw(timeout:)`, and
+  `_HTTPClientResponse` body helpers (`decode(_:)`, `decodeRaw()`, and
+  `decodeError()`) rethrow `CancellationError` directly rather than wrapping it
+  in `RequestError.io`, while mapping other non-`RequestError` transport errors
+  into `RequestError.io`. Veneer operations that invoke
+  `_HTTPClientRequest.execute` directly must likewise catch and rethrow
+  `CancellationError` before wrapping errors in `RequestError.io` or a package
+  error type.
 - `GoogleGax._HTTPClientResponse.decode(_:)` decodes via
   `GoogleWKT._ProtoJSONDecoder` and maps any decode failure—including a `0`-byte
   HTTP `200 OK` response body when `{}` was expected—to
@@ -593,7 +600,8 @@ hand-written package:
 - [ ] No `Codable` unless the encoding is canonical ProtoJSON (**E5**).
 - [ ] Veneer loops use GAX `RetryPolicy` and `BackoffPolicy` (**E6**).
 - [ ] Opaque tokens stay opaque (**E7**); every public error case is thrown and
-  tested (**E8**); equality is defined for inherited fields (**E9**).
+  tested, and `CancellationError` is never wrapped (**E8**); equality is defined
+  for inherited fields (**E9**).
 - [ ] Default implementations match the real client (**K1**); streamed results
   are mockable and wrappable with plain `import` (**K2**); minimal concurrency
   annotations on requirement closures (**K3**).

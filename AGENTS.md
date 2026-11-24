@@ -20,6 +20,7 @@ This document outlines critical rules, coding standards, and workflow practices 
 - **Error Types**:
   - Error types that are expected to be surfaced to or handled by users must conform to both `CustomStringConvertible` and `CustomDebugStringConvertible`.
   - When an uncaught error escapes `@main`, the Swift runtime formats it using `String(reflecting: error)` (`CustomDebugStringConvertible.debugDescription`). Ensure `debugDescription` includes both the structured type/case context and the human-readable explanation so top-level crashes remain actionable.
+  - **Never Wrap `CancellationError`**: Whenever catching errors (`catch`) to wrap or map them into library error types (such as `RequestError.io`, `CredentialsError.cannotFetchToken`, `WriteObjectError.sourceError`, `WriteObjectSourceError.readFailed`, or any error case carrying an underlying `any Error`), always check for and rethrow `CancellationError` directly (`catch let error as CancellationError { throw error }`), including unwrapping transport-specific cancellation causes (such as `GRPCCore.RPCError` with `cause is CancellationError`). Never wrap `CancellationError` inside a library error enum or convert it into a permanent parse/configuration error.
 
 ## Hand-written Packages
 
@@ -52,7 +53,8 @@ Rules that are hard to fix after a release:
 - Use the minimum concurrency annotations (`@Sendable`, `T: Sendable`) on
   closure parameters of protocol requirements.
 - Every public error case is thrown somewhere; document which failures are
-  `GoogleGax.RequestError` and which are the package error type.
+  `GoogleGax.RequestError` and which are the package error type, and never wrap
+  `CancellationError` inside either.
 - Macro expansions call only `_`-prefixed helpers marked
   `@_documentation(visibility: internal)`. Macros should be in a separate
   package; if they are in the same package, the design document must explain

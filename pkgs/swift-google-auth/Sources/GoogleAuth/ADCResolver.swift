@@ -55,6 +55,8 @@ package func loadADC(
     // FilePath string representation is OS-native
     let data = try Data(contentsOf: URL(fileURLWithPath: filePath.string))
     return .contents(data)
+  } catch let error as CancellationError {
+    throw error
   } catch {
     if isEnvironmentOverride {
       throw CredentialsError.cannotLoadFile(
