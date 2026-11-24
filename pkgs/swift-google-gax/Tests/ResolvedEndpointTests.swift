@@ -564,4 +564,17 @@ import Testing
       result.components.url?.absoluteString == "https://example.googleapis.com/upload/v1/items"
     )
   }
+
+  @Test func customEndpointOverrideOnNonUniverseDefaultEndpointUsesCustomOrigin() throws {
+    let resolved = try _ResolvedEndpoint(
+      endpoint: "http://127.0.0.1:12345",
+      defaultEndpoint: "https://localhost:7469"
+    )
+    #expect(resolved.service == nil)
+    #expect(resolved.baseURL.string == "http://127.0.0.1:12345")
+    #expect(resolved.host == "127.0.0.1")
+    #expect(resolved.port == 12345)
+    #expect(resolved.hostHeader == "127.0.0.1")
+    #expect(resolved.authority == "127.0.0.1:12345")
+  }
 }

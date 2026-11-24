@@ -141,8 +141,6 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     let resolvedOrigin = Self.originAndHeader(
       hasCustomEndpoint: endpoint != nil,
       baseURL: resolvedBaseURL,
-      defaultComponents: parsedDefault.components,
-      defaultHost: parsedDefault.host,
       service: extractedService,
       universeDomain: universeDomain
     )
@@ -298,16 +296,15 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
   private static func originAndHeader(
     hasCustomEndpoint: Bool,
     baseURL: URLComponents,
-    defaultComponents: URLComponents,
-    defaultHost: String,
     service: String?,
     universeDomain: _UniverseDomain
   ) -> (authority: String, header: String) {
     guard let service else {
-      // Emulators, Showcase, and local test servers pass non-googleapis.com default endpoints
-      // (such as localhost) and fall back to the default endpoint's host/authority.
-      let authority = defaultComponents.port.map { "\(defaultHost):\($0)" } ?? defaultHost
-      return (authority: authority, header: defaultHost)
+      // Non-googleapis.com default endpoints (such as Showcase or local test servers) use the
+      // resolved `baseURL` (either the custom `endpoint` override or `defaultEndpoint`).
+      let host = baseURL.host ?? ""
+      let authority = baseURL.port.map { "\(host):\($0)" } ?? host
+      return (authority: authority, header: host)
     }
 
     guard hasCustomEndpoint else {
