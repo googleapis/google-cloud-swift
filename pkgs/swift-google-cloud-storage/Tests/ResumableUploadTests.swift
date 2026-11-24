@@ -3669,23 +3669,22 @@ import Testing
     }
   }
 
-  /// Tests that `writeObject` (seekable and streaming) rejects untrusted, cross-universe, or downgraded `Location` URIs before reading from the local source, leaking credentials, or retrying under `AlwaysResume`.
-  @Test(arguments: [
+  private static let untrustedLocationURIs = [
     "http://storage.googleapis.com/upload/storage/v1/b/test-bucket/o?upload_id=downgrade",
     "https://storage.other-universe.com/upload/storage/v1/b/test-bucket/o?upload_id=cross-universe",
     "https://evil.example.com/upload/storage/v1/b/test-bucket/o?upload_id=untrusted-host",
     "https://storage.googleapis.com:8443/upload/storage/v1/b/test-bucket/o?upload_id=wrong-port",
     "/upload/storage/v1/b/test-bucket/o?upload_id=relative",
-  ])
-  func resumableStartRejectsUntrustedLocationWithoutReadingSourceOrLeakingCredentials(
-    badLocation: String
-  ) async throws {
+  ]
+
+  private func makeUntrustedLocationClient(
+    badLocation: String,
+    bucket: String = "test-bucket",
+    objectName: String = "test-object"
+  ) throws -> (client: StorageClient, registry: MockRegistry) {
     let registry = MockRegistry.create()
-    let bucket = "test-bucket"
-    let objectName = "test-object"
     let startUrl =
       "https://storage.googleapis.com/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
-
     registry.register(
       response: .success(
         statusCode: 200,
@@ -3694,7 +3693,6 @@ import Testing
       ),
       for: startUrl
     )
-
     let clientOptions = try StorageClientOptions().with {
       $0.client = try .init().with {
         $0.credentials = try Credentials(configuration: .apiKey("sensitive-api-key"))
@@ -3703,8 +3701,13 @@ import Testing
       $0.writeObject.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
     }
     let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    return (client, registry)
+  }
 
-    // 1. Seekable source: must not seek or read when Location fails validation.
+  /// Tests that seekable `writeObject` rejects untrusted, cross-universe, or downgraded `Location` URIs before seeking/reading the source, leaking credentials, or retrying under `AlwaysResume`.
+  @Test(arguments: Self.untrustedLocationURIs)
+  func resumableSeekableStartRejectsUntrustedLocation(badLocation: String) async throws {
+    let (client, registry) = try makeUntrustedLocationClient(badLocation: badLocation)
     let seekableSource = MockUploadSource(
       totalSize: 1024,
       read: [
@@ -3719,17 +3722,20 @@ import Testing
         }
       ]
     )
-    let seekableError = await expectUploadError {
-      try await client.writeObject(seekableSource, to: bucket, as: objectName)
+    let error = await expectUploadError {
+      try await client.writeObject(seekableSource, to: "test-bucket", as: "test-object")
     }
-    if case .requestError(.badURL(let rejected)) = seekableError {
+    if case .requestError(.badURL(let rejected)) = error {
       #expect(rejected == badLocation)
     } else {
-      Issue.record("Expected .requestError(.badURL), got \(String(describing: seekableError))")
+      Issue.record("Expected .requestError(.badURL), got \(String(describing: error))")
     }
     #expect(registry.recordedRequests().count == 1)
+  }
 
-    // 2. Non-seekable streaming source: must not consume stream chunks when Location fails validation.
+  /// Tests that non-seekable streaming `writeObject` rejects untrusted, cross-universe, or downgraded `Location` URIs before consuming stream chunks, leaking credentials, or retrying under `AlwaysResume`.
+  @Test(arguments: Self.untrustedLocationURIs)
+  func resumableStreamingStartRejectsUntrustedLocation(badLocation: String) async throws {
     struct UnreadDataSequence: AsyncSequence, Sendable {
       typealias Element = Data
       struct AsyncIterator: AsyncIteratorProtocol {
@@ -3740,24 +3746,17 @@ import Testing
       }
       func makeAsyncIterator() -> AsyncIterator { AsyncIterator() }
     }
-    registry.register(
-      response: .success(
-        statusCode: 200,
-        data: Data(),
-        headers: ["Location": badLocation]
-      ),
-      for: startUrl
-    )
+    let (client, registry) = try makeUntrustedLocationClient(badLocation: badLocation)
     let nonSeekableSource = StreamSource(sequence: UnreadDataSequence())
-    let streamError = await expectUploadError {
-      try await client.writeObject(nonSeekableSource, to: bucket, as: objectName)
+    let error = await expectUploadError {
+      try await client.writeObject(nonSeekableSource, to: "test-bucket", as: "test-object")
     }
-    if case .requestError(.badURL(let rejected)) = streamError {
+    if case .requestError(.badURL(let rejected)) = error {
       #expect(rejected == badLocation)
     } else {
-      Issue.record("Expected .requestError(.badURL), got \(String(describing: streamError))")
+      Issue.record("Expected .requestError(.badURL), got \(String(describing: error))")
     }
-    #expect(registry.recordedRequests().count == 2)
+    #expect(registry.recordedRequests().count == 1)
   }
 
   /// Tests that `resumeWriteObject` rejects untrusted, downgraded, cross-universe, or cross-region `uploadId` URIs immediately without seeking the source, sending requests, or looping under `AlwaysResume`.
