@@ -85,11 +85,21 @@ import Testing
       iamURL.absoluteString
         == "https://iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken"
     )
+
+    let encodedIamURL = try custom.serviceURL(
+      service: "iamcredentials",
+      path: "/v1/projects/-/serviceAccounts/sa%40proj.iam.gserviceaccount.com:generateAccessToken"
+    )
+    #expect(
+      encodedIamURL.absoluteString
+        == "https://iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa%40proj.iam.gserviceaccount.com:generateAccessToken"
+    )
   }
 
   @Test(arguments: [
     "evil.com:8443",
     "evil.com/extra",
+    "evil.com%2Fextra",
     "user@evil.com",
     "evil.com?x=1",
     "evil.com#frag",

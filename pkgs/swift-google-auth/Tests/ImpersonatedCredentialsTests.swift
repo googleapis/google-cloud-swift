@@ -787,4 +787,39 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
     #expect(error2?._isRetryable == false)
   }
+
+  @Test func regionalImpersonationURLAcceptsMatchingUniverseAndRejectsMismatch() async throws {
+    let source = StaticSourceCredentials(
+      authHeaders: [("Authorization", "Bearer src-tok")],
+      customUniverseDomain: "apis-tpclp.goog"
+    )
+    let validRegional = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      impersonationURLString:
+        "https://iamcredentials.us-central1.rep.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      universeDomain: "apis-tpclp.goog",
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+    #expect(try await validRegional.universeDomain() == _UniverseDomain.resolve("apis-tpclp.goog"))
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        impersonationURLString:
+          "https://iamcredentials.us-central1.rep.other-universe.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+        universeDomain: "apis-tpclp.goog",
+        httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+      )
+    }
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        impersonationURLString:
+          "https://iamcredentials..rep.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+        universeDomain: "apis-tpclp.goog",
+        httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+      )
+    }
+  }
 }

@@ -863,4 +863,56 @@ import Testing
       #expect(await collector.recorded == testCases.map(\.expectedHeader))
     }
   }
+
+  @Test func executeIPv6LoopbackEndpoint() async throws {
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv6(host: "::1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress: SocketAddress.IPv6?
+      do {
+        listeningAddress = try await server.listeningAddress?.ipv6
+      } catch {
+        // Skip gracefully in container/CI environments where IPv6 loopback is disabled.
+        server.beginGracefulShutdown()
+        return
+      }
+      guard let port = listeningAddress?.port else {
+        server.beginGracefulShutdown()
+        return
+      }
+
+      var options = ClientOptions()
+      options.endpoint = "http://[::1]:\(port)"
+      options.credentials = try Credentials(configuration: .anonymous)
+
+      let client = try _GRPCClient(
+        from: options,
+        withDefaultEndpoint: "https://storage.googleapis.com",
+        environment: [:]
+      )
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      #expect(client.endpoint.host == "::1")
+      #expect(client.endpoint.authority == "[::1]:\(port)")
+
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+  }
 }

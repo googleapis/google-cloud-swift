@@ -45,9 +45,10 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     baseURL.scheme == "https"
   }
 
-  /// The validated target hostname from `baseURL`.
+  /// The validated target hostname or bare IP literal from `baseURL` (with surrounding RFC 3986
+  /// IPv6 `[` and `]` brackets stripped so DNS/socket resolvers such as `getaddrinfo` accept it).
   public var host: String {
-    baseURL.host ?? ""
+    Self.unbracketedHost(baseURL.host ?? "")
   }
 
   /// The target TCP port from `baseURL`, defaulting to `443` for `https` and `80` for `http`.
@@ -194,14 +195,19 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       parsed.password == nil,
       parsed.fragment == nil,
       let uriScheme = parsed.scheme?.lowercased(),
-      let uriHost = parsed.host?.lowercased(),
-      !uriHost.isEmpty,
+      let rawParsedHost = parsed.host,
+      !Self.unbracketedHost(rawParsedHost).isEmpty,
       let baseScheme = self.baseURL.scheme?.lowercased(),
-      let baseHost = self.baseURL.host?.lowercased(),
+      let rawSelfHost = self.baseURL.host,
       uriScheme == baseScheme
     else {
       throw RequestError.badURL(uri)
     }
+
+    let rawURIHost = Self.bracketedHost(rawParsedHost)
+    let rawBaseHost = Self.bracketedHost(rawSelfHost)
+    let uriHostLower = rawURIHost.lowercased()
+    let baseHostLower = rawBaseHost.lowercased()
 
     let defaultPort = (uriScheme == "https") ? 443 : 80
     let uriPort = parsed.port ?? defaultPort
@@ -213,27 +219,39 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     var out = self.baseURL
     let resolvedHostHeader: String
     let universeRaw = self.universeDomain.rawValue
+    let universeSuffix = ".\(universeRaw)"
+    let universeSuffixLower = universeSuffix.lowercased()
 
-    if uriHost == baseHost && uriPort == basePort {
+    if uriHostLower == baseHostLower && uriPort == basePort {
       // Same origin as `baseURL`: keep `baseURL`'s connection target and default `Host` header.
       resolvedHostHeader = self.hostHeader
     } else if !universeRaw.isEmpty,
       let service = self.service,
       !service.contains("."),
-      baseHost.hasSuffix(".\(universeRaw)"),
-      !Self.isRegionalServiceHost(baseHost, service: service, universeDomain: universeRaw),
-      uriHost == "\(service).\(universeRaw)"
-        || Self.isRegionalServiceHost(uriHost, service: service, universeDomain: universeRaw),
+      rawBaseHost.hasSuffix(universeSuffix)
+        || (self.universeDomain.isDefault && baseHostLower.hasSuffix(universeSuffixLower)),
+      rawURIHost.hasSuffix(universeSuffix)
+        || (self.universeDomain.isDefault && uriHostLower.hasSuffix(universeSuffixLower)),
       uriPort == defaultPort || uriPort == basePort
     {
+      let basePrefixLower = String(baseHostLower.dropLast(universeSuffixLower.count))
+      let uriPrefixLower = String(uriHostLower.dropLast(universeSuffixLower.count))
+      guard
+        !Self.isRegionalServicePrefix(basePrefixLower, service: service),
+        uriPrefixLower == service || Self.isRegionalServicePrefix(uriPrefixLower, service: service)
+      else {
+        throw RequestError.badURL(uri)
+      }
       // `baseURL` is a non-regional host in `universeDomain` (either `<service>.<universeDomain>`
       // or a VPC-SC / PSC endpoint), and `uri` targets the global or regional `<service>` host in
-      // that same universe. Connect directly to `uriHost` only from the global service endpoint;
-      // VPC-SC and PSC clients keep connecting via `baseURL` while sending `uriHost` in `Host`.
-      if baseHost == "\(service).\(universeRaw)" {
-        out.host = uriHost
+      // that same universe. Connect directly to `targetHost` only from the global service endpoint;
+      // VPC-SC and PSC clients keep connecting via `baseURL` while sending `targetHost` in `Host`.
+      let targetHost = "\(uriPrefixLower).\(universeRaw)"
+      if basePrefixLower == service {
+        out.host = targetHost
+        out.port = (uriPort == defaultPort) ? nil : uriPort
       }
-      resolvedHostHeader = uriHost
+      resolvedHostHeader = targetHost
     } else {
       throw RequestError.badURL(uri)
     }
@@ -251,16 +269,12 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     return (components: out, hostHeader: resolvedHostHeader)
   }
 
-  /// Returns `true` when `host` matches a regional (`<service>.<region>.rep.<universeDomain>`) or
-  /// locational (`<region>-<service>.<universeDomain>`) hostname for `service` in `universeDomain`.
-  private static func isRegionalServiceHost(
-    _ host: String,
-    service: String,
-    universeDomain: String
+  /// Returns `true` when a lowercased host prefix (before `.<universeDomain>`) matches a regional
+  /// (`<service>.<region>.rep`) or locational (`<region>-<service>`) pattern for `service`.
+  private static func isRegionalServicePrefix(
+    _ prefix: String,
+    service: String
   ) -> Bool {
-    let suffix = ".\(universeDomain)"
-    guard !universeDomain.isEmpty, host.hasSuffix(suffix) else { return false }
-    let prefix = host.dropLast(suffix.count)
     let parts = prefix.split(separator: ".", omittingEmptySubsequences: false)
     // Regional Endpoint (REP): `<service>.<region>.rep.<universeDomain>` with non-empty `<region>`.
     if parts.count == 3 && parts[0] == service && !parts[1].isEmpty && parts[2] == "rep" {
@@ -273,8 +287,23 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     return false
   }
 
+  /// Strips RFC 3986 surrounding `[` and `]` brackets from an IPv6 host literal, if present.
+  private static func unbracketedHost(_ host: String) -> String {
+    if host.hasPrefix("[") && host.hasSuffix("]") && host.count >= 2 {
+      return String(host.dropFirst().dropLast())
+    }
+    return host
+  }
+
+  /// Formats a host for HTTP `Host` and HTTP/2 `:authority` headers, bracketing IPv6 literals
+  /// consistently regardless of whether `URLComponents.host` includes or strips `[` and `]`.
+  private static func bracketedHost(_ rawHost: String) -> String {
+    let bare = unbracketedHost(rawHost)
+    return bare.contains(":") ? "[\(bare)]" : bare
+  }
+
   /// Parses and normalizes a raw endpoint string into clean origin-only `URLComponents` (`http` or
-  /// `https` scheme, non-empty `host`, empty `path`, and `nil` `queryItems`).
+  /// `https` scheme, non-empty `host`, `nil` userinfo/fragment/query, and empty `path`).
   private static func parseEndpoint(
     _ endpoint: String,
     allowsBareHost: Bool
@@ -296,17 +325,20 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     }
     guard
       var parsed = URLComponents(string: normalized),
+      parsed.user == nil,
+      parsed.password == nil,
       let scheme = parsed.scheme?.lowercased(),
       scheme == "http" || scheme == "https",
       let host = parsed.host,
-      !host.isEmpty
+      !Self.unbracketedHost(host).isEmpty
     else {
       throw ClientError.invalidEndpoint(endpoint)
     }
-    // Canonicalize the scheme and strip any path or query so callers can compose per-RPC paths
-    // and query items onto `baseURL` without inheriting residual components.
+    // Canonicalize the scheme and strip any path, query, or fragment so callers can compose per-RPC
+    // paths and query items onto `baseURL` without inheriting residual components.
     parsed.scheme = scheme
     parsed.queryItems = nil
+    parsed.fragment = nil
     parsed.path = ""
     return (components: parsed, host: host)
   }
@@ -321,7 +353,7 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     guard let service else {
       // Non-googleapis.com default endpoints (such as Showcase or local test servers) use the
       // resolved `baseURL` (either the custom `endpoint` override or `defaultEndpoint`).
-      let host = baseURL.host ?? ""
+      let host = Self.bracketedHost(baseURL.host ?? "")
       let authority = baseURL.port.map { "\(host):\($0)" } ?? host
       return (authority: authority, header: host)
     }
@@ -332,21 +364,23 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       return (authority: host, header: host)
     }
 
-    // Match `customHost` against either the configured universe domain or `.googleapis.com` (for
-    // callers overriding `endpoint` to a VPC-SC VIP or regional `.googleapis.com` host without
-    // setting `universeDomain`). Custom hosts outside both universes (emulators, local proxies,
-    // `localhost`) keep their literal host (and port in gRPC `:authority`).
-    let customHost = baseURL.host ?? ""
+    // Match `customHost` against either the configured universe domain (case-sensitively on the
+    // universe suffix per AIP-4110) or `.googleapis.com` (case-insensitively, for callers
+    // overriding `endpoint` to a VPC-SC VIP or regional `.googleapis.com` host without setting
+    // `universeDomain`). Custom hosts outside both universes (emulators, local proxies, `localhost`,
+    // IPv6 `[::1]`) keep their literal host (and port in gRPC `:authority`).
+    let customHost = Self.bracketedHost(baseURL.host ?? "")
+    let customHostLower = customHost.lowercased()
     let universeSuffix = ".\(universeDomain.rawValue)"
     let defaultSuffix = ".\(_UniverseDomain.defaultRawValue)"
-    let prefix: String
+    let prefixLower: String
     let effectiveUniverseDomain: String
 
     if customHost.hasSuffix(universeSuffix) {
-      prefix = String(customHost.dropLast(universeSuffix.count))
+      prefixLower = String(customHost.dropLast(universeSuffix.count)).lowercased()
       effectiveUniverseDomain = universeDomain.rawValue
-    } else if customHost.hasSuffix(defaultSuffix) {
-      prefix = String(customHost.dropLast(defaultSuffix.count))
+    } else if customHostLower.hasSuffix(defaultSuffix) {
+      prefixLower = String(customHostLower.dropLast(defaultSuffix.count))
       effectiveUniverseDomain = _UniverseDomain.defaultRawValue
     } else {
       let authority = baseURL.port.map { "\(customHost):\($0)" } ?? customHost
@@ -357,27 +391,11 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     // whereas VPC-SC VIPs (`private.<universe>`, `restricted.<universe>`), PSC endpoints
     // (`<psc>.p.<universe>`), and `www.<universe>` rewrite `Host` / `:authority` to
     // `<service>.<universe>` so Google Frontends route the request to the target service.
-    let parts = prefix.split(separator: ".", omittingEmptySubsequences: false).map(String.init)
-    switch parts.count {
-    case 3 where parts[2] == "rep" && parts[0] == service && !parts[1].isEmpty:
-      // Regional endpoint: `{service}.{region}.rep.{universeDomain}`.
-      return (authority: customHost, header: customHost)
-    case 1:
-      // Locational endpoint: `{region}-{service}.{universeDomain}`.
-      let location = parts[0]
-      if location.hasSuffix("-\(service)") {
-        let region = String(location.dropLast("-\(service)".count))
-        if !region.isEmpty {
-          return (authority: customHost, header: customHost)
-        }
-      }
-      // Fallback for single-label non-locational universe hosts (e.g. `private`, `restricted`, `www`).
-      let fallback = "\(service).\(effectiveUniverseDomain)"
-      return (authority: fallback, header: fallback)
-    default:
-      // Fallback for multi-label universe hosts (e.g. PSC `<endpoint>.p.<universeDomain>`).
-      let fallback = "\(service).\(effectiveUniverseDomain)"
-      return (authority: fallback, header: fallback)
+    if Self.isRegionalServicePrefix(prefixLower, service: service) {
+      let regionalHost = "\(prefixLower).\(effectiveUniverseDomain)"
+      return (authority: regionalHost, header: regionalHost)
     }
+    let fallback = "\(service).\(effectiveUniverseDomain)"
+    return (authority: fallback, header: fallback)
   }
 }
