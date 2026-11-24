@@ -651,4 +651,113 @@ import Testing
       for try await _ in handle1.body {}
     }
   }
+
+  @Test(arguments: [
+    // VPC-SC endpoint: Location returns storage.<universe>, subsequent chunk PUT routes via private.<universe>
+    (
+      endpoint: "https://private.my-universe.com" as String?,
+      universeDomain: "my-universe.com",
+      expectedStartBase: "https://private.my-universe.com",
+      locationBase: "https://storage.my-universe.com",
+      expectedChunkBase: "https://private.my-universe.com",
+      expectedStartHost: "storage.my-universe.com",
+      expectedChunkHost: "storage.my-universe.com"
+    ),
+    // PSC endpoint: Location returns regional upload host, chunk PUT routes via PSC with regional Host header
+    (
+      endpoint: "https://my-psc.p.googleapis.com",
+      universeDomain: "googleapis.com",
+      expectedStartBase: "https://my-psc.p.googleapis.com",
+      locationBase: "https://storage.us-central1.rep.googleapis.com",
+      expectedChunkBase: "https://my-psc.p.googleapis.com",
+      expectedStartHost: "storage.googleapis.com",
+      expectedChunkHost: "storage.us-central1.rep.googleapis.com"
+    ),
+    // Default endpoint: Location returns regional upload host, chunk PUT connects to regional host with regional Host header
+    (
+      endpoint: nil,
+      universeDomain: "googleapis.com",
+      expectedStartBase: "https://storage.googleapis.com",
+      locationBase: "https://storage.us-central1.rep.googleapis.com",
+      expectedChunkBase: "https://storage.us-central1.rep.googleapis.com",
+      expectedStartHost: "storage.googleapis.com",
+      expectedChunkHost: "storage.us-central1.rep.googleapis.com"
+    ),
+    // Regional endpoint: Location matches regional host
+    (
+      endpoint: "https://storage.us-central1.rep.googleapis.com",
+      universeDomain: "googleapis.com",
+      expectedStartBase: "https://storage.us-central1.rep.googleapis.com",
+      locationBase: "https://storage.us-central1.rep.googleapis.com",
+      expectedChunkBase: "https://storage.us-central1.rep.googleapis.com",
+      expectedStartHost: "storage.us-central1.rep.googleapis.com",
+      expectedChunkHost: "storage.us-central1.rep.googleapis.com"
+    ),
+    // Custom HTTPS proxy: Location matches custom proxy origin
+    (
+      endpoint: "https://my-proxy.example.com:8443",
+      universeDomain: "googleapis.com",
+      expectedStartBase: "https://my-proxy.example.com:8443",
+      locationBase: "https://my-proxy.example.com:8443",
+      expectedChunkBase: "https://my-proxy.example.com:8443",
+      expectedStartHost: "my-proxy.example.com",
+      expectedChunkHost: "my-proxy.example.com"
+    ),
+  ])
+  func resumableWriteObjectRoutingAndHostHeader(
+    endpoint: String?,
+    universeDomain: String,
+    expectedStartBase: String,
+    locationBase: String,
+    expectedChunkBase: String,
+    expectedStartHost: String,
+    expectedChunkHost: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-obj"
+    let startUrl =
+      "\(expectedStartBase)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
+    let locationUrl =
+      "\(locationBase)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=session-1"
+    let expectedChunkUrl =
+      "\(expectedChunkBase)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=session-1"
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data(),
+        headers: ["Location": locationUrl]
+      ),
+      for: startUrl
+    )
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data("{\"name\":\"\(objectName)\"}".utf8),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: expectedChunkUrl
+    )
+
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = endpoint
+        $0.universeDomain = universeDomain
+        $0.credentials = try Credentials(configuration: .anonymous)
+      }
+      $0.writeObject.resumableUploadThreshold = 0
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let object = try await client.writeObject(
+      Data("hello world".utf8), to: bucket, as: objectName)
+    #expect(object.name == objectName)
+
+    let startReq = registry.lastRequest(for: startUrl)
+    #expect(startReq?.value(forHTTPHeaderField: "Host") == expectedStartHost)
+
+    let chunkReq = registry.lastRequest(for: expectedChunkUrl)
+    #expect(chunkReq != nil)
+    #expect(chunkReq?.value(forHTTPHeaderField: "Host") == expectedChunkHost)
+  }
 }

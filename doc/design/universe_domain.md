@@ -56,6 +56,11 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 ### HTTP Client Universe Validation and Retry Policies
 
 - `_HTTPClient` stores the resolved `_ResolvedEndpoint` directly.
+- When constructing requests from an absolute session URI via `_HTTPClient.newRequest(uri:options:)` (or validating one upfront via `validateRequestURI(_:)`), `_ResolvedEndpoint.resolveRequestURI(_:)` validates the target URI's scheme, host, port, and universe domain compatibility against the client's configured endpoint and `universeDomain` before invoking credential methods, throwing `RequestError.badURL` on mismatch or HTTP downgrade:
+  - Default/global service endpoints accept global (`<service>.<universeDomain>`) and regional/locational (`<service>.<region>.rep.<universeDomain>`, `<region>-<service>.<universeDomain>`) service hosts in the same universe domain and set `Host` to the target service host.
+  - Regional/locational service endpoints accept only session URIs matching the configured regional host.
+  - VPC-SC, PSC, and private universe endpoints (such as `private.<universeDomain>`, `restricted.<universeDomain>`, and `<psc>.p.<universeDomain>`) accept matching private or `<service>` hosts in the same universe domain, route the connection target (`scheme`, `host`, `port`) through the client's configured `baseURL`, and derive `Host` from the session URI's target service host.
+  - Custom non-universe endpoints (such as emulators, `localhost`, and custom proxies) require the session URI's scheme, host, and effective port to match `baseURL`.
 - Before `_HTTPClient` calls `credentials.headers()` on a request, it calls `credentials._validateUniverseDomain(self.endpoint.universeDomain)`. For non-anonymous credentials, `_validateUniverseDomain(_:)` checks exact case-sensitive `==` equality between the credentials' `_UniverseDomain` and the client's `universeDomain`, throwing `CredentialsError.parseError` on mismatch (which `_HTTPClient` wraps in `RequestError.io`).
 - If `Task` cancellation (`CancellationError`) occurs while validating the universe domain or resolving authentication headers, `_HTTPClient` rethrows `CancellationError` directly rather than wrapping it in `RequestError.io`.
 - `ContinueOnIO` (for both `RetryPolicy` and `PollingErrorPolicy`) inspects `RequestError.io(let underlying)` and returns `.permanent` when `underlying` is `CredentialsError` or `CancellationError`, ensuring credential and universe domain errors fail immediately on idempotent RPCs.
@@ -72,3 +77,4 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 `GoogleCloudStorage` integrates universe domain support across both the handwritten REST data-plane veneer (`StorageClient`) and the generated gRPC control-plane client (`StorageControlClient`):
 
 - `StorageClient.init` resolves `GoogleGax._ResolvedEndpoint` against `https://storage.googleapis.com` prior to connection pool creation and passes the resolved endpoint directly into `_HTTPClient`.
+- During resumable uploads (`writeObject` and `resumeWriteObject`), `StorageClient` validates session `Location` / `uploadId` URIs via `_HTTPClient.validateRequestURI(_:)` before reading from the local data source or entering retry/resume loops, and delegates status/chunk request construction to `_HTTPClient.newRequest(uri:options:)`.
