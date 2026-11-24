@@ -29,7 +29,9 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
   /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
   public var quotaProjectID: String? = nil
 
-  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
+  ///
+  /// When `nil` or empty, falls back to `GOOGLE_CLOUD_UNIVERSE_DOMAIN` or `googleapis.com`.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `AccessTokenConfig` backed by a custom asynchronous ``AccessTokenProvider``.

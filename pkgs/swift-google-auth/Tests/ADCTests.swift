@@ -733,4 +733,72 @@ import Testing
       _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
     }
   }
+
+  @Test func googleCloudUniverseDomainResolvesLocalFilesWithoutOverridingMDSDiscovery() async throws
+  {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    // 1. Impersonated ADC omitting universe_domain resolves GOOGLE_CLOUD_UNIVERSE_DOMAIN.
+    let tpcImpersonatedJSON = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com"
+        }
+      }
+      """
+    try Data(tpcImpersonatedJSON.utf8).write(to: tempFile)
+    let impersonated = try ADC.resolve(
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog",
+      ]
+    )
+    #expect(try await impersonated.universeDomain().rawValue == "apis-tpclp.goog")
+
+    // Mismatched iamcredentials.googleapis.com URL fails closed under GOOGLE_CLOUD_UNIVERSE_DOMAIN.
+    let defaultURLImpersonatedJSON = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com"
+        }
+      }
+      """
+    try Data(defaultURLImpersonatedJSON.utf8).write(to: tempFile)
+    #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(
+        environment: [
+          "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+          "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog",
+        ]
+      )
+    }
+
+    // 2. MDS fallback does NOT treat GOOGLE_CLOUD_UNIVERSE_DOMAIN as an explicit override,
+    // preserving live MDS universe-domain discovery.
+    let mdsFallback = try ADC.resolve(
+      environment: [
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog",
+        "GCE_METADATA_HOST": "127.0.0.1:1",
+      ]
+    )
+    #expect(mdsFallback is MDSCredentials)
+    await #expect(throws: CredentialsError.self) {
+      _ = try await mdsFallback.universeDomain()
+    }
+  }
 }

@@ -32,7 +32,8 @@ struct UserCredentialsParser: CredentialSourceParser {
       keyJSON: data,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain?.rawValue,
-      scopes: scopes
+      scopes: scopes,
+      environment: environment
     )
   }
 }
@@ -83,6 +84,7 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
     scopes: [String] = [],
+    environment: [String: String] = ProcessInfo.processInfo.environment,
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
@@ -92,6 +94,12 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     if let userUniverse = _UniverseDomain(nonEmpty: user.universeDomain) {
       try Self.validateUniverseDomain(userUniverse)
     }
+    let effectiveUniverse = _UniverseDomain.resolve(
+      universeDomain,
+      user.universeDomain,
+      environment[_UniverseDomain.environmentVariable]
+    )
+    try Self.validateUniverseDomain(effectiveUniverse)
     self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
     // Resolve Token URL
@@ -131,7 +139,8 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     keyJSON: Data,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    scopes: [String] = []
+    scopes: [String] = [],
+    environment: [String: String] = ProcessInfo.processInfo.environment
   ) throws {
     let key: UserAccountData
     do {
@@ -148,7 +157,8 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
       user: key,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain,
-      scopes: scopes
+      scopes: scopes,
+      environment: environment
     )
   }
 

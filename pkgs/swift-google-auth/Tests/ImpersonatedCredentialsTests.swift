@@ -787,4 +787,63 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
     #expect(error2?._isRetryable == false)
   }
+
+  @Test func googleCloudUniverseDomainDerivesIAMEndpointAndValidatesSource() async throws {
+    let env = ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+    let responsePayload = IAMGenerateAccessTokenResponse(
+      accessToken: "mock-env-impersonated-token",
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(responsePayload)
+
+    let mock = MockHTTPClient([
+      { request in
+        #expect(
+          request.url
+            == "https://iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
+        )
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+
+    let matchingSource = StaticSourceCredentials(
+      authHeaders: [("Authorization", "Bearer tpc-source-token")],
+      customUniverseDomain: "apis-tpclp.goog"
+    )
+    let validCreds = try ImpersonatedCredentials(
+      sourceCredentials: matchingSource,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: env,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    #expect(try await validCreds.universeDomain().rawValue == "apis-tpclp.goog")
+    let headers = try await validCreds.headers()
+    #expect(headers["Authorization"] == "Bearer mock-env-impersonated-token")
+
+    struct GuardedDefaultUniverseSource: CredentialsProvider {
+      func universeDomain() async throws -> _UniverseDomain {
+        .default
+      }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("sourceCredentials.headers() must not be called on universe mismatch")
+        return [("Authorization", "Bearer leaked-token")]
+      }
+    }
+    let mismatchedCreds = try ImpersonatedCredentials(
+      sourceCredentials: GuardedDefaultUniverseSource(),
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: env,
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+    await #expect(throws: CredentialsError.self) {
+      _ = try await mismatchedCreds.headers()
+    }
+  }
 }

@@ -48,7 +48,8 @@ public struct UserConfig: Sendable {
 
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (must be `googleapis.com`, empty, or `nil`).
   ///
-  /// When `nil` or empty, defaults to `googleapis.com`.
+  /// When `nil` or empty, falls back to `"universe_domain"` in `keyJSON`,
+  /// `GOOGLE_CLOUD_UNIVERSE_DOMAIN`, or `googleapis.com`.
   public var universeDomain: String? = nil
 
   /// Scopes requested for the access token.

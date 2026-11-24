@@ -1485,6 +1485,92 @@ import NIOHTTP1
     #expect(got == ResponseType(name: "from-custom", value: "ok"))
   }
 
+  @Test func defaultCredentialsForwardsEnvironmentUniverseDomainAndCatchesFileMismatch()
+    async throws
+  {
+    let mock = MockHTTPClient { _, _ in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0._httpClient = mock
+    }
+
+    // API key credentials + GOOGLE_CLOUD_UNIVERSE_DOMAIN match client's resolved universe.
+    let apiKeyEnv = ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env-universe.com"]
+    let apiKeyCreds = try Credentials(configuration: .apiKey("k"), environment: apiKeyEnv)
+    let apiKeyClient = try _HTTPClient(
+      from: options.with { $0.credentials = apiKeyCreds },
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: apiKeyEnv
+    )
+    let okReq = try await apiKeyClient.newRequest(path: "/v1/items", query: [])
+    #expect(okReq.components.url?.absoluteString == "https://example.env-universe.com/v1/items")
+
+    // Default Credentials(environment:) catches a mismatch on request when
+    // GOOGLE_APPLICATION_CREDENTIALS has an explicit universe_domain ("googleapis.com")
+    // that conflicts with GOOGLE_CLOUD_UNIVERSE_DOMAIN ("env-universe.com").
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh",
+        "universe_domain": "googleapis.com"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    let mismatchClient = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env-universe.com",
+      ]
+    )
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await mismatchClient.newRequest(path: "/v1/items", query: [])
+    }
+    guard case .io(let underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+
+    // When universe_domain is omitted from authorized_user JSON, default Credentials(environment:)
+    // forwards GOOGLE_CLOUD_UNIVERSE_DOMAIN and rejects non-default universes at init.
+    let noUniverseFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json"
+    )
+    defer { try? FileManager.default.removeItem(at: noUniverseFile) }
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh"
+      }
+      """.utf8
+    ).write(to: noUniverseFile)
+
+    #expect(throws: CredentialsError.self) {
+      _ = try _HTTPClient(
+        from: options,
+        withDefaultEndpoint: "https://example.googleapis.com",
+        environment: [
+          "GOOGLE_APPLICATION_CREDENTIALS": noUniverseFile.path,
+          "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env-universe.com",
+        ]
+      )
+    }
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

@@ -50,7 +50,7 @@ public import Foundation
       defaultEndpoint: withDefaultEndpoint,
       environment: environment
     )
-    let credentials = try from.credentials ?? GoogleAuth.Credentials()
+    let credentials = try from.credentials ?? GoogleAuth.Credentials(environment: environment)
     self.init(
       from._httpClient ?? HTTPClientHolder(),
       endpoint: resolvedEndpoint,

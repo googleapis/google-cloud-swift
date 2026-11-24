@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
+
 /// An authentication provider backed by a Google Cloud API key.
 ///
 /// An [API Key](https://cloud.google.com/docs/authentication/api-keys-use) is an encrypted string used
@@ -28,18 +30,29 @@ struct APIKeyCredentials: CredentialsProvider, Sendable, CustomStringConvertible
   CustomDebugStringConvertible
 {
   private let apiKey: String
+  let universeDomain: _UniverseDomain
 
   /// Initializes credentials with the provided API key.
   ///
-  /// - Parameter apiKey: The Google Cloud API key.
-  init(apiKey: String) {
+  /// - Parameters:
+  ///   - apiKey: The Google Cloud API key.
+  ///   - environment: Environment variable dictionary inspected for `GOOGLE_CLOUD_UNIVERSE_DOMAIN`.
+  init(
+    apiKey: String,
+    environment: [String: String] = ProcessInfo.processInfo.environment
+  ) {
     self.apiKey = apiKey
+    self.universeDomain = _UniverseDomain.resolve(configured: nil, environment: environment)
   }
 
   // MARK: - CredentialsProvider
 
   func headers() async throws -> AuthHeaders {
     return [("x-goog-api-key", self.apiKey)]
+  }
+
+  func universeDomain() async throws -> _UniverseDomain {
+    return self.universeDomain
   }
 
   // MARK: - CustomStringConvertible & CustomDebugStringConvertible

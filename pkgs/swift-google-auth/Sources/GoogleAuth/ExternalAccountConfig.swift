@@ -123,7 +123,7 @@ public struct ExternalAccountConfig: Sendable {
 
   /// Google Cloud universe domain override.
   ///
-  /// When `nil` or empty, defaults to `googleapis.com`.
+  /// When `nil` or empty, falls back to `GOOGLE_CLOUD_UNIVERSE_DOMAIN` or `googleapis.com`.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `ExternalAccountConfig`.

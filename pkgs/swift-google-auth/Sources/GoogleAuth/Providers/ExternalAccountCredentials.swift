@@ -212,6 +212,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     workforcePoolUserProject: String? = nil,
     scopes: [String] = [],
     universeDomain: String? = nil,
+    environment: [String: String] = ProcessInfo.processInfo.environment,
     retryConfiguration: RetryConfiguration? = nil,
     httpClient: AuthHTTPClient = AuthHTTPClient()
   ) throws {
@@ -237,7 +238,10 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
-    let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
+    let effectiveUniverse = _UniverseDomain.resolve(
+      configured: universeDomain,
+      environment: environment
+    )
     // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
     let resolvedTokenURL =
       try tokenURL ?? effectiveUniverse.serviceURL(service: "sts", path: "/v1/token")

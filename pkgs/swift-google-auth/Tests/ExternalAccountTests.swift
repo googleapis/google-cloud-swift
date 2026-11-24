@@ -1383,4 +1383,49 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let headers = try await credentials.headers()
     #expect(headers["Authorization"] == "Bearer mock-custom-url-token")
   }
+
+  @Test(
+    "ExternalAccountConfig derives STS endpoint from GOOGLE_CLOUD_UNIVERSE_DOMAIN when universeDomain is unset"
+  )
+  func googleCloudUniverseDomainDerivesSTSEndpoint() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience:
+        "//iam.apis-tpclp.goog/projects/123/locations/global/workloadIdentityPools/p/providers/pr",
+      subjectTokenType: .idToken
+    )
+    let expectedResponse = TokenResponse(
+      accessToken: "mock-env-universe-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == "https://sts.apis-tpclp.goog/v1/token")
+        #expect(request.method == .POST)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+
+    let credentials = try Credentials(
+      externalAccount: config,
+      httpClient: AuthHTTPClient(mock: mock),
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+    )
+    #expect(try await credentials.universeDomain() == "apis-tpclp.goog")
+    let headers = try await credentials.headers()
+    #expect(headers["Authorization"] == "Bearer mock-env-universe-token")
+  }
 }

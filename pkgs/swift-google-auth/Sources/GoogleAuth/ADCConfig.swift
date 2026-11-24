@@ -37,9 +37,11 @@ public struct ADCConfig: Sendable {
   /// non-empty value, its value takes precedence over this property.
   public var quotaProjectID: String? = nil
 
-  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
   ///
-  /// Override this if your application is operating in a custom sovereign or air-gapped cloud.
+  /// When `nil` or empty, local credential sources fall back to any `"universe_domain"` in the
+  /// credential file, `GOOGLE_CLOUD_UNIVERSE_DOMAIN`, or `googleapis.com`, while metadata server
+  /// fallback queries `/computeMetadata/v1/universe/universe-domain`.
   public var universeDomain: String? = nil
 
   /// Scopes requested for the access token, further restricting what the token can be used for.

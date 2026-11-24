@@ -560,4 +560,100 @@ import Testing
       try await apiKey.validateUniverseDomain("custom.universe.com")
     }
   }
+
+  @Test func googleCloudUniverseDomainEnvironmentPrecedence() async throws {
+    let env = ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+    let emptyEnv = ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": ""]
+
+    let saJSONWithoutUniverse = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com"
+      }
+      """.utf8
+    )
+    let saFromEnv = try Credentials(
+      configuration: .serviceAccount(ServiceAccountConfig(keyJSON: saJSONWithoutUniverse)),
+      environment: env
+    )
+    #expect(try await saFromEnv.universeDomain() == "apis-tpclp.goog")
+
+    let saEmptyEnv = try Credentials(
+      configuration: .serviceAccount(ServiceAccountConfig(keyJSON: saJSONWithoutUniverse)),
+      environment: emptyEnv
+    )
+    #expect(try await saEmptyEnv.universeDomain() == "googleapis.com")
+
+    // Credential file universe_domain takes precedence over GOOGLE_CLOUD_UNIVERSE_DOMAIN so
+    // transport mismatch validation catches cross-universe key files per AIP-4113.
+    let saJSONWithUniverse = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com",
+        "universe_domain": "json.universe.com"
+      }
+      """.utf8
+    )
+    let saJSONPrecedence = try Credentials(
+      configuration: .serviceAccount(ServiceAccountConfig(keyJSON: saJSONWithUniverse)),
+      environment: env
+    )
+    #expect(try await saJSONPrecedence.universeDomain() == "json.universe.com")
+
+    let saExplicitPrecedence = try Credentials(
+      configuration: .serviceAccount(
+        ServiceAccountConfig(keyJSON: saJSONWithUniverse).with {
+          $0.universeDomain = "explicit.universe.com"
+        }
+      ),
+      environment: env
+    )
+    #expect(try await saExplicitPrecedence.universeDomain() == "explicit.universe.com")
+
+    let accessTokenFromEnv = try Credentials(
+      configuration: .accessToken(
+        AccessTokenConfig(
+          token: AccessToken(token: "tok", expirationDate: .distantFuture)
+        )
+      ),
+      environment: env
+    )
+    #expect(try await accessTokenFromEnv.universeDomain() == "apis-tpclp.goog")
+
+    let apiKeyFromEnv = try Credentials(
+      configuration: .apiKey("test-api-key"),
+      environment: env
+    )
+    #expect(try await apiKeyFromEnv.universeDomain() == "apis-tpclp.goog")
+
+    // User credentials fail closed in non-default GOOGLE_CLOUD_UNIVERSE_DOMAIN environments.
+    let userJSON = Data(
+      """
+      {
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "type": "authorized_user"
+      }
+      """.utf8
+    )
+    let userError = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .user(UserConfig(keyJSON: userJSON)),
+        environment: env
+      )
+    }
+    guard case .notSupported = userError else {
+      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: userError))")
+      return
+    }
+  }
 }

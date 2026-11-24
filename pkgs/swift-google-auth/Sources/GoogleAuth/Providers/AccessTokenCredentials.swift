@@ -23,10 +23,16 @@ struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendabl
   let quotaProjectID: String?
   let universeDomain: _UniverseDomain
 
-  init(config: AccessTokenConfig) {
+  init(
+    config: AccessTokenConfig,
+    environment: [String: String] = ProcessInfo.processInfo.environment
+  ) {
     self.provider = config.provider
     self.quotaProjectID = nonEmpty(config.quotaProjectID)
-    self.universeDomain = _UniverseDomain.resolve(config.universeDomain)
+    self.universeDomain = _UniverseDomain.resolve(
+      configured: config.universeDomain,
+      environment: environment
+    )
   }
 
   func accessToken() async throws -> AccessToken {

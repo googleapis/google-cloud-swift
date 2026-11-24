@@ -32,7 +32,8 @@ struct ServiceAccountParser: CredentialSourceParser {
       keyJSON: data,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain?.rawValue,
-      accessSpecifier: .scopes(scopes)
+      accessSpecifier: .scopes(scopes),
+      environment: environment
     )
   }
 }
@@ -61,7 +62,8 @@ struct ServiceAccountCredentials: CredentialsProvider, AccessTokenProvider, Send
     keyJSON: Data,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    accessSpecifier: AccessSpecifier = .scopes([])
+    accessSpecifier: AccessSpecifier = .scopes([]),
+    environment: [String: String] = ProcessInfo.processInfo.environment
   ) throws {
     let key: ServiceAccountData
     do {
@@ -70,7 +72,11 @@ struct ServiceAccountCredentials: CredentialsProvider, AccessTokenProvider, Send
       throw CredentialsError.parseError(
         "Failed to parse Service Account key JSON: \(error.localizedDescription)")
     }
-    let effectiveUniverse = _UniverseDomain.resolve(universeDomain, key.universeDomain)
+    let effectiveUniverse = _UniverseDomain.resolve(
+      universeDomain,
+      key.universeDomain,
+      environment[_UniverseDomain.environmentVariable]
+    )
     let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
 
     self.tokenProvider = TokenCache(

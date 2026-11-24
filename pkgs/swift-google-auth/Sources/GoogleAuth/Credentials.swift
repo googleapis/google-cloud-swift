@@ -267,7 +267,8 @@ public struct Credentials: Sendable {
     )
   }
 
-  init(
+  @_spi(GoogleCloudInternal)
+  public init(
     configuration: CredentialsConfiguration = .adc(),
     environment: [String: String]
   ) throws {
@@ -280,10 +281,12 @@ public struct Credentials: Sendable {
   /// Internal test initializer for injecting a mock `AuthHTTPClient` into external account credentials.
   init(
     externalAccount config: ExternalAccountConfig,
-    httpClient: AuthHTTPClient
+    httpClient: AuthHTTPClient,
+    environment: [String: String] = ProcessInfo.processInfo.environment
   ) throws {
     self.credentialsProvider = try Self.resolveExternalAccountProvider(
       config: config,
+      environment: environment,
       httpClient: httpClient
     )
   }
@@ -385,19 +388,21 @@ public struct Credentials: Sendable {
         keyJSON: config.keyJSON,
         quotaProjectID: config.quotaProjectID,
         universeDomain: config.universeDomain,
-        accessSpecifier: config.accessSpecifier
+        accessSpecifier: config.accessSpecifier,
+        environment: environment
       )
     case let .user(config):
       return try UserCredentials(
         keyJSON: config.keyJSON,
         quotaProjectID: config.quotaProjectID,
         universeDomain: config.universeDomain,
-        scopes: config.scopes
+        scopes: config.scopes,
+        environment: environment
       )
     case let .externalAccount(config):
-      return try resolveExternalAccountProvider(config: config)
+      return try resolveExternalAccountProvider(config: config, environment: environment)
     case let .apiKey(apiKey):
-      return APIKeyCredentials(apiKey: apiKey)
+      return APIKeyCredentials(apiKey: apiKey, environment: environment)
     case let .impersonatedServiceAccount(config):
       return try ImpersonatedCredentials(
         sourceCredentials: config.sourceCredentials.credentialsProvider,
@@ -406,7 +411,8 @@ public struct Credentials: Sendable {
         scopes: config.scopes,
         lifetime: config.lifetime,
         quotaProjectID: config.quotaProjectID,
-        universeDomain: config.universeDomain
+        universeDomain: config.universeDomain,
+        environment: environment
       )
     case let .mds(config):
       return MDSCredentials(
@@ -417,12 +423,13 @@ public struct Credentials: Sendable {
         environment: environment
       )
     case let .accessToken(config):
-      return AccessTokenCredentials(config: config)
+      return AccessTokenCredentials(config: config, environment: environment)
     }
   }
 
   private static func resolveExternalAccountProvider(
     config: ExternalAccountConfig,
+    environment: [String: String] = ProcessInfo.processInfo.environment,
     httpClient: AuthHTTPClient = AuthHTTPClient()
   ) throws -> ExternalAccountCredentials {
     try ExternalAccountCredentials(
@@ -434,6 +441,7 @@ public struct Credentials: Sendable {
       workforcePoolUserProject: config.workforcePoolUserProject,
       scopes: config.scopes,
       universeDomain: config.universeDomain,
+      environment: environment,
       httpClient: httpClient
     )
   }

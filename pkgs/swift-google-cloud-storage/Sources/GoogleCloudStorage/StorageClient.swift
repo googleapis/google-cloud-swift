@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 
 /// A client for the [Cloud Storage] data-plane operations.
@@ -37,10 +37,13 @@ public final class StorageClient: StorageProtocol, Sendable {
   /// files from disk). Prefer initializing the client at application startup and reusing it across
   /// requests.
   public convenience init(_ options: StorageClientOptions = .init()) throws {
-    let credentials = try options.client.credentials ?? GoogleAuth.Credentials()
+    let environment = ProcessInfo.processInfo.environment
+    let credentials =
+      try options.client.credentials ?? GoogleAuth.Credentials(environment: environment)
     try self.init(
       options,
       credentials: credentials,
+      environment: environment,
       makeClients: { poolSize in (0..<poolSize).map { _ in StorageHTTPClientHolder() } }
     )
   }

@@ -30,7 +30,7 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
   /// The default Google Cloud universe domain string (`"googleapis.com"`).
   public static let defaultRawValue = "googleapis.com"
 
-  /// The environment variable name inspected by client transports (`"GOOGLE_CLOUD_UNIVERSE_DOMAIN"`).
+  /// The environment variable name for universe domain resolution (`"GOOGLE_CLOUD_UNIVERSE_DOMAIN"`).
   public static let environmentVariable = "GOOGLE_CLOUD_UNIVERSE_DOMAIN"
 
   /// The default Google Cloud universe domain (`"googleapis.com"`).

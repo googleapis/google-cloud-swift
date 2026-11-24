@@ -46,7 +46,8 @@ public struct ImpersonatedServiceAccountConfig: Sendable {
 
   /// Optional target Google Cloud universe domain override.
   ///
-  /// When `nil` or empty, defaults to the universe domain of `sourceCredentials`.
+  /// When `nil` or empty, falls back to `GOOGLE_CLOUD_UNIVERSE_DOMAIN` if set, or delegates to the
+  /// universe domain of `sourceCredentials`.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `ImpersonatedServiceAccountConfig`.
