@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleAuth
 import GoogleGax
 import Testing
 
 @Suite struct ContinueIOTests {
-  @Test func retryIO() {
+  @Test func retryIO() async throws {
     let p = NeverRetry().retryOnIO()
 
     let ioError = mockIOError()
@@ -33,6 +34,38 @@ import Testing
     #expect(
       p.onError(state: nonIdempotentState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let permanentFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant",
+        underlyingError: CredentialsError.parseError("revoked")
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: permanentFetchError)
+        == .permanent(permanentFetchError)
+    )
+
+    let cancelledFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "cancelled",
+        underlyingError: URLError(.cancelled)
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: cancelledFetchError)
+        == .permanent(cancelledFetchError)
+    )
+
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
+    #expect(
+      p.onError(state: idempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())
@@ -55,7 +88,8 @@ import Testing
     #expect(p.remainingTime(state: nonIdempotentState()) == nil)
   }
 
-  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysRetry() {
+  @Test func nonRetryableCredentialsAndCancellationErrorsArePermanentWithAlwaysRetry() async throws
+  {
     let p = AlwaysRetry.unbounded().retryOnIO()
 
     let ioError = mockIOError()
@@ -68,6 +102,38 @@ import Testing
     #expect(
       p.onError(state: nonIdempotentState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let permanentFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant",
+        underlyingError: CredentialsError.parseError("revoked")
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: permanentFetchError)
+        == .permanent(permanentFetchError)
+    )
+
+    let cancelledFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "cancelled",
+        underlyingError: URLError(.cancelled)
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: cancelledFetchError)
+        == .permanent(cancelledFetchError)
+    )
+
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
+    #expect(
+      p.onError(state: idempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())
