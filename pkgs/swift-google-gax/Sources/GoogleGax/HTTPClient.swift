@@ -166,6 +166,11 @@ public import Foundation
     request.setHeader(name: _HeaderNames.apiClient, value: self.clientHeader.build())
   }
 
+  /// Validates that an absolute session `uri` is compatible with the client's configured endpoint
+  /// and universe domain.
+  ///
+  /// - Throws: `RequestError.badURL(uri)` if `uri` fails scheme, port, host, or universe domain
+  ///   validation.
   public func validateRequestURI(_ uri: String) throws {
     _ = try _Host.resolveRequestURI(
       uri,
@@ -204,6 +209,12 @@ public import Foundation
     return request
   }
 
+  /// Creates a new authenticated request for an absolute session `uri`, validating its scheme,
+  /// port, host, and universe domain before resolving credential headers.
+  ///
+  /// - Throws: `RequestError.badURL(uri)` if `uri` fails endpoint/universe validation,
+  ///   `CancellationError` if the current task is cancelled while resolving credentials, or
+  ///   `RequestError.io` wrapping credential or universe domain mismatch errors.
   public func newRequest(
     uri: String,
     options: RequestOptions = .init()
