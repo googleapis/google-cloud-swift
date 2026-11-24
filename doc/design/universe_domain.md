@@ -78,3 +78,4 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 
 - `StorageClient.init` resolves `GoogleGax._ResolvedEndpoint` against `https://storage.googleapis.com` prior to connection pool creation and passes the resolved endpoint directly into `_HTTPClient`.
 - During resumable uploads (`writeObject` and `resumeWriteObject`), `StorageClient` validates session `Location` / `uploadId` URIs via `_HTTPClient.validateRequestURI(_:)` before reading from the local data source or entering retry/resume loops, and delegates status/chunk request construction to `_HTTPClient.newRequest(uri:options:)`.
+- `StorageResumePolicy` consults `RequestError._isPermanentIOError` on `RequestError.io` failures so permanent credential and universe domain mismatch errors fail immediately without consuming upload or download resume attempts, while transient token-refresh failures mid-transfer remain resumable.

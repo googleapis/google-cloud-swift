@@ -126,6 +126,67 @@ import Testing
     #expect(isPermanent(policy.onError(state: nonIdempotentState(), error: ioError)))
   }
 
+  struct CredentialsRetryCase: Sendable, CustomTestStringConvertible {
+    let testDescription: String
+    let error: RequestError
+    let idempotent: Bool
+    let expectedRetry: Bool
+  }
+
+  @Test(arguments: [
+    CredentialsRetryCase(
+      testDescription: "CancellationError is permanent",
+      error: .io(CancellationError()),
+      idempotent: true,
+      expectedRetry: false
+    ),
+    CredentialsRetryCase(
+      testDescription: "parseError is permanent",
+      error: .io(CredentialsError.parseError("universe domain mismatch")),
+      idempotent: true,
+      expectedRetry: false
+    ),
+    CredentialsRetryCase(
+      testDescription: "cannotFetchToken(badURL) is permanent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "invalid_url", underlyingError: URLError(.badURL))),
+      idempotent: true,
+      expectedRetry: false
+    ),
+    CredentialsRetryCase(
+      testDescription: "cannotFetchToken(cancelled) is permanent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "cancelled", underlyingError: URLError(.cancelled))),
+      idempotent: true,
+      expectedRetry: false
+    ),
+    CredentialsRetryCase(
+      testDescription: "cannotFetchToken(networkConnectionLost) retries when idempotent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "transient", underlyingError: URLError(.networkConnectionLost))),
+      idempotent: true,
+      expectedRetry: true
+    ),
+    CredentialsRetryCase(
+      testDescription: "cannotFetchToken(networkConnectionLost) is permanent when non-idempotent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "transient", underlyingError: URLError(.networkConnectionLost))),
+      idempotent: false,
+      expectedRetry: false
+    ),
+  ])
+  func storageBaseRetryPolicyCredentialsErrors(_ testCase: CredentialsRetryCase) {
+    let policy = StorageBaseRetryPolicy.unbounded()
+    let state = testCase.idempotent ? idempotentState() : nonIdempotentState()
+    let result = policy.onError(state: state, error: testCase.error)
+    #expect(isRetry(result) == testCase.expectedRetry)
+    #expect(isPermanent(result) == !testCase.expectedRetry)
+  }
+
   @Test func storageBaseRetryPolicyDefaultPolicy() {
     let policy = StorageBaseRetryPolicy.defaultPolicy
     let state = idempotentState()
