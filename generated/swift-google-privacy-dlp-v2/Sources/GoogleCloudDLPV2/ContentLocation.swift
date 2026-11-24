@@ -161,17 +161,17 @@ public struct ContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.location {
       switch choice {
       case .recordLocation(let value):
-        try container.encode(value, forKey: .recordLocation)
+        try container.encodeIfPresent(value, forKey: .recordLocation)
       case .imageLocation(let value):
-        try container.encode(value, forKey: .imageLocation)
+        try container.encodeIfPresent(value, forKey: .imageLocation)
       case .documentLocation(let value):
-        try container.encode(value, forKey: .documentLocation)
+        try container.encodeIfPresent(value, forKey: .documentLocation)
       case .metadataLocation(let value):
-        try container.encode(value, forKey: .metadataLocation)
+        try container.encodeIfPresent(value, forKey: .metadataLocation)
       case .conversationLocation(let value):
-        try container.encode(value, forKey: .conversationLocation)
+        try container.encodeIfPresent(value, forKey: .conversationLocation)
       case .batchContentLocation(let value):
-        try container.encode(value, forKey: .batchContentLocation)
+        try container.encodeIfPresent(value, forKey: .batchContentLocation)
       }
     }
     for (key, value) in self._unknownFields.json {

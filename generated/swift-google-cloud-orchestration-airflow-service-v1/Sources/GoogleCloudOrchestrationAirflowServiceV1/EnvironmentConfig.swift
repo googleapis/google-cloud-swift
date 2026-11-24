@@ -273,13 +273,17 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
     try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
     try container.encodeIfPresent(self.workloadsConfig, forKey: .workloadsConfig)
-    try container.encode(self.environmentSize, forKey: .environmentSize)
+    if self.environmentSize != EnvironmentConfig.EnvironmentSize() {
+      try container.encode(self.environmentSize, forKey: .environmentSize)
+    }
     try container.encode(self.airflowUri, forKey: .airflowUri)
     try container.encode(self.airflowByoidUri, forKey: .airflowByoidUri)
     try container.encodeIfPresent(
       self.masterAuthorizedNetworksConfig, forKey: .masterAuthorizedNetworksConfig)
     try container.encodeIfPresent(self.recoveryConfig, forKey: .recoveryConfig)
-    try container.encode(self.resilienceMode, forKey: .resilienceMode)
+    if self.resilienceMode != EnvironmentConfig.ResilienceMode() {
+      try container.encode(self.resilienceMode, forKey: .resilienceMode)
+    }
     try container.encodeIfPresent(self.dataRetentionConfig, forKey: .dataRetentionConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -88,7 +88,9 @@ public struct MaintenanceControl: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.control, forKey: .control)
+    if self.control != MaintenanceControl.Control() {
+      try container.encode(self.control, forKey: .control)
+    }
     try container.encode(self.isCustom, forKey: .isCustom)
     try container.encode(self.documentation, forKey: .documentation)
     for (key, value) in self._unknownFields.json {

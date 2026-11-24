@@ -191,7 +191,9 @@ public struct CustomClass: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.items, forKey: .items)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CustomClass.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)

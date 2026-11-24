@@ -171,9 +171,9 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.osAdaptationConfig {
       switch choice {
       case .osAdaptationParameters(let value):
-        try container.encode(value, forKey: .osAdaptationParameters)
+        try container.encodeIfPresent(value, forKey: .osAdaptationParameters)
       case .dataDiskImageImport(let value):
-        try container.encode(value, forKey: .dataDiskImageImport)
+        try container.encodeIfPresent(value, forKey: .dataDiskImageImport)
       }
     }
     for (key, value) in self._unknownFields.json {

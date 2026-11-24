@@ -103,7 +103,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.lintObject {
       switch choice {
       case .condition(let value):
-        try container.encode(value, forKey: .condition)
+        try container.encodeIfPresent(value, forKey: .condition)
       }
     }
     for (key, value) in self._unknownFields.json {

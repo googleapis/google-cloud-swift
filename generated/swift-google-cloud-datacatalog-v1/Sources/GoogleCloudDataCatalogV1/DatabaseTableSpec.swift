@@ -86,7 +86,9 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DatabaseTableSpec.TableType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.dataplexTable, forKey: .dataplexTable)
     try container.encodeIfPresent(self.databaseViewSpec, forKey: .databaseViewSpec)
     for (key, value) in self._unknownFields.json {
@@ -174,14 +176,16 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.viewType, forKey: .viewType)
+      if self.viewType != DatabaseTableSpec.DatabaseViewSpec.ViewType() {
+        try container.encode(self.viewType, forKey: .viewType)
+      }
 
       if let choice = self.sourceDefinition {
         switch choice {
         case .baseTable(let value):
-          try container.encode(value, forKey: .baseTable)
+          try container.encodeIfPresent(value, forKey: .baseTable)
         case .sqlQuery(let value):
-          try container.encode(value, forKey: .sqlQuery)
+          try container.encodeIfPresent(value, forKey: .sqlQuery)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -214,7 +214,9 @@ public struct AzureNodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.config, forKey: .config)
     try container.encode(self.subnetId, forKey: .subnetId)
     try container.encodeIfPresent(self.autoscaling, forKey: .autoscaling)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AzureNodePool.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

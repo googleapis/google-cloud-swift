@@ -179,12 +179,16 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encodeIfPresent(self.duration, forKey: .duration)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Execution.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.argument, forKey: .argument)
     try container.encode(self.result, forKey: .result)
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.workflowRevisionId, forKey: .workflowRevisionId)
-    try container.encode(self.callLogLevel, forKey: .callLogLevel)
+    if self.callLogLevel != Execution.CallLogLevel() {
+      try container.encode(self.callLogLevel, forKey: .callLogLevel)
+    }
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.stateError, forKey: .stateError)
@@ -809,7 +813,9 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.details, forKey: .details)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Execution.StateError.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

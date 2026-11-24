@@ -86,8 +86,12 @@ public struct DatastoreFirestoreMigrationMetadata: Codable, Equatable, GoogleWKT
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.migrationState, forKey: .migrationState)
-    try container.encode(self.migrationStep, forKey: .migrationStep)
+    if self.migrationState != MigrationState() {
+      try container.encode(self.migrationState, forKey: .migrationState)
+    }
+    if self.migrationStep != MigrationStep() {
+      try container.encode(self.migrationStep, forKey: .migrationStep)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

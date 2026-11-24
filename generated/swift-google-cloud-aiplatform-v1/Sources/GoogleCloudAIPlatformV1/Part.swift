@@ -178,26 +178,26 @@
       if let choice = self.data {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .inlineData(let value):
-          try container.encode(value, forKey: .inlineData)
+          try container.encodeIfPresent(value, forKey: .inlineData)
         case .fileData(let value):
-          try container.encode(value, forKey: .fileData)
+          try container.encodeIfPresent(value, forKey: .fileData)
         case .functionCall(let value):
-          try container.encode(value, forKey: .functionCall)
+          try container.encodeIfPresent(value, forKey: .functionCall)
         case .functionResponse(let value):
-          try container.encode(value, forKey: .functionResponse)
+          try container.encodeIfPresent(value, forKey: .functionResponse)
         case .executableCode(let value):
-          try container.encode(value, forKey: .executableCode)
+          try container.encodeIfPresent(value, forKey: .executableCode)
         case .codeExecutionResult(let value):
-          try container.encode(value, forKey: .codeExecutionResult)
+          try container.encodeIfPresent(value, forKey: .codeExecutionResult)
         }
       }
 
       if let choice = self.metadata {
         switch choice {
         case .videoMetadata(let value):
-          try container.encode(value, forKey: .videoMetadata)
+          try container.encodeIfPresent(value, forKey: .videoMetadata)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -275,7 +275,7 @@
         if let choice = self.value {
           switch choice {
           case .level(let value):
-            try container.encode(value, forKey: .level)
+            try container.encodeIfPresent(value, forKey: .level)
           }
         }
         for (key, value) in self._unknownFields.json {

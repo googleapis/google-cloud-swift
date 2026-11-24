@@ -156,7 +156,9 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     try container.encode(self.refinedSearch, forKey: .refinedSearch)
     try container.encodeIfPresent(
       self.conversationalFilteringResult, forKey: .conversationalFilteringResult)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ConversationalSearchResponse.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -104,11 +104,11 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.filter {
       switch choice {
       case .collection(let value):
-        try container.encode(value, forKey: .collection)
+        try container.encodeIfPresent(value, forKey: .collection)
       case .others(let value):
-        try container.encode(value, forKey: .others)
+        try container.encodeIfPresent(value, forKey: .others)
       case .databaseResourceReference(let value):
-        try container.encode(value, forKey: .databaseResourceReference)
+        try container.encodeIfPresent(value, forKey: .databaseResourceReference)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -147,11 +147,11 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceDetails {
       switch choice {
       case .vmware(let value):
-        try container.encode(value, forKey: .vmware)
+        try container.encodeIfPresent(value, forKey: .vmware)
       case .aws(let value):
-        try container.encode(value, forKey: .aws)
+        try container.encodeIfPresent(value, forKey: .aws)
       case .azure(let value):
-        try container.encode(value, forKey: .azure)
+        try container.encodeIfPresent(value, forKey: .azure)
       }
     }
     for (key, value) in self._unknownFields.json {

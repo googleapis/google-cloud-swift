@@ -87,7 +87,9 @@ public struct Media: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.title, forKey: .title)
     try container.encode(self.content, forKey: .content)
-    try container.encode(self.type, forKey: .type)
+    if self.type != MediaType() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

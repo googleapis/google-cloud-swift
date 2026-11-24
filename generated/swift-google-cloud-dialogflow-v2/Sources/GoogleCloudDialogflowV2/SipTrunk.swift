@@ -121,7 +121,9 @@
       try container.encode(self.connections, forKey: .connections)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.peerHostnames, forKey: .peerHostnames)
-      try container.encode(self.googleRootCertFile, forKey: .googleRootCertFile)
+      if self.googleRootCertFile != SipTrunk.GoogleRootCertFile() {
+        try container.encode(self.googleRootCertFile, forKey: .googleRootCertFile)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

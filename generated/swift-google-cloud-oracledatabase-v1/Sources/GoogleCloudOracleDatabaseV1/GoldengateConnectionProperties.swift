@@ -411,76 +411,82 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.connectionType, forKey: .connectionType)
+    if self.connectionType != GoldengateConnectionProperties.GoldengateConnectionType() {
+      try container.encode(self.connectionType, forKey: .connectionType)
+    }
     try container.encode(self.ocid, forKey: .ocid)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    if self.lifecycleState != GoldengateConnectionProperties.GoldengateConnectionLifecycleState() {
+      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    }
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.routingMethod, forKey: .routingMethod)
+    if self.routingMethod != GoldengateConnectionProperties.GoldengateConnectionRoutingMethod() {
+      try container.encode(self.routingMethod, forKey: .routingMethod)
+    }
     try container.encode(self.ingressIpAddresses, forKey: .ingressIpAddresses)
 
     if let choice = self.connectionDetails {
       switch choice {
       case .oracleConnectionProperties(let value):
-        try container.encode(value, forKey: .oracleConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .oracleConnectionProperties)
       case .goldengateConnectionProperties(let value):
-        try container.encode(value, forKey: .goldengateConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .goldengateConnectionProperties)
       case .genericConnectionProperties(let value):
-        try container.encode(value, forKey: .genericConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .genericConnectionProperties)
       case .googleCloudStorageConnectionProperties(let value):
-        try container.encode(value, forKey: .googleCloudStorageConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .googleCloudStorageConnectionProperties)
       case .googleBigQueryConnectionProperties(let value):
-        try container.encode(value, forKey: .googleBigQueryConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .googleBigQueryConnectionProperties)
       case .mysqlConnectionProperties(let value):
-        try container.encode(value, forKey: .mysqlConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .mysqlConnectionProperties)
       case .kafkaConnectionProperties(let value):
-        try container.encode(value, forKey: .kafkaConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .kafkaConnectionProperties)
       case .kafkaSchemaRegistryConnectionProperties(let value):
-        try container.encode(value, forKey: .kafkaSchemaRegistryConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .kafkaSchemaRegistryConnectionProperties)
       case .ociObjectStorageConnectionProperties(let value):
-        try container.encode(value, forKey: .ociObjectStorageConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .ociObjectStorageConnectionProperties)
       case .azureDataLakeStorageConnectionProperties(let value):
-        try container.encode(value, forKey: .azureDataLakeStorageConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .azureDataLakeStorageConnectionProperties)
       case .azureSynapseAnalyticsConnectionProperties(let value):
-        try container.encode(value, forKey: .azureSynapseAnalyticsConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .azureSynapseAnalyticsConnectionProperties)
       case .postgresqlConnectionProperties(let value):
-        try container.encode(value, forKey: .postgresqlConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .postgresqlConnectionProperties)
       case .microsoftSqlserverConnectionProperties(let value):
-        try container.encode(value, forKey: .microsoftSqlserverConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .microsoftSqlserverConnectionProperties)
       case .amazonS3ConnectionProperties(let value):
-        try container.encode(value, forKey: .amazonS3ConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .amazonS3ConnectionProperties)
       case .hdfsConnectionProperties(let value):
-        try container.encode(value, forKey: .hdfsConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .hdfsConnectionProperties)
       case .javaMessageServiceConnectionProperties(let value):
-        try container.encode(value, forKey: .javaMessageServiceConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .javaMessageServiceConnectionProperties)
       case .mongodbConnectionProperties(let value):
-        try container.encode(value, forKey: .mongodbConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .mongodbConnectionProperties)
       case .oracleNosqlConnectionProperties(let value):
-        try container.encode(value, forKey: .oracleNosqlConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .oracleNosqlConnectionProperties)
       case .snowflakeConnectionProperties(let value):
-        try container.encode(value, forKey: .snowflakeConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .snowflakeConnectionProperties)
       case .amazonRedshiftConnectionProperties(let value):
-        try container.encode(value, forKey: .amazonRedshiftConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .amazonRedshiftConnectionProperties)
       case .elasticsearchConnectionProperties(let value):
-        try container.encode(value, forKey: .elasticsearchConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .elasticsearchConnectionProperties)
       case .amazonKinesisConnectionProperties(let value):
-        try container.encode(value, forKey: .amazonKinesisConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .amazonKinesisConnectionProperties)
       case .db2ConnectionProperties(let value):
-        try container.encode(value, forKey: .db2ConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .db2ConnectionProperties)
       case .redisConnectionProperties(let value):
-        try container.encode(value, forKey: .redisConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .redisConnectionProperties)
       case .databricksConnectionProperties(let value):
-        try container.encode(value, forKey: .databricksConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .databricksConnectionProperties)
       case .googlePubsubConnectionProperties(let value):
-        try container.encode(value, forKey: .googlePubsubConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .googlePubsubConnectionProperties)
       case .microsoftFabricConnectionProperties(let value):
-        try container.encode(value, forKey: .microsoftFabricConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .microsoftFabricConnectionProperties)
       case .oracleAiDataPlatformConnectionProperties(let value):
-        try container.encode(value, forKey: .oracleAiDataPlatformConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .oracleAiDataPlatformConnectionProperties)
       case .icebergConnectionProperties(let value):
-        try container.encode(value, forKey: .icebergConnectionProperties)
+        try container.encodeIfPresent(value, forKey: .icebergConnectionProperties)
       }
     }
     for (key, value) in self._unknownFields.json {

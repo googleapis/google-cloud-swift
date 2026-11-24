@@ -125,11 +125,11 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .nfs(let value):
-        try container.encode(value, forKey: .nfs)
+        try container.encodeIfPresent(value, forKey: .nfs)
       case .gcs(let value):
-        try container.encode(value, forKey: .gcs)
+        try container.encodeIfPresent(value, forKey: .gcs)
       case .deviceName(let value):
-        try container.encode(value, forKey: .deviceName)
+        try container.encodeIfPresent(value, forKey: .deviceName)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -144,7 +144,9 @@
       try container.encode(self.event, forKey: .event)
       try container.encodeIfPresent(self.parameters, forKey: .parameters)
       try container.encode(self.resolvedInput, forKey: .resolvedInput)
-      try container.encode(self.matchType, forKey: .matchType)
+      if self.matchType != Match.MatchType() {
+        try container.encode(self.matchType, forKey: .matchType)
+      }
       try container.encode(self.confidence, forKey: .confidence)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

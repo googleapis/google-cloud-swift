@@ -164,19 +164,19 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.compiledObject {
       switch choice {
       case .relation(let value):
-        try container.encode(value, forKey: .relation)
+        try container.encodeIfPresent(value, forKey: .relation)
       case .operations(let value):
-        try container.encode(value, forKey: .operations)
+        try container.encodeIfPresent(value, forKey: .operations)
       case .assertion(let value):
-        try container.encode(value, forKey: .assertion)
+        try container.encodeIfPresent(value, forKey: .assertion)
       case .declaration(let value):
-        try container.encode(value, forKey: .declaration)
+        try container.encodeIfPresent(value, forKey: .declaration)
       case .notebook(let value):
-        try container.encode(value, forKey: .notebook)
+        try container.encodeIfPresent(value, forKey: .notebook)
       case .dataPreparation(let value):
-        try container.encode(value, forKey: .dataPreparation)
+        try container.encodeIfPresent(value, forKey: .dataPreparation)
       case .bigqueryUnitTest(let value):
-        try container.encode(value, forKey: .bigqueryUnitTest)
+        try container.encodeIfPresent(value, forKey: .bigqueryUnitTest)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -403,7 +403,9 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       try container.encode(self.disabled, forKey: .disabled)
       try container.encode(self.tags, forKey: .tags)
       try container.encodeIfPresent(self.relationDescriptor, forKey: .relationDescriptor)
-      try container.encode(self.relationType, forKey: .relationType)
+      if self.relationType != CompilationResultAction.Relation.RelationType() {
+        try container.encode(self.relationType, forKey: .relationType)
+      }
       try container.encode(self.selectQuery, forKey: .selectQuery)
       try container.encode(self.preOperations, forKey: .preOperations)
       try container.encode(self.postOperations, forKey: .postOperations)
@@ -414,8 +416,12 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       try container.encode(self.requirePartitionFilter, forKey: .requirePartitionFilter)
       try container.encode(self.additionalOptions, forKey: .additionalOptions)
       try container.encode(self.connection, forKey: .connection)
-      try container.encode(self.tableFormat, forKey: .tableFormat)
-      try container.encode(self.fileFormat, forKey: .fileFormat)
+      if self.tableFormat != CompilationResultAction.Relation.TableFormat() {
+        try container.encode(self.tableFormat, forKey: .tableFormat)
+      }
+      if self.fileFormat != CompilationResultAction.Relation.FileFormat() {
+        try container.encode(self.fileFormat, forKey: .fileFormat)
+      }
       try container.encode(self.storageUri, forKey: .storageUri)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1480,9 +1486,9 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       if let choice = self.definition {
         switch choice {
         case .contentsYaml(let value):
-          try container.encode(value, forKey: .contentsYaml)
+          try container.encodeIfPresent(value, forKey: .contentsYaml)
         case .contentsSql(let value):
-          try container.encode(value, forKey: .contentsSql)
+          try container.encodeIfPresent(value, forKey: .contentsSql)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1926,13 +1932,13 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       if let choice = self.mode {
         switch choice {
         case .replace(let value):
-          try container.encode(value, forKey: .replace)
+          try container.encodeIfPresent(value, forKey: .replace)
         case .append(let value):
-          try container.encode(value, forKey: .append)
+          try container.encodeIfPresent(value, forKey: .append)
         case .maximum(let value):
-          try container.encode(value, forKey: .maximum)
+          try container.encodeIfPresent(value, forKey: .maximum)
         case .unique(let value):
-          try container.encode(value, forKey: .unique)
+          try container.encodeIfPresent(value, forKey: .unique)
         }
       }
       for (key, value) in self._unknownFields.json {

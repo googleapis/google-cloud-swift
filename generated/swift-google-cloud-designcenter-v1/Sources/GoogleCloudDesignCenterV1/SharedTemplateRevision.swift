@@ -242,33 +242,39 @@ public struct SharedTemplateRevision: Codable, Equatable, GoogleWKT._AnyPackable
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
+    if self.type != TemplateType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.sharedTemplateMetadata, forKey: .sharedTemplateMetadata)
     try container.encode(self.originTemplateRevision, forKey: .originTemplateRevision)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(
       self.applicationTemplateRevision, forKey: .applicationTemplateRevision)
     try container.encodeIfPresent(self.helmChartMetadata, forKey: .helmChartMetadata)
-    try container.encode(self.templateCategory, forKey: .templateCategory)
+    if self.templateCategory != TemplateCategory() {
+      try container.encode(self.templateCategory, forKey: .templateCategory)
+    }
     try container.encode(self.logicalProducts, forKey: .logicalProducts)
     try container.encode(self.annotations, forKey: .annotations)
     try container.encodeIfPresent(self.inferredMetadata, forKey: .inferredMetadata)
     try container.encode(self.resourceTypes, forKey: .resourceTypes)
-    try container.encode(self.iacSource, forKey: .iacSource)
+    if self.iacSource != IACSource() {
+      try container.encode(self.iacSource, forKey: .iacSource)
+    }
     try container.encode(self.applicationParameters, forKey: .applicationParameters)
 
     if let choice = self.artifactLocation {
       switch choice {
       case .gitSource(let value):
-        try container.encode(value, forKey: .gitSource)
+        try container.encodeIfPresent(value, forKey: .gitSource)
       case .gcsSourceUri(let value):
-        try container.encode(value, forKey: .gcsSourceUri)
+        try container.encodeIfPresent(value, forKey: .gcsSourceUri)
       case .applicationTemplateRevisionSource(let value):
-        try container.encode(value, forKey: .applicationTemplateRevisionSource)
+        try container.encodeIfPresent(value, forKey: .applicationTemplateRevisionSource)
       case .developerConnectSourceConfig(let value):
-        try container.encode(value, forKey: .developerConnectSourceConfig)
+        try container.encodeIfPresent(value, forKey: .developerConnectSourceConfig)
       case .ociRepo(let value):
-        try container.encode(value, forKey: .ociRepo)
+        try container.encodeIfPresent(value, forKey: .ociRepo)
       }
     }
     for (key, value) in self._unknownFields.json {

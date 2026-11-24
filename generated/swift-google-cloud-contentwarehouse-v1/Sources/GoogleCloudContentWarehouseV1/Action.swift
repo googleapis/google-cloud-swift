@@ -134,19 +134,19 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.action {
       switch choice {
       case .accessControl(let value):
-        try container.encode(value, forKey: .accessControl)
+        try container.encodeIfPresent(value, forKey: .accessControl)
       case .dataValidation(let value):
-        try container.encode(value, forKey: .dataValidation)
+        try container.encodeIfPresent(value, forKey: .dataValidation)
       case .dataUpdate(let value):
-        try container.encode(value, forKey: .dataUpdate)
+        try container.encodeIfPresent(value, forKey: .dataUpdate)
       case .addToFolder(let value):
-        try container.encode(value, forKey: .addToFolder)
+        try container.encodeIfPresent(value, forKey: .addToFolder)
       case .publishToPubSub(let value):
-        try container.encode(value, forKey: .publishToPubSub)
+        try container.encodeIfPresent(value, forKey: .publishToPubSub)
       case .removeFromFolderAction(let value):
-        try container.encode(value, forKey: .removeFromFolderAction)
+        try container.encodeIfPresent(value, forKey: .removeFromFolderAction)
       case .deleteDocumentAction(let value):
-        try container.encode(value, forKey: .deleteDocumentAction)
+        try container.encodeIfPresent(value, forKey: .deleteDocumentAction)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -179,7 +179,9 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.createdResources, forKey: .createdResources)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImageImportJob.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.errors, forKey: .errors)
@@ -189,16 +191,16 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .cloudStorageUri(let value):
-        try container.encode(value, forKey: .cloudStorageUri)
+        try container.encodeIfPresent(value, forKey: .cloudStorageUri)
       }
     }
 
     if let choice = self.targetDetails {
       switch choice {
       case .diskImageTargetDetails(let value):
-        try container.encode(value, forKey: .diskImageTargetDetails)
+        try container.encodeIfPresent(value, forKey: .diskImageTargetDetails)
       case .machineImageTargetDetails(let value):
-        try container.encode(value, forKey: .machineImageTargetDetails)
+        try container.encodeIfPresent(value, forKey: .machineImageTargetDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

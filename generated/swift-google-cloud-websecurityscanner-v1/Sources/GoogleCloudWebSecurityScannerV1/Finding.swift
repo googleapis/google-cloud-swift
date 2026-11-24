@@ -210,7 +210,9 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.findingType, forKey: .findingType)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != Finding.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.httpMethod, forKey: .httpMethod)
     try container.encode(self.fuzzedUrl, forKey: .fuzzedUrl)
     try container.encode(self.body, forKey: .body)

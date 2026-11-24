@@ -95,9 +95,9 @@
       if let choice = self.parser {
         switch choice {
         case .layoutParser(let value):
-          try container.encode(value, forKey: .layoutParser)
+          try container.encodeIfPresent(value, forKey: .layoutParser)
         case .llmParser(let value):
-          try container.encode(value, forKey: .llmParser)
+          try container.encodeIfPresent(value, forKey: .llmParser)
         }
       }
       for (key, value) in self._unknownFields.json {

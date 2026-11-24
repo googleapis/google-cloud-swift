@@ -103,7 +103,7 @@ public struct Dictionary: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .wordList(let value):
-        try container.encode(value, forKey: .wordList)
+        try container.encodeIfPresent(value, forKey: .wordList)
       }
     }
     for (key, value) in self._unknownFields.json {

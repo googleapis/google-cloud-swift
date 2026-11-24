@@ -267,7 +267,9 @@ public struct LogMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.bucketOptions, forKey: .bucketOptions)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.version, forKey: .version)
+    if self.version != LogMetric.ApiVersion() {
+      try container.encode(self.version, forKey: .version)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

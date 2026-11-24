@@ -143,9 +143,9 @@
       if let choice = self.destinationModel {
         switch choice {
         case .modelId(let value):
-          try container.encode(value, forKey: .modelId)
+          try container.encodeIfPresent(value, forKey: .modelId)
         case .parentModel(let value):
-          try container.encode(value, forKey: .parentModel)
+          try container.encodeIfPresent(value, forKey: .parentModel)
         }
       }
       for (key, value) in self._unknownFields.json {

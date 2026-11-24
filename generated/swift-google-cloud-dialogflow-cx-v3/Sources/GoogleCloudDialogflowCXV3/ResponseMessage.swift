@@ -187,33 +187,35 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.responseType, forKey: .responseType)
+      if self.responseType != ResponseMessage.ResponseType() {
+        try container.encode(self.responseType, forKey: .responseType)
+      }
       try container.encode(self.channel, forKey: .channel)
 
       if let choice = self.message {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .payload(let value):
-          try container.encode(value, forKey: .payload)
+          try container.encodeIfPresent(value, forKey: .payload)
         case .conversationSuccess(let value):
-          try container.encode(value, forKey: .conversationSuccess)
+          try container.encodeIfPresent(value, forKey: .conversationSuccess)
         case .outputAudioText(let value):
-          try container.encode(value, forKey: .outputAudioText)
+          try container.encodeIfPresent(value, forKey: .outputAudioText)
         case .liveAgentHandoff(let value):
-          try container.encode(value, forKey: .liveAgentHandoff)
+          try container.encodeIfPresent(value, forKey: .liveAgentHandoff)
         case .endInteraction(let value):
-          try container.encode(value, forKey: .endInteraction)
+          try container.encodeIfPresent(value, forKey: .endInteraction)
         case .playAudio(let value):
-          try container.encode(value, forKey: .playAudio)
+          try container.encodeIfPresent(value, forKey: .playAudio)
         case .mixedAudio(let value):
-          try container.encode(value, forKey: .mixedAudio)
+          try container.encodeIfPresent(value, forKey: .mixedAudio)
         case .telephonyTransferCall(let value):
-          try container.encode(value, forKey: .telephonyTransferCall)
+          try container.encodeIfPresent(value, forKey: .telephonyTransferCall)
         case .knowledgeInfoCard(let value):
-          try container.encode(value, forKey: .knowledgeInfoCard)
+          try container.encodeIfPresent(value, forKey: .knowledgeInfoCard)
         case .toolCall(let value):
-          try container.encode(value, forKey: .toolCall)
+          try container.encodeIfPresent(value, forKey: .toolCall)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -595,9 +597,9 @@
         if let choice = self.source {
           switch choice {
           case .text(let value):
-            try container.encode(value, forKey: .text)
+            try container.encodeIfPresent(value, forKey: .text)
           case .ssml(let value):
-            try container.encode(value, forKey: .ssml)
+            try container.encodeIfPresent(value, forKey: .ssml)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -956,9 +958,9 @@
           if let choice = self.content {
             switch choice {
             case .audio(let value):
-              try container.encode(value, forKey: .audio)
+              try container.encodeIfPresent(value, forKey: .audio)
             case .uri(let value):
-              try container.encode(value, forKey: .uri)
+              try container.encodeIfPresent(value, forKey: .uri)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -1091,7 +1093,7 @@
         if let choice = self.endpoint {
           switch choice {
           case .phoneNumber(let value):
-            try container.encode(value, forKey: .phoneNumber)
+            try container.encodeIfPresent(value, forKey: .phoneNumber)
           }
         }
         for (key, value) in self._unknownFields.json {

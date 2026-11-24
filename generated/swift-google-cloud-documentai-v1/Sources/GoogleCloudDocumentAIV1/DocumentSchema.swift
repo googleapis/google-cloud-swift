@@ -224,7 +224,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.valueSource {
         switch choice {
         case .enumValues(let value):
-          try container.encode(value, forKey: .enumValues)
+          try container.encodeIfPresent(value, forKey: .enumValues)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -408,8 +408,12 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.name, forKey: .name)
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.valueType, forKey: .valueType)
-        try container.encode(self.occurrenceType, forKey: .occurrenceType)
-        try container.encode(self.method, forKey: .method)
+        if self.occurrenceType != DocumentSchema.EntityType.Property.OccurrenceType() {
+          try container.encode(self.occurrenceType, forKey: .occurrenceType)
+        }
+        if self.method != DocumentSchema.EntityType.Property.Method() {
+          try container.encode(self.method, forKey: .method)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

@@ -405,8 +405,12 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encodeIfPresent(self.model, forKey: .model)
-    try container.encode(self.solvingMode, forKey: .solvingMode)
-    try container.encode(self.searchMode, forKey: .searchMode)
+    if self.solvingMode != OptimizeToursRequest.SolvingMode() {
+      try container.encode(self.solvingMode, forKey: .solvingMode)
+    }
+    if self.searchMode != OptimizeToursRequest.SearchMode() {
+      try container.encode(self.searchMode, forKey: .searchMode)
+    }
     try container.encode(self.injectedFirstSolutionRoutes, forKey: .injectedFirstSolutionRoutes)
     try container.encodeIfPresent(
       self.injectedSolutionConstraint, forKey: .injectedSolutionConstraint)

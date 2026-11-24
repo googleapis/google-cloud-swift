@@ -142,8 +142,12 @@ public struct Permission: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.title, forKey: .title)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.onlyInPredefinedRoles, forKey: .onlyInPredefinedRoles)
-    try container.encode(self.stage, forKey: .stage)
-    try container.encode(self.customRolesSupportLevel, forKey: .customRolesSupportLevel)
+    if self.stage != Permission.PermissionLaunchStage() {
+      try container.encode(self.stage, forKey: .stage)
+    }
+    if self.customRolesSupportLevel != Permission.CustomRolesSupportLevel() {
+      try container.encode(self.customRolesSupportLevel, forKey: .customRolesSupportLevel)
+    }
     try container.encode(self.apiDisabled, forKey: .apiDisabled)
     try container.encode(self.primaryPermission, forKey: .primaryPermission)
     for (key, value) in self._unknownFields.json {

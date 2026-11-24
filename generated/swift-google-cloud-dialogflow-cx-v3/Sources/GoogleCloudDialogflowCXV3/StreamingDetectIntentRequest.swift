@@ -186,7 +186,9 @@
       try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
       try container.encode(self.enablePartialResponse, forKey: .enablePartialResponse)
       try container.encode(self.enableDebuggingInfo, forKey: .enableDebuggingInfo)
-      try container.encode(self.responseView, forKey: .responseView)
+      if self.responseView != DetectIntentResponseView() {
+        try container.encode(self.responseView, forKey: .responseView)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

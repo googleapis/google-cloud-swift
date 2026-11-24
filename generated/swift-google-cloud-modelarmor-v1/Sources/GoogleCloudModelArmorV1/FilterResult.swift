@@ -124,17 +124,17 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.filterResult {
       switch choice {
       case .raiFilterResult(let value):
-        try container.encode(value, forKey: .raiFilterResult)
+        try container.encodeIfPresent(value, forKey: .raiFilterResult)
       case .sdpFilterResult(let value):
-        try container.encode(value, forKey: .sdpFilterResult)
+        try container.encodeIfPresent(value, forKey: .sdpFilterResult)
       case .piAndJailbreakFilterResult(let value):
-        try container.encode(value, forKey: .piAndJailbreakFilterResult)
+        try container.encodeIfPresent(value, forKey: .piAndJailbreakFilterResult)
       case .maliciousUriFilterResult(let value):
-        try container.encode(value, forKey: .maliciousUriFilterResult)
+        try container.encodeIfPresent(value, forKey: .maliciousUriFilterResult)
       case .csamFilterFilterResult(let value):
-        try container.encode(value, forKey: .csamFilterFilterResult)
+        try container.encodeIfPresent(value, forKey: .csamFilterFilterResult)
       case .virusScanFilterResult(let value):
-        try container.encode(value, forKey: .virusScanFilterResult)
+        try container.encodeIfPresent(value, forKey: .virusScanFilterResult)
       }
     }
     for (key, value) in self._unknownFields.json {

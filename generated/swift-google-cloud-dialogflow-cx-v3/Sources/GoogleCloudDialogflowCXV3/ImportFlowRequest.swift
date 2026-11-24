@@ -119,15 +119,17 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.importOption, forKey: .importOption)
+      if self.importOption != ImportFlowRequest.ImportOption() {
+        try container.encode(self.importOption, forKey: .importOption)
+      }
       try container.encodeIfPresent(self.flowImportStrategy, forKey: .flowImportStrategy)
 
       if let choice = self.flow {
         switch choice {
         case .flowUri(let value):
-          try container.encode(value, forKey: .flowUri)
+          try container.encodeIfPresent(value, forKey: .flowUri)
         case .flowContent(let value):
-          try container.encode(value, forKey: .flowContent)
+          try container.encodeIfPresent(value, forKey: .flowContent)
         }
       }
       for (key, value) in self._unknownFields.json {

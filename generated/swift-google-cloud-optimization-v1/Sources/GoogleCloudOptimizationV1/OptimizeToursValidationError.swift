@@ -468,9 +468,9 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
       if let choice = self.indexOrKey {
         switch choice {
         case .index(let value):
-          try container.encode(value, forKey: .index)
+          try container.encodeIfPresent(value, forKey: .index)
         case .key(let value):
-          try container.encode(value, forKey: .key)
+          try container.encodeIfPresent(value, forKey: .key)
         }
       }
       for (key, value) in self._unknownFields.json {

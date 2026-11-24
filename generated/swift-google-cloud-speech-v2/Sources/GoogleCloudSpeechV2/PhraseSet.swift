@@ -204,7 +204,9 @@ public struct PhraseSet: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.phrases, forKey: .phrases)
     try container.encode(self.boost, forKey: .boost)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PhraseSet.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)

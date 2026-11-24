@@ -101,7 +101,9 @@ public struct InsightActionLog: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.actor, forKey: .actor)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudRecommenderV1.InsightStateInfo.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMetadata, forKey: .stateMetadata)
     try container.encode(self.insight, forKey: .insight)
     for (key, value) in self._unknownFields.json {

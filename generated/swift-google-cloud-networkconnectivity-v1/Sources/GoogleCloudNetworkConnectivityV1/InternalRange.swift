@@ -240,8 +240,12 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
     try container.encode(self.network, forKey: .network)
-    try container.encode(self.usage, forKey: .usage)
-    try container.encode(self.peering, forKey: .peering)
+    if self.usage != InternalRange.Usage() {
+      try container.encode(self.usage, forKey: .usage)
+    }
+    if self.peering != InternalRange.Peering() {
+      try container.encode(self.peering, forKey: .peering)
+    }
     try container.encode(self.prefixLength, forKey: .prefixLength)
     try container.encode(self.targetCidrRange, forKey: .targetCidrRange)
     try container.encode(self.users, forKey: .users)
@@ -421,7 +425,9 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.allocationStrategy, forKey: .allocationStrategy)
+      if self.allocationStrategy != InternalRange.AllocationStrategy() {
+        try container.encode(self.allocationStrategy, forKey: .allocationStrategy)
+      }
       try container.encode(
         self.firstAvailableRangesLookupSize, forKey: .firstAvailableRangesLookupSize)
       for (key, value) in self._unknownFields.json {

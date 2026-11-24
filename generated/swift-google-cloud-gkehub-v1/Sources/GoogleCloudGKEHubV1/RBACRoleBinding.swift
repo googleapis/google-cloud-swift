@@ -162,9 +162,9 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.principal {
       switch choice {
       case .user(let value):
-        try container.encode(value, forKey: .user)
+        try container.encodeIfPresent(value, forKey: .user)
       case .group(let value):
-        try container.encode(value, forKey: .group)
+        try container.encodeIfPresent(value, forKey: .group)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -236,7 +236,9 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.predefinedRole, forKey: .predefinedRole)
+      if self.predefinedRole != RBACRoleBinding.Role.PredefinedRoles() {
+        try container.encode(self.predefinedRole, forKey: .predefinedRole)
+      }
       try container.encode(self.customRole, forKey: .customRole)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

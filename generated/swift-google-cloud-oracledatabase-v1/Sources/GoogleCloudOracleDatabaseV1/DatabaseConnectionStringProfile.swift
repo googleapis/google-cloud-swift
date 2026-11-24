@@ -155,14 +155,26 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.consumerGroup, forKey: .consumerGroup)
+    if self.consumerGroup != DatabaseConnectionStringProfile.ConsumerGroup() {
+      try container.encode(self.consumerGroup, forKey: .consumerGroup)
+    }
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.hostFormat, forKey: .hostFormat)
+    if self.hostFormat != DatabaseConnectionStringProfile.HostFormat() {
+      try container.encode(self.hostFormat, forKey: .hostFormat)
+    }
     try container.encode(self.isRegional, forKey: .isRegional)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
-    try container.encode(self.sessionMode, forKey: .sessionMode)
-    try container.encode(self.syntaxFormat, forKey: .syntaxFormat)
-    try container.encode(self.tlsAuthentication, forKey: .tlsAuthentication)
+    if self.`protocol` != DatabaseConnectionStringProfile.Protocol_() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
+    if self.sessionMode != DatabaseConnectionStringProfile.SessionMode() {
+      try container.encode(self.sessionMode, forKey: .sessionMode)
+    }
+    if self.syntaxFormat != DatabaseConnectionStringProfile.SyntaxFormat() {
+      try container.encode(self.syntaxFormat, forKey: .syntaxFormat)
+    }
+    if self.tlsAuthentication != DatabaseConnectionStringProfile.TLSAuthentication() {
+      try container.encode(self.tlsAuthentication, forKey: .tlsAuthentication)
+    }
     try container.encode(self.value, forKey: .value)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

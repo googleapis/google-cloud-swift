@@ -153,16 +153,16 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .cloudStorageUri(let value):
-        try container.encode(value, forKey: .cloudStorageUri)
+        try container.encodeIfPresent(value, forKey: .cloudStorageUri)
       }
     }
 
     if let choice = self.targetDefaults {
       switch choice {
       case .diskImageTargetDefaults(let value):
-        try container.encode(value, forKey: .diskImageTargetDefaults)
+        try container.encodeIfPresent(value, forKey: .diskImageTargetDefaults)
       case .machineImageTargetDefaults(let value):
-        try container.encode(value, forKey: .machineImageTargetDefaults)
+        try container.encodeIfPresent(value, forKey: .machineImageTargetDefaults)
       }
     }
     for (key, value) in self._unknownFields.json {

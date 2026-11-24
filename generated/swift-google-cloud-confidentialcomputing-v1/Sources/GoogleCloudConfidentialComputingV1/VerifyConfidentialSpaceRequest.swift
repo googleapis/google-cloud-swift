@@ -151,9 +151,9 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     if let choice = self.teeAttestation {
       switch choice {
       case .tdCcel(let value):
-        try container.encode(value, forKey: .tdCcel)
+        try container.encodeIfPresent(value, forKey: .tdCcel)
       case .tpmAttestation(let value):
-        try container.encode(value, forKey: .tpmAttestation)
+        try container.encodeIfPresent(value, forKey: .tpmAttestation)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -264,14 +264,18 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.audience, forKey: .audience)
-      try container.encode(self.tokenProfile, forKey: .tokenProfile)
+      if self.tokenProfile != TokenProfile() {
+        try container.encode(self.tokenProfile, forKey: .tokenProfile)
+      }
       try container.encode(self.nonce, forKey: .nonce)
-      try container.encode(self.signatureType, forKey: .signatureType)
+      if self.signatureType != SignatureType() {
+        try container.encode(self.signatureType, forKey: .signatureType)
+      }
 
       if let choice = self.tokenProfileOptions {
         switch choice {
         case .awsPrincipalTagsOptions(let value):
-          try container.encode(value, forKey: .awsPrincipalTagsOptions)
+          try container.encodeIfPresent(value, forKey: .awsPrincipalTagsOptions)
         }
       }
       for (key, value) in self._unknownFields.json {

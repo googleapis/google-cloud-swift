@@ -165,7 +165,9 @@ public struct StandardSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.recurrenceType, forKey: .recurrenceType)
+    if self.recurrenceType != StandardSchedule.RecurrenceType() {
+      try container.encode(self.recurrenceType, forKey: .recurrenceType)
+    }
     try container.encode(self.hourlyFrequency, forKey: .hourlyFrequency)
     try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
     try container.encode(self.daysOfMonth, forKey: .daysOfMonth)

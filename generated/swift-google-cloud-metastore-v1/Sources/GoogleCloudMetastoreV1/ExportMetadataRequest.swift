@@ -129,12 +129,14 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.service, forKey: .service)
     try container.encode(self.requestId, forKey: .requestId)
-    try container.encode(self.databaseDumpType, forKey: .databaseDumpType)
+    if self.databaseDumpType != DatabaseDumpSpec.Type_() {
+      try container.encode(self.databaseDumpType, forKey: .databaseDumpType)
+    }
 
     if let choice = self.destination {
       switch choice {
       case .destinationGcsFolder(let value):
-        try container.encode(value, forKey: .destinationGcsFolder)
+        try container.encodeIfPresent(value, forKey: .destinationGcsFolder)
       }
     }
     for (key, value) in self._unknownFields.json {

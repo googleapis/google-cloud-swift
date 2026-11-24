@@ -103,9 +103,9 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.conditions {
       switch choice {
       case .adjustByMatchingInfoTypes(let value):
-        try container.encode(value, forKey: .adjustByMatchingInfoTypes)
+        try container.encodeIfPresent(value, forKey: .adjustByMatchingInfoTypes)
       case .adjustByImageFindings(let value):
-        try container.encode(value, forKey: .adjustByImageFindings)
+        try container.encodeIfPresent(value, forKey: .adjustByImageFindings)
       }
     }
     for (key, value) in self._unknownFields.json {

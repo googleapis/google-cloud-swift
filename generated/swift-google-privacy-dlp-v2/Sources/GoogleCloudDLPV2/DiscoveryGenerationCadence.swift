@@ -103,7 +103,9 @@ public struct DiscoveryGenerationCadence: Codable, Equatable, GoogleWKT._AnyPack
     try container.encodeIfPresent(self.tableModifiedCadence, forKey: .tableModifiedCadence)
     try container.encodeIfPresent(
       self.inspectTemplateModifiedCadence, forKey: .inspectTemplateModifiedCadence)
-    try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
+    if self.refreshFrequency != DataProfileUpdateFrequency() {
+      try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

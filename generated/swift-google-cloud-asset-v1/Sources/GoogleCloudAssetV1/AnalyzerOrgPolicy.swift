@@ -256,13 +256,13 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.kind {
         switch choice {
         case .values(let value):
-          try container.encode(value, forKey: .values)
+          try container.encodeIfPresent(value, forKey: .values)
         case .allowAll(let value):
-          try container.encode(value, forKey: .allowAll)
+          try container.encodeIfPresent(value, forKey: .allowAll)
         case .denyAll(let value):
-          try container.encode(value, forKey: .denyAll)
+          try container.encodeIfPresent(value, forKey: .denyAll)
         case .enforce(let value):
-          try container.encode(value, forKey: .enforce)
+          try container.encodeIfPresent(value, forKey: .enforce)
         }
       }
       for (key, value) in self._unknownFields.json {

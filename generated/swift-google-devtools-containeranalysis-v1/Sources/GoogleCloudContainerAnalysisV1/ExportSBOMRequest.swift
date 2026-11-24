@@ -98,7 +98,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .cloudStorageLocation(let value):
-        try container.encode(value, forKey: .cloudStorageLocation)
+        try container.encodeIfPresent(value, forKey: .cloudStorageLocation)
       }
     }
     for (key, value) in self._unknownFields.json {

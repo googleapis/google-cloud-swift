@@ -106,7 +106,9 @@ public struct Notification: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.subject, forKey: .subject)
     try container.encode(self.messages, forKey: .messages)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.notificationType, forKey: .notificationType)
+    if self.notificationType != NotificationType() {
+      try container.encode(self.notificationType, forKey: .notificationType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

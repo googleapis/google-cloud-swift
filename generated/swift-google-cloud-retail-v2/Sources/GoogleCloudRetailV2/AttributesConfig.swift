@@ -104,7 +104,9 @@ public struct AttributesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.catalogAttributes, forKey: .catalogAttributes)
-    try container.encode(self.attributeConfigLevel, forKey: .attributeConfigLevel)
+    if self.attributeConfigLevel != AttributeConfigLevel() {
+      try container.encode(self.attributeConfigLevel, forKey: .attributeConfigLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

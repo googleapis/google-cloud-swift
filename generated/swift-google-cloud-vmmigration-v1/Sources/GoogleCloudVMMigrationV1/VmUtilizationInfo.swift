@@ -103,7 +103,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.vmDetails {
       switch choice {
       case .vmwareVmDetails(let value):
-        try container.encode(value, forKey: .vmwareVmDetails)
+        try container.encodeIfPresent(value, forKey: .vmwareVmDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

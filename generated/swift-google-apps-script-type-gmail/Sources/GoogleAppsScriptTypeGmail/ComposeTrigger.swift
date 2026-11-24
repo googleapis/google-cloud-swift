@@ -84,7 +84,9 @@ public struct ComposeTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.actions, forKey: .actions)
-    try container.encode(self.draftAccess, forKey: .draftAccess)
+    if self.draftAccess != ComposeTrigger.DraftAccess() {
+      try container.encode(self.draftAccess, forKey: .draftAccess)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -298,10 +298,14 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Deployment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.latestRevision, forKey: .latestRevision)
     try container.encode(self.stateDetail, forKey: .stateDetail)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.errorCode != Deployment.ErrorCode() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     try container.encodeIfPresent(self.deleteResults, forKey: .deleteResults)
     try container.encode(self.deleteBuild, forKey: .deleteBuild)
     try container.encode(self.deleteLogs, forKey: .deleteLogs)
@@ -311,17 +315,21 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.serviceAccount, forKey: .serviceAccount)
     try container.encodeIfPresent(self.importExistingResources, forKey: .importExistingResources)
     try container.encodeIfPresent(self.workerPool, forKey: .workerPool)
-    try container.encode(self.lockState, forKey: .lockState)
+    if self.lockState != Deployment.LockState() {
+      try container.encode(self.lockState, forKey: .lockState)
+    }
     try container.encodeIfPresent(self.tfVersionConstraint, forKey: .tfVersionConstraint)
     try container.encode(self.tfVersion, forKey: .tfVersion)
-    try container.encode(self.quotaValidation, forKey: .quotaValidation)
+    if self.quotaValidation != QuotaValidation() {
+      try container.encode(self.quotaValidation, forKey: .quotaValidation)
+    }
     try container.encode(self.annotations, forKey: .annotations)
     try container.encodeIfPresent(self.providerConfig, forKey: .providerConfig)
 
     if let choice = self.blueprint {
       switch choice {
       case .terraformBlueprint(let value):
-        try container.encode(value, forKey: .terraformBlueprint)
+        try container.encodeIfPresent(value, forKey: .terraformBlueprint)
       }
     }
     for (key, value) in self._unknownFields.json {

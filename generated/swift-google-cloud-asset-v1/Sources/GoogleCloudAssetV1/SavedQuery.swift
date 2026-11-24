@@ -212,7 +212,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.queryContent {
         switch choice {
         case .iamPolicyAnalysisQuery(let value):
-          try container.encode(value, forKey: .iamPolicyAnalysisQuery)
+          try container.encodeIfPresent(value, forKey: .iamPolicyAnalysisQuery)
         }
       }
       for (key, value) in self._unknownFields.json {

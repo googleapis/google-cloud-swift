@@ -122,8 +122,12 @@ public struct DeploymentError: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.code, forKey: .code)
+    if self.type != DeploymentError.ErrorType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.code != GoogleCloudConfigV1.Deployment.ErrorCode() {
+      try container.encode(self.code, forKey: .code)
+    }
     try container.encode(self.tfErrors, forKey: .tfErrors)
     try container.encode(self.detail, forKey: .detail)
     try container.encode(

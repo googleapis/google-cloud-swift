@@ -86,7 +86,7 @@ public struct Justification: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.justification {
       switch choice {
       case .unstructuredJustification(let value):
-        try container.encode(value, forKey: .unstructuredJustification)
+        try container.encodeIfPresent(value, forKey: .unstructuredJustification)
       }
     }
     for (key, value) in self._unknownFields.json {

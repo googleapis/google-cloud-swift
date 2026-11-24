@@ -113,7 +113,9 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.namespace, forKey: .namespace)
     try container.encode(self.bucket, forKey: .bucket)
     try container.encode(self.object, forKey: .object)
-    try container.encode(self.diagnosticState, forKey: .diagnosticState)
+    if self.diagnosticState != DeploymentDiagnosticData.DiagnosticState() {
+      try container.encode(self.diagnosticState, forKey: .diagnosticState)
+    }
     try container.encodeIfPresent(self.diagnosticStartTime, forKey: .diagnosticStartTime)
     try container.encodeIfPresent(self.diagnosticEndTime, forKey: .diagnosticEndTime)
     for (key, value) in self._unknownFields.json {

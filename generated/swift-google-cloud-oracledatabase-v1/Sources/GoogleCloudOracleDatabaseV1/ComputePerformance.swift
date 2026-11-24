@@ -97,7 +97,9 @@ public struct ComputePerformance: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.cpuCoreCount, forKey: .cpuCoreCount)
-    try container.encode(self.computeModel, forKey: .computeModel)
+    if self.computeModel != GoogleCloudOracleDatabaseV1.ComputeModel() {
+      try container.encode(self.computeModel, forKey: .computeModel)
+    }
     try container.encode(self.computeCount, forKey: .computeCount)
     try container.encode(self.memoryInGbs, forKey: .memoryInGbs)
     for (key, value) in self._unknownFields.json {

@@ -116,7 +116,9 @@ public struct SourceNumericFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sourceMaxScaleFilter, forKey: .sourceMaxScaleFilter)
     try container.encode(self.sourceMinPrecisionFilter, forKey: .sourceMinPrecisionFilter)
     try container.encode(self.sourceMaxPrecisionFilter, forKey: .sourceMaxPrecisionFilter)
-    try container.encode(self.numericFilterOption, forKey: .numericFilterOption)
+    if self.numericFilterOption != NumericFilterOption() {
+      try container.encode(self.numericFilterOption, forKey: .numericFilterOption)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

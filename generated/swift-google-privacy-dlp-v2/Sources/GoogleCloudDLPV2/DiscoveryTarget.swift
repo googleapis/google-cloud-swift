@@ -122,17 +122,17 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .bigQueryTarget(let value):
-        try container.encode(value, forKey: .bigQueryTarget)
+        try container.encodeIfPresent(value, forKey: .bigQueryTarget)
       case .cloudSqlTarget(let value):
-        try container.encode(value, forKey: .cloudSqlTarget)
+        try container.encodeIfPresent(value, forKey: .cloudSqlTarget)
       case .secretsTarget(let value):
-        try container.encode(value, forKey: .secretsTarget)
+        try container.encodeIfPresent(value, forKey: .secretsTarget)
       case .cloudStorageTarget(let value):
-        try container.encode(value, forKey: .cloudStorageTarget)
+        try container.encodeIfPresent(value, forKey: .cloudStorageTarget)
       case .otherCloudTarget(let value):
-        try container.encode(value, forKey: .otherCloudTarget)
+        try container.encodeIfPresent(value, forKey: .otherCloudTarget)
       case .vertexDatasetTarget(let value):
-        try container.encode(value, forKey: .vertexDatasetTarget)
+        try container.encodeIfPresent(value, forKey: .vertexDatasetTarget)
       }
     }
     for (key, value) in self._unknownFields.json {

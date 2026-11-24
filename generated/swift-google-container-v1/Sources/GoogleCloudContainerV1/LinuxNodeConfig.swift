@@ -231,10 +231,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sysctls, forKey: .sysctls)
-    try container.encode(self.cgroupMode, forKey: .cgroupMode)
+    if self.cgroupMode != LinuxNodeConfig.CgroupMode() {
+      try container.encode(self.cgroupMode, forKey: .cgroupMode)
+    }
     try container.encodeIfPresent(self.hugepages, forKey: .hugepages)
-    try container.encode(self.transparentHugepageEnabled, forKey: .transparentHugepageEnabled)
-    try container.encode(self.transparentHugepageDefrag, forKey: .transparentHugepageDefrag)
+    if self.transparentHugepageEnabled != LinuxNodeConfig.TransparentHugepageEnabled() {
+      try container.encode(self.transparentHugepageEnabled, forKey: .transparentHugepageEnabled)
+    }
+    if self.transparentHugepageDefrag != LinuxNodeConfig.TransparentHugepageDefrag() {
+      try container.encode(self.transparentHugepageDefrag, forKey: .transparentHugepageDefrag)
+    }
     try container.encodeIfPresent(self.customNodeInit, forKey: .customNodeInit)
     try container.encodeIfPresent(self.swapConfig, forKey: .swapConfig)
     try container.encodeIfPresent(self.nodeKernelModuleLoading, forKey: .nodeKernelModuleLoading)
@@ -636,11 +642,11 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.performanceProfile {
         switch choice {
         case .bootDiskProfile(let value):
-          try container.encode(value, forKey: .bootDiskProfile)
+          try container.encodeIfPresent(value, forKey: .bootDiskProfile)
         case .ephemeralLocalSsdProfile(let value):
-          try container.encode(value, forKey: .ephemeralLocalSsdProfile)
+          try container.encodeIfPresent(value, forKey: .ephemeralLocalSsdProfile)
         case .dedicatedLocalSsdProfile(let value):
-          try container.encode(value, forKey: .dedicatedLocalSsdProfile)
+          try container.encodeIfPresent(value, forKey: .dedicatedLocalSsdProfile)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -803,9 +809,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.swapSize {
           switch choice {
           case .swapSizeGib(let value):
-            try container.encode(value, forKey: .swapSizeGib)
+            try container.encodeIfPresent(value, forKey: .swapSizeGib)
           case .swapSizePercent(let value):
-            try container.encode(value, forKey: .swapSizePercent)
+            try container.encodeIfPresent(value, forKey: .swapSizePercent)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -920,9 +926,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.swapSize {
           switch choice {
           case .swapSizeGib(let value):
-            try container.encode(value, forKey: .swapSizeGib)
+            try container.encodeIfPresent(value, forKey: .swapSizeGib)
           case .swapSizePercent(let value):
-            try container.encode(value, forKey: .swapSizePercent)
+            try container.encodeIfPresent(value, forKey: .swapSizePercent)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1131,7 +1137,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.policy, forKey: .policy)
+      if self.policy != LinuxNodeConfig.NodeKernelModuleLoading.Policy() {
+        try container.encode(self.policy, forKey: .policy)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

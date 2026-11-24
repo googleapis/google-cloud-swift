@@ -169,7 +169,9 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
     try container.encode(self.complianceStandard, forKey: .complianceStandard)
-    try container.encode(self.reportFormat, forKey: .reportFormat)
+    if self.reportFormat != GenerateAuditReportRequest.AuditReportFormat() {
+      try container.encode(self.reportFormat, forKey: .reportFormat)
+    }
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
     try container.encode(self.parameterOverrides, forKey: .parameterOverrides)
     try container.encode(self.validateOnly, forKey: .validateOnly)
@@ -177,7 +179,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.destination {
       switch choice {
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       }
     }
     for (key, value) in self._unknownFields.json {

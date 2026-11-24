@@ -117,7 +117,9 @@ public struct CloudControl: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
-    try container.encode(self.enforcementMode, forKey: .enforcementMode)
+    if self.enforcementMode != CloudControl.EnforcementMode() {
+      try container.encode(self.enforcementMode, forKey: .enforcementMode)
+    }
     try container.encode(self.parameterSpecs, forKey: .parameterSpecs)
     try container.encode(self.parameters, forKey: .parameters)
     for (key, value) in self._unknownFields.json {

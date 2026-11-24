@@ -99,7 +99,9 @@ public struct UpgradeClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.targetVersion, forKey: .targetVersion)
-    try container.encode(self.schedule, forKey: .schedule)
+    if self.schedule != UpgradeClusterRequest.Schedule() {
+      try container.encode(self.schedule, forKey: .schedule)
+    }
     try container.encode(self.requestId, forKey: .requestId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

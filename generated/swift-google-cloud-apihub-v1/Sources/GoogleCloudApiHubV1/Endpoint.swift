@@ -93,7 +93,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.endpointDetails {
       switch choice {
       case .applicationIntegrationEndpointDetails(let value):
-        try container.encode(value, forKey: .applicationIntegrationEndpointDetails)
+        try container.encodeIfPresent(value, forKey: .applicationIntegrationEndpointDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

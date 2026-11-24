@@ -258,7 +258,9 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.clientValidationMode, forKey: .clientValidationMode)
+      if self.clientValidationMode != ServerTlsPolicy.MTLSPolicy.ClientValidationMode() {
+        try container.encode(self.clientValidationMode, forKey: .clientValidationMode)
+      }
       try container.encode(self.clientValidationCa, forKey: .clientValidationCa)
       try container.encode(self.clientValidationTrustConfig, forKey: .clientValidationTrustConfig)
       for (key, value) in self._unknownFields.json {

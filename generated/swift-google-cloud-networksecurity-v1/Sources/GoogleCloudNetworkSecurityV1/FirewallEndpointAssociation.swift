@@ -148,7 +148,9 @@ public struct FirewallEndpointAssociation: Codable, Equatable, GoogleWKT._AnyPac
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != FirewallEndpointAssociation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.network, forKey: .network)
     try container.encode(self.firewallEndpoint, forKey: .firewallEndpoint)
     try container.encode(self.tlsInspectionPolicy, forKey: .tlsInspectionPolicy)

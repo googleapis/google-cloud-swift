@@ -167,8 +167,12 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lastRefreshTime, forKey: .lastRefreshTime)
     try container.encodeIfPresent(self.observationPeriod, forKey: .observationPeriod)
     try container.encodeIfPresent(self.stateInfo, forKey: .stateInfo)
-    try container.encode(self.category, forKey: .category)
-    try container.encode(self.severity, forKey: .severity)
+    if self.category != Insight.Category() {
+      try container.encode(self.category, forKey: .category)
+    }
+    if self.severity != Insight.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.associatedRecommendations, forKey: .associatedRecommendations)
     for (key, value) in self._unknownFields.json {

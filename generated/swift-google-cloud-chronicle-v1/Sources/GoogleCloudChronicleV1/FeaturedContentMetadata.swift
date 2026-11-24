@@ -160,7 +160,9 @@ public struct FeaturedContentMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.categories, forKey: .categories)
     try container.encode(self.version, forKey: .version)
     try container.encodeIfPresent(self.verified, forKey: .verified)
-    try container.encode(self.sourceType, forKey: .sourceType)
+    if self.sourceType != FeaturedContentMetadata.ContentSourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

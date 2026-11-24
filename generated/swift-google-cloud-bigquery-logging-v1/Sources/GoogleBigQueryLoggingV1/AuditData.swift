@@ -251,48 +251,48 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.request {
       switch choice {
       case .tableInsertRequest(let value):
-        try container.encode(value, forKey: .tableInsertRequest)
+        try container.encodeIfPresent(value, forKey: .tableInsertRequest)
       case .tableUpdateRequest(let value):
-        try container.encode(value, forKey: .tableUpdateRequest)
+        try container.encodeIfPresent(value, forKey: .tableUpdateRequest)
       case .datasetListRequest(let value):
-        try container.encode(value, forKey: .datasetListRequest)
+        try container.encodeIfPresent(value, forKey: .datasetListRequest)
       case .datasetInsertRequest(let value):
-        try container.encode(value, forKey: .datasetInsertRequest)
+        try container.encodeIfPresent(value, forKey: .datasetInsertRequest)
       case .datasetUpdateRequest(let value):
-        try container.encode(value, forKey: .datasetUpdateRequest)
+        try container.encodeIfPresent(value, forKey: .datasetUpdateRequest)
       case .jobInsertRequest(let value):
-        try container.encode(value, forKey: .jobInsertRequest)
+        try container.encodeIfPresent(value, forKey: .jobInsertRequest)
       case .jobQueryRequest(let value):
-        try container.encode(value, forKey: .jobQueryRequest)
+        try container.encodeIfPresent(value, forKey: .jobQueryRequest)
       case .jobGetQueryResultsRequest(let value):
-        try container.encode(value, forKey: .jobGetQueryResultsRequest)
+        try container.encodeIfPresent(value, forKey: .jobGetQueryResultsRequest)
       case .tableDataListRequest(let value):
-        try container.encode(value, forKey: .tableDataListRequest)
+        try container.encodeIfPresent(value, forKey: .tableDataListRequest)
       case .setIamPolicyRequest(let value):
-        try container.encode(value, forKey: .setIamPolicyRequest)
+        try container.encodeIfPresent(value, forKey: .setIamPolicyRequest)
       }
     }
 
     if let choice = self.response {
       switch choice {
       case .tableInsertResponse(let value):
-        try container.encode(value, forKey: .tableInsertResponse)
+        try container.encodeIfPresent(value, forKey: .tableInsertResponse)
       case .tableUpdateResponse(let value):
-        try container.encode(value, forKey: .tableUpdateResponse)
+        try container.encodeIfPresent(value, forKey: .tableUpdateResponse)
       case .datasetInsertResponse(let value):
-        try container.encode(value, forKey: .datasetInsertResponse)
+        try container.encodeIfPresent(value, forKey: .datasetInsertResponse)
       case .datasetUpdateResponse(let value):
-        try container.encode(value, forKey: .datasetUpdateResponse)
+        try container.encodeIfPresent(value, forKey: .datasetUpdateResponse)
       case .jobInsertResponse(let value):
-        try container.encode(value, forKey: .jobInsertResponse)
+        try container.encodeIfPresent(value, forKey: .jobInsertResponse)
       case .jobQueryResponse(let value):
-        try container.encode(value, forKey: .jobQueryResponse)
+        try container.encodeIfPresent(value, forKey: .jobQueryResponse)
       case .jobGetQueryResultsResponse(let value):
-        try container.encode(value, forKey: .jobGetQueryResultsResponse)
+        try container.encodeIfPresent(value, forKey: .jobGetQueryResultsResponse)
       case .jobQueryDoneResponse(let value):
-        try container.encode(value, forKey: .jobQueryDoneResponse)
+        try container.encodeIfPresent(value, forKey: .jobQueryDoneResponse)
       case .policyResponse(let value):
-        try container.encode(value, forKey: .policyResponse)
+        try container.encodeIfPresent(value, forKey: .policyResponse)
       }
     }
     for (key, value) in self._unknownFields.json {

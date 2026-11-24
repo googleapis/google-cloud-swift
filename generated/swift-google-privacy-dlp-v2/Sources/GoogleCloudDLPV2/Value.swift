@@ -131,21 +131,21 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .integerValue(let value):
-        try container.encode(value, forKey: .integerValue)
+        try container.encodeIfPresent(value, forKey: .integerValue)
       case .floatValue(let value):
-        try container.encode(value, forKey: .floatValue)
+        try container.encodeIfPresent(value, forKey: .floatValue)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .booleanValue(let value):
-        try container.encode(value, forKey: .booleanValue)
+        try container.encodeIfPresent(value, forKey: .booleanValue)
       case .timestampValue(let value):
-        try container.encode(value, forKey: .timestampValue)
+        try container.encodeIfPresent(value, forKey: .timestampValue)
       case .timeValue(let value):
-        try container.encode(value, forKey: .timeValue)
+        try container.encodeIfPresent(value, forKey: .timeValue)
       case .dateValue(let value):
-        try container.encode(value, forKey: .dateValue)
+        try container.encodeIfPresent(value, forKey: .dateValue)
       case .dayOfWeekValue(let value):
-        try container.encode(value, forKey: .dayOfWeekValue)
+        try container.encodeIfPresent(value, forKey: .dayOfWeekValue)
       }
     }
     for (key, value) in self._unknownFields.json {

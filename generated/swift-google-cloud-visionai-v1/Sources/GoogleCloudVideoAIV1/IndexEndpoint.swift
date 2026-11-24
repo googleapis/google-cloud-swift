@@ -165,7 +165,9 @@ public struct IndexEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.deployedIndex, forKey: .deployedIndex)
-    try container.encode(self.state, forKey: .state)
+    if self.state != IndexEndpoint.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

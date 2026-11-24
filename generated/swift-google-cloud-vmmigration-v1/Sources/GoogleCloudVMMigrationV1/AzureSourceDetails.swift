@@ -140,7 +140,9 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.subscriptionId, forKey: .subscriptionId)
     try container.encode(self.azureLocation, forKey: .azureLocation)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AzureSourceDetails.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.migrationResourcesUserTags, forKey: .migrationResourcesUserTags)
     try container.encode(self.resourceGroupId, forKey: .resourceGroupId)
@@ -148,7 +150,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.credentialsType {
       switch choice {
       case .clientSecretCreds(let value):
-        try container.encode(value, forKey: .clientSecretCreds)
+        try container.encodeIfPresent(value, forKey: .clientSecretCreds)
       }
     }
     for (key, value) in self._unknownFields.json {

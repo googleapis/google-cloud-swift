@@ -172,12 +172,16 @@ public struct FrameworkAudit: Codable, Equatable, GoogleWKT._AnyPackable,
       self.frameworkAuditDestination, forKey: .frameworkAuditDestination)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.finishTime, forKey: .finishTime)
-    try container.encode(self.complianceState, forKey: .complianceState)
+    if self.complianceState != ComplianceState() {
+      try container.encode(self.complianceState, forKey: .complianceState)
+    }
     try container.encodeIfPresent(self.reportSummary, forKey: .reportSummary)
     try container.encode(self.cloudControlGroupAuditDetails, forKey: .cloudControlGroupAuditDetails)
     try container.encode(self.cloudControlAuditDetails, forKey: .cloudControlAuditDetails)
     try container.encode(self.operationId, forKey: .operationId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != FrameworkAudit.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -93,9 +93,9 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dep {
       switch choice {
       case .empty(let value):
-        try container.encode(value, forKey: .empty)
+        try container.encodeIfPresent(value, forKey: .empty)
       case .gitSource(let value):
-        try container.encode(value, forKey: .gitSource)
+        try container.encodeIfPresent(value, forKey: .gitSource)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -306,9 +306,9 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.repotype {
         switch choice {
         case .url(let value):
-          try container.encode(value, forKey: .url)
+          try container.encodeIfPresent(value, forKey: .url)
         case .developerConnect(let value):
-          try container.encode(value, forKey: .developerConnect)
+          try container.encodeIfPresent(value, forKey: .developerConnect)
         }
       }
       for (key, value) in self._unknownFields.json {

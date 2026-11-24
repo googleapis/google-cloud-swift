@@ -104,9 +104,9 @@
       if let choice = self.modelSpecificConfig {
         switch choice {
         case .smartReplyConfig(let value):
-          try container.encode(value, forKey: .smartReplyConfig)
+          try container.encodeIfPresent(value, forKey: .smartReplyConfig)
         case .smartComposeConfig(let value):
-          try container.encode(value, forKey: .smartComposeConfig)
+          try container.encodeIfPresent(value, forKey: .smartComposeConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

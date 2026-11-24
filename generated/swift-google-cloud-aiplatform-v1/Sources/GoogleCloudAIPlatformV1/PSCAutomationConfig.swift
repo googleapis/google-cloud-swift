@@ -118,7 +118,9 @@
       try container.encode(self.network, forKey: .network)
       try container.encode(self.ipAddress, forKey: .ipAddress)
       try container.encode(self.forwardingRule, forKey: .forwardingRule)
-      try container.encode(self.state, forKey: .state)
+      if self.state != PSCAutomationState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.errorMessage, forKey: .errorMessage)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

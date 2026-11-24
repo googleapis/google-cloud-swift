@@ -101,7 +101,9 @@ public struct GuestConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.fstab, forKey: .fstab)
     try container.encodeIfPresent(self.hosts, forKey: .hosts)
     try container.encodeIfPresent(self.nfsExports, forKey: .nfsExports)
-    try container.encode(self.selinuxMode, forKey: .selinuxMode)
+    if self.selinuxMode != GuestConfigDetails.SeLinuxMode() {
+      try container.encode(self.selinuxMode, forKey: .selinuxMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

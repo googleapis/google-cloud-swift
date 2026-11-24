@@ -94,7 +94,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.metadata {
       switch choice {
       case .callAnalysisMetadata(let value):
-        try container.encode(value, forKey: .callAnalysisMetadata)
+        try container.encodeIfPresent(value, forKey: .callAnalysisMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -110,13 +110,13 @@
       if let choice = self.response {
         switch choice {
         case .recognitionResult(let value):
-          try container.encode(value, forKey: .recognitionResult)
+          try container.encodeIfPresent(value, forKey: .recognitionResult)
         case .bargeInSignal(let value):
-          try container.encode(value, forKey: .bargeInSignal)
+          try container.encodeIfPresent(value, forKey: .bargeInSignal)
         case .analyzeContentResponse(let value):
-          try container.encode(value, forKey: .analyzeContentResponse)
+          try container.encodeIfPresent(value, forKey: .analyzeContentResponse)
         case .turnComplete(let value):
-          try container.encode(value, forKey: .turnComplete)
+          try container.encodeIfPresent(value, forKey: .turnComplete)
         }
       }
       for (key, value) in self._unknownFields.json {

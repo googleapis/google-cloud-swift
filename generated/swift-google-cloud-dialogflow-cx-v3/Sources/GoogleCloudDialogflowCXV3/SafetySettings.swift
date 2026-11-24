@@ -107,8 +107,10 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(
-        self.defaultBannedPhraseMatchStrategy, forKey: .defaultBannedPhraseMatchStrategy)
+      if self.defaultBannedPhraseMatchStrategy != SafetySettings.PhraseMatchStrategy() {
+        try container.encode(
+          self.defaultBannedPhraseMatchStrategy, forKey: .defaultBannedPhraseMatchStrategy)
+      }
       try container.encode(self.bannedPhrases, forKey: .bannedPhrases)
       try container.encodeIfPresent(self.raiSettings, forKey: .raiSettings)
       try container.encodeIfPresent(self.defaultRaiSettings, forKey: .defaultRaiSettings)
@@ -333,8 +335,12 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.category, forKey: .category)
-          try container.encode(self.filterLevel, forKey: .filterLevel)
+          if self.category != SafetySettings.RaiSettings.SafetyCategory() {
+            try container.encode(self.category, forKey: .category)
+          }
+          if self.filterLevel != SafetySettings.RaiSettings.SafetyFilterLevel() {
+            try container.encode(self.filterLevel, forKey: .filterLevel)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

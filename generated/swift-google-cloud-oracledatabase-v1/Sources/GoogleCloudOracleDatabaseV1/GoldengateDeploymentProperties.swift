@@ -419,8 +419,12 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ocid, forKey: .ocid)
-    try container.encode(self.lifecycleState, forKey: .lifecycleState)
-    try container.encode(self.licenseModel, forKey: .licenseModel)
+    if self.lifecycleState != GoldengateDeploymentProperties.GoldengateDeploymentLifecycleState() {
+      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    }
+    if self.licenseModel != GoldengateDeploymentProperties.LicenseModel() {
+      try container.encode(self.licenseModel, forKey: .licenseModel)
+    }
     try container.encode(self.environmentType, forKey: .environmentType)
     try container.encode(self.cpuCoreCount, forKey: .cpuCoreCount)
     try container.encode(self.isAutoScalingEnabled, forKey: .isAutoScalingEnabled)
@@ -430,8 +434,14 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
     try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
     try container.encodeIfPresent(self.maintenanceConfig, forKey: .maintenanceConfig)
     try container.encode(self.fqdn, forKey: .fqdn)
-    try container.encode(self.lifecycleSubState, forKey: .lifecycleSubState)
-    try container.encode(self.category, forKey: .category)
+    if self.lifecycleSubState
+      != GoldengateDeploymentProperties.GoldengateDeploymentLifecycleSubState()
+    {
+      try container.encode(self.lifecycleSubState, forKey: .lifecycleSubState)
+    }
+    if self.category != GoldengateDeploymentProperties.GoldengateDeploymentCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
     try container.encode(self.deploymentBackupId, forKey: .deploymentBackupId)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
@@ -451,11 +461,16 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
     try container.encodeIfPresent(self.deploymentDiagnosticData, forKey: .deploymentDiagnosticData)
     try container.encodeIfPresent(self.backupSchedule, forKey: .backupSchedule)
     try container.encodeIfPresent(self.nextMaintenanceTime, forKey: .nextMaintenanceTime)
-    try container.encode(self.nextMaintenanceActionType, forKey: .nextMaintenanceActionType)
+    if self.nextMaintenanceActionType != GoldengateDeploymentProperties.NextMaintenanceActionType()
+    {
+      try container.encode(self.nextMaintenanceActionType, forKey: .nextMaintenanceActionType)
+    }
     try container.encode(self.nextMaintenanceDescription, forKey: .nextMaintenanceDescription)
     try container.encodeIfPresent(self.oggVersionSupportEndTime, forKey: .oggVersionSupportEndTime)
     try container.encode(self.ingressIps, forKey: .ingressIps)
-    try container.encode(self.deploymentRole, forKey: .deploymentRole)
+    if self.deploymentRole != GoldengateDeploymentProperties.GoldengateDeploymentRoleType() {
+      try container.encode(self.deploymentRole, forKey: .deploymentRole)
+    }
     try container.encodeIfPresent(self.lastBackupScheduleTime, forKey: .lastBackupScheduleTime)
     try container.encodeIfPresent(self.nextBackupScheduleTime, forKey: .nextBackupScheduleTime)
     try container.encodeIfPresent(self.roleChangeTime, forKey: .roleChangeTime)

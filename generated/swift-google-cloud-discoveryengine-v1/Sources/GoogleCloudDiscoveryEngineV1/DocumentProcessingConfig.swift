@@ -201,7 +201,7 @@
         if let choice = self.chunkMode {
           switch choice {
           case .layoutBasedChunkingConfig(let value):
-            try container.encode(value, forKey: .layoutBasedChunkingConfig)
+            try container.encodeIfPresent(value, forKey: .layoutBasedChunkingConfig)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -423,11 +423,11 @@
         if let choice = self.typeDedicatedConfig {
           switch choice {
           case .digitalParsingConfig(let value):
-            try container.encode(value, forKey: .digitalParsingConfig)
+            try container.encodeIfPresent(value, forKey: .digitalParsingConfig)
           case .ocrParsingConfig(let value):
-            try container.encode(value, forKey: .ocrParsingConfig)
+            try container.encodeIfPresent(value, forKey: .ocrParsingConfig)
           case .layoutParsingConfig(let value):
-            try container.encode(value, forKey: .layoutParsingConfig)
+            try container.encodeIfPresent(value, forKey: .layoutParsingConfig)
           }
         }
         for (key, value) in self._unknownFields.json {

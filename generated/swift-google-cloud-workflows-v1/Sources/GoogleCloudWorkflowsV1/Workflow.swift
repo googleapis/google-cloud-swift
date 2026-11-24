@@ -292,7 +292,9 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Workflow.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.revisionId, forKey: .revisionId)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -301,9 +303,13 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.cryptoKeyName, forKey: .cryptoKeyName)
     try container.encodeIfPresent(self.stateError, forKey: .stateError)
-    try container.encode(self.callLogLevel, forKey: .callLogLevel)
+    if self.callLogLevel != Workflow.CallLogLevel() {
+      try container.encode(self.callLogLevel, forKey: .callLogLevel)
+    }
     try container.encode(self.userEnvVars, forKey: .userEnvVars)
-    try container.encode(self.executionHistoryLevel, forKey: .executionHistoryLevel)
+    if self.executionHistoryLevel != ExecutionHistoryLevel() {
+      try container.encode(self.executionHistoryLevel, forKey: .executionHistoryLevel)
+    }
     try container.encode(self.allKmsKeys, forKey: .allKmsKeys)
     try container.encode(self.allKmsKeysVersions, forKey: .allKmsKeysVersions)
     try container.encode(self.cryptoKeyVersion, forKey: .cryptoKeyVersion)
@@ -312,7 +318,7 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceCode {
       switch choice {
       case .sourceContents(let value):
-        try container.encode(value, forKey: .sourceContents)
+        try container.encodeIfPresent(value, forKey: .sourceContents)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -381,7 +387,9 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.details, forKey: .details)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Workflow.StateError.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

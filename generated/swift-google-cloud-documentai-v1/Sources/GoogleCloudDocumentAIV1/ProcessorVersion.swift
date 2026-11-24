@@ -181,14 +181,18 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.documentSchema, forKey: .documentSchema)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ProcessorVersion.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.latestEvaluation, forKey: .latestEvaluation)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
     try container.encode(self.kmsKeyVersionName, forKey: .kmsKeyVersionName)
     try container.encode(self.googleManaged, forKey: .googleManaged)
     try container.encodeIfPresent(self.deprecationInfo, forKey: .deprecationInfo)
-    try container.encode(self.modelType, forKey: .modelType)
+    if self.modelType != ProcessorVersion.ModelType() {
+      try container.encode(self.modelType, forKey: .modelType)
+    }
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
     try container.encodeIfPresent(self.genAiModelInfo, forKey: .genAiModelInfo)
@@ -367,9 +371,9 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.modelInfo {
         switch choice {
         case .foundationGenAiModelInfo(let value):
-          try container.encode(value, forKey: .foundationGenAiModelInfo)
+          try container.encodeIfPresent(value, forKey: .foundationGenAiModelInfo)
         case .customGenAiModelInfo(let value):
-          try container.encode(value, forKey: .customGenAiModelInfo)
+          try container.encodeIfPresent(value, forKey: .customGenAiModelInfo)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -539,7 +543,11 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.customModelType, forKey: .customModelType)
+        if self.customModelType
+          != ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo.CustomModelType()
+        {
+          try container.encode(self.customModelType, forKey: .customModelType)
+        }
         try container.encode(self.baseProcessorVersionId, forKey: .baseProcessorVersionId)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

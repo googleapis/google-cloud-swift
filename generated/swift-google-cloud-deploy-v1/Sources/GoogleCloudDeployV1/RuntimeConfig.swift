@@ -91,9 +91,9 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.runtimeConfig {
       switch choice {
       case .kubernetes(let value):
-        try container.encode(value, forKey: .kubernetes)
+        try container.encodeIfPresent(value, forKey: .kubernetes)
       case .cloudRun(let value):
-        try container.encode(value, forKey: .cloudRun)
+        try container.encodeIfPresent(value, forKey: .cloudRun)
       }
     }
     for (key, value) in self._unknownFields.json {

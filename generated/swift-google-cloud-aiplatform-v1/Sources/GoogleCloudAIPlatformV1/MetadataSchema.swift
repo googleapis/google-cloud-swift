@@ -123,7 +123,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.schemaVersion, forKey: .schemaVersion)
       try container.encode(self.schema, forKey: .schema)
-      try container.encode(self.schemaType, forKey: .schemaType)
+      if self.schemaType != MetadataSchema.MetadataSchemaType() {
+        try container.encode(self.schemaType, forKey: .schemaType)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encode(self.description, forKey: .description)
       for (key, value) in self._unknownFields.json {

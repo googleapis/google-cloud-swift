@@ -224,7 +224,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.description, forKey: .description)
       try container.encodeIfPresent(self.inferenceParameter, forKey: .inferenceParameter)
-      try container.encode(self.triggerEvent, forKey: .triggerEvent)
+      if self.triggerEvent != GoogleCloudDialogflowV2.TriggerEvent() {
+        try container.encode(self.triggerEvent, forKey: .triggerEvent)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.tools, forKey: .tools)
@@ -237,18 +239,18 @@
       if let choice = self.context {
         switch choice {
         case .freeFormContext(let value):
-          try container.encode(value, forKey: .freeFormContext)
+          try container.encodeIfPresent(value, forKey: .freeFormContext)
         case .agentCoachingContext(let value):
-          try container.encode(value, forKey: .agentCoachingContext)
+          try container.encodeIfPresent(value, forKey: .agentCoachingContext)
         case .summarizationContext(let value):
-          try container.encode(value, forKey: .summarizationContext)
+          try container.encodeIfPresent(value, forKey: .summarizationContext)
         }
       }
 
       if let choice = self.foundationModel {
         switch choice {
         case .publishedModel(let value):
-          try container.encode(value, forKey: .publishedModel)
+          try container.encodeIfPresent(value, forKey: .publishedModel)
         }
       }
       for (key, value) in self._unknownFields.json {

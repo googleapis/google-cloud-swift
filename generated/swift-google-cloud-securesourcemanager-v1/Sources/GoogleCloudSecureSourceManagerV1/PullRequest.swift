@@ -135,7 +135,9 @@ public struct PullRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.body, forKey: .body)
     try container.encodeIfPresent(self.base, forKey: .base)
     try container.encodeIfPresent(self.head, forKey: .head)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PullRequest.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.closeTime, forKey: .closeTime)

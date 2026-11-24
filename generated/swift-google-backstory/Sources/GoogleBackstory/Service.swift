@@ -111,10 +111,16 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.serviceType, forKey: .serviceType)
+    if self.serviceType != Service.ServiceType() {
+      try container.encode(self.serviceType, forKey: .serviceType)
+    }
     try container.encode(self.serviceTypes, forKey: .serviceTypes)
-    try container.encode(self.startupType, forKey: .startupType)
-    try container.encode(self.state, forKey: .state)
+    if self.startupType != Service.StartupType() {
+      try container.encode(self.startupType, forKey: .startupType)
+    }
+    if self.state != Service.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

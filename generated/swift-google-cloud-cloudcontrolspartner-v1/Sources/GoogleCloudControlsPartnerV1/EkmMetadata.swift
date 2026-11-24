@@ -79,7 +79,9 @@ public struct EkmMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.ekmSolution, forKey: .ekmSolution)
+    if self.ekmSolution != EkmMetadata.EkmSolution() {
+      try container.encode(self.ekmSolution, forKey: .ekmSolution)
+    }
     try container.encode(self.ekmEndpointUri, forKey: .ekmEndpointUri)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

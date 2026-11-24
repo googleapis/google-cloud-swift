@@ -112,11 +112,19 @@ public struct Relation: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.entity, forKey: .entity)
-    try container.encode(self.entityType, forKey: .entityType)
-    try container.encode(self.relationship, forKey: .relationship)
-    try container.encode(self.direction, forKey: .direction)
+    if self.entityType != EntityMetadata.EntityType() {
+      try container.encode(self.entityType, forKey: .entityType)
+    }
+    if self.relationship != Relation.Relationship() {
+      try container.encode(self.relationship, forKey: .relationship)
+    }
+    if self.direction != Relation.Directionality() {
+      try container.encode(self.direction, forKey: .direction)
+    }
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.entityLabel, forKey: .entityLabel)
+    if self.entityLabel != Relation.EntityLabel() {
+      try container.encode(self.entityLabel, forKey: .entityLabel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

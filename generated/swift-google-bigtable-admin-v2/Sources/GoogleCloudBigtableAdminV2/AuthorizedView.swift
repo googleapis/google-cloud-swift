@@ -122,7 +122,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authorizedView {
       switch choice {
       case .subsetView(let value):
-        try container.encode(value, forKey: .subsetView)
+        try container.encodeIfPresent(value, forKey: .subsetView)
       }
     }
     for (key, value) in self._unknownFields.json {

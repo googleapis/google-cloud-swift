@@ -105,7 +105,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.eventPayload {
       switch choice {
       case .streamStateChange(let value):
-        try container.encode(value, forKey: .streamStateChange)
+        try container.encodeIfPresent(value, forKey: .streamStateChange)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -168,7 +168,9 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.newState, forKey: .newState)
+      if self.newState != GoogleCloudDatastreamV1.Stream.State() {
+        try container.encode(self.newState, forKey: .newState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

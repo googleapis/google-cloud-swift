@@ -92,9 +92,9 @@ public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.request {
       switch choice {
       case .config(let value):
-        try container.encode(value, forKey: .config)
+        try container.encodeIfPresent(value, forKey: .config)
       case .blurb(let value):
-        try container.encode(value, forKey: .blurb)
+        try container.encodeIfPresent(value, forKey: .blurb)
       }
     }
     for (key, value) in self._unknownFields.json {

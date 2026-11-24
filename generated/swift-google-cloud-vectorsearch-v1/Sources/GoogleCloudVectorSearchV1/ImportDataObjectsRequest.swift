@@ -100,7 +100,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.config {
       switch choice {
       case .gcsImport(let value):
-        try container.encode(value, forKey: .gcsImport)
+        try container.encodeIfPresent(value, forKey: .gcsImport)
       }
     }
     for (key, value) in self._unknownFields.json {

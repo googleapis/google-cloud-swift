@@ -95,11 +95,11 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.codecSettings {
       switch choice {
       case .h264(let value):
-        try container.encode(value, forKey: .h264)
+        try container.encodeIfPresent(value, forKey: .h264)
       case .h265(let value):
-        try container.encode(value, forKey: .h265)
+        try container.encodeIfPresent(value, forKey: .h265)
       case .vp9(let value):
-        try container.encode(value, forKey: .vp9)
+        try container.encodeIfPresent(value, forKey: .vp9)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -584,7 +584,9 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.widthPixels, forKey: .widthPixels)
       try container.encode(self.heightPixels, forKey: .heightPixels)
       try container.encode(self.frameRate, forKey: .frameRate)
-      try container.encode(self.frameRateConversionStrategy, forKey: .frameRateConversionStrategy)
+      if self.frameRateConversionStrategy != VideoStream.FrameRateConversionStrategy() {
+        try container.encode(self.frameRateConversionStrategy, forKey: .frameRateConversionStrategy)
+      }
       try container.encode(self.bitrateBps, forKey: .bitrateBps)
       try container.encode(self.pixelFormat, forKey: .pixelFormat)
       try container.encode(self.rateControlMode, forKey: .rateControlMode)
@@ -604,18 +606,18 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.gopMode {
         switch choice {
         case .gopFrameCount(let value):
-          try container.encode(value, forKey: .gopFrameCount)
+          try container.encodeIfPresent(value, forKey: .gopFrameCount)
         case .gopDuration(let value):
-          try container.encode(value, forKey: .gopDuration)
+          try container.encodeIfPresent(value, forKey: .gopDuration)
         }
       }
 
       if let choice = self.colorFormat {
         switch choice {
         case .sdr(let value):
-          try container.encode(value, forKey: .sdr)
+          try container.encodeIfPresent(value, forKey: .sdr)
         case .hlg(let value):
-          try container.encode(value, forKey: .hlg)
+          try container.encodeIfPresent(value, forKey: .hlg)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1218,7 +1220,9 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.widthPixels, forKey: .widthPixels)
       try container.encode(self.heightPixels, forKey: .heightPixels)
       try container.encode(self.frameRate, forKey: .frameRate)
-      try container.encode(self.frameRateConversionStrategy, forKey: .frameRateConversionStrategy)
+      if self.frameRateConversionStrategy != VideoStream.FrameRateConversionStrategy() {
+        try container.encode(self.frameRateConversionStrategy, forKey: .frameRateConversionStrategy)
+      }
       try container.encode(self.bitrateBps, forKey: .bitrateBps)
       try container.encode(self.pixelFormat, forKey: .pixelFormat)
       try container.encode(self.rateControlMode, forKey: .rateControlMode)
@@ -1237,20 +1241,20 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.gopMode {
         switch choice {
         case .gopFrameCount(let value):
-          try container.encode(value, forKey: .gopFrameCount)
+          try container.encodeIfPresent(value, forKey: .gopFrameCount)
         case .gopDuration(let value):
-          try container.encode(value, forKey: .gopDuration)
+          try container.encodeIfPresent(value, forKey: .gopDuration)
         }
       }
 
       if let choice = self.colorFormat {
         switch choice {
         case .sdr(let value):
-          try container.encode(value, forKey: .sdr)
+          try container.encodeIfPresent(value, forKey: .sdr)
         case .hlg(let value):
-          try container.encode(value, forKey: .hlg)
+          try container.encodeIfPresent(value, forKey: .hlg)
         case .hdr10(let value):
-          try container.encode(value, forKey: .hdr10)
+          try container.encodeIfPresent(value, forKey: .hdr10)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1665,7 +1669,9 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.widthPixels, forKey: .widthPixels)
       try container.encode(self.heightPixels, forKey: .heightPixels)
       try container.encode(self.frameRate, forKey: .frameRate)
-      try container.encode(self.frameRateConversionStrategy, forKey: .frameRateConversionStrategy)
+      if self.frameRateConversionStrategy != VideoStream.FrameRateConversionStrategy() {
+        try container.encode(self.frameRateConversionStrategy, forKey: .frameRateConversionStrategy)
+      }
       try container.encode(self.bitrateBps, forKey: .bitrateBps)
       try container.encode(self.pixelFormat, forKey: .pixelFormat)
       try container.encode(self.rateControlMode, forKey: .rateControlMode)
@@ -1675,18 +1681,18 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.gopMode {
         switch choice {
         case .gopFrameCount(let value):
-          try container.encode(value, forKey: .gopFrameCount)
+          try container.encodeIfPresent(value, forKey: .gopFrameCount)
         case .gopDuration(let value):
-          try container.encode(value, forKey: .gopDuration)
+          try container.encodeIfPresent(value, forKey: .gopDuration)
         }
       }
 
       if let choice = self.colorFormat {
         switch choice {
         case .sdr(let value):
-          try container.encode(value, forKey: .sdr)
+          try container.encodeIfPresent(value, forKey: .sdr)
         case .hlg(let value):
-          try container.encode(value, forKey: .hlg)
+          try container.encodeIfPresent(value, forKey: .hlg)
         }
       }
       for (key, value) in self._unknownFields.json {

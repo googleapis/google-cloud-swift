@@ -75,7 +75,9 @@ public struct EnumResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.request, forKey: .request)
-    try container.encode(self.continent, forKey: .continent)
+    if self.continent != Continent() {
+      try container.encode(self.continent, forKey: .continent)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

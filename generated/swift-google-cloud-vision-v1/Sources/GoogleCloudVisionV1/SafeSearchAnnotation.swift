@@ -112,11 +112,21 @@ public struct SafeSearchAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.adult, forKey: .adult)
-    try container.encode(self.spoof, forKey: .spoof)
-    try container.encode(self.medical, forKey: .medical)
-    try container.encode(self.violence, forKey: .violence)
-    try container.encode(self.racy, forKey: .racy)
+    if self.adult != Likelihood() {
+      try container.encode(self.adult, forKey: .adult)
+    }
+    if self.spoof != Likelihood() {
+      try container.encode(self.spoof, forKey: .spoof)
+    }
+    if self.medical != Likelihood() {
+      try container.encode(self.medical, forKey: .medical)
+    }
+    if self.violence != Likelihood() {
+      try container.encode(self.violence, forKey: .violence)
+    }
+    if self.racy != Likelihood() {
+      try container.encode(self.racy, forKey: .racy)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

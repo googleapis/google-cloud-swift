@@ -172,7 +172,9 @@ public struct McpTool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.tlsConfig, forKey: .tlsConfig)
     try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
     try container.encode(self.customHeaders, forKey: .customHeaders)
-    try container.encode(self.state, forKey: .state)
+    if self.state != McpTool.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -275,7 +275,9 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.distributionStreams, forKey: .distributionStreams)
     try container.encode(self.distributions, forKey: .distributions)
     try container.encode(self.spriteSheets, forKey: .spriteSheets)
-    try container.encode(self.streamingState, forKey: .streamingState)
+    if self.streamingState != Channel.StreamingState() {
+      try container.encode(self.streamingState, forKey: .streamingState)
+    }
     try container.encodeIfPresent(self.streamingError, forKey: .streamingError)
     try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
     try container.encodeIfPresent(self.timecodeConfig, forKey: .timecodeConfig)

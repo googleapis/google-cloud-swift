@@ -103,7 +103,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.location {
       switch choice {
       case .imageFindingLocation(let value):
-        try container.encode(value, forKey: .imageFindingLocation)
+        try container.encodeIfPresent(value, forKey: .imageFindingLocation)
       }
     }
     for (key, value) in self._unknownFields.json {

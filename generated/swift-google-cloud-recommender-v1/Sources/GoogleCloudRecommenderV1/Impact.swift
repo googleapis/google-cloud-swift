@@ -120,19 +120,21 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.category, forKey: .category)
+    if self.category != Impact.Category() {
+      try container.encode(self.category, forKey: .category)
+    }
     try container.encode(self.service, forKey: .service)
 
     if let choice = self.projection {
       switch choice {
       case .costProjection(let value):
-        try container.encode(value, forKey: .costProjection)
+        try container.encodeIfPresent(value, forKey: .costProjection)
       case .securityProjection(let value):
-        try container.encode(value, forKey: .securityProjection)
+        try container.encodeIfPresent(value, forKey: .securityProjection)
       case .sustainabilityProjection(let value):
-        try container.encode(value, forKey: .sustainabilityProjection)
+        try container.encodeIfPresent(value, forKey: .sustainabilityProjection)
       case .reliabilityProjection(let value):
-        try container.encode(value, forKey: .reliabilityProjection)
+        try container.encodeIfPresent(value, forKey: .reliabilityProjection)
       }
     }
     for (key, value) in self._unknownFields.json {

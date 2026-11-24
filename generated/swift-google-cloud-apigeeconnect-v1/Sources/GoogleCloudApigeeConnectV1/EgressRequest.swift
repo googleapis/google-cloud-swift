@@ -108,7 +108,9 @@ public struct EgressRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encodeIfPresent(self.payload, forKey: .payload)
-    try container.encode(self.endpoint, forKey: .endpoint)
+    if self.endpoint != TetherEndpoint() {
+      try container.encode(self.endpoint, forKey: .endpoint)
+    }
     try container.encode(self.project, forKey: .project)
     try container.encode(self.traceId, forKey: .traceId)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)

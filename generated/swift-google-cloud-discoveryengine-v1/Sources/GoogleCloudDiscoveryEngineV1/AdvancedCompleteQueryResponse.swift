@@ -348,7 +348,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.suggestion, forKey: .suggestion)
-        try container.encode(self.personType, forKey: .personType)
+        if self.personType != AdvancedCompleteQueryResponse.PersonSuggestion.PersonType() {
+          try container.encode(self.personType, forKey: .personType)
+        }
         try container.encodeIfPresent(self.document, forKey: .document)
         try container.encode(self.dataStore, forKey: .dataStore)
         try container.encode(self.score, forKey: .score)
@@ -610,7 +612,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.suggestion, forKey: .suggestion)
-        try container.encode(self.contentType, forKey: .contentType)
+        if self.contentType != AdvancedCompleteQueryResponse.ContentSuggestion.ContentType() {
+          try container.encode(self.contentType, forKey: .contentType)
+        }
         try container.encodeIfPresent(self.document, forKey: .document)
         try container.encode(self.dataStore, forKey: .dataStore)
         try container.encode(self.score, forKey: .score)

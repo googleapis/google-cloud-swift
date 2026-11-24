@@ -109,9 +109,13 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.errorTitle, forKey: .errorTitle)
     try container.encode(self.errorDescription, forKey: .errorDescription)
-    try container.encode(self.errorSeverity, forKey: .errorSeverity)
+    if self.errorSeverity != QueryRuntimeError.ErrorSeverity() {
+      try container.encode(self.errorSeverity, forKey: .errorSeverity)
+    }
     try container.encode(self.metadata, forKey: .metadata)
-    try container.encode(self.warningReason, forKey: .warningReason)
+    if self.warningReason != QueryRuntimeError.WarningReason() {
+      try container.encode(self.warningReason, forKey: .warningReason)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -178,7 +182,9 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.key, forKey: .key)
+      if self.key != QueryRuntimeError.MetadataKey() {
+        try container.encode(self.key, forKey: .key)
+      }
       try container.encode(self.value, forKey: .value)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

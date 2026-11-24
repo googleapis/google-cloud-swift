@@ -108,7 +108,9 @@ public struct BatchCreateTasksMetadata: Codable, Equatable, GoogleWKT._AnyPackab
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BatchCreateTasksMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     do {
       let stringKeyed = Dictionary(
         uniqueKeysWithValues: self.failedRequests.lazy.map { (Swift.String($0), $1) }

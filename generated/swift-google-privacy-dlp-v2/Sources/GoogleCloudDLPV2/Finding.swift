@@ -183,7 +183,9 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.quote, forKey: .quote)
     try container.encodeIfPresent(self.infoType, forKey: .infoType)
-    try container.encode(self.likelihood, forKey: .likelihood)
+    if self.likelihood != Likelihood() {
+      try container.encode(self.likelihood, forKey: .likelihood)
+    }
     try container.encodeIfPresent(self.location, forKey: .location)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.quoteInfo, forKey: .quoteInfo)

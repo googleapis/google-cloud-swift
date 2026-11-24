@@ -93,7 +93,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.decodedPayload {
       switch choice {
       case .statement(let value):
-        try container.encode(value, forKey: .statement)
+        try container.encodeIfPresent(value, forKey: .statement)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -88,7 +88,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.condition {
       switch choice {
       case .skuGroupCondition(let value):
-        try container.encode(value, forKey: .skuGroupCondition)
+        try container.encodeIfPresent(value, forKey: .skuGroupCondition)
       }
     }
     for (key, value) in self._unknownFields.json {

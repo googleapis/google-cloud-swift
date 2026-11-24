@@ -177,19 +177,19 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.properties {
       switch choice {
       case .cloudSql(let value):
-        try container.encode(value, forKey: .cloudSql)
+        try container.encodeIfPresent(value, forKey: .cloudSql)
       case .aws(let value):
-        try container.encode(value, forKey: .aws)
+        try container.encodeIfPresent(value, forKey: .aws)
       case .azure(let value):
-        try container.encode(value, forKey: .azure)
+        try container.encodeIfPresent(value, forKey: .azure)
       case .cloudSpanner(let value):
-        try container.encode(value, forKey: .cloudSpanner)
+        try container.encodeIfPresent(value, forKey: .cloudSpanner)
       case .cloudResource(let value):
-        try container.encode(value, forKey: .cloudResource)
+        try container.encodeIfPresent(value, forKey: .cloudResource)
       case .spark(let value):
-        try container.encode(value, forKey: .spark)
+        try container.encodeIfPresent(value, forKey: .spark)
       case .salesforceDataCloud(let value):
-        try container.encode(value, forKey: .salesforceDataCloud)
+        try container.encodeIfPresent(value, forKey: .salesforceDataCloud)
       }
     }
     for (key, value) in self._unknownFields.json {

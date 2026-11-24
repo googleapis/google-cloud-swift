@@ -297,20 +297,28 @@ public struct ComputeEngineTargetDetails: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.networkTags, forKey: .networkTags)
     try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.diskType, forKey: .diskType)
+    if self.diskType != ComputeEngineDiskType() {
+      try container.encode(self.diskType, forKey: .diskType)
+    }
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.licenseType, forKey: .licenseType)
+    if self.licenseType != ComputeEngineLicenseType() {
+      try container.encode(self.licenseType, forKey: .licenseType)
+    }
     try container.encodeIfPresent(self.appliedLicense, forKey: .appliedLicense)
     try container.encodeIfPresent(self.computeScheduling, forKey: .computeScheduling)
     try container.encode(self.secureBoot, forKey: .secureBoot)
     try container.encode(self.enableVtpm, forKey: .enableVtpm)
     try container.encode(self.enableIntegrityMonitoring, forKey: .enableIntegrityMonitoring)
-    try container.encode(self.bootOption, forKey: .bootOption)
+    if self.bootOption != ComputeEngineBootOption() {
+      try container.encode(self.bootOption, forKey: .bootOption)
+    }
     try container.encode(self.metadata, forKey: .metadata)
     try container.encode(self.additionalLicenses, forKey: .additionalLicenses)
     try container.encode(self.hostname, forKey: .hostname)
     try container.encodeIfPresent(self.encryption, forKey: .encryption)
-    try container.encode(self.bootConversion, forKey: .bootConversion)
+    if self.bootConversion != BootConversion() {
+      try container.encode(self.bootConversion, forKey: .bootConversion)
+    }
     try container.encode(self.adaptationModifiers, forKey: .adaptationModifiers)
     try container.encode(self.diskReplicaZones, forKey: .diskReplicaZones)
     try container.encode(self.storagePool, forKey: .storagePool)

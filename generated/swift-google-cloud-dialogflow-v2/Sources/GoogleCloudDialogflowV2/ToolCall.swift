@@ -157,18 +157,20 @@
       try container.encodeIfPresent(self.inputParameters, forKey: .inputParameters)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encode(self.answerRecord, forKey: .answerRecord)
-      try container.encode(self.state, forKey: .state)
+      if self.state != ToolCall.State() {
+        try container.encode(self.state, forKey: .state)
+      }
 
       if let choice = self.source {
         switch choice {
         case .tool(let value):
-          try container.encode(value, forKey: .tool)
+          try container.encodeIfPresent(value, forKey: .tool)
         case .cesTool(let value):
-          try container.encode(value, forKey: .cesTool)
+          try container.encodeIfPresent(value, forKey: .cesTool)
         case .cesToolset(let value):
-          try container.encode(value, forKey: .cesToolset)
+          try container.encodeIfPresent(value, forKey: .cesToolset)
         case .cesApp(let value):
-          try container.encode(value, forKey: .cesApp)
+          try container.encodeIfPresent(value, forKey: .cesApp)
         }
       }
       for (key, value) in self._unknownFields.json {

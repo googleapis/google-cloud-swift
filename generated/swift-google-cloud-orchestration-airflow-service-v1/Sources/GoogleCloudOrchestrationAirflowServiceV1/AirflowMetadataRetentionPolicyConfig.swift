@@ -80,7 +80,9 @@ public struct AirflowMetadataRetentionPolicyConfig: Codable, Equatable, GoogleWK
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.retentionMode, forKey: .retentionMode)
+    if self.retentionMode != AirflowMetadataRetentionPolicyConfig.RetentionMode() {
+      try container.encode(self.retentionMode, forKey: .retentionMode)
+    }
     try container.encode(self.retentionDays, forKey: .retentionDays)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

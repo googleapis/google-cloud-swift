@@ -299,7 +299,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.webhookState, forKey: .webhookState)
+      if self.webhookState != Intent.WebhookState() {
+        try container.encode(self.webhookState, forKey: .webhookState)
+      }
       try container.encode(self.priority, forKey: .priority)
       try container.encode(self.isFallback, forKey: .isFallback)
       try container.encode(self.mlDisabled, forKey: .mlDisabled)
@@ -427,7 +429,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
-        try container.encode(self.type, forKey: .type)
+        if self.type != Intent.TrainingPhrase.Type_() {
+          try container.encode(self.type, forKey: .type)
+        }
         try container.encode(self.parts, forKey: .parts)
         try container.encode(self.timesAddedCount, forKey: .timesAddedCount)
         for (key, value) in self._unknownFields.json {
@@ -1022,38 +1026,40 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.platform, forKey: .platform)
+        if self.platform != Intent.Message.Platform() {
+          try container.encode(self.platform, forKey: .platform)
+        }
 
         if let choice = self.message {
           switch choice {
           case .text(let value):
-            try container.encode(value, forKey: .text)
+            try container.encodeIfPresent(value, forKey: .text)
           case .image(let value):
-            try container.encode(value, forKey: .image)
+            try container.encodeIfPresent(value, forKey: .image)
           case .quickReplies(let value):
-            try container.encode(value, forKey: .quickReplies)
+            try container.encodeIfPresent(value, forKey: .quickReplies)
           case .card(let value):
-            try container.encode(value, forKey: .card)
+            try container.encodeIfPresent(value, forKey: .card)
           case .payload(let value):
-            try container.encode(value, forKey: .payload)
+            try container.encodeIfPresent(value, forKey: .payload)
           case .simpleResponses(let value):
-            try container.encode(value, forKey: .simpleResponses)
+            try container.encodeIfPresent(value, forKey: .simpleResponses)
           case .basicCard(let value):
-            try container.encode(value, forKey: .basicCard)
+            try container.encodeIfPresent(value, forKey: .basicCard)
           case .suggestions(let value):
-            try container.encode(value, forKey: .suggestions)
+            try container.encodeIfPresent(value, forKey: .suggestions)
           case .linkOutSuggestion(let value):
-            try container.encode(value, forKey: .linkOutSuggestion)
+            try container.encodeIfPresent(value, forKey: .linkOutSuggestion)
           case .listSelect(let value):
-            try container.encode(value, forKey: .listSelect)
+            try container.encodeIfPresent(value, forKey: .listSelect)
           case .carouselSelect(let value):
-            try container.encode(value, forKey: .carouselSelect)
+            try container.encodeIfPresent(value, forKey: .carouselSelect)
           case .browseCarouselCard(let value):
-            try container.encode(value, forKey: .browseCarouselCard)
+            try container.encodeIfPresent(value, forKey: .browseCarouselCard)
           case .tableCard(let value):
-            try container.encode(value, forKey: .tableCard)
+            try container.encodeIfPresent(value, forKey: .tableCard)
           case .mediaContent(let value):
-            try container.encode(value, forKey: .mediaContent)
+            try container.encodeIfPresent(value, forKey: .mediaContent)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -2795,7 +2801,9 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.mediaType, forKey: .mediaType)
+          if self.mediaType != Intent.Message.MediaContent.ResponseMediaType() {
+            try container.encode(self.mediaType, forKey: .mediaType)
+          }
           try container.encode(self.mediaObjects, forKey: .mediaObjects)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -2904,9 +2912,9 @@
             if let choice = self.image {
               switch choice {
               case .largeImage(let value):
-                try container.encode(value, forKey: .largeImage)
+                try container.encodeIfPresent(value, forKey: .largeImage)
               case .icon(let value):
-                try container.encode(value, forKey: .icon)
+                try container.encodeIfPresent(value, forKey: .icon)
               }
             }
             for (key, value) in self._unknownFields.json {
@@ -3148,7 +3156,9 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.items, forKey: .items)
-          try container.encode(self.imageDisplayOptions, forKey: .imageDisplayOptions)
+          if self.imageDisplayOptions != Intent.Message.BrowseCarouselCard.ImageDisplayOptions() {
+            try container.encode(self.imageDisplayOptions, forKey: .imageDisplayOptions)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -3316,7 +3326,12 @@
             public func encode(to encoder: any Encoder) throws {
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.url, forKey: .url)
-              try container.encode(self.urlTypeHint, forKey: .urlTypeHint)
+              if self.urlTypeHint
+                != Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction
+                .UrlTypeHint()
+              {
+                try container.encode(self.urlTypeHint, forKey: .urlTypeHint)
+              }
               for (key, value) in self._unknownFields.json {
                 try container.encode(value, forKey: CodingKeys(stringValue: key))
               }
@@ -3847,7 +3862,9 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.header, forKey: .header)
-          try container.encode(self.horizontalAlignment, forKey: .horizontalAlignment)
+          if self.horizontalAlignment != Intent.Message.ColumnProperties.HorizontalAlignment() {
+            try container.encode(self.horizontalAlignment, forKey: .horizontalAlignment)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

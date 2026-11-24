@@ -87,7 +87,7 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .deploymentSource(let value):
-        try container.encode(value, forKey: .deploymentSource)
+        try container.encodeIfPresent(value, forKey: .deploymentSource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -149,8 +149,12 @@ public struct Cve: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.references, forKey: .references)
     try container.encodeIfPresent(self.cvssv3, forKey: .cvssv3)
     try container.encode(self.upstreamFixAvailable, forKey: .upstreamFixAvailable)
-    try container.encode(self.impact, forKey: .impact)
-    try container.encode(self.exploitationActivity, forKey: .exploitationActivity)
+    if self.impact != Cve.RiskRating() {
+      try container.encode(self.impact, forKey: .impact)
+    }
+    if self.exploitationActivity != Cve.ExploitationActivity() {
+      try container.encode(self.exploitationActivity, forKey: .exploitationActivity)
+    }
     try container.encode(self.observedInTheWild, forKey: .observedInTheWild)
     try container.encode(self.zeroDay, forKey: .zeroDay)
     try container.encodeIfPresent(self.exploitReleaseDate, forKey: .exploitReleaseDate)

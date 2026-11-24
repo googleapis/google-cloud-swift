@@ -377,8 +377,12 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.servicesIpv4CidrBlock, forKey: .servicesIpv4CidrBlock)
     try container.encode(self.tpuIpv4CidrBlock, forKey: .tpuIpv4CidrBlock)
     try container.encode(self.useRoutes, forKey: .useRoutes)
-    try container.encode(self.stackType, forKey: .stackType)
-    try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
+    if self.stackType != StackType() {
+      try container.encode(self.stackType, forKey: .stackType)
+    }
+    if self.ipv6AccessType != IPv6AccessType() {
+      try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
+    }
     try container.encodeIfPresent(
       self.podCidrOverprovisionConfig, forKey: .podCidrOverprovisionConfig)
     try container.encode(self.subnetIpv6CidrBlock, forKey: .subnetIpv6CidrBlock)

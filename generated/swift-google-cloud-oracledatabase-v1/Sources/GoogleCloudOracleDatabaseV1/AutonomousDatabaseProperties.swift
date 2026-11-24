@@ -714,8 +714,12 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
     try container.encode(self.cpuCoreCount, forKey: .cpuCoreCount)
     try container.encode(self.dataStorageSizeTb, forKey: .dataStorageSizeTb)
     try container.encode(self.dataStorageSizeGb, forKey: .dataStorageSizeGb)
-    try container.encode(self.dbWorkload, forKey: .dbWorkload)
-    try container.encode(self.dbEdition, forKey: .dbEdition)
+    if self.dbWorkload != DBWorkload() {
+      try container.encode(self.dbWorkload, forKey: .dbWorkload)
+    }
+    if self.dbEdition != AutonomousDatabaseProperties.DatabaseEdition() {
+      try container.encode(self.dbEdition, forKey: .dbEdition)
+    }
     try container.encode(self.characterSet, forKey: .characterSet)
     try container.encode(self.nCharacterSet, forKey: .nCharacterSet)
     try container.encode(self.privateEndpointIp, forKey: .privateEndpointIp)
@@ -723,11 +727,15 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
     try container.encode(self.dbVersion, forKey: .dbVersion)
     try container.encode(self.isAutoScalingEnabled, forKey: .isAutoScalingEnabled)
     try container.encode(self.isStorageAutoScalingEnabled, forKey: .isStorageAutoScalingEnabled)
-    try container.encode(self.licenseType, forKey: .licenseType)
+    if self.licenseType != AutonomousDatabaseProperties.LicenseType() {
+      try container.encode(self.licenseType, forKey: .licenseType)
+    }
     try container.encode(self.customerContacts, forKey: .customerContacts)
     try container.encode(self.secretId, forKey: .secretId)
     try container.encode(self.vaultId, forKey: .vaultId)
-    try container.encode(self.maintenanceScheduleType, forKey: .maintenanceScheduleType)
+    if self.maintenanceScheduleType != AutonomousDatabaseProperties.MaintenanceScheduleType() {
+      try container.encode(self.maintenanceScheduleType, forKey: .maintenanceScheduleType)
+    }
     try container.encode(self.mtlsConnectionRequired, forKey: .mtlsConnectionRequired)
     try container.encode(self.backupRetentionPeriodDays, forKey: .backupRetentionPeriodDays)
     try container.encode(self.actualUsedDataStorageSizeTb, forKey: .actualUsedDataStorageSizeTb)
@@ -736,7 +744,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
     try container.encodeIfPresent(
       self.arePrimaryAllowlistedIpsUsed, forKey: .arePrimaryAllowlistedIpsUsed)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudOracleDatabaseV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.autonomousContainerDatabaseId, forKey: .autonomousContainerDatabaseId)
     try container.encode(self.availableUpgradeVersions, forKey: .availableUpgradeVersions)
     try container.encodeIfPresent(self.connectionStrings, forKey: .connectionStrings)
@@ -749,17 +759,35 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
       self.localAdgAutoFailoverMaxDataLossLimit, forKey: .localAdgAutoFailoverMaxDataLossLimit)
     try container.encodeIfPresent(self.localStandbyDb, forKey: .localStandbyDb)
     try container.encode(self.memoryPerOracleComputeUnitGbs, forKey: .memoryPerOracleComputeUnitGbs)
-    try container.encode(self.localDisasterRecoveryType, forKey: .localDisasterRecoveryType)
-    try container.encode(self.dataSafeState, forKey: .dataSafeState)
-    try container.encode(self.databaseManagementState, forKey: .databaseManagementState)
-    try container.encode(self.openMode, forKey: .openMode)
-    try container.encode(self.operationsInsightsState, forKey: .operationsInsightsState)
+    if self.localDisasterRecoveryType != AutonomousDatabaseProperties.LocalDisasterRecoveryType() {
+      try container.encode(self.localDisasterRecoveryType, forKey: .localDisasterRecoveryType)
+    }
+    if self.dataSafeState != AutonomousDatabaseProperties.DataSafeState() {
+      try container.encode(self.dataSafeState, forKey: .dataSafeState)
+    }
+    if self.databaseManagementState != AutonomousDatabaseProperties.DatabaseManagementState() {
+      try container.encode(self.databaseManagementState, forKey: .databaseManagementState)
+    }
+    if self.openMode != AutonomousDatabaseProperties.OpenMode() {
+      try container.encode(self.openMode, forKey: .openMode)
+    }
+    if self.operationsInsightsState != GoogleCloudOracleDatabaseV1.OperationsInsightsState() {
+      try container.encode(self.operationsInsightsState, forKey: .operationsInsightsState)
+    }
     try container.encode(self.peerDbIds, forKey: .peerDbIds)
-    try container.encode(self.permissionLevel, forKey: .permissionLevel)
+    if self.permissionLevel != AutonomousDatabaseProperties.PermissionLevel() {
+      try container.encode(self.permissionLevel, forKey: .permissionLevel)
+    }
     try container.encode(self.privateEndpoint, forKey: .privateEndpoint)
-    try container.encode(self.refreshableMode, forKey: .refreshableMode)
-    try container.encode(self.refreshableState, forKey: .refreshableState)
-    try container.encode(self.role, forKey: .role)
+    if self.refreshableMode != AutonomousDatabaseProperties.RefreshableMode() {
+      try container.encode(self.refreshableMode, forKey: .refreshableMode)
+    }
+    if self.refreshableState != AutonomousDatabaseProperties.RefreshableState() {
+      try container.encode(self.refreshableState, forKey: .refreshableState)
+    }
+    if self.role != AutonomousDatabaseProperties.Role() {
+      try container.encode(self.role, forKey: .role)
+    }
     try container.encode(self.scheduledOperationDetails, forKey: .scheduledOperationDetails)
     try container.encode(self.sqlWebDeveloperUrl, forKey: .sqlWebDeveloperUrl)
     try container.encode(self.supportedCloneRegions, forKey: .supportedCloneRegions)

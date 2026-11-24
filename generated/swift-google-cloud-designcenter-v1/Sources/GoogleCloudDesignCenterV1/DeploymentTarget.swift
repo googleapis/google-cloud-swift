@@ -87,7 +87,7 @@ public struct DeploymentTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .gkeDeploymentTarget(let value):
-        try container.encode(value, forKey: .gkeDeploymentTarget)
+        try container.encodeIfPresent(value, forKey: .gkeDeploymentTarget)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -173,7 +173,9 @@
       try container.encode(self.dumpFilePath, forKey: .dumpFilePath)
       try container.encodeIfPresent(self.sourceInstance, forKey: .sourceInstance)
       try container.encode(self.selectedObjects, forKey: .selectedObjects)
-      try container.encode(self.sslOption, forKey: .sslOption)
+      if self.sslOption != OnPremisesConfiguration.SslOption() {
+        try container.encode(self.sslOption, forKey: .sslOption)
+      }
       try container.encode(self.dmsManaged, forKey: .dmsManaged)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -76,7 +76,9 @@ public struct AmbientNetworking: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.enabled, forKey: .enabled)
-    try container.encode(self.ambientScope, forKey: .ambientScope)
+    if self.ambientScope != AmbientScope() {
+      try container.encode(self.ambientScope, forKey: .ambientScope)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

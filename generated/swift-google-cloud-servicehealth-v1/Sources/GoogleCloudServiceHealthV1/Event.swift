@@ -187,12 +187,22 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.title, forKey: .title)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.category, forKey: .category)
-    try container.encode(self.detailedCategory, forKey: .detailedCategory)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.detailedState, forKey: .detailedState)
+    if self.category != Event.EventCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
+    if self.detailedCategory != Event.DetailedCategory() {
+      try container.encode(self.detailedCategory, forKey: .detailedCategory)
+    }
+    if self.state != Event.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.detailedState != Event.DetailedState() {
+      try container.encode(self.detailedState, forKey: .detailedState)
+    }
     try container.encode(self.eventImpacts, forKey: .eventImpacts)
-    try container.encode(self.relevance, forKey: .relevance)
+    if self.relevance != Event.Relevance() {
+      try container.encode(self.relevance, forKey: .relevance)
+    }
     try container.encode(self.updates, forKey: .updates)
     try container.encode(self.parentEvent, forKey: .parentEvent)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

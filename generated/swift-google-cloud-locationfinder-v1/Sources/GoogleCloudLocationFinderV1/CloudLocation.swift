@@ -138,9 +138,13 @@ public struct CloudLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.containingCloudLocation, forKey: .containingCloudLocation)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    if self.cloudProvider != CloudLocation.CloudProvider() {
+      try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    }
     try container.encode(self.territoryCode, forKey: .territoryCode)
-    try container.encode(self.cloudLocationType, forKey: .cloudLocationType)
+    if self.cloudLocationType != CloudLocation.CloudLocationType() {
+      try container.encode(self.cloudLocationType, forKey: .cloudLocationType)
+    }
     try container.encodeIfPresent(
       self.carbonFreeEnergyPercentage, forKey: .carbonFreeEnergyPercentage)
     for (key, value) in self._unknownFields.json {

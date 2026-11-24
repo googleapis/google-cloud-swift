@@ -149,7 +149,9 @@ public struct BackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.assignedVolumeCount, forKey: .assignedVolumeCount)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupPolicy.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

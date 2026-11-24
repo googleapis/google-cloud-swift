@@ -87,7 +87,7 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.type {
       switch choice {
       case .wordList(let value):
-        try container.encode(value, forKey: .wordList)
+        try container.encodeIfPresent(value, forKey: .wordList)
       }
     }
     for (key, value) in self._unknownFields.json {

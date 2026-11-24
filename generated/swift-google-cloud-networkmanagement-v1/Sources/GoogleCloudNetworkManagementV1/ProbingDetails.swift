@@ -155,10 +155,14 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.result, forKey: .result)
+    if self.result != ProbingDetails.ProbingResult() {
+      try container.encode(self.result, forKey: .result)
+    }
     try container.encodeIfPresent(self.verifyTime, forKey: .verifyTime)
     try container.encodeIfPresent(self.error, forKey: .error)
-    try container.encode(self.abortCause, forKey: .abortCause)
+    if self.abortCause != ProbingDetails.ProbingAbortCause() {
+      try container.encode(self.abortCause, forKey: .abortCause)
+    }
     try container.encode(self.sentProbeCount, forKey: .sentProbeCount)
     try container.encode(self.successfulProbeCount, forKey: .successfulProbeCount)
     try container.encodeIfPresent(self.endpointInfo, forKey: .endpointInfo)
@@ -353,7 +357,9 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.result, forKey: .result)
+      if self.result != ProbingDetails.ProbingResult() {
+        try container.encode(self.result, forKey: .result)
+      }
       try container.encode(self.sentProbeCount, forKey: .sentProbeCount)
       try container.encode(self.successfulProbeCount, forKey: .successfulProbeCount)
       try container.encodeIfPresent(self.probingLatency, forKey: .probingLatency)

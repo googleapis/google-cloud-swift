@@ -162,7 +162,9 @@ public struct TraceSpan: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.spanId, forKey: .spanId)
-    try container.encode(self.kind, forKey: .kind)
+    if self.kind != TraceSpan.SpanKind() {
+      try container.encode(self.kind, forKey: .kind)
+    }
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)

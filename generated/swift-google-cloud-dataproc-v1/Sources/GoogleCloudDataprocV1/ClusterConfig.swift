@@ -320,9 +320,15 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.clusterType, forKey: .clusterType)
-    try container.encode(self.clusterTier, forKey: .clusterTier)
-    try container.encode(self.engine, forKey: .engine)
+    if self.clusterType != ClusterConfig.ClusterType() {
+      try container.encode(self.clusterType, forKey: .clusterType)
+    }
+    if self.clusterTier != ClusterConfig.ClusterTier() {
+      try container.encode(self.clusterTier, forKey: .clusterTier)
+    }
+    if self.engine != ClusterConfig.Engine() {
+      try container.encode(self.engine, forKey: .engine)
+    }
     try container.encode(self.configBucket, forKey: .configBucket)
     try container.encode(self.tempBucket, forKey: .tempBucket)
     try container.encodeIfPresent(self.gceClusterConfig, forKey: .gceClusterConfig)

@@ -102,7 +102,7 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.auditConfigs, forKey: .auditConfigs)
     try container.encode(self.bindings, forKey: .bindings)
     if let v = etag {
-      try container.encode(
+      try container.encodeIfPresent(
         GoogleWKT._DiscoveryBase64.encode(v), forKey: .etag
       )
     }

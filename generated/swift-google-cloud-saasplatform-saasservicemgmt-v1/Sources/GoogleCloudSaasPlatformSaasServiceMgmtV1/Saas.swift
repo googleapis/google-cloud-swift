@@ -197,7 +197,9 @@ public struct Saas: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.locations, forKey: .locations)
     try container.encodeIfPresent(self.applicationTemplate, forKey: .applicationTemplate)
     try container.encode(self.blueprintRepo, forKey: .blueprintRepo)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Saas.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.conditions, forKey: .conditions)
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.labels, forKey: .labels)

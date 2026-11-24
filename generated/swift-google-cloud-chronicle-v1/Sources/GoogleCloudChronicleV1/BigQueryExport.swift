@@ -129,7 +129,9 @@ public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.provisioned, forKey: .provisioned)
-    try container.encode(self.bigQueryExportPackage, forKey: .bigQueryExportPackage)
+    if self.bigQueryExportPackage != BigQueryExportPackage() {
+      try container.encode(self.bigQueryExportPackage, forKey: .bigQueryExportPackage)
+    }
     try container.encodeIfPresent(self.entityGraphSettings, forKey: .entityGraphSettings)
     try container.encodeIfPresent(self.iocMatchesSettings, forKey: .iocMatchesSettings)
     try container.encodeIfPresent(self.ruleDetectionsSettings, forKey: .ruleDetectionsSettings)

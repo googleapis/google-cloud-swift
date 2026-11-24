@@ -107,7 +107,9 @@ public struct PatchJobInstanceDetails: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.instanceSystemId, forKey: .instanceSystemId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.PatchState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.failureReason, forKey: .failureReason)
     try container.encode(self.attemptCount, forKey: .attemptCount)
     for (key, value) in self._unknownFields.json {

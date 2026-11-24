@@ -306,7 +306,9 @@ public struct App: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.loggingSettings, forKey: .loggingSettings)
     try container.encodeIfPresent(self.errorHandlingSettings, forKey: .errorHandlingSettings)
     try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
-    try container.encode(self.toolExecutionMode, forKey: .toolExecutionMode)
+    if self.toolExecutionMode != App.ToolExecutionMode() {
+      try container.encode(self.toolExecutionMode, forKey: .toolExecutionMode)
+    }
     try container.encodeIfPresent(
       self.evaluationMetricsThresholds, forKey: .evaluationMetricsThresholds)
     try container.encode(self.variableDeclarations, forKey: .variableDeclarations)

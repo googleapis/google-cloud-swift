@@ -213,7 +213,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.appEngineRelease, forKey: .appEngineRelease)
-    try container.encode(self.availability, forKey: .availability)
+    if self.availability != Instance.Availability() {
+      try container.encode(self.availability, forKey: .availability)
+    }
     try container.encode(self.vmName, forKey: .vmName)
     try container.encode(self.vmZoneName, forKey: .vmZoneName)
     try container.encode(self.vmId, forKey: .vmId)
@@ -226,7 +228,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.vmStatus, forKey: .vmStatus)
     try container.encode(self.vmDebugEnabled, forKey: .vmDebugEnabled)
     try container.encode(self.vmIp, forKey: .vmIp)
-    try container.encode(self.vmLiveness, forKey: .vmLiveness)
+    if self.vmLiveness != Instance.Liveness.LivenessState() {
+      try container.encode(self.vmLiveness, forKey: .vmLiveness)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

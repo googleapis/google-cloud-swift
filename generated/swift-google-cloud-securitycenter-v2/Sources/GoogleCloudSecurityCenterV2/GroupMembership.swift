@@ -79,7 +79,9 @@ public struct GroupMembership: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.groupType, forKey: .groupType)
+    if self.groupType != GroupMembership.GroupType() {
+      try container.encode(self.groupType, forKey: .groupType)
+    }
     try container.encode(self.groupId, forKey: .groupId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

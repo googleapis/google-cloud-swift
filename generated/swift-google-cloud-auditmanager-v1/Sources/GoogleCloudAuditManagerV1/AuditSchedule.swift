@@ -186,9 +186,13 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.gcsUri, forKey: .gcsUri)
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
-    try container.encode(self.reportFormat, forKey: .reportFormat)
+    if self.reportFormat != AuditSchedule.AuditReportFormat() {
+      try container.encode(self.reportFormat, forKey: .reportFormat)
+    }
     try container.encodeIfPresent(self.scheduleConfig, forKey: .scheduleConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ScheduleState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.nextRunTime, forKey: .nextRunTime)

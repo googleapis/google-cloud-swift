@@ -113,7 +113,7 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.source {
       switch choice {
       case .cloudsqlBackupRunSource(let value):
-        try container.encode(value, forKey: .cloudsqlBackupRunSource)
+        try container.encodeIfPresent(value, forKey: .cloudsqlBackupRunSource)
       }
     }
     for (key, value) in self._unknownFields.json {

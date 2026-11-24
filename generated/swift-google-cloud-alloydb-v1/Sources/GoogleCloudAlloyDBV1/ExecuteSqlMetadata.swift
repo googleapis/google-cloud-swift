@@ -101,7 +101,9 @@ public struct ExecuteSqlMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.partialResult, forKey: .partialResult)
     try container.encodeIfPresent(
       self.sqlStatementExecutionDuration, forKey: .sqlStatementExecutionDuration)
-    try container.encode(self.status, forKey: .status)
+    if self.status != ExecuteSqlMetadata.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

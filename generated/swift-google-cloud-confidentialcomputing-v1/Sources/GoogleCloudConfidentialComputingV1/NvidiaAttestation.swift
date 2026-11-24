@@ -103,11 +103,11 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.ccFeature {
       switch choice {
       case .spt(let value):
-        try container.encode(value, forKey: .spt)
+        try container.encodeIfPresent(value, forKey: .spt)
       case .ppcie(let value):
-        try container.encode(value, forKey: .ppcie)
+        try container.encodeIfPresent(value, forKey: .ppcie)
       case .mpt(let value):
-        try container.encode(value, forKey: .mpt)
+        try container.encodeIfPresent(value, forKey: .mpt)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -219,7 +219,9 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.uuid, forKey: .uuid)
       try container.encode(self.driverVersion, forKey: .driverVersion)
       try container.encode(self.vbiosVersion, forKey: .vbiosVersion)
-      try container.encode(self.gpuArchitectureType, forKey: .gpuArchitectureType)
+      if self.gpuArchitectureType != NvidiaAttestation.GpuArchitectureType() {
+        try container.encode(self.gpuArchitectureType, forKey: .gpuArchitectureType)
+      }
       try container.encode(self.attestationCertificateChain, forKey: .attestationCertificateChain)
       try container.encode(self.attestationReport, forKey: .attestationReport)
       for (key, value) in self._unknownFields.json {

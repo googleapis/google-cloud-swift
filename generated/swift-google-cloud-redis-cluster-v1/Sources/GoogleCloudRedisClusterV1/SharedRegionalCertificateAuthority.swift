@@ -99,7 +99,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
     if let choice = self.serverCa {
       switch choice {
       case .managedServerCa(let value):
-        try container.encode(value, forKey: .managedServerCa)
+        try container.encodeIfPresent(value, forKey: .managedServerCa)
       }
     }
     for (key, value) in self._unknownFields.json {

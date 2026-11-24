@@ -108,11 +108,11 @@ public struct StructuredQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.queryType {
       switch choice {
       case .text(let value):
-        try container.encode(value, forKey: .text)
+        try container.encodeIfPresent(value, forKey: .text)
       case .unary(let value):
-        try container.encode(value, forKey: .unary)
+        try container.encodeIfPresent(value, forKey: .unary)
       case .combine(let value):
-        try container.encode(value, forKey: .combine)
+        try container.encodeIfPresent(value, forKey: .combine)
       }
     }
     for (key, value) in self._unknownFields.json {

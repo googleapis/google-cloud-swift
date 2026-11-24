@@ -167,9 +167,9 @@ public struct ListTransferableOffersRequest: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.transferredCustomerIdentity {
       switch choice {
       case .cloudIdentityId(let value):
-        try container.encode(value, forKey: .cloudIdentityId)
+        try container.encodeIfPresent(value, forKey: .cloudIdentityId)
       case .customerName(let value):
-        try container.encode(value, forKey: .customerName)
+        try container.encodeIfPresent(value, forKey: .customerName)
       }
     }
     for (key, value) in self._unknownFields.json {

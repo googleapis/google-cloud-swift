@@ -96,9 +96,9 @@
       if let choice = self.request {
         switch choice {
         case .config(let value):
-          try container.encode(value, forKey: .config)
+          try container.encodeIfPresent(value, forKey: .config)
         case .input(let value):
-          try container.encode(value, forKey: .input)
+          try container.encodeIfPresent(value, forKey: .input)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -208,7 +208,7 @@
         if let choice = self.config {
           switch choice {
           case .voiceSessionConfig(let value):
-            try container.encode(value, forKey: .voiceSessionConfig)
+            try container.encodeIfPresent(value, forKey: .voiceSessionConfig)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -351,9 +351,13 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.inputAudioEncoding, forKey: .inputAudioEncoding)
+          if self.inputAudioEncoding != AudioEncoding() {
+            try container.encode(self.inputAudioEncoding, forKey: .inputAudioEncoding)
+          }
           try container.encode(self.inputAudioSampleRateHertz, forKey: .inputAudioSampleRateHertz)
-          try container.encode(self.outputAudioEncoding, forKey: .outputAudioEncoding)
+          if self.outputAudioEncoding != OutputAudioEncoding() {
+            try container.encode(self.outputAudioEncoding, forKey: .outputAudioEncoding)
+          }
           try container.encode(self.outputAudioSampleRateHertz, forKey: .outputAudioSampleRateHertz)
           try container.encode(
             self.enableCxProactiveProcessing, forKey: .enableCxProactiveProcessing)
@@ -513,13 +517,13 @@
         if let choice = self.mainContent {
           switch choice {
           case .text(let value):
-            try container.encode(value, forKey: .text)
+            try container.encodeIfPresent(value, forKey: .text)
           case .intent(let value):
-            try container.encode(value, forKey: .intent)
+            try container.encodeIfPresent(value, forKey: .intent)
           case .event(let value):
-            try container.encode(value, forKey: .event)
+            try container.encodeIfPresent(value, forKey: .event)
           case .suggestionInput(let value):
-            try container.encode(value, forKey: .suggestionInput)
+            try container.encodeIfPresent(value, forKey: .suggestionInput)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -647,11 +651,11 @@
         if let choice = self.input {
           switch choice {
           case .audio(let value):
-            try container.encode(value, forKey: .audio)
+            try container.encodeIfPresent(value, forKey: .audio)
           case .dtmf(let value):
-            try container.encode(value, forKey: .dtmf)
+            try container.encodeIfPresent(value, forKey: .dtmf)
           case .turn(let value):
-            try container.encode(value, forKey: .turn)
+            try container.encodeIfPresent(value, forKey: .turn)
           }
         }
         for (key, value) in self._unknownFields.json {

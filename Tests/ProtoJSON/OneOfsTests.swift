@@ -20,6 +20,11 @@ import Testing
   @Test(
     "OneOf serialization",
     arguments: [
+      (#"{}"#, MessageWithOneOf()),
+      (
+        #"{"stringContents":""}"#,
+        MessageWithOneOf().with { $0.singleString = .stringContents("") }
+      ),
       (
         #"{"stringContents":"test"}"#,
         MessageWithOneOf().with { $0.singleString = .stringContents("test") }
@@ -31,6 +36,10 @@ import Testing
       (
         #"{"stringContentsTwo":"test"}"#,
         MessageWithOneOf().with { $0.twoStrings = .stringContentsTwo("test") }
+      ),
+      (
+        #"{"messageValue":{}}"#,
+        MessageWithOneOf().with { $0.oneMessage = .messageValue(.init()) }
       ),
       (
         #"{"messageValue":{"parent":"test"}}"#,
@@ -66,24 +75,48 @@ import Testing
   @Test(
     "ComplexOneOf serialization",
     arguments: [
+      (#"{}"#, MessageWithComplexOneOf()),
+      (#"{"boolValue":false}"#, MessageWithComplexOneOf().with { $0.complex = .boolValue(false) }),
       (#"{"boolValue":true}"#, MessageWithComplexOneOf().with { $0.complex = .boolValue(true) }),
+      (#"{"bytesValue":""}"#, MessageWithComplexOneOf().with { $0.complex = .bytesValue(Data()) }),
       (
         #"{"bytesValue":"AQID"}"#,
         MessageWithComplexOneOf().with { $0.complex = .bytesValue(Data([1, 2, 3])) }
       ),
+      (#"{"stringValue":""}"#, MessageWithComplexOneOf().with { $0.complex = .stringValue("") }),
       (
         #"{"stringValue":"test"}"#,
         MessageWithComplexOneOf().with { $0.complex = .stringValue("test") }
       ),
+      (#"{"floatValue":0}"#, MessageWithComplexOneOf().with { $0.complex = .floatValue(0) }),
+      (#"{"floatValue":-0}"#, MessageWithComplexOneOf().with { $0.complex = .floatValue(-0.0) }),
       (#"{"floatValue":1.5}"#, MessageWithComplexOneOf().with { $0.complex = .floatValue(1.5) }),
+      (#"{"doubleValue":0}"#, MessageWithComplexOneOf().with { $0.complex = .doubleValue(0) }),
+      (#"{"doubleValue":-0}"#, MessageWithComplexOneOf().with { $0.complex = .doubleValue(-0.0) }),
       (#"{"doubleValue":2.5}"#, MessageWithComplexOneOf().with { $0.complex = .doubleValue(2.5) }),
+      (#"{"int32":0}"#, MessageWithComplexOneOf().with { $0.complex = .int32(0) }),
       (#"{"int32":42}"#, MessageWithComplexOneOf().with { $0.complex = .int32(42) }),
+      (#"{"int64":"0"}"#, MessageWithComplexOneOf().with { $0.complex = .int64(0) }),
       (#"{"int64":"42"}"#, MessageWithComplexOneOf().with { $0.complex = .int64(42) }),
+      (
+        #"{"enum":"TEST_ENUM_UNSPECIFIED"}"#,
+        MessageWithComplexOneOf().with { $0.complex = .enum(.unspecified) }
+      ),
       (#"{"enum":"BLACK"}"#, MessageWithComplexOneOf().with { $0.complex = .enum(.black) }),
+      (
+        #"{"inner":{}}"#,
+        MessageWithComplexOneOf().with { $0.complex = .inner(MessageWithComplexOneOf.Inner()) }
+      ),
       (
         #"{"inner":{"strings":["a","b"]}}"#,
         MessageWithComplexOneOf().with {
           $0.complex = .inner(MessageWithComplexOneOf.Inner().with { $0.strings = ["a", "b"] })
+        }
+      ),
+      (
+        #"{"duration":"0s"}"#,
+        MessageWithComplexOneOf().with {
+          $0.complex = .duration(try! WKTDuration(seconds: 0, nanos: 0))
         }
       ),
       (
@@ -103,6 +136,10 @@ import Testing
       (
         #"{"null":null}"#,
         MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
+      ),
+      (
+        #"{"optionalDouble":0}"#,
+        MessageWithComplexOneOf().with { $0.complex = .optionalDouble(0) }
       ),
       (
         #"{"optionalDouble":1.5}"#,

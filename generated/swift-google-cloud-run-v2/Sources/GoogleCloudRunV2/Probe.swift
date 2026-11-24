@@ -139,11 +139,11 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.probeType {
       switch choice {
       case .httpGet(let value):
-        try container.encode(value, forKey: .httpGet)
+        try container.encodeIfPresent(value, forKey: .httpGet)
       case .tcpSocket(let value):
-        try container.encode(value, forKey: .tcpSocket)
+        try container.encodeIfPresent(value, forKey: .tcpSocket)
       case .grpc(let value):
-        try container.encode(value, forKey: .grpc)
+        try container.encodeIfPresent(value, forKey: .grpc)
       }
     }
     for (key, value) in self._unknownFields.json {

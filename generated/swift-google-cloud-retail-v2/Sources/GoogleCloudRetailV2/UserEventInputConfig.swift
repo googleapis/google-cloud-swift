@@ -99,11 +99,11 @@ public struct UserEventInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .userEventInlineSource(let value):
-        try container.encode(value, forKey: .userEventInlineSource)
+        try container.encodeIfPresent(value, forKey: .userEventInlineSource)
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       case .bigQuerySource(let value):
-        try container.encode(value, forKey: .bigQuerySource)
+        try container.encodeIfPresent(value, forKey: .bigQuerySource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -298,7 +298,9 @@ public struct AttachedCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.distribution, forKey: .distribution)
     try container.encode(self.clusterRegion, forKey: .clusterRegion)
     try container.encodeIfPresent(self.fleet, forKey: .fleet)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AttachedCluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

@@ -115,13 +115,13 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .datastoreOptions(let value):
-        try container.encode(value, forKey: .datastoreOptions)
+        try container.encodeIfPresent(value, forKey: .datastoreOptions)
       case .cloudStorageOptions(let value):
-        try container.encode(value, forKey: .cloudStorageOptions)
+        try container.encodeIfPresent(value, forKey: .cloudStorageOptions)
       case .bigQueryOptions(let value):
-        try container.encode(value, forKey: .bigQueryOptions)
+        try container.encodeIfPresent(value, forKey: .bigQueryOptions)
       case .hybridOptions(let value):
-        try container.encode(value, forKey: .hybridOptions)
+        try container.encodeIfPresent(value, forKey: .hybridOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

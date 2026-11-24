@@ -148,7 +148,9 @@ public struct Group: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudNetworkConnectivityV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.autoAccept, forKey: .autoAccept)
     try container.encode(self.routeTable, forKey: .routeTable)
     for (key, value) in self._unknownFields.json {

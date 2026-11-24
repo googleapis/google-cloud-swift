@@ -178,7 +178,9 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleWKT._AnyPacka
     try container.encode(self.revokedCertificates, forKey: .revokedCertificates)
     try container.encode(self.pemCrl, forKey: .pemCrl)
     try container.encode(self.accessUrl, forKey: .accessUrl)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CertificateRevocationList.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.revisionId, forKey: .revisionId)
@@ -273,7 +275,9 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleWKT._AnyPacka
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.certificate, forKey: .certificate)
       try container.encode(self.hexSerialNumber, forKey: .hexSerialNumber)
-      try container.encode(self.revocationReason, forKey: .revocationReason)
+      if self.revocationReason != RevocationReason() {
+        try container.encode(self.revocationReason, forKey: .revocationReason)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

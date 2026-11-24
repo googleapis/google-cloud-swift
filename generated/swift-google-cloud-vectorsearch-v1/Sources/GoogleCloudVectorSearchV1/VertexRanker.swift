@@ -111,7 +111,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.recordSpec {
       switch choice {
       case .textRecordSpec(let value):
-        try container.encode(value, forKey: .textRecordSpec)
+        try container.encodeIfPresent(value, forKey: .textRecordSpec)
       }
     }
     for (key, value) in self._unknownFields.json {

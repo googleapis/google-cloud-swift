@@ -106,7 +106,9 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BatchProcessMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

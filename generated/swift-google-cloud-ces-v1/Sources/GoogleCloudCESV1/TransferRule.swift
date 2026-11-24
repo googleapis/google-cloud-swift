@@ -109,14 +109,16 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.childAgent, forKey: .childAgent)
-    try container.encode(self.direction, forKey: .direction)
+    if self.direction != TransferRule.Direction() {
+      try container.encode(self.direction, forKey: .direction)
+    }
 
     if let choice = self.ruleType {
       switch choice {
       case .deterministicTransfer(let value):
-        try container.encode(value, forKey: .deterministicTransfer)
+        try container.encodeIfPresent(value, forKey: .deterministicTransfer)
       case .disablePlannerTransfer(let value):
-        try container.encode(value, forKey: .disablePlannerTransfer)
+        try container.encodeIfPresent(value, forKey: .disablePlannerTransfer)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -202,9 +204,9 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.conditionType {
         switch choice {
         case .expressionCondition(let value):
-          try container.encode(value, forKey: .expressionCondition)
+          try container.encodeIfPresent(value, forKey: .expressionCondition)
         case .pythonCodeCondition(let value):
-          try container.encode(value, forKey: .pythonCodeCondition)
+          try container.encodeIfPresent(value, forKey: .pythonCodeCondition)
         }
       }
       for (key, value) in self._unknownFields.json {

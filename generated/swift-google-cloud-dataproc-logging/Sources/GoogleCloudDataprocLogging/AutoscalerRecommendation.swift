@@ -297,7 +297,9 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.decision, forKey: .decision)
+      if self.decision != ScalingDecisionType() {
+        try container.encode(self.decision, forKey: .decision)
+      }
       try container.encodeIfPresent(self.recommendedClusterSize, forKey: .recommendedClusterSize)
       try container.encodeIfPresent(
         self.gracefulDecommissionTimeout, forKey: .gracefulDecommissionTimeout)
@@ -305,7 +307,9 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       try container.encode(
         self.additionalRecommendationDetails, forKey: .additionalRecommendationDetails)
       try container.encode(self.recommendationId, forKey: .recommendationId)
-      try container.encode(self.decisionMetric, forKey: .decisionMetric)
+      if self.decisionMetric != MetricType() {
+        try container.encode(self.decisionMetric, forKey: .decisionMetric)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

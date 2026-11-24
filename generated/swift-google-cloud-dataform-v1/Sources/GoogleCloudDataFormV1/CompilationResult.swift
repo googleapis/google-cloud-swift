@@ -191,11 +191,11 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .gitCommitish(let value):
-        try container.encode(value, forKey: .gitCommitish)
+        try container.encodeIfPresent(value, forKey: .gitCommitish)
       case .workspace(let value):
-        try container.encode(value, forKey: .workspace)
+        try container.encodeIfPresent(value, forKey: .workspace)
       case .releaseConfig(let value):
-        try container.encode(value, forKey: .releaseConfig)
+        try container.encodeIfPresent(value, forKey: .releaseConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

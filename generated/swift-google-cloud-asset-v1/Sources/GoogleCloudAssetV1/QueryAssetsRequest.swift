@@ -197,18 +197,18 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.query {
       switch choice {
       case .statement(let value):
-        try container.encode(value, forKey: .statement)
+        try container.encodeIfPresent(value, forKey: .statement)
       case .jobReference(let value):
-        try container.encode(value, forKey: .jobReference)
+        try container.encodeIfPresent(value, forKey: .jobReference)
       }
     }
 
     if let choice = self.time {
       switch choice {
       case .readTimeWindow(let value):
-        try container.encode(value, forKey: .readTimeWindow)
+        try container.encodeIfPresent(value, forKey: .readTimeWindow)
       case .readTime(let value):
-        try container.encode(value, forKey: .readTime)
+        try container.encodeIfPresent(value, forKey: .readTime)
       }
     }
     for (key, value) in self._unknownFields.json {

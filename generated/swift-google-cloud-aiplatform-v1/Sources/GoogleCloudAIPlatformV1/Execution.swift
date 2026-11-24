@@ -171,7 +171,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Execution.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.etag, forKey: .etag)
       try container.encode(self.labels, forKey: .labels)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)

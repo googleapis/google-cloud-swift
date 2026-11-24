@@ -97,7 +97,9 @@ public struct AttachedDiskConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.diskType, forKey: .diskType)
+    if self.diskType != AttachedDiskConfig.DiskType() {
+      try container.encode(self.diskType, forKey: .diskType)
+    }
     try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
     try container.encodeIfPresent(self.provisionedIops, forKey: .provisionedIops)
     try container.encodeIfPresent(self.provisionedThroughput, forKey: .provisionedThroughput)

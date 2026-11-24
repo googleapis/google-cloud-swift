@@ -426,14 +426,18 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Volume.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.shareName, forKey: .shareName)
     try container.encode(self.psaRange, forKey: .psaRange)
     try container.encode(self.storagePool, forKey: .storagePool)
     try container.encode(self.network, forKey: .network)
-    try container.encode(self.serviceLevel, forKey: .serviceLevel)
+    if self.serviceLevel != ServiceLevel() {
+      try container.encode(self.serviceLevel, forKey: .serviceLevel)
+    }
     try container.encode(self.capacityGib, forKey: .capacityGib)
     try container.encodeIfPresent(self.exportPolicy, forKey: .exportPolicy)
     try container.encode(self.protocols, forKey: .protocols)
@@ -446,13 +450,17 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.snapReserve, forKey: .snapReserve)
     try container.encode(self.snapshotDirectory, forKey: .snapshotDirectory)
     try container.encode(self.usedGib, forKey: .usedGib)
-    try container.encode(self.securityStyle, forKey: .securityStyle)
+    if self.securityStyle != SecurityStyle() {
+      try container.encode(self.securityStyle, forKey: .securityStyle)
+    }
     try container.encode(self.kerberosEnabled, forKey: .kerberosEnabled)
     try container.encode(self.ldapEnabled, forKey: .ldapEnabled)
     try container.encode(self.activeDirectory, forKey: .activeDirectory)
     try container.encodeIfPresent(self.restoreParameters, forKey: .restoreParameters)
     try container.encode(self.kmsConfig, forKey: .kmsConfig)
-    try container.encode(self.encryptionType, forKey: .encryptionType)
+    if self.encryptionType != EncryptionType() {
+      try container.encode(self.encryptionType, forKey: .encryptionType)
+    }
     try container.encode(self.hasReplication, forKey: .hasReplication)
     try container.encodeIfPresent(self.backupConfig, forKey: .backupConfig)
     try container.encode(self.restrictedActions, forKey: .restrictedActions)
@@ -559,7 +567,9 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
       try container.encode(self.sourceVolume, forKey: .sourceVolume)
       try container.encode(self.sharedSpaceGib, forKey: .sharedSpaceGib)
-      try container.encode(self.splitState, forKey: .splitState)
+      if self.splitState != SplitState() {
+        try container.encode(self.splitState, forKey: .splitState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

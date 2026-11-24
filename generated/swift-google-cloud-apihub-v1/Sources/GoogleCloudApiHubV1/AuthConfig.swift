@@ -113,18 +113,20 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.authType, forKey: .authType)
+    if self.authType != AuthType() {
+      try container.encode(self.authType, forKey: .authType)
+    }
 
     if let choice = self.config {
       switch choice {
       case .googleServiceAccountConfig(let value):
-        try container.encode(value, forKey: .googleServiceAccountConfig)
+        try container.encodeIfPresent(value, forKey: .googleServiceAccountConfig)
       case .userPasswordConfig(let value):
-        try container.encode(value, forKey: .userPasswordConfig)
+        try container.encodeIfPresent(value, forKey: .userPasswordConfig)
       case .apiKeyConfig(let value):
-        try container.encode(value, forKey: .apiKeyConfig)
+        try container.encodeIfPresent(value, forKey: .apiKeyConfig)
       case .oauth2ClientCredentialsConfig(let value):
-        try container.encode(value, forKey: .oauth2ClientCredentialsConfig)
+        try container.encodeIfPresent(value, forKey: .oauth2ClientCredentialsConfig)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -389,7 +391,9 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encodeIfPresent(self.apiKey, forKey: .apiKey)
-      try container.encode(self.httpElementLocation, forKey: .httpElementLocation)
+      if self.httpElementLocation != AuthConfig.ApiKeyConfig.HttpElementLocation() {
+        try container.encode(self.httpElementLocation, forKey: .httpElementLocation)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

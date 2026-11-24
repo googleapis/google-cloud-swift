@@ -101,9 +101,9 @@ public struct PushFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.gitRef {
       switch choice {
       case .branch(let value):
-        try container.encode(value, forKey: .branch)
+        try container.encodeIfPresent(value, forKey: .branch)
       case .tag(let value):
-        try container.encode(value, forKey: .tag)
+        try container.encodeIfPresent(value, forKey: .tag)
       }
     }
     for (key, value) in self._unknownFields.json {

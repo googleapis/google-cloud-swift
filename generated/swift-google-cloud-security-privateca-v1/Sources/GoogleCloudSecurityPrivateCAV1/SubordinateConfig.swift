@@ -98,9 +98,9 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.subordinateConfig {
       switch choice {
       case .certificateAuthority(let value):
-        try container.encode(value, forKey: .certificateAuthority)
+        try container.encodeIfPresent(value, forKey: .certificateAuthority)
       case .pemIssuerChain(let value):
-        try container.encode(value, forKey: .pemIssuerChain)
+        try container.encodeIfPresent(value, forKey: .pemIssuerChain)
       }
     }
     for (key, value) in self._unknownFields.json {

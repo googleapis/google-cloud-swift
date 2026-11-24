@@ -184,11 +184,11 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.adResource {
       switch choice {
       case .iframeAdResource(let value):
-        try container.encode(value, forKey: .iframeAdResource)
+        try container.encodeIfPresent(value, forKey: .iframeAdResource)
       case .staticAdResource(let value):
-        try container.encode(value, forKey: .staticAdResource)
+        try container.encodeIfPresent(value, forKey: .staticAdResource)
       case .htmlAdResource(let value):
-        try container.encode(value, forKey: .htmlAdResource)
+        try container.encodeIfPresent(value, forKey: .htmlAdResource)
       }
     }
     for (key, value) in self._unknownFields.json {

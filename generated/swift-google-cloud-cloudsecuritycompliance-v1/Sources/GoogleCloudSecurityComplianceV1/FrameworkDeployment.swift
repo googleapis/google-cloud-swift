@@ -201,7 +201,9 @@ public struct FrameworkDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.framework, forKey: .framework)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.cloudControlMetadata, forKey: .cloudControlMetadata)
-    try container.encode(self.deploymentState, forKey: .deploymentState)
+    if self.deploymentState != DeploymentState() {
+      try container.encode(self.deploymentState, forKey: .deploymentState)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)

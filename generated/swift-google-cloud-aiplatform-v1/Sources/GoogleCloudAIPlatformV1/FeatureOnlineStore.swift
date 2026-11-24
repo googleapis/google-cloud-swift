@@ -189,7 +189,9 @@
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.etag, forKey: .etag)
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.state, forKey: .state)
+      if self.state != FeatureOnlineStore.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(
         self.dedicatedServingEndpoint, forKey: .dedicatedServingEndpoint)
       try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
@@ -199,9 +201,9 @@
       if let choice = self.storageType {
         switch choice {
         case .bigtable(let value):
-          try container.encode(value, forKey: .bigtable)
+          try container.encodeIfPresent(value, forKey: .bigtable)
         case .optimized(let value):
-          try container.encode(value, forKey: .optimized)
+          try container.encodeIfPresent(value, forKey: .optimized)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -100,7 +100,9 @@ public struct ConfigureAndDeployTemplateResponse: Codable, Equatable, GoogleWKT.
     try container.encode(self.applicationUri, forKey: .applicationUri)
     try container.encode(self.applicationTemplateUri, forKey: .applicationTemplateUri)
     try container.encodeIfPresent(self.deploymentMetadata, forKey: .deploymentMetadata)
-    try container.encode(self.deploymentState, forKey: .deploymentState)
+    if self.deploymentState != GoogleCloudDesignCenterV1.Application.State() {
+      try container.encode(self.deploymentState, forKey: .deploymentState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

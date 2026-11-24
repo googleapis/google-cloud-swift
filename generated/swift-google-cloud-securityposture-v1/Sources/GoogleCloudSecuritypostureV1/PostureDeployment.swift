@@ -203,7 +203,9 @@ public struct PostureDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.targetResource, forKey: .targetResource)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PostureDeployment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.postureId, forKey: .postureId)
     try container.encode(self.postureRevisionId, forKey: .postureRevisionId)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

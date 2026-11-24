@@ -85,7 +85,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.location {
       switch choice {
       case .fileLocation(let value):
-        try container.encode(value, forKey: .fileLocation)
+        try container.encodeIfPresent(value, forKey: .fileLocation)
       }
     }
     for (key, value) in self._unknownFields.json {

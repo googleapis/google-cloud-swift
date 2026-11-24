@@ -105,7 +105,7 @@ public struct RestoreInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.source {
       switch choice {
       case .sourceBackup(let value):
-        try container.encode(value, forKey: .sourceBackup)
+        try container.encodeIfPresent(value, forKey: .sourceBackup)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -95,7 +95,9 @@ public struct MessageWithEnum: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.singular, forKey: .singular)
+    if self.singular != MessageWithEnum.TestEnum() {
+      try container.encode(self.singular, forKey: .singular)
+    }
     try container.encodeIfPresent(self.`optional`, forKey: .`optional`)
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.map, forKey: .map)

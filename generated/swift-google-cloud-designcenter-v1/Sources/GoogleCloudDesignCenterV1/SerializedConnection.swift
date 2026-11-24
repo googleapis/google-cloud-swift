@@ -117,7 +117,9 @@ public struct SerializedConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sourceComponentParameters, forKey: .sourceComponentParameters)
     try container.encode(
       self.destinationComponentParameters, forKey: .destinationComponentParameters)
-    try container.encode(self.dependencyType, forKey: .dependencyType)
+    if self.dependencyType != ConnectionDependencyType() {
+      try container.encode(self.dependencyType, forKey: .dependencyType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

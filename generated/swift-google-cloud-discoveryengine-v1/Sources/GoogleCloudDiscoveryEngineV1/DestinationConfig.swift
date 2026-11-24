@@ -111,9 +111,9 @@
       if let choice = self.destinationConfigParams {
         switch choice {
         case .params(let value):
-          try container.encode(value, forKey: .params)
+          try container.encodeIfPresent(value, forKey: .params)
         case .jsonParams(let value):
-          try container.encode(value, forKey: .jsonParams)
+          try container.encodeIfPresent(value, forKey: .jsonParams)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -198,7 +198,7 @@
         if let choice = self.destination {
           switch choice {
           case .host(let value):
-            try container.encode(value, forKey: .host)
+            try container.encodeIfPresent(value, forKey: .host)
           }
         }
         for (key, value) in self._unknownFields.json {

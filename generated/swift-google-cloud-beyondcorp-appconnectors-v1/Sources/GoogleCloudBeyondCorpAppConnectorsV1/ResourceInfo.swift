@@ -104,7 +104,9 @@ public struct ResourceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.status, forKey: .status)
+    if self.status != HealthStatus() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.resource, forKey: .resource)
     try container.encodeIfPresent(self.time, forKey: .time)
     try container.encode(self.sub, forKey: .sub)

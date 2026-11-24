@@ -125,7 +125,9 @@ public struct AutomationRunEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.automationId, forKey: .automationId)
     try container.encode(self.ruleId, forKey: .ruleId)
     try container.encode(self.destinationTargetId, forKey: .destinationTargetId)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

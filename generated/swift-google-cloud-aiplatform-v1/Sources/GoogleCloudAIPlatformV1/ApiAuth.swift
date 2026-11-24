@@ -88,7 +88,7 @@
       if let choice = self.authConfig {
         switch choice {
         case .apiKeyConfig(let value):
-          try container.encode(value, forKey: .apiKeyConfig)
+          try container.encodeIfPresent(value, forKey: .apiKeyConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

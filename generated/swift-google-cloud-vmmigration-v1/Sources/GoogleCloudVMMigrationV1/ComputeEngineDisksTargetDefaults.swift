@@ -133,16 +133,16 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleWKT._A
     if let choice = self.location {
       switch choice {
       case .zone(let value):
-        try container.encode(value, forKey: .zone)
+        try container.encodeIfPresent(value, forKey: .zone)
       }
     }
 
     if let choice = self.vmTarget {
       switch choice {
       case .disksTargetDefaults(let value):
-        try container.encode(value, forKey: .disksTargetDefaults)
+        try container.encodeIfPresent(value, forKey: .disksTargetDefaults)
       case .vmTargetDefaults(let value):
-        try container.encode(value, forKey: .vmTargetDefaults)
+        try container.encodeIfPresent(value, forKey: .vmTargetDefaults)
       }
     }
     for (key, value) in self._unknownFields.json {

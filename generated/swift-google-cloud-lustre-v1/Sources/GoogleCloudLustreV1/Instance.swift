@@ -283,7 +283,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.filesystem, forKey: .filesystem)
     try container.encode(self.capacityGib, forKey: .capacityGib)
     try container.encode(self.network, forKey: .network)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.mountPoint, forKey: .mountPoint)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

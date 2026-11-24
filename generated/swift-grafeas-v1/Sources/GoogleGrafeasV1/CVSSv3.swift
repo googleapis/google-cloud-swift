@@ -153,14 +153,30 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.baseScore, forKey: .baseScore)
     try container.encode(self.exploitabilityScore, forKey: .exploitabilityScore)
     try container.encode(self.impactScore, forKey: .impactScore)
-    try container.encode(self.attackVector, forKey: .attackVector)
-    try container.encode(self.attackComplexity, forKey: .attackComplexity)
-    try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
-    try container.encode(self.userInteraction, forKey: .userInteraction)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
-    try container.encode(self.integrityImpact, forKey: .integrityImpact)
-    try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    if self.attackVector != CVSSv3.AttackVector() {
+      try container.encode(self.attackVector, forKey: .attackVector)
+    }
+    if self.attackComplexity != CVSSv3.AttackComplexity() {
+      try container.encode(self.attackComplexity, forKey: .attackComplexity)
+    }
+    if self.privilegesRequired != CVSSv3.PrivilegesRequired() {
+      try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
+    }
+    if self.userInteraction != CVSSv3.UserInteraction() {
+      try container.encode(self.userInteraction, forKey: .userInteraction)
+    }
+    if self.scope != CVSSv3.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
+    if self.confidentialityImpact != CVSSv3.Impact() {
+      try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
+    }
+    if self.integrityImpact != CVSSv3.Impact() {
+      try container.encode(self.integrityImpact, forKey: .integrityImpact)
+    }
+    if self.availabilityImpact != CVSSv3.Impact() {
+      try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

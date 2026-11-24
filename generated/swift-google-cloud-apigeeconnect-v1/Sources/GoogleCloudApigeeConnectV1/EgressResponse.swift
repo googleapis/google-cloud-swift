@@ -122,7 +122,9 @@ public struct EgressResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encode(self.project, forKey: .project)
     try container.encode(self.traceId, forKey: .traceId)
-    try container.encode(self.endpoint, forKey: .endpoint)
+    if self.endpoint != TetherEndpoint() {
+      try container.encode(self.endpoint, forKey: .endpoint)
+    }
     try container.encode(self.name, forKey: .name)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

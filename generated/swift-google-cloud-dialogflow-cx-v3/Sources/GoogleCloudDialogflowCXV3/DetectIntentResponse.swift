@@ -128,7 +128,9 @@
       try container.encodeIfPresent(self.queryResult, forKey: .queryResult)
       try container.encode(self.outputAudio, forKey: .outputAudio)
       try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
-      try container.encode(self.responseType, forKey: .responseType)
+      if self.responseType != DetectIntentResponse.ResponseType() {
+        try container.encode(self.responseType, forKey: .responseType)
+      }
       try container.encode(self.allowCancellation, forKey: .allowCancellation)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

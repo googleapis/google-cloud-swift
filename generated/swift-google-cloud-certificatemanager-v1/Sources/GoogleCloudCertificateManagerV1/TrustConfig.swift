@@ -247,7 +247,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.kind {
         switch choice {
         case .pemCertificate(let value):
-          try container.encode(value, forKey: .pemCertificate)
+          try container.encodeIfPresent(value, forKey: .pemCertificate)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -355,7 +355,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.kind {
         switch choice {
         case .pemCertificate(let value):
-          try container.encode(value, forKey: .pemCertificate)
+          try container.encodeIfPresent(value, forKey: .pemCertificate)
         }
       }
       for (key, value) in self._unknownFields.json {

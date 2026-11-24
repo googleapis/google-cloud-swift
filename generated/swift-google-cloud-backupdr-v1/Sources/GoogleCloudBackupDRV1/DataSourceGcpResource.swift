@@ -145,13 +145,13 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.gcpResourceProperties {
       switch choice {
       case .computeInstanceDatasourceProperties(let value):
-        try container.encode(value, forKey: .computeInstanceDatasourceProperties)
+        try container.encodeIfPresent(value, forKey: .computeInstanceDatasourceProperties)
       case .cloudSqlInstanceDatasourceProperties(let value):
-        try container.encode(value, forKey: .cloudSqlInstanceDatasourceProperties)
+        try container.encodeIfPresent(value, forKey: .cloudSqlInstanceDatasourceProperties)
       case .alloyDbClusterDatasourceProperties(let value):
-        try container.encode(value, forKey: .alloyDbClusterDatasourceProperties)
+        try container.encodeIfPresent(value, forKey: .alloyDbClusterDatasourceProperties)
       case .diskDatasourceProperties(let value):
-        try container.encode(value, forKey: .diskDatasourceProperties)
+        try container.encodeIfPresent(value, forKey: .diskDatasourceProperties)
       }
     }
     for (key, value) in self._unknownFields.json {

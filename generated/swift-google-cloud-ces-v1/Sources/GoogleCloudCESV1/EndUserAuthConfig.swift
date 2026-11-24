@@ -96,9 +96,9 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authConfig {
       switch choice {
       case .oauth2AuthCodeConfig(let value):
-        try container.encode(value, forKey: .oauth2AuthCodeConfig)
+        try container.encodeIfPresent(value, forKey: .oauth2AuthCodeConfig)
       case .oauth2JwtBearerConfig(let value):
-        try container.encode(value, forKey: .oauth2JwtBearerConfig)
+        try container.encodeIfPresent(value, forKey: .oauth2JwtBearerConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

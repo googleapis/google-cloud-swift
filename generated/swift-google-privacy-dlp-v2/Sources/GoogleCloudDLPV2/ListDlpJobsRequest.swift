@@ -177,7 +177,9 @@ public struct ListDlpJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DlpJobType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.orderBy, forKey: .orderBy)
     try container.encode(self.locationId, forKey: .locationId)
     for (key, value) in self._unknownFields.json {

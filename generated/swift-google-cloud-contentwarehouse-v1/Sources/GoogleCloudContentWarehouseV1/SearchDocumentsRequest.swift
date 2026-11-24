@@ -240,7 +240,9 @@ public struct SearchDocumentsRequest: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.orderBy, forKey: .orderBy)
     try container.encode(self.histogramQueries, forKey: .histogramQueries)
     try container.encode(self.requireTotalSize, forKey: .requireTotalSize)
-    try container.encode(self.totalResultSize, forKey: .totalResultSize)
+    if self.totalResultSize != SearchDocumentsRequest.TotalResultSize() {
+      try container.encode(self.totalResultSize, forKey: .totalResultSize)
+    }
     try container.encode(self.qaSizeLimit, forKey: .qaSizeLimit)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -336,7 +336,9 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
     try container.encode(self.totalStorageSizeGb, forKey: .totalStorageSizeGb)
     try container.encode(self.availableStorageSizeGb, forKey: .availableStorageSizeGb)
     try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CloudExadataInfrastructureProperties.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.shape, forKey: .shape)
     try container.encode(self.ociUrl, forKey: .ociUrl)
     try container.encode(self.cpuCount, forKey: .cpuCount)
@@ -358,7 +360,9 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
     try container.encode(self.customerContacts, forKey: .customerContacts)
     try container.encode(self.monthlyStorageServerVersion, forKey: .monthlyStorageServerVersion)
     try container.encode(self.monthlyDbServerVersion, forKey: .monthlyDbServerVersion)
-    try container.encode(self.computeModel, forKey: .computeModel)
+    if self.computeModel != GoogleCloudOracleDatabaseV1.ComputeModel() {
+      try container.encode(self.computeModel, forKey: .computeModel)
+    }
     try container.encode(self.databaseServerType, forKey: .databaseServerType)
     try container.encode(self.storageServerType, forKey: .storageServerType)
     try container.encodeIfPresent(self.exascaleConfig, forKey: .exascaleConfig)

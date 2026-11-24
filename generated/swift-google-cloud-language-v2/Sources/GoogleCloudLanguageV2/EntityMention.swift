@@ -97,7 +97,9 @@ public struct EntityMention: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.text, forKey: .text)
-    try container.encode(self.type, forKey: .type)
+    if self.type != EntityMention.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.sentiment, forKey: .sentiment)
     try container.encode(self.probability, forKey: .probability)
     for (key, value) in self._unknownFields.json {

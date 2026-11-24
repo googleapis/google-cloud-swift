@@ -110,7 +110,9 @@ public struct OAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.oauthGrantType, forKey: .oauthGrantType)
+    if self.oauthGrantType != OAuthConfig.OauthGrantType() {
+      try container.encode(self.oauthGrantType, forKey: .oauthGrantType)
+    }
     try container.encode(self.clientId, forKey: .clientId)
     try container.encode(self.clientSecretVersion, forKey: .clientSecretVersion)
     try container.encode(self.tokenEndpoint, forKey: .tokenEndpoint)

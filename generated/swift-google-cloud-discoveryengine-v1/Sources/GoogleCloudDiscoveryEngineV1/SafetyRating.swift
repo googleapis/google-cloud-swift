@@ -115,10 +115,16 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.category, forKey: .category)
-      try container.encode(self.probability, forKey: .probability)
+      if self.category != HarmCategory() {
+        try container.encode(self.category, forKey: .category)
+      }
+      if self.probability != SafetyRating.HarmProbability() {
+        try container.encode(self.probability, forKey: .probability)
+      }
       try container.encode(self.probabilityScore, forKey: .probabilityScore)
-      try container.encode(self.severity, forKey: .severity)
+      if self.severity != SafetyRating.HarmSeverity() {
+        try container.encode(self.severity, forKey: .severity)
+      }
       try container.encode(self.severityScore, forKey: .severityScore)
       try container.encode(self.blocked, forKey: .blocked)
       for (key, value) in self._unknownFields.json {

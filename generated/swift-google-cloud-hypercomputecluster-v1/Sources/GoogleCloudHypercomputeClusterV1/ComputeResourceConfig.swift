@@ -108,13 +108,13 @@ public struct ComputeResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.config {
       switch choice {
       case .newOnDemandInstances(let value):
-        try container.encode(value, forKey: .newOnDemandInstances)
+        try container.encodeIfPresent(value, forKey: .newOnDemandInstances)
       case .newSpotInstances(let value):
-        try container.encode(value, forKey: .newSpotInstances)
+        try container.encodeIfPresent(value, forKey: .newSpotInstances)
       case .newReservedInstances(let value):
-        try container.encode(value, forKey: .newReservedInstances)
+        try container.encodeIfPresent(value, forKey: .newReservedInstances)
       case .newFlexStartInstances(let value):
-        try container.encode(value, forKey: .newFlexStartInstances)
+        try container.encodeIfPresent(value, forKey: .newFlexStartInstances)
       }
     }
     for (key, value) in self._unknownFields.json {

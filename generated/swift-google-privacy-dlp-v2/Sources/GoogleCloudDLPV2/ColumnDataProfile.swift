@@ -234,7 +234,9 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.profileStatus, forKey: .profileStatus)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ColumnDataProfile.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.profileLastGenerated, forKey: .profileLastGenerated)
     try container.encode(self.tableDataProfile, forKey: .tableDataProfile)
     try container.encode(self.tableFullResource, forKey: .tableFullResource)
@@ -247,11 +249,19 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.dataRiskLevel, forKey: .dataRiskLevel)
     try container.encodeIfPresent(self.columnInfoType, forKey: .columnInfoType)
     try container.encode(self.otherMatches, forKey: .otherMatches)
-    try container.encode(self.estimatedNullPercentage, forKey: .estimatedNullPercentage)
-    try container.encode(self.estimatedUniquenessScore, forKey: .estimatedUniquenessScore)
+    if self.estimatedNullPercentage != NullPercentageLevel() {
+      try container.encode(self.estimatedNullPercentage, forKey: .estimatedNullPercentage)
+    }
+    if self.estimatedUniquenessScore != UniquenessScoreLevel() {
+      try container.encode(self.estimatedUniquenessScore, forKey: .estimatedUniquenessScore)
+    }
     try container.encode(self.freeTextScore, forKey: .freeTextScore)
-    try container.encode(self.columnType, forKey: .columnType)
-    try container.encode(self.policyState, forKey: .policyState)
+    if self.columnType != ColumnDataProfile.ColumnDataType() {
+      try container.encode(self.columnType, forKey: .columnType)
+    }
+    if self.policyState != ColumnDataProfile.ColumnPolicyState() {
+      try container.encode(self.policyState, forKey: .policyState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

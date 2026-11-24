@@ -86,9 +86,13 @@ public struct ClearingHouseDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.accountStatus, forKey: .accountStatus)
+    if self.accountStatus != AccountStatus() {
+      try container.encode(self.accountStatus, forKey: .accountStatus)
+    }
     try container.encode(self.balances, forKey: .balances)
-    try container.encode(self.settlementMode, forKey: .settlementMode)
+    if self.settlementMode != SettlementMode() {
+      try container.encode(self.settlementMode, forKey: .settlementMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

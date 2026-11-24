@@ -87,7 +87,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.code, forKey: .code)
+      if self.code != ApiWarning.SqlApiWarningCode() {
+        try container.encode(self.code, forKey: .code)
+      }
       try container.encode(self.message, forKey: .message)
       try container.encode(self.region, forKey: .region)
       for (key, value) in self._unknownFields.json {

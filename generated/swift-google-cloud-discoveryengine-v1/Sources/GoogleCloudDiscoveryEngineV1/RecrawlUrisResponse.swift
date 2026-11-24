@@ -225,7 +225,9 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.corpusType, forKey: .corpusType)
+          if self.corpusType != RecrawlUrisResponse.FailureInfo.FailureReason.CorpusType() {
+            try container.encode(self.corpusType, forKey: .corpusType)
+          }
           try container.encode(self.errorMessage, forKey: .errorMessage)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))

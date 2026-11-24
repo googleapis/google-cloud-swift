@@ -129,17 +129,17 @@ public struct ResultRow: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .eventRecord(let value):
-        try container.encode(value, forKey: .eventRecord)
+        try container.encodeIfPresent(value, forKey: .eventRecord)
       case .statsRecord(let value):
-        try container.encode(value, forKey: .statsRecord)
+        try container.encodeIfPresent(value, forKey: .statsRecord)
       case .entityContextRecord(let value):
-        try container.encode(value, forKey: .entityContextRecord)
+        try container.encodeIfPresent(value, forKey: .entityContextRecord)
       case .joinRecord(let value):
-        try container.encode(value, forKey: .joinRecord)
+        try container.encodeIfPresent(value, forKey: .joinRecord)
       case .detectionRecord(let value):
-        try container.encode(value, forKey: .detectionRecord)
+        try container.encodeIfPresent(value, forKey: .detectionRecord)
       case .dataTableRecord(let value):
-        try container.encode(value, forKey: .dataTableRecord)
+        try container.encodeIfPresent(value, forKey: .dataTableRecord)
       }
     }
     for (key, value) in self._unknownFields.json {

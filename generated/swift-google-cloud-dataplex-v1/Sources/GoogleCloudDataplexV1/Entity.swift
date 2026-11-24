@@ -225,12 +225,16 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDataplexV1.Entity.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.asset, forKey: .asset)
     try container.encode(self.dataPath, forKey: .dataPath)
     try container.encode(self.dataPathPattern, forKey: .dataPathPattern)
     try container.encode(self.catalogEntry, forKey: .catalogEntry)
-    try container.encode(self.system, forKey: .system)
+    if self.system != StorageSystem() {
+      try container.encode(self.system, forKey: .system)
+    }
     try container.encodeIfPresent(self.format, forKey: .format)
     try container.encodeIfPresent(self.compatibility, forKey: .compatibility)
     try container.encodeIfPresent(self.access, forKey: .access)

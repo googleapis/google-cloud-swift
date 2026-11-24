@@ -136,26 +136,26 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.keys {
       switch choice {
       case .boolKeys(let value):
-        try container.encode(value, forKey: .boolKeys)
+        try container.encodeIfPresent(value, forKey: .boolKeys)
       case .stringKeys(let value):
-        try container.encode(value, forKey: .stringKeys)
+        try container.encodeIfPresent(value, forKey: .stringKeys)
       case .int64Keys(let value):
-        try container.encode(value, forKey: .int64Keys)
+        try container.encodeIfPresent(value, forKey: .int64Keys)
       case .genericKeys(let value):
-        try container.encode(value, forKey: .genericKeys)
+        try container.encodeIfPresent(value, forKey: .genericKeys)
       }
     }
 
     if let choice = self.values {
       switch choice {
       case .boolValues(let value):
-        try container.encode(value, forKey: .boolValues)
+        try container.encodeIfPresent(value, forKey: .boolValues)
       case .stringValues(let value):
-        try container.encode(value, forKey: .stringValues)
+        try container.encodeIfPresent(value, forKey: .stringValues)
       case .int64Values(let value):
-        try container.encode(value, forKey: .int64Values)
+        try container.encodeIfPresent(value, forKey: .int64Values)
       case .genericValues(let value):
-        try container.encode(value, forKey: .genericValues)
+        try container.encodeIfPresent(value, forKey: .genericValues)
       }
     }
     for (key, value) in self._unknownFields.json {

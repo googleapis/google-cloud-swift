@@ -87,7 +87,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
     if let choice = self.destination {
       switch choice {
       case .inlineDestination(let value):
-        try container.encode(value, forKey: .inlineDestination)
+        try container.encodeIfPresent(value, forKey: .inlineDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

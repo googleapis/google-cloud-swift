@@ -250,7 +250,9 @@ public struct AwsCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.awsRegion, forKey: .awsRegion)
     try container.encodeIfPresent(self.controlPlane, forKey: .controlPlane)
     try container.encodeIfPresent(self.authorization, forKey: .authorization)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AwsCluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.endpoint, forKey: .endpoint)
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.reconciling, forKey: .reconciling)

@@ -148,16 +148,18 @@
       try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
       try container.encodeIfPresent(self.inputParameters, forKey: .inputParameters)
       try container.encodeIfPresent(self.outputParameters, forKey: .outputParameters)
-      try container.encode(self.endState, forKey: .endState)
+      if self.endState != OutputState() {
+        try container.encode(self.endState, forKey: .endState)
+      }
 
       if let choice = self.traceMetadata {
         switch choice {
         case .playbookTraceMetadata(let value):
-          try container.encode(value, forKey: .playbookTraceMetadata)
+          try container.encodeIfPresent(value, forKey: .playbookTraceMetadata)
         case .flowTraceMetadata(let value):
-          try container.encode(value, forKey: .flowTraceMetadata)
+          try container.encodeIfPresent(value, forKey: .flowTraceMetadata)
         case .speechProcessingMetadata(let value):
-          try container.encode(value, forKey: .speechProcessingMetadata)
+          try container.encodeIfPresent(value, forKey: .speechProcessingMetadata)
         }
       }
       for (key, value) in self._unknownFields.json {

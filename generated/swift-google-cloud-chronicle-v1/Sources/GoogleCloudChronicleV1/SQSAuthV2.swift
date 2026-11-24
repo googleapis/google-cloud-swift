@@ -94,9 +94,9 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authType {
       switch choice {
       case .sqsV2AccessKeySecretAuth(let value):
-        try container.encode(value, forKey: .sqsV2AccessKeySecretAuth)
+        try container.encodeIfPresent(value, forKey: .sqsV2AccessKeySecretAuth)
       case .awsIamRoleAuth(let value):
-        try container.encode(value, forKey: .awsIamRoleAuth)
+        try container.encodeIfPresent(value, forKey: .awsIamRoleAuth)
       }
     }
     for (key, value) in self._unknownFields.json {

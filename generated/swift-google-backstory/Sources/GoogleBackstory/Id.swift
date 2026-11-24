@@ -91,7 +91,9 @@ public struct Id: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.namespace, forKey: .namespace)
+    if self.namespace != Id.Namespace() {
+      try container.encode(self.namespace, forKey: .namespace)
+    }
     try container.encode(self.id, forKey: .id)
     try container.encode(self.stringId, forKey: .stringId)
     for (key, value) in self._unknownFields.json {

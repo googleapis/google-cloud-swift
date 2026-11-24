@@ -252,8 +252,12 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.metadata, forKey: .metadata)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
-    try container.encode(self.compilationState, forKey: .compilationState)
-    try container.encode(self.type, forKey: .type)
+    if self.compilationState != Rule.CompilationState() {
+      try container.encode(self.compilationState, forKey: .compilationState)
+    }
+    if self.type != RuleType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.referenceLists, forKey: .referenceLists)
     try container.encode(self.allowedRunFrequencies, forKey: .allowedRunFrequencies)
     try container.encode(self.etag, forKey: .etag)

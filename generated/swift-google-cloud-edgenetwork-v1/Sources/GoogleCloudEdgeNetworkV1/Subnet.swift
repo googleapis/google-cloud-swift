@@ -163,8 +163,12 @@ public struct Subnet: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.ipv4Cidr, forKey: .ipv4Cidr)
     try container.encode(self.ipv6Cidr, forKey: .ipv6Cidr)
     try container.encode(self.vlanId, forKey: .vlanId)
-    try container.encode(self.bondingType, forKey: .bondingType)
-    try container.encode(self.state, forKey: .state)
+    if self.bondingType != Subnet.BondingType() {
+      try container.encode(self.bondingType, forKey: .bondingType)
+    }
+    if self.state != ResourceState() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

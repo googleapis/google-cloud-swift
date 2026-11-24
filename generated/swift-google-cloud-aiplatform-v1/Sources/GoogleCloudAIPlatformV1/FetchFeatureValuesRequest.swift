@@ -96,7 +96,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.featureView, forKey: .featureView)
       try container.encodeIfPresent(self.dataKey, forKey: .dataKey)
-      try container.encode(self.dataFormat, forKey: .dataFormat)
+      if self.dataFormat != FeatureViewDataFormat() {
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

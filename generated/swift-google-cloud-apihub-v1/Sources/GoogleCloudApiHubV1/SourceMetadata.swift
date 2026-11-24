@@ -115,7 +115,9 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.sourceType, forKey: .sourceType)
+    if self.sourceType != SourceMetadata.SourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
     try container.encode(self.originalResourceId, forKey: .originalResourceId)
     try container.encodeIfPresent(
       self.originalResourceCreateTime, forKey: .originalResourceCreateTime)
@@ -125,7 +127,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .pluginInstanceActionSource(let value):
-        try container.encode(value, forKey: .pluginInstanceActionSource)
+        try container.encodeIfPresent(value, forKey: .pluginInstanceActionSource)
       }
     }
     for (key, value) in self._unknownFields.json {

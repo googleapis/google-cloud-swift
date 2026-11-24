@@ -87,7 +87,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.storageResource {
       switch choice {
       case .awsDiskDetails(let value):
-        try container.encode(value, forKey: .awsDiskDetails)
+        try container.encodeIfPresent(value, forKey: .awsDiskDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

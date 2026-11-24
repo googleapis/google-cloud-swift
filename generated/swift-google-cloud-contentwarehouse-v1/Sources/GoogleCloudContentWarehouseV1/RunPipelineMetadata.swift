@@ -141,11 +141,11 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pipelineMetadata {
       switch choice {
       case .gcsIngestPipelineMetadata(let value):
-        try container.encode(value, forKey: .gcsIngestPipelineMetadata)
+        try container.encodeIfPresent(value, forKey: .gcsIngestPipelineMetadata)
       case .exportToCdwPipelineMetadata(let value):
-        try container.encode(value, forKey: .exportToCdwPipelineMetadata)
+        try container.encodeIfPresent(value, forKey: .exportToCdwPipelineMetadata)
       case .processWithDocAiPipelineMetadata(let value):
-        try container.encode(value, forKey: .processWithDocAiPipelineMetadata)
+        try container.encodeIfPresent(value, forKey: .processWithDocAiPipelineMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

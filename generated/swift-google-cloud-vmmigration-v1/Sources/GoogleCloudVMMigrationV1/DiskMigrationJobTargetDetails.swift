@@ -115,7 +115,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.targetStorage {
       switch choice {
       case .targetDisk(let value):
-        try container.encode(value, forKey: .targetDisk)
+        try container.encodeIfPresent(value, forKey: .targetDisk)
       }
     }
     for (key, value) in self._unknownFields.json {

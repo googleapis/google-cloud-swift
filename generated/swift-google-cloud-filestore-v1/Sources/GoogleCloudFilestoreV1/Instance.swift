@@ -260,10 +260,14 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.statusMessage, forKey: .statusMessage)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.tier, forKey: .tier)
+    if self.tier != Instance.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.fileShares, forKey: .fileShares)
     try container.encode(self.networks, forKey: .networks)
@@ -274,7 +278,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.suspensionReasons, forKey: .suspensionReasons)
     try container.encodeIfPresent(self.replication, forKey: .replication)
     try container.encode(self.tags, forKey: .tags)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
+    if self.`protocol` != Instance.FileProtocol() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
     try container.encode(self.customPerformanceSupported, forKey: .customPerformanceSupported)
     try container.encodeIfPresent(self.performanceConfig, forKey: .performanceConfig)
     try container.encodeIfPresent(self.performanceLimits, forKey: .performanceLimits)
@@ -526,9 +532,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.mode {
         switch choice {
         case .iopsPerTb(let value):
-          try container.encode(value, forKey: .iopsPerTb)
+          try container.encodeIfPresent(value, forKey: .iopsPerTb)
         case .fixedIops(let value):
-          try container.encode(value, forKey: .fixedIops)
+          try container.encodeIfPresent(value, forKey: .fixedIops)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -139,9 +139,9 @@
       if let choice = self.rankingInfo {
         switch choice {
         case .globalScore(let value):
-          try container.encode(value, forKey: .globalScore)
+          try container.encodeIfPresent(value, forKey: .globalScore)
         case .frequency(let value):
-          try container.encode(value, forKey: .frequency)
+          try container.encodeIfPresent(value, forKey: .frequency)
         }
       }
       for (key, value) in self._unknownFields.json {

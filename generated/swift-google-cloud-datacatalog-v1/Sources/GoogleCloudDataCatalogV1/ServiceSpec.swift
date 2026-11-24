@@ -88,7 +88,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.systemSpec {
       switch choice {
       case .cloudBigtableInstanceSpec(let value):
-        try container.encode(value, forKey: .cloudBigtableInstanceSpec)
+        try container.encodeIfPresent(value, forKey: .cloudBigtableInstanceSpec)
       }
     }
     for (key, value) in self._unknownFields.json {

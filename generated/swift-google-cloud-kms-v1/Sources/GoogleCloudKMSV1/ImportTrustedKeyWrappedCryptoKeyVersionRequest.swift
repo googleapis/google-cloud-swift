@@ -153,7 +153,9 @@ public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable
     try container.encode(self.importingKey, forKey: .importingKey)
     try container.encode(self.cryptoKeyVersion, forKey: .cryptoKeyVersion)
     try container.encode(self.wrappedKey, forKey: .wrappedKey)
-    try container.encode(self.algorithm, forKey: .algorithm)
+    if self.algorithm != CryptoKeyVersion.CryptoKeyVersionAlgorithm() {
+      try container.encode(self.algorithm, forKey: .algorithm)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

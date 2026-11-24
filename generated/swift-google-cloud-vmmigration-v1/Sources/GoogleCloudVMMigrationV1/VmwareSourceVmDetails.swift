@@ -108,11 +108,15 @@ public struct VmwareSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.firmware, forKey: .firmware)
+    if self.firmware != VmwareSourceVmDetails.Firmware() {
+      try container.encode(self.firmware, forKey: .firmware)
+    }
     try container.encode(self.committedStorageBytes, forKey: .committedStorageBytes)
     try container.encode(self.disks, forKey: .disks)
     try container.encodeIfPresent(self.vmCapabilitiesInfo, forKey: .vmCapabilitiesInfo)
-    try container.encode(self.architecture, forKey: .architecture)
+    if self.architecture != GoogleCloudVMMigrationV1.VmArchitecture() {
+      try container.encode(self.architecture, forKey: .architecture)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

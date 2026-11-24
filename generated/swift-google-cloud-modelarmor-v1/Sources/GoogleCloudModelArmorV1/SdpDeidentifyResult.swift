@@ -113,9 +113,13 @@ public struct SdpDeidentifyResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.executionState, forKey: .executionState)
+    if self.executionState != FilterExecutionState() {
+      try container.encode(self.executionState, forKey: .executionState)
+    }
     try container.encode(self.messageItems, forKey: .messageItems)
-    try container.encode(self.matchState, forKey: .matchState)
+    if self.matchState != FilterMatchState() {
+      try container.encode(self.matchState, forKey: .matchState)
+    }
     try container.encodeIfPresent(self.data, forKey: .data)
     try container.encode(self.transformedBytes, forKey: .transformedBytes)
     try container.encode(self.infoTypes, forKey: .infoTypes)

@@ -86,7 +86,7 @@ public struct FilterRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .exclusionRule(let value):
-        try container.encode(value, forKey: .exclusionRule)
+        try container.encodeIfPresent(value, forKey: .exclusionRule)
       }
     }
     for (key, value) in self._unknownFields.json {

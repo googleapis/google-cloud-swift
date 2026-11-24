@@ -150,7 +150,9 @@ public struct DbServerProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.dbNodeStorageSizeGb, forKey: .dbNodeStorageSizeGb)
     try container.encode(self.maxDbNodeStorageSizeGb, forKey: .maxDbNodeStorageSizeGb)
     try container.encode(self.vmCount, forKey: .vmCount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DbServerProperties.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.dbNodeIds, forKey: .dbNodeIds)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

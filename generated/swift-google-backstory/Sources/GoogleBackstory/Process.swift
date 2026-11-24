@@ -276,14 +276,18 @@ public struct Process: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pgid, forKey: .pgid)
     try container.encode(self.sessionLeaderPid, forKey: .sessionLeaderPid)
     try container.encode(self.tty, forKey: .tty)
-    try container.encode(self.tokenElevationType, forKey: .tokenElevationType)
+    if self.tokenElevationType != Process.TokenElevationType() {
+      try container.encode(self.tokenElevationType, forKey: .tokenElevationType)
+    }
     try container.encode(
       self.productSpecificParentProcessId, forKey: .productSpecificParentProcessId)
     try container.encode(self.ipv6, forKey: .ipv6)
     try container.encodeIfPresent(self.kernelDuration, forKey: .kernelDuration)
     try container.encodeIfPresent(self.userDuration, forKey: .userDuration)
     try container.encodeIfPresent(self.realDuration, forKey: .realDuration)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Process.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

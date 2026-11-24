@@ -98,11 +98,11 @@
       if let choice = self.chunkType {
         switch choice {
         case .web(let value):
-          try container.encode(value, forKey: .web)
+          try container.encodeIfPresent(value, forKey: .web)
         case .retrievedContext(let value):
-          try container.encode(value, forKey: .retrievedContext)
+          try container.encodeIfPresent(value, forKey: .retrievedContext)
         case .maps(let value):
-          try container.encode(value, forKey: .maps)
+          try container.encodeIfPresent(value, forKey: .maps)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -292,7 +292,7 @@
         if let choice = self.contextDetails {
           switch choice {
           case .ragChunk(let value):
-            try container.encode(value, forKey: .ragChunk)
+            try container.encodeIfPresent(value, forKey: .ragChunk)
           }
         }
         for (key, value) in self._unknownFields.json {

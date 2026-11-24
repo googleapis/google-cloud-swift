@@ -104,9 +104,9 @@
       if let choice = self.result {
         switch choice {
         case .queryResult(let value):
-          try container.encode(value, forKey: .queryResult)
+          try container.encodeIfPresent(value, forKey: .queryResult)
         case .intentSuggestion(let value):
-          try container.encode(value, forKey: .intentSuggestion)
+          try container.encodeIfPresent(value, forKey: .intentSuggestion)
         }
       }
       for (key, value) in self._unknownFields.json {

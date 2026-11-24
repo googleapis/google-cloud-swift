@@ -128,7 +128,9 @@
       try container.encodeIfPresent(
         self.getWidgetConfigRequestOption, forKey: .getWidgetConfigRequestOption)
       try container.encode(self.languageCode, forKey: .languageCode)
-      try container.encode(self.modelInfoView, forKey: .modelInfoView)
+      if self.modelInfoView != ModelInfoView() {
+        try container.encode(self.modelInfoView, forKey: .modelInfoView)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

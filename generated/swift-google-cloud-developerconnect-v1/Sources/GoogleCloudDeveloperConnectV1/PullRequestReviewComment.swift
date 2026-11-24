@@ -148,7 +148,9 @@ public struct PullRequestReviewComment: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.path, forKey: .path)
     try container.encode(self.firstLine, forKey: .firstLine)
     try container.encode(self.lastLine, forKey: .lastLine)
-    try container.encode(self.side, forKey: .side)
+    if self.side != PullRequestReviewComment.DiffSide() {
+      try container.encode(self.side, forKey: .side)
+    }
     try container.encode(self.author, forKey: .author)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

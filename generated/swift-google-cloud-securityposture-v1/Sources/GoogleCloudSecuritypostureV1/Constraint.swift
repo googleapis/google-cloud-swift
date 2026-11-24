@@ -110,13 +110,13 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.implementation {
       switch choice {
       case .securityHealthAnalyticsModule(let value):
-        try container.encode(value, forKey: .securityHealthAnalyticsModule)
+        try container.encodeIfPresent(value, forKey: .securityHealthAnalyticsModule)
       case .securityHealthAnalyticsCustomModule(let value):
-        try container.encode(value, forKey: .securityHealthAnalyticsCustomModule)
+        try container.encodeIfPresent(value, forKey: .securityHealthAnalyticsCustomModule)
       case .orgPolicyConstraint(let value):
-        try container.encode(value, forKey: .orgPolicyConstraint)
+        try container.encodeIfPresent(value, forKey: .orgPolicyConstraint)
       case .orgPolicyConstraintCustom(let value):
-        try container.encode(value, forKey: .orgPolicyConstraintCustom)
+        try container.encodeIfPresent(value, forKey: .orgPolicyConstraintCustom)
       }
     }
     for (key, value) in self._unknownFields.json {

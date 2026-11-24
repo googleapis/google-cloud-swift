@@ -492,21 +492,31 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.searchMode, forKey: .searchMode)
+    if self.searchMode != SearchJobsRequest.SearchMode() {
+      try container.encode(self.searchMode, forKey: .searchMode)
+    }
     try container.encodeIfPresent(self.requestMetadata, forKey: .requestMetadata)
     try container.encodeIfPresent(self.jobQuery, forKey: .jobQuery)
     try container.encode(self.enableBroadening, forKey: .enableBroadening)
     try container.encode(self.histogramQueries, forKey: .histogramQueries)
-    try container.encode(self.jobView, forKey: .jobView)
+    if self.jobView != JobView() {
+      try container.encode(self.jobView, forKey: .jobView)
+    }
     try container.encode(self.offset, forKey: .offset)
     try container.encode(self.maxPageSize, forKey: .maxPageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.orderBy, forKey: .orderBy)
-    try container.encode(self.diversificationLevel, forKey: .diversificationLevel)
+    if self.diversificationLevel != SearchJobsRequest.DiversificationLevel() {
+      try container.encode(self.diversificationLevel, forKey: .diversificationLevel)
+    }
     try container.encodeIfPresent(self.customRankingInfo, forKey: .customRankingInfo)
     try container.encode(self.disableKeywordMatch, forKey: .disableKeywordMatch)
-    try container.encode(self.keywordMatchMode, forKey: .keywordMatchMode)
-    try container.encode(self.relevanceThreshold, forKey: .relevanceThreshold)
+    if self.keywordMatchMode != SearchJobsRequest.KeywordMatchMode() {
+      try container.encode(self.keywordMatchMode, forKey: .keywordMatchMode)
+    }
+    if self.relevanceThreshold != SearchJobsRequest.RelevanceThreshold() {
+      try container.encode(self.relevanceThreshold, forKey: .relevanceThreshold)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -608,7 +618,9 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.importanceLevel, forKey: .importanceLevel)
+      if self.importanceLevel != SearchJobsRequest.CustomRankingInfo.ImportanceLevel() {
+        try container.encode(self.importanceLevel, forKey: .importanceLevel)
+      }
       try container.encode(self.rankingExpression, forKey: .rankingExpression)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

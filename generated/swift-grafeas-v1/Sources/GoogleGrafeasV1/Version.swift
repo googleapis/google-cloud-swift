@@ -121,7 +121,9 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.revision, forKey: .revision)
     try container.encode(self.inclusive, forKey: .inclusive)
-    try container.encode(self.kind, forKey: .kind)
+    if self.kind != Version.VersionKind() {
+      try container.encode(self.kind, forKey: .kind)
+    }
     try container.encode(self.fullName, forKey: .fullName)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

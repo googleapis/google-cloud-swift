@@ -129,13 +129,13 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pipeline {
       switch choice {
       case .gcsIngestPipeline(let value):
-        try container.encode(value, forKey: .gcsIngestPipeline)
+        try container.encodeIfPresent(value, forKey: .gcsIngestPipeline)
       case .gcsIngestWithDocAiProcessorsPipeline(let value):
-        try container.encode(value, forKey: .gcsIngestWithDocAiProcessorsPipeline)
+        try container.encodeIfPresent(value, forKey: .gcsIngestWithDocAiProcessorsPipeline)
       case .exportCdwPipeline(let value):
-        try container.encode(value, forKey: .exportCdwPipeline)
+        try container.encodeIfPresent(value, forKey: .exportCdwPipeline)
       case .processWithDocAiPipeline(let value):
-        try container.encode(value, forKey: .processWithDocAiPipeline)
+        try container.encodeIfPresent(value, forKey: .processWithDocAiPipeline)
       }
     }
     for (key, value) in self._unknownFields.json {

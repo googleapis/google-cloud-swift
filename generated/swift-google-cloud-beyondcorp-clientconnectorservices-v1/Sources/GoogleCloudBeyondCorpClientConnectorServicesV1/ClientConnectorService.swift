@@ -123,7 +123,9 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.ingress, forKey: .ingress)
     try container.encodeIfPresent(self.egress, forKey: .egress)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ClientConnectorService.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -199,7 +201,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.ingressConfig {
         switch choice {
         case .config(let value):
-          try container.encode(value, forKey: .config)
+          try container.encodeIfPresent(value, forKey: .config)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -273,7 +275,9 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.transportProtocol, forKey: .transportProtocol)
+        if self.transportProtocol != ClientConnectorService.Ingress.Config.TransportProtocol() {
+          try container.encode(self.transportProtocol, forKey: .transportProtocol)
+        }
         try container.encode(self.destinationRoutes, forKey: .destinationRoutes)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -604,7 +608,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       if let choice = self.destinationType {
         switch choice {
         case .peeredVpc(let value):
-          try container.encode(value, forKey: .peeredVpc)
+          try container.encodeIfPresent(value, forKey: .peeredVpc)
         }
       }
       for (key, value) in self._unknownFields.json {

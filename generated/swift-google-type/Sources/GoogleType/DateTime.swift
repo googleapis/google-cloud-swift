@@ -188,9 +188,9 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.timeOffset {
       switch choice {
       case .utcOffset(let value):
-        try container.encode(value, forKey: .utcOffset)
+        try container.encodeIfPresent(value, forKey: .utcOffset)
       case .timeZone(let value):
-        try container.encode(value, forKey: .timeZone)
+        try container.encodeIfPresent(value, forKey: .timeZone)
       }
     }
     for (key, value) in self._unknownFields.json {

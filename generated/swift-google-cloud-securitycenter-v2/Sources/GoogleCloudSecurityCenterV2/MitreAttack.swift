@@ -114,7 +114,9 @@ public struct MitreAttack: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.primaryTactic, forKey: .primaryTactic)
+    if self.primaryTactic != MitreAttack.Tactic() {
+      try container.encode(self.primaryTactic, forKey: .primaryTactic)
+    }
     try container.encode(self.primaryTechniques, forKey: .primaryTechniques)
     try container.encode(self.additionalTactics, forKey: .additionalTactics)
     try container.encode(self.additionalTechniques, forKey: .additionalTechniques)

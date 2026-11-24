@@ -94,9 +94,9 @@ public struct ConversationDataSource: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.source {
       switch choice {
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       case .dialogflowSource(let value):
-        try container.encode(value, forKey: .dialogflowSource)
+        try container.encodeIfPresent(value, forKey: .dialogflowSource)
       }
     }
     for (key, value) in self._unknownFields.json {

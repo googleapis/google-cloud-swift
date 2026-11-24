@@ -93,9 +93,9 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.constraintDefinition {
       switch choice {
       case .googleDefinedConstraint(let value):
-        try container.encode(value, forKey: .googleDefinedConstraint)
+        try container.encodeIfPresent(value, forKey: .googleDefinedConstraint)
       case .customConstraint(let value):
-        try container.encode(value, forKey: .customConstraint)
+        try container.encodeIfPresent(value, forKey: .customConstraint)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -220,14 +220,16 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.constraintDefault, forKey: .constraintDefault)
+      if self.constraintDefault != AnalyzerOrgPolicyConstraint.Constraint.ConstraintDefault() {
+        try container.encode(self.constraintDefault, forKey: .constraintDefault)
+      }
 
       if let choice = self.constraintType {
         switch choice {
         case .listConstraint(let value):
-          try container.encode(value, forKey: .listConstraint)
+          try container.encodeIfPresent(value, forKey: .listConstraint)
         case .booleanConstraint(let value):
-          try container.encode(value, forKey: .booleanConstraint)
+          try container.encodeIfPresent(value, forKey: .booleanConstraint)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -676,7 +678,9 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       try container.encode(self.resourceTypes, forKey: .resourceTypes)
       try container.encode(self.methodTypes, forKey: .methodTypes)
       try container.encode(self.condition, forKey: .condition)
-      try container.encode(self.actionType, forKey: .actionType)
+      if self.actionType != AnalyzerOrgPolicyConstraint.CustomConstraint.ActionType() {
+        try container.encode(self.actionType, forKey: .actionType)
+      }
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
       for (key, value) in self._unknownFields.json {

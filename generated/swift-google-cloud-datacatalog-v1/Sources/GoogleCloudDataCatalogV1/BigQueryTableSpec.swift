@@ -94,14 +94,16 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.tableSourceType, forKey: .tableSourceType)
+    if self.tableSourceType != TableSourceType() {
+      try container.encode(self.tableSourceType, forKey: .tableSourceType)
+    }
 
     if let choice = self.typeSpec {
       switch choice {
       case .viewSpec(let value):
-        try container.encode(value, forKey: .viewSpec)
+        try container.encodeIfPresent(value, forKey: .viewSpec)
       case .tableSpec(let value):
-        try container.encode(value, forKey: .tableSpec)
+        try container.encodeIfPresent(value, forKey: .tableSpec)
       }
     }
     for (key, value) in self._unknownFields.json {

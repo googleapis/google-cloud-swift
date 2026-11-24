@@ -98,7 +98,9 @@ public struct CustomTargetTypeNotificationEvent: Codable, Equatable, GoogleWKT._
     try container.encode(self.message, forKey: .message)
     try container.encode(self.customTargetTypeUid, forKey: .customTargetTypeUid)
     try container.encode(self.customTargetType, forKey: .customTargetType)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

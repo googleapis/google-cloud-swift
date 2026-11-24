@@ -112,8 +112,12 @@ public struct ComputeScheduling: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.onHostMaintenance, forKey: .onHostMaintenance)
-    try container.encode(self.restartType, forKey: .restartType)
+    if self.onHostMaintenance != ComputeScheduling.OnHostMaintenance() {
+      try container.encode(self.onHostMaintenance, forKey: .onHostMaintenance)
+    }
+    if self.restartType != ComputeScheduling.RestartType() {
+      try container.encode(self.restartType, forKey: .restartType)
+    }
     try container.encode(self.nodeAffinities, forKey: .nodeAffinities)
     try container.encode(self.minNodeCpus, forKey: .minNodeCpus)
     for (key, value) in self._unknownFields.json {

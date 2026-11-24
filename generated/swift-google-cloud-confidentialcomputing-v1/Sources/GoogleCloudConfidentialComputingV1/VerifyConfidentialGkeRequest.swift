@@ -117,12 +117,14 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.challenge, forKey: .challenge)
     try container.encodeIfPresent(self.options, forKey: .options)
-    try container.encode(self.platformType, forKey: .platformType)
+    if self.platformType != VerifyConfidentialGkeRequest.PlatformType() {
+      try container.encode(self.platformType, forKey: .platformType)
+    }
 
     if let choice = self.teeAttestation {
       switch choice {
       case .tpmAttestation(let value):
-        try container.encode(value, forKey: .tpmAttestation)
+        try container.encodeIfPresent(value, forKey: .tpmAttestation)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -204,7 +206,9 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.audience, forKey: .audience)
       try container.encode(self.nonce, forKey: .nonce)
-      try container.encode(self.signatureType, forKey: .signatureType)
+      if self.signatureType != SignatureType() {
+        try container.encode(self.signatureType, forKey: .signatureType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

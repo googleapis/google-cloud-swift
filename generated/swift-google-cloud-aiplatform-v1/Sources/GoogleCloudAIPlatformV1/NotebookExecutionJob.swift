@@ -312,7 +312,9 @@
       try container.encode(self.displayName, forKey: .displayName)
       try container.encodeIfPresent(self.executionTimeout, forKey: .executionTimeout)
       try container.encode(self.scheduleResourceName, forKey: .scheduleResourceName)
-      try container.encode(self.jobState, forKey: .jobState)
+      if self.jobState != JobState() {
+        try container.encode(self.jobState, forKey: .jobState)
+      }
       try container.encodeIfPresent(self.status, forKey: .status)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -323,43 +325,43 @@
       if let choice = self.notebookSource {
         switch choice {
         case .dataformRepositorySource(let value):
-          try container.encode(value, forKey: .dataformRepositorySource)
+          try container.encodeIfPresent(value, forKey: .dataformRepositorySource)
         case .gcsNotebookSource(let value):
-          try container.encode(value, forKey: .gcsNotebookSource)
+          try container.encodeIfPresent(value, forKey: .gcsNotebookSource)
         case .directNotebookSource(let value):
-          try container.encode(value, forKey: .directNotebookSource)
+          try container.encodeIfPresent(value, forKey: .directNotebookSource)
         }
       }
 
       if let choice = self.environmentSpec {
         switch choice {
         case .notebookRuntimeTemplateResourceName(let value):
-          try container.encode(value, forKey: .notebookRuntimeTemplateResourceName)
+          try container.encodeIfPresent(value, forKey: .notebookRuntimeTemplateResourceName)
         case .customEnvironmentSpec(let value):
-          try container.encode(value, forKey: .customEnvironmentSpec)
+          try container.encodeIfPresent(value, forKey: .customEnvironmentSpec)
         }
       }
 
       if let choice = self.executionSink {
         switch choice {
         case .gcsOutputUri(let value):
-          try container.encode(value, forKey: .gcsOutputUri)
+          try container.encodeIfPresent(value, forKey: .gcsOutputUri)
         }
       }
 
       if let choice = self.executionIdentity {
         switch choice {
         case .executionUser(let value):
-          try container.encode(value, forKey: .executionUser)
+          try container.encodeIfPresent(value, forKey: .executionUser)
         case .serviceAccount(let value):
-          try container.encode(value, forKey: .serviceAccount)
+          try container.encodeIfPresent(value, forKey: .serviceAccount)
         }
       }
 
       if let choice = self.runtimeEnvironment {
         switch choice {
         case .workbenchRuntime(let value):
-          try container.encode(value, forKey: .workbenchRuntime)
+          try container.encodeIfPresent(value, forKey: .workbenchRuntime)
         }
       }
       for (key, value) in self._unknownFields.json {

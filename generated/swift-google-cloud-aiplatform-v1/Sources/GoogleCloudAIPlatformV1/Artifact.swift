@@ -185,7 +185,9 @@
       try container.encode(self.labels, forKey: .labels)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Artifact.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.schemaTitle, forKey: .schemaTitle)
       try container.encode(self.schemaVersion, forKey: .schemaVersion)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)

@@ -319,10 +319,14 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encodeIfPresent(self.consistencyTime, forKey: .consistencyTime)
     try container.encodeIfPresent(self.etag, forKey: .etag)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Backup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.serviceLocks, forKey: .serviceLocks)
     try container.encode(self.backupApplianceLocks, forKey: .backupApplianceLocks)
-    try container.encode(self.backupType, forKey: .backupType)
+    if self.backupType != Backup.BackupType() {
+      try container.encode(self.backupType, forKey: .backupType)
+    }
     try container.encode(self.resourceSizeBytes, forKey: .resourceSizeBytes)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
@@ -332,29 +336,29 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.backupProperties {
       switch choice {
       case .computeInstanceBackupProperties(let value):
-        try container.encode(value, forKey: .computeInstanceBackupProperties)
+        try container.encodeIfPresent(value, forKey: .computeInstanceBackupProperties)
       case .cloudSqlInstanceBackupProperties(let value):
-        try container.encode(value, forKey: .cloudSqlInstanceBackupProperties)
+        try container.encodeIfPresent(value, forKey: .cloudSqlInstanceBackupProperties)
       case .backupApplianceBackupProperties(let value):
-        try container.encode(value, forKey: .backupApplianceBackupProperties)
+        try container.encodeIfPresent(value, forKey: .backupApplianceBackupProperties)
       case .alloyDbBackupProperties(let value):
-        try container.encode(value, forKey: .alloyDbBackupProperties)
+        try container.encodeIfPresent(value, forKey: .alloyDbBackupProperties)
       case .diskBackupProperties(let value):
-        try container.encode(value, forKey: .diskBackupProperties)
+        try container.encodeIfPresent(value, forKey: .diskBackupProperties)
       }
     }
 
     if let choice = self.planInfo {
       switch choice {
       case .gcpBackupPlanInfo(let value):
-        try container.encode(value, forKey: .gcpBackupPlanInfo)
+        try container.encodeIfPresent(value, forKey: .gcpBackupPlanInfo)
       }
     }
 
     if let choice = self.sourceResource {
       switch choice {
       case .gcpResource(let value):
-        try container.encode(value, forKey: .gcpResource)
+        try container.encodeIfPresent(value, forKey: .gcpResource)
       }
     }
     for (key, value) in self._unknownFields.json {

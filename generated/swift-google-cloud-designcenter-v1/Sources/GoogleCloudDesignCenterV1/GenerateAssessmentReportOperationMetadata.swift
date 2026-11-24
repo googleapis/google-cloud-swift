@@ -72,7 +72,9 @@ public struct GenerateAssessmentReportOperationMetadata: Codable, Equatable, Goo
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.step, forKey: .step)
+    if self.step != GenerateAssessmentReportOperationMetadata.AssessmentStep() {
+      try container.encode(self.step, forKey: .step)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

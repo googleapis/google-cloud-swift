@@ -215,11 +215,17 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.categories, forKey: .categories)
     try container.encode(self.similarControls, forKey: .similarControls)
-    try container.encode(self.cloudControlType, forKey: .cloudControlType)
+    if self.cloudControlType != CloudControl.Type_() {
+      try container.encode(self.cloudControlType, forKey: .cloudControlType)
+    }
     try container.encode(self.findingCategory, forKey: .findingCategory)
     try container.encode(self.rules, forKey: .rules)
-    try container.encode(self.findingSeverity, forKey: .findingSeverity)
-    try container.encode(self.enforcementMode, forKey: .enforcementMode)
+    if self.findingSeverity != Severity() {
+      try container.encode(self.findingSeverity, forKey: .findingSeverity)
+    }
+    if self.enforcementMode != EnforcementMode() {
+      try container.encode(self.enforcementMode, forKey: .enforcementMode)
+    }
     try container.encode(self.cloudControlDeployment, forKey: .cloudControlDeployment)
     try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
     try container.encode(self.minorRevisionId, forKey: .minorRevisionId)
@@ -228,9 +234,9 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.assessmentDetails {
       switch choice {
       case .manualCloudControlAssessmentDetails(let value):
-        try container.encode(value, forKey: .manualCloudControlAssessmentDetails)
+        try container.encodeIfPresent(value, forKey: .manualCloudControlAssessmentDetails)
       case .cloudControlAssessmentDetails(let value):
-        try container.encode(value, forKey: .cloudControlAssessmentDetails)
+        try container.encodeIfPresent(value, forKey: .cloudControlAssessmentDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

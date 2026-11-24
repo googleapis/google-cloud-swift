@@ -113,7 +113,9 @@ public struct FetchStorageInventoryRequest: Codable, Equatable, GoogleWKT._AnyPa
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.source, forKey: .source)
-    try container.encode(self.type, forKey: .type)
+    if self.type != FetchStorageInventoryRequest.StorageType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.forceRefresh, forKey: .forceRefresh)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)

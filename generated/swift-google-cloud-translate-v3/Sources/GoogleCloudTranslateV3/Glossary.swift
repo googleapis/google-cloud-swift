@@ -145,9 +145,9 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.languages {
       switch choice {
       case .languagePair(let value):
-        try container.encode(value, forKey: .languagePair)
+        try container.encodeIfPresent(value, forKey: .languagePair)
       case .languageCodesSet(let value):
-        try container.encode(value, forKey: .languageCodesSet)
+        try container.encodeIfPresent(value, forKey: .languageCodesSet)
       }
     }
     for (key, value) in self._unknownFields.json {

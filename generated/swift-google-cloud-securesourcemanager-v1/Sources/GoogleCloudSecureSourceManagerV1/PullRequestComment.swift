@@ -125,11 +125,11 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.commentDetail {
       switch choice {
       case .review(let value):
-        try container.encode(value, forKey: .review)
+        try container.encodeIfPresent(value, forKey: .review)
       case .comment(let value):
-        try container.encode(value, forKey: .comment)
+        try container.encodeIfPresent(value, forKey: .comment)
       case .code(let value):
-        try container.encode(value, forKey: .code)
+        try container.encodeIfPresent(value, forKey: .code)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -208,7 +208,9 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.actionType, forKey: .actionType)
+      if self.actionType != PullRequestComment.Review.ActionType() {
+        try container.encode(self.actionType, forKey: .actionType)
+      }
       try container.encode(self.body, forKey: .body)
       try container.encode(self.effectiveCommitSha, forKey: .effectiveCommitSha)
       for (key, value) in self._unknownFields.json {

@@ -107,7 +107,9 @@ public struct ApprovalResult: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.approverAccount, forKey: .approverAccount)
     try container.encodeIfPresent(self.approvalTime, forKey: .approvalTime)
-    try container.encode(self.decision, forKey: .decision)
+    if self.decision != ApprovalResult.Decision() {
+      try container.encode(self.decision, forKey: .decision)
+    }
     try container.encode(self.comment, forKey: .comment)
     try container.encode(self.url, forKey: .url)
     for (key, value) in self._unknownFields.json {

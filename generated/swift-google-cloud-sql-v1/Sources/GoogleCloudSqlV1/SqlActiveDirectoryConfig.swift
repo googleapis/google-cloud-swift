@@ -120,7 +120,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.domain, forKey: .domain)
-      try container.encode(self.mode, forKey: .mode)
+      if self.mode != SqlActiveDirectoryConfig.ActiveDirectoryMode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       try container.encode(self.dnsServers, forKey: .dnsServers)
       try container.encode(self.adminCredentialSecretName, forKey: .adminCredentialSecretName)
       try container.encode(self.organizationalUnit, forKey: .organizationalUnit)

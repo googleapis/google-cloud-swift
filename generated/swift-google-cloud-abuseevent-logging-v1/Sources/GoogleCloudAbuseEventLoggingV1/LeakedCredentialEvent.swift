@@ -104,9 +104,9 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.credentialType {
       switch choice {
       case .serviceAccountCredential(let value):
-        try container.encode(value, forKey: .serviceAccountCredential)
+        try container.encodeIfPresent(value, forKey: .serviceAccountCredential)
       case .apiKeyCredential(let value):
-        try container.encode(value, forKey: .apiKeyCredential)
+        try container.encodeIfPresent(value, forKey: .apiKeyCredential)
       }
     }
     for (key, value) in self._unknownFields.json {

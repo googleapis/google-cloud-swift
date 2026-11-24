@@ -104,7 +104,9 @@ public struct ExportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.exportFormat, forKey: .exportFormat)
+    if self.exportFormat != ExportAppRequest.ExportFormat() {
+      try container.encode(self.exportFormat, forKey: .exportFormat)
+    }
     try container.encode(self.gcsUri, forKey: .gcsUri)
     try container.encode(self.appVersion, forKey: .appVersion)
     for (key, value) in self._unknownFields.json {

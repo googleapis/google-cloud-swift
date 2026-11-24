@@ -376,7 +376,9 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ocid, forKey: .ocid)
-    try container.encode(self.licenseType, forKey: .licenseType)
+    if self.licenseType != CloudVmClusterProperties.LicenseType() {
+      try container.encode(self.licenseType, forKey: .licenseType)
+    }
     try container.encode(self.giVersion, forKey: .giVersion)
     try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
     try container.encode(self.sshPublicKeys, forKey: .sshPublicKeys)
@@ -387,13 +389,17 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.dbNodeStorageSizeGb, forKey: .dbNodeStorageSizeGb)
     try container.encode(self.storageSizeGb, forKey: .storageSizeGb)
     try container.encode(self.dataStorageSizeTb, forKey: .dataStorageSizeTb)
-    try container.encode(self.diskRedundancy, forKey: .diskRedundancy)
+    if self.diskRedundancy != CloudVmClusterProperties.DiskRedundancy() {
+      try container.encode(self.diskRedundancy, forKey: .diskRedundancy)
+    }
     try container.encode(self.sparseDiskgroupEnabled, forKey: .sparseDiskgroupEnabled)
     try container.encode(self.localBackupEnabled, forKey: .localBackupEnabled)
     try container.encode(self.hostnamePrefix, forKey: .hostnamePrefix)
     try container.encodeIfPresent(
       self.diagnosticsDataCollectionOptions, forKey: .diagnosticsDataCollectionOptions)
-    try container.encode(self.state, forKey: .state)
+    if self.state != CloudVmClusterProperties.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.scanListenerPortTcp, forKey: .scanListenerPortTcp)
     try container.encode(self.scanListenerPortTcpSsl, forKey: .scanListenerPortTcpSsl)
     try container.encode(self.domain, forKey: .domain)
@@ -408,10 +414,18 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.compartmentId, forKey: .compartmentId)
     try container.encode(self.dnsListenerIp, forKey: .dnsListenerIp)
     try container.encode(self.clusterName, forKey: .clusterName)
-    try container.encode(self.computeModel, forKey: .computeModel)
-    try container.encode(self.storageManagementType, forKey: .storageManagementType)
-    try container.encode(self.vmFileSystemStorageType, forKey: .vmFileSystemStorageType)
-    try container.encode(self.vmBackupStorageType, forKey: .vmBackupStorageType)
+    if self.computeModel != GoogleCloudOracleDatabaseV1.ComputeModel() {
+      try container.encode(self.computeModel, forKey: .computeModel)
+    }
+    if self.storageManagementType != CloudVmClusterProperties.StorageManagementType() {
+      try container.encode(self.storageManagementType, forKey: .storageManagementType)
+    }
+    if self.vmFileSystemStorageType != CloudVmClusterProperties.VmFileSystemStorageType() {
+      try container.encode(self.vmFileSystemStorageType, forKey: .vmFileSystemStorageType)
+    }
+    if self.vmBackupStorageType != CloudVmClusterProperties.VmBackupStorageType() {
+      try container.encode(self.vmBackupStorageType, forKey: .vmBackupStorageType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

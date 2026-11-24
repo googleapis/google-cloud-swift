@@ -194,11 +194,17 @@ public struct Processor: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.processorType, forKey: .processorType)
-    try container.encode(self.modelType, forKey: .modelType)
+    if self.processorType != Processor.ProcessorType() {
+      try container.encode(self.processorType, forKey: .processorType)
+    }
+    if self.modelType != ModelType() {
+      try container.encode(self.modelType, forKey: .modelType)
+    }
     try container.encodeIfPresent(
       self.customProcessorSourceInfo, forKey: .customProcessorSourceInfo)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Processor.ProcessorState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.processorIoSpec, forKey: .processorIoSpec)
     try container.encode(self.configurationTypeurl, forKey: .configurationTypeurl)
     try container.encode(self.supportedAnnotationTypes, forKey: .supportedAnnotationTypes)

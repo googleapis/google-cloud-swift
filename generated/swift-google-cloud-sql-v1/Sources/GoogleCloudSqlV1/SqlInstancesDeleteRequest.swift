@@ -140,9 +140,9 @@
       if let choice = self.expiration {
         switch choice {
         case .finalBackupTtlDays(let value):
-          try container.encode(value, forKey: .finalBackupTtlDays)
+          try container.encodeIfPresent(value, forKey: .finalBackupTtlDays)
         case .finalBackupExpiryTime(let value):
-          try container.encode(value, forKey: .finalBackupExpiryTime)
+          try container.encodeIfPresent(value, forKey: .finalBackupExpiryTime)
         }
       }
       for (key, value) in self._unknownFields.json {

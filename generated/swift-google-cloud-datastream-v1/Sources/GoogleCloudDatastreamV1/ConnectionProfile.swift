@@ -262,42 +262,42 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.profile {
       switch choice {
       case .oracleProfile(let value):
-        try container.encode(value, forKey: .oracleProfile)
+        try container.encodeIfPresent(value, forKey: .oracleProfile)
       case .gcsProfile(let value):
-        try container.encode(value, forKey: .gcsProfile)
+        try container.encodeIfPresent(value, forKey: .gcsProfile)
       case .mysqlProfile(let value):
-        try container.encode(value, forKey: .mysqlProfile)
+        try container.encodeIfPresent(value, forKey: .mysqlProfile)
       case .bigqueryProfile(let value):
-        try container.encode(value, forKey: .bigqueryProfile)
+        try container.encodeIfPresent(value, forKey: .bigqueryProfile)
       case .postgresqlProfile(let value):
-        try container.encode(value, forKey: .postgresqlProfile)
+        try container.encodeIfPresent(value, forKey: .postgresqlProfile)
       case .sqlServerProfile(let value):
-        try container.encode(value, forKey: .sqlServerProfile)
+        try container.encodeIfPresent(value, forKey: .sqlServerProfile)
       case .salesforceProfile(let value):
-        try container.encode(value, forKey: .salesforceProfile)
+        try container.encodeIfPresent(value, forKey: .salesforceProfile)
       case .mongodbProfile(let value):
-        try container.encode(value, forKey: .mongodbProfile)
+        try container.encodeIfPresent(value, forKey: .mongodbProfile)
       case .spannerProfile(let value):
-        try container.encode(value, forKey: .spannerProfile)
+        try container.encodeIfPresent(value, forKey: .spannerProfile)
       case .dataverseProfile(let value):
-        try container.encode(value, forKey: .dataverseProfile)
+        try container.encodeIfPresent(value, forKey: .dataverseProfile)
       case .salesforceMarketingCloudProfile(let value):
-        try container.encode(value, forKey: .salesforceMarketingCloudProfile)
+        try container.encodeIfPresent(value, forKey: .salesforceMarketingCloudProfile)
       case .serviceNowProfile(let value):
-        try container.encode(value, forKey: .serviceNowProfile)
+        try container.encodeIfPresent(value, forKey: .serviceNowProfile)
       case .workdayProfile(let value):
-        try container.encode(value, forKey: .workdayProfile)
+        try container.encodeIfPresent(value, forKey: .workdayProfile)
       }
     }
 
     if let choice = self.connectivity {
       switch choice {
       case .staticServiceIpConnectivity(let value):
-        try container.encode(value, forKey: .staticServiceIpConnectivity)
+        try container.encodeIfPresent(value, forKey: .staticServiceIpConnectivity)
       case .forwardSshConnectivity(let value):
-        try container.encode(value, forKey: .forwardSshConnectivity)
+        try container.encodeIfPresent(value, forKey: .forwardSshConnectivity)
       case .privateConnectivity(let value):
-        try container.encode(value, forKey: .privateConnectivity)
+        try container.encodeIfPresent(value, forKey: .privateConnectivity)
       }
     }
     for (key, value) in self._unknownFields.json {

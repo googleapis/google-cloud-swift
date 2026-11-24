@@ -229,7 +229,9 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.version, forKey: .version)
-        try container.encode(self.state, forKey: .state)
+        if self.state != Project.ServiceTerms.State() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encodeIfPresent(self.acceptTime, forKey: .acceptTime)
         try container.encodeIfPresent(self.declineTime, forKey: .declineTime)
         for (key, value) in self._unknownFields.json {
@@ -1095,7 +1097,9 @@
           self.searchQpmThresholdNextUpdateTime, forKey: .searchQpmThresholdNextUpdateTime)
         try container.encodeIfPresent(
           self.indexingCoreThresholdNextUpdateTime, forKey: .indexingCoreThresholdNextUpdateTime)
-        try container.encode(self.updateType, forKey: .updateType)
+        if self.updateType != Project.ConfigurableBillingStatus.UpdateType() {
+          try container.encode(self.updateType, forKey: .updateType)
+        }
         try container.encode(
           self.agentSearchTokenSubscriptionStatuses, forKey: .agentSearchTokenSubscriptionStatuses)
         for (key, value) in self._unknownFields.json {
@@ -1250,7 +1254,9 @@
             self.tpmThresholdNextUpdateTime, forKey: .tpmThresholdNextUpdateTime)
           try container.encodeIfPresent(self.startTime, forKey: .startTime)
           try container.encodeIfPresent(self.terminateTime, forKey: .terminateTime)
-          try container.encode(self.updateType, forKey: .updateType)
+          if self.updateType != Project.ConfigurableBillingStatus.UpdateType() {
+            try container.encode(self.updateType, forKey: .updateType)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

@@ -172,25 +172,29 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.infoType, forKey: .infoType)
-    try container.encode(self.likelihood, forKey: .likelihood)
+    if self.likelihood != Likelihood() {
+      try container.encode(self.likelihood, forKey: .likelihood)
+    }
     try container.encode(self.detectionRules, forKey: .detectionRules)
-    try container.encode(self.exclusionType, forKey: .exclusionType)
+    if self.exclusionType != CustomInfoType.ExclusionType() {
+      try container.encode(self.exclusionType, forKey: .exclusionType)
+    }
     try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
 
     if let choice = self.type {
       switch choice {
       case .dictionary(let value):
-        try container.encode(value, forKey: .dictionary)
+        try container.encodeIfPresent(value, forKey: .dictionary)
       case .regex(let value):
-        try container.encode(value, forKey: .regex)
+        try container.encodeIfPresent(value, forKey: .regex)
       case .surrogateType(let value):
-        try container.encode(value, forKey: .surrogateType)
+        try container.encodeIfPresent(value, forKey: .surrogateType)
       case .storedType(let value):
-        try container.encode(value, forKey: .storedType)
+        try container.encodeIfPresent(value, forKey: .storedType)
       case .metadataKeyValueExpression(let value):
-        try container.encode(value, forKey: .metadataKeyValueExpression)
+        try container.encodeIfPresent(value, forKey: .metadataKeyValueExpression)
       case .fileLabelInfoType(let value):
-        try container.encode(value, forKey: .fileLabelInfoType)
+        try container.encodeIfPresent(value, forKey: .fileLabelInfoType)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -297,9 +301,9 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.source {
         switch choice {
         case .wordList(let value):
-          try container.encode(value, forKey: .wordList)
+          try container.encodeIfPresent(value, forKey: .wordList)
         case .cloudStoragePath(let value):
-          try container.encode(value, forKey: .cloudStoragePath)
+          try container.encodeIfPresent(value, forKey: .cloudStoragePath)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -756,9 +760,9 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.type {
         switch choice {
         case .sensitivityLabel(let value):
-          try container.encode(value, forKey: .sensitivityLabel)
+          try container.encodeIfPresent(value, forKey: .sensitivityLabel)
         case .googleDriveLabel(let value):
-          try container.encode(value, forKey: .googleDriveLabel)
+          try container.encodeIfPresent(value, forKey: .googleDriveLabel)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1136,7 +1140,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.type {
         switch choice {
         case .hotwordRule(let value):
-          try container.encode(value, forKey: .hotwordRule)
+          try container.encodeIfPresent(value, forKey: .hotwordRule)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1316,9 +1320,9 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.adjustment {
           switch choice {
           case .fixedLikelihood(let value):
-            try container.encode(value, forKey: .fixedLikelihood)
+            try container.encodeIfPresent(value, forKey: .fixedLikelihood)
           case .relativeLikelihood(let value):
-            try container.encode(value, forKey: .relativeLikelihood)
+            try container.encodeIfPresent(value, forKey: .relativeLikelihood)
           }
         }
         for (key, value) in self._unknownFields.json {

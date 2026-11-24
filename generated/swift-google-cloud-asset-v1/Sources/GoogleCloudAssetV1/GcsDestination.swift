@@ -90,9 +90,9 @@ public struct GcsDestination: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.objectUri {
       switch choice {
       case .uri(let value):
-        try container.encode(value, forKey: .uri)
+        try container.encodeIfPresent(value, forKey: .uri)
       case .uriPrefix(let value):
-        try container.encode(value, forKey: .uriPrefix)
+        try container.encodeIfPresent(value, forKey: .uriPrefix)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -73,7 +73,9 @@ public struct DiscoveryInspectTemplateModifiedCadence: Codable, Equatable, Googl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.frequency, forKey: .frequency)
+    if self.frequency != DataProfileUpdateFrequency() {
+      try container.encode(self.frequency, forKey: .frequency)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -97,7 +97,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.targetDatabaseVersion, forKey: .targetDatabaseVersion)
+      if self.targetDatabaseVersion != SqlDatabaseVersion() {
+        try container.encode(self.targetDatabaseVersion, forKey: .targetDatabaseVersion)
+      }
       try container.encode(self.preCheckResponse, forKey: .preCheckResponse)
       try container.encode(self.kind, forKey: .kind)
       try container.encodeIfPresent(self.maxRuntime, forKey: .maxRuntime)

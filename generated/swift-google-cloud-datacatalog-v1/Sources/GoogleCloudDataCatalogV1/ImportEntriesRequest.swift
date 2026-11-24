@@ -109,7 +109,7 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .gcsBucketPath(let value):
-        try container.encode(value, forKey: .gcsBucketPath)
+        try container.encodeIfPresent(value, forKey: .gcsBucketPath)
       }
     }
     for (key, value) in self._unknownFields.json {

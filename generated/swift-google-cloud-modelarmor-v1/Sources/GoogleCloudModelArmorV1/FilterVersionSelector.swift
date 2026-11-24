@@ -93,9 +93,9 @@ public struct FilterVersionSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.versionSpec {
       switch choice {
       case .version(let value):
-        try container.encode(value, forKey: .version)
+        try container.encodeIfPresent(value, forKey: .version)
       case .alias(let value):
-        try container.encode(value, forKey: .alias)
+        try container.encodeIfPresent(value, forKey: .alias)
       }
     }
     for (key, value) in self._unknownFields.json {

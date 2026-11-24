@@ -89,7 +89,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.details {
       switch choice {
       case .deidentifyDetails(let value):
-        try container.encode(value, forKey: .deidentifyDetails)
+        try container.encodeIfPresent(value, forKey: .deidentifyDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

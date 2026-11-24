@@ -94,9 +94,9 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.config {
       switch choice {
       case .newNetwork(let value):
-        try container.encode(value, forKey: .newNetwork)
+        try container.encodeIfPresent(value, forKey: .newNetwork)
       case .existingNetwork(let value):
-        try container.encode(value, forKey: .existingNetwork)
+        try container.encodeIfPresent(value, forKey: .existingNetwork)
       }
     }
     for (key, value) in self._unknownFields.json {

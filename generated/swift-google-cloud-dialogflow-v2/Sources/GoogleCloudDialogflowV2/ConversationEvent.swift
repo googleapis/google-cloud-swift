@@ -120,15 +120,17 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.conversation, forKey: .conversation)
-      try container.encode(self.type, forKey: .type)
+      if self.type != ConversationEvent.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encodeIfPresent(self.errorStatus, forKey: .errorStatus)
 
       if let choice = self.payload {
         switch choice {
         case .newMessagePayload(let value):
-          try container.encode(value, forKey: .newMessagePayload)
+          try container.encodeIfPresent(value, forKey: .newMessagePayload)
         case .newRecognitionResultPayload(let value):
-          try container.encode(value, forKey: .newRecognitionResultPayload)
+          try container.encodeIfPresent(value, forKey: .newRecognitionResultPayload)
         }
       }
       for (key, value) in self._unknownFields.json {

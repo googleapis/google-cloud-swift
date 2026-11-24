@@ -122,13 +122,13 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.clientRestrictions {
       switch choice {
       case .browserKeyRestrictions(let value):
-        try container.encode(value, forKey: .browserKeyRestrictions)
+        try container.encodeIfPresent(value, forKey: .browserKeyRestrictions)
       case .serverKeyRestrictions(let value):
-        try container.encode(value, forKey: .serverKeyRestrictions)
+        try container.encodeIfPresent(value, forKey: .serverKeyRestrictions)
       case .androidKeyRestrictions(let value):
-        try container.encode(value, forKey: .androidKeyRestrictions)
+        try container.encodeIfPresent(value, forKey: .androidKeyRestrictions)
       case .iosKeyRestrictions(let value):
-        try container.encode(value, forKey: .iosKeyRestrictions)
+        try container.encodeIfPresent(value, forKey: .iosKeyRestrictions)
       }
     }
     for (key, value) in self._unknownFields.json {

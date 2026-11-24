@@ -151,7 +151,9 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.code, forKey: .code)
       try container.encode(self.message, forKey: .message)
-      try container.encode(self.status, forKey: .status)
+      if self.status != GoogleRpc.Code() {
+        try container.encode(self.status, forKey: .status)
+      }
       try container.encode(self.details, forKey: .details)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

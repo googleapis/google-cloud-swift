@@ -121,16 +121,16 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceArtifact {
       switch choice {
       case .sourceVersion(let value):
-        try container.encode(value, forKey: .sourceVersion)
+        try container.encodeIfPresent(value, forKey: .sourceVersion)
       case .sourceTag(let value):
-        try container.encode(value, forKey: .sourceTag)
+        try container.encodeIfPresent(value, forKey: .sourceTag)
       }
     }
 
     if let choice = self.destination {
       switch choice {
       case .gcsPath(let value):
-        try container.encode(value, forKey: .gcsPath)
+        try container.encodeIfPresent(value, forKey: .gcsPath)
       }
     }
     for (key, value) in self._unknownFields.json {

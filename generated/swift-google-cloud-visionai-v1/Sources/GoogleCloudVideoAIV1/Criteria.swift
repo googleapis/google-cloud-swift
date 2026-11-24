@@ -142,17 +142,17 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .textArray(let value):
-        try container.encode(value, forKey: .textArray)
+        try container.encodeIfPresent(value, forKey: .textArray)
       case .intRangeArray(let value):
-        try container.encode(value, forKey: .intRangeArray)
+        try container.encodeIfPresent(value, forKey: .intRangeArray)
       case .floatRangeArray(let value):
-        try container.encode(value, forKey: .floatRangeArray)
+        try container.encodeIfPresent(value, forKey: .floatRangeArray)
       case .dateTimeRangeArray(let value):
-        try container.encode(value, forKey: .dateTimeRangeArray)
+        try container.encodeIfPresent(value, forKey: .dateTimeRangeArray)
       case .geoLocationArray(let value):
-        try container.encode(value, forKey: .geoLocationArray)
+        try container.encodeIfPresent(value, forKey: .geoLocationArray)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       }
     }
     for (key, value) in self._unknownFields.json {

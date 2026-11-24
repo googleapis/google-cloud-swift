@@ -111,8 +111,12 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.operationType, forKey: .operationType)
+    if self.state != OperationMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.operationType != OperationMetadata.Type_() {
+      try container.encode(self.operationType, forKey: .operationType)
+    }
     try container.encode(self.resource, forKey: .resource)
     try container.encode(self.resourceUuid, forKey: .resourceUuid)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

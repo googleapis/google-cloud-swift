@@ -136,10 +136,16 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleWKT._AnyPacka
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.targetProduct, forKey: .targetProduct)
+    if self.targetProduct != ComputeMigrationTargetProduct() {
+      try container.encode(self.targetProduct, forKey: .targetProduct)
+    }
     try container.encodeIfPresent(self.regionPreferences, forKey: .regionPreferences)
-    try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
-    try container.encode(self.sizingOptimizationStrategy, forKey: .sizingOptimizationStrategy)
+    if self.commitmentPlan != GoogleCloudMigrationCenterV1.CommitmentPlan() {
+      try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    }
+    if self.sizingOptimizationStrategy != SizingOptimizationStrategy() {
+      try container.encode(self.sizingOptimizationStrategy, forKey: .sizingOptimizationStrategy)
+    }
     try container.encodeIfPresent(self.computeEnginePreferences, forKey: .computeEnginePreferences)
     try container.encodeIfPresent(self.vmwareEnginePreferences, forKey: .vmwareEnginePreferences)
     try container.encodeIfPresent(self.soleTenancyPreferences, forKey: .soleTenancyPreferences)

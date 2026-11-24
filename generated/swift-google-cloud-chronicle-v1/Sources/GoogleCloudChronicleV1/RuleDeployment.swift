@@ -170,8 +170,12 @@ public struct RuleDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.alerting, forKey: .alerting)
     try container.encode(self.archived, forKey: .archived)
     try container.encodeIfPresent(self.archiveTime, forKey: .archiveTime)
-    try container.encode(self.runFrequency, forKey: .runFrequency)
-    try container.encode(self.executionState, forKey: .executionState)
+    if self.runFrequency != GoogleCloudChronicleV1.RunFrequency() {
+      try container.encode(self.runFrequency, forKey: .runFrequency)
+    }
+    if self.executionState != RuleDeployment.ExecutionState() {
+      try container.encode(self.executionState, forKey: .executionState)
+    }
     try container.encode(self.producerRules, forKey: .producerRules)
     try container.encode(self.consumerRules, forKey: .consumerRules)
     try container.encodeIfPresent(

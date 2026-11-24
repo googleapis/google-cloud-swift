@@ -155,14 +155,18 @@ public struct Mirror: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.gcsPath, forKey: .gcsPath)
     try container.encodeIfPresent(self.lustrePath, forKey: .lustrePath)
-    try container.encode(self.direction, forKey: .direction)
+    if self.direction != Mirror.Direction() {
+      try container.encode(self.direction, forKey: .direction)
+    }
     try container.encode(self.deletedFilesRetained, forKey: .deletedFilesRetained)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Mirror.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

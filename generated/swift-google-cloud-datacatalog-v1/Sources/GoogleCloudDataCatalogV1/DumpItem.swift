@@ -84,7 +84,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.item {
       switch choice {
       case .taggedEntry(let value):
-        try container.encode(value, forKey: .taggedEntry)
+        try container.encodeIfPresent(value, forKey: .taggedEntry)
       }
     }
     for (key, value) in self._unknownFields.json {

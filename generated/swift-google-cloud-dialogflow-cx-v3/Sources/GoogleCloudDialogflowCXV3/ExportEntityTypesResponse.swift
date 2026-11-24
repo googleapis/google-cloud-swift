@@ -98,9 +98,9 @@
       if let choice = self.exportedEntityTypes {
         switch choice {
         case .entityTypesUri(let value):
-          try container.encode(value, forKey: .entityTypesUri)
+          try container.encodeIfPresent(value, forKey: .entityTypesUri)
         case .entityTypesContent(let value):
-          try container.encode(value, forKey: .entityTypesContent)
+          try container.encodeIfPresent(value, forKey: .entityTypesContent)
         }
       }
       for (key, value) in self._unknownFields.json {

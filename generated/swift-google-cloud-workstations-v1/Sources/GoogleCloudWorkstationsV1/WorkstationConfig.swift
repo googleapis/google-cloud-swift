@@ -501,7 +501,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.config {
         switch choice {
         case .gceInstance(let value):
-          try container.encode(value, forKey: .gceInstance)
+          try container.encodeIfPresent(value, forKey: .gceInstance)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1405,9 +1405,9 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.directoryType {
         switch choice {
         case .gcePd(let value):
-          try container.encode(value, forKey: .gcePd)
+          try container.encodeIfPresent(value, forKey: .gcePd)
         case .gceHd(let value):
-          try container.encode(value, forKey: .gceHd)
+          try container.encodeIfPresent(value, forKey: .gceHd)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1573,7 +1573,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.fsType, forKey: .fsType)
         try container.encode(self.diskType, forKey: .diskType)
         try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
-        try container.encode(self.reclaimPolicy, forKey: .reclaimPolicy)
+        if self.reclaimPolicy
+          != WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.ReclaimPolicy()
+        {
+          try container.encode(self.reclaimPolicy, forKey: .reclaimPolicy)
+        }
         try container.encodeIfPresent(self.archiveTimeout, forKey: .archiveTimeout)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1840,7 +1844,12 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.sizeGb, forKey: .sizeGb)
         try container.encode(self.maxSizeGb, forKey: .maxSizeGb)
         try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
-        try container.encode(self.reclaimPolicy, forKey: .reclaimPolicy)
+        if self.reclaimPolicy
+          != WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability
+          .ReclaimPolicy()
+        {
+          try container.encode(self.reclaimPolicy, forKey: .reclaimPolicy)
+        }
         try container.encodeIfPresent(self.archiveTimeout, forKey: .archiveTimeout)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -2102,7 +2111,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.directoryType {
         switch choice {
         case .gcePd(let value):
-          try container.encode(value, forKey: .gcePd)
+          try container.encodeIfPresent(value, forKey: .gcePd)
         }
       }
       for (key, value) in self._unknownFields.json {

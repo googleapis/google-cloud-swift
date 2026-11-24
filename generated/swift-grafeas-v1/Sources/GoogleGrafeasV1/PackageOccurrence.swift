@@ -123,7 +123,9 @@ public struct PackageOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.location, forKey: .location)
     try container.encode(self.packageType, forKey: .packageType)
     try container.encode(self.cpeUri, forKey: .cpeUri)
-    try container.encode(self.architecture, forKey: .architecture)
+    if self.architecture != Architecture() {
+      try container.encode(self.architecture, forKey: .architecture)
+    }
     try container.encodeIfPresent(self.license, forKey: .license)
     try container.encodeIfPresent(self.version, forKey: .version)
     for (key, value) in self._unknownFields.json {

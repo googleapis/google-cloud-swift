@@ -120,17 +120,17 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.config {
       switch choice {
       case .newFilestore(let value):
-        try container.encode(value, forKey: .newFilestore)
+        try container.encodeIfPresent(value, forKey: .newFilestore)
       case .existingFilestore(let value):
-        try container.encode(value, forKey: .existingFilestore)
+        try container.encodeIfPresent(value, forKey: .existingFilestore)
       case .newBucket(let value):
-        try container.encode(value, forKey: .newBucket)
+        try container.encodeIfPresent(value, forKey: .newBucket)
       case .existingBucket(let value):
-        try container.encode(value, forKey: .existingBucket)
+        try container.encodeIfPresent(value, forKey: .existingBucket)
       case .newLustre(let value):
-        try container.encode(value, forKey: .newLustre)
+        try container.encodeIfPresent(value, forKey: .newLustre)
       case .existingLustre(let value):
-        try container.encode(value, forKey: .existingLustre)
+        try container.encodeIfPresent(value, forKey: .existingLustre)
       }
     }
     for (key, value) in self._unknownFields.json {

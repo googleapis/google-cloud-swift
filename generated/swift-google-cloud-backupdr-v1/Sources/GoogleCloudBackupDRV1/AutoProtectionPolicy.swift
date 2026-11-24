@@ -150,7 +150,9 @@ public struct AutoProtectionPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.backupPlanDetails, forKey: .backupPlanDetails)
     try container.encodeIfPresent(self.criteria, forKey: .criteria)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AutoProtectionPolicy.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.etag, forKey: .etag)
     try container.encodeIfPresent(self.bindingSummary, forKey: .bindingSummary)
     try container.encodeIfPresent(self.policyEvaluationSummary, forKey: .policyEvaluationSummary)

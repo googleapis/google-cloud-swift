@@ -367,7 +367,12 @@
 
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(self.source, forKey: .source)
+            if self.source
+              != GenerateGroundedContentResponse.Candidate.GroundingMetadata.RetrievalMetadata
+              .Source()
+            {
+              try container.encode(self.source, forKey: .source)
+            }
             try container.encodeIfPresent(
               self.dynamicRetrievalMetadata, forKey: .dynamicRetrievalMetadata)
             for (key, value) in self._unknownFields.json {
@@ -680,7 +685,12 @@
 
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(self.version, forKey: .version)
+            if self.version
+              != GenerateGroundedContentResponse.Candidate.GroundingMetadata
+              .DynamicRetrievalPredictorMetadata.Version()
+            {
+              try container.encode(self.version, forKey: .version)
+            }
             try container.encodeIfPresent(self.prediction, forKey: .prediction)
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))

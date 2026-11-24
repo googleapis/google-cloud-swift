@@ -124,7 +124,9 @@ public struct BulkMuteFindingsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.muteState, forKey: .muteState)
+    if self.muteState != BulkMuteFindingsRequest.MuteState() {
+      try container.encode(self.muteState, forKey: .muteState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

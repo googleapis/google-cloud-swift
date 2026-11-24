@@ -95,7 +95,9 @@ public struct CancelOrderRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.cancellationPolicy, forKey: .cancellationPolicy)
+    if self.cancellationPolicy != CancelOrderRequest.CancellationPolicy() {
+      try container.encode(self.cancellationPolicy, forKey: .cancellationPolicy)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

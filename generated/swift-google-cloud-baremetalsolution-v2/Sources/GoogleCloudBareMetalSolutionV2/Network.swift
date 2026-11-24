@@ -198,10 +198,14 @@ public struct Network: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Network.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.ipAddress, forKey: .ipAddress)
     try container.encode(self.macAddress, forKey: .macAddress)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Network.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.vlanId, forKey: .vlanId)
     try container.encode(self.cidr, forKey: .cidr)
     try container.encodeIfPresent(self.vrf, forKey: .vrf)

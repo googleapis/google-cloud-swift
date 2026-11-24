@@ -171,20 +171,22 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.assetId, forKey: .assetId)
     try container.encode(self.dataLocation, forKey: .dataLocation)
     try container.encode(self.datascanId, forKey: .datascanId)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DiscoveryEvent.EventType() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.details {
       switch choice {
       case .config(let value):
-        try container.encode(value, forKey: .config)
+        try container.encodeIfPresent(value, forKey: .config)
       case .entity(let value):
-        try container.encode(value, forKey: .entity)
+        try container.encodeIfPresent(value, forKey: .entity)
       case .partition(let value):
-        try container.encode(value, forKey: .partition)
+        try container.encodeIfPresent(value, forKey: .partition)
       case .action(let value):
-        try container.encode(value, forKey: .action)
+        try container.encodeIfPresent(value, forKey: .action)
       case .table(let value):
-        try container.encode(value, forKey: .table)
+        try container.encodeIfPresent(value, forKey: .table)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -339,7 +341,9 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entity, forKey: .entity)
-      try container.encode(self.type, forKey: .type)
+      if self.type != DiscoveryEvent.EntityType() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -428,7 +432,9 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.table, forKey: .table)
-      try container.encode(self.type, forKey: .type)
+      if self.type != DiscoveryEvent.TableType() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -539,7 +545,9 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.partition, forKey: .partition)
       try container.encode(self.entity, forKey: .entity)
-      try container.encode(self.type, forKey: .type)
+      if self.type != DiscoveryEvent.EntityType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.sampledDataLocations, forKey: .sampledDataLocations)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

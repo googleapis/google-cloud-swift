@@ -86,7 +86,9 @@ public struct StatusEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != EventType() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     try container.encodeIfPresent(self.eventDetails, forKey: .eventDetails)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

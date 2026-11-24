@@ -1162,9 +1162,9 @@
         if let choice = self.source {
           switch choice {
           case .modelGardenSource(let value):
-            try container.encode(value, forKey: .modelGardenSource)
+            try container.encodeIfPresent(value, forKey: .modelGardenSource)
           case .genieSource(let value):
-            try container.encode(value, forKey: .genieSource)
+            try container.encodeIfPresent(value, forKey: .genieSource)
           }
         }
         for (key, value) in self._unknownFields.json {

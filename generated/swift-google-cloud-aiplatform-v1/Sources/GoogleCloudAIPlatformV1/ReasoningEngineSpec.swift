@@ -169,15 +169,17 @@
       try container.encodeIfPresent(self.deploymentSpec, forKey: .deploymentSpec)
       try container.encode(self.classMethods, forKey: .classMethods)
       try container.encode(self.agentFramework, forKey: .agentFramework)
-      try container.encode(self.identityType, forKey: .identityType)
+      if self.identityType != ReasoningEngineSpec.IdentityType() {
+        try container.encode(self.identityType, forKey: .identityType)
+      }
       try container.encodeIfPresent(self.buildSpec, forKey: .buildSpec)
 
       if let choice = self.deploymentSource {
         switch choice {
         case .sourceCodeSpec(let value):
-          try container.encode(value, forKey: .sourceCodeSpec)
+          try container.encodeIfPresent(value, forKey: .sourceCodeSpec)
         case .containerSpec(let value):
-          try container.encode(value, forKey: .containerSpec)
+          try container.encodeIfPresent(value, forKey: .containerSpec)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -563,20 +565,20 @@
         if let choice = self.source {
           switch choice {
           case .inlineSource(let value):
-            try container.encode(value, forKey: .inlineSource)
+            try container.encodeIfPresent(value, forKey: .inlineSource)
           case .developerConnectSource(let value):
-            try container.encode(value, forKey: .developerConnectSource)
+            try container.encodeIfPresent(value, forKey: .developerConnectSource)
           case .gitSource(let value):
-            try container.encode(value, forKey: .gitSource)
+            try container.encodeIfPresent(value, forKey: .gitSource)
           }
         }
 
         if let choice = self.languageSpec {
           switch choice {
           case .pythonSpec(let value):
-            try container.encode(value, forKey: .pythonSpec)
+            try container.encodeIfPresent(value, forKey: .pythonSpec)
           case .imageSpec(let value):
-            try container.encode(value, forKey: .imageSpec)
+            try container.encodeIfPresent(value, forKey: .imageSpec)
           }
         }
         for (key, value) in self._unknownFields.json {

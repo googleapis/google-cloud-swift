@@ -191,27 +191,31 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.flagName, forKey: .flagName)
-    try container.encode(self.valueType, forKey: .valueType)
+    if self.valueType != SupportedDatabaseFlag.ValueType() {
+      try container.encode(self.valueType, forKey: .valueType)
+    }
     try container.encode(self.acceptsMultipleValues, forKey: .acceptsMultipleValues)
     try container.encode(self.supportedDbVersions, forKey: .supportedDbVersions)
     try container.encode(self.requiresDbRestart, forKey: .requiresDbRestart)
-    try container.encode(self.scope, forKey: .scope)
+    if self.scope != SupportedDatabaseFlag.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
 
     if let choice = self.restrictions {
       switch choice {
       case .stringRestrictions(let value):
-        try container.encode(value, forKey: .stringRestrictions)
+        try container.encodeIfPresent(value, forKey: .stringRestrictions)
       case .integerRestrictions(let value):
-        try container.encode(value, forKey: .integerRestrictions)
+        try container.encodeIfPresent(value, forKey: .integerRestrictions)
       }
     }
 
     if let choice = self.recommendedValue {
       switch choice {
       case .recommendedStringValue(let value):
-        try container.encode(value, forKey: .recommendedStringValue)
+        try container.encodeIfPresent(value, forKey: .recommendedStringValue)
       case .recommendedIntegerValue(let value):
-        try container.encode(value, forKey: .recommendedIntegerValue)
+        try container.encodeIfPresent(value, forKey: .recommendedIntegerValue)
       }
     }
     for (key, value) in self._unknownFields.json {

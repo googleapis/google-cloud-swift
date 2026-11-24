@@ -103,9 +103,9 @@
       if let choice = self.reference {
         switch choice {
         case .operation(let value):
-          try container.encode(value, forKey: .operation)
+          try container.encodeIfPresent(value, forKey: .operation)
         case .dataLabelingJob(let value):
-          try container.encode(value, forKey: .dataLabelingJob)
+          try container.encodeIfPresent(value, forKey: .dataLabelingJob)
         }
       }
       for (key, value) in self._unknownFields.json {

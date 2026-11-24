@@ -296,7 +296,9 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
         self.customLlmResponseSafetyErrorMessage, forKey: .customLlmResponseSafetyErrorMessage)
       try container.encode(self.logTemplateOperations, forKey: .logTemplateOperations)
       try container.encode(self.logSanitizeOperations, forKey: .logSanitizeOperations)
-      try container.encode(self.enforcementType, forKey: .enforcementType)
+      if self.enforcementType != Template.TemplateMetadata.EnforcementType() {
+        try container.encode(self.enforcementType, forKey: .enforcementType)
+      }
       try container.encodeIfPresent(self.multiLanguageDetection, forKey: .multiLanguageDetection)
       try container.encodeIfPresent(self.filterVersionSelector, forKey: .filterVersionSelector)
       try container.encode(self.modalities, forKey: .modalities)

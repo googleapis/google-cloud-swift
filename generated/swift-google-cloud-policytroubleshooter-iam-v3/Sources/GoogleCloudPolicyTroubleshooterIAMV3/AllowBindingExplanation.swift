@@ -176,13 +176,21 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.allowAccessState, forKey: .allowAccessState)
+    if self.allowAccessState != AllowAccessState() {
+      try container.encode(self.allowAccessState, forKey: .allowAccessState)
+    }
     try container.encode(self.role, forKey: .role)
-    try container.encode(self.rolePermission, forKey: .rolePermission)
-    try container.encode(self.rolePermissionRelevance, forKey: .rolePermissionRelevance)
+    if self.rolePermission != RolePermissionInclusionState() {
+      try container.encode(self.rolePermission, forKey: .rolePermission)
+    }
+    if self.rolePermissionRelevance != HeuristicRelevance() {
+      try container.encode(self.rolePermissionRelevance, forKey: .rolePermissionRelevance)
+    }
     try container.encodeIfPresent(self.combinedMembership, forKey: .combinedMembership)
     try container.encode(self.memberships, forKey: .memberships)
-    try container.encode(self.relevance, forKey: .relevance)
+    if self.relevance != HeuristicRelevance() {
+      try container.encode(self.relevance, forKey: .relevance)
+    }
     try container.encodeIfPresent(self.condition, forKey: .condition)
     try container.encodeIfPresent(self.conditionExplanation, forKey: .conditionExplanation)
     for (key, value) in self._unknownFields.json {
@@ -253,8 +261,12 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleWKT._AnyPackabl
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.membership, forKey: .membership)
-      try container.encode(self.relevance, forKey: .relevance)
+      if self.membership != MembershipMatchingState() {
+        try container.encode(self.membership, forKey: .membership)
+      }
+      if self.relevance != HeuristicRelevance() {
+        try container.encode(self.relevance, forKey: .relevance)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

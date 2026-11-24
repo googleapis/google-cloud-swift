@@ -114,7 +114,9 @@ public struct ServiceProjectAttachment: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.serviceProject, forKey: .serviceProject)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ServiceProjectAttachment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

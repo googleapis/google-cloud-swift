@@ -130,7 +130,9 @@ public struct ChannelPartnerLink: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.resellerCloudIdentityId, forKey: .resellerCloudIdentityId)
-    try container.encode(self.linkState, forKey: .linkState)
+    if self.linkState != ChannelPartnerLinkState() {
+      try container.encode(self.linkState, forKey: .linkState)
+    }
     try container.encode(self.inviteLinkUri, forKey: .inviteLinkUri)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

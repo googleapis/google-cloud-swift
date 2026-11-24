@@ -211,10 +211,14 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.proxyUri, forKey: .proxyUri)
     try container.encode(self.instanceOwners, forKey: .instanceOwners)
     try container.encode(self.creator, forKey: .creator)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudNotebooksV2.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.upgradeHistory, forKey: .upgradeHistory)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.healthState, forKey: .healthState)
+    if self.healthState != HealthState() {
+      try container.encode(self.healthState, forKey: .healthState)
+    }
     try container.encode(self.healthInfo, forKey: .healthInfo)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -224,7 +228,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.infrastructure {
       switch choice {
       case .gceSetup(let value):
-        try container.encode(value, forKey: .gceSetup)
+        try container.encodeIfPresent(value, forKey: .gceSetup)
       }
     }
     for (key, value) in self._unknownFields.json {

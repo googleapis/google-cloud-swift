@@ -162,13 +162,19 @@ public struct Lun: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Lun.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.sizeGb, forKey: .sizeGb)
-    try container.encode(self.multiprotocolType, forKey: .multiprotocolType)
+    if self.multiprotocolType != Lun.MultiprotocolType() {
+      try container.encode(self.multiprotocolType, forKey: .multiprotocolType)
+    }
     try container.encode(self.storageVolume, forKey: .storageVolume)
     try container.encode(self.shareable, forKey: .shareable)
     try container.encode(self.bootLun, forKey: .bootLun)
-    try container.encode(self.storageType, forKey: .storageType)
+    if self.storageType != Lun.StorageType() {
+      try container.encode(self.storageType, forKey: .storageType)
+    }
     try container.encode(self.wwid, forKey: .wwid)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.instances, forKey: .instances)

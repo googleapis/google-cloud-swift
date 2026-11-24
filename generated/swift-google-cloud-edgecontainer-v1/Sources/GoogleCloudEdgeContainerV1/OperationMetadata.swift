@@ -144,7 +144,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.requestedCancellation, forKey: .requestedCancellation)
     try container.encode(self.apiVersion, forKey: .apiVersion)
     try container.encode(self.warnings, forKey: .warnings)
-    try container.encode(self.statusReason, forKey: .statusReason)
+    if self.statusReason != OperationMetadata.StatusReason() {
+      try container.encode(self.statusReason, forKey: .statusReason)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

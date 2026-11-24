@@ -144,7 +144,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.modelVersion, forKey: .modelVersion)
-      try container.encode(self.modelState, forKey: .modelState)
+      if self.modelState != CustomTuningModel.ModelState() {
+        try container.encode(self.modelState, forKey: .modelState)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.trainingStartTime, forKey: .trainingStartTime)
       try container.encode(self.metrics, forKey: .metrics)

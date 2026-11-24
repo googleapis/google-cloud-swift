@@ -237,7 +237,9 @@
       try container.encodeIfPresent(self.codeBlock, forKey: .codeBlock)
       try container.encodeIfPresent(self.llmModelSettings, forKey: .llmModelSettings)
       try container.encode(self.handlers, forKey: .handlers)
-      try container.encode(self.playbookType, forKey: .playbookType)
+      if self.playbookType != Playbook.PlaybookType() {
+        try container.encode(self.playbookType, forKey: .playbookType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -320,7 +322,7 @@
         if let choice = self.instruction {
           switch choice {
           case .text(let value):
-            try container.encode(value, forKey: .text)
+            try container.encodeIfPresent(value, forKey: .text)
           }
         }
         for (key, value) in self._unknownFields.json {

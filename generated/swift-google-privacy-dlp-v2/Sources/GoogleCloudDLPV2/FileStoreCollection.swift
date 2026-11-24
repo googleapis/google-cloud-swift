@@ -104,7 +104,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pattern {
       switch choice {
       case .includeRegexes(let value):
-        try container.encode(value, forKey: .includeRegexes)
+        try container.encodeIfPresent(value, forKey: .includeRegexes)
       }
     }
     for (key, value) in self._unknownFields.json {

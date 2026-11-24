@@ -112,11 +112,11 @@ public struct CloneStep: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.step {
       switch choice {
       case .adaptingOs(let value):
-        try container.encode(value, forKey: .adaptingOs)
+        try container.encodeIfPresent(value, forKey: .adaptingOs)
       case .preparingVmDisks(let value):
-        try container.encode(value, forKey: .preparingVmDisks)
+        try container.encodeIfPresent(value, forKey: .preparingVmDisks)
       case .instantiatingMigratedVm(let value):
-        try container.encode(value, forKey: .instantiatingMigratedVm)
+        try container.encodeIfPresent(value, forKey: .instantiatingMigratedVm)
       }
     }
     for (key, value) in self._unknownFields.json {

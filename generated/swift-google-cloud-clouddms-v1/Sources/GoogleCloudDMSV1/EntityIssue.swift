@@ -123,13 +123,19 @@ public struct EntityIssue: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.severity, forKey: .severity)
+    if self.type != EntityIssue.IssueType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.severity != EntityIssue.IssueSeverity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.message, forKey: .message)
     try container.encode(self.code, forKey: .code)
     try container.encodeIfPresent(self.ddl, forKey: .ddl)
     try container.encodeIfPresent(self.position, forKey: .position)
-    try container.encode(self.entityType, forKey: .entityType)
+    if self.entityType != DatabaseEntityType() {
+      try container.encode(self.entityType, forKey: .entityType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

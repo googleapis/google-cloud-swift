@@ -228,18 +228,18 @@
         if let choice = self.folderSource {
           switch choice {
           case .sharepointFolderPath(let value):
-            try container.encode(value, forKey: .sharepointFolderPath)
+            try container.encodeIfPresent(value, forKey: .sharepointFolderPath)
           case .sharepointFolderId(let value):
-            try container.encode(value, forKey: .sharepointFolderId)
+            try container.encodeIfPresent(value, forKey: .sharepointFolderId)
           }
         }
 
         if let choice = self.driveSource {
           switch choice {
           case .driveName(let value):
-            try container.encode(value, forKey: .driveName)
+            try container.encodeIfPresent(value, forKey: .driveName)
           case .driveId(let value):
-            try container.encode(value, forKey: .driveId)
+            try container.encodeIfPresent(value, forKey: .driveId)
           }
         }
         for (key, value) in self._unknownFields.json {

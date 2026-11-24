@@ -136,16 +136,16 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       }
     }
 
     if let choice = self.exportOptions {
       switch choice {
       case .csvExportOptions(let value):
-        try container.encode(value, forKey: .csvExportOptions)
+        try container.encodeIfPresent(value, forKey: .csvExportOptions)
       case .sqlExportOptions(let value):
-        try container.encode(value, forKey: .sqlExportOptions)
+        try container.encodeIfPresent(value, forKey: .sqlExportOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -168,12 +168,14 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.lastRunTime, forKey: .lastRunTime)
-    try container.encode(self.status, forKey: .status)
+    if self.status != JobTrigger.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
 
     if let choice = self.job {
       switch choice {
       case .inspectJob(let value):
-        try container.encode(value, forKey: .inspectJob)
+        try container.encodeIfPresent(value, forKey: .inspectJob)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -254,9 +256,9 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.trigger {
         switch choice {
         case .schedule(let value):
-          try container.encode(value, forKey: .schedule)
+          try container.encodeIfPresent(value, forKey: .schedule)
         case .manual(let value):
-          try container.encode(value, forKey: .manual)
+          try container.encodeIfPresent(value, forKey: .manual)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -117,9 +117,9 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.actionSpec {
       switch choice {
       case .connectionActionId(let value):
-        try container.encode(value, forKey: .connectionActionId)
+        try container.encodeIfPresent(value, forKey: .connectionActionId)
       case .entityOperation(let value):
-        try container.encode(value, forKey: .entityOperation)
+        try container.encodeIfPresent(value, forKey: .entityOperation)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -191,7 +191,9 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entityId, forKey: .entityId)
-      try container.encode(self.operation, forKey: .operation)
+      if self.operation != Action.EntityOperation.OperationType() {
+        try container.encode(self.operation, forKey: .operation)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

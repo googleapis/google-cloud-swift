@@ -482,8 +482,12 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.lastModifier, forKey: .lastModifier)
     try container.encode(self.client, forKey: .client)
     try container.encode(self.clientVersion, forKey: .clientVersion)
-    try container.encode(self.ingress, forKey: .ingress)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.ingress != IngressTraffic() {
+      try container.encode(self.ingress, forKey: .ingress)
+    }
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
     try container.encodeIfPresent(self.template, forKey: .template)
     try container.encode(self.traffic, forKey: .traffic)
@@ -505,7 +509,9 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encode(self.threatDetectionEnabled, forKey: .threatDetectionEnabled)
     try container.encodeIfPresent(self.buildConfig, forKey: .buildConfig)
-    try container.encode(self.functionalType, forKey: .functionalType)
+    if self.functionalType != FunctionalType() {
+      try container.encode(self.functionalType, forKey: .functionalType)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {

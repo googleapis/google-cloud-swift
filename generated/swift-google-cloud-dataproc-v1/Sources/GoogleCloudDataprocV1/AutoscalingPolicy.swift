@@ -158,12 +158,14 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.workerConfig, forKey: .workerConfig)
     try container.encodeIfPresent(self.secondaryWorkerConfig, forKey: .secondaryWorkerConfig)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.clusterType, forKey: .clusterType)
+    if self.clusterType != AutoscalingPolicy.ClusterType() {
+      try container.encode(self.clusterType, forKey: .clusterType)
+    }
 
     if let choice = self.algorithm {
       switch choice {
       case .basicAlgorithm(let value):
-        try container.encode(value, forKey: .basicAlgorithm)
+        try container.encodeIfPresent(value, forKey: .basicAlgorithm)
       }
     }
     for (key, value) in self._unknownFields.json {

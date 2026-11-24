@@ -278,24 +278,24 @@
       if let choice = self.split {
         switch choice {
         case .fractionSplit(let value):
-          try container.encode(value, forKey: .fractionSplit)
+          try container.encodeIfPresent(value, forKey: .fractionSplit)
         case .filterSplit(let value):
-          try container.encode(value, forKey: .filterSplit)
+          try container.encodeIfPresent(value, forKey: .filterSplit)
         case .predefinedSplit(let value):
-          try container.encode(value, forKey: .predefinedSplit)
+          try container.encodeIfPresent(value, forKey: .predefinedSplit)
         case .timestampSplit(let value):
-          try container.encode(value, forKey: .timestampSplit)
+          try container.encodeIfPresent(value, forKey: .timestampSplit)
         case .stratifiedSplit(let value):
-          try container.encode(value, forKey: .stratifiedSplit)
+          try container.encodeIfPresent(value, forKey: .stratifiedSplit)
         }
       }
 
       if let choice = self.destination {
         switch choice {
         case .gcsDestination(let value):
-          try container.encode(value, forKey: .gcsDestination)
+          try container.encodeIfPresent(value, forKey: .gcsDestination)
         case .bigqueryDestination(let value):
-          try container.encode(value, forKey: .bigqueryDestination)
+          try container.encodeIfPresent(value, forKey: .bigqueryDestination)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -124,7 +124,9 @@ public struct TokenProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.valid, forKey: .valid)
-    try container.encode(self.invalidReason, forKey: .invalidReason)
+    if self.invalidReason != TokenProperties.InvalidReason() {
+      try container.encode(self.invalidReason, forKey: .invalidReason)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.hostname, forKey: .hostname)
     try container.encode(self.androidPackageName, forKey: .androidPackageName)

@@ -114,9 +114,13 @@ public struct ImportRegisteredPartiesRequest: Codable, Equatable, GoogleWKT._Any
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.partyTables, forKey: .partyTables)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != ImportRegisteredPartiesRequest.UpdateMode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encode(self.validateOnly, forKey: .validateOnly)
-    try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    if self.lineOfBusiness != LineOfBusiness() {
+      try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

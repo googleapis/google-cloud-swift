@@ -109,13 +109,15 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ConnectionState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errors, forKey: .errors)
 
     if let choice = self.properties {
       switch choice {
       case .cloudSql(let value):
-        try container.encode(value, forKey: .cloudSql)
+        try container.encodeIfPresent(value, forKey: .cloudSql)
       }
     }
     for (key, value) in self._unknownFields.json {

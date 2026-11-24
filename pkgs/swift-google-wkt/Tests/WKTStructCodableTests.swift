@@ -940,4 +940,67 @@ import Testing
     let unpacked = try mode.deserialize(NestedCustomWKTMessage.self, from: any)
     #expect(unpacked == message)
   }
+
+  @Test(arguments: AnyCodingMode.allCases)
+  func omitDefaultValuesInAllPrimitivesMessage(mode: AnyCodingMode) throws {
+    let empty = AllPrimitivesMessage()
+    let packed = try mode.serialize(empty)
+    #expect(packed.isEmpty)
+
+    let any = try mode.pack(empty)
+    let unpacked = try mode.deserialize(AllPrimitivesMessage.self, from: any)
+    #expect(unpacked == empty)
+  }
+
+  @Test(arguments: AnyCodingMode.allCases)
+  func preserveExplicitOptionalDefaultValues(mode: AnyCodingMode) throws {
+    let presentDefaults = CollectionsAndOptionalsMessage(
+      optInt64: 0,
+      optUInt64: 0,
+      optString: "",
+      optData: Data()
+    )
+    let packed = try mode.serialize(presentDefaults)
+    #expect(
+      packed == [
+        "optInt64": .string("0"),
+        "optUInt64": .string("0"),
+        "optString": .string(""),
+        "optData": .string(""),
+      ]
+    )
+
+    let any = try mode.pack(presentDefaults)
+    let unpacked = try mode.deserialize(CollectionsAndOptionalsMessage.self, from: any)
+    #expect(unpacked == presentDefaults)
+  }
+
+  @Test(arguments: AnyCodingMode.allCases)
+  func preserveNegativeZeroFloatAndDouble(mode: AnyCodingMode) throws {
+    let msg = AllPrimitivesMessage(floatVal: -0.0, doubleVal: -0.0)
+    let packed = try mode.serialize(msg)
+    guard case .number(let f)? = packed["floatVal"], case .number(let d)? = packed["doubleVal"]
+    else {
+      Issue.record("Expected floatVal and doubleVal to be encoded for -0.0, got: \(packed)")
+      return
+    }
+    #expect(f == 0 && f.sign == .minus)
+    #expect(d == 0 && d.sign == .minus)
+  }
+
+  @Test func preserveDefaultValuesWhenDisabled() throws {
+    let encoder = WKTStructEncoder(omitDefaultValues: false)
+    let packed = try encoder.encode(AllPrimitivesMessage())
+    #expect(packed["boolVal"] == .bool(false))
+    #expect(packed["intVal"] == .number(0))
+    #expect(packed["int32Val"] == .number(0))
+    #expect(packed["int64Val"] == .string("0"))
+    #expect(packed["uintVal"] == .number(0))
+    #expect(packed["uint32Val"] == .number(0))
+    #expect(packed["uint64Val"] == .string("0"))
+    #expect(packed["floatVal"] == .number(0))
+    #expect(packed["doubleVal"] == .number(0))
+    #expect(packed["stringVal"] == .string(""))
+    #expect(packed["dataVal"] == .string(""))
+  }
 }

@@ -221,8 +221,12 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.zone, forKey: .zone)
-    try container.encode(self.operationType, forKey: .operationType)
-    try container.encode(self.status, forKey: .status)
+    if self.operationType != Operation.Type_() {
+      try container.encode(self.operationType, forKey: .operationType)
+    }
+    if self.status != Operation.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.detail, forKey: .detail)
     try container.encode(self.statusMessage, forKey: .statusMessage)
     try container.encode(self.selfLink, forKey: .selfLink)

@@ -429,9 +429,9 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       if let choice = self.type {
         switch choice {
         case .textAnswer(let value):
-          try container.encode(value, forKey: .textAnswer)
+          try container.encodeIfPresent(value, forKey: .textAnswer)
         case .selectedAnswer(let value):
-          try container.encode(value, forKey: .selectedAnswer)
+          try container.encodeIfPresent(value, forKey: .selectedAnswer)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -652,7 +652,11 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       try container.encode(
         self.enableConversationalFiltering, forKey: .enableConversationalFiltering)
       try container.encodeIfPresent(self.userAnswer, forKey: .userAnswer)
-      try container.encode(self.conversationalFilteringMode, forKey: .conversationalFilteringMode)
+      if self.conversationalFilteringMode
+        != ConversationalSearchRequest.ConversationalFilteringSpec.Mode()
+      {
+        try container.encode(self.conversationalFilteringMode, forKey: .conversationalFilteringMode)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

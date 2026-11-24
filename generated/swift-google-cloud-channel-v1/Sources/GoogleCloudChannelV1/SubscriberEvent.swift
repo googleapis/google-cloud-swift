@@ -95,9 +95,9 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.event {
       switch choice {
       case .customerEvent(let value):
-        try container.encode(value, forKey: .customerEvent)
+        try container.encodeIfPresent(value, forKey: .customerEvent)
       case .entitlementEvent(let value):
-        try container.encode(value, forKey: .entitlementEvent)
+        try container.encodeIfPresent(value, forKey: .entitlementEvent)
       }
     }
     for (key, value) in self._unknownFields.json {

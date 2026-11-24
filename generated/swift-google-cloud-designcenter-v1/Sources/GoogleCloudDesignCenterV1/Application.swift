@@ -363,7 +363,9 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.apphubApplication, forKey: .apphubApplication)
     try container.encodeIfPresent(
       self.serializedApplicationTemplate, forKey: .serializedApplicationTemplate)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudDesignCenterV1.Application.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.deploymentMetadata, forKey: .deploymentMetadata)
     try container.encode(self.projectParameters, forKey: .projectParameters)
     try container.encode(self.deploymentRegion, forKey: .deploymentRegion)
@@ -371,16 +373,24 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.deploymentProject, forKey: .deploymentProject)
     try container.encode(self.connectionConfigs, forKey: .connectionConfigs)
     try container.encodeIfPresent(self.artifactLocation, forKey: .artifactLocation)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudDesignCenterV1.ApplicationType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.deploymentTarget, forKey: .deploymentTarget)
-    try container.encode(self.compositionType, forKey: .compositionType)
+    if self.compositionType != ApplicationCompositionType() {
+      try container.encode(self.compositionType, forKey: .compositionType)
+    }
     try container.encodeIfPresent(
       self.compositeApplicationParameters, forKey: .compositeApplicationParameters)
     try container.encodeIfPresent(self.deploymentGroupMetadata, forKey: .deploymentGroupMetadata)
-    try container.encode(self.paramsUpdateStrategy, forKey: .paramsUpdateStrategy)
+    if self.paramsUpdateStrategy != GoogleCloudDesignCenterV1.Application.UpdateStrategy() {
+      try container.encode(self.paramsUpdateStrategy, forKey: .paramsUpdateStrategy)
+    }
     try container.encode(self.rolesApisConfig, forKey: .rolesApisConfig)
     try container.encodeIfPresent(self.templateMetadata, forKey: .templateMetadata)
-    try container.encode(self.iacSource, forKey: .iacSource)
+    if self.iacSource != IACSource() {
+      try container.encode(self.iacSource, forKey: .iacSource)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -86,7 +86,9 @@ public struct SynonymEntity: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sourceEntity, forKey: .sourceEntity)
-    try container.encode(self.sourceType, forKey: .sourceType)
+    if self.sourceType != DatabaseEntityType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
     try container.encodeIfPresent(self.customFeatures, forKey: .customFeatures)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

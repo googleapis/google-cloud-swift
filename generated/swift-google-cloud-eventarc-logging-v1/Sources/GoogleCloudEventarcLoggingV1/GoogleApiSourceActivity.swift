@@ -119,7 +119,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.activity {
       switch choice {
       case .published(let value):
-        try container.encode(value, forKey: .published)
+        try container.encodeIfPresent(value, forKey: .published)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -87,7 +87,7 @@ public struct ApiData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .apiMetadataList(let value):
-        try container.encode(value, forKey: .apiMetadataList)
+        try container.encodeIfPresent(value, forKey: .apiMetadataList)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -204,13 +204,17 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.priority, forKey: .priority)
-    try container.encode(self.action, forKey: .action)
+    if self.action != ExternalAccessRule.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encode(self.ipProtocol, forKey: .ipProtocol)
     try container.encode(self.sourceIpRanges, forKey: .sourceIpRanges)
     try container.encode(self.sourcePorts, forKey: .sourcePorts)
     try container.encode(self.destinationIpRanges, forKey: .destinationIpRanges)
     try container.encode(self.destinationPorts, forKey: .destinationPorts)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ExternalAccessRule.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.uid, forKey: .uid)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -298,11 +302,11 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.ipRange {
         switch choice {
         case .ipAddress(let value):
-          try container.encode(value, forKey: .ipAddress)
+          try container.encodeIfPresent(value, forKey: .ipAddress)
         case .ipAddressRange(let value):
-          try container.encode(value, forKey: .ipAddressRange)
+          try container.encodeIfPresent(value, forKey: .ipAddressRange)
         case .externalAddress(let value):
-          try container.encode(value, forKey: .externalAddress)
+          try container.encodeIfPresent(value, forKey: .externalAddress)
         }
       }
       for (key, value) in self._unknownFields.json {

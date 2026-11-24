@@ -117,7 +117,9 @@ public struct FetchGitRepositoryLinkCommitListRequest: Codable, Equatable, Googl
     try container.encode(self.ref, forKey: .ref)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.view, forKey: .view)
+    if self.view != CommitView() {
+      try container.encode(self.view, forKey: .view)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

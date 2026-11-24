@@ -186,7 +186,9 @@ public struct Collector: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.bucket, forKey: .bucket)
     try container.encode(self.expectedAssetCount, forKey: .expectedAssetCount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Collector.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.clientVersion, forKey: .clientVersion)
     try container.encodeIfPresent(self.guestOsScan, forKey: .guestOsScan)
     try container.encodeIfPresent(self.vsphereScan, forKey: .vsphereScan)

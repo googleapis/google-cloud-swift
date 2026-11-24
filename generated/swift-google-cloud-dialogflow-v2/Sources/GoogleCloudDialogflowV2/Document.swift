@@ -195,14 +195,16 @@
       try container.encode(self.enableAutoReload, forKey: .enableAutoReload)
       try container.encodeIfPresent(self.latestReloadStatus, forKey: .latestReloadStatus)
       try container.encode(self.metadata, forKey: .metadata)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Document.State() {
+        try container.encode(self.state, forKey: .state)
+      }
 
       if let choice = self.source {
         switch choice {
         case .contentUri(let value):
-          try container.encode(value, forKey: .contentUri)
+          try container.encodeIfPresent(value, forKey: .contentUri)
         case .rawContent(let value):
-          try container.encode(value, forKey: .rawContent)
+          try container.encodeIfPresent(value, forKey: .rawContent)
         }
       }
       for (key, value) in self._unknownFields.json {

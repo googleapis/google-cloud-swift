@@ -165,7 +165,9 @@ public struct ExascaleDbStorageVaultProperties: Codable, Equatable, GoogleWKT._A
     try container.encode(self.ocid, forKey: .ocid)
     try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
     try container.encodeIfPresent(self.exascaleDbStorageDetails, forKey: .exascaleDbStorageDetails)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ExascaleDbStorageVaultProperties.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.vmClusterIds, forKey: .vmClusterIds)
     try container.encode(self.vmClusterCount, forKey: .vmClusterCount)

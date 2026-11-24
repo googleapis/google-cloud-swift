@@ -97,9 +97,9 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.streamingRequest {
       switch choice {
       case .streamingConfig(let value):
-        try container.encode(value, forKey: .streamingConfig)
+        try container.encodeIfPresent(value, forKey: .streamingConfig)
       case .input(let value):
-        try container.encode(value, forKey: .input)
+        try container.encodeIfPresent(value, forKey: .input)
       }
     }
     for (key, value) in self._unknownFields.json {

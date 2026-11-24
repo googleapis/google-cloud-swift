@@ -267,7 +267,9 @@ public struct Restore: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.cluster, forKey: .cluster)
     try container.encodeIfPresent(self.restoreConfig, forKey: .restoreConfig)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Restore.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
     try container.encode(self.resourcesRestoredCount, forKey: .resourcesRestoredCount)

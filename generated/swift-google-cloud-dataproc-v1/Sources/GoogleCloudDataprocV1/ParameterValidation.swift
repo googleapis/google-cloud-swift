@@ -90,9 +90,9 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.validationType {
       switch choice {
       case .regex(let value):
-        try container.encode(value, forKey: .regex)
+        try container.encodeIfPresent(value, forKey: .regex)
       case .values(let value):
-        try container.encode(value, forKey: .values)
+        try container.encodeIfPresent(value, forKey: .values)
       }
     }
     for (key, value) in self._unknownFields.json {

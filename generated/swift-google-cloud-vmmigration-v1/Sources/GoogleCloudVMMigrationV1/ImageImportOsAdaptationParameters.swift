@@ -106,8 +106,12 @@ public struct ImageImportOsAdaptationParameters: Codable, Equatable, GoogleWKT._
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.generalize, forKey: .generalize)
-    try container.encode(self.licenseType, forKey: .licenseType)
-    try container.encode(self.bootConversion, forKey: .bootConversion)
+    if self.licenseType != ComputeEngineLicenseType() {
+      try container.encode(self.licenseType, forKey: .licenseType)
+    }
+    if self.bootConversion != BootConversion() {
+      try container.encode(self.bootConversion, forKey: .bootConversion)
+    }
     try container.encode(self.adaptationModifiers, forKey: .adaptationModifiers)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -130,7 +130,9 @@ public struct SACAttachment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.sacRealm, forKey: .sacRealm)
     try container.encode(self.nccGateway, forKey: .nccGateway)
-    try container.encode(self.state, forKey: .state)
+    if self.state != SACAttachment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

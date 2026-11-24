@@ -128,8 +128,12 @@ public struct WindowsScheduledTask: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.author, forKey: .author)
     try container.encode(self.virtualPath, forKey: .virtualPath)
     try container.encode(self.exitCode, forKey: .exitCode)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.logonType, forKey: .logonType)
+    if self.state != WindowsScheduledTask.TaskState() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.logonType != WindowsScheduledTask.TaskLogonType() {
+      try container.encode(self.logonType, forKey: .logonType)
+    }
     try container.encode(self.taskActions, forKey: .taskActions)
     try container.encode(self.taskTriggers, forKey: .taskTriggers)
     for (key, value) in self._unknownFields.json {
@@ -229,7 +233,9 @@ public struct WindowsScheduledTask: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.actionType, forKey: .actionType)
+      if self.actionType != WindowsScheduledTask.TaskAction.ActionType() {
+        try container.encode(self.actionType, forKey: .actionType)
+      }
       try container.encode(self.execArguments, forKey: .execArguments)
       try container.encode(self.execWorkingDirectory, forKey: .execWorkingDirectory)
       try container.encode(self.comClassId, forKey: .comClassId)
@@ -482,7 +488,9 @@ public struct WindowsScheduledTask: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.enabled, forKey: .enabled)
       try container.encodeIfPresent(self.duration, forKey: .duration)
       try container.encode(self.interval, forKey: .interval)
-      try container.encode(self.triggerType, forKey: .triggerType)
+      if self.triggerType != WindowsScheduledTask.TaskTrigger.TriggerType() {
+        try container.encode(self.triggerType, forKey: .triggerType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -276,7 +276,9 @@ public struct ComplianceData: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.fFloat, forKey: .fFloat)
     try container.encode(self.fBool, forKey: .fBool)
     try container.encode(self.fBytes, forKey: .fBytes)
-    try container.encode(self.fKingdom, forKey: .fKingdom)
+    if self.fKingdom != ComplianceData.LifeKingdom() {
+      try container.encode(self.fKingdom, forKey: .fKingdom)
+    }
     try container.encodeIfPresent(self.fChild, forKey: .fChild)
     try container.encodeIfPresent(self.pString, forKey: .pString)
     try container.encodeIfPresent(self.pInt32, forKey: .pInt32)

@@ -287,11 +287,15 @@ public struct UnitOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parentUnitOperation, forKey: .parentUnitOperation)
     try container.encode(self.rollout, forKey: .rollout)
     try container.encode(self.cancel, forKey: .cancel)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UnitOperation.UnitOperationState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.conditions, forKey: .conditions)
     try container.encodeIfPresent(self.schedule, forKey: .schedule)
     try container.encode(self.engineState, forKey: .engineState)
-    try container.encode(self.errorCategory, forKey: .errorCategory)
+    if self.errorCategory != UnitOperationErrorCategory() {
+      try container.encode(self.errorCategory, forKey: .errorCategory)
+    }
     try container.encodeIfPresent(self.durationLimits, forKey: .durationLimits)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.annotations, forKey: .annotations)
@@ -304,11 +308,11 @@ public struct UnitOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.unitOperationType {
       switch choice {
       case .provision(let value):
-        try container.encode(value, forKey: .provision)
+        try container.encodeIfPresent(value, forKey: .provision)
       case .upgrade(let value):
-        try container.encode(value, forKey: .upgrade)
+        try container.encodeIfPresent(value, forKey: .upgrade)
       case .deprovision(let value):
-        try container.encode(value, forKey: .deprovision)
+        try container.encodeIfPresent(value, forKey: .deprovision)
       }
     }
     for (key, value) in self._unknownFields.json {

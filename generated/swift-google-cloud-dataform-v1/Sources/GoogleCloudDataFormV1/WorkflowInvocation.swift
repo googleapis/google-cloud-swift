@@ -168,7 +168,9 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.invocationConfig, forKey: .invocationConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != WorkflowInvocation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.invocationTiming, forKey: .invocationTiming)
     try container.encode(self.resolvedCompilationResult, forKey: .resolvedCompilationResult)
     try container.encodeIfPresent(self.dataEncryptionState, forKey: .dataEncryptionState)
@@ -179,9 +181,9 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.compilationSource {
       switch choice {
       case .compilationResult(let value):
-        try container.encode(value, forKey: .compilationResult)
+        try container.encodeIfPresent(value, forKey: .compilationResult)
       case .workflowConfig(let value):
-        try container.encode(value, forKey: .workflowConfig)
+        try container.encodeIfPresent(value, forKey: .workflowConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

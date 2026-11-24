@@ -143,16 +143,18 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encodeIfPresent(self.timeOfDay, forKey: .timeOfDay)
-    try container.encode(self.frequency, forKey: .frequency)
+    if self.frequency != RecurringSchedule.Frequency() {
+      try container.encode(self.frequency, forKey: .frequency)
+    }
     try container.encodeIfPresent(self.lastExecuteTime, forKey: .lastExecuteTime)
     try container.encodeIfPresent(self.nextExecuteTime, forKey: .nextExecuteTime)
 
     if let choice = self.scheduleConfig {
       switch choice {
       case .weekly(let value):
-        try container.encode(value, forKey: .weekly)
+        try container.encodeIfPresent(value, forKey: .weekly)
       case .monthly(let value):
-        try container.encode(value, forKey: .monthly)
+        try container.encodeIfPresent(value, forKey: .monthly)
       }
     }
     for (key, value) in self._unknownFields.json {

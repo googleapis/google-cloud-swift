@@ -97,9 +97,13 @@ public struct EncryptionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.encryptionType, forKey: .encryptionType)
+    if self.encryptionType != EncryptionInfo.Type_() {
+      try container.encode(self.encryptionType, forKey: .encryptionType)
+    }
     try container.encode(self.kmsKeyVersions, forKey: .kmsKeyVersions)
-    try container.encode(self.kmsKeyPrimaryState, forKey: .kmsKeyPrimaryState)
+    if self.kmsKeyPrimaryState != EncryptionInfo.KmsKeyState() {
+      try container.encode(self.kmsKeyPrimaryState, forKey: .kmsKeyPrimaryState)
+    }
     try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -100,9 +100,9 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.contents {
       switch choice {
       case .data(let value):
-        try container.encode(value, forKey: .data)
+        try container.encodeIfPresent(value, forKey: .data)
       case .close(let value):
-        try container.encode(value, forKey: .close)
+        try container.encodeIfPresent(value, forKey: .close)
       }
     }
     for (key, value) in self._unknownFields.json {

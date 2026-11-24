@@ -92,9 +92,9 @@ public struct DiscoveryStartingLocation: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.location {
       switch choice {
       case .organizationId(let value):
-        try container.encode(value, forKey: .organizationId)
+        try container.encodeIfPresent(value, forKey: .organizationId)
       case .folderId(let value):
-        try container.encode(value, forKey: .folderId)
+        try container.encodeIfPresent(value, forKey: .folderId)
       }
     }
     for (key, value) in self._unknownFields.json {

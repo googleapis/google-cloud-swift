@@ -139,13 +139,13 @@ public struct ImportApplicationTemplateRequest: Codable, Equatable, GoogleWKT._A
     if let choice = self.source {
       switch choice {
       case .applicationTemplateRevisionUri(let value):
-        try container.encode(value, forKey: .applicationTemplateRevisionUri)
+        try container.encodeIfPresent(value, forKey: .applicationTemplateRevisionUri)
       case .sharedTemplateRevisionUri(let value):
-        try container.encode(value, forKey: .sharedTemplateRevisionUri)
+        try container.encodeIfPresent(value, forKey: .sharedTemplateRevisionUri)
       case .serializedApplicationTemplate(let value):
-        try container.encode(value, forKey: .serializedApplicationTemplate)
+        try container.encodeIfPresent(value, forKey: .serializedApplicationTemplate)
       case .applicationTemplateSystemRevision(let value):
-        try container.encode(value, forKey: .applicationTemplateSystemRevision)
+        try container.encodeIfPresent(value, forKey: .applicationTemplateSystemRevision)
       }
     }
     for (key, value) in self._unknownFields.json {

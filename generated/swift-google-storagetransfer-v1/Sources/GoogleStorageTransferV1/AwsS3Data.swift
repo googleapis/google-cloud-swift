@@ -194,7 +194,7 @@ public struct AwsS3Data: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.privateNetwork {
       switch choice {
       case .managedPrivateNetwork(let value):
-        try container.encode(value, forKey: .managedPrivateNetwork)
+        try container.encodeIfPresent(value, forKey: .managedPrivateNetwork)
       }
     }
     for (key, value) in self._unknownFields.json {

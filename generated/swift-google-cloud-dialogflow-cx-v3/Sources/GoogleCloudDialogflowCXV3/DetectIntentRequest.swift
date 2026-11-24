@@ -123,7 +123,9 @@
       try container.encodeIfPresent(self.queryParams, forKey: .queryParams)
       try container.encodeIfPresent(self.queryInput, forKey: .queryInput)
       try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
-      try container.encode(self.responseView, forKey: .responseView)
+      if self.responseView != DetectIntentResponseView() {
+        try container.encode(self.responseView, forKey: .responseView)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

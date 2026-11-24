@@ -117,7 +117,7 @@
       if let choice = self.instructionList {
         switch choice {
         case .summarizationSectionList(let value):
-          try container.encode(value, forKey: .summarizationSectionList)
+          try container.encodeIfPresent(value, forKey: .summarizationSectionList)
         }
       }
       for (key, value) in self._unknownFields.json {

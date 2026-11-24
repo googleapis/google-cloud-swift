@@ -101,7 +101,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.attributedItems, forKey: .attributedItems)
-      try container.encode(self.queryType, forKey: .queryType)
+      if self.queryType != ErrorAnalysisAnnotation.QueryType() {
+        try container.encode(self.queryType, forKey: .queryType)
+      }
       try container.encode(self.outlierScore, forKey: .outlierScore)
       try container.encode(self.outlierThreshold, forKey: .outlierThreshold)
       for (key, value) in self._unknownFields.json {

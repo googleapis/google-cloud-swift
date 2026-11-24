@@ -124,12 +124,14 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.kmsKey, forKey: .kmsKey)
-    try container.encode(self.writeDisposition, forKey: .writeDisposition)
+    if self.writeDisposition != ExportInsightsDataRequest.WriteDisposition() {
+      try container.encode(self.writeDisposition, forKey: .writeDisposition)
+    }
 
     if let choice = self.destination {
       switch choice {
       case .bigQueryDestination(let value):
-        try container.encode(value, forKey: .bigQueryDestination)
+        try container.encodeIfPresent(value, forKey: .bigQueryDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

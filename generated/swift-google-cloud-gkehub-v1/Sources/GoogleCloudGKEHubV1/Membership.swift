@@ -214,7 +214,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .endpoint(let value):
-        try container.encode(value, forKey: .endpoint)
+        try container.encodeIfPresent(value, forKey: .endpoint)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -173,7 +173,9 @@ public struct Project: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.projectId, forKey: .projectId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Project.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

@@ -153,9 +153,9 @@ public struct RestoreClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .backupSource(let value):
-        try container.encode(value, forKey: .backupSource)
+        try container.encodeIfPresent(value, forKey: .backupSource)
       case .continuousBackupSource(let value):
-        try container.encode(value, forKey: .continuousBackupSource)
+        try container.encodeIfPresent(value, forKey: .continuousBackupSource)
       }
     }
     for (key, value) in self._unknownFields.json {

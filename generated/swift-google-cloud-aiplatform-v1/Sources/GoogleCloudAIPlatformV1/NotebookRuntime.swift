@@ -317,16 +317,22 @@
       try container.encode(self.proxyUri, forKey: .proxyUri)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-      try container.encode(self.healthState, forKey: .healthState)
+      if self.healthState != NotebookRuntime.HealthState() {
+        try container.encode(self.healthState, forKey: .healthState)
+      }
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.serviceAccount, forKey: .serviceAccount)
-      try container.encode(self.runtimeState, forKey: .runtimeState)
+      if self.runtimeState != NotebookRuntime.RuntimeState() {
+        try container.encode(self.runtimeState, forKey: .runtimeState)
+      }
       try container.encode(self.isUpgradable, forKey: .isUpgradable)
       try container.encode(self.labels, forKey: .labels)
       try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
       try container.encode(self.version, forKey: .version)
-      try container.encode(self.notebookRuntimeType, forKey: .notebookRuntimeType)
+      if self.notebookRuntimeType != NotebookRuntimeType() {
+        try container.encode(self.notebookRuntimeType, forKey: .notebookRuntimeType)
+      }
       try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
       try container.encodeIfPresent(self.dataPersistentDiskSpec, forKey: .dataPersistentDiskSpec)
       try container.encodeIfPresent(self.networkSpec, forKey: .networkSpec)

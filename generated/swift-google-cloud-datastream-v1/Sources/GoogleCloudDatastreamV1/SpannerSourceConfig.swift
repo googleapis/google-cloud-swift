@@ -133,7 +133,9 @@ public struct SpannerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.changeStreamName, forKey: .changeStreamName)
-    try container.encode(self.spannerRpcPriority, forKey: .spannerRpcPriority)
+    if self.spannerRpcPriority != SpannerSourceConfig.SpannerRpcPriority() {
+      try container.encode(self.spannerRpcPriority, forKey: .spannerRpcPriority)
+    }
     try container.encode(self.fgacRole, forKey: .fgacRole)
     try container.encode(self.maxConcurrentCdcTasks, forKey: .maxConcurrentCdcTasks)
     try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)

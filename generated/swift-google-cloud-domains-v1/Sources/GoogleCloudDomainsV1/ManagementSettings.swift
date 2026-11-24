@@ -80,8 +80,12 @@ public struct ManagementSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.renewalMethod, forKey: .renewalMethod)
-    try container.encode(self.transferLockState, forKey: .transferLockState)
+    if self.renewalMethod != ManagementSettings.RenewalMethod() {
+      try container.encode(self.renewalMethod, forKey: .renewalMethod)
+    }
+    if self.transferLockState != TransferLockState() {
+      try container.encode(self.transferLockState, forKey: .transferLockState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

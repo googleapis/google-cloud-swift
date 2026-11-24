@@ -96,9 +96,9 @@
       if let choice = self.handler {
         switch choice {
         case .eventHandler(let value):
-          try container.encode(value, forKey: .eventHandler)
+          try container.encodeIfPresent(value, forKey: .eventHandler)
         case .lifecycleHandler(let value):
-          try container.encode(value, forKey: .lifecycleHandler)
+          try container.encodeIfPresent(value, forKey: .lifecycleHandler)
         }
       }
       for (key, value) in self._unknownFields.json {

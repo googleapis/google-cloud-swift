@@ -87,8 +87,12 @@ public struct PiAndJailbreakFilterSettings: Codable, Equatable, GoogleWKT._AnyPa
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
-    try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+    if self.filterEnforcement != PiAndJailbreakFilterSettings.PiAndJailbreakFilterEnforcement() {
+      try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
+    }
+    if self.confidenceLevel != DetectionConfidenceLevel() {
+      try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

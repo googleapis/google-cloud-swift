@@ -104,9 +104,13 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.rankingMethod, forKey: .rankingMethod)
+    if self.rankingMethod != PickTimeSeriesFilter.Method() {
+      try container.encode(self.rankingMethod, forKey: .rankingMethod)
+    }
     try container.encode(self.numTimeSeries, forKey: .numTimeSeries)
-    try container.encode(self.direction, forKey: .direction)
+    if self.direction != PickTimeSeriesFilter.Direction() {
+      try container.encode(self.direction, forKey: .direction)
+    }
     try container.encodeIfPresent(self.interval, forKey: .interval)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

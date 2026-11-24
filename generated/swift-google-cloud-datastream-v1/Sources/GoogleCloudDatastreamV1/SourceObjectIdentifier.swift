@@ -129,19 +129,19 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.sourceIdentifier {
       switch choice {
       case .oracleIdentifier(let value):
-        try container.encode(value, forKey: .oracleIdentifier)
+        try container.encodeIfPresent(value, forKey: .oracleIdentifier)
       case .mysqlIdentifier(let value):
-        try container.encode(value, forKey: .mysqlIdentifier)
+        try container.encodeIfPresent(value, forKey: .mysqlIdentifier)
       case .postgresqlIdentifier(let value):
-        try container.encode(value, forKey: .postgresqlIdentifier)
+        try container.encodeIfPresent(value, forKey: .postgresqlIdentifier)
       case .sqlServerIdentifier(let value):
-        try container.encode(value, forKey: .sqlServerIdentifier)
+        try container.encodeIfPresent(value, forKey: .sqlServerIdentifier)
       case .salesforceIdentifier(let value):
-        try container.encode(value, forKey: .salesforceIdentifier)
+        try container.encodeIfPresent(value, forKey: .salesforceIdentifier)
       case .mongodbIdentifier(let value):
-        try container.encode(value, forKey: .mongodbIdentifier)
+        try container.encodeIfPresent(value, forKey: .mongodbIdentifier)
       case .spannerIdentifier(let value):
-        try container.encode(value, forKey: .spannerIdentifier)
+        try container.encodeIfPresent(value, forKey: .spannerIdentifier)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -104,10 +104,16 @@ public struct ApiConfigHandler: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.authFailAction, forKey: .authFailAction)
-    try container.encode(self.login, forKey: .login)
+    if self.authFailAction != AuthFailAction() {
+      try container.encode(self.authFailAction, forKey: .authFailAction)
+    }
+    if self.login != LoginRequirement() {
+      try container.encode(self.login, forKey: .login)
+    }
     try container.encode(self.script, forKey: .script)
-    try container.encode(self.securityLevel, forKey: .securityLevel)
+    if self.securityLevel != SecurityLevel() {
+      try container.encode(self.securityLevel, forKey: .securityLevel)
+    }
     try container.encode(self.url, forKey: .url)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -166,7 +166,9 @@ public struct MuteConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.mostRecentEditor, forKey: .mostRecentEditor)
-    try container.encode(self.type, forKey: .type)
+    if self.type != MuteConfig.MuteConfigType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.expiryTime, forKey: .expiryTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

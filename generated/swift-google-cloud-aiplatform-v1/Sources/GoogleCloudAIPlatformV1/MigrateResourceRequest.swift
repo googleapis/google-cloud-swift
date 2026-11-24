@@ -114,13 +114,13 @@
       if let choice = self.request {
         switch choice {
         case .migrateMlEngineModelVersionConfig(let value):
-          try container.encode(value, forKey: .migrateMlEngineModelVersionConfig)
+          try container.encodeIfPresent(value, forKey: .migrateMlEngineModelVersionConfig)
         case .migrateAutomlModelConfig(let value):
-          try container.encode(value, forKey: .migrateAutomlModelConfig)
+          try container.encodeIfPresent(value, forKey: .migrateAutomlModelConfig)
         case .migrateAutomlDatasetConfig(let value):
-          try container.encode(value, forKey: .migrateAutomlDatasetConfig)
+          try container.encodeIfPresent(value, forKey: .migrateAutomlDatasetConfig)
         case .migrateDataLabelingDatasetConfig(let value):
-          try container.encode(value, forKey: .migrateDataLabelingDatasetConfig)
+          try container.encodeIfPresent(value, forKey: .migrateDataLabelingDatasetConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

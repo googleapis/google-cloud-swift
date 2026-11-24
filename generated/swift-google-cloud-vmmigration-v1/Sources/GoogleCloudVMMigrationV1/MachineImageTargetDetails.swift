@@ -215,9 +215,9 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.osAdaptationConfig {
       switch choice {
       case .osAdaptationParameters(let value):
-        try container.encode(value, forKey: .osAdaptationParameters)
+        try container.encodeIfPresent(value, forKey: .osAdaptationParameters)
       case .skipOsAdaptation(let value):
-        try container.encode(value, forKey: .skipOsAdaptation)
+        try container.encodeIfPresent(value, forKey: .skipOsAdaptation)
       }
     }
     for (key, value) in self._unknownFields.json {

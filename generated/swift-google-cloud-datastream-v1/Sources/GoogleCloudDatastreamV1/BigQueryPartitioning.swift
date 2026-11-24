@@ -110,11 +110,11 @@ public struct BigQueryPartitioning: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.partitioning {
       switch choice {
       case .integerRangePartition(let value):
-        try container.encode(value, forKey: .integerRangePartition)
+        try container.encodeIfPresent(value, forKey: .integerRangePartition)
       case .timeUnitPartition(let value):
-        try container.encode(value, forKey: .timeUnitPartition)
+        try container.encodeIfPresent(value, forKey: .timeUnitPartition)
       case .ingestionTimePartition(let value):
-        try container.encode(value, forKey: .ingestionTimePartition)
+        try container.encodeIfPresent(value, forKey: .ingestionTimePartition)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -179,7 +179,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudDataplexV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.triggerSpec, forKey: .triggerSpec)
     try container.encodeIfPresent(self.executionSpec, forKey: .executionSpec)
@@ -188,9 +190,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.config {
       switch choice {
       case .spark(let value):
-        try container.encode(value, forKey: .spark)
+        try container.encodeIfPresent(value, forKey: .spark)
       case .notebook(let value):
-        try container.encode(value, forKey: .notebook)
+        try container.encodeIfPresent(value, forKey: .notebook)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -312,21 +314,21 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.resources {
         switch choice {
         case .batch(let value):
-          try container.encode(value, forKey: .batch)
+          try container.encodeIfPresent(value, forKey: .batch)
         }
       }
 
       if let choice = self.runtime {
         switch choice {
         case .containerImage(let value):
-          try container.encode(value, forKey: .containerImage)
+          try container.encodeIfPresent(value, forKey: .containerImage)
         }
       }
 
       if let choice = self.network {
         switch choice {
         case .vpcNetwork(let value):
-          try container.encode(value, forKey: .vpcNetwork)
+          try container.encodeIfPresent(value, forKey: .vpcNetwork)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -627,9 +629,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.networkName {
           switch choice {
           case .network(let value):
-            try container.encode(value, forKey: .network)
+            try container.encodeIfPresent(value, forKey: .network)
           case .subNetwork(let value):
-            try container.encode(value, forKey: .subNetwork)
+            try container.encodeIfPresent(value, forKey: .subNetwork)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -808,7 +810,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Task.TriggerSpec.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encode(self.disabled, forKey: .disabled)
       try container.encode(self.maxRetries, forKey: .maxRetries)
@@ -816,7 +820,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.trigger {
         switch choice {
         case .schedule(let value):
-          try container.encode(value, forKey: .schedule)
+          try container.encodeIfPresent(value, forKey: .schedule)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1235,15 +1239,15 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.driver {
         switch choice {
         case .mainJarFileUri(let value):
-          try container.encode(value, forKey: .mainJarFileUri)
+          try container.encodeIfPresent(value, forKey: .mainJarFileUri)
         case .mainClass(let value):
-          try container.encode(value, forKey: .mainClass)
+          try container.encodeIfPresent(value, forKey: .mainClass)
         case .pythonScriptFile(let value):
-          try container.encode(value, forKey: .pythonScriptFile)
+          try container.encodeIfPresent(value, forKey: .pythonScriptFile)
         case .sqlScriptFile(let value):
-          try container.encode(value, forKey: .sqlScriptFile)
+          try container.encodeIfPresent(value, forKey: .sqlScriptFile)
         case .sqlScript(let value):
-          try container.encode(value, forKey: .sqlScript)
+          try container.encodeIfPresent(value, forKey: .sqlScript)
         }
       }
       for (key, value) in self._unknownFields.json {

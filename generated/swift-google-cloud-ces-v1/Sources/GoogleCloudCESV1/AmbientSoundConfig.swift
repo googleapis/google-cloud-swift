@@ -123,11 +123,11 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .prebuiltAmbientNoise(let value):
-        try container.encode(value, forKey: .prebuiltAmbientNoise)
+        try container.encodeIfPresent(value, forKey: .prebuiltAmbientNoise)
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       case .prebuiltAmbientSound(let value):
-        try container.encode(value, forKey: .prebuiltAmbientSound)
+        try container.encodeIfPresent(value, forKey: .prebuiltAmbientSound)
       }
     }
     for (key, value) in self._unknownFields.json {

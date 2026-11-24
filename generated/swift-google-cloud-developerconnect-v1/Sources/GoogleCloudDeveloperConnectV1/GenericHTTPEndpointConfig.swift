@@ -126,9 +126,9 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.authentication {
       switch choice {
       case .basicAuthentication(let value):
-        try container.encode(value, forKey: .basicAuthentication)
+        try container.encodeIfPresent(value, forKey: .basicAuthentication)
       case .bearerTokenAuthentication(let value):
-        try container.encode(value, forKey: .bearerTokenAuthentication)
+        try container.encodeIfPresent(value, forKey: .bearerTokenAuthentication)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -215,7 +215,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       if let choice = self.password {
         switch choice {
         case .passwordSecretVersion(let value):
-          try container.encode(value, forKey: .passwordSecretVersion)
+          try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -322,7 +322,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       if let choice = self.token {
         switch choice {
         case .tokenSecretVersion(let value):
-          try container.encode(value, forKey: .tokenSecretVersion)
+          try container.encodeIfPresent(value, forKey: .tokenSecretVersion)
         }
       }
       for (key, value) in self._unknownFields.json {

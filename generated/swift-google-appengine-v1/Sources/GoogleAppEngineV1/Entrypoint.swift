@@ -85,7 +85,7 @@ public struct Entrypoint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.command {
       switch choice {
       case .shell(let value):
-        try container.encode(value, forKey: .shell)
+        try container.encodeIfPresent(value, forKey: .shell)
       }
     }
     for (key, value) in self._unknownFields.json {

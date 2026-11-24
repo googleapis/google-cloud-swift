@@ -151,18 +151,18 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.content {
       switch choice {
       case .text(let value):
-        try container.encode(value, forKey: .text)
+        try container.encodeIfPresent(value, forKey: .text)
       case .image(let value):
-        try container.encode(value, forKey: .image)
+        try container.encodeIfPresent(value, forKey: .image)
       }
     }
 
     if let choice = self.legacyId {
       switch choice {
       case .legacyRoomId(let value):
-        try container.encode(value, forKey: .legacyRoomId)
+        try container.encodeIfPresent(value, forKey: .legacyRoomId)
       case .legacyUserId(let value):
-        try container.encode(value, forKey: .legacyUserId)
+        try container.encodeIfPresent(value, forKey: .legacyUserId)
       }
     }
     for (key, value) in self._unknownFields.json {

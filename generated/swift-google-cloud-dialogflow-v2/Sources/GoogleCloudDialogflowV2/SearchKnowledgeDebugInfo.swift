@@ -102,7 +102,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.datastoreResponseReason, forKey: .datastoreResponseReason)
+      if self.datastoreResponseReason != DatastoreResponseReason() {
+        try container.encode(self.datastoreResponseReason, forKey: .datastoreResponseReason)
+      }
       try container.encodeIfPresent(self.searchKnowledgeBehavior, forKey: .searchKnowledgeBehavior)
       try container.encodeIfPresent(
         self.ingestedContextReferenceDebugInfo, forKey: .ingestedContextReferenceDebugInfo)

@@ -108,13 +108,13 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.strategy {
       switch choice {
       case .noneStrategy(let value):
-        try container.encode(value, forKey: .noneStrategy)
+        try container.encodeIfPresent(value, forKey: .noneStrategy)
       case .latestTimestampStrategy(let value):
-        try container.encode(value, forKey: .latestTimestampStrategy)
+        try container.encodeIfPresent(value, forKey: .latestTimestampStrategy)
       case .latestRecordStrategy(let value):
-        try container.encode(value, forKey: .latestRecordStrategy)
+        try container.encodeIfPresent(value, forKey: .latestRecordStrategy)
       case .iteratorStrategy(let value):
-        try container.encode(value, forKey: .iteratorStrategy)
+        try container.encodeIfPresent(value, forKey: .iteratorStrategy)
       }
     }
     for (key, value) in self._unknownFields.json {

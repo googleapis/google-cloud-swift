@@ -245,7 +245,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.machineType, forKey: .machineType)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.hyperthreadingEnabled, forKey: .hyperthreadingEnabled)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.luns, forKey: .luns)
@@ -258,7 +260,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.networkTemplate, forKey: .networkTemplate)
     try container.encode(self.logicalInterfaces, forKey: .logicalInterfaces)
     try container.encode(self.loginInfo, forKey: .loginInfo)
-    try container.encode(self.workloadProfile, forKey: .workloadProfile)
+    if self.workloadProfile != GoogleCloudBareMetalSolutionV2.WorkloadProfile() {
+      try container.encode(self.workloadProfile, forKey: .workloadProfile)
+    }
     try container.encode(self.firmwareVersion, forKey: .firmwareVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

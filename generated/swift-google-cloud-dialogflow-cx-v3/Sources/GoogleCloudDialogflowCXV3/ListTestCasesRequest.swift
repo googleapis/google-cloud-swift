@@ -105,7 +105,9 @@
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.pageSize, forKey: .pageSize)
       try container.encode(self.pageToken, forKey: .pageToken)
-      try container.encode(self.view, forKey: .view)
+      if self.view != ListTestCasesRequest.TestCaseView() {
+        try container.encode(self.view, forKey: .view)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

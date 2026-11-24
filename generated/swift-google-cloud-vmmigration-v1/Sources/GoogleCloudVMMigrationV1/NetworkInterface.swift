@@ -111,7 +111,9 @@ public struct NetworkInterface: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.subnetwork, forKey: .subnetwork)
     try container.encode(self.internalIp, forKey: .internalIp)
     try container.encode(self.externalIp, forKey: .externalIp)
-    try container.encode(self.networkTier, forKey: .networkTier)
+    if self.networkTier != ComputeEngineNetworkTier() {
+      try container.encode(self.networkTier, forKey: .networkTier)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

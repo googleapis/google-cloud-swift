@@ -131,7 +131,9 @@ public struct RouteTable: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudNetworkConnectivityV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

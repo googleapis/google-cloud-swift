@@ -162,9 +162,9 @@
         if let choice = self.kind {
           switch choice {
           case .page(let value):
-            try container.encode(value, forKey: .page)
+            try container.encodeIfPresent(value, forKey: .page)
           case .flow(let value):
-            try container.encode(value, forKey: .flow)
+            try container.encodeIfPresent(value, forKey: .flow)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -320,9 +320,9 @@
         if let choice = self.detail {
           switch choice {
           case .transitionRoute(let value):
-            try container.encode(value, forKey: .transitionRoute)
+            try container.encodeIfPresent(value, forKey: .transitionRoute)
           case .eventHandler(let value):
-            try container.encode(value, forKey: .eventHandler)
+            try container.encodeIfPresent(value, forKey: .eventHandler)
           }
         }
         for (key, value) in self._unknownFields.json {

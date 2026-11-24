@@ -234,7 +234,9 @@
       try container.encodeIfPresent(self.syncConfig, forKey: .syncConfig)
       try container.encodeIfPresent(self.indexConfig, forKey: .indexConfig)
       try container.encodeIfPresent(self.optimizedConfig, forKey: .optimizedConfig)
-      try container.encode(self.serviceAgentType, forKey: .serviceAgentType)
+      if self.serviceAgentType != FeatureView.ServiceAgentType() {
+        try container.encode(self.serviceAgentType, forKey: .serviceAgentType)
+      }
       try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
       try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
       try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
@@ -243,11 +245,11 @@
       if let choice = self.source {
         switch choice {
         case .bigQuerySource(let value):
-          try container.encode(value, forKey: .bigQuerySource)
+          try container.encodeIfPresent(value, forKey: .bigQuerySource)
         case .featureRegistrySource(let value):
-          try container.encode(value, forKey: .featureRegistrySource)
+          try container.encodeIfPresent(value, forKey: .featureRegistrySource)
         case .vertexRagSource(let value):
-          try container.encode(value, forKey: .vertexRagSource)
+          try container.encodeIfPresent(value, forKey: .vertexRagSource)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -575,14 +577,16 @@
         try container.encode(self.filterColumns, forKey: .filterColumns)
         try container.encode(self.crowdingColumn, forKey: .crowdingColumn)
         try container.encodeIfPresent(self.embeddingDimension, forKey: .embeddingDimension)
-        try container.encode(self.distanceMeasureType, forKey: .distanceMeasureType)
+        if self.distanceMeasureType != FeatureView.IndexConfig.DistanceMeasureType() {
+          try container.encode(self.distanceMeasureType, forKey: .distanceMeasureType)
+        }
 
         if let choice = self.algorithmConfig {
           switch choice {
           case .treeAhConfig(let value):
-            try container.encode(value, forKey: .treeAhConfig)
+            try container.encodeIfPresent(value, forKey: .treeAhConfig)
           case .bruteForceConfig(let value):
-            try container.encode(value, forKey: .bruteForceConfig)
+            try container.encodeIfPresent(value, forKey: .bruteForceConfig)
           }
         }
         for (key, value) in self._unknownFields.json {

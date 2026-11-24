@@ -225,7 +225,9 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.shortDescription, forKey: .shortDescription)
     try container.encode(self.longDescription, forKey: .longDescription)
-    try container.encode(self.kind, forKey: .kind)
+    if self.kind != NoteKind() {
+      try container.encode(self.kind, forKey: .kind)
+    }
     try container.encode(self.relatedUrl, forKey: .relatedUrl)
     try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -235,31 +237,31 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .vulnerability(let value):
-        try container.encode(value, forKey: .vulnerability)
+        try container.encodeIfPresent(value, forKey: .vulnerability)
       case .build(let value):
-        try container.encode(value, forKey: .build)
+        try container.encodeIfPresent(value, forKey: .build)
       case .image(let value):
-        try container.encode(value, forKey: .image)
+        try container.encodeIfPresent(value, forKey: .image)
       case .`package`(let value):
-        try container.encode(value, forKey: .`package`)
+        try container.encodeIfPresent(value, forKey: .`package`)
       case .deployment(let value):
-        try container.encode(value, forKey: .deployment)
+        try container.encodeIfPresent(value, forKey: .deployment)
       case .discovery(let value):
-        try container.encode(value, forKey: .discovery)
+        try container.encodeIfPresent(value, forKey: .discovery)
       case .attestation(let value):
-        try container.encode(value, forKey: .attestation)
+        try container.encodeIfPresent(value, forKey: .attestation)
       case .upgrade(let value):
-        try container.encode(value, forKey: .upgrade)
+        try container.encodeIfPresent(value, forKey: .upgrade)
       case .compliance(let value):
-        try container.encode(value, forKey: .compliance)
+        try container.encodeIfPresent(value, forKey: .compliance)
       case .dsseAttestation(let value):
-        try container.encode(value, forKey: .dsseAttestation)
+        try container.encodeIfPresent(value, forKey: .dsseAttestation)
       case .vulnerabilityAssessment(let value):
-        try container.encode(value, forKey: .vulnerabilityAssessment)
+        try container.encodeIfPresent(value, forKey: .vulnerabilityAssessment)
       case .sbomReference(let value):
-        try container.encode(value, forKey: .sbomReference)
+        try container.encodeIfPresent(value, forKey: .sbomReference)
       case .secret(let value):
-        try container.encode(value, forKey: .secret)
+        try container.encodeIfPresent(value, forKey: .secret)
       }
     }
     for (key, value) in self._unknownFields.json {

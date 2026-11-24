@@ -128,7 +128,9 @@ public struct Api: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.managedService, forKey: .managedService)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Api.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

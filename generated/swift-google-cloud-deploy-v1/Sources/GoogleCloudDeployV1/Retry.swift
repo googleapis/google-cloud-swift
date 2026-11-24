@@ -88,7 +88,9 @@ public struct Retry: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.attempts, forKey: .attempts)
     try container.encodeIfPresent(self.wait, forKey: .wait)
-    try container.encode(self.backoffMode, forKey: .backoffMode)
+    if self.backoffMode != BackoffMode() {
+      try container.encode(self.backoffMode, forKey: .backoffMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

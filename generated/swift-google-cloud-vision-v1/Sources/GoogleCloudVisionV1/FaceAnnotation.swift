@@ -202,13 +202,27 @@ public struct FaceAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.tiltAngle, forKey: .tiltAngle)
     try container.encode(self.detectionConfidence, forKey: .detectionConfidence)
     try container.encode(self.landmarkingConfidence, forKey: .landmarkingConfidence)
-    try container.encode(self.joyLikelihood, forKey: .joyLikelihood)
-    try container.encode(self.sorrowLikelihood, forKey: .sorrowLikelihood)
-    try container.encode(self.angerLikelihood, forKey: .angerLikelihood)
-    try container.encode(self.surpriseLikelihood, forKey: .surpriseLikelihood)
-    try container.encode(self.underExposedLikelihood, forKey: .underExposedLikelihood)
-    try container.encode(self.blurredLikelihood, forKey: .blurredLikelihood)
-    try container.encode(self.headwearLikelihood, forKey: .headwearLikelihood)
+    if self.joyLikelihood != Likelihood() {
+      try container.encode(self.joyLikelihood, forKey: .joyLikelihood)
+    }
+    if self.sorrowLikelihood != Likelihood() {
+      try container.encode(self.sorrowLikelihood, forKey: .sorrowLikelihood)
+    }
+    if self.angerLikelihood != Likelihood() {
+      try container.encode(self.angerLikelihood, forKey: .angerLikelihood)
+    }
+    if self.surpriseLikelihood != Likelihood() {
+      try container.encode(self.surpriseLikelihood, forKey: .surpriseLikelihood)
+    }
+    if self.underExposedLikelihood != Likelihood() {
+      try container.encode(self.underExposedLikelihood, forKey: .underExposedLikelihood)
+    }
+    if self.blurredLikelihood != Likelihood() {
+      try container.encode(self.blurredLikelihood, forKey: .blurredLikelihood)
+    }
+    if self.headwearLikelihood != Likelihood() {
+      try container.encode(self.headwearLikelihood, forKey: .headwearLikelihood)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -274,7 +288,9 @@ public struct FaceAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != FaceAnnotation.Landmark.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encodeIfPresent(self.position, forKey: .position)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

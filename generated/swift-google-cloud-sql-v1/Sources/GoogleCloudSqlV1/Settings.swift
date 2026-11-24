@@ -513,16 +513,26 @@
       try container.encode(self.tier, forKey: .tier)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.userLabels, forKey: .userLabels)
-      try container.encode(self.availabilityType, forKey: .availabilityType)
-      try container.encode(self.pricingPlan, forKey: .pricingPlan)
-      try container.encode(self.replicationType, forKey: .replicationType)
+      if self.availabilityType != SqlAvailabilityType() {
+        try container.encode(self.availabilityType, forKey: .availabilityType)
+      }
+      if self.pricingPlan != SqlPricingPlan() {
+        try container.encode(self.pricingPlan, forKey: .pricingPlan)
+      }
+      if self.replicationType != SqlReplicationType() {
+        try container.encode(self.replicationType, forKey: .replicationType)
+      }
       try container.encodeIfPresent(self.storageAutoResizeLimit, forKey: .storageAutoResizeLimit)
-      try container.encode(self.activationPolicy, forKey: .activationPolicy)
+      if self.activationPolicy != Settings.SqlActivationPolicy() {
+        try container.encode(self.activationPolicy, forKey: .activationPolicy)
+      }
       try container.encodeIfPresent(self.ipConfiguration, forKey: .ipConfiguration)
       try container.encodeIfPresent(self.storageAutoResize, forKey: .storageAutoResize)
       try container.encodeIfPresent(self.locationPreference, forKey: .locationPreference)
       try container.encode(self.databaseFlags, forKey: .databaseFlags)
-      try container.encode(self.dataDiskType, forKey: .dataDiskType)
+      if self.dataDiskType != SqlDataDiskType() {
+        try container.encode(self.dataDiskType, forKey: .dataDiskType)
+      }
       try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
       try container.encodeIfPresent(self.backupConfiguration, forKey: .backupConfiguration)
       try container.encodeIfPresent(
@@ -539,8 +549,12 @@
       try container.encodeIfPresent(
         self.passwordValidationPolicy, forKey: .passwordValidationPolicy)
       try container.encodeIfPresent(self.sqlServerAuditConfig, forKey: .sqlServerAuditConfig)
-      try container.encode(self.edition, forKey: .edition)
-      try container.encode(self.connectorEnforcement, forKey: .connectorEnforcement)
+      if self.edition != Settings.Edition() {
+        try container.encode(self.edition, forKey: .edition)
+      }
+      if self.connectorEnforcement != Settings.ConnectorEnforcement() {
+        try container.encode(self.connectorEnforcement, forKey: .connectorEnforcement)
+      }
       try container.encodeIfPresent(
         self.deletionProtectionEnabled, forKey: .deletionProtectionEnabled)
       try container.encode(self.timeZone, forKey: .timeZone)

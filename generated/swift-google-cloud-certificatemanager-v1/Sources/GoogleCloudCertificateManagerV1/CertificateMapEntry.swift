@@ -154,14 +154,16 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.certificates, forKey: .certificates)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ServingState() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.match {
       switch choice {
       case .hostname(let value):
-        try container.encode(value, forKey: .hostname)
+        try container.encodeIfPresent(value, forKey: .hostname)
       case .matcher(let value):
-        try container.encode(value, forKey: .matcher)
+        try container.encodeIfPresent(value, forKey: .matcher)
       }
     }
     for (key, value) in self._unknownFields.json {

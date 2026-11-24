@@ -103,7 +103,9 @@ public struct MoveRepositoryMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.target, forKey: .target)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MoveRepositoryMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.percentComplete, forKey: .percentComplete)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

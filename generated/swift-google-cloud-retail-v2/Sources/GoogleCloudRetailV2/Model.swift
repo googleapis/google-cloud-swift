@@ -267,17 +267,27 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.trainingState, forKey: .trainingState)
-    try container.encode(self.servingState, forKey: .servingState)
+    if self.trainingState != Model.TrainingState() {
+      try container.encode(self.trainingState, forKey: .trainingState)
+    }
+    if self.servingState != Model.ServingState() {
+      try container.encode(self.servingState, forKey: .servingState)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.optimizationObjective, forKey: .optimizationObjective)
-    try container.encode(self.periodicTuningState, forKey: .periodicTuningState)
+    if self.periodicTuningState != Model.PeriodicTuningState() {
+      try container.encode(self.periodicTuningState, forKey: .periodicTuningState)
+    }
     try container.encodeIfPresent(self.lastTuneTime, forKey: .lastTuneTime)
     try container.encode(self.tuningOperation, forKey: .tuningOperation)
-    try container.encode(self.dataState, forKey: .dataState)
-    try container.encode(self.filteringOption, forKey: .filteringOption)
+    if self.dataState != Model.DataState() {
+      try container.encode(self.dataState, forKey: .dataState)
+    }
+    if self.filteringOption != RecommendationsFilteringOption() {
+      try container.encode(self.filteringOption, forKey: .filteringOption)
+    }
     try container.encode(self.servingConfigLists, forKey: .servingConfigLists)
     try container.encodeIfPresent(self.modelFeaturesConfig, forKey: .modelFeaturesConfig)
     for (key, value) in self._unknownFields.json {
@@ -426,7 +436,9 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.contextProductsType, forKey: .contextProductsType)
+      if self.contextProductsType != Model.ContextProductsType() {
+        try container.encode(self.contextProductsType, forKey: .contextProductsType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -526,7 +538,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.typeDedicatedConfig {
         switch choice {
         case .frequentlyBoughtTogetherConfig(let value):
-          try container.encode(value, forKey: .frequentlyBoughtTogetherConfig)
+          try container.encodeIfPresent(value, forKey: .frequentlyBoughtTogetherConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

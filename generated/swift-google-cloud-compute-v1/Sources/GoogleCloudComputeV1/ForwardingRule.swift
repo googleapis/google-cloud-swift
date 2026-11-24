@@ -813,7 +813,7 @@
         self.externalManagedBackendBucketMigrationTestingPercentage,
         forKey: .externalManagedBackendBucketMigrationTestingPercentage)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
@@ -823,7 +823,7 @@
       try container.encodeIfPresent(self.isMirroringCollector, forKey: .isMirroringCollector)
       try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }

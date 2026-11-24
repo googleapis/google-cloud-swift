@@ -115,11 +115,11 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.step {
       switch choice {
       case .creatingSourceDiskSnapshot(let value):
-        try container.encode(value, forKey: .creatingSourceDiskSnapshot)
+        try container.encodeIfPresent(value, forKey: .creatingSourceDiskSnapshot)
       case .copyingSourceDiskSnapshot(let value):
-        try container.encode(value, forKey: .copyingSourceDiskSnapshot)
+        try container.encodeIfPresent(value, forKey: .copyingSourceDiskSnapshot)
       case .provisioningTargetDisk(let value):
-        try container.encode(value, forKey: .provisioningTargetDisk)
+        try container.encodeIfPresent(value, forKey: .provisioningTargetDisk)
       }
     }
     for (key, value) in self._unknownFields.json {

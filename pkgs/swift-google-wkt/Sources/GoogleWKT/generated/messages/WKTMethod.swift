@@ -122,7 +122,9 @@ public struct WKTMethod: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.responseTypeUrl, forKey: .responseTypeUrl)
     try container.encode(self.responseStreaming, forKey: .responseStreaming)
     try container.encode(self.options, forKey: .options)
-    try container.encode(self.syntax, forKey: .syntax)
+    if self.syntax != WKTSyntax() {
+      try container.encode(self.syntax, forKey: .syntax)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

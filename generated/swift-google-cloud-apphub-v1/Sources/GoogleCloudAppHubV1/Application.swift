@@ -158,7 +158,9 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.scope, forKey: .scope)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Application.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.applicationProperties, forKey: .applicationProperties)
     try container.encodeIfPresent(self.applicationType, forKey: .applicationType)
     for (key, value) in self._unknownFields.json {

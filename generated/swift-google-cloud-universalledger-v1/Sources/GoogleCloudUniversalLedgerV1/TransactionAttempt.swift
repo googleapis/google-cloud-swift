@@ -88,7 +88,9 @@ public struct TransactionAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.status, forKey: .status)
+    if self.status != TransactionAttempt.TransactionStatus() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.proofOfInclusion, forKey: .proofOfInclusion)
     try container.encode(self.statusEvents, forKey: .statusEvents)
     for (key, value) in self._unknownFields.json {

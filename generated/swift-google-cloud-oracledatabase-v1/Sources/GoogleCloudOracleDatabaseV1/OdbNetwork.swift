@@ -149,7 +149,9 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.network, forKey: .network)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != OdbNetwork.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.entitlementId, forKey: .entitlementId)
     try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
     try container.encodeIfPresent(

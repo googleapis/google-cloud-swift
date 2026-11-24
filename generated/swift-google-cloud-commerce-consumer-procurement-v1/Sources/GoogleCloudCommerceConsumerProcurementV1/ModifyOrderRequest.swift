@@ -199,9 +199,13 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lineItemId, forKey: .lineItemId)
-      try container.encode(self.changeType, forKey: .changeType)
+      if self.changeType != LineItemChangeType() {
+        try container.encode(self.changeType, forKey: .changeType)
+      }
       try container.encodeIfPresent(self.newLineItemInfo, forKey: .newLineItemInfo)
-      try container.encode(self.autoRenewalBehavior, forKey: .autoRenewalBehavior)
+      if self.autoRenewalBehavior != AutoRenewalBehavior() {
+        try container.encode(self.autoRenewalBehavior, forKey: .autoRenewalBehavior)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

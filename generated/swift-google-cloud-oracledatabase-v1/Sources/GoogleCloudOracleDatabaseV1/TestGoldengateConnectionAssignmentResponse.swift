@@ -90,7 +90,9 @@ public struct TestGoldengateConnectionAssignmentResponse: Codable, Equatable, Go
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.resultType, forKey: .resultType)
+    if self.resultType != TestGoldengateConnectionAssignmentResponse.ResultType() {
+      try container.encode(self.resultType, forKey: .resultType)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.errors, forKey: .errors)
     for (key, value) in self._unknownFields.json {

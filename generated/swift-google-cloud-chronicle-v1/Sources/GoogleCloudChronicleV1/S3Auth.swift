@@ -114,7 +114,9 @@ public struct S3Auth: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.clientId, forKey: .clientId)
     try container.encode(self.clientSecret, forKey: .clientSecret)
     try container.encode(self.refreshUri, forKey: .refreshUri)
-    try container.encode(self.region, forKey: .region)
+    if self.region != S3Region() {
+      try container.encode(self.region, forKey: .region)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

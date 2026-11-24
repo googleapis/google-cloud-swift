@@ -92,7 +92,9 @@ public struct NetworkInterface: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.subnet, forKey: .subnet)
-    try container.encode(self.nicType, forKey: .nicType)
+    if self.nicType != NetworkInterface.NicType() {
+      try container.encode(self.nicType, forKey: .nicType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

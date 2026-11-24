@@ -138,18 +138,18 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.clusterIpAllocation {
       switch choice {
       case .clusterSecondaryRangeName(let value):
-        try container.encode(value, forKey: .clusterSecondaryRangeName)
+        try container.encodeIfPresent(value, forKey: .clusterSecondaryRangeName)
       case .clusterIpv4CidrBlock(let value):
-        try container.encode(value, forKey: .clusterIpv4CidrBlock)
+        try container.encodeIfPresent(value, forKey: .clusterIpv4CidrBlock)
       }
     }
 
     if let choice = self.servicesIpAllocation {
       switch choice {
       case .servicesSecondaryRangeName(let value):
-        try container.encode(value, forKey: .servicesSecondaryRangeName)
+        try container.encodeIfPresent(value, forKey: .servicesSecondaryRangeName)
       case .servicesIpv4CidrBlock(let value):
-        try container.encode(value, forKey: .servicesIpv4CidrBlock)
+        try container.encodeIfPresent(value, forKey: .servicesIpv4CidrBlock)
       }
     }
     for (key, value) in self._unknownFields.json {

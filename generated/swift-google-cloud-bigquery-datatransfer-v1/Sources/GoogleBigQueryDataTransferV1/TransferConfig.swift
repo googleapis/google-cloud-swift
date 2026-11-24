@@ -285,7 +285,9 @@ public struct TransferConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.disabled, forKey: .disabled)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.nextRunTime, forKey: .nextRunTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != TransferState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.userId, forKey: .userId)
     try container.encode(self.datasetRegion, forKey: .datasetRegion)
     try container.encode(self.notificationPubsubTopic, forKey: .notificationPubsubTopic)
@@ -297,7 +299,7 @@ public struct TransferConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destination {
       switch choice {
       case .destinationDatasetId(let value):
-        try container.encode(value, forKey: .destinationDatasetId)
+        try container.encodeIfPresent(value, forKey: .destinationDatasetId)
       }
     }
     for (key, value) in self._unknownFields.json {

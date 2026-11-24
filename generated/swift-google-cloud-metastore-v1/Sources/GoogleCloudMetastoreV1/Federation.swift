@@ -175,7 +175,9 @@ public struct Federation: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(stringKeyed, forKey: .backendMetastores)
     }
     try container.encode(self.endpointUri, forKey: .endpointUri)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Federation.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.uid, forKey: .uid)
     for (key, value) in self._unknownFields.json {

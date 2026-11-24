@@ -314,11 +314,11 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.kind {
         switch choice {
         case .protobuf(let value):
-          try container.encode(value, forKey: .protobuf)
+          try container.encodeIfPresent(value, forKey: .protobuf)
         case .avro(let value):
-          try container.encode(value, forKey: .avro)
+          try container.encodeIfPresent(value, forKey: .avro)
         case .json(let value):
-          try container.encode(value, forKey: .json)
+          try container.encodeIfPresent(value, forKey: .json)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -710,13 +710,13 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.destinationDescriptor {
         switch choice {
         case .httpEndpoint(let value):
-          try container.encode(value, forKey: .httpEndpoint)
+          try container.encodeIfPresent(value, forKey: .httpEndpoint)
         case .workflow(let value):
-          try container.encode(value, forKey: .workflow)
+          try container.encodeIfPresent(value, forKey: .workflow)
         case .messageBus(let value):
-          try container.encode(value, forKey: .messageBus)
+          try container.encodeIfPresent(value, forKey: .messageBus)
         case .topic(let value):
-          try container.encode(value, forKey: .topic)
+          try container.encodeIfPresent(value, forKey: .topic)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1145,9 +1145,9 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.authenticationMethodDescriptor {
           switch choice {
           case .googleOidc(let value):
-            try container.encode(value, forKey: .googleOidc)
+            try container.encodeIfPresent(value, forKey: .googleOidc)
           case .oauthToken(let value):
-            try container.encode(value, forKey: .oauthToken)
+            try container.encodeIfPresent(value, forKey: .oauthToken)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1512,7 +1512,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.mediationDescriptor {
         switch choice {
         case .transformation(let value):
-          try container.encode(value, forKey: .transformation)
+          try container.encodeIfPresent(value, forKey: .transformation)
         }
       }
       for (key, value) in self._unknownFields.json {

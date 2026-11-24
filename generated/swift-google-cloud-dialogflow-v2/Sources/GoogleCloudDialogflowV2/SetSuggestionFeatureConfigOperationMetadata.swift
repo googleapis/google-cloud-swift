@@ -106,8 +106,12 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.conversationProfile, forKey: .conversationProfile)
-      try container.encode(self.participantRole, forKey: .participantRole)
-      try container.encode(self.suggestionFeatureType, forKey: .suggestionFeatureType)
+      if self.participantRole != Participant.Role() {
+        try container.encode(self.participantRole, forKey: .participantRole)
+      }
+      if self.suggestionFeatureType != SuggestionFeature.Type_() {
+        try container.encode(self.suggestionFeatureType, forKey: .suggestionFeatureType)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

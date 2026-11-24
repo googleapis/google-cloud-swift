@@ -181,9 +181,13 @@ public struct ListRuntimesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.stage, forKey: .stage)
+      if self.stage != ListRuntimesResponse.RuntimeStage() {
+        try container.encode(self.stage, forKey: .stage)
+      }
       try container.encode(self.warnings, forKey: .warnings)
-      try container.encode(self.environment, forKey: .environment)
+      if self.environment != Environment() {
+        try container.encode(self.environment, forKey: .environment)
+      }
       try container.encodeIfPresent(self.deprecationDate, forKey: .deprecationDate)
       try container.encodeIfPresent(self.decommissionDate, forKey: .decommissionDate)
       for (key, value) in self._unknownFields.json {

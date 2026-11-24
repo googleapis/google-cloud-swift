@@ -88,7 +88,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.featureSpec {
       switch choice {
       case .configmanagement(let value):
-        try container.encode(value, forKey: .configmanagement)
+        try container.encodeIfPresent(value, forKey: .configmanagement)
       }
     }
     for (key, value) in self._unknownFields.json {

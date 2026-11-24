@@ -174,7 +174,7 @@
       if let choice = self.metrics {
         switch choice {
         case .summarizationMetrics(let value):
-          try container.encode(value, forKey: .summarizationMetrics)
+          try container.encodeIfPresent(value, forKey: .summarizationMetrics)
         }
       }
       for (key, value) in self._unknownFields.json {

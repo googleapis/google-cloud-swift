@@ -633,7 +633,9 @@ public struct Evaluation: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.auprcExact, forKey: .auprcExact)
       try container.encode(
         self.estimatedCalibrationErrorExact, forKey: .estimatedCalibrationErrorExact)
-      try container.encode(self.metricsType, forKey: .metricsType)
+      if self.metricsType != Evaluation.MultiConfidenceMetrics.MetricsType() {
+        try container.encode(self.metricsType, forKey: .metricsType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

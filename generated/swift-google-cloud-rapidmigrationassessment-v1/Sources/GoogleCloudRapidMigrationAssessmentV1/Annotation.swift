@@ -107,7 +107,9 @@ public struct Annotation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.type, forKey: .type)
+    if self.type != GoogleCloudRapidMigrationAssessmentV1.Annotation.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

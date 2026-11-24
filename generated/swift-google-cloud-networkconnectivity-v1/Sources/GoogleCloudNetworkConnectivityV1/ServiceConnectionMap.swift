@@ -186,7 +186,9 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.serviceClass, forKey: .serviceClass)
     try container.encode(self.serviceClassUri, forKey: .serviceClassUri)
-    try container.encode(self.infrastructure, forKey: .infrastructure)
+    if self.infrastructure != Infrastructure() {
+      try container.encode(self.infrastructure, forKey: .infrastructure)
+    }
     try container.encode(self.producerPscConfigs, forKey: .producerPscConfigs)
     try container.encode(self.consumerPscConfigs, forKey: .consumerPscConfigs)
     try container.encode(self.consumerPscConnections, forKey: .consumerPscConnections)
@@ -429,7 +431,9 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.project, forKey: .project)
       try container.encode(self.network, forKey: .network)
       try container.encode(self.disableGlobalAccess, forKey: .disableGlobalAccess)
-      try container.encode(self.state, forKey: .state)
+      if self.state != ServiceConnectionMap.ConsumerPscConfig.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.producerInstanceId, forKey: .producerInstanceId)
       try container.encode(
         self.serviceAttachmentIpAddressMap, forKey: .serviceAttachmentIpAddressMap)
@@ -791,12 +795,16 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceAttachmentUri, forKey: .serviceAttachmentUri)
-      try container.encode(self.state, forKey: .state)
+      if self.state != ServiceConnectionMap.ConsumerPscConnection.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.project, forKey: .project)
       try container.encode(self.network, forKey: .network)
       try container.encode(self.pscConnectionId, forKey: .pscConnectionId)
       try container.encode(self.ip, forKey: .ip)
-      try container.encode(self.errorType, forKey: .errorType)
+      if self.errorType != ConnectionErrorType() {
+        try container.encode(self.errorType, forKey: .errorType)
+      }
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.gceOperation, forKey: .gceOperation)
       try container.encode(self.forwardingRule, forKey: .forwardingRule)

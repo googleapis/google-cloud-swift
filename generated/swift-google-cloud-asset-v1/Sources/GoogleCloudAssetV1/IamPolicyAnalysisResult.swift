@@ -302,9 +302,9 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       if let choice = self.oneofAccess {
         switch choice {
         case .role(let value):
-          try container.encode(value, forKey: .role)
+          try container.encodeIfPresent(value, forKey: .role)
         case .permission(let value):
-          try container.encode(value, forKey: .permission)
+          try container.encodeIfPresent(value, forKey: .permission)
         }
       }
       for (key, value) in self._unknownFields.json {

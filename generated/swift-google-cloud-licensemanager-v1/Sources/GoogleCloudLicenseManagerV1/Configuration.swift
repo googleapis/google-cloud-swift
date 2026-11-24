@@ -140,13 +140,17 @@ public struct Configuration: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.product, forKey: .product)
-    try container.encode(self.licenseType, forKey: .licenseType)
+    if self.licenseType != LicenseType() {
+      try container.encode(self.licenseType, forKey: .licenseType)
+    }
     try container.encodeIfPresent(self.currentBillingInfo, forKey: .currentBillingInfo)
     try container.encodeIfPresent(self.nextBillingInfo, forKey: .nextBillingInfo)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Configuration.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

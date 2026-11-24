@@ -169,9 +169,15 @@ public struct Attribute: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.definitionType, forKey: .definitionType)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.dataType, forKey: .dataType)
+    if self.definitionType != Attribute.DefinitionType() {
+      try container.encode(self.definitionType, forKey: .definitionType)
+    }
+    if self.scope != Attribute.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
+    if self.dataType != Attribute.DataType() {
+      try container.encode(self.dataType, forKey: .dataType)
+    }
     try container.encode(self.allowedValues, forKey: .allowedValues)
     try container.encode(self.cardinality, forKey: .cardinality)
     try container.encode(self.mandatory, forKey: .mandatory)

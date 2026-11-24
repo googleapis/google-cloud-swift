@@ -146,7 +146,9 @@ public struct MachineDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.coreCount, forKey: .coreCount)
     try container.encode(self.memoryMb, forKey: .memoryMb)
-    try container.encode(self.powerState, forKey: .powerState)
+    if self.powerState != MachineDetails.PowerState() {
+      try container.encode(self.powerState, forKey: .powerState)
+    }
     try container.encodeIfPresent(self.architecture, forKey: .architecture)
     try container.encodeIfPresent(self.guestOs, forKey: .guestOs)
     try container.encodeIfPresent(self.network, forKey: .network)

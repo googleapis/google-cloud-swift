@@ -100,7 +100,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.trigger {
       switch choice {
       case .unconditional(let value):
-        try container.encode(value, forKey: .unconditional)
+        try container.encodeIfPresent(value, forKey: .unconditional)
       }
     }
     for (key, value) in self._unknownFields.json {

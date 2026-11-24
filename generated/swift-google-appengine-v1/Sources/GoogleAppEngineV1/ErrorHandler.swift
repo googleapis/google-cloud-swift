@@ -85,7 +85,9 @@ public struct ErrorHandler: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.errorCode, forKey: .errorCode)
+    if self.errorCode != ErrorHandler.ErrorCode() {
+      try container.encode(self.errorCode, forKey: .errorCode)
+    }
     try container.encode(self.staticFile, forKey: .staticFile)
     try container.encode(self.mimeType, forKey: .mimeType)
     for (key, value) in self._unknownFields.json {

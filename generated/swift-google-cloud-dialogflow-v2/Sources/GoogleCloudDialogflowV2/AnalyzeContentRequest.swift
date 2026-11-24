@@ -168,13 +168,13 @@
       if let choice = self.input {
         switch choice {
         case .textInput(let value):
-          try container.encode(value, forKey: .textInput)
+          try container.encodeIfPresent(value, forKey: .textInput)
         case .audioInput(let value):
-          try container.encode(value, forKey: .audioInput)
+          try container.encodeIfPresent(value, forKey: .audioInput)
         case .eventInput(let value):
-          try container.encode(value, forKey: .eventInput)
+          try container.encodeIfPresent(value, forKey: .eventInput)
         case .suggestionInput(let value):
-          try container.encode(value, forKey: .suggestionInput)
+          try container.encodeIfPresent(value, forKey: .suggestionInput)
         }
       }
       for (key, value) in self._unknownFields.json {

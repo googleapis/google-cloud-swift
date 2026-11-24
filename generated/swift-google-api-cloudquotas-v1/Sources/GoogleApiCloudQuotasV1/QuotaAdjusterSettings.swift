@@ -129,7 +129,9 @@ public struct QuotaAdjusterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.enablement, forKey: .enablement)
+    if self.enablement != QuotaAdjusterSettings.Enablement() {
+      try container.encode(self.enablement, forKey: .enablement)
+    }
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.inherited, forKey: .inherited)

@@ -184,7 +184,9 @@ public struct Recommendation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lastRefreshTime, forKey: .lastRefreshTime)
     try container.encodeIfPresent(self.primaryImpact, forKey: .primaryImpact)
     try container.encode(self.additionalImpact, forKey: .additionalImpact)
-    try container.encode(self.priority, forKey: .priority)
+    if self.priority != Recommendation.Priority() {
+      try container.encode(self.priority, forKey: .priority)
+    }
     try container.encodeIfPresent(self.content, forKey: .content)
     try container.encodeIfPresent(self.stateInfo, forKey: .stateInfo)
     try container.encode(self.etag, forKey: .etag)

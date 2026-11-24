@@ -144,14 +144,16 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.boostSpecs, forKey: .boostSpecs)
     try container.encode(self.modalityConfigs, forKey: .modalityConfigs)
-    try container.encode(self.filterParameterBehavior, forKey: .filterParameterBehavior)
+    if self.filterParameterBehavior != DataStoreTool.FilterParameterBehavior() {
+      try container.encode(self.filterParameterBehavior, forKey: .filterParameterBehavior)
+    }
 
     if let choice = self.searchSource {
       switch choice {
       case .dataStoreSource(let value):
-        try container.encode(value, forKey: .dataStoreSource)
+        try container.encodeIfPresent(value, forKey: .dataStoreSource)
       case .engineSource(let value):
-        try container.encode(value, forKey: .engineSource)
+        try container.encodeIfPresent(value, forKey: .engineSource)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -989,8 +991,16 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.fieldName, forKey: .fieldName)
-          try container.encode(self.attributeType, forKey: .attributeType)
-          try container.encode(self.interpolationType, forKey: .interpolationType)
+          if self.attributeType
+            != DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.AttributeType()
+          {
+            try container.encode(self.attributeType, forKey: .attributeType)
+          }
+          if self.interpolationType
+            != DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.InterpolationType()
+          {
+            try container.encode(self.interpolationType, forKey: .interpolationType)
+          }
           try container.encode(self.controlPoints, forKey: .controlPoints)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1478,7 +1488,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.modalityType, forKey: .modalityType)
+      if self.modalityType != DataStoreTool.ModalityConfig.ModalityType() {
+        try container.encode(self.modalityType, forKey: .modalityType)
+      }
       try container.encodeIfPresent(self.rewriterConfig, forKey: .rewriterConfig)
       try container.encodeIfPresent(self.summarizationConfig, forKey: .summarizationConfig)
       try container.encodeIfPresent(self.groundingConfig, forKey: .groundingConfig)

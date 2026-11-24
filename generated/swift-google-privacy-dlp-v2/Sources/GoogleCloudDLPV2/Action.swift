@@ -143,21 +143,21 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.action {
       switch choice {
       case .saveFindings(let value):
-        try container.encode(value, forKey: .saveFindings)
+        try container.encodeIfPresent(value, forKey: .saveFindings)
       case .pubSub(let value):
-        try container.encode(value, forKey: .pubSub)
+        try container.encodeIfPresent(value, forKey: .pubSub)
       case .publishSummaryToCscc(let value):
-        try container.encode(value, forKey: .publishSummaryToCscc)
+        try container.encodeIfPresent(value, forKey: .publishSummaryToCscc)
       case .publishFindingsToCloudDataCatalog(let value):
-        try container.encode(value, forKey: .publishFindingsToCloudDataCatalog)
+        try container.encodeIfPresent(value, forKey: .publishFindingsToCloudDataCatalog)
       case .publishFindingsToDataplexCatalog(let value):
-        try container.encode(value, forKey: .publishFindingsToDataplexCatalog)
+        try container.encodeIfPresent(value, forKey: .publishFindingsToDataplexCatalog)
       case .deidentify(let value):
-        try container.encode(value, forKey: .deidentify)
+        try container.encodeIfPresent(value, forKey: .deidentify)
       case .jobNotificationEmails(let value):
-        try container.encode(value, forKey: .jobNotificationEmails)
+        try container.encodeIfPresent(value, forKey: .jobNotificationEmails)
       case .publishToStackdriver(let value):
-        try container.encode(value, forKey: .publishToStackdriver)
+        try container.encodeIfPresent(value, forKey: .publishToStackdriver)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -750,7 +750,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.output {
         switch choice {
         case .cloudStorageOutput(let value):
-          try container.encode(value, forKey: .cloudStorageOutput)
+          try container.encodeIfPresent(value, forKey: .cloudStorageOutput)
         }
       }
       for (key, value) in self._unknownFields.json {

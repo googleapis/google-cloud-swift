@@ -247,7 +247,9 @@ public struct AppEngineHttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.httpMethod, forKey: .httpMethod)
+    if self.httpMethod != HttpMethod() {
+      try container.encode(self.httpMethod, forKey: .httpMethod)
+    }
     try container.encodeIfPresent(self.appEngineRouting, forKey: .appEngineRouting)
     try container.encode(self.relativeUri, forKey: .relativeUri)
     try container.encode(self.headers, forKey: .headers)

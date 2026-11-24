@@ -261,8 +261,12 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.idNamespace, forKey: .idNamespace)
+    if self.type != Collection.CollectionType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.idNamespace != Id.Namespace() {
+      try container.encode(self.idNamespace, forKey: .idNamespace)
+    }
     try container.encodeIfPresent(self.createdTime, forKey: .createdTime)
     try container.encodeIfPresent(self.lastUpdatedTime, forKey: .lastUpdatedTime)
     try container.encodeIfPresent(self.timeWindow, forKey: .timeWindow)
@@ -278,7 +282,9 @@ public struct Collection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.dataAccessScope, forKey: .dataAccessScope)
     try container.encode(self.detectionTimingDetails, forKey: .detectionTimingDetails)
     try container.encodeIfPresent(self.latencyMetrics, forKey: .latencyMetrics)
-    try container.encode(self.ruleRunFrequency, forKey: .ruleRunFrequency)
+    if self.ruleRunFrequency != Collection.RunFrequency() {
+      try container.encode(self.ruleRunFrequency, forKey: .ruleRunFrequency)
+    }
     try container.encode(self.simulatedEventCount, forKey: .simulatedEventCount)
     try container.encode(self.simulatedEventNames, forKey: .simulatedEventNames)
     for (key, value) in self._unknownFields.json {

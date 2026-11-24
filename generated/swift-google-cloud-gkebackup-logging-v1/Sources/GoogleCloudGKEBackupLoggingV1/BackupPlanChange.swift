@@ -111,7 +111,9 @@ public struct BackupPlanChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.backupPlan, forKey: .backupPlan)
-    try container.encode(self.changeType, forKey: .changeType)
+    if self.changeType != ChangeType() {
+      try container.encode(self.changeType, forKey: .changeType)
+    }
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
     try container.encodeIfPresent(self.inputBackupPlan, forKey: .inputBackupPlan)
     try container.encodeIfPresent(self.error, forKey: .error)

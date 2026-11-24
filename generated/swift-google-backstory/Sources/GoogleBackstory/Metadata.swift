@@ -254,7 +254,9 @@ public struct Metadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.eventTimestampAttributes, forKey: .eventTimestampAttributes)
     try container.encodeIfPresent(self.collectedTimestamp, forKey: .collectedTimestamp)
     try container.encodeIfPresent(self.ingestedTimestamp, forKey: .ingestedTimestamp)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != Metadata.EventType() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     try container.encode(self.vendorName, forKey: .vendorName)
     try container.encode(self.productName, forKey: .productName)
     try container.encode(self.productVersion, forKey: .productVersion)
@@ -264,7 +266,9 @@ public struct Metadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.urlBackToProduct, forKey: .urlBackToProduct)
     try container.encode(self.ingestionLabels, forKey: .ingestionLabels)
     try container.encodeIfPresent(self.tags, forKey: .tags)
-    try container.encode(self.enrichmentState, forKey: .enrichmentState)
+    if self.enrichmentState != Metadata.EnrichmentState() {
+      try container.encode(self.enrichmentState, forKey: .enrichmentState)
+    }
     try container.encode(self.logType, forKey: .logType)
     try container.encodeIfPresent(self.baseLabels, forKey: .baseLabels)
     try container.encodeIfPresent(self.enrichmentLabels, forKey: .enrichmentLabels)

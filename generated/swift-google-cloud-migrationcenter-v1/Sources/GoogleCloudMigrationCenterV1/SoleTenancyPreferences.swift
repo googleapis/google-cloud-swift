@@ -105,8 +105,12 @@ public struct SoleTenancyPreferences: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.cpuOvercommitRatio, forKey: .cpuOvercommitRatio)
-    try container.encode(self.hostMaintenancePolicy, forKey: .hostMaintenancePolicy)
-    try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    if self.hostMaintenancePolicy != SoleTenancyPreferences.HostMaintenancePolicy() {
+      try container.encode(self.hostMaintenancePolicy, forKey: .hostMaintenancePolicy)
+    }
+    if self.commitmentPlan != SoleTenancyPreferences.CommitmentPlan() {
+      try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    }
     try container.encode(self.nodeTypes, forKey: .nodeTypes)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

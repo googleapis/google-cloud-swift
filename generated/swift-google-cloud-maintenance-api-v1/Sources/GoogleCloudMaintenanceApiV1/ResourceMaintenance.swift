@@ -215,7 +215,9 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.resource, forKey: .resource)
     try container.encodeIfPresent(self.maintenance, forKey: .maintenance)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ResourceMaintenance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.maintenanceStartTime, forKey: .maintenanceStartTime)
@@ -422,7 +424,9 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.maintenanceName, forKey: .maintenanceName)
       try container.encode(self.title, forKey: .title)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.category, forKey: .category)
+      if self.category != MaintenanceCategory() {
+        try container.encode(self.category, forKey: .category)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

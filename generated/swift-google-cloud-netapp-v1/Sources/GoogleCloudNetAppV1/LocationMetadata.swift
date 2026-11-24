@@ -115,7 +115,9 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.supportedFlexPerformance, forKey: .supportedFlexPerformance)
     try container.encode(self.hasVcp, forKey: .hasVcp)
     try container.encode(self.hasOntapProxy, forKey: .hasOntapProxy)
-    try container.encode(self.flexPerformanceTier, forKey: .flexPerformanceTier)
+    if self.flexPerformanceTier != LocationMetadata.FlexPerformanceTier() {
+      try container.encode(self.flexPerformanceTier, forKey: .flexPerformanceTier)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

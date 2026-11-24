@@ -205,37 +205,37 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.processorConfig {
       switch choice {
       case .videoStreamInputConfig(let value):
-        try container.encode(value, forKey: .videoStreamInputConfig)
+        try container.encodeIfPresent(value, forKey: .videoStreamInputConfig)
       case .aiEnabledDevicesInputConfig(let value):
-        try container.encode(value, forKey: .aiEnabledDevicesInputConfig)
+        try container.encodeIfPresent(value, forKey: .aiEnabledDevicesInputConfig)
       case .mediaWarehouseConfig(let value):
-        try container.encode(value, forKey: .mediaWarehouseConfig)
+        try container.encodeIfPresent(value, forKey: .mediaWarehouseConfig)
       case .personBlurConfig(let value):
-        try container.encode(value, forKey: .personBlurConfig)
+        try container.encodeIfPresent(value, forKey: .personBlurConfig)
       case .occupancyCountConfig(let value):
-        try container.encode(value, forKey: .occupancyCountConfig)
+        try container.encodeIfPresent(value, forKey: .occupancyCountConfig)
       case .personVehicleDetectionConfig(let value):
-        try container.encode(value, forKey: .personVehicleDetectionConfig)
+        try container.encodeIfPresent(value, forKey: .personVehicleDetectionConfig)
       case .vertexAutomlVisionConfig(let value):
-        try container.encode(value, forKey: .vertexAutomlVisionConfig)
+        try container.encodeIfPresent(value, forKey: .vertexAutomlVisionConfig)
       case .vertexAutomlVideoConfig(let value):
-        try container.encode(value, forKey: .vertexAutomlVideoConfig)
+        try container.encodeIfPresent(value, forKey: .vertexAutomlVideoConfig)
       case .vertexCustomConfig(let value):
-        try container.encode(value, forKey: .vertexCustomConfig)
+        try container.encodeIfPresent(value, forKey: .vertexCustomConfig)
       case .generalObjectDetectionConfig(let value):
-        try container.encode(value, forKey: .generalObjectDetectionConfig)
+        try container.encodeIfPresent(value, forKey: .generalObjectDetectionConfig)
       case .bigQueryConfig(let value):
-        try container.encode(value, forKey: .bigQueryConfig)
+        try container.encodeIfPresent(value, forKey: .bigQueryConfig)
       case .gcsOutputConfig(let value):
-        try container.encode(value, forKey: .gcsOutputConfig)
+        try container.encodeIfPresent(value, forKey: .gcsOutputConfig)
       case .productRecognizerConfig(let value):
-        try container.encode(value, forKey: .productRecognizerConfig)
+        try container.encodeIfPresent(value, forKey: .productRecognizerConfig)
       case .personalProtectiveEquipmentDetectionConfig(let value):
-        try container.encode(value, forKey: .personalProtectiveEquipmentDetectionConfig)
+        try container.encodeIfPresent(value, forKey: .personalProtectiveEquipmentDetectionConfig)
       case .tagRecognizerConfig(let value):
-        try container.encode(value, forKey: .tagRecognizerConfig)
+        try container.encodeIfPresent(value, forKey: .tagRecognizerConfig)
       case .universalInputConfig(let value):
-        try container.encode(value, forKey: .universalInputConfig)
+        try container.encodeIfPresent(value, forKey: .universalInputConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

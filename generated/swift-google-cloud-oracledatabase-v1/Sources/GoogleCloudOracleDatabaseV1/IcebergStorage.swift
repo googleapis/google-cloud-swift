@@ -111,16 +111,18 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.storageType, forKey: .storageType)
+    if self.storageType != IcebergStorage.StorageType() {
+      try container.encode(self.storageType, forKey: .storageType)
+    }
 
     if let choice = self.storageDetails {
       switch choice {
       case .amazonS3IcebergStorage(let value):
-        try container.encode(value, forKey: .amazonS3IcebergStorage)
+        try container.encodeIfPresent(value, forKey: .amazonS3IcebergStorage)
       case .googleCloudStorageIcebergStorage(let value):
-        try container.encode(value, forKey: .googleCloudStorageIcebergStorage)
+        try container.encodeIfPresent(value, forKey: .googleCloudStorageIcebergStorage)
       case .azureDataLakeStorageIcebergStorage(let value):
-        try container.encode(value, forKey: .azureDataLakeStorageIcebergStorage)
+        try container.encodeIfPresent(value, forKey: .azureDataLakeStorageIcebergStorage)
       }
     }
     for (key, value) in self._unknownFields.json {

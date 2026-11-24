@@ -91,9 +91,9 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.indexType {
       switch choice {
       case .knnHint(let value):
-        try container.encode(value, forKey: .knnHint)
+        try container.encodeIfPresent(value, forKey: .knnHint)
       case .indexHint(let value):
-        try container.encode(value, forKey: .indexHint)
+        try container.encodeIfPresent(value, forKey: .indexHint)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -183,7 +183,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.params {
         switch choice {
         case .denseScannParams(let value):
-          try container.encode(value, forKey: .denseScannParams)
+          try container.encodeIfPresent(value, forKey: .denseScannParams)
         }
       }
       for (key, value) in self._unknownFields.json {

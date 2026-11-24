@@ -86,7 +86,9 @@ public struct UpdateOptions: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.updateType, forKey: .updateType)
+    if self.updateType != UpdateType() {
+      try container.encode(self.updateType, forKey: .updateType)
+    }
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
     try container.encodeIfPresent(self.mergeFieldsOptions, forKey: .mergeFieldsOptions)
     for (key, value) in self._unknownFields.json {

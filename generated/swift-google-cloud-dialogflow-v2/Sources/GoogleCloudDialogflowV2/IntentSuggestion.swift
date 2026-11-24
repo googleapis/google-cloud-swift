@@ -105,7 +105,7 @@
       if let choice = self.intent {
         switch choice {
         case .intentV2(let value):
-          try container.encode(value, forKey: .intentV2)
+          try container.encodeIfPresent(value, forKey: .intentV2)
         }
       }
       for (key, value) in self._unknownFields.json {

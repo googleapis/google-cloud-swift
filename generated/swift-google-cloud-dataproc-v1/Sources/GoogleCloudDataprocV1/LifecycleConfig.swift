@@ -160,18 +160,18 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.ttl {
       switch choice {
       case .autoDeleteTime(let value):
-        try container.encode(value, forKey: .autoDeleteTime)
+        try container.encodeIfPresent(value, forKey: .autoDeleteTime)
       case .autoDeleteTtl(let value):
-        try container.encode(value, forKey: .autoDeleteTtl)
+        try container.encodeIfPresent(value, forKey: .autoDeleteTtl)
       }
     }
 
     if let choice = self.stopTtl {
       switch choice {
       case .autoStopTime(let value):
-        try container.encode(value, forKey: .autoStopTime)
+        try container.encodeIfPresent(value, forKey: .autoStopTime)
       case .autoStopTtl(let value):
-        try container.encode(value, forKey: .autoStopTtl)
+        try container.encodeIfPresent(value, forKey: .autoStopTtl)
       }
     }
     for (key, value) in self._unknownFields.json {

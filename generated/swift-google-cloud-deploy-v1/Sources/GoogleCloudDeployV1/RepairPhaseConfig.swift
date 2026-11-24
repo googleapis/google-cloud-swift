@@ -90,9 +90,9 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.repairPhase {
       switch choice {
       case .retry(let value):
-        try container.encode(value, forKey: .retry)
+        try container.encodeIfPresent(value, forKey: .retry)
       case .rollback(let value):
-        try container.encode(value, forKey: .rollback)
+        try container.encodeIfPresent(value, forKey: .rollback)
       }
     }
     for (key, value) in self._unknownFields.json {

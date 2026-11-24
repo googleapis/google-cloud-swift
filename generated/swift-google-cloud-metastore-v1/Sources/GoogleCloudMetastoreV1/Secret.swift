@@ -84,7 +84,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .cloudSecret(let value):
-        try container.encode(value, forKey: .cloudSecret)
+        try container.encodeIfPresent(value, forKey: .cloudSecret)
       }
     }
     for (key, value) in self._unknownFields.json {

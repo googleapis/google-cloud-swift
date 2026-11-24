@@ -194,7 +194,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.consumerType {
         switch choice {
         case .project(let value):
-          try container.encode(value, forKey: .project)
+          try container.encodeIfPresent(value, forKey: .project)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -300,7 +300,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.consumerType {
         switch choice {
         case .project(let value):
-          try container.encode(value, forKey: .project)
+          try container.encodeIfPresent(value, forKey: .project)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -308,7 +308,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != GoogleCloudAIPlatformV1.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.format, forKey: .format)
       try container.encode(self.title, forKey: .title)
       try container.encode(self.description, forKey: .description)

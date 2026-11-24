@@ -111,7 +111,9 @@ public struct WKTEnum: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.enumvalue, forKey: .enumvalue)
     try container.encode(self.options, forKey: .options)
     try container.encodeIfPresent(self.sourceContext, forKey: .sourceContext)
-    try container.encode(self.syntax, forKey: .syntax)
+    if self.syntax != WKTSyntax() {
+      try container.encode(self.syntax, forKey: .syntax)
+    }
     try container.encode(self.edition, forKey: .edition)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

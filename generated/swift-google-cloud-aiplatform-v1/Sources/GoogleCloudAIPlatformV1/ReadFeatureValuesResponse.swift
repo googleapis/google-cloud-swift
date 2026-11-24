@@ -422,9 +422,9 @@
           if let choice = self.data {
             switch choice {
             case .value(let value):
-              try container.encode(value, forKey: .value)
+              try container.encodeIfPresent(value, forKey: .value)
             case .values(let value):
-              try container.encode(value, forKey: .values)
+              try container.encodeIfPresent(value, forKey: .values)
             }
           }
           for (key, value) in self._unknownFields.json {

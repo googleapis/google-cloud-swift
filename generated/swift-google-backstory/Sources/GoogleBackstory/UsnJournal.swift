@@ -124,10 +124,14 @@ public struct UsnJournal: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.attributesFlag, forKey: .attributesFlag)
-    try container.encode(self.attributes, forKey: .attributes)
+    if self.attributes != UsnJournal.Attribute() {
+      try container.encode(self.attributes, forKey: .attributes)
+    }
     try container.encode(self.fileAttributes, forKey: .fileAttributes)
     try container.encode(self.allocated, forKey: .allocated)
-    try container.encode(self.reason, forKey: .reason)
+    if self.reason != UsnJournal.Reason() {
+      try container.encode(self.reason, forKey: .reason)
+    }
     try container.encode(self.reasons, forKey: .reasons)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

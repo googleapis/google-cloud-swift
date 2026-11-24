@@ -93,9 +93,9 @@ public struct ExportAppResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.app {
       switch choice {
       case .appContent(let value):
-        try container.encode(value, forKey: .appContent)
+        try container.encodeIfPresent(value, forKey: .appContent)
       case .appUri(let value):
-        try container.encode(value, forKey: .appUri)
+        try container.encodeIfPresent(value, forKey: .appUri)
       }
     }
     for (key, value) in self._unknownFields.json {

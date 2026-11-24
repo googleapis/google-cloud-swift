@@ -430,17 +430,17 @@ public struct HttpRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pattern {
       switch choice {
       case .`get`(let value):
-        try container.encode(value, forKey: .`get`)
+        try container.encodeIfPresent(value, forKey: .`get`)
       case .put(let value):
-        try container.encode(value, forKey: .put)
+        try container.encodeIfPresent(value, forKey: .put)
       case .post(let value):
-        try container.encode(value, forKey: .post)
+        try container.encodeIfPresent(value, forKey: .post)
       case .delete(let value):
-        try container.encode(value, forKey: .delete)
+        try container.encodeIfPresent(value, forKey: .delete)
       case .patch(let value):
-        try container.encode(value, forKey: .patch)
+        try container.encodeIfPresent(value, forKey: .patch)
       case .custom(let value):
-        try container.encode(value, forKey: .custom)
+        try container.encodeIfPresent(value, forKey: .custom)
       }
     }
     for (key, value) in self._unknownFields.json {

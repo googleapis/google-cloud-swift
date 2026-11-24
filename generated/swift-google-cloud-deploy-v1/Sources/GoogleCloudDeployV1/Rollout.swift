@@ -284,12 +284,18 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.deployStartTime, forKey: .deployStartTime)
     try container.encodeIfPresent(self.deployEndTime, forKey: .deployEndTime)
     try container.encode(self.targetId, forKey: .targetId)
-    try container.encode(self.approvalState, forKey: .approvalState)
-    try container.encode(self.state, forKey: .state)
+    if self.approvalState != Rollout.ApprovalState() {
+      try container.encode(self.approvalState, forKey: .approvalState)
+    }
+    if self.state != Rollout.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.failureReason, forKey: .failureReason)
     try container.encode(self.deployingBuild, forKey: .deployingBuild)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.deployFailureCause, forKey: .deployFailureCause)
+    if self.deployFailureCause != Rollout.FailureCause() {
+      try container.encode(self.deployFailureCause, forKey: .deployFailureCause)
+    }
     try container.encode(self.phases, forKey: .phases)
     try container.encodeIfPresent(self.metadata, forKey: .metadata)
     try container.encode(self.controllerRollout, forKey: .controllerRollout)

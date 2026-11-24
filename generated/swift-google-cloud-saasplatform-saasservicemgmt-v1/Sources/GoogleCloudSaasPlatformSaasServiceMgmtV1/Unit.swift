@@ -324,10 +324,16 @@ public struct Unit: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.inputVariables, forKey: .inputVariables)
     try container.encode(self.outputVariables, forKey: .outputVariables)
     try container.encodeIfPresent(self.maintenance, forKey: .maintenance)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Unit.UnitState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.conditions, forKey: .conditions)
-    try container.encode(self.managementMode, forKey: .managementMode)
-    try container.encode(self.systemManagedState, forKey: .systemManagedState)
+    if self.managementMode != Unit.ManagementMode() {
+      try container.encode(self.managementMode, forKey: .managementMode)
+    }
+    if self.systemManagedState != Unit.SystemManagedState() {
+      try container.encode(self.systemManagedState, forKey: .systemManagedState)
+    }
     try container.encodeIfPresent(self.systemCleanupAt, forKey: .systemCleanupAt)
     try container.encode(self.application, forKey: .application)
     try container.encode(self.labels, forKey: .labels)

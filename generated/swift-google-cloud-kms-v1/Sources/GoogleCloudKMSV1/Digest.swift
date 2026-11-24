@@ -102,13 +102,13 @@ public struct Digest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.digest {
       switch choice {
       case .sha256(let value):
-        try container.encode(value, forKey: .sha256)
+        try container.encodeIfPresent(value, forKey: .sha256)
       case .sha384(let value):
-        try container.encode(value, forKey: .sha384)
+        try container.encodeIfPresent(value, forKey: .sha384)
       case .sha512(let value):
-        try container.encode(value, forKey: .sha512)
+        try container.encodeIfPresent(value, forKey: .sha512)
       case .externalMu(let value):
-        try container.encode(value, forKey: .externalMu)
+        try container.encodeIfPresent(value, forKey: .externalMu)
       }
     }
     for (key, value) in self._unknownFields.json {

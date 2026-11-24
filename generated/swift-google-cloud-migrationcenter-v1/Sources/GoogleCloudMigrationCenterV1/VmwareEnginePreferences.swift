@@ -116,7 +116,9 @@ public struct VmwareEnginePreferences: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.memoryOvercommitRatio, forKey: .memoryOvercommitRatio)
     try container.encode(
       self.storageDeduplicationCompressionRatio, forKey: .storageDeduplicationCompressionRatio)
-    try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    if self.commitmentPlan != VmwareEnginePreferences.CommitmentPlan() {
+      try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

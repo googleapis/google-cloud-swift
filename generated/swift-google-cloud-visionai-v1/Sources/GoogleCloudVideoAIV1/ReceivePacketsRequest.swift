@@ -93,9 +93,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.request {
       switch choice {
       case .setupRequest(let value):
-        try container.encode(value, forKey: .setupRequest)
+        try container.encodeIfPresent(value, forKey: .setupRequest)
       case .commitRequest(let value):
-        try container.encode(value, forKey: .commitRequest)
+        try container.encodeIfPresent(value, forKey: .commitRequest)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -224,9 +224,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.consumerMode {
         switch choice {
         case .eagerReceiveMode(let value):
-          try container.encode(value, forKey: .eagerReceiveMode)
+          try container.encodeIfPresent(value, forKey: .eagerReceiveMode)
         case .controlledReceiveMode(let value):
-          try container.encode(value, forKey: .controlledReceiveMode)
+          try container.encodeIfPresent(value, forKey: .controlledReceiveMode)
         }
       }
       for (key, value) in self._unknownFields.json {

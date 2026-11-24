@@ -140,7 +140,9 @@ public struct LiveSession: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.manifestOptions, forKey: .manifestOptions)
     try container.encodeIfPresent(self.gamSettings, forKey: .gamSettings)
     try container.encode(self.liveConfig, forKey: .liveConfig)
-    try container.encode(self.adTracking, forKey: .adTracking)
+    if self.adTracking != AdTracking() {
+      try container.encode(self.adTracking, forKey: .adTracking)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

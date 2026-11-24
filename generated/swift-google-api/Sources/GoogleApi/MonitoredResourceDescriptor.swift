@@ -141,7 +141,9 @@ public struct MonitoredResourceDescriptor: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

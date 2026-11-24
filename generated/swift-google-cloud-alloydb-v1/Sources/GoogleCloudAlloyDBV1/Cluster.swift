@@ -391,9 +391,15 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.clusterType, forKey: .clusterType)
-    try container.encode(self.databaseVersion, forKey: .databaseVersion)
+    if self.state != Cluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.clusterType != Cluster.ClusterType() {
+      try container.encode(self.clusterType, forKey: .clusterType)
+    }
+    if self.databaseVersion != DatabaseVersion() {
+      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+    }
     try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.etag, forKey: .etag)
@@ -412,7 +418,9 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.pscConfig, forKey: .pscConfig)
     try container.encodeIfPresent(self.maintenanceUpdatePolicy, forKey: .maintenanceUpdatePolicy)
     try container.encodeIfPresent(self.maintenanceSchedule, forKey: .maintenanceSchedule)
-    try container.encode(self.subscriptionType, forKey: .subscriptionType)
+    if self.subscriptionType != SubscriptionType() {
+      try container.encode(self.subscriptionType, forKey: .subscriptionType)
+    }
     try container.encodeIfPresent(self.trialMetadata, forKey: .trialMetadata)
     try container.encode(self.tags, forKey: .tags)
     try container.encodeIfPresent(self.dataplexConfig, forKey: .dataplexConfig)
@@ -420,11 +428,11 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .backupSource(let value):
-        try container.encode(value, forKey: .backupSource)
+        try container.encodeIfPresent(value, forKey: .backupSource)
       case .migrationSource(let value):
-        try container.encode(value, forKey: .migrationSource)
+        try container.encodeIfPresent(value, forKey: .migrationSource)
       case .cloudsqlBackupRunSource(let value):
-        try container.encode(value, forKey: .cloudsqlBackupRunSource)
+        try container.encodeIfPresent(value, forKey: .cloudsqlBackupRunSource)
       }
     }
     for (key, value) in self._unknownFields.json {

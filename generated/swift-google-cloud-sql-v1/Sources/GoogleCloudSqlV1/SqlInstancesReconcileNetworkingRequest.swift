@@ -115,7 +115,7 @@
       if let choice = self.reconcileData {
         switch choice {
         case .pscDns(let value):
-          try container.encode(value, forKey: .pscDns)
+          try container.encodeIfPresent(value, forKey: .pscDns)
         }
       }
       for (key, value) in self._unknownFields.json {

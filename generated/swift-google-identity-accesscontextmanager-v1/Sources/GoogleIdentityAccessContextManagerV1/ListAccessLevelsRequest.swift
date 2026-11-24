@@ -106,7 +106,9 @@ public struct ListAccessLevelsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.accessLevelFormat, forKey: .accessLevelFormat)
+    if self.accessLevelFormat != LevelFormat() {
+      try container.encode(self.accessLevelFormat, forKey: .accessLevelFormat)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

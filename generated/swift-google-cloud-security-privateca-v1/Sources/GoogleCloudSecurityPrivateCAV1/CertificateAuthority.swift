@@ -308,13 +308,19 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.type, forKey: .type)
+    if self.type != CertificateAuthority.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.config, forKey: .config)
     try container.encodeIfPresent(self.lifetime, forKey: .lifetime)
     try container.encodeIfPresent(self.keySpec, forKey: .keySpec)
     try container.encodeIfPresent(self.subordinateConfig, forKey: .subordinateConfig)
-    try container.encode(self.tier, forKey: .tier)
-    try container.encode(self.state, forKey: .state)
+    if self.tier != CaPool.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
+    if self.state != CertificateAuthority.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.pemCaCertificates, forKey: .pemCaCertificates)
     try container.encode(self.caCertificateDescriptions, forKey: .caCertificateDescriptions)
     try container.encode(self.gcsBucket, forKey: .gcsBucket)
@@ -518,9 +524,9 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.keyVersion {
         switch choice {
         case .cloudKmsKeyVersion(let value):
-          try container.encode(value, forKey: .cloudKmsKeyVersion)
+          try container.encodeIfPresent(value, forKey: .cloudKmsKeyVersion)
         case .algorithm(let value):
-          try container.encode(value, forKey: .algorithm)
+          try container.encodeIfPresent(value, forKey: .algorithm)
         }
       }
       for (key, value) in self._unknownFields.json {

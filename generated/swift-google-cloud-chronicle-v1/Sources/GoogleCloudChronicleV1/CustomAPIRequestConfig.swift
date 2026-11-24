@@ -118,7 +118,9 @@ public struct CustomAPIRequestConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.endpointPath, forKey: .endpointPath)
-    try container.encode(self.httpMethod, forKey: .httpMethod)
+    if self.httpMethod != CustomAPIRequestConfig.HttpMethod() {
+      try container.encode(self.httpMethod, forKey: .httpMethod)
+    }
     try container.encode(self.requestBody, forKey: .requestBody)
     try container.encode(self.queryParameters, forKey: .queryParameters)
     try container.encode(self.customHeaders, forKey: .customHeaders)

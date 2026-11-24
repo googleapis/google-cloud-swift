@@ -187,7 +187,9 @@ public struct Spec: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lintResponse, forKey: .lintResponse)
     try container.encode(self.attributes, forKey: .attributes)
     try container.encodeIfPresent(self.documentation, forKey: .documentation)
-    try container.encode(self.parsingMode, forKey: .parsingMode)
+    if self.parsingMode != Spec.ParsingMode() {
+      try container.encode(self.parsingMode, forKey: .parsingMode)
+    }
     try container.encode(self.sourceMetadata, forKey: .sourceMetadata)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

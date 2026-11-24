@@ -191,7 +191,9 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.distanceMetric, forKey: .distanceMetric)
+    if self.distanceMetric != DistanceMetric() {
+      try container.encode(self.distanceMetric, forKey: .distanceMetric)
+    }
     try container.encode(self.indexField, forKey: .indexField)
     try container.encode(self.filterFields, forKey: .filterFields)
     try container.encode(self.storeFields, forKey: .storeFields)
@@ -199,14 +201,14 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.infraType {
       switch choice {
       case .dedicatedInfrastructure(let value):
-        try container.encode(value, forKey: .dedicatedInfrastructure)
+        try container.encodeIfPresent(value, forKey: .dedicatedInfrastructure)
       }
     }
 
     if let choice = self.indexType {
       switch choice {
       case .denseScann(let value):
-        try container.encode(value, forKey: .denseScann)
+        try container.encodeIfPresent(value, forKey: .denseScann)
       }
     }
     for (key, value) in self._unknownFields.json {

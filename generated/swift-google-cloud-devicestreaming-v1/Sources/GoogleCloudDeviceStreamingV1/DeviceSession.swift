@@ -160,7 +160,9 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DeviceSession.SessionState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateHistories, forKey: .stateHistories)
     try container.encodeIfPresent(self.inactivityTimeout, forKey: .inactivityTimeout)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -171,9 +173,9 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.expiration {
       switch choice {
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       case .expireTime(let value):
-        try container.encode(value, forKey: .expireTime)
+        try container.encodeIfPresent(value, forKey: .expireTime)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -252,7 +254,9 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sessionState, forKey: .sessionState)
+      if self.sessionState != DeviceSession.SessionState() {
+        try container.encode(self.sessionState, forKey: .sessionState)
+      }
       try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
       try container.encode(self.stateMessage, forKey: .stateMessage)
       for (key, value) in self._unknownFields.json {

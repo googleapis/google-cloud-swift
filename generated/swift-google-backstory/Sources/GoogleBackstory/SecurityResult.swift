@@ -560,7 +560,9 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.ruleType, forKey: .ruleType)
     try container.encode(self.ruleAuthor, forKey: .ruleAuthor)
     try container.encode(self.ruleLabels, forKey: .ruleLabels)
-    try container.encode(self.alertState, forKey: .alertState)
+    if self.alertState != SecurityResult.AlertState() {
+      try container.encode(self.alertState, forKey: .alertState)
+    }
     try container.encode(self.detectionFields, forKey: .detectionFields)
     try container.encode(self.outcomes, forKey: .outcomes)
     try container.encode(self.variables, forKey: .variables)
@@ -568,9 +570,15 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.action, forKey: .action)
     try container.encode(self.actionDetails, forKey: .actionDetails)
-    try container.encode(self.severity, forKey: .severity)
-    try container.encode(self.confidence, forKey: .confidence)
-    try container.encode(self.priority, forKey: .priority)
+    if self.severity != SecurityResult.ProductSeverity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
+    if self.confidence != SecurityResult.ProductConfidence() {
+      try container.encode(self.confidence, forKey: .confidence)
+    }
+    if self.priority != SecurityResult.ProductPriority() {
+      try container.encode(self.priority, forKey: .priority)
+    }
     try container.encode(self.riskScore, forKey: .riskScore)
     try container.encode(self.confidenceScore, forKey: .confidenceScore)
     try container.encode(self.analyticsMetadata, forKey: .analyticsMetadata)
@@ -580,8 +588,12 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.urlBackToProduct, forKey: .urlBackToProduct)
     try container.encode(self.threatId, forKey: .threatId)
     try container.encode(self.threatFeedName, forKey: .threatFeedName)
-    try container.encode(self.threatIdNamespace, forKey: .threatIdNamespace)
-    try container.encode(self.threatStatus, forKey: .threatStatus)
+    if self.threatIdNamespace != Id.Namespace() {
+      try container.encode(self.threatIdNamespace, forKey: .threatIdNamespace)
+    }
+    if self.threatStatus != SecurityResult.ThreatStatus() {
+      try container.encode(self.threatStatus, forKey: .threatStatus)
+    }
     try container.encodeIfPresent(self.attackDetails, forKey: .attackDetails)
     try container.encodeIfPresent(self.firstDiscoveredTime, forKey: .firstDiscoveredTime)
     try container.encode(self.associations, forKey: .associations)
@@ -590,7 +602,9 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.verdict, forKey: .verdict)
     try container.encodeIfPresent(self.lastUpdatedTime, forKey: .lastUpdatedTime)
     try container.encode(self.verdictInfo, forKey: .verdictInfo)
-    try container.encode(self.threatVerdict, forKey: .threatVerdict)
+    if self.threatVerdict != ThreatVerdict() {
+      try container.encode(self.threatVerdict, forKey: .threatVerdict)
+    }
     try container.encodeIfPresent(self.lastDiscoveredTime, forKey: .lastDiscoveredTime)
     try container.encode(self.detectionDepth, forKey: .detectionDepth)
     try container.encode(self.threatCollections, forKey: .threatCollections)
@@ -784,7 +798,9 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
       try container.encode(self.countryCode, forKey: .countryCode)
-      try container.encode(self.type, forKey: .type)
+      if self.type != SecurityResult.Association.AssociationType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.name, forKey: .name)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.role, forKey: .role)
@@ -1148,7 +1164,9 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.name, forKey: .name)
       try container.encode(self.benignCount, forKey: .benignCount)
       try container.encode(self.maliciousCount, forKey: .maliciousCount)
-      try container.encode(self.quality, forKey: .quality)
+      if self.quality != SecurityResult.ProductConfidence() {
+        try container.encode(self.quality, forKey: .quality)
+      }
       try container.encode(self.responseCount, forKey: .responseCount)
       try container.encode(self.sourceCount, forKey: .sourceCount)
       try container.encode(self.threatIntelligenceSources, forKey: .threatIntelligenceSources)
@@ -1382,7 +1400,9 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.confidenceScore, forKey: .confidenceScore)
       try container.encodeIfPresent(self.verdictTime, forKey: .verdictTime)
-      try container.encode(self.verdictResponse, forKey: .verdictResponse)
+      if self.verdictResponse != SecurityResult.VerdictResponse() {
+        try container.encode(self.verdictResponse, forKey: .verdictResponse)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1524,11 +1544,15 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.iocStatsType, forKey: .iocStatsType)
+      if self.iocStatsType != SecurityResult.IoCStatsType() {
+        try container.encode(self.iocStatsType, forKey: .iocStatsType)
+      }
       try container.encode(self.firstLevelSource, forKey: .firstLevelSource)
       try container.encode(self.secondLevelSource, forKey: .secondLevelSource)
       try container.encode(self.benignCount, forKey: .benignCount)
-      try container.encode(self.quality, forKey: .quality)
+      if self.quality != SecurityResult.ProductConfidence() {
+        try container.encode(self.quality, forKey: .quality)
+      }
       try container.encode(self.maliciousCount, forKey: .maliciousCount)
       try container.encode(self.responseCount, forKey: .responseCount)
       try container.encode(self.sourceCount, forKey: .sourceCount)
@@ -1740,14 +1764,18 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.sourceCount, forKey: .sourceCount)
       try container.encode(self.responseCount, forKey: .responseCount)
       try container.encode(self.neighbourInfluence, forKey: .neighbourInfluence)
-      try container.encode(self.verdictType, forKey: .verdictType)
+      if self.verdictType != SecurityResult.VerdictType() {
+        try container.encode(self.verdictType, forKey: .verdictType)
+      }
       try container.encode(self.sourceProvider, forKey: .sourceProvider)
       try container.encode(self.benignCount, forKey: .benignCount)
       try container.encode(self.maliciousCount, forKey: .maliciousCount)
       try container.encode(self.confidenceScore, forKey: .confidenceScore)
       try container.encode(self.iocStats, forKey: .iocStats)
       try container.encodeIfPresent(self.verdictTime, forKey: .verdictTime)
-      try container.encode(self.verdictResponse, forKey: .verdictResponse)
+      if self.verdictResponse != SecurityResult.VerdictResponse() {
+        try container.encode(self.verdictResponse, forKey: .verdictResponse)
+      }
       try container.encode(self.globalCustomerCount, forKey: .globalCustomerCount)
       try container.encode(self.globalHitsCount, forKey: .globalHitsCount)
       try container.encode(self.pwn, forKey: .pwn)
@@ -1967,7 +1995,9 @@ public struct SecurityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
-      try container.encode(self.type, forKey: .type)
+      if self.type != SecurityResult.ThreatCollectionType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.altNames, forKey: .altNames)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

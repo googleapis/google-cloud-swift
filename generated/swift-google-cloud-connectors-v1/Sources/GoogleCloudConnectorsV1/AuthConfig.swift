@@ -122,19 +122,21 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.authType, forKey: .authType)
+    if self.authType != AuthType() {
+      try container.encode(self.authType, forKey: .authType)
+    }
     try container.encode(self.additionalVariables, forKey: .additionalVariables)
 
     if let choice = self.type {
       switch choice {
       case .userPassword(let value):
-        try container.encode(value, forKey: .userPassword)
+        try container.encodeIfPresent(value, forKey: .userPassword)
       case .oauth2JwtBearer(let value):
-        try container.encode(value, forKey: .oauth2JwtBearer)
+        try container.encodeIfPresent(value, forKey: .oauth2JwtBearer)
       case .oauth2ClientCredentials(let value):
-        try container.encode(value, forKey: .oauth2ClientCredentials)
+        try container.encodeIfPresent(value, forKey: .oauth2ClientCredentials)
       case .sshPublicKey(let value):
-        try container.encode(value, forKey: .sshPublicKey)
+        try container.encodeIfPresent(value, forKey: .sshPublicKey)
       }
     }
     for (key, value) in self._unknownFields.json {

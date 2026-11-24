@@ -220,7 +220,9 @@ public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.backupRules, forKey: .backupRules)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupPlan.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.resourceType, forKey: .resourceType)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.backupVault, forKey: .backupVault)

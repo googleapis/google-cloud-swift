@@ -112,11 +112,11 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.policy {
       switch choice {
       case .dailyMaintenanceWindow(let value):
-        try container.encode(value, forKey: .dailyMaintenanceWindow)
+        try container.encodeIfPresent(value, forKey: .dailyMaintenanceWindow)
       case .recurringWindow(let value):
-        try container.encode(value, forKey: .recurringWindow)
+        try container.encodeIfPresent(value, forKey: .recurringWindow)
       case .recurringMaintenanceWindow(let value):
-        try container.encode(value, forKey: .recurringMaintenanceWindow)
+        try container.encodeIfPresent(value, forKey: .recurringMaintenanceWindow)
       }
     }
     for (key, value) in self._unknownFields.json {

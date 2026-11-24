@@ -663,9 +663,9 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.facetValue {
           switch choice {
           case .value(let value):
-            try container.encode(value, forKey: .value)
+            try container.encodeIfPresent(value, forKey: .value)
           case .interval(let value):
-            try container.encode(value, forKey: .interval)
+            try container.encodeIfPresent(value, forKey: .interval)
           }
         }
         for (key, value) in self._unknownFields.json {

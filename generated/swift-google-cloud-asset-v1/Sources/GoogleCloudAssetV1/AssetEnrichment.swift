@@ -86,7 +86,7 @@ public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.enrichmentData {
       switch choice {
       case .resourceOwners(let value):
-        try container.encode(value, forKey: .resourceOwners)
+        try container.encodeIfPresent(value, forKey: .resourceOwners)
       }
     }
     for (key, value) in self._unknownFields.json {

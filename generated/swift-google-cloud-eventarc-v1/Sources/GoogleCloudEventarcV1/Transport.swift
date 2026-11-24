@@ -85,7 +85,7 @@ public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.intermediary {
       switch choice {
       case .pubsub(let value):
-        try container.encode(value, forKey: .pubsub)
+        try container.encodeIfPresent(value, forKey: .pubsub)
       }
     }
     for (key, value) in self._unknownFields.json {

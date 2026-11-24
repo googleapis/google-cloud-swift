@@ -92,9 +92,9 @@
       if let choice = self.keyOneof {
         switch choice {
         case .key(let value):
-          try container.encode(value, forKey: .key)
+          try container.encodeIfPresent(value, forKey: .key)
         case .compositeKey(let value):
-          try container.encode(value, forKey: .compositeKey)
+          try container.encodeIfPresent(value, forKey: .compositeKey)
         }
       }
       for (key, value) in self._unknownFields.json {

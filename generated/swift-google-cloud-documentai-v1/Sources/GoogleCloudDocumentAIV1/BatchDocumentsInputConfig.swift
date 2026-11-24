@@ -91,9 +91,9 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.source {
       switch choice {
       case .gcsPrefix(let value):
-        try container.encode(value, forKey: .gcsPrefix)
+        try container.encodeIfPresent(value, forKey: .gcsPrefix)
       case .gcsDocuments(let value):
-        try container.encode(value, forKey: .gcsDocuments)
+        try container.encodeIfPresent(value, forKey: .gcsDocuments)
       }
     }
     for (key, value) in self._unknownFields.json {

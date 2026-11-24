@@ -110,15 +110,15 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .storageSource(let value):
-        try container.encode(value, forKey: .storageSource)
+        try container.encodeIfPresent(value, forKey: .storageSource)
       case .repoSource(let value):
-        try container.encode(value, forKey: .repoSource)
+        try container.encodeIfPresent(value, forKey: .repoSource)
       case .gitSource(let value):
-        try container.encode(value, forKey: .gitSource)
+        try container.encodeIfPresent(value, forKey: .gitSource)
       case .storageSourceManifest(let value):
-        try container.encode(value, forKey: .storageSourceManifest)
+        try container.encodeIfPresent(value, forKey: .storageSourceManifest)
       case .connectedRepository(let value):
-        try container.encode(value, forKey: .connectedRepository)
+        try container.encodeIfPresent(value, forKey: .connectedRepository)
       }
     }
     for (key, value) in self._unknownFields.json {

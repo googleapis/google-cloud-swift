@@ -196,11 +196,15 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.role, forKey: .role)
+      if self.role != Participant.Role() {
+        try container.encode(self.role, forKey: .role)
+      }
       try container.encode(self.sipRecordingMediaLabel, forKey: .sipRecordingMediaLabel)
       try container.encode(self.obfuscatedExternalUserId, forKey: .obfuscatedExternalUserId)
       try container.encode(self.documentsMetadataFilters, forKey: .documentsMetadataFilters)
-      try container.encode(self.agentDesktopSource, forKey: .agentDesktopSource)
+      if self.agentDesktopSource != Participant.AgentDesktopSource() {
+        try container.encode(self.agentDesktopSource, forKey: .agentDesktopSource)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -276,7 +276,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.measure {
           switch choice {
           case .conversationMeasure(let value):
-            try container.encode(value, forKey: .conversationMeasure)
+            try container.encodeIfPresent(value, forKey: .conversationMeasure)
           }
         }
         for (key, value) in self._unknownFields.json {

@@ -253,9 +253,9 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.result {
         switch choice {
         case .workflowInvocation(let value):
-          try container.encode(value, forKey: .workflowInvocation)
+          try container.encodeIfPresent(value, forKey: .workflowInvocation)
         case .errorStatus(let value):
-          try container.encode(value, forKey: .errorStatus)
+          try container.encodeIfPresent(value, forKey: .errorStatus)
         }
       }
       for (key, value) in self._unknownFields.json {

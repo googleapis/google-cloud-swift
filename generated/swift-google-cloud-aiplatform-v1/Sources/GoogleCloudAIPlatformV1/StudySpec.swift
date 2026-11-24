@@ -160,19 +160,25 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.metrics, forKey: .metrics)
       try container.encode(self.parameters, forKey: .parameters)
-      try container.encode(self.algorithm, forKey: .algorithm)
-      try container.encode(self.observationNoise, forKey: .observationNoise)
-      try container.encode(self.measurementSelectionType, forKey: .measurementSelectionType)
+      if self.algorithm != StudySpec.Algorithm() {
+        try container.encode(self.algorithm, forKey: .algorithm)
+      }
+      if self.observationNoise != StudySpec.ObservationNoise() {
+        try container.encode(self.observationNoise, forKey: .observationNoise)
+      }
+      if self.measurementSelectionType != StudySpec.MeasurementSelectionType() {
+        try container.encode(self.measurementSelectionType, forKey: .measurementSelectionType)
+      }
       try container.encodeIfPresent(self.studyStoppingConfig, forKey: .studyStoppingConfig)
 
       if let choice = self.automatedStoppingSpec {
         switch choice {
         case .decayCurveStoppingSpec(let value):
-          try container.encode(value, forKey: .decayCurveStoppingSpec)
+          try container.encodeIfPresent(value, forKey: .decayCurveStoppingSpec)
         case .medianAutomatedStoppingSpec(let value):
-          try container.encode(value, forKey: .medianAutomatedStoppingSpec)
+          try container.encodeIfPresent(value, forKey: .medianAutomatedStoppingSpec)
         case .convexAutomatedStoppingSpec(let value):
-          try container.encode(value, forKey: .convexAutomatedStoppingSpec)
+          try container.encodeIfPresent(value, forKey: .convexAutomatedStoppingSpec)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -252,7 +258,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.metricId, forKey: .metricId)
-        try container.encode(self.goal, forKey: .goal)
+        if self.goal != StudySpec.MetricSpec.GoalType() {
+          try container.encode(self.goal, forKey: .goal)
+        }
         try container.encodeIfPresent(self.safetyConfig, forKey: .safetyConfig)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -618,19 +626,21 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.parameterId, forKey: .parameterId)
-        try container.encode(self.scaleType, forKey: .scaleType)
+        if self.scaleType != StudySpec.ParameterSpec.ScaleType() {
+          try container.encode(self.scaleType, forKey: .scaleType)
+        }
         try container.encode(self.conditionalParameterSpecs, forKey: .conditionalParameterSpecs)
 
         if let choice = self.parameterValueSpec {
           switch choice {
           case .doubleValueSpec(let value):
-            try container.encode(value, forKey: .doubleValueSpec)
+            try container.encodeIfPresent(value, forKey: .doubleValueSpec)
           case .integerValueSpec(let value):
-            try container.encode(value, forKey: .integerValueSpec)
+            try container.encodeIfPresent(value, forKey: .integerValueSpec)
           case .categoricalValueSpec(let value):
-            try container.encode(value, forKey: .categoricalValueSpec)
+            try container.encodeIfPresent(value, forKey: .categoricalValueSpec)
           case .discreteValueSpec(let value):
-            try container.encode(value, forKey: .discreteValueSpec)
+            try container.encodeIfPresent(value, forKey: .discreteValueSpec)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1131,11 +1141,11 @@
           if let choice = self.parentValueCondition {
             switch choice {
             case .parentDiscreteValues(let value):
-              try container.encode(value, forKey: .parentDiscreteValues)
+              try container.encodeIfPresent(value, forKey: .parentDiscreteValues)
             case .parentIntValues(let value):
-              try container.encode(value, forKey: .parentIntValues)
+              try container.encodeIfPresent(value, forKey: .parentIntValues)
             case .parentCategoricalValues(let value):
-              try container.encode(value, forKey: .parentCategoricalValues)
+              try container.encodeIfPresent(value, forKey: .parentCategoricalValues)
             }
           }
           for (key, value) in self._unknownFields.json {

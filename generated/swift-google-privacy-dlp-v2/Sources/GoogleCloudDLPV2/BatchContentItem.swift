@@ -87,7 +87,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.batch {
       switch choice {
       case .stringValueBatch(let value):
-        try container.encode(value, forKey: .stringValueBatch)
+        try container.encodeIfPresent(value, forKey: .stringValueBatch)
       }
     }
     for (key, value) in self._unknownFields.json {

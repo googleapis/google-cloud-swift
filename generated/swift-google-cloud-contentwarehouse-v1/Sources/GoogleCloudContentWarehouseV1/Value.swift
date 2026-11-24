@@ -123,19 +123,19 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .floatValue(let value):
-        try container.encode(value, forKey: .floatValue)
+        try container.encodeIfPresent(value, forKey: .floatValue)
       case .intValue(let value):
-        try container.encode(value, forKey: .intValue)
+        try container.encodeIfPresent(value, forKey: .intValue)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .enumValue(let value):
-        try container.encode(value, forKey: .enumValue)
+        try container.encodeIfPresent(value, forKey: .enumValue)
       case .datetimeValue(let value):
-        try container.encode(value, forKey: .datetimeValue)
+        try container.encodeIfPresent(value, forKey: .datetimeValue)
       case .timestampValue(let value):
-        try container.encode(value, forKey: .timestampValue)
+        try container.encodeIfPresent(value, forKey: .timestampValue)
       case .booleanValue(let value):
-        try container.encode(value, forKey: .booleanValue)
+        try container.encodeIfPresent(value, forKey: .booleanValue)
       }
     }
     for (key, value) in self._unknownFields.json {

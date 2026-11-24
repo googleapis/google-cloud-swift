@@ -131,7 +131,9 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.modes, forKey: .modes)
     try container.encode(self.reservedIpRange, forKey: .reservedIpRange)
     try container.encode(self.ipAddresses, forKey: .ipAddresses)
-    try container.encode(self.connectMode, forKey: .connectMode)
+    if self.connectMode != NetworkConfig.ConnectMode() {
+      try container.encode(self.connectMode, forKey: .connectMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

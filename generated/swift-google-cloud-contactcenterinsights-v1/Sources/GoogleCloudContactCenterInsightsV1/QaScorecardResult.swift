@@ -361,7 +361,9 @@ public struct QaScorecardResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sourceType, forKey: .sourceType)
+      if self.sourceType != QaScorecardResult.ScoreSource.SourceType() {
+        try container.encode(self.sourceType, forKey: .sourceType)
+      }
       try container.encodeIfPresent(self.score, forKey: .score)
       try container.encodeIfPresent(self.potentialScore, forKey: .potentialScore)
       try container.encodeIfPresent(self.normalizedScore, forKey: .normalizedScore)

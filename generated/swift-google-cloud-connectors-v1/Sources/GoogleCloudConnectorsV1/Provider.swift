@@ -156,7 +156,9 @@ public struct Provider: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.webAssetsLocation, forKey: .webAssetsLocation)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleCloudConnectorsV1.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -123,7 +123,9 @@ public struct LabelDetectionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.labelDetectionMode, forKey: .labelDetectionMode)
+    if self.labelDetectionMode != LabelDetectionMode() {
+      try container.encode(self.labelDetectionMode, forKey: .labelDetectionMode)
+    }
     try container.encode(self.stationaryCamera, forKey: .stationaryCamera)
     try container.encode(self.model, forKey: .model)
     try container.encode(self.frameConfidenceThreshold, forKey: .frameConfidenceThreshold)

@@ -280,7 +280,9 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.acceleratorType, forKey: .acceleratorType)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Node.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.healthDescription, forKey: .healthDescription)
     try container.encode(self.runtimeVersion, forKey: .runtimeVersion)
     try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
@@ -290,13 +292,17 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.schedulingConfig, forKey: .schedulingConfig)
     try container.encode(self.networkEndpoints, forKey: .networkEndpoints)
-    try container.encode(self.health, forKey: .health)
+    if self.health != Node.Health() {
+      try container.encode(self.health, forKey: .health)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.metadata, forKey: .metadata)
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.dataDisks, forKey: .dataDisks)
-    try container.encode(self.apiVersion, forKey: .apiVersion)
+    if self.apiVersion != Node.ApiVersion() {
+      try container.encode(self.apiVersion, forKey: .apiVersion)
+    }
     try container.encode(self.symptoms, forKey: .symptoms)
     try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
     try container.encodeIfPresent(self.acceleratorConfig, forKey: .acceleratorConfig)

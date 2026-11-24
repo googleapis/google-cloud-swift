@@ -178,9 +178,9 @@
         if let choice = self.vectorDbThreshold {
           switch choice {
           case .vectorDistanceThreshold(let value):
-            try container.encode(value, forKey: .vectorDistanceThreshold)
+            try container.encodeIfPresent(value, forKey: .vectorDistanceThreshold)
           case .vectorSimilarityThreshold(let value):
-            try container.encode(value, forKey: .vectorSimilarityThreshold)
+            try container.encodeIfPresent(value, forKey: .vectorSimilarityThreshold)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -298,9 +298,9 @@
         if let choice = self.rankingConfig {
           switch choice {
           case .rankService(let value):
-            try container.encode(value, forKey: .rankService)
+            try container.encodeIfPresent(value, forKey: .rankService)
           case .llmRanker(let value):
-            try container.encode(value, forKey: .llmRanker)
+            try container.encodeIfPresent(value, forKey: .llmRanker)
           }
         }
         for (key, value) in self._unknownFields.json {

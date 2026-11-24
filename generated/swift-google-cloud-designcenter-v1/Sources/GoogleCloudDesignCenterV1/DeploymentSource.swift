@@ -94,9 +94,9 @@ public struct DeploymentSource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .applicationTemplateRevision(let value):
-        try container.encode(value, forKey: .applicationTemplateRevision)
+        try container.encodeIfPresent(value, forKey: .applicationTemplateRevision)
       case .sharedTemplateRevisionUri(let value):
-        try container.encode(value, forKey: .sharedTemplateRevisionUri)
+        try container.encodeIfPresent(value, forKey: .sharedTemplateRevisionUri)
       }
     }
     for (key, value) in self._unknownFields.json {

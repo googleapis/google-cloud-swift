@@ -104,11 +104,11 @@ public struct QuasiId: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.tag {
       switch choice {
       case .infoType(let value):
-        try container.encode(value, forKey: .infoType)
+        try container.encodeIfPresent(value, forKey: .infoType)
       case .customTag(let value):
-        try container.encode(value, forKey: .customTag)
+        try container.encodeIfPresent(value, forKey: .customTag)
       case .inferred(let value):
-        try container.encode(value, forKey: .inferred)
+        try container.encodeIfPresent(value, forKey: .inferred)
       }
     }
     for (key, value) in self._unknownFields.json {

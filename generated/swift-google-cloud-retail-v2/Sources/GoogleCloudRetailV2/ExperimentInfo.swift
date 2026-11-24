@@ -98,7 +98,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.experimentMetadata {
       switch choice {
       case .servingConfigExperiment(let value):
-        try container.encode(value, forKey: .servingConfigExperiment)
+        try container.encodeIfPresent(value, forKey: .servingConfigExperiment)
       }
     }
     for (key, value) in self._unknownFields.json {

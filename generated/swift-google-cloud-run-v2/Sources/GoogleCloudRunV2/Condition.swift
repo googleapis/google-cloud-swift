@@ -148,21 +148,25 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Condition.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.message, forKey: .message)
     try container.encodeIfPresent(self.lastTransitionTime, forKey: .lastTransitionTime)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != Condition.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
 
     if let choice = self.reasons {
       switch choice {
       case .reason(let value):
-        try container.encode(value, forKey: .reason)
+        try container.encodeIfPresent(value, forKey: .reason)
       case .revisionReason(let value):
-        try container.encode(value, forKey: .revisionReason)
+        try container.encodeIfPresent(value, forKey: .revisionReason)
       case .executionReason(let value):
-        try container.encode(value, forKey: .executionReason)
+        try container.encodeIfPresent(value, forKey: .executionReason)
       case .instanceReason(let value):
-        try container.encode(value, forKey: .instanceReason)
+        try container.encodeIfPresent(value, forKey: .instanceReason)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -217,7 +217,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.resourcePools, forKey: .resourcePools)
-      try container.encode(self.state, forKey: .state)
+      if self.state != PersistentResource.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)

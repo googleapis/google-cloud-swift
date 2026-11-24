@@ -118,7 +118,9 @@ public struct MigrationWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.tasks, forKey: .tasks)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MigrationWorkflow.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
     for (key, value) in self._unknownFields.json {

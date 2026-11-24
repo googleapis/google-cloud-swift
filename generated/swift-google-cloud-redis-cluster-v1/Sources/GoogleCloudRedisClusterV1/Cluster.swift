@@ -367,18 +367,26 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Cluster.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encodeIfPresent(self.replicaCount, forKey: .replicaCount)
-    try container.encode(self.authorizationMode, forKey: .authorizationMode)
-    try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    if self.authorizationMode != AuthorizationMode() {
+      try container.encode(self.authorizationMode, forKey: .authorizationMode)
+    }
+    if self.transitEncryptionMode != TransitEncryptionMode() {
+      try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    }
     try container.encodeIfPresent(self.sizeGb, forKey: .sizeGb)
     try container.encodeIfPresent(self.shardCount, forKey: .shardCount)
     try container.encode(self.pscConfigs, forKey: .pscConfigs)
     try container.encode(self.discoveryEndpoints, forKey: .discoveryEndpoints)
     try container.encode(self.pscConnections, forKey: .pscConnections)
     try container.encodeIfPresent(self.stateInfo, forKey: .stateInfo)
-    try container.encode(self.nodeType, forKey: .nodeType)
+    if self.nodeType != NodeType() {
+      try container.encode(self.nodeType, forKey: .nodeType)
+    }
     try container.encodeIfPresent(self.persistenceConfig, forKey: .persistenceConfig)
     try container.encode(self.redisConfigs, forKey: .redisConfigs)
     try container.encodeIfPresent(self.preciseSizeGb, forKey: .preciseSizeGb)
@@ -406,9 +414,9 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.importSources {
       switch choice {
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       case .managedBackupSource(let value):
-        try container.encode(value, forKey: .managedBackupSource)
+        try container.encodeIfPresent(value, forKey: .managedBackupSource)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -485,7 +493,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.info {
         switch choice {
         case .updateInfo(let value):
-          try container.encode(value, forKey: .updateInfo)
+          try container.encodeIfPresent(value, forKey: .updateInfo)
         }
       }
       for (key, value) in self._unknownFields.json {

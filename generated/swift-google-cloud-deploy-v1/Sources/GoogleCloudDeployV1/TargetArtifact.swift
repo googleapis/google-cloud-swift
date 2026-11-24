@@ -115,7 +115,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.uri {
       switch choice {
       case .artifactUri(let value):
-        try container.encode(value, forKey: .artifactUri)
+        try container.encodeIfPresent(value, forKey: .artifactUri)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -92,7 +92,9 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bigqueryInputConfigs, forKey: .bigqueryInputConfigs)
-    try container.encode(self.entityType, forKey: .entityType)
+    if self.entityType != InputConfig.EntityType() {
+      try container.encode(self.entityType, forKey: .entityType)
+    }
     try container.encode(self.previousResultBigqueryTable, forKey: .previousResultBigqueryTable)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

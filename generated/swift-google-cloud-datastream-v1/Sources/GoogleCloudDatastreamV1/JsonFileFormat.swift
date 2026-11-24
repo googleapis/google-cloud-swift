@@ -81,8 +81,12 @@ public struct JsonFileFormat: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.schemaFileFormat, forKey: .schemaFileFormat)
-    try container.encode(self.compression, forKey: .compression)
+    if self.schemaFileFormat != JsonFileFormat.SchemaFileFormat() {
+      try container.encode(self.schemaFileFormat, forKey: .schemaFileFormat)
+    }
+    if self.compression != JsonFileFormat.JsonCompression() {
+      try container.encode(self.compression, forKey: .compression)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -119,7 +119,9 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.editionConfig, forKey: .editionConfig)
+    if self.editionConfig != IntelligenceConfig.EditionConfig() {
+      try container.encode(self.editionConfig, forKey: .editionConfig)
+    }
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.filter, forKey: .filter)
     try container.encodeIfPresent(
@@ -246,18 +248,18 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.cloudStorageLocations {
         switch choice {
         case .includedCloudStorageLocations(let value):
-          try container.encode(value, forKey: .includedCloudStorageLocations)
+          try container.encodeIfPresent(value, forKey: .includedCloudStorageLocations)
         case .excludedCloudStorageLocations(let value):
-          try container.encode(value, forKey: .excludedCloudStorageLocations)
+          try container.encodeIfPresent(value, forKey: .excludedCloudStorageLocations)
         }
       }
 
       if let choice = self.cloudStorageBuckets {
         switch choice {
         case .includedCloudStorageBuckets(let value):
-          try container.encode(value, forKey: .includedCloudStorageBuckets)
+          try container.encodeIfPresent(value, forKey: .includedCloudStorageBuckets)
         case .excludedCloudStorageBuckets(let value):
-          try container.encode(value, forKey: .excludedCloudStorageBuckets)
+          try container.encodeIfPresent(value, forKey: .excludedCloudStorageBuckets)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -542,7 +544,10 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.effectiveEdition, forKey: .effectiveEdition)
+      if self.effectiveEdition != IntelligenceConfig.EffectiveIntelligenceConfig.EffectiveEdition()
+      {
+        try container.encode(self.effectiveEdition, forKey: .effectiveEdition)
+      }
       try container.encode(self.intelligenceConfig, forKey: .intelligenceConfig)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

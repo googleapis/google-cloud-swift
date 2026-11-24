@@ -152,7 +152,9 @@ public struct DataProfileFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.findingId, forKey: .findingId)
     try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
     try container.encodeIfPresent(self.location, forKey: .location)
-    try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    if self.resourceVisibility != ResourceVisibility() {
+      try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    }
     try container.encode(self.fullResourceName, forKey: .fullResourceName)
     try container.encodeIfPresent(self.dataSourceType, forKey: .dataSourceType)
     for (key, value) in self._unknownFields.json {

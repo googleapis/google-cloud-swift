@@ -151,7 +151,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.alertId, forKey: .alertId)
-        try container.encode(self.enrollState, forKey: .enrollState)
+        if self.enrollState != AlertPolicyConfig.AlertEnrollment.EnrollStates() {
+          try container.encode(self.enrollState, forKey: .enrollState)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

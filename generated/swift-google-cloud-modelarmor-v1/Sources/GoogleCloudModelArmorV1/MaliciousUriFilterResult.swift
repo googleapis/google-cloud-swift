@@ -101,9 +101,13 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleWKT._AnyPackab
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.executionState, forKey: .executionState)
+    if self.executionState != FilterExecutionState() {
+      try container.encode(self.executionState, forKey: .executionState)
+    }
     try container.encode(self.messageItems, forKey: .messageItems)
-    try container.encode(self.matchState, forKey: .matchState)
+    if self.matchState != FilterMatchState() {
+      try container.encode(self.matchState, forKey: .matchState)
+    }
     try container.encode(self.maliciousUriMatchedItems, forKey: .maliciousUriMatchedItems)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

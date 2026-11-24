@@ -144,7 +144,9 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.username, forKey: .username)
     try container.encode(self.customerServiceAccount, forKey: .customerServiceAccount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != User.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.userCredentials, forKey: .userCredentials)
     try container.encode(self.storageDirectoryMappings, forKey: .storageDirectoryMappings)
     for (key, value) in self._unknownFields.json {

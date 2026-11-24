@@ -81,8 +81,12 @@ public struct SuggestionStep: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.suggestionType, forKey: .suggestionType)
-    try container.encode(self.rewriteTarget, forKey: .rewriteTarget)
+    if self.suggestionType != SuggestionStep.SuggestionType() {
+      try container.encode(self.suggestionType, forKey: .suggestionType)
+    }
+    if self.rewriteTarget != SuggestionStep.RewriteTarget() {
+      try container.encode(self.rewriteTarget, forKey: .rewriteTarget)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

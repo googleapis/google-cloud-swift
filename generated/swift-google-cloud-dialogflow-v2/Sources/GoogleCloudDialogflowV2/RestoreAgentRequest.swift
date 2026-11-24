@@ -106,9 +106,9 @@
       if let choice = self.agent {
         switch choice {
         case .agentUri(let value):
-          try container.encode(value, forKey: .agentUri)
+          try container.encodeIfPresent(value, forKey: .agentUri)
         case .agentContent(let value):
-          try container.encode(value, forKey: .agentContent)
+          try container.encodeIfPresent(value, forKey: .agentContent)
         }
       }
       for (key, value) in self._unknownFields.json {

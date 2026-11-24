@@ -188,8 +188,12 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.turns, forKey: .turns)
     try container.encode(self.turnCount, forKey: .turnCount)
-    try container.encode(self.channelType, forKey: .channelType)
-    try container.encode(self.source, forKey: .source)
+    if self.channelType != Conversation.ChannelType() {
+      try container.encode(self.channelType, forKey: .channelType)
+    }
+    if self.source != Conversation.Source() {
+      try container.encode(self.source, forKey: .source)
+    }
     try container.encode(self.inputTypes, forKey: .inputTypes)
     try container.encode(self.entryAgent, forKey: .entryAgent)
     try container.encode(self.deployment, forKey: .deployment)

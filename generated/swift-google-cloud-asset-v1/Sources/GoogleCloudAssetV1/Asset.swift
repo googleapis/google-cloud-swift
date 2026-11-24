@@ -238,11 +238,11 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.accessContextPolicy {
       switch choice {
       case .accessPolicy(let value):
-        try container.encode(value, forKey: .accessPolicy)
+        try container.encodeIfPresent(value, forKey: .accessPolicy)
       case .accessLevel(let value):
-        try container.encode(value, forKey: .accessLevel)
+        try container.encodeIfPresent(value, forKey: .accessLevel)
       case .servicePerimeter(let value):
-        try container.encode(value, forKey: .servicePerimeter)
+        try container.encodeIfPresent(value, forKey: .servicePerimeter)
       }
     }
     for (key, value) in self._unknownFields.json {

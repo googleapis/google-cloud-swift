@@ -105,7 +105,7 @@
       if let choice = self.runtimeImage {
         switch choice {
         case .colabImage(let value):
-          try container.encode(value, forKey: .colabImage)
+          try container.encodeIfPresent(value, forKey: .colabImage)
         }
       }
       for (key, value) in self._unknownFields.json {

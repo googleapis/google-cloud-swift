@@ -172,9 +172,15 @@ public struct RestoreTemplateExecution: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.resourceType, forKey: .resourceType)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.phase, forKey: .phase)
-    try container.encode(self.state, forKey: .state)
+    if self.type != RestoreTemplateExecution.ExecutionType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.phase != RestoreTemplateExecution.ExecutionPhase() {
+      try container.encode(self.phase, forKey: .phase)
+    }
+    if self.state != RestoreTemplateExecution.ExecutionState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.preparePhaseInfo, forKey: .preparePhaseInfo)
     try container.encodeIfPresent(self.preRestorePhaseInfo, forKey: .preRestorePhaseInfo)
     try container.encodeIfPresent(self.restorePhaseInfo, forKey: .restorePhaseInfo)

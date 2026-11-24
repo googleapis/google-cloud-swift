@@ -99,9 +99,9 @@
       if let choice = self.agentService {
         switch choice {
         case .livePersonConfig(let value):
-          try container.encode(value, forKey: .livePersonConfig)
+          try container.encodeIfPresent(value, forKey: .livePersonConfig)
         case .salesforceLiveAgentConfig(let value):
-          try container.encode(value, forKey: .salesforceLiveAgentConfig)
+          try container.encodeIfPresent(value, forKey: .salesforceLiveAgentConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

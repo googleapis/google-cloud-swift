@@ -206,7 +206,9 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encodeIfPresent(self.sameProcessAsParentSpan, forKey: .sameProcessAsParentSpan)
     try container.encodeIfPresent(self.childSpanCount, forKey: .childSpanCount)
-    try container.encode(self.spanKind, forKey: .spanKind)
+    if self.spanKind != Span.SpanKind() {
+      try container.encode(self.spanKind, forKey: .spanKind)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -398,9 +400,9 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.value {
         switch choice {
         case .annotation(let value):
-          try container.encode(value, forKey: .annotation)
+          try container.encodeIfPresent(value, forKey: .annotation)
         case .messageEvent(let value):
-          try container.encode(value, forKey: .messageEvent)
+          try container.encodeIfPresent(value, forKey: .messageEvent)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -581,7 +583,9 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.type, forKey: .type)
+        if self.type != Span.TimeEvent.MessageEvent.Type_() {
+          try container.encode(self.type, forKey: .type)
+        }
         try container.encode(self.id, forKey: .id)
         try container.encode(self.uncompressedSizeBytes, forKey: .uncompressedSizeBytes)
         try container.encode(self.compressedSizeBytes, forKey: .compressedSizeBytes)
@@ -946,7 +950,9 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.traceId, forKey: .traceId)
       try container.encode(self.spanId, forKey: .spanId)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Span.Link.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encodeIfPresent(self.attributes, forKey: .attributes)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

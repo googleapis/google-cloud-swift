@@ -160,7 +160,9 @@ public struct PluginInstance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.authConfig, forKey: .authConfig)
     try container.encode(self.additionalConfig, forKey: .additionalConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PluginInstance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.errorMessage, forKey: .errorMessage)
     try container.encode(self.actions, forKey: .actions)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

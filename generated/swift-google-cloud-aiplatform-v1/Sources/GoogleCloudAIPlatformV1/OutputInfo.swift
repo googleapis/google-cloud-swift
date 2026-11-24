@@ -88,7 +88,7 @@
       if let choice = self.outputLocation {
         switch choice {
         case .gcsOutputDirectory(let value):
-          try container.encode(value, forKey: .gcsOutputDirectory)
+          try container.encodeIfPresent(value, forKey: .gcsOutputDirectory)
         }
       }
       for (key, value) in self._unknownFields.json {

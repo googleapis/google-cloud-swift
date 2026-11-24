@@ -109,7 +109,9 @@ public struct FlexibleInstanceGroupConfig: Codable, Equatable, GoogleWKT._AnyPac
     try container.encode(self.numInstances, forKey: .numInstances)
     try container.encode(self.coreCount, forKey: .coreCount)
     try container.encode(self.bootDiskSizeGb, forKey: .bootDiskSizeGb)
-    try container.encode(self.hardwareClass, forKey: .hardwareClass)
+    if self.hardwareClass != FlexibleInstanceGroupConfig.HardwareClass() {
+      try container.encode(self.hardwareClass, forKey: .hardwareClass)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -207,7 +207,9 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.offer, forKey: .offer)
     try container.encodeIfPresent(self.commitmentSettings, forKey: .commitmentSettings)
-    try container.encode(self.provisioningState, forKey: .provisioningState)
+    if self.provisioningState != Entitlement.ProvisioningState() {
+      try container.encode(self.provisioningState, forKey: .provisioningState)
+    }
     try container.encodeIfPresent(self.provisionedService, forKey: .provisionedService)
     try container.encode(self.suspensionReasons, forKey: .suspensionReasons)
     try container.encode(self.purchaseOrderId, forKey: .purchaseOrderId)

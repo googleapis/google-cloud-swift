@@ -131,7 +131,9 @@ public struct DataSourceReference: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.dataSource, forKey: .dataSource)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.dataSourceBackupConfigState, forKey: .dataSourceBackupConfigState)
+    if self.dataSourceBackupConfigState != BackupConfigState() {
+      try container.encode(self.dataSourceBackupConfigState, forKey: .dataSourceBackupConfigState)
+    }
     try container.encode(self.dataSourceBackupCount, forKey: .dataSourceBackupCount)
     try container.encodeIfPresent(
       self.dataSourceBackupConfigInfo, forKey: .dataSourceBackupConfigInfo)

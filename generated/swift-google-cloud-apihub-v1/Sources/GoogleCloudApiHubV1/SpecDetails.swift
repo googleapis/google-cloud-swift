@@ -96,7 +96,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.details {
       switch choice {
       case .openApiSpecDetails(let value):
-        try container.encode(value, forKey: .openApiSpecDetails)
+        try container.encodeIfPresent(value, forKey: .openApiSpecDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

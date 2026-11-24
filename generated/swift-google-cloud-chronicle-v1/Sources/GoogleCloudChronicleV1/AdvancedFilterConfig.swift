@@ -220,9 +220,9 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.source {
         switch choice {
         case .manualOptions(let value):
-          try container.encode(value, forKey: .manualOptions)
+          try container.encodeIfPresent(value, forKey: .manualOptions)
         case .queryOptions(let value):
-          try container.encode(value, forKey: .queryOptions)
+          try container.encodeIfPresent(value, forKey: .queryOptions)
         }
       }
       for (key, value) in self._unknownFields.json {

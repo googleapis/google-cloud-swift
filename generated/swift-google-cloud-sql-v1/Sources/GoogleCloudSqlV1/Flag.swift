@@ -189,7 +189,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.type, forKey: .type)
+      if self.type != SqlFlagType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.appliesTo, forKey: .appliesTo)
       try container.encode(self.allowedStringValues, forKey: .allowedStringValues)
       try container.encodeIfPresent(self.minValue, forKey: .minValue)
@@ -198,14 +200,16 @@
       try container.encode(self.kind, forKey: .kind)
       try container.encodeIfPresent(self.inBeta, forKey: .inBeta)
       try container.encode(self.allowedIntValues, forKey: .allowedIntValues)
-      try container.encode(self.flagScope, forKey: .flagScope)
+      if self.flagScope != SqlFlagScope() {
+        try container.encode(self.flagScope, forKey: .flagScope)
+      }
 
       if let choice = self.recommendedValue {
         switch choice {
         case .recommendedStringValue(let value):
-          try container.encode(value, forKey: .recommendedStringValue)
+          try container.encodeIfPresent(value, forKey: .recommendedStringValue)
         case .recommendedIntValue(let value):
-          try container.encode(value, forKey: .recommendedIntValue)
+          try container.encodeIfPresent(value, forKey: .recommendedIntValue)
         }
       }
       for (key, value) in self._unknownFields.json {

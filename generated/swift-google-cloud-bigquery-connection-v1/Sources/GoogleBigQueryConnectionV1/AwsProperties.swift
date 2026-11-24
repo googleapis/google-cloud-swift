@@ -98,9 +98,9 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authenticationMethod {
       switch choice {
       case .crossAccountRole(let value):
-        try container.encode(value, forKey: .crossAccountRole)
+        try container.encodeIfPresent(value, forKey: .crossAccountRole)
       case .accessRole(let value):
-        try container.encode(value, forKey: .accessRole)
+        try container.encodeIfPresent(value, forKey: .accessRole)
       }
     }
     for (key, value) in self._unknownFields.json {

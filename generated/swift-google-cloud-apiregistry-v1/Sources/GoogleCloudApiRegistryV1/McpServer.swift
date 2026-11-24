@@ -123,7 +123,9 @@ public struct McpServer: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.urls, forKey: .urls)
     try container.encodeIfPresent(self.capabilities, forKey: .capabilities)
-    try container.encode(self.state, forKey: .state)
+    if self.state != State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

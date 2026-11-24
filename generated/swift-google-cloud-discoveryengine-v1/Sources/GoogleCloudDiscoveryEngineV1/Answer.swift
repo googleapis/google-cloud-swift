@@ -178,7 +178,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Answer.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.answerText, forKey: .answerText)
       try container.encodeIfPresent(self.groundingScore, forKey: .groundingScore)
       try container.encode(self.citations, forKey: .citations)
@@ -586,11 +588,11 @@
         if let choice = self.content {
           switch choice {
           case .unstructuredDocumentInfo(let value):
-            try container.encode(value, forKey: .unstructuredDocumentInfo)
+            try container.encodeIfPresent(value, forKey: .unstructuredDocumentInfo)
           case .chunkInfo(let value):
-            try container.encode(value, forKey: .chunkInfo)
+            try container.encodeIfPresent(value, forKey: .chunkInfo)
           case .structuredDocumentInfo(let value):
-            try container.encode(value, forKey: .structuredDocumentInfo)
+            try container.encodeIfPresent(value, forKey: .structuredDocumentInfo)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1262,7 +1264,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.state, forKey: .state)
+        if self.state != Answer.Step.State() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encode(self.description, forKey: .description)
         try container.encode(self.thought, forKey: .thought)
         try container.encode(self.actions, forKey: .actions)
@@ -1349,7 +1353,7 @@
           if let choice = self.action {
             switch choice {
             case .searchAction(let value):
-              try container.encode(value, forKey: .searchAction)
+              try container.encodeIfPresent(value, forKey: .searchAction)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -2152,7 +2156,9 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.type, forKey: .type)
+          if self.type != Answer.QueryUnderstandingInfo.QueryClassificationInfo.Type_() {
+            try container.encode(self.type, forKey: .type)
+          }
           try container.encode(self.positive, forKey: .positive)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))

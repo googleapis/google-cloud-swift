@@ -91,12 +91,14 @@ public struct ExportIaCConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.iacFormat, forKey: .iacFormat)
+    if self.iacFormat != GoogleCloudDesignCenterV1.IACFormat() {
+      try container.encode(self.iacFormat, forKey: .iacFormat)
+    }
 
     if let choice = self.configPayload {
       switch choice {
       case .tfConfig(let value):
-        try container.encode(value, forKey: .tfConfig)
+        try container.encodeIfPresent(value, forKey: .tfConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

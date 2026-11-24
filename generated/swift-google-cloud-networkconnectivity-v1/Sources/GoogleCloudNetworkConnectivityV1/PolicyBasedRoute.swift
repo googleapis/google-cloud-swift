@@ -232,18 +232,18 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.target {
       switch choice {
       case .virtualMachine(let value):
-        try container.encode(value, forKey: .virtualMachine)
+        try container.encodeIfPresent(value, forKey: .virtualMachine)
       case .interconnectAttachment(let value):
-        try container.encode(value, forKey: .interconnectAttachment)
+        try container.encodeIfPresent(value, forKey: .interconnectAttachment)
       }
     }
 
     if let choice = self.nextHop {
       switch choice {
       case .nextHopIlbIp(let value):
-        try container.encode(value, forKey: .nextHopIlbIp)
+        try container.encodeIfPresent(value, forKey: .nextHopIlbIp)
       case .nextHopOtherRoutes(let value):
-        try container.encode(value, forKey: .nextHopOtherRoutes)
+        try container.encodeIfPresent(value, forKey: .nextHopOtherRoutes)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -502,7 +502,9 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.ipProtocol, forKey: .ipProtocol)
       try container.encode(self.srcRange, forKey: .srcRange)
       try container.encode(self.destRange, forKey: .destRange)
-      try container.encode(self.protocolVersion, forKey: .protocolVersion)
+      if self.protocolVersion != PolicyBasedRoute.Filter.ProtocolVersion() {
+        try container.encode(self.protocolVersion, forKey: .protocolVersion)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -716,7 +718,9 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.code, forKey: .code)
+      if self.code != PolicyBasedRoute.Warnings.Code() {
+        try container.encode(self.code, forKey: .code)
+      }
       try container.encode(self.data, forKey: .data)
       try container.encode(self.warningMessage, forKey: .warningMessage)
       for (key, value) in self._unknownFields.json {

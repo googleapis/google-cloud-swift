@@ -86,7 +86,9 @@ public struct GovernanceEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.message, forKey: .message)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != GovernanceEvent.EventType() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     try container.encodeIfPresent(self.entity, forKey: .entity)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -158,7 +160,9 @@ public struct GovernanceEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entity, forKey: .entity)
-      try container.encode(self.entityType, forKey: .entityType)
+      if self.entityType != GovernanceEvent.Entity.EntityType() {
+        try container.encode(self.entityType, forKey: .entityType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

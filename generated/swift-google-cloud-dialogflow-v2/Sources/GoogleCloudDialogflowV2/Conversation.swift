@@ -184,12 +184,16 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.lifecycleState, forKey: .lifecycleState)
+      if self.lifecycleState != Conversation.LifecycleState() {
+        try container.encode(self.lifecycleState, forKey: .lifecycleState)
+      }
       try container.encode(self.conversationProfile, forKey: .conversationProfile)
       try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
-      try container.encode(self.conversationStage, forKey: .conversationStage)
+      if self.conversationStage != Conversation.ConversationStage() {
+        try container.encode(self.conversationStage, forKey: .conversationStage)
+      }
       try container.encodeIfPresent(self.telephonyConnectionInfo, forKey: .telephonyConnectionInfo)
       try container.encodeIfPresent(
         self.initialConversationProfile, forKey: .initialConversationProfile)
@@ -576,7 +580,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.contextContents, forKey: .contextContents)
-        try container.encode(self.updateMode, forKey: .updateMode)
+        if self.updateMode != Conversation.ContextReference.UpdateMode() {
+          try container.encode(self.updateMode, forKey: .updateMode)
+        }
         try container.encode(self.languageCode, forKey: .languageCode)
         try container.encodeIfPresent(self.createTime, forKey: .createTime)
         for (key, value) in self._unknownFields.json {
@@ -666,7 +672,9 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.content, forKey: .content)
-          try container.encode(self.contentFormat, forKey: .contentFormat)
+          if self.contentFormat != Conversation.ContextReference.ContextContent.ContentFormat() {
+            try container.encode(self.contentFormat, forKey: .contentFormat)
+          }
           try container.encodeIfPresent(self.ingestionTime, forKey: .ingestionTime)
           try container.encode(self.answerRecord, forKey: .answerRecord)
           for (key, value) in self._unknownFields.json {
@@ -1008,7 +1016,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.generatorType, forKey: .generatorType)
+        if self.generatorType != Conversation.GeneratorContext.GeneratorType() {
+          try container.encode(self.generatorType, forKey: .generatorType)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

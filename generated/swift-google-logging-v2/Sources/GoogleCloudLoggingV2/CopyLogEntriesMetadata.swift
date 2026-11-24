@@ -119,7 +119,9 @@ public struct CopyLogEntriesMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != OperationState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.cancellationRequested, forKey: .cancellationRequested)
     try container.encodeIfPresent(self.request, forKey: .request)
     try container.encode(self.progress, forKey: .progress)

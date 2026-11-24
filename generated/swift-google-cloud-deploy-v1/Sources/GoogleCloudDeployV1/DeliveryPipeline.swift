@@ -197,7 +197,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.pipeline {
       switch choice {
       case .serialPipeline(let value):
-        try container.encode(value, forKey: .serialPipeline)
+        try container.encodeIfPresent(value, forKey: .serialPipeline)
       }
     }
     for (key, value) in self._unknownFields.json {

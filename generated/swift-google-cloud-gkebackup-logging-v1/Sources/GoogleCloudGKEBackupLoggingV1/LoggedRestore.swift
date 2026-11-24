@@ -108,7 +108,9 @@ public struct LoggedRestore: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.backup, forKey: .backup)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != LoggedRestore.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

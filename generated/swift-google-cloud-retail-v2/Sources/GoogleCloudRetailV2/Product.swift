@@ -762,7 +762,9 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Product.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.primaryProductId, forKey: .primaryProductId)
     try container.encode(self.collectionMemberIds, forKey: .collectionMemberIds)
     try container.encode(self.gtin, forKey: .gtin)
@@ -776,7 +778,9 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.priceInfo, forKey: .priceInfo)
     try container.encodeIfPresent(self.rating, forKey: .rating)
     try container.encodeIfPresent(self.availableTime, forKey: .availableTime)
-    try container.encode(self.availability, forKey: .availability)
+    if self.availability != Product.Availability() {
+      try container.encode(self.availability, forKey: .availability)
+    }
     try container.encodeIfPresent(self.availableQuantity, forKey: .availableQuantity)
     try container.encode(self.fulfillmentInfo, forKey: .fulfillmentInfo)
     try container.encode(self.uri, forKey: .uri)
@@ -796,9 +800,9 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.expiration {
       switch choice {
       case .expireTime(let value):
-        try container.encode(value, forKey: .expireTime)
+        try container.encodeIfPresent(value, forKey: .expireTime)
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       }
     }
     for (key, value) in self._unknownFields.json {

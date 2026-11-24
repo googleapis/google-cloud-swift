@@ -362,11 +362,15 @@ public struct StoragePool: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.serviceLevel, forKey: .serviceLevel)
+    if self.serviceLevel != ServiceLevel() {
+      try container.encode(self.serviceLevel, forKey: .serviceLevel)
+    }
     try container.encode(self.capacityGib, forKey: .capacityGib)
     try container.encode(self.volumeCapacityGib, forKey: .volumeCapacityGib)
     try container.encode(self.volumeCount, forKey: .volumeCount)
-    try container.encode(self.state, forKey: .state)
+    if self.state != StoragePool.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.description, forKey: .description)
@@ -376,7 +380,9 @@ public struct StoragePool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.kmsConfig, forKey: .kmsConfig)
     try container.encode(self.ldapEnabled, forKey: .ldapEnabled)
     try container.encode(self.psaRange, forKey: .psaRange)
-    try container.encode(self.encryptionType, forKey: .encryptionType)
+    if self.encryptionType != EncryptionType() {
+      try container.encode(self.encryptionType, forKey: .encryptionType)
+    }
     try container.encodeIfPresent(self.globalAccessAllowed, forKey: .globalAccessAllowed)
     try container.encode(self.allowAutoTiering, forKey: .allowAutoTiering)
     try container.encode(self.replicaZone, forKey: .replicaZone)
@@ -388,13 +394,17 @@ public struct StoragePool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.totalIops, forKey: .totalIops)
     try container.encode(self.hotTierSizeGib, forKey: .hotTierSizeGib)
     try container.encodeIfPresent(self.enableHotTierAutoResize, forKey: .enableHotTierAutoResize)
-    try container.encode(self.qosType, forKey: .qosType)
+    if self.qosType != QosType() {
+      try container.encode(self.qosType, forKey: .qosType)
+    }
     try container.encode(self.availableThroughputMibps, forKey: .availableThroughputMibps)
     try container.encode(self.coldTierSizeUsedGib, forKey: .coldTierSizeUsedGib)
     try container.encode(self.hotTierSizeUsedGib, forKey: .hotTierSizeUsedGib)
     try container.encodeIfPresent(self.type, forKey: .type)
     try container.encodeIfPresent(self.mode, forKey: .mode)
-    try container.encode(self.scaleType, forKey: .scaleType)
+    if self.scaleType != ScaleType() {
+      try container.encode(self.scaleType, forKey: .scaleType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

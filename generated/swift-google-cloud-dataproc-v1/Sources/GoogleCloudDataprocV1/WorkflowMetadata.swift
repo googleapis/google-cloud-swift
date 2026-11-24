@@ -188,7 +188,9 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createCluster, forKey: .createCluster)
     try container.encodeIfPresent(self.graph, forKey: .graph)
     try container.encodeIfPresent(self.deleteCluster, forKey: .deleteCluster)
-    try container.encode(self.state, forKey: .state)
+    if self.state != WorkflowMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.clusterName, forKey: .clusterName)
     try container.encode(self.parameters, forKey: .parameters)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)

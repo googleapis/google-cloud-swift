@@ -87,7 +87,7 @@ public struct EventFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.filter {
       switch choice {
       case .sqlWhereClause(let value):
-        try container.encode(value, forKey: .sqlWhereClause)
+        try container.encodeIfPresent(value, forKey: .sqlWhereClause)
       }
     }
     for (key, value) in self._unknownFields.json {

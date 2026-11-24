@@ -102,11 +102,11 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.dataProfile {
       switch choice {
       case .tableProfile(let value):
-        try container.encode(value, forKey: .tableProfile)
+        try container.encodeIfPresent(value, forKey: .tableProfile)
       case .columnProfile(let value):
-        try container.encode(value, forKey: .columnProfile)
+        try container.encodeIfPresent(value, forKey: .columnProfile)
       case .fileStoreProfile(let value):
-        try container.encode(value, forKey: .fileStoreProfile)
+        try container.encodeIfPresent(value, forKey: .fileStoreProfile)
       }
     }
     for (key, value) in self._unknownFields.json {

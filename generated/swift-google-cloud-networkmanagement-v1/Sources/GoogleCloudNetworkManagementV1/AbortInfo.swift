@@ -100,7 +100,9 @@ public struct AbortInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.cause, forKey: .cause)
+    if self.cause != AbortInfo.Cause() {
+      try container.encode(self.cause, forKey: .cause)
+    }
     try container.encode(self.resourceUri, forKey: .resourceUri)
     try container.encode(self.ipAddress, forKey: .ipAddress)
     try container.encode(self.projectsMissingPermission, forKey: .projectsMissingPermission)

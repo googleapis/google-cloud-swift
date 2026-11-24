@@ -146,7 +146,9 @@ public struct EntryGroup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.transferStatus, forKey: .transferStatus)
+    if self.transferStatus != TransferStatus() {
+      try container.encode(self.transferStatus, forKey: .transferStatus)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

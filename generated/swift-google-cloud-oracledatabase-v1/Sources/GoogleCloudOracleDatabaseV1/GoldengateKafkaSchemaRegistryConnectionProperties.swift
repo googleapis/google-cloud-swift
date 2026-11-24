@@ -240,7 +240,11 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.technologyType, forKey: .technologyType)
     try container.encode(self.url, forKey: .url)
-    try container.encode(self.authenticationType, forKey: .authenticationType)
+    if self.authenticationType
+      != GoldengateKafkaSchemaRegistryConnectionProperties.AuthenticationType()
+    {
+      try container.encode(self.authenticationType, forKey: .authenticationType)
+    }
     try container.encode(self.username, forKey: .username)
     try container.encode(self.trustStoreFile, forKey: .trustStoreFile)
     try container.encode(self.keyStoreFile, forKey: .keyStoreFile)
@@ -248,36 +252,36 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
 
     if let choice = self.trustStorePasswordOptions {
       switch choice {
       case .trustStorePassword(let value):
-        try container.encode(value, forKey: .trustStorePassword)
+        try container.encodeIfPresent(value, forKey: .trustStorePassword)
       case .trustStorePasswordSecretVersion(let value):
-        try container.encode(value, forKey: .trustStorePasswordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .trustStorePasswordSecretVersion)
       }
     }
 
     if let choice = self.keyStorePasswordOptions {
       switch choice {
       case .keyStorePassword(let value):
-        try container.encode(value, forKey: .keyStorePassword)
+        try container.encodeIfPresent(value, forKey: .keyStorePassword)
       case .keyStorePasswordSecretVersion(let value):
-        try container.encode(value, forKey: .keyStorePasswordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .keyStorePasswordSecretVersion)
       }
     }
 
     if let choice = self.sslKeyPasswordOptions {
       switch choice {
       case .sslKeyPassword(let value):
-        try container.encode(value, forKey: .sslKeyPassword)
+        try container.encodeIfPresent(value, forKey: .sslKeyPassword)
       case .sslKeyPasswordSecretVersion(let value):
-        try container.encode(value, forKey: .sslKeyPasswordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .sslKeyPasswordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

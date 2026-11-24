@@ -97,7 +97,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.answerRecord, forKey: .answerRecord)
       try container.encodeIfPresent(self.parameters, forKey: .parameters)
-      try container.encode(self.action, forKey: .action)
+      if self.action != SuggestionInput.Action() {
+        try container.encode(self.action, forKey: .action)
+      }
       try container.encodeIfPresent(self.sendTime, forKey: .sendTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

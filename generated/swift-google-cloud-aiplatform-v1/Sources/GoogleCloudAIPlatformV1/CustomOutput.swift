@@ -86,7 +86,7 @@
       if let choice = self.customOutput {
         switch choice {
         case .rawOutputs(let value):
-          try container.encode(value, forKey: .rawOutputs)
+          try container.encodeIfPresent(value, forKey: .rawOutputs)
         }
       }
       for (key, value) in self._unknownFields.json {

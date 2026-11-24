@@ -138,7 +138,7 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.userCredential {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       }
     }
     for (key, value) in self._unknownFields.json {
