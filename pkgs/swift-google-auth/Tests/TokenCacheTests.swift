@@ -860,8 +860,9 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
   }
 
-  /// Verifies that `.uncached` errors (for which `isRetryable` and `shouldCachePermanentError`
-  /// both return `false`) neither poison `permanentError` nor spawn a background refresh loop.
+  /// Verifies that `.uncached` errors such as `UnconfirmedADCFallbackError` (for which
+  /// `isRetryable` and `shouldCachePermanentError` both return `false`) neither poison
+  /// `permanentError` nor spawn a background refresh loop.
   @Test func uncachedNonRetryableErrorsDoNotPoisonPermanentErrorOrStartBackgroundRefresh()
     async throws
   {
@@ -870,11 +871,12 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     }
     let provider = MockTokenProvider()
     let clock = TestClock()
-    let customError = CredentialsError.cannotFetchToken(
-      message: "uncached failure",
-      underlyingError: UncachedTestError()
+    let unconfirmedError = CredentialsError.cannotFetchToken(
+      message: "unconfirmed ADC fallback",
+      underlyingError: UnconfirmedADCFallbackError(
+        underlying: AuthHTTPError.transportError(URLError(.cannotConnectToHost)))
     )
-    await provider.configure(token: nil, error: customError)
+    await provider.configure(token: nil, error: unconfirmedError)
 
     let cache = TokenCache(
       provider: provider,
@@ -883,11 +885,24 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
 
-    let caught = await #expect(throws: CredentialsError.self) {
+    let caught1 = await #expect(throws: CredentialsError.self) {
       _ = try await cache.token()
     }
-    #expect(caught?._isRetryable == false)
+    #expect(caught1?._isRetryable == false)
     #expect(await provider.count == 1)
+    #expect(!clock.hasSleepers)
+
+    // Other `.uncached` errors also fail fast without latching permanentError or sleeping.
+    let customError = CredentialsError.cannotFetchToken(
+      message: "uncached failure",
+      underlyingError: UncachedTestError()
+    )
+    await provider.configure(token: nil, error: customError)
+    let caught2 = await #expect(throws: CredentialsError.self) {
+      _ = try await cache.token()
+    }
+    #expect(caught2?._isRetryable == false)
+    #expect(await provider.count == 2)
     #expect(!clock.hasSleepers)
 
     // Subsequent on-demand call re-invokes the provider and succeeds once recovered.
@@ -897,7 +912,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     let token = try await cache.token()
     #expect(token.token == "valid-after-recovery")
-    #expect(await provider.count == 2)
+    #expect(await provider.count == 3)
   }
 
   @Test func tokenThrowsPermanentError() async throws {

@@ -108,6 +108,16 @@ extension AuthHTTPError {
     }
   }
 
+  /// Returns all HTTP response header values matching `name` (case-insensitively) if this is an
+  /// unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
+  func headerValues(named name: String) -> [String]? {
+    switch self {
+    case .unsuccessfulResponse(let response, _):
+      return response.headers[name]
+    default:
+      return nil
+    }
+  }
   /// Retry and cache-latching classification for this HTTP error.
   ///
   /// - `.unsuccessfulResponse`: `.retryable` for HTTP 408, 429, and 5xx; `.permanent` otherwise.
