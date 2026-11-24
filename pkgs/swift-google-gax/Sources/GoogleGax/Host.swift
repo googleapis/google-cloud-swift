@@ -127,6 +127,132 @@ public enum _Host {
     ).authority
   }
 
+  /// Extracts the `<service>` label from a canonical `<service>.googleapis.com` default endpoint.
+  private static func extractService(from defaultEndpoint: String) -> String? {
+    guard !defaultEndpoint.hasPrefix("/"),
+      let components = URLComponents(string: normalizeEndpoint(defaultEndpoint)),
+      let defaultHost = components.host?.lowercased(),
+      defaultHost.hasSuffix(defaultSuffix)
+    else {
+      return nil
+    }
+    let service = String(defaultHost.dropLast(defaultSuffix.count))
+    return !service.isEmpty && !service.contains(".") ? service : nil
+  }
+
+  /// Returns `true` when `host` matches a regional (`<service>.<region>.rep.<universeDomain>`) or
+  /// locational (`<region>-<service>.<universeDomain>`) hostname for `service` in `universeDomain`.
+  private static func isRegionalServiceHost(
+    _ host: String,
+    service: String,
+    universeDomain: String
+  ) -> Bool {
+    let suffix = ".\(universeDomain)"
+    guard !universeDomain.isEmpty, host.hasSuffix(suffix) else { return false }
+    let prefix = host.dropLast(suffix.count)
+    let parts = prefix.split(separator: ".", omittingEmptySubsequences: false)
+    if parts.count == 3 && parts[0] == service && !parts[1].isEmpty && parts[2] == "rep" {
+      return true
+    }
+    if parts.count == 1 && parts[0].hasSuffix("-\(service)") {
+      return !parts[0].dropLast(service.count + 1).isEmpty
+    }
+    return false
+  }
+
+  /// Validates an absolute session `uri` against the client's `baseURL`, `defaultEndpoint`, and
+  /// `universeDomain`, returning the outbound request `URLComponents` and HTTP `Host` header.
+  ///
+  /// Routing rules:
+  /// - **Exact origin match** (`scheme`, `host`, and effective `port` match `baseURL`): connects to
+  ///   `baseURL` and sends `defaultHostHeader` (covers default, regional, emulator, and custom
+  ///   proxy endpoints).
+  /// - **Same-universe service or regional host from a non-regional universe `baseURL`**:
+  ///   - When `baseURL` is the global `<service>.<universeDomain>` endpoint, updates the connection
+  ///     host (`components.host`) to follow regional/locational hosts in the same universe.
+  ///   - When `baseURL` is a VPC-SC or PSC endpoint (such as `private.<universeDomain>`,
+  ///     `restricted.<universeDomain>`, or `<psc>.p.<universeDomain>`), keeps `baseURL` as the
+  ///     connection target while setting `hostHeader` to the session URI's target service host.
+  /// - **Regional `baseURL` isolation**: a client pinned to a regional/locational endpoint rejects
+  ///   session URIs targeting the global host or a different region.
+  ///
+  /// - Parameters:
+  ///   - uri: The absolute session URI to validate (for example, from an HTTP `Location` header).
+  ///   - baseURL: The client's validated base endpoint `URLComponents`.
+  ///   - defaultEndpoint: The service's canonical default endpoint (`https://<service>.googleapis.com`).
+  ///   - universeDomain: The client's resolved universe domain (compared case-sensitively per AIP-4110).
+  ///   - defaultHostHeader: The client's precomputed HTTP `Host` header for `baseURL`.
+  /// - Returns: The outbound request `URLComponents` and its HTTP `Host` header value.
+  /// - Throws: `RequestError.badURL(uri)` if `uri` is malformed or relative, contains userinfo or a
+  ///   fragment, uses a different scheme (such as an `https` to `http` downgrade) or disallowed
+  ///   port, or targets an untrusted host, different service, different region (when pinned), or
+  ///   different universe domain.
+  static func resolveRequestURI(
+    _ uri: String,
+    baseURL: URLComponents,
+    defaultEndpoint: String,
+    universeDomain: String,
+    defaultHostHeader: String
+  ) throws -> (components: URLComponents, hostHeader: String) {
+    // Reject relative or unparsable URIs, embedded credentials, fragments, and scheme mismatches
+    // (preventing `https` to `http` downgrades).
+    guard let parsed = URLComponents(string: uri),
+      parsed.user == nil,
+      parsed.password == nil,
+      parsed.fragment == nil,
+      let uriScheme = parsed.scheme?.lowercased(),
+      let uriHost = parsed.host?.lowercased(),
+      !uriHost.isEmpty,
+      let baseScheme = baseURL.scheme?.lowercased(),
+      let baseHost = baseURL.host?.lowercased(),
+      uriScheme == baseScheme
+    else {
+      throw RequestError.badURL(uri)
+    }
+
+    let defaultPort = (uriScheme == "https") ? 443 : 80
+    let uriPort = parsed.port ?? defaultPort
+    let basePort = baseURL.port ?? defaultPort
+
+    // Start from `baseURL` so custom endpoints, VPC-SC VIPs, and PSC endpoints preserve their
+    // configured connection origin (`scheme`, `host`, `port`) unless explicitly redirected to a
+    // regional service host below.
+    var out = baseURL
+    let resolvedHostHeader: String
+
+    if uriHost == baseHost && uriPort == basePort {
+      // Same origin as `baseURL`: keep `baseURL`'s connection target and default `Host` header.
+      resolvedHostHeader = defaultHostHeader
+    } else if !universeDomain.isEmpty,
+      let service = extractService(from: defaultEndpoint),
+      baseHost.hasSuffix(".\(universeDomain)"),
+      !isRegionalServiceHost(baseHost, service: service, universeDomain: universeDomain),
+      uriHost == "\(service).\(universeDomain)"
+        || isRegionalServiceHost(uriHost, service: service, universeDomain: universeDomain),
+      uriPort == defaultPort || uriPort == basePort
+    {
+      // `baseURL` is a non-regional host in `universeDomain` (either `<service>.<universeDomain>`
+      // or a VPC-SC / PSC endpoint), and `uri` targets the global or regional `<service>` host in
+      // that same universe. Connect directly to `uriHost` only from the global service endpoint;
+      // VPC-SC and PSC clients keep connecting via `baseURL` while sending `uriHost` in `Host`.
+      if baseHost == "\(service).\(universeDomain)" {
+        out.host = uriHost
+      }
+      resolvedHostHeader = uriHost
+    } else {
+      throw RequestError.badURL(uri)
+    }
+
+    // Replace `baseURL`'s path and query with the session URI's values, escaping `;` to match
+    // `_HTTPClient`'s query encoding and clearing any query if the session URI has none.
+    out.percentEncodedPath = parsed.percentEncodedPath
+    out.percentEncodedQuery = parsed.percentEncodedQuery?.replacingOccurrences(of: ";", with: "%3B")
+    guard out.url != nil else {
+      throw RequestError.badURL(uri)
+    }
+    return (components: out, hostHeader: resolvedHostHeader)
+  }
+
   private static func normalizeEndpoint(_ endpoint: String) -> String {
     endpoint.contains("://") ? endpoint : "https://\(endpoint)"
   }

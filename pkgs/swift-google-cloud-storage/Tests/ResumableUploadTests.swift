@@ -3668,6 +3668,220 @@ import Testing
       #expect(request.value(forHTTPHeaderField: idempotencyToken) == nil)
     }
   }
+
+  private static let untrustedLocationURIs = [
+    "http://storage.googleapis.com/upload/storage/v1/b/test-bucket/o?upload_id=downgrade",
+    "https://storage.other-universe.com/upload/storage/v1/b/test-bucket/o?upload_id=cross-universe",
+    "https://evil.example.com/upload/storage/v1/b/test-bucket/o?upload_id=untrusted-host",
+    "https://storage.googleapis.com:8443/upload/storage/v1/b/test-bucket/o?upload_id=wrong-port",
+    "/upload/storage/v1/b/test-bucket/o?upload_id=relative",
+  ]
+
+  private func makeUntrustedLocationClient(
+    badLocation: String,
+    bucket: String = "test-bucket",
+    objectName: String = "test-object"
+  ) throws -> (client: StorageClient, registry: MockRegistry) {
+    let registry = MockRegistry.create()
+    let startUrl =
+      "https://storage.googleapis.com/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data(),
+        headers: ["Location": badLocation]
+      ),
+      for: startUrl
+    )
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.credentials = try Credentials(configuration: .apiKey("sensitive-api-key"))
+      }
+      $0.writeObject.resumableUploadThreshold = 0
+      $0.writeObject.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    return (client, registry)
+  }
+
+  /// Tests that seekable `writeObject` rejects untrusted, cross-universe, or downgraded `Location` URIs before seeking/reading the source, leaking credentials, or retrying under `AlwaysResume`.
+  @Test(arguments: Self.untrustedLocationURIs)
+  func resumableSeekableStartRejectsUntrustedLocation(badLocation: String) async throws {
+    let (client, registry) = try makeUntrustedLocationClient(badLocation: badLocation)
+    let seekableSource = MockUploadSource(
+      totalSize: 1024,
+      read: [
+        { _ in
+          Issue.record("Seekable source must not be read when Location is invalid")
+          return nil
+        }
+      ],
+      seek: [
+        { _ in
+          Issue.record("Seekable source must not be sought when Location is invalid")
+        }
+      ]
+    )
+    let error = await expectUploadError {
+      try await client.writeObject(seekableSource, to: "test-bucket", as: "test-object")
+    }
+    if case .requestError(.badURL(let rejected)) = error {
+      #expect(rejected == badLocation)
+    } else {
+      Issue.record("Expected .requestError(.badURL), got \(String(describing: error))")
+    }
+    #expect(registry.recordedRequests().count == 1)
+  }
+
+  /// Tests that non-seekable streaming `writeObject` rejects untrusted, cross-universe, or downgraded `Location` URIs before consuming stream chunks, leaking credentials, or retrying under `AlwaysResume`.
+  @Test(arguments: Self.untrustedLocationURIs)
+  func resumableStreamingStartRejectsUntrustedLocation(badLocation: String) async throws {
+    struct UnreadDataSequence: AsyncSequence, Sendable {
+      typealias Element = Data
+      struct AsyncIterator: AsyncIteratorProtocol {
+        mutating func next() async throws -> Data? {
+          Issue.record("Non-seekable stream must not be consumed when Location is invalid")
+          return nil
+        }
+      }
+      func makeAsyncIterator() -> AsyncIterator { AsyncIterator() }
+    }
+    let (client, registry) = try makeUntrustedLocationClient(badLocation: badLocation)
+    let nonSeekableSource = StreamSource(sequence: UnreadDataSequence())
+    let error = await expectUploadError {
+      try await client.writeObject(nonSeekableSource, to: "test-bucket", as: "test-object")
+    }
+    if case .requestError(.badURL(let rejected)) = error {
+      #expect(rejected == badLocation)
+    } else {
+      Issue.record("Expected .requestError(.badURL), got \(String(describing: error))")
+    }
+    #expect(registry.recordedRequests().count == 1)
+  }
+
+  /// Tests that `resumeWriteObject` rejects untrusted, downgraded, cross-universe, or cross-region `uploadId` URIs immediately without seeking the source, sending requests, or looping under `AlwaysResume`.
+  @Test(arguments: [
+    // Plaintext HTTP downgrade when client uses default HTTPS endpoint
+    (
+      endpoint: nil as String?,
+      universeDomain: "googleapis.com",
+      badUploadId: "http://storage.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
+    ),
+    // Different universe domain (`other-universe.com` vs configured `googleapis.com`)
+    (
+      endpoint: nil,
+      universeDomain: "googleapis.com",
+      badUploadId: "https://storage.other-universe.com/upload/storage/v1/b/bkt/o?upload_id=1"
+    ),
+    // Cross-region session URI when client is pinned to `us-central1` regional endpoint
+    (
+      endpoint: "https://storage.us-central1.rep.googleapis.com",
+      universeDomain: "googleapis.com",
+      badUploadId:
+        "https://storage.europe-west1.rep.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
+    ),
+    // Default GCS host rejected when client is configured with a custom non-universe proxy endpoint
+    (
+      endpoint: "https://my-proxy.example.com:8443",
+      universeDomain: "googleapis.com",
+      badUploadId: "https://storage.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
+    ),
+    // Plaintext HTTP downgrade on a custom HTTPS proxy endpoint
+    (
+      endpoint: "https://my-proxy.example.com:8443",
+      universeDomain: "googleapis.com",
+      badUploadId: "http://my-proxy.example.com:8443/upload/storage/v1/b/bkt/o?upload_id=1"
+    ),
+  ])
+  func resumeWriteObjectRejectsInvalidUploadId(
+    endpoint: String?,
+    universeDomain: String,
+    badUploadId: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let source = MockUploadSource(
+      totalSize: 1024,
+      read: [
+        { _ in
+          Issue.record("Source must not be read when uploadId is invalid")
+          return nil
+        }
+      ],
+      seek: [
+        { _ in
+          Issue.record("Source must not be sought when uploadId is invalid")
+        }
+      ]
+    )
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = endpoint
+        $0.universeDomain = universeDomain
+        $0.credentials = try Credentials(configuration: .anonymous)
+      }
+      $0.writeObject.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+
+    let error = await expectUploadError {
+      try await client.resumeWriteObject(source, uploadId: badUploadId)
+    }
+    if case .requestError(.badURL(let rejected)) = error {
+      #expect(rejected == badUploadId)
+    } else {
+      Issue.record("Expected .requestError(.badURL), got \(String(describing: error))")
+    }
+    #expect(registry.recordedRequests().isEmpty)
+  }
+
+  /// Tests that `resumeWriteObject` routes status query and data `PUT` requests via a configured VPC-SC endpoint when given a standard `storage.<universeDomain>` session URI.
+  @Test func resumeWriteObjectRoutesViaVPCSCEndpoint() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "vpc-resumed-object"
+    let data = Data(repeating: 0x33, count: 4096)
+    let source = BytesSource(data: data)
+
+    let sessionUploadId =
+      "https://storage.my-universe.com/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=vpc-123"
+    let expectedRoutedUrl =
+      "https://private.my-universe.com/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=vpc-123"
+
+    registry.register(
+      response: .success(
+        statusCode: 308,
+        data: Data(),
+        headers: ["Range": "bytes=0-1023"]
+      ),
+      for: expectedRoutedUrl
+    )
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: expectedRoutedUrl
+    )
+
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = "https://private.my-universe.com"
+        $0.universeDomain = "my-universe.com"
+        $0.credentials = try Credentials(configuration: .anonymous)
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let object = try await client.resumeWriteObject(source, uploadId: sessionUploadId)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    for request in requests {
+      #expect(request.urlString == expectedRoutedUrl)
+      #expect(request.value(forHTTPHeaderField: "Host") == "storage.my-universe.com")
+    }
+  }
 }
 
 // MARK: - Test Helper Sources
