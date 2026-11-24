@@ -577,4 +577,88 @@ import Testing
     #expect(resolved.hostHeader == "127.0.0.1")
     #expect(resolved.authority == "127.0.0.1:12345")
   }
+
+  @Test func ipv6EndpointUnbracketsHostAndBracketsHeaders() throws {
+    let resolved = try _ResolvedEndpoint(
+      endpoint: "http://[::1]:8080",
+      defaultEndpoint: "https://example.googleapis.com"
+    )
+    #expect(resolved.host == "::1")
+    #expect(resolved.port == 8080)
+    #expect(resolved.hostHeader == "[::1]")
+    #expect(resolved.authority == "[::1]:8080")
+
+    let showcaseIPv6 = try _ResolvedEndpoint(
+      endpoint: "[::1]:7469",
+      defaultEndpoint: "https://localhost:7469",
+      allowsBareHost: true
+    )
+    #expect(showcaseIPv6.host == "::1")
+    #expect(showcaseIPv6.port == 7469)
+    #expect(showcaseIPv6.hostHeader == "[::1]")
+    #expect(showcaseIPv6.authority == "[::1]:7469")
+  }
+
+  @Test func caseSensitivityInOriginAndResolveRequestURI() throws {
+    let upperPrivate = try _ResolvedEndpoint(
+      endpoint: "https://PRIVATE.GOOGLEAPIS.COM",
+      defaultEndpoint: "https://example.googleapis.com"
+    )
+    #expect(upperPrivate.hostHeader == "example.googleapis.com")
+    #expect(upperPrivate.authority == "example.googleapis.com")
+    let privateSession = try upperPrivate.resolveRequestURI(
+      "https://example.us-central1.rep.googleapis.com/upload?upload_id=1"
+    )
+    #expect(
+      privateSession.components.url?.absoluteString
+        == "https://PRIVATE.GOOGLEAPIS.COM/upload?upload_id=1"
+    )
+    #expect(privateSession.hostHeader == "example.us-central1.rep.googleapis.com")
+
+    let upperLocational = try _ResolvedEndpoint(
+      endpoint: "https://US-CENTRAL1-EXAMPLE.googleapis.com",
+      defaultEndpoint: "https://example.googleapis.com"
+    )
+    #expect(upperLocational.hostHeader == "us-central1-example.googleapis.com")
+    #expect(upperLocational.authority == "us-central1-example.googleapis.com")
+
+    let mixedUniverse = try _ResolvedEndpoint(
+      endpoint: "https://private.My-Universe.com",
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: _UniverseDomain.resolve("My-Universe.com")
+    )
+    #expect(mixedUniverse.hostHeader == "example.My-Universe.com")
+    let mixedSession = try mixedUniverse.resolveRequestURI(
+      "https://EXAMPLE.US-CENTRAL1.REP.My-Universe.com/upload?upload_id=2"
+    )
+    #expect(
+      mixedSession.components.url?.absoluteString
+        == "https://private.My-Universe.com/upload?upload_id=2"
+    )
+    #expect(mixedSession.hostHeader == "example.us-central1.rep.My-Universe.com")
+  }
+
+  @Test func parseEndpointRejectsUserInfoStripsFragmentAndResetsPortOnRegionalRedirect() throws {
+    #expect(throws: ClientError.self) {
+      _ = try _ResolvedEndpoint(
+        endpoint: "https://user:pass@example.googleapis.com",
+        defaultEndpoint: "https://example.googleapis.com"
+      )
+    }
+
+    let withFragment = try _ResolvedEndpoint(
+      endpoint: "https://example.googleapis.com:8443#leaked-frag",
+      defaultEndpoint: "https://example.googleapis.com"
+    )
+    #expect(withFragment.baseURL.fragment == nil)
+
+    let redirected = try withFragment.resolveRequestURI(
+      "https://example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1"
+    )
+    #expect(
+      redirected.components.url?.absoluteString
+        == "https://example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1"
+    )
+    #expect(redirected.hostHeader == "example.us-central1.rep.googleapis.com")
+  }
 }

@@ -196,12 +196,27 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
       environment: environment
     )
     let iamPrefix = "iamcredentials."
-    if host.lowercased().hasPrefix(iamPrefix),
-      _UniverseDomain(nonEmpty: String(host.dropFirst(iamPrefix.count))) != effectiveUniverse
-    {
-      throw CredentialsError.parseError(
-        "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
-      )
+    if host.lowercased().hasPrefix(iamPrefix) {
+      // Accept global `iamcredentials.<universe>` and regional
+      // `iamcredentials.<region>.rep.<universe>` (case-insensitive on `<region>.rep.`,
+      // case-sensitive on `<universe>`).
+      let remainder = String(host.dropFirst(iamPrefix.count))
+      let matchesGlobal = remainder == effectiveUniverse.rawValue
+      let universeSuffix = ".\(effectiveUniverse.rawValue)"
+      let matchesRegional: Bool
+      if remainder.hasSuffix(universeSuffix) {
+        let regionPrefix = remainder.dropLast(universeSuffix.count)
+        let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
+        matchesRegional =
+          parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep"
+      } else {
+        matchesRegional = false
+      }
+      if !matchesGlobal && !matchesRegional {
+        throw CredentialsError.parseError(
+          "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
+        )
+      }
     }
 
     try self.init(
