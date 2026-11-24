@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleAuth
 import GoogleGax
 import Synchronization
@@ -31,6 +32,28 @@ import Testing
         == .permanent(credentialsError)
     )
 
+    let permanentFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant",
+        underlyingError: CredentialsError.parseError("revoked")
+      )
+    )
+    #expect(
+      policy.onError(state: PollingState(), error: permanentFetchError)
+        == .permanent(permanentFetchError)
+    )
+
+    let cancelledFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "cancelled",
+        underlyingError: URLError(.cancelled)
+      )
+    )
+    #expect(
+      policy.onError(state: PollingState(), error: cancelledFetchError)
+        == .permanent(cancelledFetchError)
+    )
+
     let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
     #expect(
       policy.onError(state: PollingState(), error: transientCredentialsError)
@@ -47,7 +70,7 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 
-  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysPoll() async throws {
+  @Test func nonRetryableCredentialsAndCancellationErrorsArePermanentWithAlwaysPoll() async throws {
     let policy = AlwaysPoll.unbounded().continueOnIO()
 
     let ioError = mockIOError()
@@ -57,6 +80,28 @@ import Testing
     #expect(
       policy.onError(state: PollingState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let permanentFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant",
+        underlyingError: CredentialsError.parseError("revoked")
+      )
+    )
+    #expect(
+      policy.onError(state: PollingState(), error: permanentFetchError)
+        == .permanent(permanentFetchError)
+    )
+
+    let cancelledFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "cancelled",
+        underlyingError: URLError(.cancelled)
+      )
+    )
+    #expect(
+      policy.onError(state: PollingState(), error: cancelledFetchError)
+        == .permanent(cancelledFetchError)
     )
 
     let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())

@@ -34,9 +34,9 @@ extension RetryPolicy {
   ///
   /// This policy decorates an inner policy and retries any errors that are I/O errors, except
   /// when the underlying error is a `CancellationError` or a non-retryable `CredentialsError`
-  /// (such as invalid configuration, universe domain mismatch, or HTTP 4xx rejection), which are
-  /// treated as permanent. Typically this decorator is combined with ``StrictIdempotency`` to only
-  /// retry idempotent requests.
+  /// (such as invalid configuration, universe domain mismatch, or non-retryable HTTP 4xx
+  /// rejection), which are treated as permanent. Typically this decorator is combined with
+  /// ``StrictIdempotency`` to only retry idempotent requests.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func retryOnIO() -> ContinueOnIO<Self> {

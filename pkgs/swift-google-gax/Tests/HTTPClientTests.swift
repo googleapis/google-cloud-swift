@@ -1369,7 +1369,7 @@ import NIOHTTP1
     }
     let client = try _HTTPClient(
       mock,
-      endpoint: "https://secretmanager.googleapis.com",
+      endpoint: "https://example.googleapis.com",
       credentials: FlakyUniverseCredentials()
     )
     let retryLoop = _RetryLoop(
@@ -1528,7 +1528,7 @@ import NIOHTTP1
     }
     let client = try _HTTPClient(
       mock,
-      endpoint: "https://secretmanager.googleapis.com",
+      endpoint: "https://example.googleapis.com",
       credentials: FlakyHeaderCredentials()
     )
     let retryLoop = _RetryLoop(

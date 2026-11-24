@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleAuth
 import GoogleGax
 import Testing
@@ -46,6 +47,17 @@ import Testing
         == .permanent(permanentFetchError)
     )
 
+    let cancelledFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "cancelled",
+        underlyingError: URLError(.cancelled)
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: cancelledFetchError)
+        == .permanent(cancelledFetchError)
+    )
+
     let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
     #expect(
       p.onError(state: idempotentState(), error: transientCredentialsError)
@@ -76,7 +88,8 @@ import Testing
     #expect(p.remainingTime(state: nonIdempotentState()) == nil)
   }
 
-  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysRetry() async throws {
+  @Test func nonRetryableCredentialsAndCancellationErrorsArePermanentWithAlwaysRetry() async throws
+  {
     let p = AlwaysRetry.unbounded().retryOnIO()
 
     let ioError = mockIOError()
@@ -100,6 +113,17 @@ import Testing
     #expect(
       p.onError(state: idempotentState(), error: permanentFetchError)
         == .permanent(permanentFetchError)
+    )
+
+    let cancelledFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "cancelled",
+        underlyingError: URLError(.cancelled)
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: cancelledFetchError)
+        == .permanent(cancelledFetchError)
     )
 
     let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())

@@ -34,8 +34,8 @@ extension PollingErrorPolicy {
   ///
   /// This policy decorates an inner policy. It continues polling if the polling request failed with
   /// an I/O error, except when the underlying error is a `CancellationError` or a non-retryable
-  /// `CredentialsError` (such as invalid configuration, universe domain mismatch, or HTTP 4xx
-  /// rejection), which are treated as permanent.
+  /// `CredentialsError` (such as invalid configuration, universe domain mismatch, or non-retryable
+  /// HTTP 4xx rejection), which are treated as permanent.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func continueOnIO() -> ContinueOnIO<Self> {

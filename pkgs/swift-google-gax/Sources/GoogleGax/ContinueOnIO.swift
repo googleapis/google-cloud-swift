@@ -18,9 +18,9 @@
 ///
 /// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)
 /// errors, except when the underlying error is a `CancellationError` or a non-retryable
-/// `CredentialsError` (such as invalid configuration, universe domain mismatch, or HTTP 4xx
-/// rejection), which are treated as permanent. Otherwise it returns the result from the inner
-/// retry policy.
+/// `CredentialsError` (such as invalid configuration, universe domain mismatch, or non-retryable
+/// HTTP 4xx rejection), which are treated as permanent. Otherwise it returns the result from the
+/// inner retry policy.
 public struct ContinueOnIO<P: Sendable>: Sendable {
   let inner: P
 
@@ -33,6 +33,8 @@ extension ContinueOnIO: Equatable where P: Equatable {}
 
 @_spi(GoogleCloudInternal)
 extension RequestError {
+  /// Returns `true` when this error is `.io` wrapping a `CancellationError` or a non-retryable
+  /// `CredentialsError`. Returns `false` for retryable `.io` errors and all non-`.io` errors.
   public var _isPermanentIOError: Bool {
     if case .io(let underlying) = self {
       if underlying is CancellationError {
