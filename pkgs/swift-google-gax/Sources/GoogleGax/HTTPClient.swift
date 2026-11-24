@@ -147,7 +147,8 @@ public import Foundation
 
   private func configureHeaders(
     on request: inout _HTTPClientRequest,
-    options: RequestOptions
+    options: RequestOptions,
+    hostHeader: String? = nil
   ) async throws {
     let authHeaders: AuthHeaders
     do {
@@ -168,8 +169,17 @@ public import Foundation
     if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
-    request.setHeader(name: _HeaderNames.host, value: self.endpoint.hostHeader)
+    request.setHeader(name: _HeaderNames.host, value: hostHeader ?? self.endpoint.hostHeader)
     request.setHeader(name: _HeaderNames.apiClient, value: self.clientHeader.build())
+  }
+
+  /// Validates that an absolute session `uri` is compatible with the client's configured endpoint
+  /// and universe domain.
+  ///
+  /// - Throws: `RequestError.badURL(uri)` if `uri` fails scheme, port, host, or universe domain
+  ///   validation.
+  public func validateRequestURI(_ uri: String) throws {
+    _ = try self.endpoint.resolveRequestURI(uri)
   }
 
   public func newRequest(
@@ -200,18 +210,23 @@ public import Foundation
     return request
   }
 
+  /// Creates a new authenticated request for an absolute session `uri`, validating its scheme,
+  /// port, host, and universe domain before resolving credential headers.
+  ///
+  /// - Throws: `RequestError.badURL(uri)` if `uri` fails endpoint/universe validation,
+  ///   `CancellationError` if the current task is cancelled while resolving credentials, or
+  ///   `RequestError.io` wrapping credential or universe domain mismatch errors.
   public func newRequest(
     uri: String,
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
-    guard var components = URLComponents(string: uri) else {
-      throw RequestError.badURL(uri)
-    }
-    if let encoded = components.percentEncodedQuery {
-      components.percentEncodedQuery = encoded.replacingOccurrences(of: ";", with: "%3B")
-    }
-    var request = _HTTPClientRequest(self.inner, url: components)
-    try await self.configureHeaders(on: &request, options: options)
+    let resolved = try self.endpoint.resolveRequestURI(uri)
+    var request = _HTTPClientRequest(self.inner, url: resolved.components)
+    try await self.configureHeaders(
+      on: &request,
+      options: options,
+      hostHeader: resolved.hostHeader
+    )
     return request
   }
 }

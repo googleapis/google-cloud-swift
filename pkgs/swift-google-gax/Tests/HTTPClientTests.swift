@@ -83,7 +83,7 @@ import NIOHTTP1
   }
 
   @Test func requestFromURI() async throws {
-    let endpoint = "http://localhost:1234"
+    let endpoint = "https://storage.googleapis.com"
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
@@ -1483,6 +1483,116 @@ import NIOHTTP1
     let req = try await client.newRequest(path: "/v1/test", query: [])
     let got = try await req.rpc(ResponseType.self).get()
     #expect(got == ResponseType(name: "from-custom", value: "ok"))
+  }
+
+  @Test(arguments: [
+    "http://example.googleapis.com/upload?upload_id=1",
+    "https://example.other-universe.com/upload?upload_id=1",
+    "https://evil.example.com/upload?upload_id=1",
+    "/upload?upload_id=1",
+  ])
+  func newRequestURIFailsBeforeFetchingCredentials(badURI: String) async throws {
+    struct GuardedCredentials: CredentialsProtocol {
+      func _universeDomain() async throws -> _UniverseDomain {
+        Issue.record("_universeDomain() must not be called when URI validation fails")
+        return .default
+      }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("headers() must not be called when URI validation fails")
+        return [("authorization", "Bearer secret-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when URI validation fails")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://example.googleapis.com",
+      credentials: GuardedCredentials(),
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: "googleapis.com"
+    )
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(uri: badURI)
+    }
+    guard case .badURL(let rejected) = error else {
+      Issue.record("Expected RequestError.badURL, got \(String(describing: error))")
+      return
+    }
+    #expect(rejected == badURI)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "https://example.googleapis.com",
+      universeDomain: "googleapis.com",
+      uri: "https://example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1",
+      wantURL: "https://example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1",
+      wantHost: "example.us-central1.rep.googleapis.com"
+    ),
+    (
+      endpoint: "https://private.my-universe.com",
+      universeDomain: "my-universe.com",
+      uri: "https://example.my-universe.com/upload/v1/items?upload_id=2",
+      wantURL: "https://private.my-universe.com/upload/v1/items?upload_id=2",
+      wantHost: "example.my-universe.com"
+    ),
+  ])
+  func newRequestURIResolvesRegionalHostAndVPCSCRouting(
+    endpoint: String,
+    universeDomain: String,
+    uri: String,
+    wantURL: String,
+    wantHost: String
+  ) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: endpoint,
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: universeDomain
+    )
+    let req = try await client.newRequest(uri: uri)
+    #expect(req.components.url?.absoluteString == wantURL)
+    #expect(req.headers["Host"] == [wantHost])
+  }
+
+  @Test func newRequestURIWithValidURIButMismatchedCredentialsUniverseFailsBeforeHeaders()
+    async throws
+  {
+    struct MismatchedCredentials: CredentialsProtocol {
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve("other-universe.com")
+      }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("headers() must not be called when credential universe mismatches")
+        return [("authorization", "Bearer secret-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when credential universe mismatches")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://example.my-universe.com",
+      credentials: MismatchedCredentials(),
+      defaultEndpoint: "https://example.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(
+        uri: "https://example.my-universe.com/upload/v1/items?upload_id=1"
+      )
+    }
+    guard case .io(let underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
   }
 
   @Test func defaultCredentialsForwardsEnvironmentUniverseDomainAndCatchesFileMismatch()
