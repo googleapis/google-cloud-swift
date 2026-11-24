@@ -16,9 +16,9 @@ public import GoogleGax
 
 /// A base retry policy for Google Cloud Storage that retries transient errors on idempotent requests.
 ///
-/// This policy retries idempotent operations that fail with I/O errors, transient HTTP status codes
-/// (408, 429, and 5xx), or transient gRPC status codes (`unavailable`, `resourceExhausted`,
-/// `deadlineExceeded`, and `internal`).
+/// This policy retries idempotent operations that fail with transient I/O errors, transient HTTP
+/// status codes (408, 429, and 5xx), or transient gRPC status codes (`unavailable`,
+/// `resourceExhausted`, `deadlineExceeded`, and `internal`).
 ///
 /// Use ``defaultPolicy`` for the standard bounded configuration (60-second time limit and
 /// 10-attempt limit), or ``unbounded()`` decorated with `withTimeLimit(_:)`

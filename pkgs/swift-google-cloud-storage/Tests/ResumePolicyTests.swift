@@ -174,6 +174,87 @@ import Testing
     #expect(isPermanent(policy.onError(state: state, error: rpcInvalidArgument)))
   }
 
+  struct CredentialsIOCase: Sendable, CustomTestStringConvertible {
+    let testDescription: String
+    let error: RequestError
+    let idempotent: Bool
+    let expectedResume: Bool
+  }
+
+  @Test(arguments: [
+    CredentialsIOCase(
+      testDescription: "CancellationError is permanent",
+      error: .io(CancellationError()),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "parseError is permanent",
+      error: .io(CredentialsError.parseError("universe domain mismatch")),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "notSupported is permanent",
+      error: .io(CredentialsError.notSupported("unsupported")),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "cannotLoadFile is permanent",
+      error: .io(
+        CredentialsError.cannotLoadFile(
+          message: "missing", underlyingError: URLError(.fileDoesNotExist))),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "credentialsNotFound is permanent",
+      error: .io(CredentialsError.credentialsNotFound("none")),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "cannotFetchToken(badURL) is permanent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "invalid_url", underlyingError: URLError(.badURL))),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "cannotFetchToken(cancelled) is permanent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "cancelled", underlyingError: URLError(.cancelled))),
+      idempotent: true,
+      expectedResume: false
+    ),
+    CredentialsIOCase(
+      testDescription: "cannotFetchToken(networkConnectionLost) resumes when idempotent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "transient", underlyingError: URLError(.networkConnectionLost))),
+      idempotent: true,
+      expectedResume: true
+    ),
+    CredentialsIOCase(
+      testDescription: "cannotFetchToken(networkConnectionLost) is permanent when non-idempotent",
+      error: .io(
+        CredentialsError.cannotFetchToken(
+          message: "transient", underlyingError: URLError(.networkConnectionLost))),
+      idempotent: false,
+      expectedResume: false
+    ),
+  ])
+  func storageResumePolicyCredentialsAndCancellationIO(_ testCase: CredentialsIOCase) {
+    let policy = StorageResumePolicy<Void>.unbounded()
+    let state = ResumeState(idempotent: testCase.idempotent)
+    let result = policy.onError(state: state, error: testCase.error)
+    #expect(isResume(result) == testCase.expectedResume)
+    #expect(isPermanent(result) == !testCase.expectedResume)
+  }
+
   @Test func storageResumePolicyNonIdempotent() {
     let policy = StorageResumePolicy<Void>.unbounded()
     let state = ResumeState(idempotent: false)
