@@ -158,28 +158,6 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     return (url: try serviceURL(service: service, path: defaultPath), hostHeader: nil)
   }
 
-  /// Resolves an optional `https` service endpoint URL override against this universe domain, or
-  /// constructs `https://<service>.<universeDomain><defaultPath>` when `override` is `nil`.
-  func resolveServiceURL(
-    override: String?,
-    service: String,
-    defaultPath: String,
-    settingName: String,
-    requireNonRootPath: Bool = false,
-    allowQuery: Bool = true,
-    allowCustomHosts: Bool = true
-  ) throws -> URL {
-    try resolveServiceEndpoint(
-      override: override,
-      service: service,
-      defaultPath: defaultPath,
-      settingName: settingName,
-      requireNonRootPath: requireNonRootPath,
-      allowQuery: allowQuery,
-      allowCustomHosts: allowCustomHosts
-    ).url
-  }
-
   /// Parses and validates an explicit `https` service endpoint URL against this universe domain,
   /// returning both the canonical URL and any `Host` header override required for shared gateways.
   func validateServiceEndpoint(
@@ -218,25 +196,6 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     return (url: canonicalURL, hostHeader: hostHeader)
   }
 
-  /// Parses and validates an explicit `https` service endpoint URL against this universe domain.
-  func validateServiceURL(
-    _ rawURL: String,
-    service: String,
-    settingName: String,
-    requireNonRootPath: Bool = false,
-    allowQuery: Bool = true,
-    allowCustomHosts: Bool = true
-  ) throws -> URL {
-    try validateServiceEndpoint(
-      rawURL,
-      service: service,
-      settingName: settingName,
-      requireNonRootPath: requireNonRootPath,
-      allowQuery: allowQuery,
-      allowCustomHosts: allowCustomHosts
-    ).url
-  }
-
   /// Validates that `host` does not target a conflicting Google Cloud universe domain for `service`,
   /// returning `<service>.<universeDomain>` when `host` is a shared gateway requiring a `Host` override.
   @discardableResult
@@ -266,6 +225,9 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     let serviceLower = Self.asciiLowercased(service)
     let universeSuffix = ".\(rawValue)"
 
+    // `hostASCII.hasSuffix(universeSuffix)` matches RFC 3986 uppercase URL hostnames against
+    // canonical lowercase universe domains, while `host.hasSuffix(universeSuffix)` preserves
+    // exact case-sensitive suffix matching when `rawValue` itself contains uppercase ASCII.
     if host.hasSuffix(universeSuffix) || hostASCII.hasSuffix(universeSuffix) {
       let prefixLower = String(hostASCII.dropLast(universeSuffix.count))
       guard

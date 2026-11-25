@@ -1071,7 +1071,9 @@ import Testing
     gate.continuation.yield()
     gate.continuation.finish()
     for await _ in finishedFirst.stream { break }
-    try await Task.sleep(for: .milliseconds(10))
+    while await provider.universeDomainCache.hasActiveTask {
+      await Task.yield()
+    }
 
     let secondDomain = try await provider.universeDomain()
     #expect(secondDomain.rawValue == "fresh.universe.com")

@@ -94,19 +94,19 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     }
     self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
-    // Resolve Token URL
-    guard
-      let resolvedURL = URL(
-        string: user.tokenUri ?? "https://oauth2.googleapis.com/token"
-      )
-    else {
-      throw CredentialsError.parseError("Invalid token URI in UserAccountData")
-    }
+    // Resolve and validate `token_uri` against the Google Default Universe (`googleapis.com`).
+    let resolvedEndpoint = try _UniverseDomain.default.resolveServiceEndpoint(
+      override: user.tokenUri,
+      service: "oauth2",
+      defaultPath: "/token",
+      settingName: "token_uri"
+    )
 
     let provider = UserAccountTokenProvider(
       user: user,
       scopes: scopes,
-      tokenURL: resolvedURL,
+      tokenURL: resolvedEndpoint.url,
+      tokenHostHeader: resolvedEndpoint.hostHeader,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )

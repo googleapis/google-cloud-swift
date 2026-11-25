@@ -1476,16 +1476,21 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let regionalGDUCreds = try Credentials(configuration: .externalAccount(regionalGDUConfig))
     #expect(try await regionalGDUCreds.universeDomain() == "googleapis.com")
 
-    // Empty DNS labels in workforce pool audience host (`//iam..example/...`) are rejected.
-    let badWorkforceAudienceConfig = ExternalAccountConfig(
-      credentialSource: .programmatic(subjectTokenProvider: provider),
-      audience: "//iam..googleapis.com/locations/global/workforcePools/p/providers/pr",
-      subjectTokenType: .idToken
-    ).with {
-      $0.workforcePoolUserProject = "my-proj"
-    }
-    #expect(throws: CredentialsError.self) {
-      _ = try Credentials(configuration: .externalAccount(badWorkforceAudienceConfig))
+    // Empty DNS labels or percent-encoded characters in workforce pool audience host are rejected.
+    for badWorkforceAudience in [
+      "//iam..googleapis.com/locations/global/workforcePools/p/providers/pr",
+      "//iam.googleapis%2Ecom/locations/global/workforcePools/p/providers/pr",
+    ] {
+      let badWorkforceAudienceConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: badWorkforceAudience,
+        subjectTokenType: .idToken
+      ).with {
+        $0.workforcePoolUserProject = "my-proj"
+      }
+      #expect(throws: CredentialsError.self) {
+        _ = try Credentials(configuration: .externalAccount(badWorkforceAudienceConfig))
+      }
     }
 
     // Shared gateway STS `tokenURL` (`private.<universe>`, `<psc>.p.<universe>`) sends `Host: sts.<universe>`.

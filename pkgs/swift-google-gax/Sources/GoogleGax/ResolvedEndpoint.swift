@@ -138,20 +138,15 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       extractedService = nil
     }
 
-    let resolvedBaseURL: URLComponents
-    if let endpoint {
-      // Explicit `ClientOptions.endpoint` overrides universe domain host substitution.
-      resolvedBaseURL = try Self.parseEndpoint(
-        endpoint,
-        allowsBareHost: allowsBareHost
-      ).components
-    } else if !universeDomain.isDefault, let service = extractedService {
-      // Substitute `<service>.<universeDomain>` and parse strictly with
-      // `encodingInvalidCharacters: false` so non-ASCII/IDNA or malformed `universeDomain` values
-      // cannot Punycode-round-trip or inject ports, userinfo, paths, queries, or fragments.
+    // Validate non-default `universeDomain` syntax upfront (even when `endpoint` is overridden)
+    // so non-ASCII/IDNA or malformed `universeDomain` values fail fast at client creation rather
+    // than Punycode-round-tripping or injecting ports, userinfo, paths, queries, or fragments.
+    let validatedUniverseURL: URLComponents?
+    if !universeDomain.isDefault {
       let scheme = parsedDefault.components.scheme ?? "https"
       let portSuffix = parsedDefault.components.port.map { ":\($0)" } ?? ""
-      let targetHost = "\(service).\(universeDomain.rawValue)"
+      let validationService = extractedService ?? "service"
+      let targetHost = "\(validationService).\(universeDomain.rawValue)"
       let candidateString = "\(scheme)://\(targetHost)\(portSuffix)"
       guard
         !universeDomain.rawValue.split(separator: ".", omittingEmptySubsequences: false)
@@ -168,9 +163,24 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
         reparsed.percentEncodedFragment == nil,
         reparsed.url != nil
       else {
-        throw ClientError.invalidEndpoint(targetHost)
+        throw ClientError.invalidEndpoint(
+          extractedService != nil ? targetHost : universeDomain.rawValue
+        )
       }
-      resolvedBaseURL = reparsed
+      validatedUniverseURL = extractedService != nil ? reparsed : nil
+    } else {
+      validatedUniverseURL = nil
+    }
+
+    let resolvedBaseURL: URLComponents
+    if let endpoint {
+      // Explicit `ClientOptions.endpoint` overrides universe domain host substitution.
+      resolvedBaseURL = try Self.parseEndpoint(
+        endpoint,
+        allowsBareHost: allowsBareHost
+      ).components
+    } else if let validatedUniverseURL {
+      resolvedBaseURL = validatedUniverseURL
     } else {
       resolvedBaseURL = parsedDefault.components
     }

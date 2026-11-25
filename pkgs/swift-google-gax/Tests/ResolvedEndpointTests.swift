@@ -744,6 +744,13 @@ import Testing
           universeDomain: _UniverseDomain.resolve(badUniverse)
         )
       }
+      #expect(throws: ClientError.self) {
+        _ = try _ResolvedEndpoint(
+          endpoint: "https://127.0.0.1:8443",
+          defaultEndpoint: "https://example.googleapis.com",
+          universeDomain: _UniverseDomain.resolve(badUniverse)
+        )
+      }
     }
 
     let vpcsc = try _ResolvedEndpoint(

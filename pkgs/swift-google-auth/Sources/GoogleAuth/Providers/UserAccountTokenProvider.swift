@@ -30,6 +30,9 @@ struct UserAccountTokenProvider: TokenProvider {
   /// The OAuth 2.0 token endpoint URL.
   let tokenURL: URL
 
+  /// Optional `Host` header override (`oauth2.googleapis.com`) when `tokenURL` targets a shared gateway.
+  var tokenHostHeader: String? = nil
+
   /// The retry configuration controlling backoff and attempt limits for token refresh requests.
   let retryConfiguration: RetryConfiguration
 
@@ -52,6 +55,8 @@ struct UserAccountTokenProvider: TokenProvider {
       scopes: scopesStr
     )
 
+    let requestHeaders: [String: String] = tokenHostHeader.map { ["Host": $0] } ?? [:]
+
     // Wrap active POST request in exponential backoff retry loop
     let response: Oauth2RefreshResponse
     do {
@@ -61,7 +66,8 @@ struct UserAccountTokenProvider: TokenProvider {
       ) {
         return try await httpClient.post(
           url: tokenURL,
-          body: requestBody
+          body: requestBody,
+          headers: requestHeaders
         )
       }
     } catch is CancellationError {

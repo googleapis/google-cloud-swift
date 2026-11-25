@@ -329,8 +329,9 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   }
 
   let path: Substring
-  if let host = url.encodedHost {
+  if let host = url.percentEncodedHost {
     guard
+      !host.contains("%"),
       host.lowercased().hasPrefix("iam."),
       host.count > "iam.".count,
       !host.split(separator: ".", omittingEmptySubsequences: false).contains(""),

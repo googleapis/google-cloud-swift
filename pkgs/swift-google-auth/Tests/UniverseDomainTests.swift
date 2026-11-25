@@ -212,6 +212,7 @@ import Testing
       ".p.apis-tpclp.goog",
       "private.googleapis.com.",
       "sts-psc.googleapis.com...",
+      "sts.mtls.apis-s3ns.fr",
       "googleapis.com.",
       "İ-sts.",
       "İ-sts.ğ",
@@ -242,6 +243,7 @@ import Testing
       "restricted.apis-tpclp.goog",
       "www.apis-tpclp.goog",
       "my-psc.p.apis-tpclp.goog",
+      "sts.mtls.apis-tpclp.goog",
       "-sts.googleapis.com",
       "İ-sts.ggoogleapis.com",
       "İ-sts.",
@@ -302,26 +304,37 @@ import Testing
     }
   }
 
-  @Test func resolveAndValidateServiceURLCoversOverridesAndStructuralChecks() throws {
+  @Test func resolveAndValidateServiceEndpointCoversOverridesAndStructuralChecks() throws {
     let tpc = try #require(_UniverseDomain(nonEmpty: "apis-tpclp.goog"))
 
-    // `nil` override falls back to `serviceURL`.
-    let fallbackURL = try tpc.resolveServiceURL(
+    // `nil` override falls back to `serviceURL` with no `Host` override.
+    let fallbackEndpoint = try tpc.resolveServiceEndpoint(
       override: nil,
       service: "sts",
       defaultPath: "/v1/token",
       settingName: "tokenURL"
     )
-    #expect(fallbackURL.absoluteString == "https://sts.apis-tpclp.goog/v1/token")
+    #expect(fallbackEndpoint.url.absoluteString == "https://sts.apis-tpclp.goog/v1/token")
+    #expect(fallbackEndpoint.hostHeader == nil)
 
     // Valid override with query allowed succeeds when `allowQuery: true`.
-    let queryURL = try tpc.resolveServiceURL(
+    let queryEndpoint = try tpc.resolveServiceEndpoint(
       override: "https://sts.apis-tpclp.goog/v1/token?foo=bar",
       service: "sts",
       defaultPath: "/v1/token",
       settingName: "tokenURL"
     )
-    #expect(queryURL.absoluteString == "https://sts.apis-tpclp.goog/v1/token?foo=bar")
+    #expect(queryEndpoint.url.absoluteString == "https://sts.apis-tpclp.goog/v1/token?foo=bar")
+    #expect(queryEndpoint.hostHeader == nil)
+
+    // Shared gateway override returns `<service>.<universeDomain>` as `hostHeader`.
+    let gatewayEndpoint = try tpc.validateServiceEndpoint(
+      "https://private.apis-tpclp.goog/v1/token",
+      service: "sts",
+      settingName: "tokenURL"
+    )
+    #expect(gatewayEndpoint.url.absoluteString == "https://private.apis-tpclp.goog/v1/token")
+    #expect(gatewayEndpoint.hostHeader == "sts.apis-tpclp.goog")
 
     // Query, root path, and empty bracketed host are rejected when `allowQuery: false` / `requireNonRootPath: true`.
     for rejectedIamURL in [
@@ -331,7 +344,7 @@ import Testing
       "https://[]/v1/test",
     ] {
       #expect(throws: CredentialsError.self) {
-        _ = try tpc.validateServiceURL(
+        _ = try tpc.validateServiceEndpoint(
           rejectedIamURL,
           service: "iamcredentials",
           settingName: "service_account_impersonation_url",

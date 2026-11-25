@@ -21,6 +21,10 @@ actor MDSUniverseDomainCache {
   private var activeTask: (id: UInt64, task: Task<_UniverseDomain, any Error>)?
   private var nextTaskID: UInt64 = 0
 
+  var hasActiveTask: Bool {
+    activeTask != nil
+  }
+
   deinit {
     activeTask?.task.cancel()
   }
@@ -130,7 +134,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   private let universeDomainOverride: _UniverseDomain?
 
   /// Lazily populated cache for the metadata server universe domain query.
-  private let universeDomainCache = MDSUniverseDomainCache()
+  let universeDomainCache = MDSUniverseDomainCache()
 
   /// An optional Google Cloud project ID to attribute quota and billing to.
   var quotaProjectID: String? { provider.quotaProjectID }

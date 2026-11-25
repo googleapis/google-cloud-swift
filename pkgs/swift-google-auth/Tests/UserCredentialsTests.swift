@@ -951,4 +951,64 @@ import Testing
       #expect(output.contains("googleapis.com"))
     }
   }
+
+  @Test func tokenURIVerifiesHTTPSDefaultUniverseAndPropagatesGatewayHostHeader() async throws {
+    for badTokenURI in [
+      "http://oauth2.googleapis.com/token",
+      "http://attacker.example/token",
+      "https://user:pass@oauth2.googleapis.com/token",
+      "https://oauth2.googleapis.com/token#frag",
+      "https://oauth2.apis-tpclp.goog/token",
+      "https://private.apis-tpclp.goog/token",
+      "https://attacker-bucket.storage.googleapis.com/token",
+    ] {
+      let badData = UserAccountData(
+        type: "authorized_user",
+        clientId: "cid",
+        clientSecret: "csecret",
+        refreshToken: "rtoken",
+        tokenUri: badTokenURI,
+        quotaProjectId: nil,
+        universeDomain: nil
+      )
+      #expect(throws: CredentialsError.self) {
+        _ = try UserCredentials(
+          user: badData,
+          httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+        )
+      }
+    }
+
+    // Shared gateway `token_uri` (`private.googleapis.com`) forwards `Host: oauth2.googleapis.com`.
+    let responseJSON = Data(
+      #"{"access_token":"gateway-user-tok","expires_in":3600,"token_type":"Bearer"}"#.utf8
+    )
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == "https://private.googleapis.com/token")
+        #expect(request.headers["Host"] == ["oauth2.googleapis.com"])
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseJSON))
+        )
+      }
+    ])
+    let gatewayData = UserAccountData(
+      type: "authorized_user",
+      clientId: "cid",
+      clientSecret: "csecret",
+      refreshToken: "rtoken",
+      tokenUri: "https://private.googleapis.com/token",
+      quotaProjectId: nil,
+      universeDomain: nil
+    )
+    let gatewayCreds = try UserCredentials(
+      user: gatewayData,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    let headers = try await gatewayCreds.headers()
+    #expect(headers["Authorization"] == "Bearer gateway-user-tok")
+  }
 }
