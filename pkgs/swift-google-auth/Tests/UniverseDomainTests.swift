@@ -224,4 +224,44 @@ import Testing
       }
     }
   }
+
+  @Test func resolveAndValidateServiceURLCoversOverridesAndStructuralChecks() throws {
+    let tpc = try #require(_UniverseDomain(nonEmpty: "apis-tpclp.goog"))
+
+    // `nil` override falls back to `serviceURL`.
+    let fallbackURL = try tpc.resolveServiceURL(
+      override: nil,
+      service: "sts",
+      defaultPath: "/v1/token",
+      settingName: "tokenURL"
+    )
+    #expect(fallbackURL.absoluteString == "https://sts.apis-tpclp.goog/v1/token")
+
+    // Valid override with query allowed succeeds when `allowQuery: true`.
+    let queryURL = try tpc.resolveServiceURL(
+      override: "https://sts.apis-tpclp.goog/v1/token?foo=bar",
+      service: "sts",
+      defaultPath: "/v1/token",
+      settingName: "tokenURL"
+    )
+    #expect(queryURL.absoluteString == "https://sts.apis-tpclp.goog/v1/token?foo=bar")
+
+    // Query, root path, and empty bracketed host are rejected when `allowQuery: false` / `requireNonRootPath: true`.
+    for rejectedIamURL in [
+      "https://iamcredentials.apis-tpclp.goog",
+      "https://iamcredentials.apis-tpclp.goog/",
+      "https://iamcredentials.apis-tpclp.goog/v1/test?foo=bar",
+      "https://[]/v1/test",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        _ = try tpc.validateServiceURL(
+          rejectedIamURL,
+          service: "iamcredentials",
+          settingName: "service_account_impersonation_url",
+          requireNonRootPath: true,
+          allowQuery: false
+        )
+      }
+    }
+  }
 }

@@ -165,33 +165,13 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    guard
-      !impersonationURLString.isEmpty,
-      let parsed = URLComponents(string: impersonationURLString, encodingInvalidCharacters: false),
-      parsed.scheme?.lowercased() == "https",
-      parsed.user == nil,
-      parsed.password == nil,
-      parsed.percentEncodedQuery == nil,
-      parsed.percentEncodedFragment == nil,
-      let percentEncodedHost = parsed.percentEncodedHost,
-      !percentEncodedHost.isEmpty,
-      !percentEncodedHost.contains("%"),
-      let host = parsed.host,
-      !host.isEmpty,
-      !parsed.percentEncodedPath.isEmpty,
-      parsed.percentEncodedPath != "/",
-      let resolvedURL = parsed.url
-    else {
-      throw CredentialsError.parseError(
-        "Invalid service_account_impersonation_url: '\(impersonationURLString)'"
-      )
-    }
-
     let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
-    try effectiveUniverse.validateServiceEndpointHost(
-      host,
+    let resolvedURL = try effectiveUniverse.validateServiceURL(
+      impersonationURLString,
       service: "iamcredentials",
-      settingName: "service_account_impersonation_url"
+      settingName: "service_account_impersonation_url",
+      requireNonRootPath: true,
+      allowQuery: false
     )
 
     try self.init(

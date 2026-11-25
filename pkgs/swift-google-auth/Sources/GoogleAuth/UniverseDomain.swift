@@ -132,6 +132,62 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     return resolvedURL
   }
 
+  /// Resolves an optional `https` service endpoint URL override against this universe domain, or
+  /// constructs `https://<service>.<universeDomain><defaultPath>` when `override` is `nil`.
+  func resolveServiceURL(
+    override: String?,
+    service: String,
+    defaultPath: String,
+    settingName: String,
+    requireNonRootPath: Bool = false,
+    allowQuery: Bool = true
+  ) throws -> URL {
+    if let override {
+      return try validateServiceURL(
+        override,
+        service: service,
+        settingName: settingName,
+        requireNonRootPath: requireNonRootPath,
+        allowQuery: allowQuery
+      )
+    }
+    return try serviceURL(service: service, path: defaultPath)
+  }
+
+  /// Parses and validates an explicit `https` service endpoint URL against this universe domain.
+  ///
+  /// Enforces an `https` scheme, absence of userinfo and fragments, an unencoded non-empty host,
+  /// optional path and query constraints, and universe domain host compatibility for `service`.
+  func validateServiceURL(
+    _ rawURL: String,
+    service: String,
+    settingName: String,
+    requireNonRootPath: Bool = false,
+    allowQuery: Bool = true
+  ) throws -> URL {
+    guard
+      !rawURL.isEmpty,
+      let parsed = URLComponents(string: rawURL, encodingInvalidCharacters: false),
+      parsed.scheme?.lowercased() == "https",
+      parsed.user == nil,
+      parsed.password == nil,
+      allowQuery || parsed.percentEncodedQuery == nil,
+      parsed.percentEncodedFragment == nil,
+      let percentEncodedHost = parsed.percentEncodedHost,
+      !percentEncodedHost.isEmpty,
+      !percentEncodedHost.contains("%"),
+      let host = parsed.host,
+      !host.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).isEmpty,
+      !requireNonRootPath
+        || (!parsed.percentEncodedPath.isEmpty && parsed.percentEncodedPath != "/"),
+      let canonicalURL = parsed.url
+    else {
+      throw CredentialsError.parseError("Invalid \(settingName): '\(rawURL)'")
+    }
+    try validateServiceEndpointHost(host, service: service, settingName: settingName)
+    return canonicalURL
+  }
+
   /// Validates that `host` does not target a conflicting Google Cloud universe domain for `service`.
   func validateServiceEndpointHost(
     _ host: String,
