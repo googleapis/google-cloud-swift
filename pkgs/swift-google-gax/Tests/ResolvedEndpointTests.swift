@@ -677,6 +677,18 @@ import Testing
       }
     }
 
+    // Non-ASCII / IDNA universe domains are rejected on default-endpoint substitution instead of
+    // Punycode round-tripping and emitting raw UTF-8 in `Host` / `:authority`.
+    for badUniverse in ["münchen.de", "apis-tpclp%2Egoog"] {
+      #expect(throws: ClientError.self) {
+        _ = try _ResolvedEndpoint(
+          endpoint: nil,
+          defaultEndpoint: "https://example.googleapis.com",
+          universeDomain: _UniverseDomain.resolve(badUniverse)
+        )
+      }
+    }
+
     let vpcsc = try _ResolvedEndpoint(
       endpoint: "https://private.googleapis.com",
       defaultEndpoint: "https://example.googleapis.com"

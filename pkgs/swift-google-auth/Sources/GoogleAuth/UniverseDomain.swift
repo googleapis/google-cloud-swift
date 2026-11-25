@@ -138,42 +138,50 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     service: String,
     settingName: String
   ) throws {
-    let hostLower = host.lowercased()
+    var trimmedHost = host[...]
+    while trimmedHost.last == "." {
+      trimmedHost = trimmedHost.dropLast()
+    }
+    guard !trimmedHost.isEmpty else {
+      throw CredentialsError.parseError(
+        "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+      )
+    }
+
     let serviceLower = service.lowercased()
-    let servicePrefix = "\(serviceLower)."
     let universeSuffix = ".\(rawValue)"
 
-    if hostLower.hasPrefix(servicePrefix) {
-      let remainder = String(host.dropFirst(servicePrefix.count))
-      let matchesGlobal = remainder == rawValue
-      let matchesRegional: Bool
-      if remainder.hasSuffix(universeSuffix) {
-        let regionPrefix = remainder.dropLast(universeSuffix.count)
-        let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
-        if parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep" {
-          matchesRegional = true
-        } else if isDefault && parts.count == 1 && !parts[0].isEmpty {
-          matchesRegional = true
+    if let firstDot = host.firstIndex(of: ".") {
+      let firstLabelLower = host[..<firstDot].lowercased()
+      let remainder = String(host[host.index(after: firstDot)...])
+
+      if firstLabelLower == serviceLower {
+        let matchesGlobal = remainder == rawValue
+        let matchesRegional: Bool
+        if remainder.hasSuffix(universeSuffix) {
+          let regionPrefix = remainder.dropLast(universeSuffix.count)
+          let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
+          if parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep" {
+            matchesRegional = true
+          } else if isDefault && parts.count == 1 && !parts[0].isEmpty {
+            matchesRegional = true
+          } else {
+            matchesRegional = false
+          }
         } else {
           matchesRegional = false
         }
-      } else {
-        matchesRegional = false
+        guard matchesGlobal || matchesRegional else {
+          throw CredentialsError.parseError(
+            "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+          )
+        }
+        return
       }
-      guard matchesGlobal || matchesRegional else {
-        throw CredentialsError.parseError(
-          "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
-        )
-      }
-      return
-    }
 
-    if let firstDot = hostLower.firstIndex(of: ".") {
-      let firstLabelLower = hostLower[..<firstDot]
       let locationalSuffix = "-\(serviceLower)"
       if firstLabelLower.hasSuffix(locationalSuffix) {
         let regionLabel = firstLabelLower.dropLast(locationalSuffix.count)
-        let remainder = String(host[host.index(after: firstDot)...])
         guard !regionLabel.isEmpty, remainder == rawValue else {
           throw CredentialsError.parseError(
             "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
@@ -183,8 +191,10 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
       }
     }
 
+    let canonicalLower = trimmedHost.lowercased()
     if !isDefault
-      && (hostLower == Self.defaultRawValue || hostLower.hasSuffix(".\(Self.defaultRawValue)"))
+      && (canonicalLower == Self.defaultRawValue
+        || canonicalLower.hasSuffix(".\(Self.defaultRawValue)"))
     {
       throw CredentialsError.parseError(
         "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
