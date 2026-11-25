@@ -242,9 +242,27 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
       configured: universeDomain,
       environment: environment
     )
-    // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
-    let resolvedTokenURL =
-      try tokenURL ?? effectiveUniverse.serviceURL(service: "sts", path: "/v1/token")
+    let resolvedTokenURL: URL
+    if let tokenURL {
+      guard
+        let parsed = URLComponents(url: tokenURL, resolvingAgainstBaseURL: false),
+        let percentEncodedHost = parsed.percentEncodedHost,
+        !percentEncodedHost.isEmpty,
+        !percentEncodedHost.contains("%"),
+        let host = parsed.host,
+        !host.isEmpty
+      else {
+        throw CredentialsError.parseError("Invalid tokenURL: '\(tokenURL.absoluteString)'")
+      }
+      try effectiveUniverse.validateServiceEndpointHost(
+        host,
+        service: "sts",
+        settingName: "token_url"
+      )
+      resolvedTokenURL = tokenURL
+    } else {
+      resolvedTokenURL = try effectiveUniverse.serviceURL(service: "sts", path: "/v1/token")
+    }
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience

@@ -568,6 +568,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let withoutOverride = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
     #expect(try await withoutOverride.universeDomain().rawValue == "source.universe.com")
@@ -577,7 +578,8 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let withOverride = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
-      universeDomain: "override.universe.com"
+      universeDomain: "override.universe.com",
+      environment: [:]
     )
     #expect(try await withOverride.universeDomain().rawValue == "override.universe.com")
 
@@ -585,6 +587,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
       universeDomain: "",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
     #expect(try await withEmptyOverride.universeDomain().rawValue == "source.universe.com")
@@ -593,7 +596,8 @@ private struct FailingSourceCredentials: CredentialsProvider {
       sourceCredentials: StaticSourceCredentials(authHeaders: []),
       impersonationURLString:
         "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
-      universeDomain: ""
+      universeDomain: "",
+      environment: [:]
     )
     #expect(try await urlWithEmptyOverride.universeDomain() == .default)
   }
@@ -920,8 +924,24 @@ private struct FailingSourceCredentials: CredentialsProvider {
         sourceCredentials: StaticSourceCredentials(authHeaders: []),
         impersonationURLString:
           "https://us-central1-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+        environment: [:],
         httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
       )
+    }
+
+    // Locational or VPC-SC `.googleapis.com` URLs are rejected when `GOOGLE_CLOUD_UNIVERSE_DOMAIN` sets a custom universe.
+    for gduURL in [
+      "https://us-central1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://private.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        _ = try ImpersonatedCredentials(
+          sourceCredentials: source,
+          impersonationURLString: gduURL,
+          environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"],
+          httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+        )
+      }
     }
   }
 }
