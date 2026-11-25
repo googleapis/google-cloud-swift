@@ -25,6 +25,7 @@ actor MDSUniverseDomainCache {
   }
 
   func get(using provider: MDSAccessTokenProvider) async throws -> _UniverseDomain {
+    try Task.checkCancellation()
     if let cached = self.cached {
       return cached
     }
@@ -41,14 +42,18 @@ actor MDSUniverseDomainCache {
       self.activeTask = newTask
       task = newTask
     }
-    do {
-      let value = try await task.value
+    guard let outcome = await Self.awaitRespectingCallerCancellation(task) else {
+      // Caller cancelled while `task` is still running; leave `activeTask` intact for sibling waiters.
+      throw CancellationError()
+    }
+    switch outcome {
+    case .success(let value):
       if self.activeTask == task {
         self.cached = value
         self.activeTask = nil
       }
       return value
-    } catch {
+    case .failure(let error):
       if self.activeTask == task {
         self.activeTask = nil
         if AuthHTTPError.shouldCachePermanentError(error) {
@@ -57,6 +62,25 @@ actor MDSUniverseDomainCache {
       }
       throw error
     }
+  }
+
+  /// Waits for `task.result`, returning `nil` immediately if the caller task is cancelled before
+  /// `task` completes (without cancelling the shared underlying `task`).
+  private static func awaitRespectingCallerCancellation(
+    _ task: Task<_UniverseDomain, any Error>
+  ) async -> Result<_UniverseDomain, any Error>? {
+    let stream = AsyncStream<Result<_UniverseDomain, any Error>> { continuation in
+      let observer = Task {
+        let result = await task.result
+        continuation.yield(result)
+        continuation.finish()
+      }
+      continuation.onTermination = { _ in
+        observer.cancel()
+      }
+    }
+    var iterator = stream.makeAsyncIterator()
+    return await iterator.next()
   }
 }
 

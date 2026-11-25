@@ -47,7 +47,7 @@ public struct ClientOptions: Sendable {
   /// Each client defines a default endpoint (typically `https://${service}.googleapis.com`), applications may need to
   /// override in many circumstances, including:
   /// - Using a regional endpoint, such as `https://${service}.${region}.rep.googleapis.com`.
-  /// - Using a locational endpoint, such as `https://${service}-${region}.googleapis.com`.
+  /// - Using a locational endpoint, such as `https://${region}-${service}.googleapis.com`.
   /// - Using the API in a VPC-SC environment, where `https://private.googleapis.com` serves as the endpoint for all
   ///   APIs.
   /// - Using the API against an emulator or some other test environment.
@@ -58,8 +58,9 @@ public struct ClientOptions: Sendable {
 
   /// Overrides the default universe domain (`googleapis.com`) for the client.
   ///
-  /// When `nil` or empty (`""`), the client checks the `GOOGLE_CLOUD_UNIVERSE_DOMAIN` environment
-  /// variable (ignoring empty values), and defaults to `googleapis.com` if neither is configured.
+  /// When `nil`, the client checks the `GOOGLE_CLOUD_UNIVERSE_DOMAIN` environment variable
+  /// (ignoring empty values), and defaults to `googleapis.com` if neither is configured. Setting
+  /// an explicit empty string (`""`) fails client initialization with ``ClientError/invalidEndpoint(_:)``.
   ///
   /// Setting `universeDomain` on `ClientOptions` does not override the universe domain of
   /// ``credentials`` (or default [Application Default Credentials]); non-anonymous credentials must

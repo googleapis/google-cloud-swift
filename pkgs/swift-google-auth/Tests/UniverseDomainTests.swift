@@ -153,14 +153,17 @@ import Testing
     for validTPCHost in [
       "sts.apis-tpclp.goog",
       "STS.apis-tpclp.goog",
+      "STS.APIS-TPCLP.GOOG",
       "sts.us-central1.rep.apis-tpclp.goog",
       "STS.US-CENTRAL1.REP.apis-tpclp.goog",
       "content-sts.us-central1.rep.apis-tpclp.goog",
       "us-central1-sts.apis-tpclp.goog",
       "US-CENTRAL1-STS.apis-tpclp.goog",
+      "US-CENTRAL1-STS.APIS-TPCLP.GOOG",
       "sts-psc.apis-tpclp.goog",
       "my-psc.p.apis-tpclp.goog",
       "private.apis-tpclp.goog",
+      "PRIVATE.APIS-TPCLP.GOOG",
       "restricted.apis-tpclp.goog",
       "localhost",
       "127.0.0.1",
@@ -172,6 +175,7 @@ import Testing
     // Accepted hosts in default universe (including GDU regional `<service>.<region>.googleapis.com`).
     for validGDUHost in [
       "sts.googleapis.com",
+      "STS.GOOGLEAPIS.COM",
       "sts.us-east1.googleapis.com",
       "sts.us-central1.rep.googleapis.com",
       "content-sts.us-central1.rep.googleapis.com",
@@ -183,20 +187,21 @@ import Testing
       try gdu.validateServiceEndpointHost(validGDUHost, service: "sts", settingName: "token_url")
     }
 
-    // Rejected hosts in custom universe (including cross-universe gateways/PSC, trailing DNS root dots,
-    // wrong case on universe suffix, non-REP single-label regional, and Unicode case-folding edge cases).
+    // Rejected hosts in custom universe (including cross-universe gateways/PSC, non-STS universe services/buckets,
+    // trailing DNS root dots, non-REP single-label regional, and Unicode case-folding edge cases).
     for rejectedTPCHost in [
       "",
       ".",
       "[]",
       "sts.googleapis.com",
-      "sts.APIS-TPCLP.GOOG",
       "sts.us-east1.apis-tpclp.goog",
       "sts..rep.apis-tpclp.goog",
       "content-sts.us-central1.rep.apis-s3ns.fr",
       "us-central1-sts.googleapis.com",
-      "us-central1-sts.APIS-TPCLP.GOOG",
       "-sts.apis-tpclp.goog",
+      "attacker-bucket.storage.apis-tpclp.goog",
+      "storage.apis-tpclp.goog",
+      "evil.sts.apis-tpclp.goog",
       "private.googleapis.com",
       "private.apis-s3ns.fr",
       "restricted.apis-s3ns.fr",
@@ -220,13 +225,17 @@ import Testing
       }
     }
 
-    // Rejected hosts in default universe (including cross-universe gateways/PSC, trailing dots, & Unicode length shifts).
+    // Rejected hosts in default universe (including cross-universe gateways/PSC, non-STS universe services/buckets,
+    // trailing dots, & Unicode length shifts).
     for rejectedGDUHost in [
       "sts.apis-tpclp.goog",
       "sts.googleapis.com.",
       "us-central1-sts.apis-tpclp.goog",
       "us-central1-sts.googleapis.com.",
       "content-sts.us-central1.rep.apis-tpclp.goog",
+      "attacker-bucket.storage.googleapis.com",
+      "storage.googleapis.com",
+      "evil.sts.googleapis.com",
       "private.apis-tpclp.goog",
       "restricted.apis-tpclp.goog",
       "www.apis-tpclp.goog",
@@ -244,20 +253,28 @@ import Testing
       }
     }
 
-    // Strict mode (`allowCustomHosts: false`) rejects third-party hosts while allowing loopback & universe hosts.
+    // Strict mode (`allowCustomHosts: false`) rejects third-party and non-service universe hosts
+    // (such as `{bucket}.storage.<universe>` and `iamcredentials-psc.<universe>`) while allowing loopback & service hosts.
     try gdu.validateServiceEndpointHost(
       "localhost",
       service: "iamcredentials",
       settingName: "service_account_impersonation_url",
       allowCustomHosts: false
     )
-    #expect(throws: CredentialsError.self) {
-      try gdu.validateServiceEndpointHost(
-        "attacker.example",
-        service: "iamcredentials",
-        settingName: "service_account_impersonation_url",
-        allowCustomHosts: false
-      )
+    for rejectedStrictHost in [
+      "attacker.example",
+      "attacker-bucket.storage.googleapis.com",
+      "storage.googleapis.com",
+      "iamcredentials-psc.googleapis.com",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        try gdu.validateServiceEndpointHost(
+          rejectedStrictHost,
+          service: "iamcredentials",
+          settingName: "service_account_impersonation_url",
+          allowCustomHosts: false
+        )
+      }
     }
   }
 

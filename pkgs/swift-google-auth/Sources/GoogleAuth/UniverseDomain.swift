@@ -206,7 +206,8 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     let bareHost =
       (host.hasPrefix("[") && host.hasSuffix("]") && host.count >= 2)
       ? String(host.dropFirst().dropLast()) : host
-    if bareHost.lowercased() == "localhost" || bareHost == "127.0.0.1" || bareHost == "::1" {
+    let bareHostASCII = Self.asciiLowercased(bareHost)
+    if bareHostASCII == "localhost" || bareHost == "127.0.0.1" || bareHost == "::1" {
       return
     }
     if bareHost.isEmpty
@@ -218,73 +219,57 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
       )
     }
 
-    let serviceLower = service.lowercased()
+    let hostASCII = Self.asciiLowercased(host)
+    let serviceLower = Self.asciiLowercased(service)
     let universeSuffix = ".\(rawValue)"
 
-    if let firstDot = host.firstIndex(of: ".") {
-      let firstLabelLower = host[..<firstDot].lowercased()
-      let remainder = String(host[host.index(after: firstDot)...])
-
-      if firstLabelLower == serviceLower {
-        guard Self.matchesServiceRemainder(remainder, rawUniverse: rawValue, isDefault: isDefault)
-        else {
-          throw CredentialsError.parseError(
-            "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
-          )
-        }
-        return
+    if host.hasSuffix(universeSuffix) || hostASCII.hasSuffix(universeSuffix) {
+      let prefixLower = String(hostASCII.dropLast(universeSuffix.count))
+      guard
+        !prefixLower.isEmpty,
+        Self.isValidServiceOrGatewayPrefix(
+          prefixLower,
+          serviceLower: serviceLower,
+          isDefaultUniverse: isDefault,
+          allowServiceHyphenPrefix: allowCustomHosts
+        )
+      else {
+        throw CredentialsError.parseError(
+          "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+        )
       }
-
-      let locationalSuffix = "-\(serviceLower)"
-      if firstLabelLower.hasSuffix(locationalSuffix) {
-        let prefixLabel = firstLabelLower.dropLast(locationalSuffix.count)
-        let matchesLocational = remainder == rawValue
-        let matchesPurposeRegional: Bool
-        if remainder.hasSuffix(universeSuffix) {
-          let regionPrefix = remainder.dropLast(universeSuffix.count)
-          let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
-          matchesPurposeRegional =
-            parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep"
-        } else {
-          matchesPurposeRegional = false
-        }
-        guard !prefixLabel.isEmpty, matchesLocational || matchesPurposeRegional else {
-          throw CredentialsError.parseError(
-            "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
-          )
-        }
-        return
-      }
-
-      if firstLabelLower == "private" || firstLabelLower == "restricted" || firstLabelLower == "www"
-      {
-        guard remainder == rawValue else {
-          throw CredentialsError.parseError(
-            "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
-          )
-        }
-        return
-      }
+      return
     }
 
-    let hostLower = host.lowercased()
+    guard allowCustomHosts else {
+      throw CredentialsError.parseError(
+        "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+      )
+    }
+
     if !isDefault
-      && (hostLower == Self.defaultRawValue
-        || hostLower.hasSuffix(".\(Self.defaultRawValue)"))
+      && (hostASCII == Self.defaultRawValue
+        || hostASCII.hasSuffix(".\(Self.defaultRawValue)"))
     {
       throw CredentialsError.parseError(
         "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
       )
     }
 
-    if hostLower.contains(".p.") && !host.hasSuffix(universeSuffix) {
+    if hostASCII.contains(".p.") || hostASCII.contains(".rep.") {
       throw CredentialsError.parseError(
         "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
       )
     }
 
-    if !allowCustomHosts {
-      guard host.hasSuffix(universeSuffix), host.count > universeSuffix.count else {
+    if let firstDot = hostASCII.firstIndex(of: ".") {
+      let firstLabel = hostASCII[..<firstDot]
+      if firstLabel == serviceLower
+        || firstLabel.hasSuffix("-\(serviceLower)")
+        || firstLabel == "private"
+        || firstLabel == "restricted"
+        || firstLabel == "www"
+      {
         throw CredentialsError.parseError(
           "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
         )
@@ -292,27 +277,52 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     }
   }
 
-  private static func matchesServiceRemainder(
-    _ remainder: String,
-    rawUniverse: String,
-    isDefault: Bool
+  private static func isValidServiceOrGatewayPrefix(
+    _ prefixLower: String,
+    serviceLower: String,
+    isDefaultUniverse: Bool,
+    allowServiceHyphenPrefix: Bool
   ) -> Bool {
-    if remainder == rawUniverse {
+    if prefixLower == serviceLower
+      || prefixLower == "private"
+      || prefixLower == "restricted"
+      || prefixLower == "www"
+    {
       return true
     }
-    let universeSuffix = ".\(rawUniverse)"
-    guard remainder.hasSuffix(universeSuffix) else {
+    if prefixLower.hasSuffix(".p") && prefixLower.count > 2 {
+      return true
+    }
+    if !prefixLower.contains(".") {
+      if prefixLower.hasSuffix("-\(serviceLower)") && prefixLower.count > serviceLower.count + 1 {
+        return true
+      }
+      if allowServiceHyphenPrefix
+        && prefixLower.hasPrefix("\(serviceLower)-")
+        && prefixLower.count > serviceLower.count + 1
+      {
+        return true
+      }
       return false
     }
-    let regionPrefix = remainder.dropLast(universeSuffix.count)
-    let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
-    if parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep" {
-      return true
+    let parts = prefixLower.split(separator: ".", omittingEmptySubsequences: false)
+    if parts.count == 3 && parts[2] == "rep" && !parts[1].isEmpty {
+      return parts[0] == serviceLower
+        || (parts[0].hasSuffix("-\(serviceLower)") && parts[0].count > serviceLower.count + 1)
     }
-    if isDefault && parts.count == 1 && !parts[0].isEmpty {
+    if isDefaultUniverse && parts.count == 2 && parts[0] == serviceLower && !parts[1].isEmpty {
       return true
     }
     return false
+  }
+
+  private static func asciiLowercased(_ string: String) -> String {
+    String(
+      decoding: string.utf8.map { byte in
+        (byte >= 0x41 && byte <= 0x5A) ? byte + 32 : byte
+      },
+      as: UTF8.self
+    )
   }
 
   public var description: String {

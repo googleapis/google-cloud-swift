@@ -963,6 +963,67 @@ import Testing
     #expect(try await provider.universeDomain().rawValue == "recovered.universe.com")
     #expect(try await provider.universeDomain().rawValue == "recovered.universe.com")
     #expect(attempts.getCount() == 3)
+
+    // 4. Malformed universe-domain payload (e.g. slashes/spaces) fails with non-retryable parse error
+    let malformedMock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("invalid/domain?x=1".utf8)))
+        )
+      }
+    ])
+    let malformedProvider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: malformedMock),
+      environment: [:]
+    )
+    let malformedErr = await #expect(throws: CredentialsError.self) {
+      _ = try await malformedProvider.universeDomain()
+    }
+    #expect(malformedErr?._isRetryable == false)
+  }
+
+  @Test func cancelledMDSUniverseWaiterReturnsPromptlyWithoutCancellingSharedFetch() async throws {
+    let gate = AsyncStream<Void>.makeStream()
+    let started = AsyncStream<Void>.makeStream()
+    let mock = MockHTTPClient([
+      { _ in
+        started.continuation.yield()
+        for await _ in gate.stream { break }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("shared.universe.com".utf8)))
+        )
+      }
+    ])
+    let provider = MDSCredentials(
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let cancelledWaiter = Task {
+      try await provider.universeDomain()
+    }
+    let survivingWaiter = Task {
+      try await provider.universeDomain()
+    }
+
+    for await _ in started.stream { break }
+    cancelledWaiter.cancel()
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await cancelledWaiter.value
+    }
+
+    gate.continuation.yield()
+    gate.continuation.finish()
+    let resolved = try await survivingWaiter.value
+    #expect(resolved.rawValue == "shared.universe.com")
   }
 
   @Test func explicitMDSRetriesAndFormatsNonADCErrorMessage() async throws {

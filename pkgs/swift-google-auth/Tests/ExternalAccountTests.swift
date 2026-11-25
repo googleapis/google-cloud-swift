@@ -1475,5 +1475,17 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
     let regionalGDUCreds = try Credentials(configuration: .externalAccount(regionalGDUConfig))
     #expect(try await regionalGDUCreds.universeDomain() == "googleapis.com")
+
+    // Empty DNS labels in workforce pool audience host (`//iam..example/...`) are rejected.
+    let badWorkforceAudienceConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "//iam..googleapis.com/locations/global/workforcePools/p/providers/pr",
+      subjectTokenType: .idToken
+    ).with {
+      $0.workforcePoolUserProject = "my-proj"
+    }
+    #expect(throws: CredentialsError.self) {
+      _ = try Credentials(configuration: .externalAccount(badWorkforceAudienceConfig))
+    }
   }
 }

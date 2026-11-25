@@ -326,6 +326,7 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
     guard
       host.lowercased().hasPrefix("iam."),
       host.count > "iam.".count,
+      !host.split(separator: ".", omittingEmptySubsequences: false).contains(""),
       url.percentEncodedPath.hasPrefix("/")
     else {
       return false

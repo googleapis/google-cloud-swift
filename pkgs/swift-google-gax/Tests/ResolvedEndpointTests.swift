@@ -201,12 +201,21 @@ import Testing
     #expect(defaultResolved.isSecure == true)
     #expect(defaultResolved.port == 443)
 
-    let emptyFallback = try _ResolvedEndpoint(
-      options: ClientOptions().with { $0.universeDomain = "" },
+    let emptyEnvFallback = try _ResolvedEndpoint(
+      options: ClientOptions(),
       defaultEndpoint: "https://example.googleapis.com",
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": ""]
     )
-    #expect(emptyFallback.universeDomain == .default)
+    #expect(emptyEnvFallback.universeDomain == .default)
+
+    let emptyOptionError = #expect(throws: ClientError.self) {
+      _ = try _ResolvedEndpoint(
+        options: ClientOptions().with { $0.universeDomain = "" },
+        defaultEndpoint: "https://example.googleapis.com",
+        environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
+      )
+    }
+    #expect(emptyOptionError == .invalidEndpoint("The universe_domain cannot be empty"))
 
     let fromEnv = try _ResolvedEndpoint(
       options: ClientOptions(),
@@ -306,6 +315,28 @@ import Testing
       uri: "https://us-central1-example.googleapis.com/upload/v1/items?upload_id=1",
       wantURL: "https://us-central1-example.googleapis.com/upload/v1/items?upload_id=1",
       wantHost: "us-central1-example.googleapis.com"
+    ),
+    (
+      endpoint: nil,
+      universeDomain: "googleapis.com",
+      uri: "https://content-example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1",
+      wantURL: "https://content-example.us-central1.rep.googleapis.com/upload/v1/items?upload_id=1",
+      wantHost: "content-example.us-central1.rep.googleapis.com"
+    ),
+    (
+      endpoint: nil,
+      universeDomain: "googleapis.com",
+      uri: "https://example.us-east1.googleapis.com/upload/v1/items?upload_id=1",
+      wantURL: "https://example.us-east1.googleapis.com/upload/v1/items?upload_id=1",
+      wantHost: "example.us-east1.googleapis.com"
+    ),
+    // Custom universe default and uppercase shared-gateway endpoints
+    (
+      endpoint: "https://PRIVATE.APIS-TPCLP.GOOG",
+      universeDomain: "apis-tpclp.goog",
+      uri: "https://CONTENT-EXAMPLE.US-CENTRAL1.REP.APIS-TPCLP.GOOG/upload/v1/items?upload_id=1",
+      wantURL: "https://PRIVATE.APIS-TPCLP.GOOG/upload/v1/items?upload_id=1",
+      wantHost: "content-example.us-central1.rep.apis-tpclp.goog"
     ),
     // Custom universe default endpoint -> global and regional hosts in custom universe
     (

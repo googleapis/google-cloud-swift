@@ -296,7 +296,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           validateResponseHeaders: Self.validateMetadataFlavorHeader
         )
         let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
-        return _UniverseDomain.resolve(trimmed)
+        guard let resolved = _UniverseDomain(nonEmpty: trimmed) else {
+          return .default
+        }
+        _ = try resolved.serviceURL(service: "sts", path: "/v1/token")
+        return resolved
       } catch let error as AuthHTTPError where error.statusCode == 404 {
         return .default
       }

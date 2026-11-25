@@ -98,6 +98,9 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     allowsBareHost: Bool = false,
     environment: [String: String]
   ) throws {
+    if let configured = options.universeDomain, configured.isEmpty {
+      throw ClientError.invalidEndpoint("The universe_domain cannot be empty")
+    }
     let universeDomain = _UniverseDomain.resolve(
       configured: options.universeDomain,
       environment: environment
@@ -247,7 +250,8 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     let resolvedHostHeader: String
     let universeRaw = self.universeDomain.rawValue
     let universeSuffix = ".\(universeRaw)"
-    let universeSuffixLower = universeSuffix.lowercased()
+    let baseHostASCII = Self.asciiLowercased(rawBaseHost)
+    let uriHostASCII = Self.asciiLowercased(rawURIHost)
 
     if uriHostLower == baseHostLower && uriPort == basePort {
       // Same origin as `baseURL`: keep `baseURL`'s connection target and default `Host` header.
@@ -255,17 +259,20 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     } else if !universeRaw.isEmpty,
       let service = self.service,
       !service.contains("."),
-      rawBaseHost.hasSuffix(universeSuffix)
-        || (self.universeDomain.isDefault && baseHostLower.hasSuffix(universeSuffixLower)),
-      rawURIHost.hasSuffix(universeSuffix)
-        || (self.universeDomain.isDefault && uriHostLower.hasSuffix(universeSuffixLower)),
+      rawBaseHost.hasSuffix(universeSuffix) || baseHostASCII.hasSuffix(universeSuffix),
+      rawURIHost.hasSuffix(universeSuffix) || uriHostASCII.hasSuffix(universeSuffix),
       uriPort == defaultPort || uriPort == basePort
     {
-      let basePrefixLower = String(baseHostLower.dropLast(universeSuffixLower.count))
-      let uriPrefixLower = String(uriHostLower.dropLast(universeSuffixLower.count))
+      let basePrefixLower = String(baseHostASCII.dropLast(universeSuffix.count))
+      let uriPrefixLower = String(uriHostASCII.dropLast(universeSuffix.count))
       guard
         basePrefixLower == service || Self.isSharedGatewayPrefix(basePrefixLower),
-        uriPrefixLower == service || Self.isRegionalServicePrefix(uriPrefixLower, service: service)
+        uriPrefixLower == service
+          || Self.isRegionalServicePrefix(
+            uriPrefixLower,
+            service: service,
+            isDefaultUniverse: self.universeDomain.isDefault
+          )
       else {
         throw RequestError.badURL(uri)
       }
@@ -297,14 +304,22 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
   }
 
   /// Returns `true` when a lowercased host prefix (before `.<universeDomain>`) matches a regional
-  /// (`<service>.<region>.rep`) or locational (`<region>-<service>`) pattern for `service`.
+  /// (`<service>.<region>.rep`, `{purpose}-<service>.<region>.rep`, or GDU `<service>.<region>`) or
+  /// locational (`<region>-<service>`) pattern for `service`.
   private static func isRegionalServicePrefix(
     _ prefix: String,
-    service: String
+    service: String,
+    isDefaultUniverse: Bool
   ) -> Bool {
     let parts = prefix.split(separator: ".", omittingEmptySubsequences: false)
-    // Regional Endpoint (REP): `<service>.<region>.rep.<universeDomain>` with non-empty `<region>`.
-    if parts.count == 3 && parts[0] == service && !parts[1].isEmpty && parts[2] == "rep" {
+    // Regional Endpoint (REP): `<service>.<region>.rep.<universeDomain>` or
+    // `{purpose}-<service>.<region>.rep.<universeDomain>` with non-empty `<region>` / `{purpose}`.
+    if parts.count == 3 && !parts[1].isEmpty && parts[2] == "rep" {
+      return parts[0] == service
+        || (parts[0].hasSuffix("-\(service)") && parts[0].count > service.count + 1)
+    }
+    // GDU regional endpoint: `<service>.<region>.googleapis.com`.
+    if isDefaultUniverse && parts.count == 2 && parts[0] == service && !parts[1].isEmpty {
       return true
     }
     // Locational endpoint: `<region>-<service>.<universeDomain>` with non-empty `<region>`.
@@ -420,23 +435,22 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       return (authority: host, header: host)
     }
 
-    // Match `customHost` against either the configured universe domain (case-sensitively on the
-    // universe suffix per AIP-4110) or `.googleapis.com` (case-insensitively, for callers
-    // overriding `endpoint` to a VPC-SC VIP or regional `.googleapis.com` host without setting
-    // `universeDomain`). Custom hosts outside both universes (emulators, local proxies, `localhost`,
-    // IPv6 `[::1]`) keep their literal host (and port in gRPC `:authority`).
+    // Match `customHost` against either the configured universe domain or `.googleapis.com`
+    // (ASCII case-insensitively on the URL hostname per RFC 3986, while preserving `universeDomain`
+    // casing per AIP-4110). Custom hosts outside both universes (emulators, local proxies,
+    // `localhost`, IPv6 `[::1]`) keep their literal host (and port in gRPC `:authority`).
     let customHost = Self.bracketedHost(baseURL.host ?? "")
-    let customHostLower = customHost.lowercased()
+    let customHostASCII = Self.asciiLowercased(customHost)
     let universeSuffix = ".\(universeDomain.rawValue)"
     let defaultSuffix = ".\(_UniverseDomain.defaultRawValue)"
     let prefixLower: String
     let effectiveUniverseDomain: String
 
-    if customHost.hasSuffix(universeSuffix) {
-      prefixLower = String(customHost.dropLast(universeSuffix.count)).lowercased()
+    if customHost.hasSuffix(universeSuffix) || customHostASCII.hasSuffix(universeSuffix) {
+      prefixLower = String(customHostASCII.dropLast(universeSuffix.count))
       effectiveUniverseDomain = universeDomain.rawValue
-    } else if customHostLower.hasSuffix(defaultSuffix) {
-      prefixLower = String(customHostLower.dropLast(defaultSuffix.count))
+    } else if customHostASCII.hasSuffix(defaultSuffix) {
+      prefixLower = String(customHostASCII.dropLast(defaultSuffix.count))
       effectiveUniverseDomain = _UniverseDomain.defaultRawValue
     } else {
       let authority = baseURL.port.map { "\(customHost):\($0)" } ?? customHost
@@ -457,5 +471,14 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     let preservedHost = "\(prefixLower).\(effectiveUniverseDomain)"
     let authority = baseURL.port.map { "\(preservedHost):\($0)" } ?? preservedHost
     return (authority: authority, header: preservedHost)
+  }
+
+  private static func asciiLowercased(_ string: String) -> String {
+    String(
+      decoding: string.utf8.map { byte in
+        (byte >= 0x41 && byte <= 0x5A) ? byte + 32 : byte
+      },
+      as: UTF8.self
+    )
   }
 }
