@@ -661,4 +661,36 @@ import Testing
     )
     #expect(redirected.hostHeader == "example.us-central1.rep.googleapis.com")
   }
+
+  @Test func rejectsPercentEncodedHostsAndInvalidCharacters() throws {
+    for badEndpoint in [
+      "https://evil.com%00.googleapis.com",
+      "https://example.googleapis%2Ecom",
+      "https://example.us-central1%0D%0AEvil.rep.googleapis.com",
+      "https://example.googleapis.com/bad path",
+    ] {
+      #expect(throws: ClientError.self) {
+        _ = try _ResolvedEndpoint(
+          endpoint: badEndpoint,
+          defaultEndpoint: "https://example.googleapis.com"
+        )
+      }
+    }
+
+    let vpcsc = try _ResolvedEndpoint(
+      endpoint: "https://private.googleapis.com",
+      defaultEndpoint: "https://example.googleapis.com"
+    )
+    for badURI in [
+      "https://example.us-central1%0D%0AEvil.rep.googleapis.com/upload?upload_id=1",
+      "https://evil%00-example.googleapis.com/upload?upload_id=1",
+      "https://example.googleapis%2Ecom/upload?upload_id=1",
+      "https://private.googleapis.com/upload?upload_id=bad space",
+      "https://private.googleapis.com/upload?upload_id=1#",
+    ] {
+      #expect(throws: RequestError.self) {
+        _ = try vpcsc.resolveRequestURI(badURI)
+      }
+    }
+  }
 }

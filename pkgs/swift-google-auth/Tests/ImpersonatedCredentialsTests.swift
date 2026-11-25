@@ -883,5 +883,45 @@ private struct FailingSourceCredentials: CredentialsProvider {
         httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
       )
     }
+
+    // Locational `<region>-iamcredentials.<universe>` accepts matching universe and rejects mismatch or empty region.
+    let validLocational = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      impersonationURLString:
+        "https://us-central1-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      universeDomain: "apis-tpclp.goog",
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+    #expect(
+      try await validLocational.universeDomain() == _UniverseDomain.resolve("apis-tpclp.goog"))
+
+    for rejectedURL in [
+      "https://us-central1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://private.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://restricted.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://my-psc.p.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://iamcredentials.apis-tpclp%2Egoog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa bad@proj.iam.gserviceaccount.com:generateAccessToken",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        _ = try ImpersonatedCredentials(
+          sourceCredentials: source,
+          impersonationURLString: rejectedURL,
+          universeDomain: "apis-tpclp.goog",
+          httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+        )
+      }
+    }
+
+    // Locational custom-universe URL is also rejected when effective universe is default (`googleapis.com`).
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: StaticSourceCredentials(authHeaders: []),
+        impersonationURLString:
+          "https://us-central1-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+        httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+      )
+    }
   }
 }
