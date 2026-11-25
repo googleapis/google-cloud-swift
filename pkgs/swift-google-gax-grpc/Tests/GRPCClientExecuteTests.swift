@@ -865,25 +865,39 @@ import Testing
     }
   }
 
-  @Test func executeIPv6LoopbackEndpoint() async throws {
+  private static func runIPv6EchoIfAvailable(bindHost: String) async throws {
+    final class ServerStateBox: Sendable {
+      struct State: Sendable {
+        var didBind = false
+        var serveError: (any Error)?
+      }
+      let state = Mutex(State())
+    }
+
     let server = GRPCServer(
       transport: .http2NIOPosix(
-        address: .ipv6(host: "::1", port: 0),
+        address: .ipv6(host: bindHost, port: 0),
         transportSecurity: .plaintext
       ),
       services: [EchoService()]
     )
+    let box = ServerStateBox()
 
     try await withThrowingDiscardingTaskGroup { group in
       group.addTask {
-        try await server.serve()
+        do {
+          try await server.serve()
+        } catch {
+          box.state.withLock { $0.serveError = error }
+        }
       }
 
       let listeningAddress: SocketAddress.IPv6?
       do {
         listeningAddress = try await server.listeningAddress?.ipv6
       } catch {
-        // Skip gracefully in container/CI environments where IPv6 loopback is disabled.
+        // Skip gracefully in container/CI environments (such as GCB Docker) where IPv6 loopback
+        // is disabled, without letting `server.serve()`'s bind error fail the task group.
         server.beginGracefulShutdown()
         return
       }
@@ -891,9 +905,10 @@ import Testing
         server.beginGracefulShutdown()
         return
       }
+      box.state.withLock { $0.didBind = true }
 
       var options = ClientOptions()
-      options.endpoint = "http://[::1]:\(port)"
+      options.endpoint = "http://[\(bindHost)]:\(port)"
       options.credentials = try Credentials(configuration: .anonymous)
 
       let client = try _GRPCClient(
@@ -906,8 +921,8 @@ import Testing
         server.beginGracefulShutdown()
       }
 
-      #expect(client.endpoint.host == "::1")
-      #expect(client.endpoint.authority == "[::1]:\(port)")
+      #expect(client.endpoint.host == bindHost)
+      #expect(client.endpoint.authority == "[\(bindHost)]:\(port)")
 
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
@@ -915,6 +930,30 @@ import Testing
         options: RequestOptions()
       )
     }
+
+    let finalState = box.state.withLock { $0 }
+    if finalState.didBind, let serveError = finalState.serveError {
+      throw serveError
+    }
+  }
+
+  @Test func executeIPv6LoopbackEndpoint() async throws {
+    var staticOptions = ClientOptions()
+    staticOptions.endpoint = "http://[::1]:8080"
+    staticOptions.credentials = try Credentials(configuration: .anonymous)
+    let staticClient = try _GRPCClient(
+      from: staticOptions,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [:]
+    )
+    staticClient.close()
+    #expect(staticClient.endpoint.host == "::1")
+    #expect(staticClient.endpoint.authority == "[::1]:8080")
+
+    // Verify unbindable IPv6 addresses (matching Docker containers with IPv6 disabled) skip cleanly.
+    try await Self.runIPv6EchoIfAvailable(bindHost: "2001:db8::1")
+    // Execute live loopback RPC when IPv6 loopback is enabled on the host.
+    try await Self.runIPv6EchoIfAvailable(bindHost: "::1")
   }
 
   @Test func executePermanentCredentialsErrorNotRetriedByRetryLoop() async throws {
