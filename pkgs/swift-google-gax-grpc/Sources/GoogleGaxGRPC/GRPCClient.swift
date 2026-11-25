@@ -71,7 +71,7 @@ public final class _GRPCClient: Sendable {
       environment: environment
     )
     self.endpoint = resolvedEndpoint
-    self.credentials = try options.credentials ?? GoogleAuth.Credentials()
+    self.credentials = try options.credentials ?? GoogleAuth.Credentials(environment: environment)
     self.quotaProject = options.quotaProject
     var header = clientHeader
     header.setToken(.grpc, version: PackageVersion.version)

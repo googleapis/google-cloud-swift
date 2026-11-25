@@ -46,7 +46,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
   @Test("Configures programmatic credentials with custom providers successfully")
   func createProgrammaticCredentials() throws {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
-    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let targetURL = URL(string: "https://sts.custom-universe.com/v1/token")!
 
     let clientAuth = ClientAuthentication(clientID: "client-id", clientSecret: "client-secret")
     let creds = try ExternalAccountCredentials(
@@ -91,7 +91,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
   @Test("Configures programmatic credentials universe domains correctly")
   func programmaticCredentialsWithUniverseDomain() throws {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
-    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let targetURL = URL(string: "https://sts.my-universe.com/v1/token")!
 
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
@@ -1045,12 +1045,13 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
   func universeDomainResolution() async throws {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let customURL = URL(string: "https://sts.custom.universe.com/v1/token")!
 
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: targetURL,
+      tokenURL: customURL,
       universeDomain: "custom.universe.com"
     )
     #expect(try await creds.universeDomain().rawValue == "custom.universe.com")
@@ -1382,5 +1383,97 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(try await credentials.universeDomain() == "apis-tpclp.goog")
     let headers = try await credentials.headers()
     #expect(headers["Authorization"] == "Bearer mock-custom-url-token")
+  }
+
+  @Test(
+    "ExternalAccountConfig validates explicit STS tokenURL scheme, structure, and universe domain"
+  )
+  func explicitTokenURLValidatesAgainstUniverseDomain() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+
+    // Default or `.googleapis.com` PSC STS URLs with custom `universeDomain` are rejected.
+    for mismatchedURL in [
+      "https://sts.googleapis.com/v1/token",
+      "https://sts-psc.googleapis.com/v1/token",
+      "https://sts-psc.googleapis.com./v1/token",
+      "https://sts.other-universe.com/v1/token",
+    ] {
+      let mismatchedConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: .idToken,
+        tokenURL: URL(string: mismatchedURL)!
+      ).with {
+        $0.universeDomain = "apis-tpclp.goog"
+      }
+      #expect(throws: CredentialsError.self) {
+        _ = try Credentials(configuration: .externalAccount(mismatchedConfig))
+      }
+    }
+
+    // Custom-universe STS URL with default universe (`universeDomain == nil`) is rejected.
+    let tpcTokenConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.apis-tpclp.goog/v1/token")!
+    )
+    #expect(throws: CredentialsError.self) {
+      _ = try Credentials(configuration: .externalAccount(tpcTokenConfig))
+    }
+
+    // Non-HTTPS, malformed, userinfo, fragment, or percent-encoded-host tokenURLs fail fast at init.
+    for invalidTokenURL in [
+      URL(string: "https://sts.apis-tpclp%2Egoog/v1/token")!,
+      URL(string: "http://sts.googleapis.com/v1/token")!,
+      URL(string: "//sts.googleapis.com/v1/token")!,
+      URL(string: "ftp://sts.googleapis.com/v1/token")!,
+      URL(string: "https://user:pass@sts.googleapis.com/v1/token")!,
+      URL(string: "https://sts.googleapis.com/v1/token#frag")!,
+      URL(string: "https://[]/v1/token")!,
+    ] {
+      let invalidConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: .idToken,
+        tokenURL: invalidTokenURL
+      )
+      #expect {
+        _ = try Credentials(configuration: .externalAccount(invalidConfig))
+      } throws: { error in
+        guard case let CredentialsError.parseError(message) = error else {
+          return false
+        }
+        return message.contains("Invalid tokenURL")
+      }
+    }
+
+    // Regional, locational, and relative-base STS URLs matching configured universe succeed.
+    for validURL in [
+      URL(string: "https://sts.us-central1.rep.apis-tpclp.goog/v1/token")!,
+      URL(string: "https://us-central1-sts.apis-tpclp.goog/v1/token")!,
+      URL(string: "/v1/token", relativeTo: URL(string: "https://sts.apis-tpclp.goog")!)!,
+    ] {
+      let validConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: .idToken,
+        tokenURL: validURL
+      ).with {
+        $0.universeDomain = "apis-tpclp.goog"
+      }
+      let creds = try Credentials(configuration: .externalAccount(validConfig))
+      #expect(try await creds.universeDomain() == "apis-tpclp.goog")
+    }
+
+    // Regional GDU STS URL (`sts.<region>.googleapis.com`) succeeds in default universe.
+    let regionalGDUConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.us-east1.googleapis.com/v1/token")!
+    )
+    let regionalGDUCreds = try Credentials(configuration: .externalAccount(regionalGDUConfig))
+    #expect(try await regionalGDUCreds.universeDomain() == "googleapis.com")
   }
 }

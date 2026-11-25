@@ -1702,6 +1702,54 @@ import NIOHTTP1
     #expect(underlying is CredentialsError)
   }
 
+  @Test func defaultCredentialsIgnoreUniverseDomainEnvAndEnforceLegacyFileMismatch() async throws {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "legacy-gdu-adc-\(UUID().uuidString).json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    // Legacy GDU credential JSON omitting `"universe_domain"` must default to `"googleapis.com"`,
+    // even when `GOOGLE_CLOUD_UNIVERSE_DOMAIN` configures the client for a different universe.
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("Transport must not execute HTTP request when universe domains mismatch")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog",
+      ]
+    )
+    #expect(client.endpoint.universeDomain.rawValue == "apis-tpclp.goog")
+    #expect(client.endpoint.host == "example.apis-tpclp.goog")
+
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(path: "/v1/test", query: [])
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(String(describing: underlying).contains("apis-tpclp.goog"))
+    #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

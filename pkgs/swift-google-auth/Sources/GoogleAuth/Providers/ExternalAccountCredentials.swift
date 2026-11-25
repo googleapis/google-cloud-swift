@@ -238,9 +238,34 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
     let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
-    // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
-    let resolvedTokenURL =
-      try tokenURL ?? effectiveUniverse.serviceURL(service: "sts", path: "/v1/token")
+    let resolvedTokenURL: URL
+    if let tokenURL {
+      let rawTokenURL = tokenURL.absoluteString
+      guard
+        !rawTokenURL.isEmpty,
+        let parsed = URLComponents(string: rawTokenURL, encodingInvalidCharacters: false),
+        parsed.scheme?.lowercased() == "https",
+        parsed.user == nil,
+        parsed.password == nil,
+        parsed.percentEncodedFragment == nil,
+        let percentEncodedHost = parsed.percentEncodedHost,
+        !percentEncodedHost.isEmpty,
+        !percentEncodedHost.contains("%"),
+        let host = parsed.host,
+        !host.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).isEmpty,
+        let canonicalURL = parsed.url
+      else {
+        throw CredentialsError.parseError("Invalid tokenURL: '\(rawTokenURL)'")
+      }
+      try effectiveUniverse.validateServiceEndpointHost(
+        host,
+        service: "sts",
+        settingName: "token_url"
+      )
+      resolvedTokenURL = canonicalURL
+    } else {
+      resolvedTokenURL = try effectiveUniverse.serviceURL(service: "sts", path: "/v1/token")
+    }
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience

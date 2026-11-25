@@ -29,7 +29,13 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
   /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
   public var quotaProjectID: String? = nil
 
-  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  /// Optional [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) associated with the access token (defaults to `googleapis.com` when `nil` or empty).
+  ///
+  /// > Important: OAuth 2.0 access tokens do not carry universe domain metadata, and `GoogleAuth`
+  /// > does not consult the `GOOGLE_CLOUD_UNIVERSE_DOMAIN` environment variable. When supplying a
+  /// > token issued in a Trusted Partner Cloud or sovereign universe, set `universeDomain`
+  /// > explicitly so client libraries can verify universe compatibility and avoid sending the token
+  /// > to `googleapis.com`.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `AccessTokenConfig` backed by a custom asynchronous ``AccessTokenProvider``.

@@ -560,4 +560,109 @@ import Testing
       try await apiKey.validateUniverseDomain("custom.universe.com")
     }
   }
+
+  @Test func googleCloudUniverseDomainEnvironmentVariableIsIgnoredByCredentials() async throws {
+    struct StaticSubjectProvider: SubjectTokenProvider {
+      func subjectToken() async throws -> String { "subj-token" }
+    }
+
+    let saJSONWithoutUniverse = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com"
+      }
+      """.utf8)
+    let userJSONWithoutUniverse = Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token"
+      }
+      """.utf8)
+
+    let saFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "gdu-sa-\(UUID().uuidString).json"
+    )
+    let userFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "gdu-user-\(UUID().uuidString).json"
+    )
+    defer {
+      try? FileManager.default.removeItem(at: saFile)
+      try? FileManager.default.removeItem(at: userFile)
+    }
+    try saJSONWithoutUniverse.write(to: saFile)
+    try userJSONWithoutUniverse.write(to: userFile)
+
+    let customEnv = ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+
+    let adcSA = try Credentials(
+      configuration: .adc(),
+      environment: customEnv.merging(["GOOGLE_APPLICATION_CREDENTIALS": saFile.path]) { _, new in
+        new
+      }
+    )
+    #expect(try await adcSA.universeDomain() == "googleapis.com")
+
+    // ADC discovery of a local `authorized_user` file succeeds and reports `"googleapis.com"`
+    // rather than failing during ADC initialization when `GOOGLE_CLOUD_UNIVERSE_DOMAIN` is set.
+    let adcUser = try Credentials(
+      configuration: .adc(),
+      environment: customEnv.merging(["GOOGLE_APPLICATION_CREDENTIALS": userFile.path]) { _, new in
+        new
+      }
+    )
+    #expect(try await adcUser.universeDomain() == "googleapis.com")
+
+    let saCreds = try Credentials(
+      configuration: .serviceAccount(ServiceAccountConfig(keyJSON: saJSONWithoutUniverse)),
+      environment: customEnv
+    )
+    #expect(try await saCreds.universeDomain() == "googleapis.com")
+
+    let userCreds = try Credentials(
+      configuration: .user(UserConfig(keyJSON: userJSONWithoutUniverse)),
+      environment: customEnv
+    )
+    #expect(try await userCreds.universeDomain() == "googleapis.com")
+
+    let extConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: StaticSubjectProvider()),
+      audience: "aud",
+      subjectTokenType: .idToken
+    )
+    let extCreds = try Credentials(
+      configuration: .externalAccount(extConfig),
+      environment: customEnv
+    )
+    #expect(try await extCreds.universeDomain() == "googleapis.com")
+
+    let tokenCreds = try Credentials(
+      configuration: .accessToken(AccessTokenConfig(token: "mock-token.gdu")),
+      environment: customEnv
+    )
+    #expect(try await tokenCreds.universeDomain() == "googleapis.com")
+
+    let apiKeyCreds = try Credentials(
+      configuration: .apiKey("test-api-key"),
+      environment: customEnv
+    )
+    #expect(try await apiKeyCreds.universeDomain() == "googleapis.com")
+
+    let impCreds = try Credentials(
+      configuration: .impersonatedServiceAccount(
+        ImpersonatedServiceAccountConfig(
+          sourceCredentials: saCreds,
+          targetPrincipal: "target@project.iam.gserviceaccount.com"
+        )
+      ),
+      environment: customEnv
+    )
+    #expect(try await impCreds.universeDomain() == "googleapis.com")
+  }
 }

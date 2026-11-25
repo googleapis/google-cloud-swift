@@ -706,6 +706,52 @@ import Testing
     #expect(String(describing: underlying).contains("googleapis.com"))
   }
 
+  @Test func defaultCredentialsIgnoreUniverseDomainEnvAndCatchLegacyFileMismatch() async throws {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "legacy-gdu-grpc-adc-\(UUID().uuidString).json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    // Omitting `"universe_domain"` in the credential file must resolve to `"googleapis.com"` in
+    // `GoogleAuth` so `_GRPCClient` rejects the mismatch against `GOOGLE_CLOUD_UNIVERSE_DOMAIN`.
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    var options = ClientOptions()
+    options.endpoint = "http://127.0.0.1:1"
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com",
+      ]
+    )
+    defer { client.close() }
+
+    let error = await #expect(throws: RequestError.self) {
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(String(describing: underlying).contains("env.universe.com"))
+    #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
   @Test(arguments: [
     (
       universeDomain: "googleapis.com",
