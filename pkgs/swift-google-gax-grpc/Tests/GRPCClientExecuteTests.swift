@@ -898,7 +898,7 @@ import Testing
 
       let client = try _GRPCClient(
         from: options,
-        withDefaultEndpoint: "https://storage.googleapis.com",
+        withDefaultEndpoint: "https://example.googleapis.com",
         environment: [:]
       )
       defer {

@@ -87,12 +87,29 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
 
   /// Constructs a validated `https://<service>.<universeDomain><path>` URL.
   ///
-  /// Rejects malformed universe domains that inject ports, userinfo, extra path segments,
+  /// Rejects malformed universe domains or paths that inject ports, userinfo, extra host segments,
   /// queries, fragments, or invalid URL characters.
   ///
   /// - Throws: ``CredentialsError/parseError(_:)`` if a valid service URL cannot be constructed.
   public func serviceURL(service: String, path: String) throws -> URL {
     let targetHost = "\(service).\(rawValue)"
+    guard
+      let origin = URLComponents(string: "https://\(targetHost)", encodingInvalidCharacters: false),
+      origin.scheme == "https",
+      origin.host == targetHost,
+      origin.percentEncodedHost == targetHost,
+      origin.port == nil,
+      origin.user == nil,
+      origin.password == nil,
+      origin.percentEncodedPath.isEmpty,
+      origin.percentEncodedQuery == nil,
+      origin.percentEncodedFragment == nil
+    else {
+      throw CredentialsError.parseError(
+        "Invalid universe_domain for \(service) endpoint: '\(rawValue)'"
+      )
+    }
+
     let normalizedPath = path.hasPrefix("/") ? path : "/\(path)"
     let urlString = "https://\(targetHost)\(normalizedPath)"
     guard
@@ -104,15 +121,75 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
       parsed.user == nil,
       parsed.password == nil,
       parsed.percentEncodedPath == normalizedPath,
-      parsed.query == nil,
-      parsed.fragment == nil,
+      parsed.percentEncodedQuery == nil,
+      parsed.percentEncodedFragment == nil,
       let resolvedURL = parsed.url
     else {
       throw CredentialsError.parseError(
-        "Invalid universe_domain for \(service) endpoint: '\(rawValue)'"
+        "Invalid path for \(service) endpoint: '\(path)'"
       )
     }
     return resolvedURL
+  }
+
+  /// Validates that `host` does not target a conflicting Google Cloud universe domain for `service`.
+  func validateServiceEndpointHost(
+    _ host: String,
+    service: String,
+    settingName: String
+  ) throws {
+    let hostLower = host.lowercased()
+    let serviceLower = service.lowercased()
+    let servicePrefix = "\(serviceLower)."
+    let universeSuffix = ".\(rawValue)"
+
+    if hostLower.hasPrefix(servicePrefix) {
+      let remainder = String(host.dropFirst(servicePrefix.count))
+      let matchesGlobal = remainder == rawValue
+      let matchesRegional: Bool
+      if remainder.hasSuffix(universeSuffix) {
+        let regionPrefix = remainder.dropLast(universeSuffix.count)
+        let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
+        if parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep" {
+          matchesRegional = true
+        } else if isDefault && parts.count == 1 && !parts[0].isEmpty {
+          matchesRegional = true
+        } else {
+          matchesRegional = false
+        }
+      } else {
+        matchesRegional = false
+      }
+      guard matchesGlobal || matchesRegional else {
+        throw CredentialsError.parseError(
+          "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+        )
+      }
+      return
+    }
+
+    if let firstDot = hostLower.firstIndex(of: ".") {
+      let firstLabelLower = hostLower[..<firstDot]
+      let locationalSuffix = "-\(serviceLower)"
+      if firstLabelLower.hasSuffix(locationalSuffix) {
+        let regionLabel = firstLabelLower.dropLast(locationalSuffix.count)
+        let remainder = String(host[host.index(after: firstDot)...])
+        guard !regionLabel.isEmpty, remainder == rawValue else {
+          throw CredentialsError.parseError(
+            "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+          )
+        }
+        return
+      }
+    }
+
+    if !isDefault
+      && (hostLower == Self.defaultRawValue || hostLower.hasSuffix(".\(Self.defaultRawValue)"))
+    {
+      throw CredentialsError.parseError(
+        "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+      )
+    }
   }
 
   public var description: String {

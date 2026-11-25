@@ -167,17 +167,20 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
   ) throws {
     guard
       !impersonationURLString.isEmpty,
-      let resolvedURL = URL(string: impersonationURLString),
-      let scheme = resolvedURL.scheme?.lowercased(),
-      scheme == "https",
-      resolvedURL.user == nil,
-      resolvedURL.password == nil,
-      resolvedURL.query == nil,
-      resolvedURL.fragment == nil,
-      let host = resolvedURL.host,
+      let parsed = URLComponents(string: impersonationURLString, encodingInvalidCharacters: false),
+      parsed.scheme?.lowercased() == "https",
+      parsed.user == nil,
+      parsed.password == nil,
+      parsed.percentEncodedQuery == nil,
+      parsed.percentEncodedFragment == nil,
+      let percentEncodedHost = parsed.percentEncodedHost,
+      !percentEncodedHost.isEmpty,
+      !percentEncodedHost.contains("%"),
+      let host = parsed.host,
       !host.isEmpty,
-      !resolvedURL.path.isEmpty,
-      resolvedURL.path != "/"
+      !parsed.percentEncodedPath.isEmpty,
+      parsed.percentEncodedPath != "/",
+      let resolvedURL = parsed.url
     else {
       throw CredentialsError.parseError(
         "Invalid service_account_impersonation_url: '\(impersonationURLString)'"
@@ -185,29 +188,11 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     }
 
     let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
-    let iamPrefix = "iamcredentials."
-    if host.lowercased().hasPrefix(iamPrefix) {
-      // Accept global `iamcredentials.<universe>` and regional
-      // `iamcredentials.<region>.rep.<universe>` (case-insensitive on `<region>.rep.`,
-      // case-sensitive on `<universe>`).
-      let remainder = String(host.dropFirst(iamPrefix.count))
-      let matchesGlobal = remainder == effectiveUniverse.rawValue
-      let universeSuffix = ".\(effectiveUniverse.rawValue)"
-      let matchesRegional: Bool
-      if remainder.hasSuffix(universeSuffix) {
-        let regionPrefix = remainder.dropLast(universeSuffix.count)
-        let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
-        matchesRegional =
-          parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep"
-      } else {
-        matchesRegional = false
-      }
-      if !matchesGlobal && !matchesRegional {
-        throw CredentialsError.parseError(
-          "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
-        )
-      }
-    }
+    try effectiveUniverse.validateServiceEndpointHost(
+      host,
+      service: "iamcredentials",
+      settingName: "service_account_impersonation_url"
+    )
 
     try self.init(
       sourceCredentials: sourceCredentials,

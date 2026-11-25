@@ -188,13 +188,16 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
   public func resolveRequestURI(
     _ uri: String
   ) throws -> (components: URLComponents, hostHeader: String) {
-    // Reject relative or unparsable URIs, embedded credentials, fragments, and scheme mismatches
-    // (preventing `https` to `http` downgrades).
-    guard let parsed = URLComponents(string: uri),
+    // Reject relative or unparsable URIs, embedded credentials, fragments, percent-encoded hosts,
+    // and scheme mismatches (preventing `https` to `http` downgrades).
+    guard let parsed = URLComponents(string: uri, encodingInvalidCharacters: false),
       parsed.user == nil,
       parsed.password == nil,
-      parsed.fragment == nil,
+      parsed.percentEncodedFragment == nil,
       let uriScheme = parsed.scheme?.lowercased(),
+      let percentEncodedHost = parsed.percentEncodedHost,
+      !percentEncodedHost.isEmpty,
+      !percentEncodedHost.contains("%"),
       let rawParsedHost = parsed.host,
       !Self.unbracketedHost(rawParsedHost).isEmpty,
       let baseScheme = self.baseURL.scheme?.lowercased(),
@@ -324,11 +327,14 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       throw ClientError.invalidEndpoint(endpoint)
     }
     guard
-      var parsed = URLComponents(string: normalized),
+      var parsed = URLComponents(string: normalized, encodingInvalidCharacters: false),
       parsed.user == nil,
       parsed.password == nil,
       let scheme = parsed.scheme?.lowercased(),
       scheme == "http" || scheme == "https",
+      let percentEncodedHost = parsed.percentEncodedHost,
+      !percentEncodedHost.isEmpty,
+      !percentEncodedHost.contains("%"),
       let host = parsed.host,
       !Self.unbracketedHost(host).isEmpty
     else {

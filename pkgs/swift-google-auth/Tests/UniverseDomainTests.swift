@@ -117,6 +117,24 @@ import Testing
     #expect(detail.contains("universe_domain"))
   }
 
+  @Test(arguments: [
+    "/v1/projects/-/serviceAccounts/sa|bad@proj.iam.gserviceaccount.com:generateAccessToken",
+    "/v1/projects/-/serviceAccounts/sa%@proj.iam.gserviceaccount.com:generateAccessToken",
+    "/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken?x=1",
+    "/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken#frag",
+  ])
+  func serviceURLReportsInvalidPathSeparatelyFromUniverseDomain(badPath: String) throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try _UniverseDomain.default.serviceURL(service: "iamcredentials", path: badPath)
+    }
+    guard case .parseError(let detail) = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+    #expect(detail.contains("Invalid path"))
+    #expect(!detail.contains("Invalid universe_domain"))
+  }
+
   @Test func equalityIsExactCaseSensitive() throws {
     let custom = try #require(_UniverseDomain(nonEmpty: "my-universe.com"))
     let same = try #require(_UniverseDomain(nonEmpty: "my-universe.com"))
