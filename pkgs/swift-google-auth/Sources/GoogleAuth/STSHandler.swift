@@ -118,6 +118,7 @@ struct STSHandler: Sendable {
   func exchangeToken(
     request: ExchangeTokenRequest,
     url: URL,
+    hostHeader: String? = nil,
     encoding: STSBodyEncoding = .urlEncoded
   ) async throws -> TokenResponse {
     var params = [
@@ -135,6 +136,9 @@ struct STSHandler: Sendable {
     }
 
     var headers: [String: String] = [:]
+    if let hostHeader {
+      headers["Host"] = hostHeader
+    }
 
     // Handle Client Authentication (Basic Auth if credentials exist)
     if let clientAuth = request.clientAuthentication {

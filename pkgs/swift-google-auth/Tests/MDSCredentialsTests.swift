@@ -1026,6 +1026,57 @@ import Testing
     #expect(resolved.rawValue == "shared.universe.com")
   }
 
+  @Test func cancelledSoleWaiterClearsFailedBackgroundTaskBeforeNextCaller() async throws {
+    let gate = AsyncStream<Void>.makeStream()
+    let started = AsyncStream<Void>.makeStream()
+    let finishedFirst = AsyncStream<Void>.makeStream()
+    let mock = MockHTTPClient([
+      { _ in
+        started.continuation.yield()
+        for await _ in gate.stream { break }
+        defer { finishedFirst.continuation.yield() }
+        return HTTPClientResponse(version: .http2, status: .serviceUnavailable)
+      },
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("fresh.universe.com".utf8)))
+        )
+      },
+    ])
+    let provider = MDSCredentials(
+      retryConfiguration: RetryConfiguration(
+        maxAttempts: 1,
+        initialDelay: .milliseconds(1),
+        multiplier: 1.0,
+        maxDelay: .milliseconds(1)
+      ),
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let firstWaiter = Task {
+      try await provider.universeDomain()
+    }
+    for await _ in started.stream { break }
+    firstWaiter.cancel()
+    await #expect(throws: CancellationError.self) {
+      _ = try await firstWaiter.value
+    }
+
+    // Let the orphaned in-flight fetch finish with HTTP 503; `recordCompletion` clears `activeTask`
+    // so a subsequent caller starts a fresh MDS request instead of receiving the stale 503.
+    gate.continuation.yield()
+    gate.continuation.finish()
+    for await _ in finishedFirst.stream { break }
+    try await Task.sleep(for: .milliseconds(10))
+
+    let secondDomain = try await provider.universeDomain()
+    #expect(secondDomain.rawValue == "fresh.universe.com")
+  }
+
   @Test func explicitMDSRetriesAndFormatsNonADCErrorMessage() async throws {
     let attempts = CallCounter()
     let mock = MockHTTPClient([

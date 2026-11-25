@@ -872,5 +872,34 @@ private struct FailingSourceCredentials: CredentialsProvider {
         )
       }
     }
+    // Shared-gateway `service_account_impersonation_url` (`private.<universe>`, `<psc>.p.<universe>`)
+    // sets `Host: iamcredentials.<universe>` on the outbound IAM request.
+    let iamPayload = Data(
+      #"{"accessToken":"gateway-iam-tok","expireTime":"2099-01-01T00:00:00Z"}"#.utf8
+    )
+    let gatewayIamMock = MockHTTPClient([
+      { request in
+        #expect(
+          request.url
+            == "https://private.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken"
+        )
+        #expect(request.headers["Host"] == ["iamcredentials.apis-tpclp.goog"])
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: iamPayload))
+        )
+      }
+    ])
+    let gatewayImpersonated = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      impersonationURLString:
+        "https://private.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      universeDomain: "apis-tpclp.goog",
+      httpClient: AuthHTTPClient(mock: gatewayIamMock)
+    )
+    let gatewayHeaders = try await gatewayImpersonated.headers()
+    #expect(gatewayHeaders["Authorization"] == "Bearer gateway-iam-tok")
   }
 }

@@ -104,6 +104,8 @@ import Testing
     "evil.com?x=1",
     "evil.com#frag",
     "bad domain",
+    "googleapis.com.",
+    "..com",
   ])
   func serviceURLRejectsMalformedUniverseDomain(malformed: String) throws {
     let domain = try #require(_UniverseDomain(nonEmpty: malformed))

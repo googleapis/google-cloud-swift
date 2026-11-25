@@ -1750,6 +1750,20 @@ import NIOHTTP1
     #expect(String(describing: underlying).contains("googleapis.com"))
   }
 
+  @Test func convenienceInitRejectsEmptyUniverseDomain() throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let error = #expect(throws: ClientError.self) {
+      _ = try _HTTPClient(
+        mock,
+        endpoint: "https://example.googleapis.com",
+        universeDomain: ""
+      )
+    }
+    #expect(error == .invalidEndpoint("The universe_domain cannot be empty"))
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

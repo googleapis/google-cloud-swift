@@ -30,6 +30,9 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
   /// The full IAM Credentials `:generateAccessToken` endpoint URL.
   let iamEndpointURL: URL
 
+  /// Optional `Host` header override (`iamcredentials.<universeDomain>`) when `iamEndpointURL` targets a shared gateway.
+  let iamHostHeader: String?
+
   /// Normalized target service account resource name when constructed from `targetPrincipal`.
   let targetResourceName: String?
 
@@ -96,6 +99,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
     }
 
     let iamEndpointURL: URL
+    let resolvedHostHeader: String?
     if universeDomainOverride == nil,
       let targetResourceName,
       !targetUniverse.isDefault
@@ -105,6 +109,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
           service: "iamcredentials",
           path: "/v1/\(targetResourceName):generateAccessToken"
         )
+        resolvedHostHeader = nil
       } catch {
         throw CredentialsError.cannotFetchToken(
           message: "Invalid IAM endpoint URL for universe domain '\(targetUniverse)'.",
@@ -113,6 +118,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       }
     } else {
       iamEndpointURL = self.iamEndpointURL
+      resolvedHostHeader = self.iamHostHeader
     }
 
     let sourceAuthHeaders: AuthHeaders
@@ -128,6 +134,9 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
     }
 
     var headersDict: [String: String] = [:]
+    if let resolvedHostHeader {
+      headersDict["Host"] = resolvedHostHeader
+    }
     for (name, value) in sourceAuthHeaders {
       headersDict[name] = value
     }

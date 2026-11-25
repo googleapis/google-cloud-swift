@@ -154,6 +154,8 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       let targetHost = "\(service).\(universeDomain.rawValue)"
       let candidateString = "\(scheme)://\(targetHost)\(portSuffix)"
       guard
+        !universeDomain.rawValue.split(separator: ".", omittingEmptySubsequences: false)
+          .contains(""),
         let reparsed = URLComponents(string: candidateString, encodingInvalidCharacters: false),
         reparsed.scheme == scheme,
         reparsed.host == targetHost,

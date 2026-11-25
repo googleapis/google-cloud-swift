@@ -141,6 +141,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     try self.init(
       sourceCredentials: sourceCredentials,
       iamEndpointURL: resolvedURL,
+      iamHostHeader: nil,
       targetResourceName: resourceName,
       delegates: delegates,
       scopes: scopes,
@@ -166,7 +167,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
     let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
-    let resolvedURL = try effectiveUniverse.validateServiceURL(
+    let resolvedEndpoint = try effectiveUniverse.validateServiceEndpoint(
       impersonationURLString,
       service: "iamcredentials",
       settingName: "service_account_impersonation_url",
@@ -177,7 +178,8 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
 
     try self.init(
       sourceCredentials: sourceCredentials,
-      iamEndpointURL: resolvedURL,
+      iamEndpointURL: resolvedEndpoint.url,
+      iamHostHeader: resolvedEndpoint.hostHeader,
       targetResourceName: nil,
       delegates: delegates,
       scopes: scopes,
@@ -193,6 +195,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
   private init(
     sourceCredentials: any CredentialsProvider,
     iamEndpointURL: URL,
+    iamHostHeader: String?,
     targetResourceName: String?,
     delegates: [String],
     scopes: [String],
@@ -224,6 +227,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     let provider = ImpersonatedTokenProvider(
       sourceCredentials: sourceCredentials,
       iamEndpointURL: iamEndpointURL,
+      iamHostHeader: iamHostHeader,
       targetResourceName: targetResourceName,
       universeDomainOverride: universeDomainOverride,
       scopes: effectiveScopes,

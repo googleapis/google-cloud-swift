@@ -112,6 +112,9 @@ public import Foundation
     universeDomain: String = _UniverseDomain.defaultRawValue,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    if universeDomain.isEmpty {
+      throw ClientError.invalidEndpoint("The universe_domain cannot be empty")
+    }
     let resolvedEndpoint = try _ResolvedEndpoint(
       endpoint: endpoint,
       defaultEndpoint: defaultEndpoint ?? endpoint,

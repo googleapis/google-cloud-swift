@@ -18,10 +18,11 @@ import Foundation
 actor MDSUniverseDomainCache {
   private var cached: _UniverseDomain?
   private var permanentError: (any Error)?
-  private var activeTask: Task<_UniverseDomain, any Error>?
+  private var activeTask: (id: UInt64, task: Task<_UniverseDomain, any Error>)?
+  private var nextTaskID: UInt64 = 0
 
   deinit {
-    activeTask?.cancel()
+    activeTask?.task.cancel()
   }
 
   func get(using provider: MDSAccessTokenProvider) async throws -> _UniverseDomain {
@@ -34,33 +35,43 @@ actor MDSUniverseDomainCache {
     }
     let task: Task<_UniverseDomain, any Error>
     if let existing = self.activeTask {
-      task = existing
+      task = existing.task
     } else {
-      let newTask = Task {
-        try await provider.fetchUniverseDomain()
+      self.nextTaskID &+= 1
+      let taskID = self.nextTaskID
+      let newTask = Task { [weak self] in
+        do {
+          let value = try await provider.fetchUniverseDomain()
+          await self?.recordCompletion(taskID: taskID, result: .success(value))
+          return value
+        } catch {
+          await self?.recordCompletion(taskID: taskID, result: .failure(error))
+          throw error
+        }
       }
-      self.activeTask = newTask
+      self.activeTask = (id: taskID, task: newTask)
       task = newTask
     }
     guard let outcome = await Self.awaitRespectingCallerCancellation(task) else {
-      // Caller cancelled while `task` is still running; leave `activeTask` intact for sibling waiters.
+      // Caller cancelled while `task` is still running; `newTask` will update `self` via
+      // `recordCompletion` when it finishes.
       throw CancellationError()
     }
-    switch outcome {
+    return try outcome.get()
+  }
+
+  private func recordCompletion(taskID: UInt64, result: Result<_UniverseDomain, any Error>) {
+    guard self.activeTask?.id == taskID else {
+      return
+    }
+    self.activeTask = nil
+    switch result {
     case .success(let value):
-      if self.activeTask == task {
-        self.cached = value
-        self.activeTask = nil
-      }
-      return value
+      self.cached = value
     case .failure(let error):
-      if self.activeTask == task {
-        self.activeTask = nil
-        if AuthHTTPError.shouldCachePermanentError(error) {
-          self.permanentError = error
-        }
+      if AuthHTTPError.shouldCachePermanentError(error) {
+        self.permanentError = error
       }
-      throw error
     }
   }
 

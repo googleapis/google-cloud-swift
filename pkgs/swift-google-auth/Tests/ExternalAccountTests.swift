@@ -1487,5 +1487,43 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(throws: CredentialsError.self) {
       _ = try Credentials(configuration: .externalAccount(badWorkforceAudienceConfig))
     }
+
+    // Shared gateway STS `tokenURL` (`private.<universe>`, `<psc>.p.<universe>`) sends `Host: sts.<universe>`.
+    let tokenPayload = Data(
+      #"{"access_token":"gateway-sts-tok","token_type":"Bearer","expires_in":3600,"issued_token_type":"urn:ietf:params:oauth:token-type:access_token"}"#
+        .utf8
+    )
+    for gatewayURLString in [
+      "https://private.apis-tpclp.goog/v1/token",
+      "https://my-psc.p.apis-tpclp.goog/v1/token",
+    ] {
+      let gatewayURL = try #require(URL(string: gatewayURLString))
+      let gatewayConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: .idToken,
+        tokenURL: gatewayURL
+      ).with {
+        $0.universeDomain = "apis-tpclp.goog"
+      }
+      let mock = MockHTTPClient([
+        { request in
+          #expect(request.url == gatewayURLString)
+          #expect(request.headers["Host"] == ["sts.apis-tpclp.goog"])
+          return HTTPClientResponse(
+            version: .http2,
+            status: .ok,
+            headers: .init([("Content-Type", "application/json")]),
+            body: .bytes(.init(data: tokenPayload))
+          )
+        }
+      ])
+      let gatewayCreds = try Credentials(
+        externalAccount: gatewayConfig,
+        httpClient: AuthHTTPClient(mock: mock)
+      )
+      let headers = try await gatewayCreds.headers()
+      #expect(headers["Authorization"] == "Bearer gateway-sts-tok")
+    }
   }
 }

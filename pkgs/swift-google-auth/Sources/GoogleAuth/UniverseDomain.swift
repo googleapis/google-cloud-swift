@@ -94,6 +94,7 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
   func serviceURL(service: String, path: String) throws -> URL {
     let targetHost = "\(service).\(rawValue)"
     guard
+      !rawValue.split(separator: ".", omittingEmptySubsequences: false).contains(""),
       let origin = URLComponents(string: "https://\(targetHost)", encodingInvalidCharacters: false),
       origin.scheme == "https",
       origin.host == targetHost,
@@ -133,6 +134,31 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
   }
 
   /// Resolves an optional `https` service endpoint URL override against this universe domain, or
+  /// constructs `https://<service>.<universeDomain><defaultPath>` when `override` is `nil`,
+  /// returning any required `Host` header override for shared multi-service / PSC gateways.
+  func resolveServiceEndpoint(
+    override: String?,
+    service: String,
+    defaultPath: String,
+    settingName: String,
+    requireNonRootPath: Bool = false,
+    allowQuery: Bool = true,
+    allowCustomHosts: Bool = true
+  ) throws -> (url: URL, hostHeader: String?) {
+    if let override {
+      return try validateServiceEndpoint(
+        override,
+        service: service,
+        settingName: settingName,
+        requireNonRootPath: requireNonRootPath,
+        allowQuery: allowQuery,
+        allowCustomHosts: allowCustomHosts
+      )
+    }
+    return (url: try serviceURL(service: service, path: defaultPath), hostHeader: nil)
+  }
+
+  /// Resolves an optional `https` service endpoint URL override against this universe domain, or
   /// constructs `https://<service>.<universeDomain><defaultPath>` when `override` is `nil`.
   func resolveServiceURL(
     override: String?,
@@ -143,31 +169,27 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     allowQuery: Bool = true,
     allowCustomHosts: Bool = true
   ) throws -> URL {
-    if let override {
-      return try validateServiceURL(
-        override,
-        service: service,
-        settingName: settingName,
-        requireNonRootPath: requireNonRootPath,
-        allowQuery: allowQuery,
-        allowCustomHosts: allowCustomHosts
-      )
-    }
-    return try serviceURL(service: service, path: defaultPath)
+    try resolveServiceEndpoint(
+      override: override,
+      service: service,
+      defaultPath: defaultPath,
+      settingName: settingName,
+      requireNonRootPath: requireNonRootPath,
+      allowQuery: allowQuery,
+      allowCustomHosts: allowCustomHosts
+    ).url
   }
 
-  /// Parses and validates an explicit `https` service endpoint URL against this universe domain.
-  ///
-  /// Enforces an `https` scheme, absence of userinfo and fragments, an unencoded non-empty host,
-  /// optional path and query constraints, and universe domain host compatibility for `service`.
-  func validateServiceURL(
+  /// Parses and validates an explicit `https` service endpoint URL against this universe domain,
+  /// returning both the canonical URL and any `Host` header override required for shared gateways.
+  func validateServiceEndpoint(
     _ rawURL: String,
     service: String,
     settingName: String,
     requireNonRootPath: Bool = false,
     allowQuery: Bool = true,
     allowCustomHosts: Bool = true
-  ) throws -> URL {
+  ) throws -> (url: URL, hostHeader: String?) {
     guard
       !rawURL.isEmpty,
       let parsed = URLComponents(string: rawURL, encodingInvalidCharacters: false),
@@ -187,28 +209,49 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     else {
       throw CredentialsError.parseError("Invalid \(settingName): '\(rawURL)'")
     }
-    try validateServiceEndpointHost(
+    let hostHeader = try validateServiceEndpointHost(
       host,
       service: service,
       settingName: settingName,
       allowCustomHosts: allowCustomHosts
     )
-    return canonicalURL
+    return (url: canonicalURL, hostHeader: hostHeader)
   }
 
-  /// Validates that `host` does not target a conflicting Google Cloud universe domain for `service`.
+  /// Parses and validates an explicit `https` service endpoint URL against this universe domain.
+  func validateServiceURL(
+    _ rawURL: String,
+    service: String,
+    settingName: String,
+    requireNonRootPath: Bool = false,
+    allowQuery: Bool = true,
+    allowCustomHosts: Bool = true
+  ) throws -> URL {
+    try validateServiceEndpoint(
+      rawURL,
+      service: service,
+      settingName: settingName,
+      requireNonRootPath: requireNonRootPath,
+      allowQuery: allowQuery,
+      allowCustomHosts: allowCustomHosts
+    ).url
+  }
+
+  /// Validates that `host` does not target a conflicting Google Cloud universe domain for `service`,
+  /// returning `<service>.<universeDomain>` when `host` is a shared gateway requiring a `Host` override.
+  @discardableResult
   func validateServiceEndpointHost(
     _ host: String,
     service: String,
     settingName: String,
     allowCustomHosts: Bool = true
-  ) throws {
+  ) throws -> String? {
     let bareHost =
       (host.hasPrefix("[") && host.hasSuffix("]") && host.count >= 2)
       ? String(host.dropFirst().dropLast()) : host
     let bareHostASCII = Self.asciiLowercased(bareHost)
     if bareHostASCII == "localhost" || bareHost == "127.0.0.1" || bareHost == "::1" {
-      return
+      return nil
     }
     if bareHost.isEmpty
       || (!bareHost.contains(":")
@@ -238,7 +281,10 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
           "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
         )
       }
-      return
+      if Self.isSharedGatewayPrefix(prefixLower) {
+        return "\(serviceLower).\(rawValue)"
+      }
+      return nil
     }
 
     guard allowCustomHosts else {
@@ -275,6 +321,14 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
         )
       }
     }
+    return nil
+  }
+
+  private static func isSharedGatewayPrefix(_ prefixLower: String) -> Bool {
+    prefixLower == "private"
+      || prefixLower == "restricted"
+      || prefixLower == "www"
+      || (prefixLower.hasSuffix(".p") && prefixLower.count > 2)
   }
 
   private static func isValidServiceOrGatewayPrefix(
@@ -283,14 +337,7 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     isDefaultUniverse: Bool,
     allowServiceHyphenPrefix: Bool
   ) -> Bool {
-    if prefixLower == serviceLower
-      || prefixLower == "private"
-      || prefixLower == "restricted"
-      || prefixLower == "www"
-    {
-      return true
-    }
-    if prefixLower.hasSuffix(".p") && prefixLower.count > 2 {
+    if prefixLower == serviceLower || isSharedGatewayPrefix(prefixLower) {
       return true
     }
     if !prefixLower.contains(".") {

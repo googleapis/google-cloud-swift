@@ -35,6 +35,9 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   /// The Security Token Service endpoint URL (typically `https://sts.googleapis.com/v1/token`).
   private let tokenURL: URL
 
+  /// Optional `Host` header override (`sts.<universeDomain>`) when `tokenURL` targets a shared gateway.
+  private let tokenHostHeader: String?
+
   /// The URI identifier specifying the format of the subject token (e.g. `urn:ietf:params:oauth:token-type:jwt`).
   private let subjectTokenType: ExternalAccountConfig.SubjectTokenType
 
@@ -68,6 +71,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   init(
     subjectTokenProvider: any SubjectTokenProvider,
     tokenURL: URL,
+    tokenHostHeader: String? = nil,
     subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     audience: String,
     scopes: [String],
@@ -78,6 +82,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   ) {
     self.subjectTokenProvider = subjectTokenProvider
     self.tokenURL = tokenURL
+    self.tokenHostHeader = tokenHostHeader
     self.subjectTokenType = subjectTokenType
     self.audience = audience
     self.scopes = scopes
@@ -123,6 +128,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
         try await stsHandler.exchangeToken(
           request: request,
           url: tokenURL,
+          hostHeader: tokenHostHeader,
           encoding: .urlEncoded
         )
       }
@@ -238,7 +244,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
     let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
-    let resolvedTokenURL = try effectiveUniverse.resolveServiceURL(
+    let resolvedEndpoint = try effectiveUniverse.resolveServiceEndpoint(
       override: tokenURL?.absoluteString,
       service: "sts",
       defaultPath: "/v1/token",
@@ -248,15 +254,16 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
     self.subjectTokenType = subjectTokenType
-    self.tokenURL = resolvedTokenURL
-    self.clientAuthentication = clientAuthentication
+    self.tokenURL = resolvedEndpoint.url
     self.workforcePoolUserProject = effectiveWorkforcePoolUserProject
+    self.clientAuthentication = clientAuthentication
     self.scopes = effectiveScopes
     self.universeDomain = effectiveUniverse
 
     let provider = ExternalAccountTokenProvider(
       subjectTokenProvider: subjectTokenProvider,
-      tokenURL: resolvedTokenURL,
+      tokenURL: resolvedEndpoint.url,
+      tokenHostHeader: resolvedEndpoint.hostHeader,
       subjectTokenType: subjectTokenType,
       audience: audience,
       scopes: effectiveScopes,

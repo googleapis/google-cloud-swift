@@ -736,7 +736,7 @@ import Testing
 
     // Non-ASCII / IDNA universe domains are rejected on default-endpoint substitution instead of
     // Punycode round-tripping and emitting raw UTF-8 in `Host` / `:authority`.
-    for badUniverse in ["münchen.de", "apis-tpclp%2Egoog"] {
+    for badUniverse in ["münchen.de", "apis-tpclp%2Egoog", "googleapis.com.", "..com"] {
       #expect(throws: ClientError.self) {
         _ = try _ResolvedEndpoint(
           endpoint: nil,
