@@ -25,11 +25,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v6
-      - name: Set up go
-        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # ratchet:actions/setup-go@v6.4
-        with:
-          go-version: "1.26"
-          cache: false
+      # Version of librarian is pulled from librarian.yaml,
+      # action is pinned to commit SHA to satisfy blanket security policy.
+      - uses: googleapis/librarian@c54791693e09a76a7403f3dc81c7c97782908b3d # v0.53.0
       - name: 'Format YAML files'
         run: |
           #!/usr/bin/env bash
@@ -41,18 +39,6 @@ jobs:
           git ls-files -z -- '*.yaml' '*.yml' ':!:librarian.yaml' ':!:**/.spi.yml' | \
             xargs -0 yamlfmt
       - name: 'Format librarian.yaml file'
-        run: |
-          #!/usr/bin/env bash
-          set -euv
-          # Make three attempts to avoid download flakes.
-          go run github.com/googleapis/librarian/cmd/librarian@latest config get version || \
-          go run github.com/googleapis/librarian/cmd/librarian@latest config get version || \
-          go run github.com/googleapis/librarian/cmd/librarian@latest config get version
-          # Now get the version and regenerate the code.
-          V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
-          go install github.com/googleapis/librarian/cmd/librarian@${V}|| \
-          go install github.com/googleapis/librarian/cmd/librarian@${V}|| \
-          go install github.com/googleapis/librarian/cmd/librarian@${V}
-          librarian tidy
+        run: librarian tidy
       - name: Detect drift
         run: git diff --exit-code
