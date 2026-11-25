@@ -25,11 +25,14 @@ import Testing
     ("http://restricted.googleapis.com", "test.googleapis.com"),
     ("http://test-my-private-ep.p.googleapis.com", "test.googleapis.com"),
     ("https://us-central1-test.googleapis.com", "us-central1-test.googleapis.com"),
-    ("https://us-central1-wrong.googleapis.com", "test.googleapis.com"),
-    ("https://us-central1test.googleapis.com", "test.googleapis.com"),
-    ("https://-test.googleapis.com", "test.googleapis.com"),
-    ("https://test..rep.googleapis.com", "test.googleapis.com"),
     ("https://test.us-central1.rep.googleapis.com", "test.us-central1.rep.googleapis.com"),
+    (
+      "https://content-test.us-central1.rep.googleapis.com",
+      "content-test.us-central1.rep.googleapis.com"
+    ),
+    ("https://my-bucket.test.googleapis.com", "my-bucket.test.googleapis.com"),
+    ("https://test.us-east1.googleapis.com", "test.us-east1.googleapis.com"),
+    ("https://staging-test.sandbox.googleapis.com", "staging-test.sandbox.googleapis.com"),
     ("https://test.my-universe-domain.com", "test.my-universe-domain.com"),
     ("localhost:5678", "localhost"),
     ("https://localhost:5678", "localhost"),
@@ -70,6 +73,11 @@ import Testing
       "https://test.us-central1.rep.my-custom-universe.com",
       "test.us-central1.rep.my-custom-universe.com"
     ),
+    (
+      "https://content-test.us-central1.rep.my-custom-universe.com",
+      "content-test.us-central1.rep.my-custom-universe.com"
+    ),
+    ("https://my-bucket.test.my-custom-universe.com", "my-bucket.test.my-custom-universe.com"),
     ("https://www.googleapis.com", "test.googleapis.com"),
     ("https://private.googleapis.com", "test.googleapis.com"),
     ("https://restricted.googleapis.com", "test.googleapis.com"),
@@ -91,10 +99,15 @@ import Testing
     ("http://restricted.googleapis.com", "test.googleapis.com"),
     ("http://test-my-private-ep.p.googleapis.com", "test.googleapis.com"),
     ("https://us-central1-test.googleapis.com", "us-central1-test.googleapis.com"),
-    ("https://us-central1-wrong.googleapis.com", "test.googleapis.com"),
-    ("https://us-central1test.googleapis.com", "test.googleapis.com"),
-    ("https://-test.googleapis.com", "test.googleapis.com"),
     ("https://test.us-central1.rep.googleapis.com", "test.us-central1.rep.googleapis.com"),
+    (
+      "https://content-test.us-central1.rep.googleapis.com",
+      "content-test.us-central1.rep.googleapis.com"
+    ),
+    ("https://my-bucket.test.googleapis.com", "my-bucket.test.googleapis.com"),
+    ("https://test.us-east1.googleapis.com", "test.us-east1.googleapis.com"),
+    ("https://staging-test.sandbox.googleapis.com", "staging-test.sandbox.googleapis.com"),
+    ("https://test.googleapis.com:8443", "test.googleapis.com:8443"),
     ("https://test.my-universe-domain.com", "test.my-universe-domain.com"),
     ("localhost:5678", "localhost:5678"),
     ("http://localhost:5678", "localhost:5678"),
@@ -466,6 +479,11 @@ import Testing
       universeDomain: "googleapis.com",
       uri: "https://example.googleapis.com/upload?upload_id=1"
     ),
+    (
+      endpoint: "https://my-bucket.example.googleapis.com",
+      universeDomain: "googleapis.com",
+      uri: "https://example.us-central1.rep.googleapis.com/upload?upload_id=1"
+    ),
     // Custom endpoint host/port/scheme mismatches
     (
       endpoint: "https://my-proxy.example.com:8443",
@@ -573,9 +591,16 @@ import Testing
     #expect(resolved.service == nil)
     #expect(resolved.baseURL.string == "http://127.0.0.1:12345")
     #expect(resolved.host == "127.0.0.1")
+    #expect(resolved.targetKind == .ipv4)
     #expect(resolved.port == 12345)
     #expect(resolved.hostHeader == "127.0.0.1")
     #expect(resolved.authority == "127.0.0.1:12345")
+
+    let leadingZeroDNS = try _ResolvedEndpoint(
+      endpoint: "https://01.2.3.4:8443",
+      defaultEndpoint: "https://example.googleapis.com"
+    )
+    #expect(leadingZeroDNS.targetKind == .dns)
   }
 
   @Test func ipv6EndpointUnbracketsHostAndBracketsHeaders() throws {
@@ -584,6 +609,7 @@ import Testing
       defaultEndpoint: "https://example.googleapis.com"
     )
     #expect(resolved.host == "::1")
+    #expect(resolved.targetKind == .ipv6)
     #expect(resolved.port == 8080)
     #expect(resolved.hostHeader == "[::1]")
     #expect(resolved.authority == "[::1]:8080")

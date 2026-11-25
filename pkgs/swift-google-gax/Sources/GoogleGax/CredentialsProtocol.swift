@@ -32,7 +32,7 @@ extension CredentialsProtocol {
     let credUniverse = try await self._universeDomain()
     guard credUniverse == expectedUniverseDomain else {
       throw CredentialsError.parseError(
-        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse)). If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
       )
     }
   }

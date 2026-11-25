@@ -15,6 +15,15 @@
 public import Foundation
 @_spi(GoogleCloudInternal) public import GoogleAuth
 
+/// Classifies a resolved endpoint's host for transport target selection (such as DNS vs. IP-literal
+/// targets in gRPC, where TLS SNI forbids raw IP literals).
+@_spi(GoogleCloudInternal)
+public enum _EndpointTargetKind: Sendable, Equatable {
+  case dns
+  case ipv4
+  case ipv6
+}
+
 /// Encapsulates a validated client endpoint, its universe domain, HTTP `Host` header, and gRPC
 /// `:authority` resolved in a single pass.
 @_spi(GoogleCloudInternal)
@@ -49,6 +58,18 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
   /// IPv6 `[` and `]` brackets stripped so DNS/socket resolvers such as `getaddrinfo` accept it).
   public var host: String {
     Self.unbracketedHost(baseURL.host ?? "")
+  }
+
+  /// Whether `host` is a DNS hostname, an IPv4 literal, or an IPv6 literal.
+  public var targetKind: _EndpointTargetKind {
+    let bare = self.host
+    if bare.contains(":") {
+      return .ipv6
+    }
+    if Self.isIPv4Literal(bare) {
+      return .ipv4
+    }
+    return .dns
   }
 
   /// The target TCP port from `baseURL`, defaulting to `443` for `https` and `80` for `http`.
@@ -243,7 +264,7 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       let basePrefixLower = String(baseHostLower.dropLast(universeSuffixLower.count))
       let uriPrefixLower = String(uriHostLower.dropLast(universeSuffixLower.count))
       guard
-        !Self.isRegionalServicePrefix(basePrefixLower, service: service),
+        basePrefixLower == service || Self.isSharedGatewayPrefix(basePrefixLower),
         uriPrefixLower == service || Self.isRegionalServicePrefix(uriPrefixLower, service: service)
       else {
         throw RequestError.badURL(uri)
@@ -291,6 +312,32 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       return !parts[0].dropLast(service.count + 1).isEmpty
     }
     return false
+  }
+
+  /// Returns `true` when a lowercased host prefix (before `.<universeDomain>`) names a shared
+  /// multi-service or Private Service Connect gateway (`private`, `restricted`, `www`, or
+  /// `<endpoint>.p`) whose `Host` / `:authority` must be rewritten to `<service>.<universeDomain>`.
+  private static func isSharedGatewayPrefix(_ prefixLower: String) -> Bool {
+    if prefixLower == "private" || prefixLower == "restricted" || prefixLower == "www" {
+      return true
+    }
+    if prefixLower.hasSuffix(".p") {
+      let psc = prefixLower.dropLast(2)
+      return !psc.isEmpty
+        && !psc.split(separator: ".", omittingEmptySubsequences: false).contains("")
+    }
+    return false
+  }
+
+  /// Returns `true` when `host` matches the RFC 3986 dotted-decimal `IPv4address` grammar.
+  private static func isIPv4Literal(_ host: String) -> Bool {
+    let octets = host.split(separator: ".", omittingEmptySubsequences: false)
+    guard octets.count == 4 else {
+      return false
+    }
+    return octets.allSatisfy { octet in
+      !octet.isEmpty && (octet == "0" || !octet.hasPrefix("0")) && UInt8(octet) != nil
+    }
   }
 
   /// Strips RFC 3986 surrounding `[` and `]` brackets from an IPv6 host literal, if present.
@@ -396,15 +443,19 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       return (authority: authority, header: customHost)
     }
 
-    // Regional and locational service hosts retain their regional hostname in `Host` / `:authority`,
-    // whereas VPC-SC VIPs (`private.<universe>`, `restricted.<universe>`), PSC endpoints
-    // (`<psc>.p.<universe>`), and `www.<universe>` rewrite `Host` / `:authority` to
-    // `<service>.<universe>` so Google Frontends route the request to the target service.
-    if Self.isRegionalServicePrefix(prefixLower, service: service) {
-      let regionalHost = "\(prefixLower).\(effectiveUniverseDomain)"
-      return (authority: regionalHost, header: regionalHost)
+    // Shared multi-service VIPs (`private.<universe>`, `restricted.<universe>`, `www.<universe>`)
+    // and Private Service Connect consumer endpoints (`<psc>.p.<universe>`) rewrite `Host` and
+    // `:authority` to `<service>.<universe>` so Google Frontends route the request to the target
+    // service. All other explicit universe hosts (such as regional `<service>.<region>.rep`,
+    // `{purpose}-<service>.<region>.rep`, locational `<region>-<service>`, `{bucket}.storage`,
+    // `<service>.<region>.googleapis.com`, and `*.sandbox.googleapis.com`) preserve their own
+    // normalized host (and explicit port in gRPC `:authority`).
+    if Self.isSharedGatewayPrefix(prefixLower) {
+      let serviceHost = "\(service).\(effectiveUniverseDomain)"
+      return (authority: serviceHost, header: serviceHost)
     }
-    let fallback = "\(service).\(effectiveUniverseDomain)"
-    return (authority: fallback, header: fallback)
+    let preservedHost = "\(prefixLower).\(effectiveUniverseDomain)"
+    let authority = baseURL.port.map { "\(preservedHost):\($0)" } ?? preservedHost
+    return (authority: authority, header: preservedHost)
   }
 }

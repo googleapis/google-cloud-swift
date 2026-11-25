@@ -195,7 +195,7 @@ extension CredentialsProvider {
     let credUniverse = try await self.universeDomain()
     guard credUniverse == expectedUniverseDomain else {
       throw CredentialsError.parseError(
-        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse)). If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
       )
     }
   }
@@ -357,7 +357,7 @@ public struct Credentials: Sendable {
     guard let expected = _UniverseDomain(nonEmpty: expectedUniverseDomain) else {
       let credUniverse = try await self._universeDomain()
       throw CredentialsError.parseError(
-        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse.rawValue))."
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse.rawValue)). If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
       )
     }
     try await self._validateUniverseDomain(expected)

@@ -81,13 +81,30 @@ public final class _GRPCClient: Sendable {
     let transportSecurity: HTTP2ClientTransport.Posix.TransportSecurity =
       resolvedEndpoint.isSecure ? .tls : .plaintext
 
-    let transport = try HTTP2ClientTransport.Posix(
-      target: .dns(host: resolvedEndpoint.host, port: resolvedEndpoint.port),
-      transportSecurity: transportSecurity,
-      config: .defaults {
-        $0.http2.authority = resolvedEndpoint.authority
-      }
-    )
+    // Use `IPv4` / `IPv6` targets without overriding `http2.authority` when `resolvedEndpoint` is an
+    // IP literal so `grpc-swift-nio-transport` omits TLS SNI (`NIOSSLClientHandler` rejects IP
+    // addresses in SNI) while still deriving `:authority` from the socket address.
+    let transport: HTTP2ClientTransport.Posix
+    switch resolvedEndpoint.targetKind {
+    case .ipv4:
+      transport = try HTTP2ClientTransport.Posix(
+        target: .ipv4(address: resolvedEndpoint.host, port: resolvedEndpoint.port),
+        transportSecurity: transportSecurity
+      )
+    case .ipv6:
+      transport = try HTTP2ClientTransport.Posix(
+        target: .ipv6(address: resolvedEndpoint.host, port: resolvedEndpoint.port),
+        transportSecurity: transportSecurity
+      )
+    case .dns:
+      transport = try HTTP2ClientTransport.Posix(
+        target: .dns(host: resolvedEndpoint.host, port: resolvedEndpoint.port),
+        transportSecurity: transportSecurity,
+        config: .defaults {
+          $0.http2.authority = resolvedEndpoint.authority
+        }
+      )
+    }
 
     let client = GRPCClient(transport: transport)
     self.client = client

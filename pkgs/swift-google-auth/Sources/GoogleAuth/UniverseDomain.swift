@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// Represents a normalized Google Cloud universe domain (such as `"googleapis.com"`).
 ///
@@ -91,7 +91,7 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
   /// queries, fragments, or invalid URL characters.
   ///
   /// - Throws: ``CredentialsError/parseError(_:)`` if a valid service URL cannot be constructed.
-  public func serviceURL(service: String, path: String) throws -> URL {
+  func serviceURL(service: String, path: String) throws -> URL {
     let targetHost = "\(service).\(rawValue)"
     guard
       let origin = URLComponents(string: "https://\(targetHost)", encodingInvalidCharacters: false),
@@ -140,7 +140,8 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     defaultPath: String,
     settingName: String,
     requireNonRootPath: Bool = false,
-    allowQuery: Bool = true
+    allowQuery: Bool = true,
+    allowCustomHosts: Bool = true
   ) throws -> URL {
     if let override {
       return try validateServiceURL(
@@ -148,7 +149,8 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
         service: service,
         settingName: settingName,
         requireNonRootPath: requireNonRootPath,
-        allowQuery: allowQuery
+        allowQuery: allowQuery,
+        allowCustomHosts: allowCustomHosts
       )
     }
     return try serviceURL(service: service, path: defaultPath)
@@ -163,7 +165,8 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     service: String,
     settingName: String,
     requireNonRootPath: Bool = false,
-    allowQuery: Bool = true
+    allowQuery: Bool = true,
+    allowCustomHosts: Bool = true
   ) throws -> URL {
     guard
       !rawURL.isEmpty,
@@ -184,7 +187,12 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     else {
       throw CredentialsError.parseError("Invalid \(settingName): '\(rawURL)'")
     }
-    try validateServiceEndpointHost(host, service: service, settingName: settingName)
+    try validateServiceEndpointHost(
+      host,
+      service: service,
+      settingName: settingName,
+      allowCustomHosts: allowCustomHosts
+    )
     return canonicalURL
   }
 
@@ -192,13 +200,19 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
   func validateServiceEndpointHost(
     _ host: String,
     service: String,
-    settingName: String
+    settingName: String,
+    allowCustomHosts: Bool = true
   ) throws {
-    var trimmedHost = host[...]
-    while trimmedHost.last == "." {
-      trimmedHost = trimmedHost.dropLast()
+    let bareHost =
+      (host.hasPrefix("[") && host.hasSuffix("]") && host.count >= 2)
+      ? String(host.dropFirst().dropLast()) : host
+    if bareHost.lowercased() == "localhost" || bareHost == "127.0.0.1" || bareHost == "::1" {
+      return
     }
-    guard !trimmedHost.isEmpty else {
+    if bareHost.isEmpty
+      || (!bareHost.contains(":")
+        && host.split(separator: ".", omittingEmptySubsequences: false).contains(""))
+    {
       throw CredentialsError.parseError(
         "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
       )
@@ -212,22 +226,8 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
       let remainder = String(host[host.index(after: firstDot)...])
 
       if firstLabelLower == serviceLower {
-        let matchesGlobal = remainder == rawValue
-        let matchesRegional: Bool
-        if remainder.hasSuffix(universeSuffix) {
-          let regionPrefix = remainder.dropLast(universeSuffix.count)
-          let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
-          if parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep" {
-            matchesRegional = true
-          } else if isDefault && parts.count == 1 && !parts[0].isEmpty {
-            matchesRegional = true
-          } else {
-            matchesRegional = false
-          }
-        } else {
-          matchesRegional = false
-        }
-        guard matchesGlobal || matchesRegional else {
+        guard Self.matchesServiceRemainder(remainder, rawUniverse: rawValue, isDefault: isDefault)
+        else {
           throw CredentialsError.parseError(
             "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
           )
@@ -237,8 +237,28 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
 
       let locationalSuffix = "-\(serviceLower)"
       if firstLabelLower.hasSuffix(locationalSuffix) {
-        let regionLabel = firstLabelLower.dropLast(locationalSuffix.count)
-        guard !regionLabel.isEmpty, remainder == rawValue else {
+        let prefixLabel = firstLabelLower.dropLast(locationalSuffix.count)
+        let matchesLocational = remainder == rawValue
+        let matchesPurposeRegional: Bool
+        if remainder.hasSuffix(universeSuffix) {
+          let regionPrefix = remainder.dropLast(universeSuffix.count)
+          let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
+          matchesPurposeRegional =
+            parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep"
+        } else {
+          matchesPurposeRegional = false
+        }
+        guard !prefixLabel.isEmpty, matchesLocational || matchesPurposeRegional else {
+          throw CredentialsError.parseError(
+            "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+          )
+        }
+        return
+      }
+
+      if firstLabelLower == "private" || firstLabelLower == "restricted" || firstLabelLower == "www"
+      {
+        guard remainder == rawValue else {
           throw CredentialsError.parseError(
             "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
           )
@@ -247,15 +267,52 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
       }
     }
 
-    let canonicalLower = trimmedHost.lowercased()
+    let hostLower = host.lowercased()
     if !isDefault
-      && (canonicalLower == Self.defaultRawValue
-        || canonicalLower.hasSuffix(".\(Self.defaultRawValue)"))
+      && (hostLower == Self.defaultRawValue
+        || hostLower.hasSuffix(".\(Self.defaultRawValue)"))
     {
       throw CredentialsError.parseError(
         "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
       )
     }
+
+    if hostLower.contains(".p.") && !host.hasSuffix(universeSuffix) {
+      throw CredentialsError.parseError(
+        "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+      )
+    }
+
+    if !allowCustomHosts {
+      guard host.hasSuffix(universeSuffix), host.count > universeSuffix.count else {
+        throw CredentialsError.parseError(
+          "The \(settingName) host (\(host)) does not match universe_domain (\(rawValue))."
+        )
+      }
+    }
+  }
+
+  private static func matchesServiceRemainder(
+    _ remainder: String,
+    rawUniverse: String,
+    isDefault: Bool
+  ) -> Bool {
+    if remainder == rawUniverse {
+      return true
+    }
+    let universeSuffix = ".\(rawUniverse)"
+    guard remainder.hasSuffix(universeSuffix) else {
+      return false
+    }
+    let regionPrefix = remainder.dropLast(universeSuffix.count)
+    let parts = regionPrefix.split(separator: ".", omittingEmptySubsequences: false)
+    if parts.count == 2 && !parts[0].isEmpty && parts[1].lowercased() == "rep" {
+      return true
+    }
+    if isDefault && parts.count == 1 && !parts[0].isEmpty {
+      return true
+    }
+    return false
   }
 
   public var description: String {

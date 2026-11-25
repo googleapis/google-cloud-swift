@@ -171,7 +171,8 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
       service: "iamcredentials",
       settingName: "service_account_impersonation_url",
       requireNonRootPath: true,
-      allowQuery: false
+      allowQuery: false,
+      allowCustomHosts: false
     )
 
     try self.init(

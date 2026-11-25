@@ -816,16 +816,17 @@ import Testing
     _ = provider
   }
 
-  @Test func universeDomainExplicitOverrideSkipsNetwork() async throws {
+  @Test(arguments: ["explicit.universe.com", "googleapis.com"])
+  func universeDomainExplicitOverrideSkipsNetwork(overrideDomain: String) async throws {
     let mock = MockHTTPClient([])
     let client = AuthHTTPClient(mock: mock)
     let provider = MDSCredentials(
-      universeDomain: "explicit.universe.com",
+      universeDomain: overrideDomain,
       client: client,
       environment: [:]
     )
     let domain = try await provider.universeDomain()
-    #expect(domain.rawValue == "explicit.universe.com")
+    #expect(domain.rawValue == overrideDomain)
   }
 
   @Test func universeDomainFetchesAndCachesFromMetadataServer() async throws {

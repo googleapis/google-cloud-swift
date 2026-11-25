@@ -25,6 +25,10 @@ import Foundation
 ///
 /// [Cloud Storage]: https://docs.cloud.google.com/storage
 public final class StorageClient: StorageProtocol, Sendable {
+  /// The default Cloud Storage endpoint in the Google Default Universe (`googleapis.com`).
+  ///
+  /// When no explicit `ClientOptions.endpoint` override is configured, ``StorageClient`` substitutes
+  /// `googleapis.com` with `ClientOptions.universeDomain` (or `GOOGLE_CLOUD_UNIVERSE_DOMAIN` if set).
   public static let defaultEndpoint = "https://storage.googleapis.com"
 
   let inner: GoogleGax._HTTPClient

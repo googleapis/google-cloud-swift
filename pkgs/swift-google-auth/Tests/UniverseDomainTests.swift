@@ -149,17 +149,22 @@ import Testing
     let tpc = try #require(_UniverseDomain(nonEmpty: "apis-tpclp.goog"))
     let gdu = _UniverseDomain.default
 
-    // Accepted hosts in custom universe (global, REP regional, locational, PSC/custom proxy).
+    // Accepted hosts in custom universe (global, REP regional, purpose-regional, locational, PSC/custom proxy, loopback).
     for validTPCHost in [
       "sts.apis-tpclp.goog",
       "STS.apis-tpclp.goog",
       "sts.us-central1.rep.apis-tpclp.goog",
       "STS.US-CENTRAL1.REP.apis-tpclp.goog",
+      "content-sts.us-central1.rep.apis-tpclp.goog",
       "us-central1-sts.apis-tpclp.goog",
       "US-CENTRAL1-STS.apis-tpclp.goog",
       "sts-psc.apis-tpclp.goog",
+      "my-psc.p.apis-tpclp.goog",
       "private.apis-tpclp.goog",
+      "restricted.apis-tpclp.goog",
       "localhost",
+      "127.0.0.1",
+      "[::1]",
     ] {
       try tpc.validateServiceEndpointHost(validTPCHost, service: "sts", settingName: "token_url")
     }
@@ -169,25 +174,35 @@ import Testing
       "sts.googleapis.com",
       "sts.us-east1.googleapis.com",
       "sts.us-central1.rep.googleapis.com",
+      "content-sts.us-central1.rep.googleapis.com",
       "us-central1-sts.googleapis.com",
       "private.googleapis.com",
+      "my-psc.p.googleapis.com",
+      "sts-proxy.corp.example.com",
     ] {
       try gdu.validateServiceEndpointHost(validGDUHost, service: "sts", settingName: "token_url")
     }
 
-    // Rejected hosts in custom universe (including trailing DNS root dots `.googleapis.com.`,
+    // Rejected hosts in custom universe (including cross-universe gateways/PSC, trailing DNS root dots,
     // wrong case on universe suffix, non-REP single-label regional, and Unicode case-folding edge cases).
     for rejectedTPCHost in [
       "",
       ".",
+      "[]",
       "sts.googleapis.com",
       "sts.APIS-TPCLP.GOOG",
       "sts.us-east1.apis-tpclp.goog",
       "sts..rep.apis-tpclp.goog",
+      "content-sts.us-central1.rep.apis-s3ns.fr",
       "us-central1-sts.googleapis.com",
       "us-central1-sts.APIS-TPCLP.GOOG",
       "-sts.apis-tpclp.goog",
       "private.googleapis.com",
+      "private.apis-s3ns.fr",
+      "restricted.apis-s3ns.fr",
+      "www.apis-s3ns.fr",
+      "my-psc.p.apis-s3ns.fr",
+      ".p.apis-tpclp.goog",
       "private.googleapis.com.",
       "sts-psc.googleapis.com...",
       "googleapis.com.",
@@ -205,12 +220,17 @@ import Testing
       }
     }
 
-    // Rejected hosts in default universe (including trailing dots on service hosts & Unicode length shifts).
+    // Rejected hosts in default universe (including cross-universe gateways/PSC, trailing dots, & Unicode length shifts).
     for rejectedGDUHost in [
       "sts.apis-tpclp.goog",
       "sts.googleapis.com.",
       "us-central1-sts.apis-tpclp.goog",
       "us-central1-sts.googleapis.com.",
+      "content-sts.us-central1.rep.apis-tpclp.goog",
+      "private.apis-tpclp.goog",
+      "restricted.apis-tpclp.goog",
+      "www.apis-tpclp.goog",
+      "my-psc.p.apis-tpclp.goog",
       "-sts.googleapis.com",
       "İ-sts.ggoogleapis.com",
       "İ-sts.",
@@ -222,6 +242,44 @@ import Testing
           settingName: "token_url"
         )
       }
+    }
+
+    // Strict mode (`allowCustomHosts: false`) rejects third-party hosts while allowing loopback & universe hosts.
+    try gdu.validateServiceEndpointHost(
+      "localhost",
+      service: "iamcredentials",
+      settingName: "service_account_impersonation_url",
+      allowCustomHosts: false
+    )
+    #expect(throws: CredentialsError.self) {
+      try gdu.validateServiceEndpointHost(
+        "attacker.example",
+        service: "iamcredentials",
+        settingName: "service_account_impersonation_url",
+        allowCustomHosts: false
+      )
+    }
+  }
+
+  @Test func validateUniverseDomainMismatchIncludesDefaultUniverseHint() async throws {
+    let creds = try Credentials(
+      configuration: .accessToken(
+        AccessTokenConfig(token: "tok").with { $0.universeDomain = "apis-tpclp.goog" }
+      )
+    )
+    for invalidExpected in ["googleapis.com", ""] {
+      let error = await #expect(throws: CredentialsError.self) {
+        try await creds.validateUniverseDomain(invalidExpected)
+      }
+      guard let error, case let .parseError(detail) = error else {
+        Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+        return
+      }
+      #expect(
+        detail.contains(
+          "If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
+        )
+      )
     }
   }
 

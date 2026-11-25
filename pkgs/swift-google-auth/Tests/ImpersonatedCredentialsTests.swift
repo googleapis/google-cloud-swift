@@ -840,6 +840,8 @@ private struct FailingSourceCredentials: CredentialsProvider {
       "https://private.googleapis.com./v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://restricted.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://my-psc.p.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://private.apis-s3ns.fr/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://attacker.example/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://iamcredentials.apis-tpclp%2Egoog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa bad@proj.iam.gserviceaccount.com:generateAccessToken",
     ] {
@@ -853,14 +855,19 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
     }
 
-    // Locational custom-universe URL is also rejected when effective universe is default (`googleapis.com`).
-    #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentials(
-        sourceCredentials: StaticSourceCredentials(authHeaders: []),
-        impersonationURLString:
-          "https://us-central1-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
-        httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
-      )
+    // Locational custom-universe and arbitrary third-party URLs are also rejected when effective universe is default (`googleapis.com`).
+    for rejectedGDUURL in [
+      "https://us-central1-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://private.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://attacker.example/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        _ = try ImpersonatedCredentials(
+          sourceCredentials: StaticSourceCredentials(authHeaders: []),
+          impersonationURLString: rejectedGDUURL,
+          httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+        )
+      }
     }
   }
 }

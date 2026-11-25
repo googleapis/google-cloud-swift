@@ -1148,4 +1148,116 @@ import Testing
       #expect(flakyProvider.callCount == 2)
     }
   }
+
+  @Test func executeIPv6PlaintextAndSecureIPLiteralEndpointsOmitIPFromSNI() async throws {
+    let ipv4Server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await ipv4Server.serve()
+      }
+
+      guard let port = try await ipv4Server.listeningAddress?.ipv4?.port else {
+        Issue.record("Failed to get IPv4 listening port")
+        ipv4Server.beginGracefulShutdown()
+        return
+      }
+      defer {
+        ipv4Server.beginGracefulShutdown()
+      }
+
+      for tlsEndpoint in ["https://127.0.0.1:\(port)", "127.0.0.1:\(port)"] {
+        var options = ClientOptions()
+        options.endpoint = tlsEndpoint
+        options.credentials = try Credentials(configuration: .anonymous)
+
+        let client = try _GRPCClient(
+          from: options,
+          withDefaultEndpoint: "https://example.googleapis.com",
+          environment: [:]
+        )
+        defer { client.close() }
+
+        let error = await #expect(throws: (any Error).self) {
+          let _: Google_Protobuf_Empty = try await client.execute(
+            path: "/test.Echo/Echo",
+            request: Google_Protobuf_Empty(),
+            options: RequestOptions()
+          )
+        }
+        let reflected = String(reflecting: error)
+        #expect(
+          !reflected.contains("cannotUseIPAddressInSNI"),
+          "Unexpected IP-in-SNI TLS error for \(tlsEndpoint): \(reflected)"
+        )
+      }
+    }
+
+    let ipv6Server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv6(host: "::1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await ipv6Server.serve()
+      }
+
+      guard let ipv6Port = try await ipv6Server.listeningAddress?.ipv6?.port else {
+        ipv6Server.beginGracefulShutdown()
+        return
+      }
+      defer {
+        ipv6Server.beginGracefulShutdown()
+      }
+
+      var plaintextOptions = ClientOptions()
+      plaintextOptions.endpoint = "http://[::1]:\(ipv6Port)"
+      plaintextOptions.credentials = try Credentials(configuration: .anonymous)
+      let plaintextClient = try _GRPCClient(
+        from: plaintextOptions,
+        withDefaultEndpoint: "https://example.googleapis.com",
+        environment: [:]
+      )
+      defer { plaintextClient.close() }
+
+      let _: Google_Protobuf_Empty = try await plaintextClient.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+
+      var tlsOptions = ClientOptions()
+      tlsOptions.endpoint = "https://[::1]:\(ipv6Port)"
+      tlsOptions.credentials = try Credentials(configuration: .anonymous)
+      let tlsClient = try _GRPCClient(
+        from: tlsOptions,
+        withDefaultEndpoint: "https://example.googleapis.com",
+        environment: [:]
+      )
+      defer { tlsClient.close() }
+
+      let error = await #expect(throws: (any Error).self) {
+        let _: Google_Protobuf_Empty = try await tlsClient.execute(
+          path: "/test.Echo/Echo",
+          request: Google_Protobuf_Empty(),
+          options: RequestOptions()
+        )
+      }
+      let reflected = String(reflecting: error)
+      #expect(
+        !reflected.contains("cannotUseIPAddressInSNI"),
+        "Unexpected IP-in-SNI TLS error for IPv6 endpoint: \(reflected)"
+      )
+    }
+  }
 }
