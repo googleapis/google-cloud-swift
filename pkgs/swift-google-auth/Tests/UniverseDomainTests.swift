@@ -144,4 +144,84 @@ import Testing
     #expect(custom != upper)
     #expect(custom != .default)
   }
+
+  @Test func validateServiceEndpointHostCoversAllPatternsAndEdgeCases() throws {
+    let tpc = try #require(_UniverseDomain(nonEmpty: "apis-tpclp.goog"))
+    let gdu = _UniverseDomain.default
+
+    // Accepted hosts in custom universe (global, REP regional, locational, PSC/custom proxy).
+    for validTPCHost in [
+      "sts.apis-tpclp.goog",
+      "STS.apis-tpclp.goog",
+      "sts.us-central1.rep.apis-tpclp.goog",
+      "STS.US-CENTRAL1.REP.apis-tpclp.goog",
+      "us-central1-sts.apis-tpclp.goog",
+      "US-CENTRAL1-STS.apis-tpclp.goog",
+      "sts-psc.apis-tpclp.goog",
+      "private.apis-tpclp.goog",
+      "localhost",
+    ] {
+      try tpc.validateServiceEndpointHost(validTPCHost, service: "sts", settingName: "token_url")
+    }
+
+    // Accepted hosts in default universe (including GDU regional `<service>.<region>.googleapis.com`).
+    for validGDUHost in [
+      "sts.googleapis.com",
+      "sts.us-east1.googleapis.com",
+      "sts.us-central1.rep.googleapis.com",
+      "us-central1-sts.googleapis.com",
+      "private.googleapis.com",
+    ] {
+      try gdu.validateServiceEndpointHost(validGDUHost, service: "sts", settingName: "token_url")
+    }
+
+    // Rejected hosts in custom universe (including trailing DNS root dots `.googleapis.com.`,
+    // wrong case on universe suffix, non-REP single-label regional, and Unicode case-folding edge cases).
+    for rejectedTPCHost in [
+      "",
+      ".",
+      "sts.googleapis.com",
+      "sts.APIS-TPCLP.GOOG",
+      "sts.us-east1.apis-tpclp.goog",
+      "sts..rep.apis-tpclp.goog",
+      "us-central1-sts.googleapis.com",
+      "us-central1-sts.APIS-TPCLP.GOOG",
+      "-sts.apis-tpclp.goog",
+      "private.googleapis.com",
+      "private.googleapis.com.",
+      "sts-psc.googleapis.com...",
+      "googleapis.com.",
+      "İ-sts.",
+      "İ-sts.ğ",
+      "İ-sts.aapis-tpclp.goog",
+      "K-sts.googleapis.com",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        try tpc.validateServiceEndpointHost(
+          rejectedTPCHost,
+          service: "sts",
+          settingName: "token_url"
+        )
+      }
+    }
+
+    // Rejected hosts in default universe (including trailing dots on service hosts & Unicode length shifts).
+    for rejectedGDUHost in [
+      "sts.apis-tpclp.goog",
+      "sts.googleapis.com.",
+      "us-central1-sts.apis-tpclp.goog",
+      "us-central1-sts.googleapis.com.",
+      "-sts.googleapis.com",
+      "İ-sts.ggoogleapis.com",
+      "İ-sts.",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        try gdu.validateServiceEndpointHost(
+          rejectedGDUHost,
+          service: "sts",
+          settingName: "token_url"
+        )
+      }
+    }
+  }
 }

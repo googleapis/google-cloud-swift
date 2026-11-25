@@ -122,26 +122,29 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
         allowsBareHost: allowsBareHost
       ).components
     } else if !universeDomain.isDefault, let service = extractedService {
-      // Substitute `<service>.<universeDomain>` and round-trip through `URLComponents(string:)`
-      // to reject malformed `universeDomain` values that would inject ports, userinfo, paths,
-      // queries, or fragments into the serialized URL.
+      // Substitute `<service>.<universeDomain>` and parse strictly with
+      // `encodingInvalidCharacters: false` so non-ASCII/IDNA or malformed `universeDomain` values
+      // cannot Punycode-round-trip or inject ports, userinfo, paths, queries, or fragments.
+      let scheme = parsedDefault.components.scheme ?? "https"
+      let portSuffix = parsedDefault.components.port.map { ":\($0)" } ?? ""
       let targetHost = "\(service).\(universeDomain.rawValue)"
-      var candidate = parsedDefault.components
-      candidate.host = targetHost
+      let candidateString = "\(scheme)://\(targetHost)\(portSuffix)"
       guard
-        let candidateString = candidate.string,
-        let reparsed = URLComponents(string: candidateString),
+        let reparsed = URLComponents(string: candidateString, encodingInvalidCharacters: false),
+        reparsed.scheme == scheme,
         reparsed.host == targetHost,
+        reparsed.percentEncodedHost == targetHost,
         reparsed.port == parsedDefault.components.port,
         reparsed.user == nil,
         reparsed.password == nil,
-        reparsed.path.isEmpty,
-        reparsed.query == nil,
-        reparsed.fragment == nil
+        reparsed.percentEncodedPath.isEmpty,
+        reparsed.percentEncodedQuery == nil,
+        reparsed.percentEncodedFragment == nil,
+        reparsed.url != nil
       else {
         throw ClientError.invalidEndpoint(targetHost)
       }
-      resolvedBaseURL = candidate
+      resolvedBaseURL = reparsed
     } else {
       resolvedBaseURL = parsedDefault.components
     }

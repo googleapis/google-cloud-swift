@@ -837,6 +837,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       "https://us-central1-iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://-iamcredentials.apis-tpclp.goog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://private.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
+      "https://private.googleapis.com./v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://restricted.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://my-psc.p.googleapis.com/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
       "https://iamcredentials.apis-tpclp%2Egoog/v1/projects/-/serviceAccounts/sa@proj.iam.gserviceaccount.com:generateAccessToken",
