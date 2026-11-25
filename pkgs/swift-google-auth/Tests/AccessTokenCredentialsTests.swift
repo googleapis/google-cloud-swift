@@ -19,7 +19,7 @@ import NIOFoundationCompat
 import NIOHTTP1
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 private actor MockCustomAccessTokenProvider: AccessTokenProvider {
   private var callCount = 0
@@ -121,7 +121,8 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
 
   @Test func staticAccessTokenWithoutExpiration() async throws {
     let credentials = try Credentials(
-      configuration: .accessToken(AccessTokenConfig(token: "mock-token.static-token"))
+      configuration: .accessToken(AccessTokenConfig(token: "mock-token.static-token")),
+      environment: [:]
     )
 
     let tokenCredentials = try #require(credentials.accessTokenProvider)
@@ -167,7 +168,10 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       $0.quotaProjectID = ""
       $0.universeDomain = ""
     }
-    let staticCreds = try Credentials(configuration: .accessToken(staticConfig))
+    let staticCreds = try Credentials(
+      configuration: .accessToken(staticConfig),
+      environment: [:]
+    )
     let staticHeaders = try await staticCreds.headers()
     #expect(staticHeaders == [("Authorization", "Bearer mock-token.empty-norm")])
     #expect(try await staticCreds.universeDomain() == Credentials.defaultUniverseDomain)
@@ -179,7 +183,10 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       $0.quotaProjectID = ""
       $0.universeDomain = ""
     }
-    let providerCreds = try Credentials(configuration: .accessToken(providerConfig))
+    let providerCreds = try Credentials(
+      configuration: .accessToken(providerConfig),
+      environment: [:]
+    )
     let providerHeaders = try await providerCreds.headers()
     #expect(providerHeaders == [("Authorization", "Bearer mock-token.provider-empty-norm")])
     #expect(try await providerCreds.universeDomain() == Credentials.defaultUniverseDomain)
@@ -521,6 +528,7 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
 
     let userCreds = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -599,6 +607,7 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       audience: "aud",
       subjectTokenType: .idToken,
       tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -609,7 +618,8 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
 
   @Test func impersonatedCredentialsAccessTokenExtractsRawTokenAndExpiry() async throws {
     let sourceCreds = AccessTokenCredentials(
-      config: AccessTokenConfig(token: "mock-token.source-token")
+      config: AccessTokenConfig(token: "mock-token.source-token"),
+      environment: [:]
     )
     let expectedExpiry = try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
     let responsePayload = IAMGenerateAccessTokenResponse(
@@ -634,6 +644,7 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     let impCreds = try ImpersonatedCredentials(
       sourceCredentials: sourceCreds,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 

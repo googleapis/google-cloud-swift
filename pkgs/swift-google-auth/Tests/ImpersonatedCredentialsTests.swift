@@ -103,6 +103,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
         "projects/-/serviceAccounts/delegate2@project.iam.gserviceaccount.com",
       ],
       quotaProjectID: "impersonated-quota-project",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -192,6 +193,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -242,6 +244,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig
     )
@@ -267,6 +270,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -297,6 +301,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -335,6 +340,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -653,7 +659,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
       """.utf8
     )
-    let userCreds = try UserCredentials(keyJSON: userJSON)
+    let userCreds = try UserCredentials(keyJSON: userJSON, environment: [:])
     let error = #expect(throws: CredentialsError.self) {
       _ = try ImpersonatedCredentials(
         sourceCredentials: userCreds,

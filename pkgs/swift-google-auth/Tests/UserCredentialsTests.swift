@@ -85,6 +85,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -164,6 +165,7 @@ import Testing
     let source = try UserCredentials(
       user: data,
       scopes: ["scope1", "scope2"],
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -234,6 +236,7 @@ import Testing
     let source = try UserCredentials(
       user: data,
       scopes: [],
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -274,6 +277,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig
     )
@@ -310,6 +314,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -356,6 +361,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig
     )
@@ -442,6 +448,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -506,6 +513,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig
     )
@@ -603,6 +611,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig
     )
@@ -644,6 +653,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -683,6 +693,7 @@ import Testing
     let source = try UserCredentials(
       user: data,
       quotaProjectID: "override-quota-proj",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -723,19 +734,31 @@ import Testing
       quotaProjectId: ""
     )
 
-    let credsFromEmptyJSON = try UserCredentials(user: emptyJSONData, httpClient: makeMockClient())
+    let credsFromEmptyJSON = try UserCredentials(
+      user: emptyJSONData,
+      environment: [:],
+      httpClient: makeMockClient()
+    )
     #expect(credsFromEmptyJSON.quotaProjectID == nil)
     let headersFromEmptyJSON = try await credsFromEmptyJSON.headers()
     #expect(headersFromEmptyJSON["x-goog-user-project"] == nil)
 
     let credsWithBothEmpty = try UserCredentials(
-      user: emptyJSONData, quotaProjectID: "", httpClient: makeMockClient())
+      user: emptyJSONData,
+      quotaProjectID: "",
+      environment: [:],
+      httpClient: makeMockClient()
+    )
     #expect(credsWithBothEmpty.quotaProjectID == nil)
     let headersWithBothEmpty = try await credsWithBothEmpty.headers()
     #expect(headersWithBothEmpty["x-goog-user-project"] == nil)
 
     let credsOverrideOverEmptyJSON = try UserCredentials(
-      user: emptyJSONData, quotaProjectID: "override-proj", httpClient: makeMockClient())
+      user: emptyJSONData,
+      quotaProjectID: "override-proj",
+      environment: [:],
+      httpClient: makeMockClient()
+    )
     let headersOverrideOverEmptyJSON = try await credsOverrideOverEmptyJSON.headers()
     #expect(headersOverrideOverEmptyJSON.values(for: "x-goog-user-project") == ["override-proj"])
 
@@ -747,7 +770,11 @@ import Testing
       quotaProjectId: "user-json-quota-proj"
     )
     let credsEmptyParamFallsBackToJSON = try UserCredentials(
-      user: nonEmptyJSONData, quotaProjectID: "", httpClient: makeMockClient())
+      user: nonEmptyJSONData,
+      quotaProjectID: "",
+      environment: [:],
+      httpClient: makeMockClient()
+    )
     let headersEmptyParamFallsBackToJSON = try await credsEmptyParamFallsBackToJSON.headers()
     #expect(
       headersEmptyParamFallsBackToJSON.values(for: "x-goog-user-project") == [
@@ -765,7 +792,11 @@ import Testing
         "quota_project_id": ""
       }
       """.utf8)
-    let parsedFromRawEmptyJSON = try UserCredentials(keyJSON: rawEmptyJSONKey, quotaProjectID: "")
+    let parsedFromRawEmptyJSON = try UserCredentials(
+      keyJSON: rawEmptyJSONKey,
+      quotaProjectID: "",
+      environment: [:]
+    )
     #expect(parsedFromRawEmptyJSON.quotaProjectID == nil)
   }
 
@@ -794,6 +825,7 @@ import Testing
 
     let source = try UserCredentials(
       user: data,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -831,6 +863,7 @@ import Testing
     )
     let creds = try UserCredentials(
       user: defaultUniverseData,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
     #expect(try await creds.universeDomain() == .default)
@@ -845,6 +878,7 @@ import Testing
     let credsWithEmptyUniverse = try UserCredentials(
       user: emptyUniverseData,
       universeDomain: "",
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
     #expect(try await credsWithEmptyUniverse.universeDomain() == .default)
@@ -859,6 +893,7 @@ import Testing
     #expect {
       _ = try UserCredentials(
         user: customUniverseData,
+        environment: [:],
         httpClient: AuthHTTPClient(mock: mock)
       )
     } throws: { error in
@@ -913,6 +948,7 @@ import Testing
     let userCreds = try UserCredentials(
       user: data,
       scopes: ["scope-a"],
+      environment: [:],
       httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
     )
 
@@ -940,7 +976,10 @@ import Testing
       }
       """.utf8
     )
-    let credentials = try Credentials(configuration: .user(UserConfig(keyJSON: keyJSON)))
+    let credentials = try Credentials(
+      configuration: .user(UserConfig(keyJSON: keyJSON)),
+      environment: [:]
+    )
 
     for output in [String(describing: credentials), String(reflecting: credentials)] {
       #expect(!output.contains("public-creds-client-secret"))

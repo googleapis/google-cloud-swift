@@ -82,7 +82,8 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
-      workforcePoolUserProject: "quota-project"
+      workforcePoolUserProject: "quota-project",
+      environment: [:]
     )
 
     #expect(creds.workforcePoolUserProject == "quota-project")
@@ -250,6 +251,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
       workforcePoolUserProject: "quota-project",
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -301,6 +303,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       retryConfiguration: retryConfig,
       httpClient: httpClient
     )
@@ -331,6 +334,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -389,6 +393,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       retryConfiguration: retryConfig,
       httpClient: httpClient
     )
@@ -425,6 +430,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -504,6 +510,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -559,6 +566,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
     )
 
@@ -588,6 +596,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: mock)
     )
 
@@ -616,6 +625,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
     )
 
@@ -674,6 +684,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -743,6 +754,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "aud",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
+      environment: [:],
       retryConfiguration: retryConfig,
       httpClient: httpClient
     )
@@ -806,6 +818,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       clientAuthentication: ClientAuthentication(
         clientID: "test-client-id", clientSecret: "test-client-secret"),
       workforcePoolUserProject: "quota-project",
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -861,6 +874,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
       workforcePoolUserProject: "quota-project",
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -953,7 +967,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       $0.clientAuthentication = clientAuth
     }
     let configuration = CredentialsConfiguration.externalAccount(config)
-    let credentials = try Credentials(configuration: configuration)
+    let credentials = try Credentials(configuration: configuration, environment: [:])
 
     let formattedOutputs = [
       String(describing: config),
@@ -986,7 +1000,10 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
 
     #expect(config.clientAuthentication == clientAuth)
 
-    let credentials = try Credentials(configuration: .externalAccount(config))
+    let credentials = try Credentials(
+      configuration: .externalAccount(config),
+      environment: [:]
+    )
     guard let externalCreds = credentials.credentialsProvider as? ExternalAccountCredentials else {
       Issue.record("Expected ExternalAccountCredentials provider")
       return
@@ -1034,6 +1051,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
       clientAuthentication: ClientAuthentication(clientID: "test-client-id"),
+      environment: [:],
       httpClient: httpClient
     )
 
@@ -1138,6 +1156,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: .idToken,
       tokenURL: targetURL,
       workforcePoolUserProject: "",
+      environment: [:],
       httpClient: httpClient
     )
     #expect(workloadCreds.workforcePoolUserProject == nil)
@@ -1167,7 +1186,10 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     ).with {
       $0.workforcePoolUserProject = ""
     }
-    let publicWorkforceCreds = try Credentials(configuration: .externalAccount(workforceConfig))
+    let publicWorkforceCreds = try Credentials(
+      configuration: .externalAccount(workforceConfig),
+      environment: [:]
+    )
     let resolvedWorkforceProvider = try #require(
       publicWorkforceCreds.credentialsProvider as? ExternalAccountCredentials)
     #expect(resolvedWorkforceProvider.workforcePoolUserProject == nil)
@@ -1180,7 +1202,10 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     ).with {
       $0.workforcePoolUserProject = ""
     }
-    let publicWorkloadCreds = try Credentials(configuration: .externalAccount(workloadConfig))
+    let publicWorkloadCreds = try Credentials(
+      configuration: .externalAccount(workloadConfig),
+      environment: [:]
+    )
     let resolvedWorkloadProvider = try #require(
       publicWorkloadCreds.credentialsProvider as? ExternalAccountCredentials)
     #expect(resolvedWorkloadProvider.workforcePoolUserProject == nil)
@@ -1470,33 +1495,70 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       )
     }
 
-    // `.googleapis.com` PSC/VPC-SC STS host under non-default universe is rejected.
-    let gduPSCConfig = ExternalAccountConfig(
-      credentialSource: .programmatic(subjectTokenProvider: provider),
-      audience: "aud",
-      subjectTokenType: .idToken,
-      tokenURL: URL(string: "https://sts-psc.googleapis.com/v1/token")!
-    )
-    #expect(throws: CredentialsError.self) {
-      _ = try Credentials(
-        configuration: .externalAccount(gduPSCConfig),
-        environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+    // `.googleapis.com` PSC/VPC-SC STS host (including trailing root dot) under non-default universe is rejected.
+    for pscURL in [
+      "https://sts-psc.googleapis.com/v1/token",
+      "https://sts-psc.googleapis.com./v1/token",
+    ] {
+      let gduPSCConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: .idToken,
+        tokenURL: URL(string: pscURL)!
       )
+      #expect(throws: CredentialsError.self) {
+        _ = try Credentials(
+          configuration: .externalAccount(gduPSCConfig),
+          environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+        )
+      }
     }
 
-    // Percent-encoded host in tokenURL is rejected.
-    let encodedHostConfig = ExternalAccountConfig(
+    // Non-HTTPS, malformed, userinfo, fragment, or percent-encoded-host tokenURLs fail fast at init.
+    for invalidTokenURL in [
+      URL(string: "https://sts.apis-tpclp%2Egoog/v1/token")!,
+      URL(string: "http://sts.googleapis.com/v1/token")!,
+      URL(string: "//sts.googleapis.com/v1/token")!,
+      URL(string: "ftp://sts.googleapis.com/v1/token")!,
+      URL(string: "https://user:pass@sts.googleapis.com/v1/token")!,
+      URL(string: "https://sts.googleapis.com/v1/token#frag")!,
+      URL(string: "https://[]/v1/token")!,
+    ] {
+      let invalidConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: .idToken,
+        tokenURL: invalidTokenURL
+      )
+      #expect {
+        _ = try Credentials(
+          configuration: .externalAccount(invalidConfig),
+          environment: [:]
+        )
+      } throws: { error in
+        guard case let CredentialsError.parseError(message) = error else {
+          return false
+        }
+        return message.contains("Invalid tokenURL")
+      }
+    }
+
+    // Relative URL constructed via `URL(string:relativeTo:)` resolves against base URL and succeeds.
+    let relativeTokenURL = URL(
+      string: "/v1/token",
+      relativeTo: URL(string: "https://sts.apis-tpclp.goog")!
+    )!
+    let relativeConfig = ExternalAccountConfig(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
       subjectTokenType: .idToken,
-      tokenURL: URL(string: "https://sts.apis-tpclp%2Egoog/v1/token")!
+      tokenURL: relativeTokenURL
     )
-    #expect(throws: CredentialsError.self) {
-      _ = try Credentials(
-        configuration: .externalAccount(encodedHostConfig),
-        environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
-      )
-    }
+    let relativeCreds = try Credentials(
+      configuration: .externalAccount(relativeConfig),
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog"]
+    )
+    #expect(try await relativeCreds.universeDomain() == "apis-tpclp.goog")
 
     // Regional and locational STS URLs matching effective universe succeed.
     for validURL in [

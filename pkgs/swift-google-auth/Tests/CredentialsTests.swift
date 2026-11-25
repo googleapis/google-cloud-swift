@@ -186,7 +186,10 @@ import Testing
       }
       """
     let config = ServiceAccountConfig(keyJSON: Data(mockJSON.utf8))
-    let credentials = try Credentials(configuration: .serviceAccount(config))
+    let credentials = try Credentials(
+      configuration: .serviceAccount(config),
+      environment: [:]
+    )
 
     #expect(credentials.credentialsProvider is ServiceAccountCredentials)
     let headers = try await credentials.headers()
@@ -297,7 +300,10 @@ import Testing
       """
     let keyData = Data(mockJSON.utf8)
 
-    let credentials = try Credentials(configuration: .user(UserConfig(keyJSON: keyData)))
+    let credentials = try Credentials(
+      configuration: .user(UserConfig(keyJSON: keyData)),
+      environment: [:]
+    )
 
     let userCreds = try #require(
       credentials.credentialsProvider as? UserCredentials
@@ -358,7 +364,10 @@ import Testing
     let emptyOverrideConfig = UserConfig(keyJSON: jsonWithQuota).with {
       $0.quotaProjectID = ""
     }
-    let fallbackCreds = try Credentials(configuration: .user(emptyOverrideConfig))
+    let fallbackCreds = try Credentials(
+      configuration: .user(emptyOverrideConfig),
+      environment: [:]
+    )
     let fallbackProvider = try #require(fallbackCreds.credentialsProvider as? UserCredentials)
     #expect(fallbackProvider.quotaProjectID == "json-quota-project")
 
@@ -376,7 +385,10 @@ import Testing
     let allEmptyConfig = UserConfig(keyJSON: jsonWithEmptyQuota).with {
       $0.quotaProjectID = ""
     }
-    let emptyCreds = try Credentials(configuration: .user(allEmptyConfig))
+    let emptyCreds = try Credentials(
+      configuration: .user(allEmptyConfig),
+      environment: [:]
+    )
     let emptyProvider = try #require(emptyCreds.credentialsProvider as? UserCredentials)
     #expect(emptyProvider.quotaProjectID == nil)
   }
@@ -417,12 +429,18 @@ import Testing
   }
 
   @Test func resolveProviderForImpersonatedServiceAccount() async throws {
-    let source = try Credentials(configuration: .apiKey("source-key"))
+    let source = try Credentials(
+      configuration: .apiKey("source-key"),
+      environment: [:]
+    )
     let config = ImpersonatedServiceAccountConfig(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com"
     )
-    let credentials = try Credentials(configuration: .impersonatedServiceAccount(config))
+    let credentials = try Credentials(
+      configuration: .impersonatedServiceAccount(config),
+      environment: [:]
+    )
     #expect(credentials.credentialsProvider is ImpersonatedCredentials)
     #expect(try await credentials.universeDomain() == Credentials.defaultUniverseDomain)
     try await credentials.validateUniverseDomain(Credentials.defaultUniverseDomain)

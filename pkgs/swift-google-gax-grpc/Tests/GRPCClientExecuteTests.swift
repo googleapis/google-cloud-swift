@@ -730,7 +730,7 @@ import Testing
     options.endpoint = "http://127.0.0.1:1"
     let client = try _GRPCClient(
       from: options,
-      withDefaultEndpoint: "https://storage.googleapis.com",
+      withDefaultEndpoint: "https://example.googleapis.com",
       environment: [
         "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
         "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com",
