@@ -233,7 +233,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
       throw CredentialsError.parseError("subjectTokenType parameter must not be empty")
     }
 
-    // Billing constraints validation: workforce pool user project should only be set for global workforce pools.
+    // Billing constraints validation: workforce pool user project should only be set for workforce pools.
     let effectiveWorkforcePoolUserProject = nonEmpty(workforcePoolUserProject)
     if effectiveWorkforcePoolUserProject != nil {
       guard isValidWorkforcePoolAudience(audience) else {

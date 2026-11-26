@@ -106,6 +106,10 @@ import Testing
     "bad domain",
     "googleapis.com.",
     "..com",
+    "evil.com,victim.com",
+    "evil.com;param=1",
+    "-evil.com",
+    "evil-.com",
   ])
   func serviceURLRejectsMalformedUniverseDomain(malformed: String) throws {
     let domain = try #require(_UniverseDomain(nonEmpty: malformed))
@@ -351,6 +355,29 @@ import Testing
           requireNonRootPath: true,
           allowQuery: false
         )
+      }
+    }
+
+    // Malformed `!isDefault` universe domains fail upfront in `validateServiceEndpoint` even when
+    // the override URL targets loopback or a custom STS proxy.
+    for malformedUniverse in [
+      "googleapis.com.",
+      "evil.com,victim.com",
+      "-evil.com",
+      "invalid/domain",
+    ] {
+      let badDomain = try #require(_UniverseDomain(nonEmpty: malformedUniverse))
+      for overrideURL in [
+        "https://localhost:8443/v1/token",
+        "https://sts-proxy.corp.example.com/v1/token",
+      ] {
+        #expect(throws: CredentialsError.self) {
+          _ = try badDomain.validateServiceEndpoint(
+            overrideURL,
+            service: "sts",
+            settingName: "tokenURL"
+          )
+        }
       }
     }
   }

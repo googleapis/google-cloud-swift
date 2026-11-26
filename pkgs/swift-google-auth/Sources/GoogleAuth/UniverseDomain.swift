@@ -85,6 +85,28 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     resolve(configured, environment[environmentVariable])
   }
 
+  /// Whether `rawValue` consists solely of non-empty RFC 1035 / RFC 1123 ASCII LDH domain labels
+  /// (`[A-Za-z0-9-]`, not starting or ending with `-`), blocking URL delimiters, RFC 3986
+  /// `sub-delims` (such as `,` or `;`), trailing dots, whitespace, and non-ASCII characters.
+  public var isValidSyntax: Bool {
+    let labels = rawValue.split(separator: ".", omittingEmptySubsequences: false)
+    guard !labels.isEmpty else {
+      return false
+    }
+    return labels.allSatisfy { label in
+      !label.isEmpty
+        && label.utf8.count <= 63
+        && !label.hasPrefix("-")
+        && !label.hasSuffix("-")
+        && label.utf8.allSatisfy { byte in
+          (byte >= 0x30 && byte <= 0x39)
+            || (byte >= 0x41 && byte <= 0x5A)
+            || (byte >= 0x61 && byte <= 0x7A)
+            || byte == 0x2D
+        }
+    }
+  }
+
   /// Constructs a validated `https://<service>.<universeDomain><path>` URL.
   ///
   /// Rejects malformed universe domains or paths that inject ports, userinfo, extra host segments,
@@ -94,7 +116,7 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
   func serviceURL(service: String, path: String) throws -> URL {
     let targetHost = "\(service).\(rawValue)"
     guard
-      !rawValue.split(separator: ".", omittingEmptySubsequences: false).contains(""),
+      isValidSyntax,
       let origin = URLComponents(string: "https://\(targetHost)", encodingInvalidCharacters: false),
       origin.scheme == "https",
       origin.host == targetHost,
@@ -168,6 +190,11 @@ public struct _UniverseDomain: Sendable, Hashable, CustomStringConvertible,
     allowQuery: Bool = true,
     allowCustomHosts: Bool = true
   ) throws -> (url: URL, hostHeader: String?) {
+    guard isDefault || isValidSyntax else {
+      throw CredentialsError.parseError(
+        "Invalid universe_domain for \(service) endpoint: '\(rawValue)'"
+      )
+    }
     guard
       !rawURL.isEmpty,
       let parsed = URLComponents(string: rawURL, encodingInvalidCharacters: false),

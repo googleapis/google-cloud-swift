@@ -725,6 +725,11 @@ import Testing
       "https://example.googleapis%2Ecom",
       "https://example.us-central1%0D%0AEvil.rep.googleapis.com",
       "https://example.googleapis.com/bad path",
+      "https://private.googleapis.com.",
+      "https://private.apis-tpclp.goog.",
+      "https://.googleapis.com",
+      "https://example..googleapis.com",
+      "https://.",
     ] {
       #expect(throws: ClientError.self) {
         _ = try _ResolvedEndpoint(
@@ -734,9 +739,18 @@ import Testing
       }
     }
 
-    // Non-ASCII / IDNA universe domains are rejected on default-endpoint substitution instead of
-    // Punycode round-tripping and emitting raw UTF-8 in `Host` / `:authority`.
-    for badUniverse in ["münchen.de", "apis-tpclp%2Egoog", "googleapis.com.", "..com"] {
+    // Non-ASCII / IDNA and non-LDH universe domains (including RFC 3986 sub-delims) are rejected
+    // upfront instead of Punycode round-tripping or injecting delimiters into `Host` / `:authority`.
+    for badUniverse in [
+      "münchen.de",
+      "apis-tpclp%2Egoog",
+      "googleapis.com.",
+      "..com",
+      "evil.com,victim.com",
+      "evil.com;param=1",
+      "-evil.com",
+      "evil-.com",
+    ] {
       #expect(throws: ClientError.self) {
         _ = try _ResolvedEndpoint(
           endpoint: nil,
@@ -761,6 +775,8 @@ import Testing
       "https://example.us-central1%0D%0AEvil.rep.googleapis.com/upload?upload_id=1",
       "https://evil%00-example.googleapis.com/upload?upload_id=1",
       "https://example.googleapis%2Ecom/upload?upload_id=1",
+      "https://example.googleapis.com./upload?upload_id=1",
+      "https://example..googleapis.com/upload?upload_id=1",
       "https://private.googleapis.com/upload?upload_id=bad space",
       "https://private.googleapis.com/upload?upload_id=1#",
     ] {

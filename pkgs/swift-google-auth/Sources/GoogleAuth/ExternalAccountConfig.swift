@@ -113,9 +113,10 @@ public struct ExternalAccountConfig: Sendable {
 
   /// Optional user project ID used to assert billing and quota constraints (`x-goog-user-project`).
   ///
-  /// This parameter is only allowed when exchanging tokens for a global workforce pool. Setting a
-  /// non-empty value for a non-workforce pool will result in a validation error. When `nil` or empty,
-  /// no user project is sent.
+  /// This parameter is only allowed when exchanging tokens for a workforce identity pool
+  /// (`//iam.<universeDomain>/locations/<location>/workforcePools/<pool>/providers/<provider>`).
+  /// Setting a non-empty value for a non-workforce pool will result in a validation error. When
+  /// `nil` or empty, no user project is sent.
   public var workforcePoolUserProject: String? = nil
 
   /// Scopes requested for the exchanged token.

@@ -129,7 +129,7 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       allowsBareHost: allowsBareHost
     )
     let defaultSuffix = ".\(_UniverseDomain.defaultRawValue)"
-    let defaultHostLower = parsedDefault.host.lowercased()
+    let defaultHostLower = Self.asciiLowercased(parsedDefault.host)
     let extractedService: String?
     if defaultHostLower.hasSuffix(defaultSuffix) {
       let candidate = String(defaultHostLower.dropLast(defaultSuffix.count))
@@ -139,8 +139,8 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     }
 
     // Validate non-default `universeDomain` syntax upfront (even when `endpoint` is overridden)
-    // so non-ASCII/IDNA or malformed `universeDomain` values fail fast at client creation rather
-    // than Punycode-round-tripping or injecting ports, userinfo, paths, queries, or fragments.
+    // so non-ASCII/IDNA, RFC 3986 sub-delim, or malformed `universeDomain` values fail fast at
+    // client creation rather than Punycode-round-tripping or injecting header/URL delimiters.
     let validatedUniverseURL: URLComponents?
     if !universeDomain.isDefault {
       let scheme = parsedDefault.components.scheme ?? "https"
@@ -149,8 +149,7 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       let targetHost = "\(validationService).\(universeDomain.rawValue)"
       let candidateString = "\(scheme)://\(targetHost)\(portSuffix)"
       guard
-        !universeDomain.rawValue.split(separator: ".", omittingEmptySubsequences: false)
-          .contains(""),
+        universeDomain.isValidSyntax,
         let reparsed = URLComponents(string: candidateString, encodingInvalidCharacters: false),
         reparsed.scheme == scheme,
         reparsed.host == targetHost,
@@ -238,7 +237,6 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       !percentEncodedHost.isEmpty,
       !percentEncodedHost.contains("%"),
       let rawParsedHost = parsed.host,
-      !Self.unbracketedHost(rawParsedHost).isEmpty,
       let baseScheme = self.baseURL.scheme?.lowercased(),
       let rawSelfHost = self.baseURL.host,
       uriScheme == baseScheme
@@ -246,10 +244,18 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       throw RequestError.badURL(uri)
     }
 
+    let bareParsedHost = Self.unbracketedHost(rawParsedHost)
+    guard !bareParsedHost.isEmpty,
+      bareParsedHost.contains(":")
+        || !bareParsedHost.split(separator: ".", omittingEmptySubsequences: false).contains("")
+    else {
+      throw RequestError.badURL(uri)
+    }
+
     let rawURIHost = Self.bracketedHost(rawParsedHost)
     let rawBaseHost = Self.bracketedHost(rawSelfHost)
-    let uriHostLower = rawURIHost.lowercased()
-    let baseHostLower = rawBaseHost.lowercased()
+    let uriHostASCII = Self.asciiLowercased(rawURIHost)
+    let baseHostASCII = Self.asciiLowercased(rawBaseHost)
 
     let defaultPort = (uriScheme == "https") ? 443 : 80
     let uriPort = parsed.port ?? defaultPort
@@ -262,10 +268,8 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
     let resolvedHostHeader: String
     let universeRaw = self.universeDomain.rawValue
     let universeSuffix = ".\(universeRaw)"
-    let baseHostASCII = Self.asciiLowercased(rawBaseHost)
-    let uriHostASCII = Self.asciiLowercased(rawURIHost)
 
-    if uriHostLower == baseHostLower && uriPort == basePort {
+    if uriHostASCII == baseHostASCII && uriPort == basePort {
       // Same origin as `baseURL`: keep `baseURL`'s connection target and default `Host` header.
       resolvedHostHeader = self.hostHeader
     } else if !universeRaw.isEmpty,
@@ -412,8 +416,14 @@ public struct _ResolvedEndpoint: Sendable, Equatable {
       let percentEncodedHost = parsed.percentEncodedHost,
       !percentEncodedHost.isEmpty,
       !percentEncodedHost.contains("%"),
-      let host = parsed.host,
-      !Self.unbracketedHost(host).isEmpty
+      let host = parsed.host
+    else {
+      throw ClientError.invalidEndpoint(endpoint)
+    }
+    let bareHost = Self.unbracketedHost(host)
+    guard !bareHost.isEmpty,
+      bareHost.contains(":")
+        || !bareHost.split(separator: ".", omittingEmptySubsequences: false).contains("")
     else {
       throw ClientError.invalidEndpoint(endpoint)
     }

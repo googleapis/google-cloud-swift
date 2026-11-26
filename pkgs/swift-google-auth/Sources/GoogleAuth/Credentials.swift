@@ -119,7 +119,9 @@ public enum CredentialsConfiguration: Sendable {
   /// > them in the Google Cloud Console to specific APIs, IP addresses, or application identifiers.
   ///
   /// Note that only some Google Cloud APIs support API keys. Consult the documentation for the specific API you
-  /// intend to use before using API keys.
+  /// intend to use before using API keys. API key credentials configured via `.apiKey(_:)` are bound to the
+  /// Google Default Universe (`googleapis.com`) and fail universe domain validation if used with a client
+  /// configured for a different universe domain.
   ///
   /// - Parameter apiKey: The API key string.
   case apiKey(String)
