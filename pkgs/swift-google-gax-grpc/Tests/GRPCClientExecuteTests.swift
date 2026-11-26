@@ -706,6 +706,52 @@ import Testing
     #expect(String(describing: underlying).contains("googleapis.com"))
   }
 
+  @Test func defaultCredentialsIgnoreUniverseDomainEnvAndCatchLegacyFileMismatch() async throws {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "legacy-gdu-grpc-adc-\(UUID().uuidString).json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    // Omitting `"universe_domain"` in the credential file must resolve to `"googleapis.com"` in
+    // `GoogleAuth` so `_GRPCClient` rejects the mismatch against `GOOGLE_CLOUD_UNIVERSE_DOMAIN`.
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    var options = ClientOptions()
+    options.endpoint = "http://127.0.0.1:1"
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com",
+      ]
+    )
+    defer { client.close() }
+
+    let error = await #expect(throws: RequestError.self) {
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(String(describing: underlying).contains("env.universe.com"))
+    #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
   @Test(arguments: [
     (
       universeDomain: "googleapis.com",
@@ -865,6 +911,97 @@ import Testing
     }
   }
 
+  private static func runIPv6EchoIfAvailable(bindHost: String) async throws {
+    final class ServerStateBox: Sendable {
+      struct State: Sendable {
+        var didBind = false
+        var serveError: (any Error)?
+      }
+      let state = Mutex(State())
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv6(host: bindHost, port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+    let box = ServerStateBox()
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        do {
+          try await server.serve()
+        } catch {
+          box.state.withLock { $0.serveError = error }
+        }
+      }
+
+      let listeningAddress: SocketAddress.IPv6?
+      do {
+        listeningAddress = try await server.listeningAddress?.ipv6
+      } catch {
+        // Skip gracefully in container/CI environments (such as GCB Docker) where IPv6 loopback
+        // is disabled, without letting `server.serve()`'s bind error fail the task group.
+        server.beginGracefulShutdown()
+        return
+      }
+      guard let port = listeningAddress?.port else {
+        server.beginGracefulShutdown()
+        return
+      }
+      box.state.withLock { $0.didBind = true }
+
+      var options = ClientOptions()
+      options.endpoint = "http://[\(bindHost)]:\(port)"
+      options.credentials = try Credentials(configuration: .anonymous)
+
+      let client = try _GRPCClient(
+        from: options,
+        withDefaultEndpoint: "https://example.googleapis.com",
+        environment: [:]
+      )
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      #expect(client.endpoint.host == bindHost)
+      #expect(client.endpoint.authority == "[\(bindHost)]:\(port)")
+
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+
+    let finalState = box.state.withLock { $0 }
+    if finalState.didBind, let serveError = finalState.serveError {
+      throw serveError
+    }
+  }
+
+  @Test func executeIPv6LoopbackEndpoint() async throws {
+    var staticOptions = ClientOptions()
+    staticOptions.endpoint = "http://[::1]:8080"
+    staticOptions.credentials = try Credentials(configuration: .anonymous)
+    let staticClient = try _GRPCClient(
+      from: staticOptions,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [:]
+    )
+    staticClient.close()
+    #expect(staticClient.endpoint.host == "::1")
+    #expect(staticClient.endpoint.authority == "[::1]:8080")
+
+    // Verify unbindable IPv6 addresses (matching Docker containers with IPv6 disabled) skip cleanly.
+    try await Self.runIPv6EchoIfAvailable(bindHost: "2001:db8::1")
+    // Execute live loopback RPC when IPv6 loopback is enabled on the host.
+    try await Self.runIPv6EchoIfAvailable(bindHost: "::1")
+  }
+
   @Test func executePermanentCredentialsErrorNotRetriedByRetryLoop() async throws {
     let endpoint = "http://127.0.0.1:1"
     var options = ClientOptions()
@@ -1009,6 +1146,118 @@ import Testing
       #expect(attempts == 2)
       #expect(sleepCalls == 1)
       #expect(flakyProvider.callCount == 2)
+    }
+  }
+
+  @Test func executeIPv6PlaintextAndSecureIPLiteralEndpointsOmitIPFromSNI() async throws {
+    let ipv4Server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await ipv4Server.serve()
+      }
+
+      guard let port = try await ipv4Server.listeningAddress?.ipv4?.port else {
+        Issue.record("Failed to get IPv4 listening port")
+        ipv4Server.beginGracefulShutdown()
+        return
+      }
+      defer {
+        ipv4Server.beginGracefulShutdown()
+      }
+
+      for tlsEndpoint in ["https://127.0.0.1:\(port)", "127.0.0.1:\(port)"] {
+        var options = ClientOptions()
+        options.endpoint = tlsEndpoint
+        options.credentials = try Credentials(configuration: .anonymous)
+
+        let client = try _GRPCClient(
+          from: options,
+          withDefaultEndpoint: "https://example.googleapis.com",
+          environment: [:]
+        )
+        defer { client.close() }
+
+        let error = await #expect(throws: (any Error).self) {
+          let _: Google_Protobuf_Empty = try await client.execute(
+            path: "/test.Echo/Echo",
+            request: Google_Protobuf_Empty(),
+            options: RequestOptions()
+          )
+        }
+        let reflected = String(reflecting: error)
+        #expect(
+          !reflected.contains("cannotUseIPAddressInSNI"),
+          "Unexpected IP-in-SNI TLS error for \(tlsEndpoint): \(reflected)"
+        )
+      }
+    }
+
+    let ipv6Server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv6(host: "::1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await ipv6Server.serve()
+      }
+
+      guard let ipv6Port = try await ipv6Server.listeningAddress?.ipv6?.port else {
+        ipv6Server.beginGracefulShutdown()
+        return
+      }
+      defer {
+        ipv6Server.beginGracefulShutdown()
+      }
+
+      var plaintextOptions = ClientOptions()
+      plaintextOptions.endpoint = "http://[::1]:\(ipv6Port)"
+      plaintextOptions.credentials = try Credentials(configuration: .anonymous)
+      let plaintextClient = try _GRPCClient(
+        from: plaintextOptions,
+        withDefaultEndpoint: "https://example.googleapis.com",
+        environment: [:]
+      )
+      defer { plaintextClient.close() }
+
+      let _: Google_Protobuf_Empty = try await plaintextClient.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+
+      var tlsOptions = ClientOptions()
+      tlsOptions.endpoint = "https://[::1]:\(ipv6Port)"
+      tlsOptions.credentials = try Credentials(configuration: .anonymous)
+      let tlsClient = try _GRPCClient(
+        from: tlsOptions,
+        withDefaultEndpoint: "https://example.googleapis.com",
+        environment: [:]
+      )
+      defer { tlsClient.close() }
+
+      let error = await #expect(throws: (any Error).self) {
+        let _: Google_Protobuf_Empty = try await tlsClient.execute(
+          path: "/test.Echo/Echo",
+          request: Google_Protobuf_Empty(),
+          options: RequestOptions()
+        )
+      }
+      let reflected = String(reflecting: error)
+      #expect(
+        !reflected.contains("cannotUseIPAddressInSNI"),
+        "Unexpected IP-in-SNI TLS error for IPv6 endpoint: \(reflected)"
+      )
     }
   }
 }

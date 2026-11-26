@@ -23,5 +23,5 @@ struct AnonymousCredentials: CredentialsProvider {
     return []
   }
 
-  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {}
+  func validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws {}
 }

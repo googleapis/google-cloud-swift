@@ -35,6 +35,9 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   /// The Security Token Service endpoint URL (typically `https://sts.googleapis.com/v1/token`).
   private let tokenURL: URL
 
+  /// Optional `Host` header override (`sts.<universeDomain>`) when `tokenURL` targets a shared gateway.
+  private let tokenHostHeader: String?
+
   /// The URI identifier specifying the format of the subject token (e.g. `urn:ietf:params:oauth:token-type:jwt`).
   private let subjectTokenType: ExternalAccountConfig.SubjectTokenType
 
@@ -68,6 +71,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   init(
     subjectTokenProvider: any SubjectTokenProvider,
     tokenURL: URL,
+    tokenHostHeader: String? = nil,
     subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     audience: String,
     scopes: [String],
@@ -78,6 +82,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   ) {
     self.subjectTokenProvider = subjectTokenProvider
     self.tokenURL = tokenURL
+    self.tokenHostHeader = tokenHostHeader
     self.subjectTokenType = subjectTokenType
     self.audience = audience
     self.scopes = scopes
@@ -123,6 +128,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
         try await stsHandler.exchangeToken(
           request: request,
           url: tokenURL,
+          hostHeader: tokenHostHeader,
           encoding: .urlEncoded
         )
       }
@@ -187,7 +193,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
   let scopes: [String]
 
   /// The target Google Cloud universe domain.
-  let universeDomain: String
+  let universeDomain: _UniverseDomain
 
   /// Initializes a new instance of `ExternalAccountCredentials`.
   ///
@@ -227,7 +233,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
       throw CredentialsError.parseError("subjectTokenType parameter must not be empty")
     }
 
-    // Billing constraints validation: workforce pool user project should only be set for global workforce pools.
+    // Billing constraints validation: workforce pool user project should only be set for workforce pools.
     let effectiveWorkforcePoolUserProject = nonEmpty(workforcePoolUserProject)
     if effectiveWorkforcePoolUserProject != nil {
       guard isValidWorkforcePoolAudience(audience) else {
@@ -237,24 +243,27 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
-    let effectiveUniverse = nonEmpty(universeDomain) ?? defaultUniverseDomain
-    let resolvedTokenURL = try Self.resolveTokenURL(
-      tokenURL: tokenURL,
-      universeDomain: effectiveUniverse
+    let effectiveUniverse = _UniverseDomain.resolve(universeDomain)
+    let resolvedEndpoint = try effectiveUniverse.resolveServiceEndpoint(
+      override: tokenURL?.absoluteString,
+      service: "sts",
+      defaultPath: "/v1/token",
+      settingName: "tokenURL"
     )
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
     self.subjectTokenType = subjectTokenType
-    self.tokenURL = resolvedTokenURL
-    self.clientAuthentication = clientAuthentication
+    self.tokenURL = resolvedEndpoint.url
     self.workforcePoolUserProject = effectiveWorkforcePoolUserProject
+    self.clientAuthentication = clientAuthentication
     self.scopes = effectiveScopes
     self.universeDomain = effectiveUniverse
 
     let provider = ExternalAccountTokenProvider(
       subjectTokenProvider: subjectTokenProvider,
-      tokenURL: resolvedTokenURL,
+      tokenURL: resolvedEndpoint.url,
+      tokenHostHeader: resolvedEndpoint.hostHeader,
       subjectTokenType: subjectTokenType,
       audience: audience,
       scopes: effectiveScopes,
@@ -270,32 +279,6 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
       isRetryable: AuthHTTPError.isRetryable,
       shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
-  }
-
-  private static func resolveTokenURL(tokenURL: URL?, universeDomain: String) throws -> URL {
-    // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
-    if let tokenURL {
-      return tokenURL
-    }
-    let targetHost = "sts.\(universeDomain)"
-    let urlString = "https://\(targetHost)/v1/token"
-    guard
-      let parsed = URLComponents(string: urlString, encodingInvalidCharacters: false),
-      parsed.scheme == "https",
-      parsed.host == targetHost,
-      parsed.port == nil,
-      parsed.user == nil,
-      parsed.password == nil,
-      parsed.path == "/v1/token",
-      parsed.query == nil,
-      parsed.fragment == nil,
-      let resolvedURL = parsed.url
-    else {
-      throw CredentialsError.parseError(
-        "Invalid universe_domain for STS endpoint: '\(universeDomain)'"
-      )
-    }
-    return resolvedURL
   }
 
   func accessToken() async throws -> AccessToken {
@@ -318,7 +301,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     return headers
   }
 
-  func universeDomain() async throws -> String {
+  func universeDomain() async throws -> _UniverseDomain {
     return self.universeDomain
   }
 }
@@ -346,10 +329,12 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   }
 
   let path: Substring
-  if let host = url.encodedHost {
+  if let host = url.percentEncodedHost {
     guard
+      !host.contains("%"),
       host.lowercased().hasPrefix("iam."),
       host.count > "iam.".count,
+      !host.split(separator: ".", omittingEmptySubsequences: false).contains(""),
       url.percentEncodedPath.hasPrefix("/")
     else {
       return false

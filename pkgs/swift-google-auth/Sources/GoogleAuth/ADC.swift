@@ -44,7 +44,9 @@ enum ADC: Sendable {
   ///
   /// - Parameters:
   ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
-  ///   - universeDomain: An optional target universe domain (defaults to `googleapis.com`).
+  ///   - universeDomain: An optional universe domain override. When `nil` or empty, local credential
+  ///     files use their `"universe_domain"` field (defaulting to `googleapis.com`) and metadata
+  ///     server credentials query `/computeMetadata/v1/universe/universe-domain`.
   ///   - scopes: Scopes requested for the issued token.
   ///   - environment: The environment variable dictionary used for discovery (defaults to `ProcessInfo.processInfo.environment`).
   /// - Returns: A configured `CredentialsProvider` ready to furnish authentication headers.
@@ -59,7 +61,7 @@ enum ADC: Sendable {
     _ = isInitialized
     let quotaProject =
       nonEmpty(environment["GOOGLE_CLOUD_QUOTA_PROJECT"]) ?? nonEmpty(quotaProjectID)
-    let resolvedUniverseDomain = nonEmpty(universeDomain)
+    let resolvedUniverseDomain = _UniverseDomain(nonEmpty: universeDomain)
 
     let contents = try loadADC(environment: environment)
     switch contents {
@@ -78,7 +80,7 @@ enum ADC: Sendable {
       }
       return MDSCredentials(
         quotaProjectID: quotaProject,
-        universeDomain: resolvedUniverseDomain,
+        universeDomainOverride: resolvedUniverseDomain,
         scopes: scopes,
         fromADC: true,
         environment: environment

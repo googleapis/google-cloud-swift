@@ -16,47 +16,86 @@ import Foundation
 
 /// Thread-safe actor caching the metadata server's universe domain response.
 actor MDSUniverseDomainCache {
-  private var cached: String?
+  private var cached: _UniverseDomain?
   private var permanentError: (any Error)?
-  private var activeTask: Task<String, any Error>?
+  private var activeTask: (id: UInt64, task: Task<_UniverseDomain, any Error>)?
+  private var nextTaskID: UInt64 = 0
 
-  deinit {
-    activeTask?.cancel()
+  var hasActiveTask: Bool {
+    activeTask != nil
   }
 
-  func get(using provider: MDSAccessTokenProvider) async throws -> String {
+  deinit {
+    activeTask?.task.cancel()
+  }
+
+  func get(using provider: MDSAccessTokenProvider) async throws -> _UniverseDomain {
+    try Task.checkCancellation()
     if let cached = self.cached {
       return cached
     }
     if let error = self.permanentError {
       throw error
     }
-    let task: Task<String, any Error>
+    let task: Task<_UniverseDomain, any Error>
     if let existing = self.activeTask {
-      task = existing
+      task = existing.task
     } else {
-      let newTask = Task {
-        try await provider.fetchUniverseDomain()
-      }
-      self.activeTask = newTask
-      task = newTask
-    }
-    do {
-      let value = try await task.value
-      if self.activeTask == task {
-        self.cached = value
-        self.activeTask = nil
-      }
-      return value
-    } catch {
-      if self.activeTask == task {
-        self.activeTask = nil
-        if AuthHTTPError.shouldCachePermanentError(error) {
-          self.permanentError = error
+      self.nextTaskID &+= 1
+      let taskID = self.nextTaskID
+      let newTask = Task { [weak self] in
+        do {
+          let value = try await provider.fetchUniverseDomain()
+          await self?.recordCompletion(taskID: taskID, result: .success(value))
+          return value
+        } catch {
+          await self?.recordCompletion(taskID: taskID, result: .failure(error))
+          throw error
         }
       }
-      throw error
+      self.activeTask = (id: taskID, task: newTask)
+      task = newTask
     }
+    guard let outcome = await Self.awaitRespectingCallerCancellation(task) else {
+      // Caller cancelled while `task` is still running; `newTask` will update `self` via
+      // `recordCompletion` when it finishes.
+      throw CancellationError()
+    }
+    return try outcome.get()
+  }
+
+  private func recordCompletion(taskID: UInt64, result: Result<_UniverseDomain, any Error>) {
+    guard self.activeTask?.id == taskID else {
+      return
+    }
+    self.activeTask = nil
+    switch result {
+    case .success(let value):
+      self.cached = value
+    case .failure(let error):
+      if AuthHTTPError.shouldCachePermanentError(error) {
+        self.permanentError = error
+      }
+    }
+  }
+
+  /// Waits for `task.result`, returning `nil` immediately if the caller task is cancelled before
+  /// `task` completes (without cancelling the shared underlying `task`).
+  private static func awaitRespectingCallerCancellation(
+    _ task: Task<_UniverseDomain, any Error>
+  ) async -> Result<_UniverseDomain, any Error>? {
+    let stream = AsyncStream<Result<_UniverseDomain, any Error>> { continuation in
+      let observer = Task {
+        let result = await task.result
+        continuation.yield(result)
+        continuation.finish()
+      }
+      continuation.onTermination = { _ in
+        observer.cancel()
+      }
+    }
+    var iterator = stream.makeAsyncIterator()
+    return await iterator.next()
   }
 }
 
@@ -92,10 +131,10 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   let cache: TokenCache<ContinuousClock>
 
   /// An optional explicit universe domain override. When `nil`, the metadata server is queried.
-  private let universeDomainOverride: String?
+  private let universeDomainOverride: _UniverseDomain?
 
   /// Lazily populated cache for the metadata server universe domain query.
-  private let universeDomainCache = MDSUniverseDomainCache()
+  let universeDomainCache = MDSUniverseDomainCache()
 
   /// An optional Google Cloud project ID to attribute quota and billing to.
   var quotaProjectID: String? { provider.quotaProjectID }
@@ -125,6 +164,30 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     environment: [String: String] = ProcessInfo.processInfo.environment,
     jitter: TokenCache<ContinuousClock>.JitterGenerator? = TokenCache<ContinuousClock>.defaultJitter
   ) {
+    self.init(
+      endpoint: endpoint,
+      quotaProjectID: quotaProjectID,
+      universeDomainOverride: _UniverseDomain(nonEmpty: universeDomain),
+      scopes: scopes,
+      retryConfiguration: retryConfiguration,
+      client: client,
+      fromADC: fromADC,
+      environment: environment,
+      jitter: jitter
+    )
+  }
+
+  init(
+    endpoint: URL? = nil,
+    quotaProjectID: String? = nil,
+    universeDomainOverride: _UniverseDomain?,
+    scopes: [String] = [],
+    retryConfiguration: RetryConfiguration? = nil,
+    client: AuthHTTPClient = AuthHTTPClient(),
+    fromADC: Bool = false,
+    environment: [String: String] = ProcessInfo.processInfo.environment,
+    jitter: TokenCache<ContinuousClock>.JitterGenerator? = TokenCache<ContinuousClock>.defaultJitter
+  ) {
     let provider = MDSAccessTokenProvider(
       endpoint: endpoint,
       quotaProjectID: nonEmpty(quotaProjectID),
@@ -135,7 +198,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
       environment: environment
     )
     self.provider = provider
-    self.universeDomainOverride = nonEmpty(universeDomain)
+    self.universeDomainOverride = universeDomainOverride
 
     self.cache = TokenCache(
       provider: provider,
@@ -155,7 +218,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   ///
   /// Returns the explicit `universeDomain` override if one was configured, or queries and caches
   /// `/computeMetadata/v1/universe/universe-domain` on the metadata server.
-  func universeDomain() async throws -> String {
+  func universeDomain() async throws -> _UniverseDomain {
     if let override = self.universeDomainOverride {
       return override
     }

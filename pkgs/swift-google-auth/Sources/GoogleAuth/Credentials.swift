@@ -14,15 +14,6 @@
 
 import Foundation
 
-/// The default Google Cloud universe domain (`googleapis.com`).
-///
-/// A "universe" is an isolated Google Cloud environment, such as the standard universe
-/// (`googleapis.com`) or a sovereign, air-gapped, or dedicated deployment. The universe domain
-/// is used to construct base URLs for Google Cloud service endpoints.
-///
-/// See [Google Cloud Universes](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones).
-let defaultUniverseDomain = "googleapis.com"
-
 func nonEmpty(_ value: String?) -> String? {
   guard let value = value, !value.isEmpty else {
     return nil
@@ -128,7 +119,9 @@ public enum CredentialsConfiguration: Sendable {
   /// > them in the Google Cloud Console to specific APIs, IP addresses, or application identifiers.
   ///
   /// Note that only some Google Cloud APIs support API keys. Consult the documentation for the specific API you
-  /// intend to use before using API keys.
+  /// intend to use before using API keys. API key credentials configured via `.apiKey(_:)` are bound to the
+  /// Google Default Universe (`googleapis.com`) and fail universe domain validation if used with a client
+  /// configured for a different universe domain.
   ///
   /// - Parameter apiKey: The API key string.
   case apiKey(String)
@@ -185,26 +178,26 @@ protocol CredentialsProvider: Sendable {
 
   /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.
   ///
-  /// - Returns: The universe domain string (defaults to `"googleapis.com"`).
-  func universeDomain() async throws -> String
+  /// - Returns: The normalized universe domain (defaults to `.default`).
+  func universeDomain() async throws -> _UniverseDomain
 
   /// Validates that the universe domain of these credentials matches `expectedUniverseDomain`.
   ///
   /// - Parameter expectedUniverseDomain: The universe domain expected by the caller.
   /// - Throws: A ``CredentialsError`` if the universe domain cannot be resolved or does not match `expectedUniverseDomain`.
-  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
+  func validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws
 }
 
 extension CredentialsProvider {
-  func universeDomain() async throws -> String {
-    return defaultUniverseDomain
+  func universeDomain() async throws -> _UniverseDomain {
+    return .default
   }
 
-  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+  func validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws {
     let credUniverse = try await self.universeDomain()
     guard credUniverse == expectedUniverseDomain else {
       throw CredentialsError.parseError(
-        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse)). If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
       )
     }
   }
@@ -253,7 +246,7 @@ extension CredentialsProvider {
 /// ```
 public struct Credentials: Sendable {
   /// The default Google Cloud universe domain (`"googleapis.com"`).
-  public static let defaultUniverseDomain = GoogleAuth.defaultUniverseDomain
+  public static let defaultUniverseDomain = _UniverseDomain.defaultRawValue
 
   let credentialsProvider: any CredentialsProvider
 
@@ -276,7 +269,8 @@ public struct Credentials: Sendable {
     )
   }
 
-  init(
+  @_spi(GoogleCloudInternal)
+  public init(
     configuration: CredentialsConfiguration = .adc(),
     environment: [String: String]
   ) throws {
@@ -332,14 +326,22 @@ public struct Credentials: Sendable {
   /// credentials' universe domain with the client's configured universe domain before sending
   /// requests.
   ///
-  /// For most credential types, this returns the configured universe domain (or `"googleapis.com"`
-  /// by default) immediately. For Metadata Server (MDS) credentials without an explicit universe
-  /// domain override, this queries `/computeMetadata/v1/universe/universe-domain` on the metadata
-  /// server and caches the result.
+  /// For local and programmatic credentials, this returns the explicit configuration override, any
+  /// `"universe_domain"` field in the credential JSON, or `"googleapis.com"` by default (while
+  /// impersonated credentials without an explicit override delegate to their source credentials).
+  /// For Metadata Server (MDS) credentials without an explicit universe domain override, this
+  /// queries `/computeMetadata/v1/universe/universe-domain` on the metadata server and caches the
+  /// result. Unlike client transport configuration (`ClientOptions.universeDomain`), `GoogleAuth`
+  /// does not consult the `GOOGLE_CLOUD_UNIVERSE_DOMAIN` environment variable.
   ///
   /// - Returns: The universe domain string (e.g., `"googleapis.com"`).
   /// - Throws: A ``CredentialsError`` if resolving the universe domain from the metadata server fails.
   public func universeDomain() async throws -> String {
+    return try await self._universeDomain().rawValue
+  }
+
+  @_spi(GoogleCloudInternal)
+  public func _universeDomain() async throws -> _UniverseDomain {
     return try await self.credentialsProvider.universeDomain()
   }
 
@@ -351,6 +353,20 @@ public struct Credentials: Sendable {
   /// - Parameter expectedUniverseDomain: The universe domain expected by the caller (e.g., the client's configured universe domain).
   /// - Throws: A ``CredentialsError`` if resolving the universe domain fails or if the resolved universe domain does not match `expectedUniverseDomain`.
   public func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+    if self.credentialsProvider is AnonymousCredentials {
+      return
+    }
+    guard let expected = _UniverseDomain(nonEmpty: expectedUniverseDomain) else {
+      let credUniverse = try await self._universeDomain()
+      throw CredentialsError.parseError(
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse.rawValue)). If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
+      )
+    }
+    try await self._validateUniverseDomain(expected)
+  }
+
+  @_spi(GoogleCloudInternal)
+  public func _validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws {
     try await self.credentialsProvider.validateUniverseDomain(expectedUniverseDomain)
   }
 

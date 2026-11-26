@@ -12,27 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 
 /// Dependency injection for `_HTTPClient`.
 ///
 /// Allow testing `_HTTPClient` with mock credentials.
 protocol CredentialsProtocol: Sendable {
   func headers() async throws -> GoogleAuth.AuthHeaders
-  func universeDomain() async throws -> String
-  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
+  func _universeDomain() async throws -> _UniverseDomain
+  func _validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws
 }
 
 extension CredentialsProtocol {
-  func universeDomain() async throws -> String {
-    GoogleAuth.Credentials.defaultUniverseDomain
+  func _universeDomain() async throws -> _UniverseDomain {
+    .default
   }
 
-  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
-    let credUniverse = try await self.universeDomain()
+  func _validateUniverseDomain(_ expectedUniverseDomain: _UniverseDomain) async throws {
+    let credUniverse = try await self._universeDomain()
     guard credUniverse == expectedUniverseDomain else {
       throw CredentialsError.parseError(
-        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse)). If you haven't configured the universe domain explicitly, `googleapis.com` is the default."
       )
     }
   }

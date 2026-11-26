@@ -16,7 +16,7 @@ import Foundation
 import Testing
 import JWTKit
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite("Service Account Key & Credentials Tests")
 struct ServiceAccountTests {
@@ -439,15 +439,15 @@ struct ServiceAccountTests {
   func universeDomainResolution() async throws {
     let keyWithUniverse = try ServiceAccountTests.generateMockKeyJSON()
     let credsFromKey = try ServiceAccountCredentials(keyJSON: keyWithUniverse)
-    #expect(try await credsFromKey.universeDomain() == "test-universe-domain")
+    #expect(try await credsFromKey.universeDomain().rawValue == "test-universe-domain")
 
     let credsWithOverride = try ServiceAccountCredentials(
       keyJSON: keyWithUniverse, universeDomain: "override.universe.com")
-    #expect(try await credsWithOverride.universeDomain() == "override.universe.com")
+    #expect(try await credsWithOverride.universeDomain().rawValue == "override.universe.com")
 
     let credsWithEmptyOverride = try ServiceAccountCredentials(
       keyJSON: keyWithUniverse, universeDomain: "")
-    #expect(try await credsWithEmptyOverride.universeDomain() == "test-universe-domain")
+    #expect(try await credsWithEmptyOverride.universeDomain().rawValue == "test-universe-domain")
 
     let keyWithoutUniverse = Data(
       """
@@ -460,10 +460,10 @@ struct ServiceAccountTests {
       }
       """.utf8)
     let credsDefault = try ServiceAccountCredentials(keyJSON: keyWithoutUniverse)
-    #expect(try await credsDefault.universeDomain() == "googleapis.com")
+    #expect(try await credsDefault.universeDomain() == .default)
 
     let credsEmptyParamAndNoJSONUniverse = try ServiceAccountCredentials(
       keyJSON: keyWithoutUniverse, universeDomain: "")
-    #expect(try await credsEmptyParamAndNoJSONUniverse.universeDomain() == "googleapis.com")
+    #expect(try await credsEmptyParamAndNoJSONUniverse.universeDomain() == .default)
   }
 }

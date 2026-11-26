@@ -18,7 +18,7 @@ import struct NIOCore.ByteBuffer
 import NIOFoundationCompat
 import NIOHTTP1
 import Testing
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct MDSCredentialsTest {
   @Test func headersSuccessWithQuotaProject() async throws {
@@ -816,16 +816,17 @@ import Testing
     _ = provider
   }
 
-  @Test func universeDomainExplicitOverrideSkipsNetwork() async throws {
+  @Test(arguments: ["explicit.universe.com", "googleapis.com"])
+  func universeDomainExplicitOverrideSkipsNetwork(overrideDomain: String) async throws {
     let mock = MockHTTPClient([])
     let client = AuthHTTPClient(mock: mock)
     let provider = MDSCredentials(
-      universeDomain: "explicit.universe.com",
+      universeDomain: overrideDomain,
       client: client,
       environment: [:]
     )
     let domain = try await provider.universeDomain()
-    #expect(domain == "explicit.universe.com")
+    #expect(domain.rawValue == overrideDomain)
   }
 
   @Test func universeDomainFetchesAndCachesFromMetadataServer() async throws {
@@ -854,8 +855,8 @@ import Testing
 
     let domain1 = try await provider.universeDomain()
     let domain2 = try await provider.universeDomain()
-    #expect(domain1 == "my-custom-universe.com")
-    #expect(domain2 == "my-custom-universe.com")
+    #expect(domain1.rawValue == "my-custom-universe.com")
+    #expect(domain2.rawValue == "my-custom-universe.com")
     #expect(networkCalls.getCount() == 1)
   }
 
@@ -868,7 +869,7 @@ import Testing
       }
     ])
     let provider404 = MDSCredentials(client: AuthHTTPClient(mock: mock404), environment: [:])
-    #expect(try await provider404.universeDomain() == "googleapis.com")
+    #expect(try await provider404.universeDomain() == .default)
 
     let mockEmpty = MockHTTPClient([
       { (request: HTTPClientRequest) in
@@ -883,7 +884,7 @@ import Testing
       }
     ])
     let providerEmpty = MDSCredentials(client: AuthHTTPClient(mock: mockEmpty), environment: [:])
-    #expect(try await providerEmpty.universeDomain() == "googleapis.com")
+    #expect(try await providerEmpty.universeDomain() == .default)
   }
 
   @Test func universeDomainPropagatesAndCachesPermanentServerError() async throws {
@@ -959,9 +960,123 @@ import Testing
     #expect(attempts.getCount() == 2)
 
     // 3. Subsequent call succeeds and caches the resolved domain
-    #expect(try await provider.universeDomain() == "recovered.universe.com")
-    #expect(try await provider.universeDomain() == "recovered.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "recovered.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "recovered.universe.com")
     #expect(attempts.getCount() == 3)
+
+    // 4. Malformed universe-domain payload (e.g. slashes/spaces) fails with non-retryable parse error
+    let malformedMock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("invalid/domain?x=1".utf8)))
+        )
+      }
+    ])
+    let malformedProvider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: malformedMock),
+      environment: [:]
+    )
+    let malformedErr = await #expect(throws: CredentialsError.self) {
+      _ = try await malformedProvider.universeDomain()
+    }
+    #expect(malformedErr?._isRetryable == false)
+  }
+
+  @Test func cancelledMDSUniverseWaiterReturnsPromptlyWithoutCancellingSharedFetch() async throws {
+    let gate = AsyncStream<Void>.makeStream()
+    let started = AsyncStream<Void>.makeStream()
+    let mock = MockHTTPClient([
+      { _ in
+        started.continuation.yield()
+        for await _ in gate.stream { break }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("shared.universe.com".utf8)))
+        )
+      }
+    ])
+    let provider = MDSCredentials(
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let cancelledWaiter = Task {
+      try await provider.universeDomain()
+    }
+    let survivingWaiter = Task {
+      try await provider.universeDomain()
+    }
+
+    for await _ in started.stream { break }
+    cancelledWaiter.cancel()
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await cancelledWaiter.value
+    }
+
+    gate.continuation.yield()
+    gate.continuation.finish()
+    let resolved = try await survivingWaiter.value
+    #expect(resolved.rawValue == "shared.universe.com")
+  }
+
+  @Test func cancelledSoleWaiterClearsFailedBackgroundTaskBeforeNextCaller() async throws {
+    let gate = AsyncStream<Void>.makeStream()
+    let started = AsyncStream<Void>.makeStream()
+    let finishedFirst = AsyncStream<Void>.makeStream()
+    let mock = MockHTTPClient([
+      { _ in
+        started.continuation.yield()
+        for await _ in gate.stream { break }
+        defer { finishedFirst.continuation.yield() }
+        return HTTPClientResponse(version: .http2, status: .serviceUnavailable)
+      },
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("fresh.universe.com".utf8)))
+        )
+      },
+    ])
+    let provider = MDSCredentials(
+      retryConfiguration: RetryConfiguration(
+        maxAttempts: 1,
+        initialDelay: .milliseconds(1),
+        multiplier: 1.0,
+        maxDelay: .milliseconds(1)
+      ),
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    let firstWaiter = Task {
+      try await provider.universeDomain()
+    }
+    for await _ in started.stream { break }
+    firstWaiter.cancel()
+    await #expect(throws: CancellationError.self) {
+      _ = try await firstWaiter.value
+    }
+
+    // Let the orphaned in-flight fetch finish with HTTP 503; `recordCompletion` clears `activeTask`
+    // so a subsequent caller starts a fresh MDS request instead of receiving the stale 503.
+    gate.continuation.yield()
+    gate.continuation.finish()
+    for await _ in finishedFirst.stream { break }
+    while await provider.universeDomainCache.hasActiveTask {
+      await Task.yield()
+    }
+
+    let secondDomain = try await provider.universeDomain()
+    #expect(secondDomain.rawValue == "fresh.universe.com")
   }
 
   @Test func explicitMDSRetriesAndFormatsNonADCErrorMessage() async throws {
@@ -1048,7 +1163,7 @@ import Testing
     let headers = try await provider.headers()
     #expect(headers["Authorization"] == "Bearer mock-token")
     #expect(headers["x-goog-user-project"] == nil)
-    #expect(try await provider.universeDomain() == "queried.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "queried.universe.com")
   }
 
   static func checkRequest(
@@ -1232,7 +1347,7 @@ import Testing
     let provider = MDSCredentials(client: AuthHTTPClient(mock: mock), environment: [:])
     let headers = try await provider.headers()
     #expect(headers["Authorization"] == "Bearer mock-token")
-    #expect(try await provider.universeDomain() == "custom.universe.com")
+    #expect(try await provider.universeDomain().rawValue == "custom.universe.com")
   }
 
   @Test(arguments: ["", "googleapis.com"])

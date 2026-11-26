@@ -21,12 +21,12 @@ struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendabl
 {
   private let provider: any AccessTokenProvider
   let quotaProjectID: String?
-  let universeDomain: String
+  let universeDomain: _UniverseDomain
 
   init(config: AccessTokenConfig) {
     self.provider = config.provider
     self.quotaProjectID = nonEmpty(config.quotaProjectID)
-    self.universeDomain = nonEmpty(config.universeDomain) ?? defaultUniverseDomain
+    self.universeDomain = _UniverseDomain.resolve(config.universeDomain)
   }
 
   func accessToken() async throws -> AccessToken {
@@ -53,7 +53,7 @@ struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendabl
     return headers
   }
 
-  func universeDomain() async throws -> String {
+  func universeDomain() async throws -> _UniverseDomain {
     return self.universeDomain
   }
 
@@ -64,6 +64,6 @@ struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendabl
   var debugDescription: String {
     let quotaDescription = quotaProjectID.map(String.init(reflecting:)) ?? "nil"
     return
-      "AccessTokenCredentials(provider: AccessTokenProvider, quotaProjectID: \(quotaDescription), universeDomain: \(String(reflecting: universeDomain)))"
+      "AccessTokenCredentials(provider: AccessTokenProvider, quotaProjectID: \(quotaDescription), universeDomain: \(String(reflecting: universeDomain.rawValue)))"
   }
 }

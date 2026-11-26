@@ -23,10 +23,10 @@ public struct MDSConfig: Sendable {
   /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
   public var quotaProjectID: String? = nil
 
-  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
+  /// Optional [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
   ///
-  /// When `nil`, the universe domain is queried lazily from `/computeMetadata/v1/universe/universe-domain`
-  /// on the metadata server.
+  /// When `nil` or empty, the universe domain is queried lazily from
+  /// `/computeMetadata/v1/universe/universe-domain` on the metadata server.
   public var universeDomain: String? = nil
 
   /// Scopes requested for the minted access token.

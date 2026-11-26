@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 
 /// A client for the [Cloud Storage] data-plane operations.
@@ -25,6 +25,10 @@ import GoogleAuth
 ///
 /// [Cloud Storage]: https://docs.cloud.google.com/storage
 public final class StorageClient: StorageProtocol, Sendable {
+  /// The default Cloud Storage endpoint in the Google Default Universe (`googleapis.com`).
+  ///
+  /// When no explicit `ClientOptions.endpoint` override is configured, ``StorageClient`` substitutes
+  /// `googleapis.com` with `ClientOptions.universeDomain` (or `GOOGLE_CLOUD_UNIVERSE_DOMAIN` if set).
   public static let defaultEndpoint = "https://storage.googleapis.com"
 
   let inner: GoogleGax._HTTPClient
@@ -37,10 +41,11 @@ public final class StorageClient: StorageProtocol, Sendable {
   /// files from disk). Prefer initializing the client at application startup and reusing it across
   /// requests.
   public convenience init(_ options: StorageClientOptions = .init()) throws {
-    let credentials = try options.client.credentials ?? GoogleAuth.Credentials()
     try self.init(
       options,
-      credentials: credentials,
+      credentials: options.client.credentials,
+      resolveDefaultADC: true,
+      environment: ProcessInfo.processInfo.environment,
       makeClients: { poolSize in (0..<poolSize).map { _ in StorageHTTPClientHolder() } }
     )
   }
@@ -88,20 +93,24 @@ public final class StorageClient: StorageProtocol, Sendable {
   convenience init(
     _ options: StorageClientOptions = .init(),
     credentials: GoogleAuth.Credentials?,
+    resolveDefaultADC: Bool = false,
     seed: UInt64? = nil,
     environment: [String: String] = ProcessInfo.processInfo.environment,
     makeClients: (Int) -> [any _HTTPClientProtocol]
   ) throws {
-    let universeDomain = GoogleGax._Host.resolveUniverseDomain(
+    let resolvedEndpoint = try GoogleGax._ResolvedEndpoint(
       options: options.client,
+      defaultEndpoint: Self.defaultEndpoint,
       environment: environment
     )
-    let endpoint = try GoogleGax._Host.endpoint(
-      endpoint: options.client.endpoint,
-      defaultEndpoint: Self.defaultEndpoint,
-      universeDomain: universeDomain
-    )
-    _ = try GoogleGax._HTTPClient.validateEndpoint(endpoint)
+    let resolvedCredentials: GoogleAuth.Credentials?
+    if let credentials {
+      resolvedCredentials = credentials
+    } else if resolveDefaultADC {
+      resolvedCredentials = try GoogleAuth.Credentials(environment: environment)
+    } else {
+      resolvedCredentials = nil
+    }
     let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
     let transport = Self.makeTransport(
       clients: makeClients(poolSize),
@@ -110,12 +119,10 @@ public final class StorageClient: StorageProtocol, Sendable {
     )
     let client = try GoogleGax._HTTPClient(
       transport,
-      endpoint: endpoint,
-      credentials: credentials,
+      endpoint: resolvedEndpoint,
+      credentials: resolvedCredentials,
       logger: options.client.logger,
       quotaProject: options.client.quotaProject,
-      defaultEndpoint: Self.defaultEndpoint,
-      universeDomain: universeDomain,
       clientHeader: .veneer(packageVersion: PackageVersion.version)
     )
     self.init(options, client: client)

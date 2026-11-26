@@ -1225,4 +1225,50 @@ import Testing
       )
     }
   }
+
+  @Test func defaultADCCredentialsIgnoreUniverseDomainEnvAndEnforceClientMismatch() async throws {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "legacy-gdu-storage-adc-\(UUID().uuidString).json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    let registry = MockRegistry.create()
+    let client = try StorageClient(
+      StorageClientOptions(),
+      credentials: nil,
+      resolveDefaultADC: true,
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog",
+      ],
+      makeClients: { _ in [registry] }
+    )
+    let err = await #expect(throws: WriteObjectError.self) {
+      _ = try await client.writeObject(
+        Data("payload".utf8),
+        to: "test-bucket",
+        as: "test-obj"
+      )
+    }
+    #expect(registry.recordedRequests().isEmpty)
+    if let err, case .requestError(.io(let inner)) = err {
+      #expect(inner is CredentialsError)
+      #expect(String(describing: inner).contains("apis-tpclp.goog"))
+      #expect(String(describing: inner).contains("googleapis.com"))
+    } else {
+      Issue.record(
+        "Expected WriteObjectError.requestError(.io(CredentialsError)), got \(String(describing: err))"
+      )
+    }
+  }
 }

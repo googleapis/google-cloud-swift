@@ -17,7 +17,7 @@ import Synchronization
 import Testing
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleGax
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 import GoogleRpc
 import struct GoogleWKT.WKTEmpty
 import AsyncHTTPClient
@@ -1243,7 +1243,9 @@ import NIOHTTP1
   @Test func universeDomainMismatchThrowsErrorBeforeFetchingAuthHeaders() async throws {
     struct CustomUniverseCredentials: CredentialsProtocol {
       let domain: String
-      func universeDomain() async throws -> String { domain }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve(domain)
+      }
       func headers() async throws -> AuthHeaders {
         Issue.record("headers() must not be called when universe domains mismatch")
         return [("authorization", "Bearer secret-token")]
@@ -1276,7 +1278,9 @@ import NIOHTTP1
   @Test func universeDomainMatchSucceeds() async throws {
     struct CustomUniverseCredentials: CredentialsProtocol {
       let domain: String
-      func universeDomain() async throws -> String { domain }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve(domain)
+      }
       func headers() async throws -> AuthHeaders {
         [("authorization", "Bearer valid-universe-token")]
       }
@@ -1301,7 +1305,9 @@ import NIOHTTP1
   @Test func universeDomainMismatchIsNotRetriedByRetryLoop() async throws {
     struct CustomUniverseCredentials: CredentialsProtocol {
       let domain: String
-      func universeDomain() async throws -> String { domain }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve(domain)
+      }
       func headers() async throws -> AuthHeaders {
         [("authorization", "Bearer secret-token")]
       }
@@ -1345,7 +1351,7 @@ import NIOHTTP1
     final class FlakyUniverseCredentials: CredentialsProtocol, Sendable {
       private let callCount = Mutex(0)
 
-      func universeDomain() async throws -> String {
+      func _universeDomain() async throws -> _UniverseDomain {
         let current = callCount.withLock { count -> Int in
           count += 1
           return count
@@ -1353,7 +1359,7 @@ import NIOHTTP1
         if current == 1 {
           throw try await makeTransientCredentialsError()
         }
-        return "googleapis.com"
+        return .default
       }
 
       func headers() async throws -> AuthHeaders {
@@ -1396,7 +1402,7 @@ import NIOHTTP1
 
   @Test func cancellationErrorFromCredentialsIsRethrownDirectly() async throws {
     struct CancellingUniverseCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
+      func _universeDomain() async throws -> _UniverseDomain {
         throw CancellationError()
       }
       func headers() async throws -> AuthHeaders {
@@ -1404,8 +1410,8 @@ import NIOHTTP1
       }
     }
     struct CancellingHeaderCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
-        "googleapis.com"
+      func _universeDomain() async throws -> _UniverseDomain {
+        .default
       }
       func headers() async throws -> AuthHeaders {
         throw CancellationError()
@@ -1456,8 +1462,8 @@ import NIOHTTP1
 
   @Test func credentialsHeadersErrorWrappedInIOAndNotRetriedByRetryLoop() async throws {
     struct FailingHeaderCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
-        "googleapis.com"
+      func _universeDomain() async throws -> _UniverseDomain {
+        .default
       }
       func headers() async throws -> AuthHeaders {
         throw CredentialsError.cannotFetchToken(
@@ -1504,8 +1510,8 @@ import NIOHTTP1
     final class FlakyHeaderCredentials: CredentialsProtocol, Sendable {
       private let callCount = Mutex(0)
 
-      func universeDomain() async throws -> String {
-        "googleapis.com"
+      func _universeDomain() async throws -> _UniverseDomain {
+        .default
       }
 
       func headers() async throws -> AuthHeaders {
@@ -1594,9 +1600,9 @@ import NIOHTTP1
   ])
   func newRequestURIFailsBeforeFetchingCredentials(badURI: String) async throws {
     struct GuardedCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String {
-        Issue.record("universeDomain() must not be called when URI validation fails")
-        return "googleapis.com"
+      func _universeDomain() async throws -> _UniverseDomain {
+        Issue.record("_universeDomain() must not be called when URI validation fails")
+        return .default
       }
       func headers() async throws -> AuthHeaders {
         Issue.record("headers() must not be called when URI validation fails")
@@ -1665,7 +1671,9 @@ import NIOHTTP1
     async throws
   {
     struct MismatchedCredentials: CredentialsProtocol {
-      func universeDomain() async throws -> String { "other-universe.com" }
+      func _universeDomain() async throws -> _UniverseDomain {
+        _UniverseDomain.resolve("other-universe.com")
+      }
       func headers() async throws -> AuthHeaders {
         Issue.record("headers() must not be called when credential universe mismatches")
         return [("authorization", "Bearer secret-token")]
@@ -1692,6 +1700,68 @@ import NIOHTTP1
       return
     }
     #expect(underlying is CredentialsError)
+  }
+
+  @Test func defaultCredentialsIgnoreUniverseDomainEnvAndEnforceLegacyFileMismatch() async throws {
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "legacy-gdu-adc-\(UUID().uuidString).json"
+    )
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+    // Legacy GDU credential JSON omitting `"universe_domain"` must default to `"googleapis.com"`,
+    // even when `GOOGLE_CLOUD_UNIVERSE_DOMAIN` configures the client for a different universe.
+    try Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "id",
+        "client_secret": "secret",
+        "refresh_token": "refresh"
+      }
+      """.utf8
+    ).write(to: tempFile)
+
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("Transport must not execute HTTP request when universe domains mismatch")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let options = ClientOptions().with {
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://example.googleapis.com",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_UNIVERSE_DOMAIN": "apis-tpclp.goog",
+      ]
+    )
+    #expect(client.endpoint.universeDomain.rawValue == "apis-tpclp.goog")
+    #expect(client.endpoint.host == "example.apis-tpclp.goog")
+
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(path: "/v1/test", query: [])
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(String(describing: underlying).contains("apis-tpclp.goog"))
+    #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
+  @Test func convenienceInitRejectsEmptyUniverseDomain() throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let error = #expect(throws: ClientError.self) {
+      _ = try _HTTPClient(
+        mock,
+        endpoint: "https://example.googleapis.com",
+        universeDomain: ""
+      )
+    }
+    #expect(error == .invalidEndpoint("The universe_domain cannot be empty"))
   }
 
   /// A test response type.

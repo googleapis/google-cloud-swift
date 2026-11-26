@@ -24,14 +24,14 @@ struct UserCredentialsParser: CredentialSourceParser {
   func parse(
     data: Data,
     quotaProjectID: String?,
-    universeDomain: String?,
+    universeDomain: _UniverseDomain?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider {
     return try UserCredentials(
       keyJSON: data,
       quotaProjectID: quotaProjectID,
-      universeDomain: universeDomain,
+      universeDomain: universeDomain?.rawValue,
       scopes: scopes
     )
   }
@@ -70,6 +70,14 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   ///   - retryConfiguration: The retry configuration for token refresh requests.
   /// - Throws: `CredentialsError.notSupported` if a non-default universe domain is configured, or
   ///   `CredentialsError.parseError` if the token URI is invalid.
+  static func validateUniverseDomain(_ universeDomain: _UniverseDomain) throws {
+    guard universeDomain.isDefault else {
+      throw CredentialsError.notSupported(
+        "User accounts are only supported in the default (\(_UniverseDomain.defaultRawValue)) universe: \(universeDomain)"
+      )
+    }
+  }
+
   init(
     user: UserAccountData,
     quotaProjectID: String? = nil,
@@ -78,33 +86,27 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    if let ud = nonEmpty(universeDomain) {
-      if ud != defaultUniverseDomain {
-        throw CredentialsError.notSupported(
-          "User accounts are only supported in the default (googleapis.com) universe: \(ud)")
-      }
+    if let configuredUniverse = _UniverseDomain(nonEmpty: universeDomain) {
+      try Self.validateUniverseDomain(configuredUniverse)
     }
-    if let userUD = nonEmpty(user.universeDomain) {
-      if userUD != defaultUniverseDomain {
-        throw CredentialsError.notSupported(
-          "User accounts are only supported in the default (googleapis.com) universe: \(userUD)")
-      }
+    if let userUniverse = _UniverseDomain(nonEmpty: user.universeDomain) {
+      try Self.validateUniverseDomain(userUniverse)
     }
     self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
-    // Resolve Token URL
-    guard
-      let resolvedURL = URL(
-        string: user.tokenUri ?? "https://oauth2.googleapis.com/token"
-      )
-    else {
-      throw CredentialsError.parseError("Invalid token URI in UserAccountData")
-    }
+    // Resolve and validate `token_uri` against the Google Default Universe (`googleapis.com`).
+    let resolvedEndpoint = try _UniverseDomain.default.resolveServiceEndpoint(
+      override: user.tokenUri,
+      service: "oauth2",
+      defaultPath: "/token",
+      settingName: "token_uri"
+    )
 
     let provider = UserAccountTokenProvider(
       user: user,
       scopes: scopes,
-      tokenURL: resolvedURL,
+      tokenURL: resolvedEndpoint.url,
+      tokenHostHeader: resolvedEndpoint.hostHeader,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )

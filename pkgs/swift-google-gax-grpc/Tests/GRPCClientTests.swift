@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleGaxGRPC
 
@@ -189,10 +189,10 @@ import GoogleAuth
       environment: [:]
     )
     defer { client.close() }
-    #expect(client.universeDomain == "my-custom-universe.com")
-    #expect(client.targetHost == "storage.my-custom-universe.com")
-    #expect(client.targetPort == 443)
-    #expect(client.authority == "storage.my-custom-universe.com")
+    #expect(client.endpoint.universeDomain.rawValue == "my-custom-universe.com")
+    #expect(client.endpoint.host == "storage.my-custom-universe.com")
+    #expect(client.endpoint.port == 443)
+    #expect(client.endpoint.authority == "storage.my-custom-universe.com")
 
     let envOptions = ClientOptions().with {
       $0.credentials = credentials
@@ -203,9 +203,9 @@ import GoogleAuth
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
     )
     defer { envClient.close() }
-    #expect(envClient.universeDomain == "env.universe.com")
-    #expect(envClient.targetHost == "storage.env.universe.com")
-    #expect(envClient.authority == "storage.env.universe.com")
+    #expect(envClient.endpoint.universeDomain.rawValue == "env.universe.com")
+    #expect(envClient.endpoint.host == "storage.env.universe.com")
+    #expect(envClient.endpoint.authority == "storage.env.universe.com")
 
     let invalidOptions = ClientOptions().with {
       $0.credentials = credentials

@@ -113,9 +113,10 @@ public struct ExternalAccountConfig: Sendable {
 
   /// Optional user project ID used to assert billing and quota constraints (`x-goog-user-project`).
   ///
-  /// This parameter is only allowed when exchanging tokens for a global workforce pool. Setting a
-  /// non-empty value for a non-workforce pool will result in a validation error. When `nil` or empty,
-  /// no user project is sent.
+  /// This parameter is only allowed when exchanging tokens for a workforce identity pool
+  /// (`//iam.<universeDomain>/locations/<location>/workforcePools/<pool>/providers/<provider>`).
+  /// Setting a non-empty value for a non-workforce pool will result in a validation error. When
+  /// `nil` or empty, no user project is sent.
   public var workforcePoolUserProject: String? = nil
 
   /// Scopes requested for the exchanged token.
@@ -123,7 +124,8 @@ public struct ExternalAccountConfig: Sendable {
 
   /// Google Cloud universe domain override.
   ///
-  /// When `nil` or empty, defaults to `googleapis.com`.
+  /// When `nil` or empty, defaults to `googleapis.com`. Unlike `ClientOptions.universeDomain`,
+  /// `GoogleAuth` does not consult the `GOOGLE_CLOUD_UNIVERSE_DOMAIN` environment variable.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `ExternalAccountConfig`.
@@ -132,7 +134,9 @@ public struct ExternalAccountConfig: Sendable {
   ///   - credentialSource: The source mechanism supplying the external subject token.
   ///   - audience: The STS audience identifier URI.
   ///   - subjectTokenType: The RFC 8693 token type URI of the subject token.
-  ///   - tokenURL: Optional STS token exchange endpoint override. When `nil`, defaults to `https://sts.<universeDomain>/v1/token`.
+  ///   - tokenURL: Optional `https` STS token exchange endpoint override. When `nil`, defaults to
+  ///     `https://sts.<universeDomain>/v1/token`. When set, must use `https` and must not target a
+  ///     conflicting Google STS universe domain.
   public init(
     credentialSource: CredentialSource,
     audience: String,
